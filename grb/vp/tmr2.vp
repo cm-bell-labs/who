@@ -1,0 +1,66 @@
+(* TMR model 2 *)
+
+const V = {0,1}     		(* input, output values *)
+const I = {1,2,3}		(* module indices *)
+
+label in(V),out(V)		(* system input,output *)
+label mi_I(V),mo_I(V)		(* module input/output *)
+label do(V),vo(V)		(* detector output, voter output *)
+label fail_I,detect_I		(* module failure, detection of failure *)
+label ack,mack_I                      
+
+(* splitter *)
+agent S = in(x).sum(i:I,'mi_i(x).
+                sum(j:diff(I,{i}),'mi_j(x).
+                sum(k:diff(I,{i,j}),'mi_k(x).ack.S)))
+
+(* faulty module *)
+agent M(i:I) = 
+    mi_i(x).(M'(i,x) + 'fail_i.sum(y:diff(V,{x}),M'(i,y)))
+agent M'(i:I,x:V) = 
+   'mo_i(x).mack_i.M(i)
+
+(* perfect module *)
+agent MP(i:I) = M(i)\{fail_i}
+
+(* disagreement detector *)
+agent D(i:I) =
+    mo_i(x).'do(x).D'(i,x)
+agent D'(i:I,x:V) =
+    vo(y).(if x <> y then detect_i.'mack_i.D(i)
+                     else          'mack_i. D(i))
+
+(* module + detector *)
+agent MD(i:I) = (M(i) | D(i))\{mo_i,mack_i}
+
+(* perfect module + detector *)
+agent MD'(i:I) = (MP(i) | D(i))\{mo_i,mack_i}
+
+(* voter *)
+agent V =
+    do(x1).do(x2).do(x3).
+    if x1 = x2 then V'(x1) else V'(x3)
+agent V'(x:V) =
+    'vo(x).'vo(x).'vo(x).'out(x).'ack.V
+
+(* triple modular redundancy *)
+agent TMR2 = (S | MD(1) | MD'(2) | MD'(3) | V)\{mi,do,vo,ack}
+
+agent Cycler = fail_1.detect_1.Cycler
+
+(* We get the effect of a hiding operator by defining a process that
+   synchronises on all of the actions to be hidden (see Milner p. 121) *)
+
+agent Hide1 = sum(x:I,'fail_x.Hide1 + 'detect_x.Hide1)
+
+(* TMR2 with all fail/detect actions hidden *) 
+agent TMR2' = (TMR2 | Hide1)\{fail,detect}
+
+(* TMR2 with in/out and some fail/detect actions hidden *)
+agent Hide2 = sum(x:V,'in(x).Hide2) + out(x).Hide2
+
+agent TMR2'' = (TMR2 | Hide2)\{in,out}
+
+
+
+

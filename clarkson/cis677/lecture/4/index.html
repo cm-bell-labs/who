@@ -1,0 +1,779 @@
+<HTML>
+<HEADER>
+<TITLE> CIS677: Notes for lecture 4, Simple polygons and planar point location
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center>
+	CIS677<br> Notes for lecture 4: <br>
+Simple polygons and planar point location
+</center></H1>
+<BR>
+
+
+
+<h3>Outline</h3>
+<ul>
+<li>	analysis of randomized incremental algorithm for trapezoidal diagrams, completed
+<li>	simple polygons
+<ul>
+<li>		using connectivity to speed up search
+<li>		converting trapezoidal diagrams to triangulations
+<ul>
+<li>			adding diagonals
+<li>			triangulating monotone polygons
+</ul>
+</ul>
+<li>	planar point location
+<ul>
+<li>		A tail estimate
+</ul>
+</ul>
+
+
+<h2> Analysis of randomized incremental algorithm for trapezoidal diagrams, cont.</h2>
+
+
+<h3>Update cost:</h3>
+	Each trapezoid ever considered has O(1) work done for it;<br>
+	How many trapezoids are made, over the course of the algorithm?<br>
+	We'll look at the expected number of trapezoids created at each step.<br>
+
+<p>
+	(For convex hulls, the analogous problem was easy:
+		two edges created per step.)
+
+
+<p>
+If trapezoid T is created when p<sub>i</sub> is added, then p<sub>i</sub> is incident to T.
+
+<p>
+Now consider T in TD(R<sub>i</sub>);<br>
+what is the probability that T was created when p<sub>i</sub> was added?<br>
+That is, what is the probability that p<sub>i</sub> is a member of the S' for T?<br>
+R<sub>i</sub> has i segments, and at most 4 of them are in S', so this probability
+	is <=4/i.
+
+<p>
+The expected size (number of trapezoids) of TD(R<sub>i</sub>) is O(i+Ai<sup>2</sup>/n<sup>2</sup>), from Lemma 2 of the previous lecture,
+	and this is independent of the choice of p<sub>i</sub>, so
+
+<blockquote>
+<b>Lemma 1</b>.  <em>
+The expected number of trapezoids created over the course
+	of the algorithm is
+	sum<sub>i</sub> O(i+Ai<sup>2</sup>/n<sup>2</sup>)/i = O(n+A).
+</em>
+</blockquote>
+
+
+<h3>Traversal cost:</h3>
+
+<table><tr><td>
+	It may be necessary to visit trapezoids that do not meet a new segment,
+	in order to find those that do.
+<p>
+	This additional work occurs when the boundary segment of a trapezoid
+	is broken up by visibility edges from above.
+<p>
+</td>
+<td>
+<center>
+<table><tr><td>
+<img src="f1.gif">
+<caption align=bottom> <em> When walking along </em>a<em> from the
+left across </em>b<em>,
+about 7 boundary pieces are touched.</em> </caption>
+<tr><td></table></center>
+</td></tr></table>
+
+
+
+<p>
+<p>
+<table><tr><td>
+<b>To bound the work of this kind,</b> consider a configuration consisting
+	of a trapezoid with a "tail": a trapezoid together with
+	a visibility edge dividing its boundary.
+<p>
+	Such a tail gives a subdivision of the boundary of the trapezoid.
+	Since the TD is planar, the total number of such tails is O(n+A).
+<p>
+	This trap+tail configuration is determined by a set S' of at most 6
+	segments, just as a trapezoid is determined by at most 4 segments.
+</td><td>
+<center>
+<table><tr><td>
+<img src="f2.gif">
+<caption align=bottom> <em> The trapezoid </em>T<em> plus the edge </em>v<em> form a trap+tail</em> </caption>
+<tr><td></table></center>
+</td></tr></table>
+
+<p>
+	When a segment traverses the graph, work is done for such a configuration
+	if the segment meets the trapezoid, after which the configuration
+	is gone.
+
+<p>
+	So the total work for traversals is proportional to the total
+	number of such configurations, which is O(n+A); the argument
+	is similar as for updates, but with "6" replacing "4".
+
+
+<p>
+Putting these facts together, we get:
+
+<p>
+<blockquote>
+<b>Theorem.</b>
+<em>
+The randomized incremental algorithm needs O(A + n log n) time to find
+	the trapezoidal diagram of n segments with A intersecting pairs.
+</em>
+</blockquote>
+
+
+<h2>Remarks</h2>
+
+<ul>
+<li>In general, sweep is faster: very few op's per output
+<li>visibility edges can be found using sweep, as well
+<li>with visibility edges from endpoints only,
+	have the <em>convex map</em>: may be faster to compute
+</ul>
+
+
+<h2>Using connectivity to speed up search</h2>
+
+Suppose that for the input set S of line segments,<br>
+there is some added information: the segments have known connections.<br>
+That is, the input is a graph:<br>
+<ul>
+<li>	each segment shares endpoints with other segments,
+<li>		and these other segments are known.
+<li>	examples:
+<blockquote>
+		simple polygon, A=0<br>
+		two simple polygons,<br>
+		polygon with holes.<br>
+</blockquote>
+</ul>
+
+<table><tr><td>
+Connectivity can be used to reduce the search cost using "tracing":<br>
+For a given random subset R of S,<br>
+find the trapezoids of TD(R) that contain<br>
+each endpoint of S by walking along segments of S and through TD(R)<br>
+at the same time.<br>
+</td>
+<td><img src="f3.gif">
+</td></tr></table>
+
+<p>
+Using tracing, connectivity information can be used to speed up the algorithm:<br>
+search takes n log<sup>*</sup>n + c log n, where:<br>
+<table>
+	<tr><th>c</th><td> is the number of connected components, and</td></tr>
+	<tr><th>log<sup>*</sup>n</em></th><td> is the depth of log(log(...log(n)))
+such that
+	the result is less than 1.
+</table>
+
+Note that log<sup>*</sup>n < 6 for n < 2<sup>65536</sup>.</td></tr>
+
+<h3> The simple polygon case </h3>
+
+For simple polygons, with c=1 and A=0.
+<blockquote>
+	a long-open theoretical question: can the TD be found in O(n) time?<br>
+	Settled by Chazelle in 1990,<br>
+	using methods inspired by those here.<br>
+</blockquote>
+
+<p>
+Roughly,
+converting from a<br>
+<em>boundary representation</em>, where the segments are the boundary, to an <br>
+<em>area representation</em>, where the trapezoids partition the interior.
+
+<blockquote>
+<b>Lemma 2:</b>
+Tracing takes O(n) expected time when A=0 and c=1.
+</blockquote>
+
+That is, the expected total number of trapezoids touched by walking along
+the segments of S is O(n), or O(1) per segment.
+
+<p>
+First, an algorithm that takes advantage of this, and then
+the proof of the lemma.
+
+<h3>The algorithm</h3>
+
+<p>
+We will change the randomized incremental algorithm somewhat,<br>
+and not maintain endpoint locations as before.
+
+<p>
+The algorithm will use the "tracing" procedure O(log<sup>*</sup>n) times:
+
+
+<p>
+for j with 0<=j<=log<sup>*</sup>n, let 
+<table> 
+<tr><th align=right>log<sup>(j)</sup>n</th><td>be defined by log<sup>(0)</sup>n=n,
+	log<sup>(j)</sup>n=log(log<sup>(i-1)</sup>n).</td></tr>
+<tr><th align=right>i<sub>j</sub> </th><td> denote n/log<sup>(j)</sup>n.</td></tr>
+<tr><th align=right> phase j </th><td> the period of insertion of those p<sub>i</sub>
+	with i<sub>j</sub> <= i < i<sub>j+1</sub>.</td></tr>
+</table>
+
+<p>
+The algorithm has about log<sup>*</sup>n phases,<br>
+with the tracing done at the end of each phase (except the last one).<br>
+The algorithm will use tracing<br>
+for S with respect to TD(R<sub>i<sub>j</sub></sub>), for j=1..log<sup>*</sup>n.<br>
+
+<p>
+if p<sub>i</sub> is added during phase j, so i<sub>j</sub> <= i < i<sub>j+1</sub>,<br>
+then the trapezoid of TD(R<sub>i</sub>(j)) containing the left endpoint of p<sub>i</sub><br>
+is known.<br>
+
+<p>
+The usual maintenance of the trapezoid containing p<sub>i</sub>
+need only be done for TD(R<sub>k</sub>), where i<sub>j</sub> < k < i.
+
+<p>
+These are the only changes.
+
+<h3>Analysis</h3>
+
+Using Lemma 2, the total expected time for tracing is O(n log<sup>*</sup>n).
+
+<p>
+For a given segment p<sub>i</sub> added during the first phase, the expected work
+for search is
+<blockquote>
+<table><tr><td align=center>sum</td><td align=left> C/k   = CH<sub>n</sub> = O(log n);</td></tr><tr><td align=center>1<=k<=i</sub></td></tr></table>
+ 
+</blockquote>
+for some constant C, so
+the total expected work for all segments in the first phase is
+<blockquote>
+(n/log n) O(log n) = O(n).
+</blockquote>
+
+<p>
+For a segment p<sub>i</sub> added during phase j, the work for search is
+<center>
+<img src="foo.gif">
+</center>
+and since i<sub>j+1</sub>-i<sub>j</sub> < n/log<sup>(i+1)</sup>n segments are added during phase j,<br>
+the expected work for phase j is also O(n), and so the total
+expected work is O(n log<sup>*</sup>n).
+
+<h3>Proof of Lemma 2</h3>
+
+Let R be a random subset of S, of size i.
+
+<p>
+We want to show that the total number of intersections
+between line segments of S and trapezoids of TD(R)
+is expected O(n).
+
+
+<p>
+<b>first observation</b>:
+because A=0 here, a segment meets a trapezoid if either:
+<blockquote>
+	it is contained in the trapezoid, or<br>
+	it crosses a visibility edge bounding the trapezoid.<br>
+</blockquote>
+
+<p>
+The number of seg/trap meetings of the first kind is no more than n-i.
+So equivalently, bound the expected number of segment/visibility edge crossings.
+
+<p>
+<b>second observation</b>:
+Pick a random element p of S.<br>
+The number of trapezoids met by all segments of S-R is n-i times
+the expected number of trapezoids of TD(R) met by p.
+
+(Here the expectation is over the random choice of p, only;
+S-R denotes the set difference: members of S that are not in R.)
+
+<p>
+So:
+<blockquote>
+it's enough to show that a random segment in S but not R crosses
+an expected O(1) visibility edges of TD(R).
+</blockquote>
+
+<p>
+Let R' denote the union of R and {p}.<br>
+Since p is a random element of S-R, and R is a random subset of S,<br>
+R' is a random subset of S, and p is a random element  of R'.<br>
+
+<h3> From crossed edges to incident edges</h3>
+
+Let
+<blockquote>
+	V  denote the visibility edges of TD(R), and<br>
+ 	V' denote the visibility edges of TD(R').<br>
+</blockquote>
+
+Then
+<blockquote>
+	V -V' is the set of visibility edges of TD(R) crossed by p, and<br>
+	V'-V  is the set of visibility edges of TD(R') incident to p.<br>
+</blockquote>
+(Here we regard two visibility edges as distinct unless they have
+the same starting and ending points.)
+
+<p>
+We want to bound the expected size of V-V'.
+
+<p>
+The set V'-V is the set of visibility edges <em>incident</em> to p,
+with one endpoint or the other on p.
+
+<p>
+We have
+<blockquote>
+	|V-V'| + |V'| = |V'-V| + |V|,
+</blockquote>
+or
+<blockquote>
+	|V-V'| =  |V'-V| + |V| - |V'|,
+</blockquote>
+but the size of V is 4i, and the size of V' is 4i+4,
+and so
+<blockquote>
+	|V-V'| = |V'-V| - 4,
+</blockquote>
+and
+<blockquote>
+	E|V-V'| = E|V'-V| - 4,
+</blockquote>
+where the expectation is with respect to the random choice of p.
+
+
+<h3>Completing the proof of Lemma 2</h3>
+
+In short: we can find<br>
+the expected number of visibility edges "destroyed" by p by finding<br>
+the expected number "created" by p.<br>
+
+<p>
+The number of visibility edges of R' is 4i+4, and<br>
+each edge is incident to 2 segments, so<br>
+the expected number of edges incident to p is 2(4i+4)/(i+1) = 8.<br>
+
+<p>
+Thus the expected number of visibility edges crossed by p is 8-4 = 4.
+
+<p>
+From the second observation above, the total number of visibility edge
+crossings by segments of S-R is therefore 4(n-i), and Lemma 2 follows.
+
+<h3>A few facts about triangulations</h3>
+
+<p>
+A simple polygon divides the plane into two pieces, by the
+Jordan curve theorem.  The bounded piece is the <em>interior</em>.
+
+<p>
+<table>
+<tr><th align=right>
+triangulation<br> of a simple polygon:</th><td>a subdivision of the interior
+into triangles whose vertices are vertices of the polygon.</td></tr>
+
+<tr><th align=right>
+diagonal:</th><td> a line segment inside a polygon and between vertices.
+</td></tr>
+
+<tr><th align=right>
+reflex vertex:</th><td> one whose <em>internal angle</em> is > pi.
+</td></tr>
+
+<tr><th align=right>
+convex vertex:</th><td> one whose internal angle is <= pi.<br>
+	If the angle is < pi, the vertex is <em>strictly</em> convex.
+</td></tr>
+</table>
+
+Facts:
+<ol type=1>
+<li> Every simple polygon has a strictly convex vertex;<br>
+	the rightmore bottom vertex is, for example.
+<li> Every simple polygon has a diagonal.
+<li> Every simple polygon has a triangulation.
+</ol>
+
+For Fact (2), pick a strictly convex vertex v with neighbors a and b.
+if [ab] is not a diagonal, there is a vertex in triangle vab; pick
+one, v', farthest from the line [ab].  Then [vv'] must be a diagonal.
+
+For fact (3), apply fact (2) repeatedly.
+
+These observations result in an O(n^3) triangulation algorithm.
+
+
+<h3> From trapezoidal diagrams to triangulations</h3>
+
+<p>
+A TD can be used to find a triangulation in O(n) time:
+
+<p>
+A two step process:
+<blockquote>
+	add "local" diagonals to make x-monotone polygons;<br>
+	triangulate the x-monotone polygons.<br>
+</blockquote>
+
+<p>
+<table>
+<tr><th align=right>
+x-monotone polygon:</th><td> a simple polygon such that the intersection of its
+	interior with any vertical line is an interval.
+</td></tr>
+</table>
+
+
+<h3>Adding local diagonals</h3>
+
+<table><tr><td>
+	throw away outside trapezoids;<br>
+	for each inside trapezoid, check the two polygon vertices on its<br>
+		boundary: if they are not on the same polygon segment,<br>
+		draw a diagonal between them.<br>
+</td><td><table><tr><td>
+<img src="f6.gif">
+<caption> <center><em>local diagonals are dotted, v is a splitter</em></caption></caption>
+</td></tr></table>
+</td></tr></table>
+<p>
+The diagonals split the polygonal region into many polygonal regions.
+
+
+<p>
+The resulting polygons are x-monotone, proven as follows.
+<table>
+<tr><th align=right>
+splitter:</th><td> a vertex with two incident visibility edges in the interior.
+</td></tr>
+</table>
+
+<p>
+Two facts to prove:
+<ol type=a>
+<li>	A simple polygon with no splitters is x-monotone.
+<li>	A splitter has an associated trapezoid whose diagonal separates
+		the two visibility edges of the splitter.
+</ul>
+
+<h3>Proof of fact (a):</h3>
+
+Suppose the polygonal region is not x-monotone.  Then for some vertical
+line, its intersection with the region is at least two intervals [a,b] and
+	[c,d], with b and c closest together.
+
+<p>
+Walk from b to c.  This walk begins either with x decreasing or increasing.
+Suppose increasing.  Let v be the rightmost vertex encountered on this walk.
+Then v is a splitter.
+
+
+<h3>Proof of fact (b),</h3>
+that the added diagonals yield polygons with no splitters:
+
+<p>
+Let s be a splitter vertex incident to visibility edges e and e'.
+Suppose e and e' are used to slice up the polygonal region.
+
+<p>
+This splits the region up into three pieces, one of which has both
+visibility edges as boundary.  Call the latter region P'.
+
+<p>
+Let T be the trapezoid of TD(P') that is bounded by the slice.
+The other visibility edge bounding T is induced by a vertex that
+cannot be an endpoint of segments incident to s, and so there is a diagonal
+for s separating the two incident visibility edges.
+
+<p>
+<h3>summing up,</h3> the first step, of adding diagonals, reduces the polygonal
+region to x-monotone pieces.
+
+<h3>Triangulating x-montone polygons</h3>
+
+Given an x-monotone polygon with n boundary segments,<br>
+it can be triangulated in O(n) time using a <em>greedy</em> procedure:
+
+<pre>
+	sort the boundary endpoints by x-coordinate.
+	consider the vertices in left to right order.
+	for a vertex v, add diagonals to all currently visible
+		vertices to the left.
+</pre>
+
+<h3>Why this triangulation procedure works</h3>
+
+
+<table><tr><td>
+"It can be shown" that the currently visible vertices
+to the left are as follows:
+
+<p>
+<blockquote>
+All are one chain, the top or bottom one;<br>
+the vertices of the chain are reflex except the ends of the chain;
+<br>
+nothing blocks visibility except the chain itself.
+</blockquote>
+That is, the work is similar to finding the convex hull using the sorting-based
+algorithm.
+<p>
+<td><td>
+<img src="f7.gif"></td></tr></table>
+
+
+
+<h3>Planar point location</h3>
+The problem:
+<p>
+<em>Given</em>
+<blockquote> a planar subdivision with n edges,</blockquote>
+<em>build</em> a data structure so that
+<blockquote>given any point p,
+the face of the subdivision containing p can be found quickly.</blockquote>
+
+<p>
+The trapezoidal diagram is a refinement of the planar subdivision
+induced by the line segments: it's enough to locate points in TD(S).
+
+<p>
+So far, "search" has been done by maintaining the locations of endpoints.
+However,
+
+<h3>An alternative search procedure:</h3>
+
+when building TD(S),<br>
+when a trap is split, keep a description of each piece T',<br>
+and an <em>influence</em> pointer from T' to the new trapezoid T'' containing T'.
+
+<p>
+This gives a planar point location data structure:<br>
+for any given point p, its location in TD(S) can be found
+by tracing its location through these influence pointers.
+
+<p>
+The time required is on the order
+of the number of different trapezoids containing p.
+
+<p>
+For a given point p, this is expected O(log n), from Lecture 3.
+
+<p>
+This fact does <em>not</em> imply that the query time for the data structure
+is O(log n):
+
+<p>
+<em>After</em> the algorithm makes its random choices, an adversary
+picks the worst point in the plane for queries.  There's no bound
+on how bad the query time can be.
+
+<p>
+However, two facts can be proven:
+<ol type=i>
+<li>	The plane can be split into at most n<sup>3</sup> classes of points, so
+		that the query time is the same for any points in a class,
+		for any version of the data structure.
+<li>	 For a given point q,<br>
+		the probability that the query time for q exceeds K H<sub>n</sub>
+		is 1/n<sup>Omega(K)</sup>
+</ol>
+
+<p>
+Putting these facts together, the probability that the search time
+fails to small is at most the sum of the failure probabilities
+for each class of points, or
+<blockquote>
+n<sup>3</sup>/n<sup>Omega(K)</sup> = 1/n<sup>Omega(K-3)</sup>
+</blockquote>
+giving a small overall probability of failure.
+
+
+<h3>Proof of (i):</h3>
+
+<p>
+Draw vertical lines through all segment endpoints and crossing points.
+Partition the resulting slabs by the segments.
+
+<p>
+
+There are at most
+{n choose 2} + 2n + 1 slabs, each cut into at most n+1 pieces by the 
+segments, giving O(n<sup>3</sup>) pieces altogether.
+
+<p>
+Any two points in the
+same piece would be in the same sequence of trapezoids, and splittings
+of trapezoids.
+
+<p>
+<h3>Proof of (ii):</h3>
+
+<p>
+This is an application of the Chernoff bound.
+
+<p>
+Let Y=sum<sub>1<=i<=n</sub> X<sub>i</sub>, where
+<table>
+<tr><td>
+	X<sub>i</sub> = </td>
+<td>
+<table><th> 1</th><td> if TD(R<sub>i</sub>) has a new containing trapezoid for q, and </td>
+	<tr> <th> 0</th><td> otherwise.</td>
+</tr></table></tr></table>
+
+<p>
+Then,as before,
+the probability that X<sub>i</sub>=1 is no more than 4/i, and so EY<= 4H<sub>n</sub>.
+
+<p>
+We want to prove a bound on Prob{Y>K log n}.
+
+<p>
+<blockquote>
+<em>
+Markov's inequality: For random variable X,
+	Prob{X>K} < EX/K.
+</em>
+</blockquote>
+
+<p>
+<b>Proof:</b> K Prob{X>K} = sum<sub>x>K</sub> K Prob{X=x} < sum<sub>x>K</sub> x Prob{X=x} <= EX.
+
+<p>
+We could apply Markov's inequality to Y,<br>
+but it's better to apply it to D<sup>Y</sup>, for a value D>1 to be chosen.<br>
+Since the exponential function grows fast, a bound for D<sup>Y</sup> gives<br>
+a better bound on the "tail" of Y.<br>
+
+<p>
+We have
+
+<blockquote>
+	Prob{Y> K H<sub>n</sub>}
+	= Prob{D<sup>Y</sup> > D<sup>K H<sub>n</sub></sup>} <= [ED<sup>Y</sup>]/D<sup>KH<sub>n</sub></sup>.
+</blockquote>
+
+As always, H<sub>n</sub> is the n'th harmonic number, = sum<sub>1<=i<=n</sub>1/i.
+
+<p>
+We need to bound ED<sup>Y</sup>.
+
+<blockquote>
+<b>Lemma 3.</b> 
+	ED<sup>Y</sup> <= g(n) == prod<sub>1<=i<=n</sub> [1 + 4D<sup></sup>/i].
+</blockquote>
+
+<p>
+<b>Proof:</b>
+Use induction on n.
+
+<p>
+Let Y(S) denote the variable Y, for the set S.
+
+<p>
+Use conditional expectation: for random variable Z and events B and C,
+<blockquote>
+	EZ= E[Z|B]Prob{B} + E[Z|C]Prob{C}.
+</blockquote>
+
+<p>
+Here, the two events are:
+<blockquote>
+	p<sub>n</sub> is incident to the trapezoid containing the given point, or<br>
+	it isn't.
+</blockquote>
+
+<p>
+With probability at most 4/i, p<sub>n</sub> <em>is</em> incident, and
+<blockquote>
+	Y(S)=1+Y(S-p<sub>n</sub>), or ED<sup>Y(S)</sup> = DED<sup>Y(S-p<sub>n</sub>)</sup> < Dg(n-1) by induction
+</blockquote>
+
+<p>
+With probability at most 1, p<sub>n</sub> <em>is not</em> incident, and
+<blockquote>
+	Y(S) = Y(S-p<sub>n</sub>), or ED<sup>Y(S)</sup> = ED<sup>Y(S-p<sub>n</sub>)</sup> < g(n-1) by induction.
+</blockquote>
+
+<p>
+Combining conditional expectations,
+<blockquote>
+	ED<sup>Y(S)</sup> < Dg(n-1)(4/i) + g(n-1) = g(n-1)(1+4D/i) = g(n),
+</blockquote>
+
+<p>
+and the lemma is proven.
+
+<h3>Completing the bound on Y</h3>
+
+We have
+<blockquote>
+	Prob{Y> K H<sub>n</sub>} <= ED<sup>Y</sup>/D<sup>KH<sub>n</sub></sup>
+</blockquote>
+and from the lemma,
+<blockquote>
+	ED<sup>Y</sup> <= g(n) = prod<sub>1<=i<=n</sub> [1 + 4D/i].
+</blockquote>
+Using 1+x <= e<sup>x</sup>,
+<blockquote>
+	prod<sub>1<=i<=n</sub> [1 + 4D/i] <= e<sup>4DH<sub>n</sub></sup>,
+</blockquote>
+and so
+<blockquote>
+	Prob{Y > K H<sub>n</sub>}
+	<= e<sup>4DH<sub>n</sub></sup>/D<sup>KH<sub>n</sub></sup>
+	= e<sup>(4D-Klog D)H<sub>n</sub></sup>
+		= 1/n<sup>(K(log D)-4D)</sup>
+</blockquote>
+
+
+<h3>Completing the failure probability bound for TD(S)</h3>
+
+<p>
+There are at most n<sup>3</sup> classes of points,
+and the probability that the query time is longer than KH<sub>n</sub>
+is at most 
+<blockquote>
+e<sup>(4D-K log D)H<sub>n</sub></sup>,
+</blockquote>
+for any given point,
+so the probability of a query time longer than KH<sub>n</sub> anywhere is
+<blockquote>
+	n<sup>3</sup>/n<sup>(K(log D)-4D) </sup>= 1/n<sup>K(Log D)-4D-3</sup>.
+</blockquote>
+
+<p>
+For log D = about 1.22, the exponent is greater than 1 if K>14.
+
+<p>
+Hence: the probability that the query time exceeds 16 H<sub>n</sub> is
+at most 1/n<sup>2</sup>.
+
+<p>
+So the randomized incremental algorithm yields a data structure
+with expected O(n+A) space, expected O(A+n log n) construction,
+and O(log n) query time with high probability.
+
+
+</body>
+</html>
+

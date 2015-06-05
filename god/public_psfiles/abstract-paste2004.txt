@@ -1,0 +1,51 @@
+
+Invited Talk 
+
+"Model Checking" Software with VeriSoft
+
+Patrice Godefroid
+Bell Laboratories, Lucent Technologies
+
+Abstract
+
+VeriSoft is a tool for systematically testing concurrent reactive
+software systems. It explores the state space (dynamic behavior) of a
+system by driving and observing the execution of its components using
+a run-time scheduler, and by reinitializing their execution. This
+systematic state-space exploration is performed using model-checking
+algorithms and makes heavy use of so-called "partial-order reduction"
+techniques. By default, VeriSoft searches state spaces for violations
+of user-specified assertions and coordination problems (deadlocks,
+crashes, etc.) between concurrent components. With its first prototype
+developed in 1996 (published at POPL'97), VeriSoft is the first
+software model checker for general-purpose programming languages like
+C and C++.
+
+Since made publicly available in 1999, VeriSoft has been licensed to
+hundreds of users in industry and academia. Inside Lucent
+Technologies, it was applied successfully to analyze several software
+products in various business units and application domains (switch
+maintenance, call processing, network management, etc.). Because
+VeriSoft can automatically generate, execute and evaluate thousands of
+tests per minute, it can quickly reveal behaviors that are virtually
+impossible to detect using conventional testing techniques.
+
+In this talk, I will present VeriSoft, what it does, how it works,
+industrial applications, strengths and limitations,
+technology-transfer issues, and discuss the current status of this
+project as well as related work and future work.
+
+Bio
+
+Patrice Godefroid received the B.S. degree in Electrical Engineering
+(Computer Science elective) and the Ph.D. degree in Computer Science
+from the University of Liege, Belgium, in 1989 and 1994
+respectively. In 1994, he joined Bell Laboratories (now part of Lucent
+Technologies), where he currently holds a position of "distinguished
+member of technical staff". His research interests include program
+(mostly software) specification, analysis, testing and verification.
+
+
+
+
+		

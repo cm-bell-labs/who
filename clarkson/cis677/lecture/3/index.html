@@ -1,0 +1,712 @@
+<HTML>
+<HEADER>
+<TITLE> CIS677: Notes for lecture 3, Line segment intersections
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center>
+	CIS677<br> Notes for lecture 3: <br>
+Line segment intersections
+</center></H1>
+<BR>
+
+
+
+<h3>Outline</h3>
+<ul>
+<li>	Line segment intersection<br>
+<li>	Some approaches<br>
+<li>	Sweep algorithm<br>
+<li>	Planar graph facts<br>
+<li>	A randomized incremental algorithm<br>
+<ul>
+<li>		probability facts
+<li>		analysis
+</ul>
+</ul>
+
+
+
+<h3>Line segment intersection</h3>
+
+The problem:
+<blockquote><em>
+	given a set S of line segments,
+	find all pairs in the set that intersect.
+</em></blockquote>
+
+<p>
+Note: when all segments meet at a point,<br>
+	the answer size in this formulation is Omega(n<sup>2</sup>).
+
+<h3>applications</h3>
+
+<ul>
+<li> circuit design
+<li> clipping, windowing, <a href="http://www.cs.unc.edu/~dm/CODE/GEM/chapter.html">
+	"tesselating curved geometries"
+	</a>
+<li> map overlay
+</ul>
+
+
+
+<h3>Some approaches</h3>
+
+<ul>
+<li>brute force
+<li>bounding box intersection using range queries structures
+</ul>
+
+<h3>bucketing</h3>
+<ul>
+<li>divide the plane up by a uniform grid
+<li>distribute segments to squares in the grid
+<li>find intersections within each square
+<li>can be quite fast for evenly distributed data
+<li>has some advantages for very large data sets: fewer page faults
+<ul>
+<li>problems: bucket size
+<li>	too big, and all in a bucket
+<li>	too small, and too many buckets with nothing.
+</ul>
+</ul>
+<img src="f1.gif">
+
+<h3>projection</h3>
+<blockquote>
+	project segments to x-axis<br>
+	find all pairs of overlapping projection intervals.<br>
+	check if real intersections<br>
+</blockquote>
+<img src="f2.gif">
+<h3>finding all pairs of overlapping projections:</h3>
+<blockquote>
+	walk along real line,<br>
+	keep track of set C of intervals containing current point<br>
+	this set changes only at endpoints<br>
+	at the left endpoint of interval J,
+		report meetings of J with C and add to C.<br>
+	at the right endpoint, delete J from C.<br>
+</blockquote>
+	requires sorting endpoints, considering each one by one.<br>
+	maintenance of set:
+		use list: O(n<sup>2</sup>)
+		use binary tree: O(n log n)
+
+<p>
+All of these are Omega(n<sup>2</sup>) worst case, even when A=0.
+
+
+
+<h3>Sweep line:</h3>
+<blockquote>
+	sweep a vertical line through the segments<br>
+	maintain set of segments that the line meets,<br>
+		just like projection method<br>
+</blockquote>
+<p>
+<p>
+That is, view the x-coordinate as "time":
+something true for the vertical line x=t will be said to be <em>true
+at time t.</em>
+
+<p>
+The <em>y-coordinate</em> of a segment at time t is the
+the y-coordinate of the intersection of the segment with the line x=t.
+
+<p>
+A segment is <em>active</em> for sweep lines that meet it,
+and so segment p--q is active from time p<sub>x</sub> to time q<sub>x</sub>.
+
+<p>
+The sweep algorithm keeps track of the order of the active
+segments along the sweep line, in an ordered list: that is,
+segments at each time t are sorted by y-coordinate.
+<blockquote>
+Call that ordered list the <em>status</em>.
+</blockquote>
+
+<center>
+<table>
+<tr><td><img src="f3.gif"></td></tr>
+<caption align=bottom><em>e, c, d, and b are active and in the status in that order
+</em></caption>
+</table>
+</center>
+<p>
+The status changes only when:
+<blockquote>
+	a segment becomes active,<br>
+	a segment becomes inactive, or<br>
+	when two segments meet.<br>
+</blockquote>
+So the algorithm keeps a schedule of these <em>events,</em>
+and does operations on the status to account for changes when the events occur.
+<blockquote>
+	When a segment becomes active, it is inserted into the status.<br>
+	When a segment becomes inactive, it is deleted from the status.<br>
+	When two segments meet, their order in the status reverses.<br>
+</blockquote>
+
+<p>
+What does it mean to "schedule" an event?
+<blockquote>
+	For the projection algorithm, the endpoints could be sorted,<br>
+	but intersection events are unknown beforehand.<br>
+	SO, use a heap of events, so that the "next" event,<br>
+		at smallest next time, can be found.<br>
+</blockquote>	
+
+<p>
+Where does a segment go in the status?
+<blockquote>
+	if the segment is added at time t,<br>
+	compare its y-coordinate at time t with the<br>
+	y-coordinates of the active segments at time t.<br>
+</blockquote>
+
+<p>
+Plainly,
+only segments that are active at the same time can meet;
+but even more is true:
+
+<p>
+<b>Key observation: </b>
+<table>
+<tr><td>
+<em>
+	At any time t,
+	suppose the next upcoming event, at time t',
+		is an intersection of segments a and b;
+	then all segments between a and b along the sweep line
+		 also meet a and b at time t'.
+</em>
+<p>
+This implies: it's enough to schedule intersection events involving segments
+	that are adjacent along the sweep line.
+
+<p>
+Proof: 
+<blockquote>
+	c is active at time t<br>
+	==> c active at t'<br>
+	Ordering doesn't change between events,<br>
+	so c still between a and b at time t'.
+</blockquote>
+</td><td>
+<img src="f4.gif">
+</td></tr></table>
+
+	
+<p>
+When do segments become adjacent along the sweep line?
+<blockquote>
+	...at an insertion, deletion, or intersection event.<br>
+	when inserting segment a: check if a meets its neighbors in status<br>
+	when deleting segment a: check if the neighbors of a above and below meet.<br>
+	at intersection event, where a was above b:<br>
+		check if a meets b's old neighbor below, and<br>
+		b meets a's old neighbor above.<br>
+</blockquote>
+Schedule any such events found.
+
+<p>
+Keeping track of adjacencies.  need to:
+<blockquote>
+	insert and delete entries in status;<br>
+	find place of new segment in status<br>
+	a dynamic ordered list is needed
+	-->use a balanced binary tree, or skip list<br>
+</blockquote>
+
+
+<h3>Time</h3>
+	O(log n) to put event in heap, to get event from heap
+	O(log n) to put segment in status, to delete it, to find neighbors
+
+<p>
+There are 2n+A events, so O(n+A)log n time needed.
+
+
+
+<h3>Space</h3>
+<p>
+	The status has no more than n segments; for suitable
+		random data, O(sqrt n) on average.
+<p>
+
+	What about the heap?
+<blockquote>
+		2n endpoint events scheduled;<br>
+		At most A intersection events scheduled, so O(n+A) space.<br>
+</blockquote>
+<p>
+	Even better is possible by changing the algorithm:
+<blockquote>
+		As described, an intersection event is scheduled when<br>
+			two segments become adjacent in the status;<br>
+			they may then become nonadjacent.<br>
+		However, it suffices to have events scheduled<br>
+			only for <b>currently</b> adjacent segments.<br>
+		-->when two segments become nonadjacent,<br>
+			remove their intersection event.<br>
+</blockquote>
+
+<h3>Degeneracy</h3>
+
+What about vertical segments?
+<blockquote>
+		could just special-case it.<br>
+		or: use lexicographic tie-breaking, so<br>
+			if events (x,y) and (x,y') have y<=y',
+				consider (x,y) first.<br>
+			equivalent to rotating the coordinate system<br>
+			an infinitesimal amount.
+		a vertical segment's events occur from bottom endpoint,<br>
+			through intersections with segment on the status,<br>
+			to its top endpoint.<br>
+</blockquote>
+
+What about multiple segments meeting at the same point?
+<blockquote>
+		multiple start endpoints: use order of segments a tiny moment later,<br>
+			that is, look at rotation order about common endpoint<br>
+		<img src="f7.gif"><br>
+		multiple segments meeting at an intersection:
+			delete from status, and reinsert<br>
+</blockquote>		
+		
+<h3>Robustness</h3>
+	When are two event points actually equal?<br>
+	One approach: round endpoints to integers, use exact arithmetic.<br>
+	This only works once:<br>
+		what happens if the output is then used as input somewhere else?<br>
+	<em>snapping</em> helps this:<br>
+<table>
+<tr><td><img src="f8.gif"></td><td>
+		all segments initially have endpoints on an integer grid;<br>
+		when two segments meet, the intersection point is "snapped"<br>
+			to the nearest gridpoint<br>
+		this results in polygonal lines approximating the input segments<br>
+		segments passing near gridpoints with intersections<br>
+			are also snapped<br>
+		This introduces no new intersections<br>
+</td></tr></table>
+
+<h3> A heap is unnecessary (if you really only want intersections)</h3>
+	The relative ordering of crossing events doesn't matter:<br>
+	between two endpoint events, crossing events can be processed<br>
+		in any order<br>
+	-->so a sorted array of endpoints, each with a list<br>
+		of crossing events, will work.<br>
+	proof sketch:<br>
+<table><tr><td><img src="f9.gif"></td>
+<td>
+	between time t and t', suppose no endpoint events occur<br>
+	then two segments are in different order at t than at t'<br>
+		iff they cross in between.<br>
+	Adjacent segments in status can be checked for ordering<br>
+	So processing is like sorting status into order at time t',<br>
+		using swaps of adjacent segments<br>
+	Any order of swapping will do.<br>
+</td></tr></table>
+
+
+<h3>A randomized incremental algorithm</h3>
+
+First, some preliminaries:
+
+
+<h3>Planar graphs:</h3>
+<ul><li>are graphs:
+<ul>
+<li>	vertices V
+<li>	edges E
+</ul>
+<li>planar embedding or drawing:
+<ul>
+<li>	vertices are points in the plane
+<li>	for each edge {v,w}, a curve between v and w
+<li>	no edges cross
+</ul>
+<li>Fact: there is always a planar <em>straight-line</em> embedding
+<li>plane graph: a particular straight-line drawing of a graph
+<li>faces
+<ul>
+<li>	regions induced by drawing
+<li>	more formally: equivalence classes under the relation
+<li>		a == b when there is a curve between a and b not crossing
+<li>			any edge in the drawing
+</ul>
+<li>Euler's relation:
+<ul>
+<li>	with v vertices, e edges, f faces, have
+<li>	v-e+f>=2
+<li>	proof sketch:
+<blockquote>
+		true for single edge or node;<br>
+		maintained under adding an edge
+</blockquote>
+</ul>
+<li>e = O(v), since:
+<ul>
+<li>	each edge bounds <= 2 faces, each face has >=3 bounding edges
+<li>	--> f <= 2e/3
+<li>	e <= v+f-2 <= v+2e/3-2, so e <= 3v-6.
+</ul>
+</ul>
+This implies O(n+I)log n bound for sweep,
+where I is the number of intersections, not number of intersecting pairs.
+
+
+<h3>Representation of plane graphs</h3>
+<ul>
+<li>	need a representation so that:
+<blockquote>
+		for each edge, can find its endpoints<br>
+		for each face, can find its edges in order<br>
+		for each vertex, can find its incident edges in order<br>
+</blockquote>
+<li>	When faces are convex, a triangulation will do:
+<blockquote>
+		put a new vertex in each face,<br>
+			connect with vertices around face<br>
+		represent triangulation so that<br>
+			each triangle knows its vertices and neighboring triangles<br>
+</blockquote>
+<img src="f5.gif">
+<li>	For convex subdivisions, this is very close to
+		<em>doubly-connected edge lists</em>, described in the text.
+</ul>
+
+
+<h3>A randomized incremental algorithm</h3>
+<blockquote>
+	slightly faster asymptotically<br>
+	leads to<br>
+		a <em>planar point location</em> data structure,<br>
+		a near-optimum simple polygon triangulation algorithm<br>
+		a divide-and-conquer approach<br>
+</blockquote>
+The algorithm builds the
+
+<p>
+<em>Trapezoidal diagram</em> of the segments:
+<blockquote>
+	...the subdivision induced by the segments, together with<br>
+	<em>visibility edges</em>, for endpoints and crossing points:<br>
+<blockquote>
+		an edge from the point to the point on the<br>
+		nearest segment directly above (or nearest below)<br>
+			the edge could be a ray to infinity, if nothing hit<br>
+		such visibilities are easily found during sweep<br>
+</blockquote>	
+each face is a trapezoid (in a generalized, possibly-infinity sense)<br>
+</blockquote>
+<img src="f6.gif">
+
+
+	
+
+<p>
+The algorithm, in outline:
+<pre>
+	order the segments by a random permutation p<sub>1</sub>...p<sub>n</sub>
+	for i=1..n,
+		maintain TD(R<sub>i</sub>), where R<sub>i</sub>=={p<sub>1</sub>..p<sub>i</sub>}
+</pre>
+
+<p>
+To compute TD(R<sub>i+1</sub>) from TD(R<sub>i</sub>):<br>
+must determine effect of segment p<sub>i+1</sub>:
+<blockquote>
+		find trapezoids meeting p<sub>i+1</sub><br>
+		split some traps with new visibility edges<br>
+		merge some traps: some visibility edges are blocked by p<sub>i+1</sub>
+</blockquote>
+
+<p>
+Given that the trapezoid T containing the left endpoint of p<sub>i+1</sub> is known,<br>
+	the remaining trapezoids meeting p<sub>i+1</sub><br>
+		can be found by traversing the diagram along p<sub>i+1</sub><br>
+		we will show bounds on the work for the traversal<br>
+	The work to update is linear in the number of traps meeting p<sub>i+1</sub>
+
+
+<p>
+So, somewhat like the randomized incremental algorithm for 2d planar convex hull,
+there are basically three problems:
+<dl>
+	<dt><b>Search</b></dt> <dd> find the trap containing an endpoint;</dd>
+	<dt><b>Traverse</b></dt> <dd>walk the diagram along the new segment;</dd>
+	<dt><b>Update</b></dt> <dd>delete and create trapezoids</dd>
+</dl>
+
+
+
+<h3>A few facts about probability:</h3>
+
+<ul>
+<li>	a random permutation has each of the n! permutations equally likely;<br>
+<li>	each R<sub>i</sub> is a random subset: each of the {n choose i}==n!/i!(n-i)!
+		subsets is equally likely to be R<sub>i</sub><br>
+<li>	for fixed j with 1<=j<=i, p_j is a random element of R<sub>i</sub>.
+</ul>
+
+<p>
+To make a random permutation, make an array Z with Z[i]=i for i=1..n, and
+<pre>
+	for i = n downto 1
+		pick a random number j with j <= i;
+		swap Z[i] and Z[j]
+</pre>
+
+
+
+<h3>Linearity of expectation</h3>
+	If X and Y are random variables taking integer values,<br>
+		then the expected value of X+Y is<br>
+		sum<sub>x,y</sub> (x+y)Prob(X=x,Y=y)
+<blockquote>
+			== sum<sub>x,y</sub> x Prob(X=x,Y=y) + sum<sub>x,y</sub> y Prob{X=x, Y=y}<br>
+			== sum<sub>x</sub> x sum<sub>y</sub> Prob(X=x, Y=y) + ...<br>
+			== sum<sub>x</sub> x Prob(X=x) + ...<br>
+			== EX + EY<br>
+</blockquote>
+	That is, E(X+Y) = EX + EY<br>
+	...even when X and Y are dependent
+
+
+<p>
+Back to trapezoidal diagrams:
+
+<h3>Search</h3>
+
+One approach:<br>
+For each left endpoint of an unadded segment, maintain
+the trapezoid of TD(R<sub>i</sub>) containing it.
+
+<h3>Search analysis</h3>
+
+<p>
+For a given point p,<br>
+the work to update the trapezoid containing p is O(1), when that trapezoid changes.
+
+<p>
+How many times does a change of containing trapezoid occur?<br>
+We'll consider the probability that the containing trapezoid changes when p<sub>i</sub>
+	is added.
+
+<p>
+For this analysis, we need this
+
+<blockquote>
+<b>Observation</b>: <em>Any trapezoid T in TD(R<sub>i</sub>) "determined" by no more than 4 segments:
+that is, T is in TD(S') for some S' subset S of size 4.
+</em>
+</blockquote>
+
+<p>
+Call the segments in S' <em>incident</em> to T.
+
+<p>
+Moreover,
+<blockquote>
+	if T is in TD(S'), <em>and</em><br>
+	S' is a subset of R<sub>i</sub>, <em>and</em><br>
+	no segment of S meeting T is in R<sub>i</sub>,<br>
+	<b>then</b> T is in TD(R<sub>i</sub>).<br>
+</blockquote>
+<p>
+If a change occurs for p when p<sub>i</sub> is added,<br>
+then p<sub>i</sub> is incident to the new containing trapezoid.
+
+<p>
+Put another way, let T be the trapezoid of TD(R<sub>i</sub>) containing p,
+determined by some set S' of 4 segments of R<sub>i</sub>.
+
+<p>
+Then a change occurs at step i iff p<sub>i</sub> is a member of S'.
+
+<p>
+For a given set R<sub>i</sub>,<br>
+p<sub>i</sub> is a random element of R<sub>i</sub>, and so<br>
+the probability that this occurs is 4/i.
+
+<p>
+Let J<sub>i</sub> be a random variable,
+<blockquote>
+J<sub>i</sub> = 1 if the trapezoid containing p changes at step i,<br>
+J<sub>i</sub> = 0 otherwise.
+</blockquote>
+
+<p>
+Then the expected work for p is the expected value of
+<blockquote>
+	sum<sub>i</sub> J<sub>i</sub> = sum<sub>i</sub> EJ<sub>i</sub>
+					(by <em>linearity of expectation</em>)<br>
+	=sum<sub>i</sub> 1/i = O(log n).
+</blockquote>
+
+<blockquote>
+<b>Lemma 1</b>.  <em>
+The expected work for search is O(n log n).
+</em>
+</blockquote>
+
+<p>
+Before considering the update cost, we need to look at:
+
+<h3>The expected complexity of TD(R<sub>i</sub>):</h3>
+	The number of edges and faces is O(v),<br>
+	so what is v?<br>
+
+<blockquote>
+		The number of segment endpoints is 2i<br>
+		Let A<sub>i</sub> be the number of intersection points of R<sub>i</sub><br>
+		The number of endpoints of visibility edges is <=2(2i+A<sub>i</sub>)<br>
+		So v<=3(2i+A<sub>i</sub>)<br>
+</blockquote>
+
+
+<h3>What is the expected value of A<sub>i</sub>?</h3>
+	Let p be an intersection point of two segments of S.<br>
+	The probability that p becomes an intersection point of R<sub>i</sub>
+		is the probability that its two incident segments
+		are in R<sub>i</sub>, which is
+<blockquote>
+	{n-2 choose i-2} / {n choose i}
+			    == {i choose 2} / {n choose 2}, or about i<sup>2</sup>/n<sup>2</sup>
+</blockquote>
+<p>
+	Let J<sub>p</sub> be a random variable that is<br>
+<blockquote>
+		1 when p is an intersection point of R<sub>i</sub><br>
+		0 otherwise<br>
+</blockquote>
+	Then the expected value EJ<sub>p</sub> = i(i-1)/n(n-1),<br>
+	and the expected number of intersection points,<br>
+	by linearity of expectation, is <br>
+		E sum<sub>p</sub> J<sub>p</sub>
+			= sum<sub>p</sub> EJ<sub>p</sub> = Ai(i-1)/n(n-1).<br>
+	(remember A = number of intersecting pairs of segments)
+
+
+<blockquote>
+<b>Lemma 2</b>: <em>
+The expected number of vertices
+of TD(R<sub>i</sub>) is O(i+Ai<sup>2</sup>/n<sup>2</sup>).
+</em>
+</blockquote>
+
+
+
+
+
+<h3>Update cost:</h3>
+	Each trapezoid ever considered has O(1) work done for it;<br>
+	How many trapezoids are made, over the course of the algorithm?<br>
+	We'll look at the expected number of trapezoids created at each step.<br>
+
+<p>
+	(For convex hulls, the analogous problem was easy:
+		two edges created per step.)
+
+
+<p>
+If trapezoid T is created when p<sub>i</sub> is added, then p<sub>i</sub> is incident to T.
+
+<p>
+Now consider T in TD(R<sub>i</sub>);<br>
+what is the probability that T was created when p<sub>i</sub> was added?<br>
+That is, what is the probability that p<sub>i</sub> is a member of the S' for T?<br>
+R<sub>i</sub> has i segments, and at most 4 of them are in S', so this probability
+	is <=4/i.
+
+<p>
+The expected size (number of trapezoids) of TD(R<sub>i</sub>) is O(i+Ai<sup>2</sup>/n<sup>2</sup>), from
+	Lemma 2, and this is independent of the choice of p<sub>i</sub>,
+	so
+
+<blockquote>
+<b>Lemma 3</b>.  <em>
+The expected number of trapezoids created over the course
+	of the algorithm is
+	sum<sub>i</sub> O(i+Ai<sup>2</sup>/n<sup>2</sup>)/i = O(n+A).
+</em>
+</blockquote>
+
+
+<h3>Traversal cost:</h3>
+
+<table><tr><td>
+	It may be necessary to visit trapezoids that do not meet a new segment,
+	in order to find those that do.
+<p>
+	This additional work occurs when the boundary segment of a trapezoid
+	is broken up by visibility edges from above.
+<p>
+</td>
+<td>
+<center>
+<table><tr><td>
+<img src="f10.gif">
+<caption align=bottom> <em> When walking along </em>a<em> from the
+left across </em>b<em>,
+about 7 boundary pieces are touched.</em> </caption>
+<tr><td></table></center>
+</td></tr></table>
+
+
+
+<p>
+<p>
+<table><tr><td>
+<b>To bound the work of this kind,</b> consider a configuration consisting
+	of a trapezoid with a "tail": a trapezoid together with
+	a visibility edge dividing its boundary.
+<p>
+	Such a tail gives a subdivision of the boundary of the trapezoid.
+	Since the TD is planar, the total number of such tails is O(n+A).
+<p>
+	This trap+tail configuration is determined by a set S' of at most 6
+	segments, just as a trapezoid is determined by at most 4 segments.
+</td><td>
+<center>
+<table><tr><td>
+<img src="f11.gif">
+<caption align=bottom> <em> The trapezoid </em>T<em> plus the edge </em>v<em> form a trap+tail</em> </caption>
+<tr><td></table></center>
+</td></tr></table>
+
+<p>
+	When a segment traverses the graph, work is done for such a configuration
+	if the segment meets the trapezoid, after which the configuration
+	is gone.
+
+<p>
+	So the total work for traversals is proportional to the total
+	number of such configurations, which is O(n+A); the argument
+	is similar as for updates, but with "6" replacing "4".
+
+
+<p>
+Putting these facts together, we get:
+
+<p>
+<blockquote>
+<b>Theorem.</b>
+<em>
+The randomized incremental algorithm needs O(A + n log n) time to find
+	the trapezoidal diagram of n segments with A intersecting pairs.
+</em>
+</blockquote>
+
+
+
+</body>
+</html>
+

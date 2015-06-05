@@ -1,0 +1,555 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>O Desenvolvimento da Linguagem C*</TITLE>
+</HEAD>
+<BODY LINK="#0000ff" VLINK="#800080">
+
+<B><FONT FACE="Arial" SIZE=6><P ALIGN="CENTER">O Desenvolvimento da Linguagem C*</P>
+</B></FONT><I><FONT FACE="Arial">
+<B><P ALIGN="CENTER">Dennis M. Ritchie<BR>
+Bell Labs/Lucent Technologies<BR>
+Murray Hill, NJ 07974 USA</B><BR>
+</FONT><FONT FACE="Arial" SIZE=2 COLOR="#000080">dmr@bell-labs.com</P>
+</I></FONT><FONT FACE="Arial">
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">RESUMO</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">A linguagem de programa&ccedil;&atilde;o C foi inventada no come&ccedil;o dos anos 70 como uma linguagem de implementa&ccedil;&atilde;o de sistema para o nascente sistema operacional Unix. Derivada da linguagem sem tipos BCPL, ela evoluiu para um modelo estruturado; criada numa min&uacute;scula m&aacute;quina como uma ferramenta para melhorar um ambiente de programa&ccedil;&atilde;o escasso, ela tornou-se um das linguagens dominantes de hoje. Este documento estuda sua evolu&ccedil;&atilde;o.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Introdu&ccedil;&atilde;o</P><DIR>
+<DIR>
+
+</B></FONT><FONT FACE="Arial" SIZE=2><P ALIGN="JUSTIFY">NOTA:<I> *Copyright 1993 Association for Computing Machinery, Inc. Esta reimpress&atilde;o eletr&ocirc;nica tornou-se dispon&iacute;vel pelo autor como uma cortesia. Para direitos de publica&ccedil;&atilde;o adicionais contate a ACM ou o autor. Este artigo foi apresentado na Segunda Confer&ecirc;ncia sobre Hist&oacute;ria das Linguagens de Programa&ccedil;&atilde;o, Cambridge, Mass., Abril de 1993. </P>
+</I></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY"></P></DIR>
+</DIR>
+
+<P ALIGN="JUSTIFY">Este documento fala sobre o desenvolvimento da linguagem de programa&ccedil;&atilde;o C, as influ&ecirc;ncias sobre ela e as condi&ccedil;&otilde;es sob as quais ela foi criada. Por causa da brevidade, eu omiti a completa descri&ccedil;&atilde;o da linguagem C e suas parentas ancestrais, as linguagens B [Johnson 73] e BCPL [Richards 79], concentrando-me nos elementos caracter&iacute;sticos de cada linguagem e como eles evolu&iacute;ram.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">A linguagem C tomou exist&ecirc;ncia nos anos de 1969 - 1973, em paralelo com o primitivo desenvolvimento do sistema operacional Unix; o per&iacute;odo mais criativo ocorreu durante 1972. Outra inunda&ccedil;&atilde;o de mudan&ccedil;as apareceu entre 1977 e 1979, quando a portabilidade do sistema Unix estava sendo demonstrada. No meio deste segundo per&iacute;odo, a primeira grande descri&ccedil;&atilde;o dispon&iacute;vel da linguagem apareceu: <I>A Linguagem de Programa&ccedil;&atilde;o C</I>, freq&uuml;entemente chamada de 'livro branco' ou 'K&amp;R' [Kernighan 78]. Finalmente, na metade dos anos 80, a linguagem foi oficialmente padronizada pelo comit&ecirc; ANSI X3J11, o qual fez novas mudan&ccedil;as. At&eacute; o come&ccedil;o dos anos 80, apesar de existirem compiladores para uma variedade de arquiteturas de m&aacute;quinas e sistemas operacionais, a linguagem foi quase exclusivamente associada com o Unix; mais recentemente, ela tem difundido-se mais extensamente, e hoje est&aacute; entre a linguagens mais comumente usada por toda a ind&uacute;stria de computa&ccedil;&atilde;o.</P>
+</FONT><B><FONT SIZE=5><P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Hist&oacute;ria: o cen&aacute;rio</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">O final dos anos 60 foi uma era turbulenta para a pesquisa de sistemas de computadores no Bell Telephone Laboratories [Ritchie 78] [Ritchie 84]. A companhia estava saindo do projeto Multics [Organick 75], o qual tinha come&ccedil;ado como um empreendimento conjunto do MIT, General Eletric e Bell Labs; por 1969, a administra&ccedil;&atilde;o do Bell Labs e igualmente os pesquisadores, chegaram &agrave; conclus&atilde;o de que as promessas do Multics poderiam ser satisfeitas somente muito depois e tamb&eacute;m muito custosamente. Antes que a m&aacute;quina Multics GE-645 fosse removida das premissas, um grupo informal, liderado primariamente por Ken Thompson, tinha come&ccedil;ado a investigar alternativas. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Thompson queria criar um ambiente de computa&ccedil;&atilde;o confort&aacute;vel de acordo com seu pr&oacute;prio projeto, usando quaisquer meios dispon&iacute;veis. Seus planos, estando isto evidente em retrospecto, incorporariam muitos dos aspectos inovadores do Multics, incluindo uma nota&ccedil;&atilde;o expl&iacute;cita de um processo como um foco de controle, um sistema de arquivo estruturado em &aacute;rvore, um interpretador de comandos como um programa ao n&iacute;vel do usu&aacute;rio, simples representa&ccedil;&atilde;o de arquivos texto e acesso generalizado a dispositivos. Ele excluiu outros, tais como acesso unificado a mem&oacute;ria e arquivos. No come&ccedil;o, al&eacute;m disso, ele e o resto de n&oacute;s protelamos outro elemento pioneiro (ainda que n&atilde;o original) do Multics, chamado de escrita quase que exclusiva em linguagem de alto-n&iacute;vel. A PL/I, a linguagem de implementa&ccedil;&atilde;o do Multics, n&atilde;o era muito do nosso gosto, mas n&oacute;s est&aacute;vamos usando outras linguagens, incluindo BCPL, e n&oacute;s lament&aacute;vamos perder as vantagens de escrever programas em uma linguagem acima do n&iacute;vel do montador, tais como facilidade de escrita e claridade de entendimento. Naquele tempo n&oacute;s n&atilde;o colocamos muito valor em portabilidade, o interesse nisso surgiu depois.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Thompson foi defrontado com um ambiente de hardware restrito e espartano ao mesmo tempo: o DEC PDP-7 na qual ele come&ccedil;ou em 1968 era uma m&aacute;quina com mem&oacute;ria de 8K, o tamanho de palavra era de 18-bits e n&atilde;o havia nenhum software &uacute;til para ela. Enquanto desejava usar uma linguagem de alto-n&iacute;vel, ele escreveu o sistema original Unix no montador PDP-7. No come&ccedil;o, ele nem mesmo fez o programa no PDP-7 propriamente dito, mas ao inv&eacute;s disto usou um conjunto de macros para o montador GEMAP em uma m&aacute;quina GE-635. Um p&oacute;s-processador gerou uma fita de papel leg&iacute;vel pelo PDP-7.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Estas fitas foram levadas da m&aacute;quina GE para o PDP-7 para testar um primitivo kernel do Unix, um editor, um montador, um simples shell (interpretador de comandos) e uns poucos utilit&aacute;rios (como os comandos Unix <I>rm</I>, <I>cat</I> e <I>cp</I>) foram completados. Ap&oacute;s este ponto o sistema operacional era auto-sustent&aacute;vel: programas podiam ser escritos e testados sem recorrer a fita de papel, e o desenvolvimento continuou no PDP-7 propriamente dito.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">O montador PDP-7 de Thompson excedeu o DEC em simplicidade; ele avaliava express&otilde;es e emitia os bits correspondentes. N&atilde;o havia bibliotecas, nenhum carregador ou link editor: o fonte inteiro do programa era apresentado ao montador e o arquivo de sa&iacute;da - com um nome fixo - que emergia era diretamente execut&aacute;vel. (Este nome,<I> a.out</I>, explica um pouquinho a etimologia Unix; ele &eacute; &agrave; sa&iacute;da do montador. Igualmente ap&oacute;s o sistema ganhar um linker e um conjunto especificando um outro nome explicitamente, ele foi mantido como o resultado execut&aacute;vel default de uma compila&ccedil;&atilde;o.).</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">N&atilde;o muito depois do Unix rodar no PDP-7, em 1969, Doug Mcllroy criou a primeira linguagem de alto-n&iacute;vel para o novo sistema: uma implementa&ccedil;&atilde;o da TMG de McClure [McClure 65]. A TMG era uma linguagem para a escrita de compiladores (mais geralmente, TransMoGrifiers) em um estilo top-down e recursivo descendente, combinando sintaxe de nota&ccedil;&atilde;o de livre contexto com elementos procedurais. Mcllroy e Bob Morris tinham usado a TMG para escrever o primitivo compilador PL/I para o Multics.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Desafiado pelo feito de Mcllroy na reprodu&ccedil;&atilde;o da TMG, Thompson decidiu que o Unix - possivelmente ele n&atilde;o tinha sido chamado assim - necessitava de uma linguagem de programa&ccedil;&atilde;o de sistema. Ap&oacute;s uma rapidamente abandonada tentativa em Fortran, ele criou uma linguagem pr&oacute;pria dele mesmo, o qual ele chamou de B. A linguagem B pode ser pensada como a C sem tipos; mais precisamente, ela &eacute; a BCPL comprimida em 8K de mem&oacute;ria e filtrada pelo c&eacute;rebro de Thompson. Seu nome provavelmente representa uma contra&ccedil;&atilde;o de BCPL, entretanto uma teoria alternativa pensa que ele deriva de Bon [Thompson 69], uma linguagem n&atilde;o relatada criada por Thompson nos dias do Multics. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Bon por sua vez foi nomeada de conformidade com o nome de sua esposa Bonnie, ou (de acordo com uma cita&ccedil;&atilde;o em seu manual) de conformidade com o nome de uma religi&atilde;o cujos rituais envolvem a murmura&ccedil;&atilde;o de f&oacute;rmulas m&aacute;gicas.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Origens: as linguagens</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">A linguagem BCPL foi projetada por Martin Richards no meio dos anos 60 enquanto ele estava visitando o MIT, e foi usada no come&ccedil;o dos anos 70 para v&aacute;rios projetos interessantes, dentre eles o sistema operacional OS6 em Oxford [Stoy 72] e partes do trabalho no Xerox PARC [Thacker 79]. N&oacute;s tornamo-nos familiarizados com ela porque o sistema MIT CTSS [Corbato 62] na qual Richards trabalhou era usado para desenvolvimento do Multics. O compilador original BCPL foi transportado para o Multics e para o sistema GE-635 GECOS por Rudd Canaday e outros do Bell Labs [Canaday 69]; durante a agonia final da vida do Multics no Bell Labs e imediatamente ap&oacute;s, ela foi a linguagem escolhida pelo grupo de pessoas que estariam envolvidas depois com o Unix. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">A linguagens BCPL, B e C, ajustam-se firmemente na tradicional fam&iacute;lia procedural simbolizada pela Fortran e Algol 60. Elas s&atilde;o particularmente orientadas para a programa&ccedil;&atilde;o de sistemas, s&atilde;o pequenas e descritas compactamente, sendo amenas para a tradu&ccedil;&atilde;o por compiladores simples. Elas est&atilde;o 'pr&oacute;ximas &agrave; m&aacute;quina' na qual as abstra&ccedil;&otilde;es por elas introduzidas s&atilde;o prontamente fundamentadas nos tipos de dados concretos e opera&ccedil;&otilde;es providas por computadores convencionais, confiando em bibliotecas de rotinas para entrada-sa&iacute;da e outras intera&ccedil;&otilde;es com um sistema operacional. Com menos sucesso, elas tamb&eacute;m usam bibliotecas de rotinas para especificar constru&ccedil;&otilde;es de controles interessantes como co-rotinas e rotinas de fechamento. Ao mesmo tempo, suas abstra&ccedil;&otilde;es ficam num n&iacute;vel suficientemente alto que, com cuidado, pode alcan&ccedil;ar portabilidade entre m&aacute;quinas.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">BCPL, B e C, diferem sintaticamente em muitos detalhes, mas globalmente elas s&atilde;o similares. Um programa consiste de declara&ccedil;&otilde;es globais e declara&ccedil;&otilde;es de fun&ccedil;&otilde;es (procedimento). Procedimentos podem ser aninhados em BCPL, mas n&atilde;o podem referir-se a objetos n&atilde;o est&aacute;ticos definidos contendo procedimentos. B e C evitam esta restri&ccedil;&atilde;o impondo uma mais severa ainda: nenhum procedimento aninhado. Cada uma das linguagens (exceto as primeiras vers&otilde;es da B) reconhece compila&ccedil;&atilde;o separada, fornecendo meios para inclus&atilde;o de texto a partir de nomes de arquivos. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">V&aacute;rios mecanismos sint&aacute;ticos e l&eacute;xicos da BCPL s&atilde;o mais elegantes e regulares do que aqueles de B e C. Por exemplo, procedimentos em BCPL e declara&ccedil;&otilde;es de dados t&ecirc;m uma estrutura mais uniforme, e ela fornece um conjunto de constru&ccedil;&otilde;es de loop mais completo. Embora programas em BCPL sejam notacionalmente fornecidos a partir de um fluxo indelimitado de caracteres, regras inteligentes permitem colocar ponto-e-v&iacute;rgula ap&oacute;s senten&ccedil;as que terminam no limite de uma linha. B e C omitem esta conveni&ecirc;ncia e terminam a maioria das senten&ccedil;as com ponto-e-v&iacute;rgula. Apesar das diferen&ccedil;as, a maioria das senten&ccedil;as e operadores em BCPL projeta-se diretamente nas declara&ccedil;&otilde;es em B e C.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Algumas das diferen&ccedil;as estruturais entre BCPL e B originam-se de limita&ccedil;&otilde;es na mem&oacute;ria intermedi&aacute;ria. Por exemplo, declara&ccedil;&otilde;es BCPL podem tomar esta forma:</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">let P1 be command</P>
+<P ALIGN="JUSTIFY">and P2 be command</P>
+<P ALIGN="JUSTIFY">and P3 be command</P><DIR>
+<DIR>
+
+</FONT><P> ...</P>
+<FONT FACE="Arial"></DIR>
+</DIR>
+
+<P ALIGN="JUSTIFY">onde o texto do programa representado por command cont&eacute;m procedimentos inteiros. As subdeclara&ccedil;&otilde;es conectadas por um and<I> </I>ocorrem simultaneamente, assim o nome P3 &eacute; conhecido dentro do procedimento P1. Similarmente, BCPL pode empacotar um grupo de declara&ccedil;&otilde;es e senten&ccedil;as em uma express&atilde;o que produzem um valor, por exemplo:</P>
+
+<P ALIGN="JUSTIFY">E1 := valof $( declarations ; commands ; resultis E2 $) + 1</P>
+
+<P ALIGN="JUSTIFY">O compilador BCPL manipulou prontamente tais constru&ccedil;&otilde;es armazenando e avaliando uma representa&ccedil;&atilde;o gramaticalmente analisada do programa inteiro antes de produzir a sa&iacute;da. Limita&ccedil;&otilde;es de armazenamento no compilador B exigiram uma t&eacute;cnica de passo &uacute;nico na qual a sa&iacute;da era gerada o mais r&aacute;pido poss&iacute;vel, e o reprojeto sint&aacute;tico elaborado foi levado adiante na linguagem C.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Certos aspectos menos agrad&aacute;veis da BCPL s&atilde;o devidos a seus pr&oacute;prios problemas tecnol&oacute;gicos e foram conscientemente evitados no projeto da B. Por exemplo, a BCPL usa um mecanismo de 'vetor global' para comunicar-se entre programas compilados separadamente. Neste esquema, o programador associa explicitamente o nome de cada procedimento externo vis&iacute;vel e objeto de dados com um offset num&eacute;rico em um vetor global; a linkagem era realizada no c&oacute;digo compilado usando estes offsets num&eacute;ricos. A linguagem B livrou-se desta inconveni&ecirc;ncia insistindo inicialmente que o programa inteiro seria apresentado todo de uma vez ao compilador. Implementa&ccedil;&otilde;es posteriores da B, e todas aquelas da C, usam um linker convencional para resolver nomes externos que aparecem em arquivos compilados separadamente, ao inv&eacute;s de colocar o fardo de assinalar offsets ao programador. </P>
+<P ALIGN="JUSTIFY">Outras mudan&ccedil;as foram introduzidas na transi&ccedil;&atilde;o da BCPL para a B como um t&oacute;pico experimental, sendo que algumas permanecem controversas, por exemplo, a decis&atilde;o de usar um simples caracter = para assinalamento ao inv&eacute;s de :=. Similarmente, a B usa /* */ para encerrar coment&aacute;rios, ao passo que a BCPL usa // para ignorar texto at&eacute; o final da linha. O legado da PL/I &eacute; evidente aqui (C++ ressuscitou a conven&ccedil;&atilde;o de coment&aacute;rio da BCPL). A linguagem Fortran influenciou a sintaxe das declara&ccedil;&otilde;es: declara&ccedil;&otilde;es em B come&ccedil;am com um especificador como auto ou static, seguidas por uma lista de nomes. A linguagem C n&atilde;o somente seguiu este estilo, mas o ornamentou colocando suas palavras-chave especificadoras de tipo no in&iacute;cio das declara&ccedil;&otilde;es.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Nem toda a diferen&ccedil;a entre a linguagem BCPL documentada no livro de Richards [Richards 79] e a linguagem B era deliberada; n&oacute;s come&ccedil;amos de uma vers&atilde;o inicial da BCPL [Richards 67]. Por exemplo, o endcase que termina uma declara&ccedil;&atilde;o switchon em BCPL n&atilde;o estava presente na linguagem quando n&oacute;s a aprendemos nos anos 60. Assim a sobrecarga da palavra-chave break, usada para sair de uma declara&ccedil;&atilde;o switch da B e C, deve-se a uma evolu&ccedil;&atilde;o divergente ao inv&eacute;s de uma mudan&ccedil;a consciente.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Em contraste com a varia&ccedil;&atilde;o de sintaxe que ocorreu durante a cria&ccedil;&atilde;o da linguagem B, o n&uacute;cleo do conte&uacute;do sem&acirc;ntico da BCLP - seu modelo estruturado e regras de avalia&ccedil;&atilde;o de express&otilde;es - permaneceu intacto. Ambas as linguagens n&atilde;o possu&iacute;am tipos, ou melhor, tinham um simples tipo de dado, o 'word' ou 'cell', um padr&atilde;o de bit de comprimento fixo. A mem&oacute;ria nestas linguagens consiste de um array linear de tais c&eacute;lulas, sendo que o significado do conte&uacute;do de uma c&eacute;lula depende da opera&ccedil;&atilde;o aplicada. O operador +, por exemplo, simplesmente adiciona seus operandos usando a instru&ccedil;&atilde;o de adi&ccedil;&atilde;o de inteiros da m&aacute;quina. As outras opera&ccedil;&otilde;es s&atilde;o igualmente inconscientes do significado atual de seus operandos. Pelo fato da mem&oacute;ria ser um array linear, era poss&iacute;vel interpretar o valor em uma c&eacute;lula como um &iacute;ndice neste array, sendo que a BCPL supre um operador para este prop&oacute;sito. Na linguagem original ele era rv, passando depois a ser !, enquanto que a B usa o un&aacute;rio *. Assim, se p &eacute; uma c&eacute;lula contendo o &iacute;ndice (ou endere&ccedil;o de, ou ponteiro para) de outra c&eacute;lula, *p refere-se ao conte&uacute;do do ponteiro para a c&eacute;lula, ou como um valor em uma express&atilde;o ou como um alvo de uma atribui&ccedil;&atilde;o.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Pelo fato dos ponteiros em BCPL e B serem meramente &iacute;ndices inteiros na mem&oacute;ria, a aritm&eacute;tica neles &eacute; significativa: se p &eacute; o endere&ccedil;o de uma c&eacute;lula, ent&atilde;o p + 1 &eacute; o endere&ccedil;o da pr&oacute;xima c&eacute;lula. Esta conven&ccedil;&atilde;o &eacute; o b&aacute;sico para a sem&acirc;ntica de arrays em ambas as linguagens. Quando em BCPL uma pessoa escreve</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">let V = vec 10</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">ou em B,</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">auto V[10];</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">o efeito &eacute; o mesmo: a c&eacute;lula nomeada V &eacute; alocada, ent&atilde;o outro grupo de 10 c&eacute;lulas cont&iacute;nuas s&atilde;o colocadas ao lado e o &iacute;ndice da mem&oacute;ria da primeira delas &eacute; colocada em V. Por uma regra geral, em B a express&atilde;o</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">*(V+i)</P>
+<P ALIGN="JUSTIFY">adiciona V e i, referindo-se a i-&eacute;sima localiza&ccedil;&atilde;o ap&oacute;s V. Ambas, BCPL e B, adicionaram nota&ccedil;&otilde;es especiais para suavizar tais acessos a array; em B uma express&atilde;o equivalente &eacute;:</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&#9;V[i]</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">e em BCPL</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&#9;V!i</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Esta aproxima&ccedil;&atilde;o com arrays era incomum naquela ocasi&atilde;o; a linguagem C assimilaria isto depois de modo at&eacute; menos convencional.</P>
+<P ALIGN="JUSTIFY"> </P>
+<P ALIGN="JUSTIFY">As linguagens BCPL, B e C, n&atilde;o suportam fortemente dados caracter; cada uma trata strings como vetores de inteiros e suplementam regras gerais com algumas poucas conven&ccedil;&otilde;es. Nas linguagens BCPL e B, uma string literal denota o endere&ccedil;o de uma &aacute;rea est&aacute;tica inicializada com caracteres da string, armazenados em c&eacute;lulas. Em BCPL, o primeiro byte armazenado cont&eacute;m o n&uacute;mero de caracteres na string; em B, n&atilde;o h&aacute; contador e strings s&atilde;o terminados por um caracter especial, o caracter '*e'. Esta mudan&ccedil;a foi feita parcialmente para evitar a limita&ccedil;&atilde;o do comprimento de uma string causada pela reten&ccedil;&atilde;o do contador em um espa&ccedil;o de 8 ou 9 bits e em parte porque, em nossa experi&ecirc;ncia, manter o contador parecia ser menos conveniente do que usar um terminador.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Caracteres individuais numa string em BCPL eram usualmente manipulados distribuindo a string em outro array, um caracter por c&eacute;lula, juntando-os depois; a B fornecia rotinas correspondentes, mas as pessoas usaram mais freq&uuml;entemente outras fun&ccedil;&otilde;es de biblioteca que acessavam ou substitu&iacute;am caracteres individuais em uma string.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Mais Hist&oacute;ria</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">Ap&oacute;s a vers&atilde;o TGM da B estar trabalhando, Thompson reescreveu a B em si mesma (um passo de bootstrapping). Durante o desenvolvimento, ele lutou continuamente contra limita&ccedil;&otilde;es de mem&oacute;ria: cada adi&ccedil;&atilde;o &agrave; linguagem inchava o compilador de modo que dificilmente poderia ajustar-se, mas cada reescrita tomava vantagem da caracter&iacute;stica reduzida de seu tamanho. Por exemplo, a B introduziu operadores de atribui&ccedil;&atilde;o generalizados, usando x=+y para adicionar y a x. A nota&ccedil;&atilde;o veio da Algol 68 [Wijngaarden 75] via Mcllroy, que a tinha incorporado em sua vers&atilde;o da TGM. (Na B e na primitiva C, o operador era =+ ao inv&eacute;s de +=; este erro, reparado em 1976, foi induzido pelo modo f&aacute;cil e sedutor de manipula&ccedil;&atilde;o da primeira forma no analisador l&eacute;xico da B.)</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Thompson foi um passo adiante inventando os operadores ++ e --, os quais incrementam ou decrementam; sua posi&ccedil;&atilde;o pr&eacute;-fixada ou p&oacute;s-fixada determina se a altera&ccedil;&atilde;o acontece antes ou depois de se observar o valor do operando. Eles n&atilde;o estavam nas primeiras vers&otilde;es da B, mas apareceram ao longo do caminho. As pessoas freq&uuml;entemente sup&otilde;em que eles foram criados para usar os modos de auto-incremento e autodecremento de endere&ccedil;o do DEC PDP-11 na qual a C e o Unix tornaram-se populares. Esta &eacute; uma impossibilidade hist&oacute;rica, visto que n&atilde;o havia PDP-11 quando a B foi desenvolvida. O PDP-7, contudo, tinha umas poucas c&eacute;lulas de mem&oacute;ria de ‘auto-incremento’, com a propriedade que uma refer&ecirc;ncia indireta &agrave; mem&oacute;ria por feita por meio delas incrementava a c&eacute;lula. Esta caracter&iacute;stica provavelmente sugeriu tais opera&ccedil;&otilde;es a Thompson; a generaliza&ccedil;&atilde;o para as tornar p&oacute;s ou pr&eacute;-fixadas era pr&oacute;prio dele. Na verdade as c&eacute;lulas de ‘auto-incremento’ n&atilde;o eram usadas diretamente na implementa&ccedil;&atilde;o dos operadores, e uma motiva&ccedil;&atilde;o forte para a inova&ccedil;&atilde;o era provavelmente a observa&ccedil;&atilde;o por parte dele que a tradu&ccedil;&atilde;o de ++x era menor do que x=x+1.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">O compilador B no PDP-7 n&atilde;o gerou instru&ccedil;&otilde;es de m&aacute;quina, mas ao inv&eacute;s disso ‘threaded code' [Bell 72], um esquema interpretativo na qual a sa&iacute;da do compilador consistia de uma seq&uuml;&ecirc;ncia de endere&ccedil;os de fragmentos de c&oacute;digo que executavam as opera&ccedil;&otilde;es elementares. As opera&ccedil;&otilde;es t&iacute;picas, especialmente em B, agiam em uma simples pilha de m&aacute;quina. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">No sistema Unix PDP-7, somente poucas coisas foram escrita em B, exceto a pr&oacute;pria B, isto porque a m&aacute;quina era muito pequena e lenta para algo mais do que experimentos; reescrever completamente o sistema operacional e os utilit&aacute;rios em B era um passo muito caro para parecer poss&iacute;vel. Em algum ponto Thompson aliviou o espa&ccedil;o de endere&ccedil;amento oferecendo um compilador B ‘virtual’ que permitia ao programa interpretado ocupar mais do que 8K bytes atrav&eacute;s da pagina&ccedil;&atilde;o do c&oacute;digo e dados dentro do interpretador, mas era muito lento para ser pr&aacute;tico para as utilidades comuns. Apesar disso, alguns utilit&aacute;rios escritos em B apareceram, incluindo uma vers&atilde;o primitiva da calculadora de precis&atilde;o vari&aacute;vel dc, familiar aos usu&aacute;rios Unix [Mcllroy 79]. A mais ambiciosa iniciativa que eu empreendi foi um genu&iacute;no compilador-cruzado que traduzia as instru&ccedil;&otilde;es B para instru&ccedil;&otilde;es da m&aacute;quina GE-635, mas n&atilde;o em threaded code. Ele era uma pequena excurs&atilde;o de for&ccedil;a: um completo compilador B, escrito em sua pr&oacute;pria linguagem e gerando c&oacute;digo para um Mainframe de 36-bit que rodava em uma m&aacute;quina de 18-bit com 4K palavras de espa&ccedil;o de endere&ccedil;amento para usu&aacute;rio. Este projeto foi poss&iacute;vel somente por causa da simplicidade da linguagem B e seu sistema de run-time.      </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Embora n&oacute;s ocasionalmente nos entretiv&eacute;ssemos pensando sobre a implementa&ccedil;&atilde;o de uma das linguagens daquele tempo como Fortran, PL/I ou Algol 68, tal projeto parecia desesperadamente grande para nossos recursos: muitas ferramentas simples e pequenas foram requeridas. Todas aquelas linguagens influenciaram nosso trabalho, mas era mais divertido fazer as coisas de nosso pr&oacute;prio jeito.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Por volta de 1970, o projeto Unix tinha mostrado-se suficientemente promissor para que n&oacute;s adquir&iacute;ssemos o novo DEC PDP-11. O processador estava entre os primeiros de sua linha a ser entregues pela DEC, e passaram-se tr&ecirc;s meses antes que o seu disco chegasse. Fazer programas em B rodar nele usando a t&eacute;cnica threaded requeria somente escrever os fragmentos de c&oacute;digo para os operadores e um simples assembler que eu escrevi em B; logo, o <I>dc</I> tornou-se o primeiro programa interessante a ser testado, antes de qualquer sistema operacional, em nosso PDP-11. Quase como que rapidamente, ainda esperando pelo disco, Thompson recodificou o kernel do Unix e alguns comandos b&aacute;sicos na linguagem de montagem do PDP-11. Dos 24K bytes de mem&oacute;ria na m&aacute;quina, o primitivo sistema Unix PDP-11 usava 12K bytes para o sistema operacional, um min&uacute;sculo espa&ccedil;o para programas do usu&aacute;rio e restante como RAM disk. Esta vers&atilde;o foi somente para testes, n&atilde;o para trabalho real. Uma vez que seu disco apareceu, n&oacute;s rapidamente migramos para ele ap&oacute;s transliterar comandos da linguagem de montagem para o dialeto do PDP-11 e portando aqueles j&aacute; escritos em B.</P>
+<P ALIGN="JUSTIFY"> </P>
+<P ALIGN="JUSTIFY">Por volta de 1971, nosso pequeno centro de computa&ccedil;&atilde;o estava come&ccedil;ando a ter usu&aacute;rios. Todos n&oacute;s quer&iacute;amos criar softwares interessantes mais facilmente. Usar o montador era mais enfadonho do que usar B, e apesar de seus problemas de desempenho, tinha sido completada uma pequena biblioteca de rotinas de servi&ccedil;os &uacute;teis que estava sendo usada para programas mais novos. Entre os resultados mais not&aacute;veis deste per&iacute;odo estava a primeira vers&atilde;o de Steve Johnson do yacc parser-generator [Johnson 79a].</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Os problemas da B</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">As m&aacute;quinas nas quais n&oacute;s primeiramente usamos a BCPL, e depois a B, eram endere&ccedil;adas por palavra, e nestas linguagens o simples tipo de dado, o ‘cell’, equiparava-se com a palavra de hardware da m&aacute;quina. O advento do PDP-11 exp&ocirc;s v&aacute;rias insufici&ecirc;ncias do modelo sem&acirc;ntico da B. Primeiro, seus mecanismos de manipula&ccedil;&atilde;o de caracter, herdados com poucas mudan&ccedil;as da BCPL, eram desajeitados: usar bibliotecas de procedimentos para distribuir strings em c&eacute;lulas individuais e depois uni-las, ou ter acesso e substituir caracteres individuais, come&ccedil;ou a parecer desajeitado, at&eacute; mesmo tolo, em uma m&aacute;quina orientada para byte.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Segundo, embora o PDP-11 original n&atilde;o fornecesse aritm&eacute;tica de ponto flutuante, o fabricante prometeu que ela logo estaria dispon&iacute;vel. Opera&ccedil;&otilde;es de ponto flutuante tinham sido adicionadas a BCPL em nossos compiladores Multics e GCOS atrav&eacute;s da defini&ccedil;&atilde;o de operadores especiais, mas o mecanismo s&oacute; era poss&iacute;vel por que nas referidas m&aacute;quinas uma simples palavra era grande o bastante para conter um n&uacute;mero em ponto flutuante; isto n&atilde;o era verdadeiro nos 16-bits do PDP-11.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Finalmente, o modelo da B e da BCPL implicaram em overhead no tratamento com ponteiros: as regras da linguagem, definindo um ponteiro como um &iacute;ndice em um array de palavras, for&ccedil;ava os ponteiros a ser representados como palavras &iacute;ndices. Cada refer&ecirc;ncia a ponteiro gerava uma convers&atilde;o de escala em tempo de execu&ccedil;&atilde;o do ponteiro para o endere&ccedil;o do byte esperado pelo hardware. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Por todas estas raz&otilde;es, parecia que um esquema de tipagem era necess&aacute;rio para lidar com caracteres, endere&ccedil;amento de byte e preparar-se para o hardware de ponto-flutuante. Outros assuntos, particularmente seguran&ccedil;a de tipo e checagem de interface, n&atilde;o pareciam ser importantes como se tornaram depois. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Aparte os problemas com a pr&oacute;pria linguagem, a t&eacute;cnica threaded-code do compilador B rendeu programas mais lentos que os seus contrapartes em linguagem de montagem, de modo que n&oacute;s descartamos a possibilidade de recodificar o sistema operacional ou seus utilit&aacute;rios centrais em B.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Em 1971 eu comecei a estender a linguagem B adicionando um tipo caracter e tamb&eacute;m reescrevendo seu compilador para gerar instru&ccedil;&otilde;es de m&aacute;quina do PDP-11 ao inv&eacute;s de threaded code. Assim a transi&ccedil;&atilde;o da B para a C foi contempor&acirc;nea com a cria&ccedil;&atilde;o de um compilador capaz de produzir programas r&aacute;pidos e pequenos o bastante para competir com a linguagem assembler. Eu chamei o idioma ligeiramente estendido de NB (New B).</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">C embrion&aacute;rio</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">A NB teve uma exist&ecirc;ncia t&atilde;o breve que nenhuma descri&ccedil;&atilde;o completa dela foi escrita. Ela fornecia os tipos int, char, arrays (para os tipos int e char) e ponteiros para eles, declarados num estilo simbolizado por</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">int i, j;</P>
+<P ALIGN="JUSTIFY">char c, d;</P>
+<P ALIGN="JUSTIFY">int iarray[10];</P>
+<P ALIGN="JUSTIFY">int ipointer[ ];</P>
+<P ALIGN="JUSTIFY">char carray[10];</P>
+<P ALIGN="JUSTIFY">char cpointer[ ];</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">A sem&acirc;ntica de arrays permaneceu exatamente como em B e BCPL: as declara&ccedil;&otilde;es de iarray e carray criam c&eacute;lulas inicializadas dinamicamente com um valor apontando para o primeiro de uma seq&uuml;&ecirc;ncia de 10 inteiros e caracteres respectivamente. As declara&ccedil;&otilde;es para ipointer e cpointer omitem o tamanho, asseverando que nenhum armazenamento deve ser alocado dinamicamente. Dentro de procedimentos, a interpreta&ccedil;&atilde;o de ponteiros por parte das linguagens era id&ecirc;ntica a de vari&aacute;veis arrays: uma declara&ccedil;&atilde;o de ponteiro criava uma c&eacute;lula, diferindo de uma declara&ccedil;&atilde;o de um array somente pelo fato do programador estar esperando assinalar uma refer&ecirc;ncia ao inv&eacute;s de deixar o compilador alocar espa&ccedil;o e inicializar a c&eacute;lula.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Valores armazenados em c&eacute;lulas demarcadas para arrays e ponteiros eram endere&ccedil;os de m&aacute;quina, medidos em bytes, da correspondente &aacute;rea de armazenamento. Portanto, a indire&ccedil;&atilde;o atrav&eacute;s de ponteiro n&atilde;o implicava em overhead em tempo de execu&ccedil;&atilde;o para escalar o ponteiro da palavra para o byte offset. Por outro lado, o c&oacute;digo de m&aacute;quina para subscri&ccedil;&atilde;o de arrays e aritm&eacute;tica de ponteiros depende agora do tipo do array ou do ponteiro: computar iarray[i] ou ipointer+i implicou escalar i pelo tamanho do objeto referenciado.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Estas sem&acirc;nticas representaram uma f&aacute;cil transi&ccedil;&atilde;o da B e eu as experimentei por alguns meses. Problemas ficaram evidentes quando eu tentei estender a nota&ccedil;&atilde;o de tipo, especialmente para adicionar tipos estruturados (record). Estruturas, parecia, deveriam mapear de modo intuitivo na mem&oacute;ria da m&aacute;quina, mas em uma estrutura contendo um array, n&atilde;o havia um bom lugar para esconder o ponteiro contendo a base do array, nem qualquer modo conveniente para arranjar que ele seja inicializado. Por exemplo, o diret&oacute;rio de entradas dos primeiros sistemas Unix poderia ser escrito em C como</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">struct {</P>
+<P ALIGN="JUSTIFY">&#9;&#9;int&#9;inumber;</P>
+<P ALIGN="JUSTIFY">&#9;&#9;char&#9;name[14];</P><DIR>
+<DIR>
+
+<P ALIGN="JUSTIFY">  };</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&nbsp;</P></DIR>
+</DIR>
+
+<P ALIGN="JUSTIFY">Eu n&atilde;o somente queria a estrutura para caracterizar um objeto abstrato, mas tamb&eacute;m para descrever uma cole&ccedil;&atilde;o de bits que poderiam ser lidos de um diret&oacute;rio. Aonde o compilador poderia esconder o ponteiro para nomear o que a sem&acirc;ntica exigiu? At&eacute; mesmo se estruturas fossem pensadas de modo mais abstrato e o espa&ccedil;o para ponteiros pudesse ser escondido de alguma maneira, como eu poderia manipular o problema t&eacute;cnico de inicializar corretamente estes ponteiros quando alocando um objeto complicado, talvez um que especificasse estruturas contendo arrays armazenando estruturas?</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">A solu&ccedil;&atilde;o constituiu o salto crucial na cadeia evolucion&aacute;ria entre a linguagem sem tipos BCPL e a linguagem com tipos C. Ela eliminou a materializa&ccedil;&atilde;o do ponteiro em armazenamento e, ao inv&eacute;s disso, causou a cria&ccedil;&atilde;o do ponteiro quando o array &eacute; mencionado em uma express&atilde;o. A regra, que sobrevive na C de hoje, &eacute; que valores de um tipo array s&atilde;o convertidos, quando eles aparecem em express&otilde;es, em ponteiros para o primeiro dos objetos que comp&otilde;em o array.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Esta inven&ccedil;&atilde;o permitiu que a maioria do c&oacute;digo existente em B continuasse a trabalhar, apesar da troca subjacente na sem&acirc;ntica da linguagem. Os poucos programas que assinalavam novos valores para um array para ajusta-los &agrave; sua origem – possivelmente em B e BCPL, sem sentido em C – foram facilmente reparados. Mais importante, a nova linguagem reteve uma coerente e vi&aacute;vel (se n&atilde;o incomum) explica&ccedil;&atilde;o da sem&acirc;ntica de arrays, enquanto abriu o caminho para um tipo de estrutura mais abrangente.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">A segunda inova&ccedil;&atilde;o que distingue mais claramente a C de suas predecessoras &eacute; este tipo de estrutura e especialmente sua express&atilde;o na sintaxe de declara&ccedil;&otilde;es. A NB oferecia os tipos b&aacute;sicos int e char, juntos com arrays deles e ponteiros para eles, mas nenhum modo de composi&ccedil;&atilde;o adicional. A generaliza&ccedil;&atilde;o foi requerida: dado um objeto para qualquer tipo, deveria ser poss&iacute;vel descrever um novo objeto que junta v&aacute;rios em um array, obtidos de uma fun&ccedil;&atilde;o, ou sendo um ponteiro para ele. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Para cada objeto de tal tipo composto j&aacute; havia um modo para mencionar o objeto subjacente: indexar o array, chamar a fun&ccedil;&atilde;o, usar o operador de indire&ccedil;&atilde;o no ponteiro. O racioc&iacute;nio anal&oacute;gico levou a uma sintaxe de declara&ccedil;&atilde;o para nomes que reflete isso na sintaxe de express&atilde;o na qual os nomes aparecem tipicamente. Assim,</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">int i, *pi, **ppi;</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">declara um inteiro, um ponteiro para um inteiro e um ponteiro para um ponteiro que aponta para um inteiro. A sintaxe dessas declara&ccedil;&otilde;es reflete a observa&ccedil;&atilde;o de que i, *pi e **ppi todos prov&ecirc;m um tipo int quando usados em uma express&atilde;o. Similarmente,</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">int f(), *f(), (*f)();</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">declara uma fun&ccedil;&atilde;o retornando um inteiro, uma fun&ccedil;&atilde;o retornando um ponteiro para um inteiro, um ponteiro para uma fun&ccedil;&atilde;o retornando um inteiro;</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">int *api[10], (*pai)[10];</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">declaram um array de ponteiros para inteiros e um ponteiro para um array de inteiros. Em todos estes casos a declara&ccedil;&atilde;o de uma vari&aacute;vel &eacute; semelhante a seu uso em uma express&atilde;o cujo tipo &eacute; um dos especificados no cabe&ccedil;alho da declara&ccedil;&atilde;o.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">O esquema do tipo de composi&ccedil;&atilde;o adotado pela C deve consider&aacute;vel d&eacute;bito ao Algol 68, embora n&atilde;o o fa&ccedil;a, talvez, emergir na forma que os partid&aacute;rios da Algol aprovariam. A no&ccedil;&atilde;o central que eu capturei da Algol foi um tipo estruturado baseado em tipos at&ocirc;micos (incluindo estruturas), compostas em arrays, ponteiros (refer&ecirc;ncias) e fun&ccedil;&otilde;es (procedimentos). O conceito do Algol 68 de uni&otilde;es e moldagens tamb&eacute;m teve influ&ecirc;ncia que apareceu depois.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Ap&oacute;s criar o sistema de tipos, a sintaxe associada e o compilador para a nova linguagem, eu senti que ela merecia um novo nome; NB parecia insuficientemente distintivo. Eu decidi seguir o estilo de letra &uacute;nica e a chamei de C, deixando em aberto a quest&atilde;o se o nome representava uma progress&atilde;o pelo alfabeto ou pelas letras em BCPL.</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Neonatal C</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">R&aacute;pidas mudan&ccedil;as continuaram ap&oacute;s a linguagem ter sido nomeada, por exemplo, a introdu&ccedil;&atilde;o dos operadores &amp;&amp; e ||. Em BCPL e B, a avalia&ccedil;&atilde;o de express&otilde;es depende do contexto: dentro de um if e outras declara&ccedil;&otilde;es condicionais que comparam o valor de uma express&atilde;o com zero, estas linguagens colocam uma interpreta&ccedil;&atilde;o especial nos operadores and (&amp;) e or (|). Em contextos ordin&aacute;rios, eles operam bitwise, mas na declara&ccedil;&atilde;o em B</P>
+<P ALIGN="JUSTIFY"> </P>
+<P ALIGN="JUSTIFY">if (e1 &amp; e2) ...</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">o compilador deve avaliar e1, e se ele &eacute; diferente de zero, avaliar e2, e se ele tamb&eacute;m &eacute; diferente de zero, elaborar a declara&ccedil;&atilde;o dependente no if. A exig&ecirc;ncia desce recursivamente nos operadores &amp; e | dentro de e1 e e2. O curto-circuito sem&acirc;ntico de operadores booleanos em tal contexto de &quot;valores verdadeiros&quot; parecia desej&aacute;vel, mas a sobrecarga dos operadores era dif&iacute;cil de explicar e usar. Por sugest&atilde;o de Alan Snyder, eu introduzi os operadores &amp;&amp; e || para tornar o mecanismo mais expl&iacute;cito.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">A introdu&ccedil;&atilde;o tardia explica uma infelicidade das regras de preced&ecirc;ncia da C. Em B uma pessoa escreve</P>
+<P ALIGN="JUSTIFY"> </P>
+<P ALIGN="JUSTIFY">if (a==b &amp; c) ...</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">para checar se a &eacute; igual a b e se c &eacute; diferente de zero; em tal express&atilde;o condicional &eacute; melhor que o &amp; tenha preced&ecirc;ncia menor do que ==. Na convers&atilde;o da B para a C, a pessoa necessita trocar o &amp; por &amp;&amp;; para tornar a convers&atilde;o menos dolorosa, n&oacute;s decidimos manter a preced&ecirc;ncia do operador &amp; a mesma do operador ==, e meramente separar a preced&ecirc;ncia do &amp;&amp; ligeiramente do &amp;. Hoje, parece que teria sido prefer&iacute;vel mover a relativa preced&ecirc;ncia do &amp; e do ==, simplificando assim um acontecimento comum na linguagem C: para testar um valor mascarado contra outro valor, algu&eacute;m escreveria</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">if ((a&amp;mask) == b) ...</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">aonde os par&ecirc;ntesis internos s&atilde;o requeridos, mas facilmente esquecidos.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Muitas outras mudan&ccedil;as ocorreram por volta de 1972-1973, mas o mais importante foi &agrave; introdu&ccedil;&atilde;o do pr&eacute;-processador, em parte no urgir de Alan Snyder [Snyder 74], mas tamb&eacute;m em reconhecimento da utilidade do mecanismo de inclus&atilde;o de arquivos dispon&iacute;veis em BCPL e PL/I. Sua vers&atilde;o original era extremamente simples e fornecia somente inclus&atilde;o de arquivos e simples substitui&ccedil;&atilde;o de strings: #include e #define (de macros sem par&acirc;metros). Logo depois, ele foi estendido, principalmente por Mike Lesk e ent&atilde;o por John Reiser, incorporando macros com argumentos e compila&ccedil;&atilde;o condicional. O pr&eacute;-processador foi considerado originalmente um suplemento opcional da linguagem. De fato, por alguns anos, ele nem mesmo invocou que o programa contivesse ao menos um sinal especial no seu in&iacute;cio. Esta atitude persistiu e explica a incompleta integra&ccedil;&atilde;o da linguagem do pr&eacute;-processador com o resto da linguagem e a imprecis&atilde;o de sua descri&ccedil;&atilde;o nos primeiros manuais de refer&ecirc;ncia.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Portabilidade</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">No in&iacute;cio de 1973, o essencial da moderna linguagem foi completado. A linguagem e o compilador eram fortes o bastante para nos permitir reescrever o kernel do Unix para o PDP-11 durante o ver&atilde;o daquele ano. (Thompson tinha feito uma breve tentativa de produzir um sistema codificado em uma vers&atilde;o primitiva da C antes das estruturas em 1972, mas deixou o esfor&ccedil;o). Tamb&eacute;m durante este per&iacute;odo, o compilador foi transportado para outras m&aacute;quinas pr&oacute;ximas, particularmente o Honeywell 635 e IBM 360/370; pelo fato da linguagem n&atilde;o poder viver em isolamento, os prot&oacute;tipos para as modernas bibliotecas foram desenvolvidos. Em particular, Lesk escreveu um ‘port&aacute;vel pacote de I/O’ [Lesk 72] que foi refeito para tornar-se as rotinas de ‘I/O padr&atilde;o’ da C. Em 1978 Brian Kernighan e eu publicamos <I>A Linguagem de Programa&ccedil;&atilde;o C</I> [Kernighan 78]. Embora n&atilde;o descrevendo algumas adi&ccedil;&otilde;es que logo ficaram comuns, este livro serviu como a refer&ecirc;ncia da linguagem at&eacute; um padr&atilde;o formal ser adotado mais de dez anos depois. Embora n&oacute;s trabalh&aacute;ssemos pr&oacute;ximos neste livro, havia uma clara divis&atilde;o de trabalho: Kernighan escreveu quase todo o material exposit&oacute;rio, enquanto eu fui respons&aacute;vel pelo ap&ecirc;ndice contendo o manual de refer&ecirc;ncia e o cap&iacute;tulo sobre interfaceamento com o sistema Unix.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Durante 1973-1980, a linguagem cresceu um pouco: o tipo estruturado ganhou unsigned (sem sinal), long (longo), union (uni&atilde;o) e enumeration types (tipos enumerados), e as estruturas tornaram-se quase objetos de primeira classe (faltando somente uma nota&ccedil;&atilde;o para literais). Desenvolvimentos igualmente importantes apareceram em seu ambiente e acompanharam a tecnologia. Escrever o kernel do Unix em C tinha dado a n&oacute;s bastante confian&ccedil;a na efici&ecirc;ncia e utilidade da linguagem, de modo que n&oacute;s come&ccedil;amos a recodificar os utilit&aacute;rios do sistema e ferramentas, movendo ent&atilde;o os mais interessantes deles para outras plataformas. Como descrito em [Johnson 78a], n&oacute;s descobrimos que o mais duros problemas em propagar ferramentas Unix n&atilde;o eram a intera&ccedil;&atilde;o da linguagem C com novo hardware, mas na adapta&ccedil;&atilde;o do software existente de outros sistemas operacionais. Assim Steve Johnson come&ccedil;ou a trabalhar no pcc, um compilador C que intentava ser f&aacute;cil de ser transportado para novas m&aacute;quinas [Johnson 78b], enquanto ele, Thompson e eu come&ccedil;amos a mover os sistema Unix propriamente dito para o computador Interdata 8/32.   </P>
+<P ALIGN="JUSTIFY">A linguagem mudou durante este per&iacute;odo, especialmente por volta de 1977, quando era largamente enfocada a considera&ccedil;&atilde;o de portabilidade e de seguran&ccedil;a de tipo, em um esfor&ccedil;o para enfrentar os problemas que n&oacute;s previmos e observamos ao mover um consider&aacute;vel corpo de c&oacute;digo para a nova plataforma Interdata. A C naquele momento ainda manifestou sinais fortes de sua origem sem tipos. Ponteiros, por exemplo, eram pouco distintos dos &iacute;ndices integrais de mem&oacute;ria nos primeiros manuais da linguagem ou no c&oacute;digo existente; a similaridade das propriedades aritm&eacute;ticas de ponteiros de caracteres e inteiros n&atilde;o assinalados tornou dif&iacute;cil a tenta&ccedil;&atilde;o de os identificar. Os tipos unsigned foram adotados para tornar a aritm&eacute;tica de n&atilde;o assinalados dispon&iacute;vel sem confus&atilde;o com a manipula&ccedil;&atilde;o de ponteiros. Semelhantemente, a primitiva linguagem tolerou a assinala&ccedil;&atilde;o entre inteiros e ponteiros, mas esta pr&aacute;tica come&ccedil;ou a ser desencorajada; uma nota&ccedil;&atilde;o para convers&otilde;es de tipo (chamada de ‘casts’ (moldagens) do exemplo da Algol 68) foi inventada para especificar convers&otilde;es de tipo mais explicitamente. Iludida pelo exemplo da PL/I, a primitiva C n&atilde;o amarrou firmemente a estrutura de ponteiros para as estruturas que eles apontavam, permitindo que programadores escrevessem ponteiro <FONT FACE="Symbol">&#174;</FONT>
+ membro quase sem levar em conta o tipo de ponteiro; tal express&atilde;o foi levada sem cr&iacute;ticas como uma refer&ecirc;ncia para uma regi&atilde;o de mem&oacute;ria designada pelo ponteiro, enquanto o membro especificava somente um offset e um tipo.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Embora a primeira edi&ccedil;&atilde;o de K&amp;R descrevesse a maioria das regras que anteciparam o tipo de estrutura da C para a sua presente forma, muitos programas escritos no estilo mais antigo, mais relaxado, persistiram, fazendo assim com que muitos compiladores tolerassem isto. Para encorajar as pessoas a prestar mais aten&ccedil;&atilde;o nas regras oficiais da linguagem, detectar constru&ccedil;&otilde;es legais, mas suspeitas, e ajudar a achar erros de compara&ccedil;&atilde;o de interface indetect&aacute;veis com simples mecanismos para separar compila&ccedil;&atilde;o, Steve Johnson adaptou seu compilador pcc para produzir lint [Johnson 79b], o qual esquadrinhava um conjunto de arquivos e comentava constru&ccedil;&otilde;es duvidosas.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Crescimento no Uso</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">O sucesso de nosso experimento de portabilidade no Interdata 8/32 conduziu a outro experimento por Tom London e John Reiser no DEC VAX 11/780. Esta m&aacute;quina tornou-se muito mais popular do que o Interdata, e o Unix e a linguagem C espalharam-se rapidamente, dentro e fora da AT&amp;T. Embora na metade dos anos 70 o Unix estivesse em uso por uma variedade de projetos dentro do sistema Bell, bem como por um pequeno grupo de organiza&ccedil;&otilde;es industriais, acad&ecirc;micas e governamentais fora de nossa companhia, seu crescimento real veio somente ap&oacute;s a portabilidade ter sido alcan&ccedil;ada. Particularmente de nota foram as vers&otilde;es System III e System V do sistema da emergente divis&atilde;o de sistemas de computadores da AT&amp;T, baseado no trabalho de desenvolvimento da companhia e grupos de pesquisa, e a s&eacute;rie de lan&ccedil;amentos BSD pela Universidade da Calif&oacute;rnia em Berkeley que derivaram de organiza&ccedil;&otilde;es de pesquisa no Bell Laboratories. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Durante os anos 80 o uso da linguagem C espalhou-se globalmente e compiladores tornaram-se dispon&iacute;veis em quase todas as arquiteturas de m&aacute;quinas e sistemas operacionais; em particular ela tornou-se popular como uma ferramenta de programa&ccedil;&atilde;o para computadores pessoais, para fabricantes de software comercial destas m&aacute;quinas e usu&aacute;rios finais interessados em programa&ccedil;&atilde;o. No come&ccedil;o da d&eacute;cada, todo compilador era baseado no pcc de Johnson; por volta de 1985 havia muitos produtores independentes de compiladores. </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Padroniza&ccedil;&atilde;o</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">Por volta de 1982 estava claro que a C necessitava de uma padroniza&ccedil;&atilde;o formal. A melhor aproxima&ccedil;&atilde;o para um padr&atilde;o, a primeira edi&ccedil;&atilde;o de K&amp;R, j&aacute; n&atilde;o descrevia a linguagem em uso atual; em particular, n&atilde;o mencionava os tipos void e enum. Enquanto pressagiou a mais nova aproxima&ccedil;&atilde;o para estruturas, somente depois dela ter sido publicada &eacute; que a linguagem suportou design&aacute;-las, passando-as para fun&ccedil;&otilde;es e recebendo-as de fun&ccedil;&otilde;es, associando os nomes dos membros firmemente com a estrutura ou uni&atilde;o que os continha. Embora a maioria dos compiladores distribu&iacute;dos pela AT&amp;T incorporassem essas mudan&ccedil;as e a maioria dos fornecedores de compiladores n&atilde;o baseados no pcc rapidamente as incorporassem, ela permaneceu incompleta.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">A primeira edi&ccedil;&atilde;o K&amp;R tamb&eacute;m era insuficientemente precisa em muitos detalhes da linguagem e tornou-se crescentemente impratic&aacute;vel considerar o pcc como um ‘compilador de refer&ecirc;ncia’; ele n&atilde;o encarnou igualmente a linguagem descrita por K&amp;R, deixando extens&otilde;es subseq&uuml;entes sozinhas. Finalmente, o uso incipiente da C em projetos sujeitos a contrato comercial e governamental significou que um padr&atilde;o oficial era importante. Assim (no &iacute;mpeto de M. D. Macllroy), a ANSI estabeleceu no ver&atilde;o de 1983 o comit&ecirc; X3J11 sob a dire&ccedil;&atilde;o do CBEMA, objetivando produzir um padr&atilde;o para a linguagem C. O comit&ecirc; X3J11 produziu seu relat&oacute;rio [ANSI 89] no final de 1989, e subseq&uuml;entemente este padr&atilde;o foi aceito pela ISO como ISO/IEC 9899-1990.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Desde o princ&iacute;pio, o comit&ecirc; X3J11 tomou uma vis&atilde;o cautelosa, uma vis&atilde;o conservadora das extens&otilde;es da linguagem. Para minha satisfa&ccedil;&atilde;o, eles levaram o objetivo deles a s&eacute;rio: desenvolver um limpo, consistente e n&atilde;o amb&iacute;guo padr&atilde;o para a linguagem de programa&ccedil;&atilde;o C que codifica a defini&ccedil;&atilde;o comum existente da C e que promove a portabilidade de programas do usu&aacute;rio atrav&eacute;s de ambientes da linguagem C [ANSI 89]. O comit&ecirc; percebeu que a mera promulga&ccedil;&atilde;o de um padr&atilde;o n&atilde;o faz uma mudan&ccedil;a mundial.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">O comit&ecirc; X3J11 introduziu somente uma mudan&ccedil;a genuinamente importante &agrave; linguagem propriamente dita: ele incorporou os tipos de argumentos formais na assinatura de tipo de uma fun&ccedil;&atilde;o, usando a sintaxe emprestada da C++ [Stroustrup 86]. No estilo antigo, fun&ccedil;&otilde;es externas eram declaradas assim:</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">double sin();</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">a qual diz somente que sin &eacute; uma fun&ccedil;&atilde;o retornando um valor double (isto &eacute;, um ponto flutuante de dupla precis&atilde;o). No novo estilo, isto se tornaria</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">double sin(double);</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">para tornar o tipo de argumento expl&iacute;cito e assim encorajar uma melhor confer&ecirc;ncia de tipo e convers&atilde;o apropriada. Igualmente esta adi&ccedil;&atilde;o, apesar de produzir uma linguagem notadamente melhor, causou dificuldades. O comit&ecirc; justificadamente sentiu que simplesmente proscrever defini&ccedil;&otilde;es de fun&ccedil;&atilde;o no estilo antigo e declara&ccedil;&otilde;es n&atilde;o era poss&iacute;vel, contudo tamb&eacute;m concordou que as novas formas eram melhores. O compromisso inevit&aacute;vel era t&atilde;o bom quanto poderia ter sido, entretanto a defini&ccedil;&atilde;o da linguagem &eacute; complicada, permitindo ambas as formas, n&atilde;o devendo os escritores de software port&aacute;til combater com compiladores criados fora do padr&atilde;o. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">O comit&ecirc; X3J11 tamb&eacute;m introduziu um grande n&uacute;mero de pequenas adi&ccedil;&otilde;es e ajustes, por exemplo, os qualificadores de tipo const e volatile. N&atilde;o obstante, o processo de padroniza&ccedil;&atilde;o n&atilde;o mudou o car&aacute;ter da linguagem. Em particular, o padr&atilde;o C n&atilde;o tentou especificar formalmente a sem&acirc;ntica da linguagem, e assim pode haver disputa em cima de pontos delicados; n&atilde;o obstante, ela respondeu prosperamente por mudan&ccedil;as no uso desde a sua descri&ccedil;&atilde;o original, sendo suficientemente precisa para embasar implementa&ccedil;&otilde;es nela.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Assim o n&uacute;cleo da linguagem C escapou quase inc&oacute;lume do processo de padroniza&ccedil;&atilde;o e o padr&atilde;o emergiu mais como uma melhor e cuidadosa codifica&ccedil;&atilde;o do que como uma nova inven&ccedil;&atilde;o. As mais importantes mudan&ccedil;as aconteceram no ambiente da linguagem: o pr&eacute;-processador e a biblioteca. O pr&eacute;-processador executa substitui&ccedil;&atilde;o de macros usando conven&ccedil;&otilde;es distintas do resto da linguagem. Sua intera&ccedil;&atilde;o com o compilador nunca tinha sido bem descrita, e o comit&ecirc; X3J11 tentou remediar a situa&ccedil;&atilde;o. O resultado &eacute; notoriamente melhor do que a explana&ccedil;&atilde;o na edi&ccedil;&atilde;o de K&amp;R; al&eacute;m de ser mais compreensiva, ela fornece opera&ccedil;&otilde;es, como concatena&ccedil;&atilde;o de s&iacute;mbolos, previamente dispon&iacute;veis somente por acidentes de implementa&ccedil;&atilde;o.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">O comit&ecirc; X3J11 acreditou que uma completa e cuidadosa descri&ccedil;&atilde;o de um padr&atilde;o para a biblioteca C era t&atilde;o importante quanto seu trabalho na linguagem propriamente dita. A pr&oacute;pria linguagem C n&atilde;o fornece entrada-sa&iacute;da ou qualquer outra intera&ccedil;&atilde;o com o mundo externo, e assim depende de um conjunto de procedures padr&atilde;o. Por momento da publica&ccedil;&atilde;o da K&amp;R, a linguagem C era pensada principalmente como a linguagem de programa&ccedil;&atilde;o do Unix; embora n&oacute;s fornec&ecirc;ssemos exemplos da biblioteca de rotinas intentando as transpor para outros sistemas operacionais, o apoio subjacente do Unix era entendido implicitamente. Assim, o comit&ecirc; X3J11 gastou muito de seu tempo projetando e documentando um conjunto de rotinas de biblioteca requeridas para serem dispon&iacute;veis em todas implementa&ccedil;&otilde;es conforme o padr&atilde;o. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Pelas regras do processo de padroniza&ccedil;&atilde;o, a atividade corrente do comit&ecirc; X3J11 &eacute; limitada a emitir interpreta&ccedil;&otilde;es sobre o padr&atilde;o existente. Contudo, um grupo informal originalmente citado por Rex Jaeschke como NCEG (Numerical C Extensions Group) tem sido oficialmente aceito como subgrupo X3J11.1, e eles continuaram a considerar extens&otilde;es para a C. Como o nome indica, muitas daquelas poss&iacute;veis extens&otilde;es s&atilde;o intentadas para tornar a linguagem mais satisfat&oacute;ria para uso num&eacute;rico: por exemplo, arrays multidimensionais que s&atilde;o determinados dinamicamente, incorpora&ccedil;&atilde;o de facilidades de procedimentos com a aritm&eacute;tica IEEE e tornando a linguagem mais efetiva em m&aacute;quinas com vetor ou outras caracter&iacute;sticas de arquitetura avan&ccedil;adas. Nem todas as extens&otilde;es s&atilde;o especificadamente num&eacute;ricas; elas incluem a nota&ccedil;&atilde;o para literais de estruturas.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Sucessores</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">As linguagens B e C tem v&aacute;rios descendentes diretos, entretanto elas n&atilde;o rivalizam com Pascal na gera&ccedil;&atilde;o de descend&ecirc;ncia. Uma filial lateral desenvolveu-se cedo. Quando Steve Johnson visitou a Universidade de Waterloo em 1972, ele trouxe a B com ele. L&aacute; ela tornou-se popular em m&aacute;quinas Honeywell e depois gerou Eh e Zed (a resposta canadense para &quot;o que segue B?&quot;). Quando Johnson retornou ao Bell Labs em 1973, ele estava desconcertado por achar que a linguagem que ele mesmo tinha semeado no Canad&aacute; tinha evolu&iacute;do ao voltar para casa; at&eacute; mesmo seu programa yacc tinha sido reescrito em C por Aland Snyder.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Os mais recentes descendentes da C formal incluem Concurrent C [Gehani 89], Objective C [Cox 86], C* [Thinking 90] e especialmente C++ [Stroustrup 86]. A linguagem &eacute; tamb&eacute;m usada globalmente como uma representa&ccedil;&atilde;o intermedi&aacute;ria (essencialmente, como uma linguagem assembler port&aacute;til) para uma larga variedade de compiladores, tanto para descendentes diretos como C++ ou linguagens independentes como Modula 3 [Nelson 91] e Eiffel [Meyer 88]. </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Cr&iacute;tica</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">Duas id&eacute;ias s&atilde;o mais caracter&iacute;sticas da C entre linguagens de sua classe: o relacionamento entre arrays e ponteiros e o modo pela qual a sintaxe de declara&ccedil;&atilde;o imita sintaxe de express&atilde;o. Eles tamb&eacute;m est&atilde;o entre as mais freq&uuml;entemente caracter&iacute;sticas criticadas e freq&uuml;entemente servem como blocos de trope&ccedil;o para iniciantes. Em ambos os casos, acidentes hist&oacute;ricos ou erros tem exarcebado sua dificuldade. A mais importante destas tem sido a toler&acirc;ncia de compiladores C para erros em tipo. Como deveria estar claro pela a hist&oacute;ria acima, a C evoluiu de linguagens sem tipos. Ela n&atilde;o apareceu de repente para seus usu&aacute;rios e desenvolvedores como uma nova linguagem com suas pr&oacute;prias regras; ao inv&eacute;s disso n&oacute;s tivemos que adaptar programas existentes conforme o desenvolvimento da linguagem e dar desconto para um corpo de c&oacute;digo existente. (Depois, o comit&ecirc; ANSI X3J11 que a padronizou enfrentaria o mesmo problema.)</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Compiladores em 1977, e igualmente bem ap&oacute;s, n&atilde;o reclamaram sobre usos tais como assinalamento entre inteiros e ponteiros ou uso de objetos de um tipo errado para referir-se a membros de estruturas. Embora a defini&ccedil;&atilde;o da linguagem apresentada na primeira edi&ccedil;&atilde;o de K&amp;R fosse razoavelmente (entretanto n&atilde;o completamente) coerente em seu tratamento de regras de tipo, este livro admitiu que compiladores existentes n&atilde;o deveriam for&ccedil;&aacute;-los. Al&eacute;m disso, algumas regras projetadas para facilitar primitivas transi&ccedil;&otilde;es contribu&iacute;ram para posterior confus&atilde;o. Por exemplo, os colchetes vazios na declara&ccedil;&atilde;o de fun&ccedil;&atilde;o</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">int f(a) int a[ ]; { ... }</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&eacute; um f&oacute;ssil vivo, um remanescente do modo da NB de declarar um ponteiro; a &eacute;, neste caso especial, interpretado em C como um ponteiro. A nota&ccedil;&atilde;o sobreviveu em parte por causa da compatibilidade, em parte sob a racionaliza&ccedil;&atilde;o que permitiria a programadores comunicar aos leitores o intento de passar f, um ponteiro gerado de um array, em lugar de uma refer&ecirc;ncia a um simples inteiro. Infelizmente, ela serve para muito atrapalhar o estudante em como alertar o leitor.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Em C K&amp;R, o fornecimento de argumentos de um tipo formal para uma chamada de fun&ccedil;&atilde;o era de responsabilidade do programador, e os compiladores existentes n&atilde;o checavam o tipo. A falha da linguagem original em incluir tipos de argumentos na assinatura de uma fun&ccedil;&atilde;o foi uma fraqueza significante, e foi realmente a &uacute;nica que requereu do comit&ecirc; X3J11 a mais corajosa e dolorosa inova&ccedil;&atilde;o. O projeto inicial &eacute; explicado (se n&atilde;o justificado) por minha vac&acirc;ncia de problemas tecnol&oacute;gicos, especialmente checagem cruzada entre arquivos fonte compilados separadamente e minha incompleta assinala&ccedil;&atilde;o das implica&ccedil;&otilde;es de mudan&ccedil;a entre uma linguagem sem tipos para uma com tipos. O programa lint, mencionado acima, tentou aliviar o problema: entre suas outras fun&ccedil;&otilde;es, lint checava a consist&ecirc;ncia e coer&ecirc;ncia de um programa inteiro esquadrinhando um conjunto de arquivos fonte, comparando os tipos de argumentos de fun&ccedil;&atilde;o usados em chamadas com aqueles de suas defini&ccedil;&otilde;es.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Um acidente de sintaxe contribuiu para a percebida complexidade da linguagem. O operador de indire&ccedil;&atilde;o, representado em C por *, &eacute; sintaticamente um operador prefixado un&aacute;rio, exatamente como em BCPL e B. Isto trabalha bem em express&otilde;es simples, mas nos casos mais complexos, par&ecirc;nteses s&atilde;o requeridos para dirigir a an&aacute;lise gramatical. Por exemplo, para distinguir a indire&ccedil;&atilde;o pelo valor retornado por uma fun&ccedil;&atilde;o da chamada por uma fun&ccedil;&atilde;o designada por um ponteiro, algu&eacute;m escreveria *fp() e (*pf)() respectivamente. O estilo usado em express&otilde;es transporta-se para declara&ccedil;&otilde;es, assim os nomes poderiam ser declarados</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">int *fp();</P>
+<P ALIGN="JUSTIFY">int (*pf)();</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Em formato mais ornamentado, mas ainda em casos real&iacute;sticos, as coisas ficam piores:</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">int *(*pfp)();</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">&eacute; um ponteiro para um inteiro retornando um ponteiro para um inteiro. H&aacute; dois efeitos ocorrendo. Mais importante, C tem um conjunto relativamente rico de modos de descrever tipos (comparados, digamos, com Pascal). Declara&ccedil;&otilde;es em linguagens t&atilde;o expressivas quanto C, Algol 68, por exemplo, descrevem objetos igualmente duros de entender, simplesmente porque os objetos s&atilde;o eles mesmos complexos. Um segundo efeito deve-se a detalhes de sintaxe. Declara&ccedil;&otilde;es em C devem ser lidas em um estilo de &quot;dentro para fora&quot; que muitos tem achado dif&iacute;cil de compreender [Anderson 80]. Sethi [Sethi 80] observou que muitas das declara&ccedil;&otilde;es aninhadas e express&otilde;es se tornariam simples se o operador de indire&ccedil;&atilde;o tivesse sido tomado como p&oacute;s-fixado ao inv&eacute;s de pr&eacute;-fixado, mas ent&atilde;o era muito tarde para mudar.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Apesar de suas dificuldades, eu acredito que a aproxima&ccedil;&atilde;o de declara&ccedil;&otilde;es da C permanece plaus&iacute;vel, e eu estou &agrave; vontade com isto; ela &eacute; um princ&iacute;pio de unifica&ccedil;&atilde;o &uacute;til.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">A outra caracter&iacute;stica da C, seu tratamento de arrays, &eacute; mais suspeita em fundamentos pr&aacute;ticos, entretanto ela tem suas reais virtudes. Embora a rela&ccedil;&atilde;o entre ponteiros e arrays seja incomum, ela pode ser aprendida. Al&eacute;m disso, a linguagem mostra consider&aacute;vel for&ccedil;a para descrever importantes conceitos, por exemplo, vetores cujo comprimento &eacute; vari&aacute;vel em tempo de execu&ccedil;&atilde;o, com somente umas poucas regras b&aacute;sicas e conven&ccedil;&otilde;es. Em particular, strings de caracteres s&atilde;o manipuladas pelos mesmos mecanismos como qualquer outro array, mais a conven&ccedil;&atilde;o que um caracter nulo termina a string. &Eacute; interessante comparar a aproxima&ccedil;&atilde;o da C com estes vetores com duas linguagens quase contempor&acirc;neas, Algol 68 e Pascal [Jensen 74]. Arrays em Algol 68 ou tem limites fixos ou s&atilde;o flex&iacute;veis: consider&aacute;vel mecanismo &eacute; requerido em ambos na defini&ccedil;&atilde;o da linguagem, e em compiladores, para acomodar arrays flex&iacute;veis (e nem todos os compiladores os implementam completamente.) O Pascal original tinha somente arrays de tamanho fixo e strings, e isto se mostrou ser limitado [Kernighan 81]. Depois, isto foi parcialmente fixado, entretanto a linguagem resultante n&atilde;o &eacute; universalmente dispon&iacute;vel.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">A linguagem C trata strings como arrays de caracteres convencionalmente terminados por um marcador. Aparte uma regra especial sobre inicializa&ccedil;&atilde;o atrav&eacute;s de literais string, a sem&acirc;ntica de strings &eacute; completamente subsomada por regras mais gerais governando todos os arrays, e como resultado a linguagem &eacute; simples para descrever e para traduzir do que uma que incorpora a string como um &uacute;nico tipo de dado. Alguns custos resultam desta sua aproxima&ccedil;&atilde;o: certas opera&ccedil;&otilde;es com string s&atilde;o mais custosas do que outras porque o c&oacute;digo de aplica&ccedil;&atilde;o, ou a rotina de biblioteca, deve ocasionalmente procurar pelo final de uma string, porque poucas opera&ccedil;&otilde;es embutidas est&atilde;o dispon&iacute;veis, e porque o fardo da administra&ccedil;&atilde;o de armazenamento para strings cai mais pesadamente no usu&aacute;rio. N&atilde;o obstante, a aproxima&ccedil;&atilde;o para strings da C trabalha bem.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Por outro lado, o tratamento de arrays da C em geral (n&atilde;o apenas strings) tem implica&ccedil;&otilde;es infortunadas para optimiza&ccedil;&atilde;o e futuras extens&otilde;es. A preval&ecirc;ncia de ponteiros em programas C, se esses s&atilde;o declarados explicitamente ou surgem de arrays, significa que otimiza&ccedil;&otilde;es devem ser cautelosas e devem usar t&eacute;cnicas cuidadosas de fluxo de dados para alcan&ccedil;ar bons resultados. Compiladores sofisticados podem entender que a maioria dos ponteiros pode possivelmente mudar, mas alguns importantes usos continuam dif&iacute;ceis de analisar. Por exemplo, fun&ccedil;&otilde;es com argumentos ponteiro derivados de arrays s&atilde;o dif&iacute;ceis de compilar em c&oacute;digo eficiente em m&aacute;quinas vetor, porque raramente &eacute; poss&iacute;vel determinar se aquele argumento ponteiro n&atilde;o sobrep&otilde;e dados tamb&eacute;m referidos por outro argumento, ou s&atilde;o acessados externamente. Mais fundamentalmente, a defini&ccedil;&atilde;o da C especificamente descreve a sem&acirc;ntica de arrays que mudam ou extens&otilde;es que tratam arrays como objetos mais primitivos, e permitem opera&ccedil;&otilde;es neles com um todo, tornando dif&iacute;cil de encaixar na linguagem existente. At&eacute; mesmo extens&otilde;es para permitem a declara&ccedil;&atilde;o e uso de arrays multidimensionais cujo tamanho &eacute; determinado dinamicamente n&atilde;o s&atilde;o inteiramente diretas [MacDonald 89] [Ritchie 90], embora elas fariam a escrita de bibliotecas num&eacute;ricas em C mais f&aacute;cil. Assim, a linguagem C cobre os mais importantes usos de strings e arrays que surgem na pr&aacute;tica por um uniforme e simples mecanismo, mas deixa problemas para implementa&ccedil;&otilde;es mais altamente eficientes e para extens&otilde;es.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Muitas pequenas infelicidades existem na linguagem e sua descri&ccedil;&atilde;o est&aacute; al&eacute;m daquelas discutidas acima, &eacute; claro. H&aacute; tamb&eacute;m cr&iacute;ticas gerais a serem alojadas que transcendem pontos detalhados. A principal destas &eacute; que a linguagem e seu ambiente fornecem pouca ajuda para a escrita de sistemas muito grandes. A estrutura de nomes fornece somente dois n&iacute;veis principais, ‘externo’ (vis&iacute;vel em qualquer lugar) e ‘interno’ (dentro de um simples procedimento). Um n&iacute;vel intermedi&aacute;rio de visibilidade (em um simples arquivo de dados e procedimentos) &eacute; debilmente amarrado &agrave; defini&ccedil;&atilde;o da linguagem. Assim, h&aacute; pequeno suporte direto para modulariza&ccedil;&atilde;o e designers de projeto s&atilde;o for&ccedil;ados a criar suas pr&oacute;prias conven&ccedil;&otilde;es. </P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Semelhantemente, a pr&oacute;pria C fornece duas classes de armazenamento: objetos ‘autom&aacute;ticos’ - que existem enquanto o controle reside neles ou sob um procedimento - e objetos ‘est&aacute;ticos’ – que existem ao longo da execu&ccedil;&atilde;o de um programa. Armazenamento fora da pilha (aloca&ccedil;&atilde;o din&acirc;mica) &eacute; fornecido somente por uma biblioteca de rotina e o fardo da administra&ccedil;&atilde;o disto &eacute; colocado sobre o programador: a linguagem C &eacute; hostil &agrave; garbage collection autom&aacute;tica. </P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">De onde o sucesso?</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">A linguagem C &eacute; um sucesso que ultrapassa de longe qualquer primitiva expectativa. Que qualidades contribu&iacute;ram para a difus&atilde;o do seu uso?</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Indubitavelmente o sucesso do pr&oacute;prio Unix foi o mais importante fator; ele tornou a linguagem dispon&iacute;vel para centenas de milhares de pessoas. Reciprocamente, &eacute; claro, o uso da C pelo Unix e sua conseq&uuml;ente portabilidade para uma grande variedade de m&aacute;quina foi importante no sucesso do sistema. Mas a invas&atilde;o da linguagem em outros ambientes sugere m&eacute;ritos mais fundamentais.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Apesar de alguns aspectos misteriosos para o iniciante e ocasionalmente at&eacute; mesmo para o adepto, a linguagem C permanece uma simples e pequena linguagem, traduz&iacute;vel com simples e pequenos compiladores. Seus tipos e opera&ccedil;&otilde;es s&atilde;o bem fundamentados naquelas fornecidas por m&aacute;quinas reais, e para pessoas que usam o computador para trabalhar, aprender a linguagem para gerar programas em tempo – e espa&ccedil;o – eficientes n&atilde;o &eacute; dif&iacute;cil. Ao mesmo tempo a linguagem &eacute; suficientemente abstrata dos detalhes da m&aacute;quina de modo que a portabilidade de programa pode ser alcan&ccedil;ada.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Igualmente importante, a linguagem C e sua biblioteca central sempre permaneceram em contato com o ambiente real. Ela n&atilde;o foi projetada em isolamento para provar um ponto ou para servir como um exemplo, mas como uma ferramenta para escrever programas que fizeram coisas &uacute;teis; ela sempre teve a inten&ccedil;&atilde;o de interagir com um grande sistema operacional e foi considerada como uma ferramenta para construir grandes ferramentas. Uma aproxima&ccedil;&atilde;o parcimoniosa, pragm&aacute;tica, influenciou as coisas que entraram na C: ela cobre as necessidades essenciais de muitos programadores, mas n&atilde;o tenta suprir muitas.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Finalmente, apesar das mudan&ccedil;as que sofreu desde primeira publica&ccedil;&atilde;o, a qual foi admitidamente informal e incompleta, a linguagem C atual como visto por milh&otilde;es de usu&aacute;rios, usando muitos diferentes compiladores, permaneceu notavelmente est&aacute;vel e unificada quando comparada &agrave;quelas de similar aceita&ccedil;&atilde;o geral, por exemplo, Pascal e Fortran. H&aacute; diferentes dialetos da C mais not&oacute;rios, aqueles descritos pelo velho K&amp;R e o novo padr&atilde;o C, mas na integra, a linguagem C permanece mais livre de extens&otilde;es propriet&aacute;rias do que outras linguagens. Talvez a mais significante extens&atilde;o seja os qualificadores de ponteiros ‘far’ e ‘near’ intentados para lidar com as peculiaridades de alguns processadores Intel. Embora a C n&atilde;o fosse originalmente projetada tendo a portabilidade como uma meta principal, ela teve sucesso expressando programas, incluindo igualmente sistemas operacionais, em m&aacute;quinas que variam de pequenos computadores pessoais at&eacute; poderosos supercomputadores.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">C &eacute; ardilosa, imperfeita e um enorme sucesso. Enquanto que acidentes de hist&oacute;ria seguramente ajudaram, ela evidentemente satisfez uma necessidade por uma linguagem de implementa&ccedil;&atilde;o de sistema eficiente o bastante para descartar a linguagem assembler, contudo suficientemente abstrata e fluente para descrever algoritmos e intera&ccedil;&otilde;es em uma larga variedade de ambientes.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Reconhecimentos</P>
+</B></FONT><FONT FACE="Arial"><P ALIGN="JUSTIFY">Isto sumariza compactamente os pap&eacute;is dos contribuintes diretos para a linguagem C de hoje. Ken Thompson criou a linguagem B em 1969-1970; ela foi derivada diretamente da BCPL de Martin Richards. Dennis Ritchie transformou a B em C durante 1971-1973, mantendo a maioria da sintaxe da B enquanto adicionava tipos e muitas outras mudan&ccedil;as, e escreveu o primeiro compilador para a linguagem. Ritchie, Alan Snyder, Steven C. Johnson, Michael Lesk e Thompson contribu&iacute;ram com id&eacute;ias para a linguagem durante 1972-1977, sendo que o compilador port&aacute;vel de Johnson permanece amplamente usado. Durante este per&iacute;odo, a cole&ccedil;&atilde;o de rotinas cresceu consideravelmente, gra&ccedil;as a aquelas pessoas e muitas outras no Bell Laboratories. Em 1978, Brian Kernighan e Ritchie escreveram o livro que se tornou a defini&ccedil;&atilde;o da linguagem por v&aacute;rios anos. Come&ccedil;ando em 1983, o comit&ecirc; ANSI X3J11 padronizou a linguagem. Especialmente not&aacute;vel em manter seus esfor&ccedil;os na trilha foram seus funcion&aacute;rios Jim Brodie, Tom Plum, P. J. Plauger e os sucessivos redatores do projeto, Lary Rosler e Dave Prosser.</P>
+<P ALIGN="JUSTIFY"></P>
+<P ALIGN="JUSTIFY">Eu agrade&ccedil;o a Brian Kernighan, Doug Mcllroy, Dave Prosser, Peter Nelson, Rob Pike, Ken Thompson e &aacute;rbitros do HOPL por conselhos na prepara&ccedil;&atilde;o deste documento.</P>
+<P ALIGN="JUSTIFY">&nbsp;</P>
+</FONT><B><FONT FACE="Arial" SIZE=5><P ALIGN="JUSTIFY">Refer&ecirc;ncias</P>
+</B></FONT><FONT FACE="Arial"><P>[ANSI 89] </P><DIR>
+<DIR>
+
+<P>American National Standards Institute, <I>American National Standard for Information Systems&amp;#173;Programming Language C,</I> X3.159-1989. </P>
+</DIR>
+</DIR>
+
+<P>[Anderson 80] </P><DIR>
+<DIR>
+
+<P>B. Anderson, `Type syntax in the language C: an object lesson in syntactic innovation,' SIGPLAN Notices 15 (3), March, 1980, pp. 21-27. </P>
+</DIR>
+</DIR>
+
+<P>[Bell 72] </P><DIR>
+<DIR>
+
+<P>J. R. Bell, `Threaded Code,' C. ACM 16 (6), pp. 370-372. </P>
+</DIR>
+</DIR>
+
+<P>[Canaday 69] </P><DIR>
+<DIR>
+
+<P>R. H. Canaday and D. M. Ritchie, `Bell Laboratories BCPL,' AT&amp;T Bell Laboratories internal memorandum, May, 1969. </P>
+</DIR>
+</DIR>
+
+<P>[Corbato 62] </P><DIR>
+<DIR>
+
+<P>F. J. Corbato, M. Merwin-Dagget, R. C. Daley, `An Experimental Time-sharing System,' AFIPS Conf. Proc. SJCC, 1962, pp. 335-344. </P>
+</DIR>
+</DIR>
+
+<P>[Cox 86] </P><DIR>
+<DIR>
+
+<P>B. J. Cox and A. J. Novobilski, <I>Object-Oriented Programming: An Evolutionary Approach,</I> Addison-Wesley: Reading, Mass., 1986. Second edition, 1991. </P>
+</DIR>
+</DIR>
+
+<P>[Gehani 89]</P><DIR>
+<DIR>
+
+<P>N. H. Gehani and W. D. Roome, <I>Concurrent C,</I> Silicon Press: Summit, NJ, 1989. </P>
+</DIR>
+</DIR>
+
+<P>[Jensen 74] </P><DIR>
+<DIR>
+
+<P>K. Jensen and N. Wirth, <I>Pascal User Manual and Report,</I> Springer-Verlag: New York, Heidelberg, Berlin. Second Edition, 1974. </P>
+</DIR>
+</DIR>
+
+<P>[Johnson 73] </P><DIR>
+<DIR>
+
+<P>S. C. Johnson and B. W. Kernighan, `The Programming Language B,' Comp. Sci. Tech. Report #8, AT&amp;T Bell Laboratories (January 1973). </P>
+</DIR>
+</DIR>
+
+<P>[Johnson 78a] </P><DIR>
+<DIR>
+
+<P>S. C. Johnson and D. M. Ritchie, `Portability of C Programs and the UNIX System,' Bell Sys. Tech. J. 57 (6) (part 2), July-Aug, 1978. </P>
+</DIR>
+</DIR>
+
+<P>[Johnson 78b] </P><DIR>
+<DIR>
+
+<P>S. C. Johnson, `A Portable Compiler: Theory and Practice,' Proc. 5th ACM POPL Symposium (January 1978). </P>
+</DIR>
+</DIR>
+
+<P>[Johnson 79a] </P><DIR>
+<DIR>
+
+<P>S. C. Johnson, `Yet another compiler-compiler,' in <I>Unix Programmer's Manual,</I> Seventh Edition, Vol. 2A, M. D. McIlroy and B. W. Kernighan, eds. AT&amp;T Bell Laboratories: Murray Hill, NJ, 1979. </P>
+</DIR>
+</DIR>
+
+<P>[Johnson 79b] </P><DIR>
+<DIR>
+
+<P>S. C. Johnson, `Lint, a Program Checker,' in <I>Unix Programmer's Manual,</I> Seventh Edition, Vol. 2B, M. D. McIlroy and B. W. Kernighan, eds. AT&amp;T Bell Laboratories: Murray Hill, NJ, 1979. </P>
+</DIR>
+</DIR>
+
+<P>[Kernighan 78] </P><DIR>
+<DIR>
+
+<P>B. W. Kernighan and D. M. Ritchie, <I>The C Programming Language,</I> Prentice-Hall: Englewood Cliffs, NJ, 1978. Second edition, 1988. </P>
+</DIR>
+</DIR>
+
+<P>[Kernighan 81] </P><DIR>
+<DIR>
+
+<P>B. W. Kernighan, `Why Pascal is not my favorite programming language,' Comp. Sci. Tech. Rep. #100, AT&amp;T Bell Laboratories, 1981. </P>
+</DIR>
+</DIR>
+
+<P>[Lesk 73] </P><DIR>
+<DIR>
+
+<P>M. E. Lesk, `A Portable I/O Package,' AT&amp;T Bell Laboratories internal memorandum ca. 1973. </P>
+</DIR>
+</DIR>
+
+<P>[MacDonald 89]</P><DIR>
+<DIR>
+
+<P>T. MacDonald, `Arrays of variable length,' J. C Lang. Trans 1 (3), Dec. 1989, pp. 215-233. </P>
+</DIR>
+</DIR>
+
+<P>[McClure 65] </P><DIR>
+<DIR>
+
+<P>R. M. McClure, `TMGA Syntax Directed Compiler,' Proc. 20th ACM National Conf. (1965), pp. 262-274. </P>
+</DIR>
+</DIR>
+
+<P>[McIlroy 60]</P><DIR>
+<DIR>
+
+<P>M. D. McIlroy, `Macro Instruction Extensions of Compiler Languages,' C. ACM 3 (4), pp. 214-220. </P>
+</DIR>
+</DIR>
+
+<P>[McIlroy 79] </P><DIR>
+<DIR>
+
+<P>M. D. McIlroy and B. W. Kernighan, eds, <I>Unix Programmer's Manual,</I> Seventh Edition, Vol. I, AT&amp;T Bell Laboratories: Murray Hill, NJ, 1979. </P>
+</DIR>
+</DIR>
+
+<P>[Meyer 88] </P><DIR>
+<DIR>
+
+<P>B. Meyer, <I>Object-oriented Software Construction,</I> Prentice-Hall: Englewood Cliffs, NJ, 1988. </P>
+</DIR>
+</DIR>
+
+<P>[Nelson 91] </P><DIR>
+<DIR>
+
+<P>G. Nelson, <I>Systems Programming with Modula-3,</I> Prentice-Hall: Englewood Cliffs, NJ, 1991. </P>
+</DIR>
+</DIR>
+
+<P>[Organick 75] </P><DIR>
+<DIR>
+
+<P>E. I. Organick, <I>The Multics System: An Examination of its Structure,</I> MIT Press: Cambridge, Mass., 1975. </P>
+</DIR>
+</DIR>
+
+<P>[Richards 67] </P><DIR>
+<DIR>
+
+<P>M. Richards, `The BCPL Reference Manual,' MIT Project MAC Memorandum M-352, July 1967. </P>
+</DIR>
+</DIR>
+
+<P>[Richards 79] </P><DIR>
+<DIR>
+
+<P>M. Richards and C. Whitbey-Strevens, <I>BCPL: The Language and its Compiler,</I> Cambridge Univ. Press: Cambridge, 1979. </P>
+</DIR>
+</DIR>
+
+<P>[Ritchie 78] </P><DIR>
+<DIR>
+
+<P>D. M. Ritchie, `UNIX: A Retrospective,' Bell Sys. Tech. J. 57 (6) (part 2), July-Aug, 1978. </P>
+</DIR>
+</DIR>
+
+<P>[Ritchie 84] </P><DIR>
+<DIR>
+
+<P>D. M. Ritchie, `The Evolution of the UNIX Time-sharing System,' AT&amp;T Bell Labs. Tech. J. 63 (8) (part 2), Oct. 1984. </P>
+</DIR>
+</DIR>
+
+<P>[Ritchie 90] </P><DIR>
+<DIR>
+
+<P>D. M. Ritchie, `Variable-size arrays in C,' J. C Lang. Trans. 2 (2), Sept. 1990, pp. 81-86. </P>
+</DIR>
+</DIR>
+
+<P>[Sethi 81] </P><DIR>
+<DIR>
+
+<P>R. Sethi, `Uniform syntax for type expressions and declarators,' Softw. Prac. and Exp. 11 (6), June 1981, pp. 623-628. </P></DIR>
+</DIR>
+
+<P>[Snyder 74] </P><DIR>
+<DIR>
+
+<P>A. Snyder, <I>A Portable Compiler for the Language C,</I> MIT: Cambridge, Mass., 1974. </P>
+</DIR>
+</DIR>
+
+<P>[Stoy 72] </P><DIR>
+<DIR>
+
+<P>J. E. Stoy and C. Strachey, `OS6 An experimental operating system for a small computer. Part I: General principles and structure,' Comp J. 15, (Aug. 1972), pp. 117-124. </P></DIR>
+</DIR>
+
+<P>[Stroustrup 86]</P><DIR>
+<DIR>
+
+<P>B. Stroustrup, <I>The C++ Programming Language,</I> Addison-Wesley: Reading, Mass., 1986. Second edition, 1991. </P>
+</DIR>
+</DIR>
+
+<P>[Thacker 79] </P><DIR>
+<DIR>
+
+<P>C. P. Thacker, E. M. McCreight, B. W. Lampson, R. F. Sproull, D. R. Boggs, `Alto: A Personal Computer,' in <I>Computer Structures: Principles and Examples,</I> D. Sieworek, C. G. Bell, A. Newell, McGraw-Hill: New York, 1982. </P>
+</DIR>
+</DIR>
+
+<P>[Thinking 90] </P><DIR>
+<DIR>
+
+<I><P>C* Programming Guide,</I> Thinking Machines Corp.: Cambridge Mass., 1990. </P>
+</DIR>
+</DIR>
+
+<P>[Thompson 69] </P><DIR>
+<DIR>
+
+<P>K. Thompson, `Bon an Interactive Language,' undated AT&amp;T Bell Laboratories internal memorandum (ca. 1969). </P>
+</DIR>
+</DIR>
+
+</FONT><P>[Wijngaarden 75] </P><DIR>
+<DIR>
+
+<FONT FACE="Arial"><P>A. van Wijngaarden, B. J. Mailloux, J. E. Peck, C. H. Koster, M. Sintzoff, C. Lindsey, L. G. Meertens, R. G. Fisker, `Revised report on the algorithmic language Algol 68,' Acta Informatica 5, pp. 1-236. </P></DIR>
+</DIR>
+
+<P><BR>
+<BR>
+<B>Copyright &copy; 1996 Lucent Technologies Inc. All rights reserved.</P>
+</B></FONT></BODY>
+</HTML>

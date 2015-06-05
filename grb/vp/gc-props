@@ -1,0 +1,12 @@
+* always and eventually macros
+prop Always(A) = max(X.A & [-]X);
+prop Even(A)   = min(X.A | (<->T & [-]X));
+
+* deadlock freedom
+prop DF = Always(<->T);
+
+* node 3 is not collected if it is accessible
+prop Safety = Always(['coll%3%]F | ['acc%3%]F);
+
+* node 3 is always eventually accessible (if collector operates)
+prop Liveness = Always(min(X.max(X1.['acc%3%]F => ([-cl]X1 & [cl]X))));

@@ -1,0 +1,855 @@
+!<arch>
+alldig.r        362839355   9     1     100666  285       `
+include fdefines
+# alldig _ return YES if str is all digits
+	integer function alldig(str)
+	character type
+	character str(ARB)
+	integer i
+
+	alldig = NO
+	if (str(1) == EOS)
+		return
+	for (i = 1; str(i) != EOS; i = i + 1)
+		if (type(str(i)) != DIGIT)
+			return
+	alldig = YES
+	return
+	end
+
+balpar.r        362839352   9     1     100666  680       `
+include fdefines
+# balpar _ copy balanced paren string
+	subroutine balpar
+	character gettok
+	character t, token(MAXTOK)
+	integer nlpar
+
+	if (gettok(token, MAXTOK) != LPAREN) {
+		call synerr("missing left paren.")
+		return
+		}
+	call outstr(token)
+	nlpar = 1
+	repeat {
+		t = gettok(token, MAXTOK)
+		if (t==SEMICOL | t==LBRACE | t==RBRACE | t==EOF) {
+			call pbstr(token)
+			break
+			}
+		if (t == NEWLINE)		# delete newlines
+			token(1) = EOS
+		else if (t == LPAREN)
+			nlpar = nlpar + 1
+		else if (t == RPAREN)
+			nlpar = nlpar - 1
+		# else nothing special
+		call outstr(token)
+		} until (nlpar <= 0)
+	if (nlpar != 0)
+		call synerr("missing parenthesis in condition.")
+	return
+	end
+blockd.r        362839357   9     1     100666  140       `
+include fdefines
+#block data
+	block data
+
+	include coutln
+	include cline
+	include cdefio
+
+	data outp /0/
+	data linect/1/
+	data bp /0/
+
+	end
+brknxt.r        362839350   9     1     100666  459       `
+include fdefines
+# brknxt _ generate code for break and next
+	subroutine brknxt(sp, lextyp, labval, token)
+	integer i, labval(MAXSTACK), lextyp(MAXSTACK), sp, token
+
+	for (i = sp; i > 0; i = i - 1)
+		if (lextyp(i) == LEXWHILE | lextyp(i) == LEXDO) {
+			if (token == LEXBREAK)
+				call outgo(labval(i)+1)
+			else
+				call outgo(labval(i))
+			return
+			}
+	if (token == LEXBREAK)
+		call synerr("illegal break.")
+	else
+		call synerr("illegal next.")
+	return
+	end
+
+cdefio          362839359   9     1     100666  149       `
+define BUFSIZE 500
+common /cdefio/ bp, buf(BUFSIZE)
+   integer bp		# next available character; init = 0
+   character buf	# pushed\(hyback characters
+
+cline           362839339   9     1     100666  77        `
+common /cline/ linect
+   integer linect	# line count on input file; init = 1
+
+clook           362839360   9     1     100666  246       `
+common /clook/ lastp, lastt, namptr(MAXPTR), table(MAXTBL)
+   integer lastp		# last used in namptr; init = 0
+   integer lastt		# last used in table; init = 0
+   integer namptr		# name pointers
+   character table		# actual text of names and defns
+coutln          362839340   9     1     100666  149       `
+common /coutln/ outp, outbuf(MAXLINE)
+   integer outp		# last position filled in outbuf; init = 0
+   character outbuf		# output lines collected here
+
+docode.r        362839340   9     1     100666  368       `
+include fdefines
+# docode _ generate code for beginning of do
+	subroutine docode(lab)
+	integer labgen
+	integer lab
+#	string dostr "do"
+	integer dostr(4)	# delete me
+		data dostr(1), dostr(2), dostr(3),	# delete me
+		dostr(4)/LETD, LETO, BLANK, EOS/	# delete me
+
+	call outtab
+	call outstr(dostr)
+	lab = labgen(2)
+	call outnum(lab)
+	call eatup
+	call outdon
+	return
+	end
+dostat.r        362839341   9     1     100666  155       `
+include fdefines
+# dostat _ generate code for end of do statement
+	subroutine dostat(lab)
+	integer lab
+
+	call outcon(lab)
+	call outcon(lab+1)
+	return
+	end
+
+eatup.r         362839351   9     1     100666  727       `
+include fdefines
+# eatup _ process rest of statement; interpret continuations
+	subroutine eatup
+	character gettok
+	character ptoken(MAXTOK), t, token(MAXTOK)
+	integer nlpar
+
+	nlpar = 0
+	repeat {
+		t = gettok(token, MAXTOK)
+		if (t == SEMICOL | t == NEWLINE)
+			break
+		if (t == RBRACE) {
+			call pbstr(token)
+			break
+			}
+		if (t == LBRACE | t == EOF) {
+			call synerr("unexpected brace or EOF.")
+			call pbstr(token)
+			break
+			}
+		if (t == COMMA) {
+			if (gettok(ptoken, MAXTOK) != NEWLINE)
+				call pbstr(ptoken)
+			}
+		else if (t == LPAREN)
+			nlpar = nlpar + 1
+		else if (t == RPAREN)
+			nlpar = nlpar - 1
+		call outstr(token)
+		} until (nlpar < 0)
+	if (nlpar != 0)
+		call synerr("unbalanced parentheses.")
+	return
+	end
+
+elseif.r        362839358   9     1     100666  156       `
+include fdefines
+# elseif _ generate code for end of if before else
+	subroutine elseif(lab)
+	integer lab
+
+	call outgo(lab+1)
+	call outcon(lab)
+	return
+	end
+fdefines        362839335   9     1     100666  225       `
+define	MAXSTACK	10
+include globdefs
+
+define	LEXDIGITS	260
+define	LEXIF	261
+define	LEXELSE	262
+define	LEXWHILE	263
+define	LEXBREAK	264
+define	LEXNEXT	265
+define	LEXDO	266
+define	LEXOTHER	267
+define	ALPHA	-100
+define	MAXTOK	10
+
+gettok.r        362839355   9     1     100666  993       `
+include fdefines
+# gettok _ get token for Ratfor
+	character function gettok(lexstr, maxtok)
+	character ngetc, type
+	integer i, maxtok
+	character c, lexstr(maxtok)
+	include cline
+
+	while (ngetc(c) != EOF)
+		if (c != BLANK & c != TAB)
+			break
+	call putbak(c)
+	for (i = 1; i < maxtok-1; i = i + 1) {
+		gettok = type(ngetc(lexstr(i)))
+		if (gettok != LETTER & gettok != DIGIT)
+			break
+		}
+	if (i >= maxtok-1)
+		call synerr("token too long.")
+	if (i > 1) {				# some alpha seen
+		call putbak(lexstr(i))		# went one too far
+		lexstr(i) = EOS
+		gettok = ALPHA
+		}
+	else if (lexstr(1) == SQUOTE | lexstr(1) == DQUOTE) {
+		for (i = 2; ngetc(lexstr(i)) != lexstr(1); i = i + 1)
+			if (lexstr(i) == NEWLINE | i >= maxtok-1) {
+				call synerr("missing quote.")
+				lexstr(i) = lexstr(1)
+				call putbak(NEWLINE)
+				break
+				}
+		}
+	else if (lexstr(1) == SHARP)	# strip comments
+		while (ngetc(lexstr(1)) != NEWLINE)
+			;
+	lexstr(i+1) = EOS
+	if (lexstr(1) == NEWLINE)
+		linect = linect + 1
+	return
+	end
+
+globdefs        362839342   9     1     100666  1868      `
+define	STDIN	0
+define	STDOUT	1
+define	ERROUT	2
+define	READ	0
+define	WRITE	2
+define	READWRITE	2
+
+define	character	integer
+define	LETTER	1
+define	DIGIT	2
+define	OTHER	3
+define	YES	1
+define	NO	0
+define  OK	0
+define	MAXLINE	100
+define	ARB	100
+
+define	EOF	-3
+define	ERR	-1
+define	EOS	-2
+
+define	BACKSPACE	8
+define	TAB	9
+define	NEWLINE	10
+define	BLANK	32	# octal 40
+define	BANG	33
+define	DQUOTE	34
+define	SHARP	35
+define	DOLLAR	36	# 44/8
+define	PERCENT	37
+define  AND 	38
+define	SQUOTE	39
+define	LPAREN	40
+define	RPAREN	41
+define	STAR	42
+define	PLUS	43
+define	COMMA	44
+define	MINUS	45
+define	PERIOD	46
+define  SLASH	47
+define	COLON	58
+define	SEMICOL	59
+define	LESS	60
+define  EQUALS	61
+define	GREATER	62
+define  QMARK	63
+define	ATSIGN	64
+define	LBRACK	91
+define	BACKSLASH	92
+define	RBRACK	93
+define	UNDERLINE	95
+define	LBRACE	123
+define	BAR	124
+define	RBRACE	125
+
+define	LETA	97
+define	LETB	98
+define	LETC	99
+define	LETD	100
+define	LETE	101
+define	LETF	102
+define	LETG	103
+define	LETH	104
+define	LETI	105
+define	LETJ	106
+define	LETK	107
+define	LETL	108
+define	LETM	109
+define	LETN	110
+define	LETO	111
+define	LETP	112
+define	LETQ	113
+define	LETR	114
+define	LETS	115
+define	LETT	116
+define	LETU	117
+define	LETV	118
+define	LETW	119
+define	LETX	120
+define	LETY	121
+define	LETZ	122
+define	BIGA	65
+define	BIGB	66
+define	BIGC	67
+define	BIGD	68
+define	BIGE	69
+define	BIGF	70
+define	BIGG	71
+define	BIGH	72
+define	BIGI	73
+define	BIGJ	74
+define	BIGK	75
+define	BIGL	76
+define	BIGM	77
+define	BIGN	78
+define	BIGO	79
+define	BIGP	80
+define	BIGQ	81
+define	BIGR	82
+define	BIGS	83
+define	BIGT	84
+define	BIGU	85
+define	BIGV	86
+define	BIGW	87
+define	BIGX	88
+define	BIGY	89
+define	BIGZ	90
+define	DIG0	48
+define	DIG1	49
+define	DIG2	50
+define	DIG3	51
+define	DIG4	52
+define	DIG5	53
+define	DIG6	54
+define	DIG7	55
+define	DIG8	56
+define	DIG9	57
+
+define	open	fopen
+define	getarg	gtarg
+define	seek	fseek
+ifcode.r        362839335   9     1     100666  157       `
+include fdefines
+# ifcode _ generate initial code for if
+	subroutine ifcode(lab)
+	integer labgen
+	integer lab
+
+	lab = labgen(2)
+	call ifgo(lab)
+	return
+	end
+
+ifgo.r          362839339   9     1     100666  662       `
+include fdefines
+# ifgo _ generate "if(.not.(...))goto lab"
+	subroutine ifgo(lab)
+	integer lab
+#	string ifnot "if(.not."
+	integer ifnot(9)	# delete me
+		data ifnot(1) /LETI/	# delete me
+		data ifnot(2) /LETF/	# delete me
+		data ifnot(3) /LPAREN/	# delete me
+		data ifnot(4) /PERIOD/	# delete me
+		data ifnot(5) /LETN/	# delete me
+		data ifnot(6) /LETO/	# delete me
+		data ifnot(7) /LETT/	# delete me
+		data ifnot(8) /PERIOD/	# delete me
+		data ifnot(9) /EOS/	# delete me
+
+	call outtab			# get to column 7
+	call outstr(ifnot)		# " if(.not. "
+	call balpar			# collect and output condition
+	call outch(RPAREN)		# " ) "
+	call outgo(lab)		# " goto lab "
+	return
+	end
+initkw.r        362839358   9     1     100666  1018      `
+include fdefines
+#initkw
+	subroutine initkw
+
+	integer sdo(3), sif(3), selse(5), swhile(6), sbreak(6), snext(5)
+	integer vdo(2), vif(2), velse(2), vwhile(2), vbreak(2), vnext(2)
+
+	data sdo(1),sdo(2),sdo(3) /LETD,LETO,EOS/
+	data vdo(1),vdo(2) /LEXDO,EOS/
+
+	data sif(1),sif(2),sif(3) /LETI,LETF,EOS/
+	data vif(1),vif(2) /LEXIF,EOS/
+
+	data selse(1),selse(2),selse(3),selse(4),selse(5) /LETE,
+		LETL,LETS,LETE,EOS/
+	data velse(1),velse(2) /LEXELSE,EOS/
+
+	data swhile(1),swhile(2),swhile(3),swhile(4),swhile(5),swhile(6) /LETW,
+		LETH,LETI,LETL,LETE,EOS/
+	data vwhile(1),vwhile(2) /LEXWHILE,EOS/
+
+	data sbreak(1),sbreak(2),sbreak(3),sbreak(4),sbreak(5),sbreak(6) /LETB,
+		LETR,LETE,LETA,LETK,EOS/
+	data vbreak(1),vbreak(2) /LEXBREAK,EOS/
+
+	data snext(1),snext(2),snext(3),snext(4),snext(5) /LETN,
+		LETE,LETX,LETT,EOS/
+	data vnext(1),vnext(2) /LEXNEXT,EOS/
+
+	call instal(sdo,vdo)
+	call instal(sif,vif)
+	call instal(selse,velse)
+	call instal(swhile,vwhile)
+	call instal(sbreak,vbreak)
+	call instal(snext,vnext)
+
+	return
+	end
+labelc.r        362839334   9     1     100666  315       `
+include fdefines
+# labelc _ output statement number
+	subroutine labelc(lexstr)
+	character lexstr(ARB)
+	integer length
+
+	if (length(lexstr) == 5)	# warn about 23xxx labels
+		if (lexstr(1) == DIG2 & lexstr(2) == DIG3)
+			call synerr("warning: possible label conflict.")
+	call outstr(lexstr)
+	call outtab
+	return
+	end
+
+labgen.r        362839351   9     1     100666  193       `
+include fdefines
+# labgen _ generate  n  consecutive labels, return first one
+	integer function labgen(n)
+	integer label, n
+	data label /23000/
+
+	labgen = label
+	label = label + n
+	return
+	end
+
+lex.r           362839334   9     1     100666  441       `
+include fdefines
+# lex _ return lexical type of token
+	integer function lex(lexstr)
+	character gettok
+	character lexstr(MAXTOK)
+	integer alldig, lookup
+	integer ltype(2)
+
+	while (gettok(lexstr, MAXTOK) == NEWLINE)
+		;
+	lex = lexstr(1)
+	if (lex==EOF | lex==SEMICOL | lex==LBRACE | lex==RBRACE)
+		return
+	if (alldig(lexstr) == YES)
+		lex = LEXDIGITS
+	else if (lookup(lexstr, ltype) == YES)
+		lex = ltype(1)
+	else
+		lex = LEXOTHER
+	return
+	end
+
+look.r          362839359   9     1     100666  1076      `
+include globdefs
+include /usr/style/newdef/defdefs
+# lookup _ locate name, extract definition from table
+	integer function lookup(name, defn)
+	character defn(MAXDEF), name(MAXTOK)
+	integer i, j, k
+	include clook
+	
+	for (i = lastp; i > 0; i = i - 1) {
+		j = namptr(i)
+		for (k = 1; name(k) == table(j) & name(k) != EOS; k = k + 1)
+			j = j + 1
+		if (name(k) == table(j)) {		# got one
+			call scopy(table, j+1, defn, 1)
+			lookup = YES
+			return
+			}
+		}
+	lookup = NO
+	return
+	end
+
+# instal _ add name and definition to table
+	subroutine instal(name, defn)
+	character defn(MAXTOK), name(MAXDEF)
+	integer length
+	integer dlen, nlen
+	include clook
+
+	nlen = length(name) + 1
+	dlen = length(defn) + 1
+	if (lastt + nlen + dlen > MAXTBL | lastp >= MAXPTR) {
+		call putlin(name, ERROUT)
+		call remark(": too many definitions.")
+		}
+	lastp = lastp + 1
+	namptr(lastp) = lastt + 1
+	call scopy(name, 1, table, lastt + 1)
+	call scopy(defn, 1, table, lastt + nlen + 1)
+	lastt = lastt + nlen + dlen
+	return
+	end
+
+
+#block data
+	block data
+	include clook
+
+	data lastp /0/
+	data lastt /0/
+
+	end
+ngetc.r         362839333   9     1     100666  276       `
+include /usr/style/io/globdefs
+# ngetc _ get a (possibly pushed back) character
+	character function ngetc(c)
+	character getc
+	character c
+	include cdefio
+
+	if (bp > 0)
+		c = buf(bp)
+	else {
+		bp = 1
+		buf(bp) = getc(c)
+		}
+	if (c != EOF)
+		bp = bp - 1
+	ngetc = c
+	return
+	end
+otherc.r        362839340   9     1     100666  185       `
+include fdefines
+# otherc _ output ordinary Fortran statement
+	subroutine otherc(lexstr)
+	character lexstr(ARB)
+
+	call outtab
+	call outstr(lexstr)
+	call eatup
+	call outdon
+	return
+	end
+
+outch.r         362839354   9     1     100666  314       `
+include fdefines
+# outch _ put one character into output buffer
+	subroutine outch(c)
+	character c
+	integer i
+	include coutln
+
+	if (outp >= 72) {	# continuation card
+		call outdon
+		for (i = 1; i < 6; i = i + 1)
+			outbuf(i) = BLANK
+		outbuf(6) = STAR
+		outp = 6
+		}
+	outp = outp + 1
+	outbuf(outp) = c
+	return
+	end
+outcon.r        362839352   9     1     100666  443       `
+include fdefines
+# outcon _ output "n   continue"
+	subroutine outcon(n)
+	integer n
+#	string contin "continue"
+	integer contin(9)
+		data contin(1) /LETC/;
+		data contin(2) /LETO/;
+		data contin(3) /LETN/;
+		data contin(4) /LETT/;
+		data contin(5) /LETI/;
+		data contin(6) /LETN/;
+		data contin(7) /LETU/;
+		data contin(8) /LETE/;
+		data contin(9) /EOS/;
+
+	if (n > 0)
+		call outnum(n)
+	call outtab
+	call outstr(contin)
+	call outdon
+	return
+	end
+
+outdon.r        362839354   9     1     100666  190       `
+include fdefines
+# outdon _ finish off an output line
+	subroutine outdon
+	include coutln
+
+	outbuf(outp+1) = NEWLINE
+	outbuf(outp+2) = EOS
+	call putlin(outbuf, STDOUT)
+	outp = 0
+	return
+	end
+outgo.r         362839353   9     1     100666  327       `
+include fdefines
+# outgo _ output "goto  n"
+	subroutine outgo(n)
+	integer n
+#	string goto "goto"
+	integer goto(6)
+		data goto(1) /LETG/;
+		data goto(2) /LETO/;
+		data goto(3) /LETT/;
+		data goto(4) /LETO/;
+		data goto(5) /BLANK/;
+		data goto(6) /EOS/;
+
+	call outtab
+	call outstr(goto)
+	call outnum(n)
+	call outdon
+	return
+	end
+
+outnum.r        362839353   9     1     100666  254       `
+include fdefines
+define	MAXCHARS	10
+# outnum _ output decimal number
+	subroutine outnum(n)
+	character chars(MAXCHARS)
+	integer itoc
+	integer i, len, n
+
+	len = itoc(n, chars, MAXCHARS)
+	for (i = 1; i <= len; i = i + 1)
+		call outch(chars(i))
+	return
+	end
+outstr.r        362839353   9     1     100666  400       `
+include fdefines
+# outstr _ output string
+	subroutine outstr(str)
+	character c, str(ARB)
+	integer i, j
+
+	for (i = 1; str(i) != EOS; i = i + 1) {
+		c = str(i)
+		if (c != SQUOTE & c != DQUOTE)
+			call outch(c)
+		else {
+			i = i + 1
+			for (j = i; str(j) != c; j = j + 1)	# find end
+				;
+			call outnum(j-i)
+			call outch(LETH)
+			for ( ; i < j; i = i + 1)
+				call outch(str(i))
+			}
+		}
+	return
+	end
+outtab.r        362839354   9     1     100666  133       `
+include fdefines
+# outtab _ get past column 6
+	subroutine outtab
+	include coutln
+
+	while (outp < 6)
+		call outch(BLANK)
+	return
+	end
+
+parse.r         362839356   9     1     100666  1425      `
+include fdefines
+# parse _ parse Ratfor source program
+	subroutine parse
+	character lexstr(MAXTOK)
+	integer lex
+	integer lab, labval(MAXSTACK), lextyp(MAXSTACK), sp, token
+	
+	call initkw	# install keywords in table
+	sp = 1
+	lextyp(1) = EOF
+	for (token = lex(lexstr); token != EOF; token = lex(lexstr)) {
+		if (token == LEXIF)
+			call ifcode(lab)
+		else if (token == LEXDO)
+			call docode(lab)
+		else if (token == LEXWHILE)
+			call whilec(lab)
+		else if (token == LEXDIGITS)
+			call labelc(lexstr)
+		else if (token == LEXELSE) {
+			if (lextyp(sp) == LEXIF)
+				call elseif(labval(sp))
+			else
+				call synerr("illegal else.")
+			}
+		if (token==LEXIF | token==LEXELSE | token==LEXWHILE
+		  | token==LEXDO | token==LEXDIGITS | token==LBRACE) {
+			sp = sp + 1			# beginning of statement
+			if (sp > MAXSTACK)
+				call error("stack overflow in parser.")
+			lextyp(sp) = token		# stack type and value
+			labval(sp) = lab
+			}
+		else {		# end of statement - prepare to unstack
+			if (token == RBRACE) {
+				if (lextyp(sp) == LBRACE)
+					sp = sp - 1
+				else
+					call synerr("illegal right brace.")
+				}
+			else if (token == LEXOTHER)
+				call otherc(lexstr)
+			else if (token == LEXBREAK | token == LEXNEXT)
+				call brknxt(sp, lextyp, labval, token)
+			token = lex(lexstr)		# peek at next token
+			call pbstr(lexstr)
+			call unstak(sp, lextyp, labval, token)
+			}
+		}
+	if (sp != 1)
+		call synerr("unexpected EOF.")
+	return
+	end
+
+pbstr.r         362839335   9     1     100666  202       `
+include globdefs
+# pbstr _ push string back onto input
+	subroutine pbstr(in)
+	character in(MAXLINE)
+	integer length
+	integer i
+
+	for (i = length(in); i > 0; i = i - 1)
+		call putbak(in(i))
+	return
+	end
+putbak.r        362839336   9     1     100666  219       `
+include globdefs
+
+# putbak _ push character back onto input
+	subroutine putbak(c)
+	character c
+	include cdefio
+
+	bp = bp + 1
+	if (bp > BUFSIZE)
+		call error("too many characters pushed back.")
+	buf(bp) = c
+	return
+	end
+
+ratfor.r        362839357   9     1     100666  58        `
+# ratfor _ main program for Ratfor
+	call parse
+	stop
+	end
+synerr.r        362839352   9     1     100666  309       `
+include fdefines
+# synerr _ report Ratfor syntax error
+	subroutine synerr(msg)
+	character lc(MAXLINE), msg(MAXLINE)
+	integer itoc
+	integer junk
+	include cline
+
+	call remark("error at line .")
+	junk = itoc(linect, lc, MAXLINE)
+	call putlin(lc, ERROUT)
+	call putch(COLON, ERROUT)
+	call remark(msg)
+	return
+	end
+
+unstak.r        362839356   9     1     100666  575       `
+include fdefines
+# unstak _ unstack at end of statement
+	subroutine unstak(sp, lextyp, labval, token)
+	integer labval(MAXSTACK), lextyp(MAXSTACK), sp, token
+
+	for ( ; sp > 1; sp = sp - 1) {
+		if (lextyp(sp) == LBRACE)
+			break
+		if (lextyp(sp) == LEXIF & token == LEXELSE)
+			break
+		if (lextyp(sp) == LEXIF)
+			call outcon(labval(sp))
+		else if (lextyp(sp) == LEXELSE) {
+			if (sp > 2)
+				sp = sp - 1
+			call outcon(labval(sp)+1)
+			}
+		else if (lextyp(sp) == LEXDO)
+			call dostat(labval(sp))
+		else if (lextyp(sp) == LEXWHILE)
+			call whiles(labval(sp))
+		}
+	return
+	end
+
+whilec.r        362839336   9     1     100666  253       `
+include fdefines
+# whilec _ generate code for beginning of while 
+	subroutine whilec(lab)
+	integer labgen
+	integer lab
+
+	call outcon(0)    # unlabeled continue, in case there was a label
+	lab = labgen(2)
+	call outnum(lab)
+	call ifgo(lab+1)
+	return
+	end
+
+whiles.r        362839340   9     1     100666  147       `
+include fdefines
+# whiles _ generate code for end of while
+	subroutine whiles(lab)
+	integer lab
+
+	call outgo(lab)
+	call outcon(lab+1)
+	return
+	end
+

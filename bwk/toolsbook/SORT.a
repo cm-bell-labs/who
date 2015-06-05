@@ -1,0 +1,545 @@
+!<arch>
+bubble.r        362839432   9     1     100666  281       `
+# bubble _ bubble sort v(1) ... v(n) increasing
+	subroutine bubble(v, n)
+	integer i, j, k, n, v(n)
+
+	for (i = n; i > 1; i = i - 1)
+		for (j = 1; j < i; j = j + 1)
+			if (v(j) > v(j+1)) {		# compare
+				k = v(j)		# exchange
+				v(j) = v(j+1)		#
+				v(j+1) = k		#
+				}
+	return
+	end
+
+compar.r        362839425   9     1     100666  366       `
+include sortdefs
+# compar _ compare linbuf(lp1) with linbuf(lp2)
+	integer function compar(lp1, lp2, linbuf)
+	character linbuf(ARB)
+	integer i, j, lp1, lp2
+
+	i = lp1
+	j = lp2
+	while (linbuf(i) == linbuf(j)) {
+		if (linbuf(i) == EOS) {
+			compar = 0
+			return
+			}
+		i = i + 1
+		j = j + 1
+		}
+	if (linbuf(i) < linbuf(j))
+		compar = -1
+	else
+		compar = +1
+	return
+	end
+drive.r         362839416   9     1     100666  2051      `
+include sortdefs
+# sort _ external sort of text lines
+	character linbuf(MAXTEXT), name(NAMESIZE)
+	integer gtext, makfil, min, open
+	integer infil(MERGEORDER), linptr(MAXPTR), nlines
+	integer high, lim, low, outfil, t
+
+	high = 0
+	repeat {			# initial formation of runs
+		t = gtext(linptr, nlines, linbuf, STDIN)
+		call quick(linptr, nlines, linbuf)
+		high = high + 1
+		outfil = makfil(high)
+		call ptext(linptr, nlines, linbuf, outfil)
+		call close(outfil)
+		} until (t == EOF)
+
+	for (low = 1; low < high; low = low + MERGEORDER) {	# merge
+		lim = min(low+MERGEORDER-1, high)
+		call gopen(infil, low, lim)
+		high = high + 1
+		outfil = makfil(high)
+		call merge(infil, lim-low+1, outfil)
+		call close(outfil)
+		call gremov(infil, low, lim)
+		}
+
+	call gname(high, name)	# final cleanup
+	outfil = open(name, READ)
+	call fcopy(outfil, STDOUT)
+	call close(outfil)
+	call remove(name)
+	stop
+	end
+
+# gname _ make unique name for file id  n
+	subroutine gname(n, name)
+	character name(NAMESIZE)
+	integer itoc, length
+	integer i, junk, n
+#	string stemp "stemp"
+	integer stemp(3)
+	data stemp(1), stemp(2), stemp(3)/ LETS, LETT, EOS/
+
+	call scopy(stemp, 1, name, 1)
+	i = length(stemp) + 1
+	junk = itoc(n, name(i), NAMESIZE-i)
+	return
+	end
+
+# makfil _ make new file for number  n
+	integer function makfil(n)
+	character name(NAMESIZE)
+	integer create
+	integer n
+
+	call gname(n, name)
+	makfil = create(name, READWRITE)
+	if (makfil == ERR)
+		call cant(name)
+	return
+	end
+
+# gopen _ open group of files low ... lim
+	subroutine gopen(infil, low, lim)
+	character name(NAMESIZE)
+	integer i, infil(MERGEORDER), lim, low
+	integer open
+
+	for (i = 1; i <= lim-low+1; i = i + 1) {
+		call gname(low+i-1, name)
+		infil(i) = open(name, READ)
+		if (infil(i) == ERR)
+			call cant(name)
+		}
+	return
+	end
+
+# gremov _ remove group of files  low ... lim
+	subroutine gremov(infil, low, lim)
+	character name(NAMESIZE)
+	integer i, infil(MERGEORDER), lim, low
+
+	for (i = 1; i <= lim-low+1; i = i + 1) {
+		call close(infil(i))
+		call gname(low+i-1, name)
+		call remove(name)
+		}
+	return
+	end
+
+exchan.r        362839428   9     1     100666  190       `
+include sortdefs
+# exchan _ exchange linbuf(lp1) with linbuf(lp2)
+	subroutine exchan(lp1, lp2, linbuf)
+	character linbuf(ARB)
+	integer k, lp1, lp2
+
+	k = lp1
+	lp1 = lp2
+	lp2 = k
+	return
+	end
+gtext.r         362839425   9     1     100666  466       `
+include sortdefs
+# gtext _ get text lines into linbuf
+	integer function gtext(linptr, nlines, linbuf, infile)
+	character linbuf(MAXTEXT)
+	integer getlin
+	integer infile, lbp, len, linptr(MAXPTR), nlines
+
+	nlines = 0
+	lbp = 1
+	repeat {
+		len = getlin(linbuf(lbp), infile)
+		if (len == EOF)
+			break
+		nlines = nlines + 1
+		linptr(nlines) = lbp
+		lbp = lbp + len + 1	# "1" = room for EOS
+		} until (lbp >= MAXTEXT-MAXLINE | nlines >= MAXPTR)
+	gtext = len
+	return
+	end
+hmerge.r        362839427   9     1     100666  1289      `
+include sortdefs
+define	MERGETEXT	900
+# merge _ merge infil(1) ... infil(nfiles) onto outfil
+	subroutine merge(infil, nfiles, outfil)
+	character linbuf(MERGETEXT)
+	integer getlin
+	integer i, inf, lbp, lp1, nf, nfiles, outfil
+	integer infil(MERGEORDER), linptr(MERGEORDER)
+
+	lbp = 1
+	nf = 0
+	for (i = 1; i <= nfiles; i = i + 1)	# get one line from each file
+		if (getlin(linbuf(lbp), infil(i)) != EOF) {
+			nf = nf + 1
+			linptr(nf) = lbp
+			lbp = lbp + MAXLINE	# room for largest line
+			}
+	call quick(linptr, nf, linbuf)			# make initial heap
+	while (nf > 0) {
+		lp1 = linptr(1)
+		call putlin(linbuf(lp1), outfil)
+		inf = lp1 / MAXLINE + 1		# compute file index
+		if (getlin(linbuf(lp1), infil(inf)) == EOF) {
+			linptr(1) = linptr(nf)
+			nf = nf - 1
+			}
+		call reheap(linptr, nf, linbuf)
+		}
+	return
+	end
+
+# reheap _ propagate linbuf(linptr(1)) to proper place in heap
+	subroutine reheap(linptr, nf, linbuf)
+	character linbuf(MAXTEXT)
+	integer compar
+	integer i, j, nf, linptr(nf)
+
+	for (i = 1; 2 * i <= nf; i = j) {
+		j = 2 * i
+		if (j < nf)		# find smaller child
+			if (compar(linptr(j), linptr(j+1), linbuf) > 0)
+				j = j + 1
+		if (compar(linptr(i), linptr(j), linbuf) <= 0)
+			break		# proper position found
+		call exchan(linptr(i), linptr(j), linbuf)	# percolate
+		}
+	return
+	end
+
+incore.r        362839426   9     1     100666  315       `
+include sortdefs
+# sort _ sort text lines in memory
+	character linbuf(MAXTEXT)
+	integer gtext
+	integer linptr(MAXPTR), nlines
+
+	if (gtext(linptr, nlines, linbuf, STDIN) == EOF) {
+		call shell(linptr, nlines, linbuf)
+		call ptext(linptr, nlines, linbuf, STDOUT)
+		}
+	else
+		call error("too big to sort.")
+	stop
+	end
+
+kwic.r          362839429   9     1     100666  2857      `
+include sortdefs
+define FOLD DOLLAR
+# kwic _ make keyword in context index
+	character buf(MAXLINE)
+	integer getlin
+
+	while (getlin(buf, STDIN) != EOF)
+		call putrot(buf, STDOUT)
+	stop
+	end
+
+# putrot _ create lines with keyword at front
+	subroutine putrot(buf, outfil)
+	character type
+	character buf(ARB), t
+	integer i, outfil
+
+	for (i = 1; buf(i) != NEWLINE; i = i + 1) {
+		t = type(buf(i))
+		if (t == LETTER | t == DIGIT) {		# alpha
+			call rotate(buf, i, outfil)		# token starts at "i"
+			t = type(buf(i+1))
+			for ( ; t == LETTER | t == DIGIT; t = type(buf(i+1)))
+				i = i + 1
+			}
+		}
+	return
+	end
+
+# rotate _ output rotated line
+	subroutine rotate(buf, n, outfil)
+	character buf(ARB)
+	integer i, n, outfil
+
+	for (i = n; buf(i) != NEWLINE; i = i + 1)
+		call putch(buf(i), outfil)
+	call putch(FOLD, outfil)
+	for (i = 1; i < n; i = i + 1)
+		call putch(buf(i), outfil)
+	call putch(NEWLINE, outfil)
+	return
+	end
+
+# type _ determine type of character
+	character function type(c)
+	character c
+	integer index
+#	string digits "0123456789"
+	integer digits(11)
+		data digits(1) /DIG0/
+		data digits(2) /DIG1/
+		data digits(3) /DIG2/
+		data digits(4) /DIG3/
+		data digits(5) /DIG4/
+		data digits(6) /DIG5/
+		data digits(7) /DIG6/
+		data digits(8) /DIG7/
+		data digits(9) /DIG8/
+		data digits(10) /DIG9/
+		data digits(11) /EOS/
+#	string lowalf "abcdefghijklmnopqrstuvwxyz"
+	integer lowalf(27)
+	data lowalf(01)/LETA/
+	data lowalf(02)/LETB/
+	data lowalf(03)/LETC/
+	data lowalf(04)/LETD/
+	data lowalf(05)/LETE/
+	data lowalf(06)/LETF/
+	data lowalf(07)/LETG/
+	data lowalf(08)/LETH/
+	data lowalf(09)/LETI/
+	data lowalf(10)/LETJ/
+	data lowalf(11)/LETK/
+	data lowalf(12)/LETL/
+	data lowalf(13)/LETM/
+	data lowalf(14)/LETN/
+	data lowalf(15)/LETO/
+	data lowalf(16)/LETP/
+	data lowalf(17)/LETQ/
+	data lowalf(18)/LETR/
+	data lowalf(19)/LETS/
+	data lowalf(20)/LETT/
+	data lowalf(21)/LETU/
+	data lowalf(22)/LETV/
+	data lowalf(23)/LETW/
+	data lowalf(24)/LETX/
+	data lowalf(25)/LETY/
+	data lowalf(26)/LETZ/
+	data lowalf(27)/EOS/
+#	string upalf "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	integer upalf(27)
+	data upalf(01) /BIGA/
+	data upalf(02) /BIGB/
+	data upalf(03) /BIGC/
+	data upalf(04) /BIGD/
+	data upalf(05) /BIGE/
+	data upalf(06) /BIGF/
+	data upalf(07) /BIGG/
+	data upalf(08) /BIGH/
+	data upalf(09) /BIGI/
+	data upalf(10) /BIGJ/
+	data upalf(11) /BIGK/
+	data upalf(12) /BIGL/
+	data upalf(13) /BIGM/
+	data upalf(14) /BIGN/
+	data upalf(15) /BIGO/
+	data upalf(16) /BIGP/
+	data upalf(17) /BIGQ/
+	data upalf(18) /BIGR/
+	data upalf(19) /BIGS/
+	data upalf(20) /BIGT/
+	data upalf(21) /BIGU/
+	data upalf(22) /BIGV/
+	data upalf(23) /BIGW/
+	data upalf(24) /BIGX/
+	data upalf(25) /BIGY/
+	data upalf(26) /BIGZ/
+	data upalf(27) /EOS/
+
+	if (index(lowalf, c) > 0)
+		type = LETTER
+	else if (index(upalf, c) > 0)
+		type = LETTER
+	else if (index(digits, c) > 0)
+		type = DIGIT
+	else
+		type = c
+	return
+	end
+
+ptext.r         362839428   9     1     100666  286       `
+include sortdefs
+# ptext _ output text lines from linbuf
+	subroutine ptext(linptr, nlines, linbuf, outfil)
+	character linbuf(MAXTEXT)
+	integer i, j, linptr(MAXPTR), nlines, outfil
+
+	for (i = 1; i <= nlines; i = i + 1) {
+		j = linptr(i)
+		call putlin(linbuf(j), outfil)
+		}
+	return
+	end
+quick.r         362839424   9     1     100666  1025      `
+include sortdefs
+# quick _ quicksort for character lines
+	subroutine quick(linptr, nlines, linbuf)
+	character linbuf(ARB)
+	integer compar
+	integer i, j, linptr(ARB), lv(LOGPTR), nlines, p, pivlin, uv(LOGPTR)
+
+	lv(1) = 1
+	uv(1) = nlines
+	p = 1
+	while (p > 0)
+		if (lv(p) >= uv(p))		# only one element in this subset
+			p = p - 1		# pop stack
+		else {
+			i = lv(p) - 1
+			j = uv(p)
+			pivlin = linptr(j)	# pivot line
+			while (i < j) {
+				for (i=i+1; compar(linptr(i), pivlin, linbuf) < 0; i=i+1)
+					;
+				for (j = j - 1; j > i; j = j - 1)
+					if (compar(linptr(j), pivlin, linbuf) <= 0)
+						break
+				if (i < j)		# out of order pair
+					call exchan(linptr(i), linptr(j), linbuf)
+				}
+			j = uv(p)			# move pivot to position i
+			call exchan(linptr(i), linptr(j), linbuf)
+			if (i-lv(p) < uv(p)-i) {	# stack so shorter done first
+				lv(p+1) = lv(p)
+				uv(p+1) = i - 1
+				lv(p) = i + 1
+				}
+			else {
+				lv(p+1) = i + 1
+				uv(p+1) = uv(p)
+				uv(p) = i - 1
+				}
+			p = p + 1			# push onto stack
+			}
+	return
+	end
+
+shell.r         362839422   9     1     100666  464       `
+include sortdefs
+# shell _ Shell sort for character lines
+	subroutine shell(linptr, nlines, linbuf)
+	character linbuf(ARB)
+	integer compar
+	integer gap, i, ig, j, k, linptr(ARB), nlines
+
+	for (gap = nlines/2; gap > 0; gap = gap/2)
+		for (j = gap + 1; j <= nlines; j = j + 1)
+			for (i = j - gap; i > 0; i = i - gap) {
+				ig = i + gap
+				if (compar(linptr(i), linptr(ig), linbuf) <= 0)
+					break
+				call exchan(linptr(i), linptr(ig), linbuf)
+				}
+	return
+	end
+sortdefs        362839416   9     1     100666  126       `
+include /usr/style/io/globdefs
+
+define	MERGEORDER	7
+define	NAMESIZE	20
+define	MAXTEXT	400
+define	MAXPTR	1000
+define	LOGPTR	20
+unique.r        362839430   9     1     100666  493       `
+include sortdefs
+# unique _ strip adjacent duplicate lines
+	character buf1(MAXLINE), buf2(MAXLINE)
+	integer equal, getlin
+	integer t
+
+	t = getlin(buf1, STDIN)
+	while (t != EOF) {
+		call putlin(buf1, STDOUT)
+		for (t = getlin(buf2, STDIN); t != EOF; t = getlin(buf2, STDIN))
+			if (equal(buf1, buf2) == NO)
+				break
+		if (t == EOF)
+			break
+		call putlin(buf2, STDOUT)
+		for (t = getlin(buf1, STDIN); t != EOF; t = getlin(buf1, STDIN))
+			if (equal(buf1, buf2) == NO)
+				break
+		}
+	stop
+	end
+
+unrot.r         362839423   9     1     100666  961       `
+include sortdefs
+define FOLD DOLLAR
+define MIDDLE 40
+define MAXOUT 80
+# unrot _ unrotate lines rotated by kwic
+	character inbuf(MAXLINE), outbuf(MAXOUT)
+	integer getlin, index
+	integer i, j
+
+	while (getlin(inbuf, STDIN) != EOF) {
+		for (i = 1; i < MAXOUT; i = i + 1)	# blank line
+			outbuf(i) = BLANK
+		j = MIDDLE
+		for (i = 1; inbuf(i) != FOLD & inbuf(i) != NEWLINE; i = i + 1) {
+			j = j + 1			# copy up to FOLD
+			if (j >= MAXOUT - 1)
+				j = 1
+			outbuf(j) = inbuf(i)
+			}
+		if (inbuf(i) == FOLD) {		# copy second half,
+			j = MIDDLE			# working backwards
+			for (i = index(inbuf, NEWLINE) - 1; i > 0; i = i - 1) {
+				if (inbuf(i) == FOLD)
+					break
+				j = j - 1
+				if (j <= 0)
+					j = MAXOUT - 2
+				outbuf(j) = inbuf(i)
+				}
+			}
+		for (i = MAXOUT - 2; i > 0; i = i - 1)
+			if (outbuf(i) != BLANK)	# delete trailing blanks
+				break
+		outbuf(i+1) = NEWLINE		# terminate line properly
+		outbuf(i+2) = EOS
+		call putlin(outbuf, STDOUT)
+		}
+	stop
+	end
+
+vshell.r        362839431   9     1     100666  367       `
+# shell _ Shell sort v(1)...v(n) increasing
+	subroutine shell(v, n)
+	integer gap, i, j, jg, k, n, v(n)
+
+	for (gap = n/2; gap > 0; gap = gap/2)
+		for (i = gap + 1; i <= n; i = i + 1)
+			for (j = i - gap; j > 0; j = j - gap) {
+				jg = j + gap
+				if (v(j) <= v(jg))	# compare
+					break
+				k = v(j)		# exchange
+				v(j) = v(jg)		#
+				v(jg) = k		#
+				}
+	return
+	end
+
+vtest.r         362839427   9     1     100666  261       `
+include /usr/style/io/globdefs
+integer v(100), getlin, ctoi, buf(MAXLINE)
+integer i, j
+
+j=0
+while(getlin(buf,STDIN) != EOF) {
+	j=j+1
+	i= 1
+	v(j) = ctoi(buf, i)
+	}
+call shell(v,j)
+for(i=1; i<=j; i=i+1) {
+	call putdec(v(i),STDOUT)
+	call putc(NEWLINE)
+	}
+stop
+end
+

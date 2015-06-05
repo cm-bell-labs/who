@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+<title>Wim Sweldens' Wavelet Cascade Applet</title>
+</head>
+<body bgcolor="#ffffff">
+<hr size=6>
+<h2 align=center> How to Operate the Applet</h2>
+<hr size=6>
+This Applet graphs scaling functions and wavelets
+with two parameters <i>even</i>
+and <i>odd</i>. If you are interested, check the
+<a href="math.html">mathematics behind the Applet</a>. The applet
+shows the graph of the scaling function or wavelet,
+which is defined on [0,3], on
+top and the parameter space below. The circle and lines in the
+parameter space have a specific meaning which you can find in
+<a href="math.html">the mathematical background</a>. The red dot
+indicates the current value of the parameters. 
+<p>
+You probably already figured out that:
+<ul>
+  <li> You can use the slide bar to set the number of iterations of
+  the algorithm. Use it to find  a compromise between quality of
+      the graph and speed (6 works best for me).
+  <li> You can move the red dot in parameter space. In fact, you
+       can even move it outside the paremeter space.
+  <li> The <i>Mirror</i> button flips the function.
+  <li> The <i>History</i> radio button allows you to trace the
+  execution of the program. This originally was a bug in the program, but I now
+  added it as an option as one can make
+      pretty pictures with it.  How about <a
+      href="bat.gif">this </a> as a <i>multi wavelet</i> ;-)
+      Clicking <i>History</i> again clears the screan.
+      By switching history on and changing the level, you can
+      check the convergence speed of the algorithm. The smoother
+      the limit function, the faster the convergence.
+  <li> The buttons below give you well known functions.
+  <li> The buttons on the left allow you to switch between wavelet
+       and scaling function.
+  <li> You only get smooth graphs inside the shaded region.
+      The closer to the upper right corner (1,1), the more fractal
+      the function becomes.
+  <li> Using the buttons on the bottom left, you can switch between
+       piecewise linear and piecewise constant drawing. Linear
+      is best when drawing smooth functions, while constant is
+      better while outside the region of continuity. With constant
+      drawing you can see how the function almost falls into two
+      pieces around the point (1,1). (Try it with the symmetric
+      constraint on.)
+  <li> You can contrain the parameter space using the buttons on
+       the right. See if you can converge to the Daubechies by
+       alternating the orthogonality and order 2 constraints.
+</ul>
+<p>
+Some notes on the implementation:
+<ul>
+  <li> The Applet uses double buffering to avoid flicker both for
+       the graph and the parameter space.
+  <li> The Applet is fully resizable, so if you would like a larger
+       canvas, simply adjust the HEIGHT and WIDTH of the APPLET tag.
+  <li> The Applet does not rely on garbadge collection and
+        will never increase memory after initialization.
+  <li> In order to increase speed while dragging the mouse,
+      only every other mouse position is read.
+</ul>
+Please feel free to <a href="../contact/">contact me</a> if you
+have questions or comments.
+<p>
+<font size=-1><b>
+[
+<a href="index.html"> Wavelet Cascade Applet </a> |
+<a href="math.html"> Mathematical background  </a> |
+<a href="../index.html"> My home page </a>
+]
+</b></font>
+<hr>
+<!-- hhmts start -->
+<font size=-2> 
+Copyright &copy; 1996 Wim Sweldens. Last modified: Thu Oct 17 17:34:30 EDT 1996
+</font> 
+<!-- hhmts end -->
+</body> </html>

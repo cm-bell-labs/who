@@ -1,0 +1,52 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75C-SGI [en] (X11; U; IRIX64 6.5 IP27) [Netscape]">
+   <title>Eigensolve performance</title>
+</head>
+<body text="#000000" bgcolor="#FFFFCC" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center><font size=+4>Eigensolve performance</font></center>
+
+<p>The following files give complete timings for eigensolve and mpsolve
+on most of the polynomials on the MPSolve web site.&nbsp; In all cases,
+both programs computed all roots to at most the relative error specified
+by the number of decimal digits.&nbsp; (The command "unisolve -Ga -o<i>n&nbsp;
+file</i>" was used for mpsolve and "eigensolve -o<i>n -</i>i200 <i>file</i>"
+for eigensolve.)&nbsp; A polynomial may have been&nbsp; skipped because
+the running time was too large, or because the format of the file was inappropriate.
+<ul>
+<li>
+&nbsp;<a href="linuxp3compare">Linux g++ on 800 Mhz Pentium 3;&nbsp; 15
+digits</a></li>
+
+<li>
+&nbsp; <a href="sgi250mhzcomparison">SGI CC on 250 Mhz SGI R10000; 15 digits</a></li>
+<li>
+&nbsp; <a href="sgi250mhzcomparison50digits">SGI CC on 250 Mhz SGI R10000; 50 digits</a></li>
+
+</ul>
+
+The results can be summarized as follows.
+<ul>
+<li>
+For dense, ill-conditioned polynomials (Wilkinson, Chebyshev, Laguerre,
+Legendre, Sendra etc.), both programs are relatively slow, but eigensolve
+is much faster than mpsolve.</li>
+
+<li>
+For well-conditioned polynomials (e.g. `easy', 'sparse<i>nnn</i>'), mpsolve
+is faster than eigensolve.&nbsp; In some cases, for example polynomials
+of degree <i>d </i>several hundred or more,&nbsp; mpsolve reports roots
+significantly faster than a single floating-point eigenvalue computation
+on a <i>d</i>x<i>d</i> matrix.</li>
+
+<li>
+Mpsolve takes advantage of sparsity, and has special hooks for polynomials
+that can be evaluated efficiently by straight-line programs.&nbsp; In these
+cases mpsolve has an advantage.</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,808 @@
+<HTML>
+<HEADER>
+<TITLE> CIS677: Notes for lecture 7: Convexity
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center>
+	CIS677<br> Notes for lecture 7: Convexity
+</center></H1>
+<BR>
+
+<h3>Outline</h3>
+<li>	Caratheodory's theorem
+<li>	polarity and duality
+<li>	the Farkas Lemma
+<li>	convex hulls and intersections of halfspaces
+<li>	faces and the face lattice
+<li>	faces and polarity
+</ul>
+
+We'll be using the following terms:
+
+<table>
+<tr><th>polytope<td>	the convex hull conv(S) of a finite set S.
+<tr><th><i>H</i>-polyhedron<td>	the intersection P(H) of a set of halfspaces.
+<tr><th><i>V</i>-polyhedron<td>	a Minkowski sum conv(S)+cone(S'), where S and S' are finite.
+</table>
+
+We'll prove the <i>Representation Theorem</i>, that
+a set is an <i>H</i>-polyhedron iff it is a <i>V</i>-polyhedron.
+
+<p>
+We'll show that a polyhedron is bounded iff it is a polytope.
+
+
+<h3>Cones and Convex Sets, Homogeneous coordinates</h3>
+
+Statements about convex sets can be translated into statements about
+cones in one higher dimension.
+
+That is, define
+
+<table>
+<tr><th>lift(P) <td>to be {[x 1] | x is in P}, and
+<tr> <th>slice(P') <td> to be {x | [x 1] is in P'}.
+</table>
+
+
+<blockquote>
+<b>Fact:</b> conv(S)=slice(cone(lift(S))).
+</blockquote>
+
+<p>
+Proof: 
+Let Y=lift(S).
+
+<p>
+A point x is in slice(cone(Y))
+<blockquote>
+	iff [x 1] is in cone(Y),<br>
+	iff  [x 1] = sum<sub>p in Y</sub> c<sub>p</sub> p, where p=[p' 1].<br>
+	iff x = sum<sub>p in Y</sub> c<sub>p</sub> p' and sum<sub>p in Y</sub> c<sub>p</sub> = 1<br>
+	iff x is in conv(S).  <b>QED</b><br>
+</blockquote>
+ 
+
+<p>
+This can be viewed as using <i>homogeneous coordinates</i>:
+regard any point [y y<sub>d+1</sub>] as representing point x if
+[y y<sub>d+1</sub>] = t[x 1] for some t>0.  That is, cone(Y) is the set of
+all [y y<sub>d+1</sub>] that represent conv(S) in homogeneous coordinates.
+
+<p>
+Statements about flats can be translated into statements about linear subspaces
+in one higher dimension, because:
+<blockquote>
+aff(P)=slice(span(lift(P))).
+</blockquote>
+
+<p>
+A set P is affinely dependent iff lift(P) is linearly dependent.
+
+<p>
+A similar relation holds between cones and <i>H</i>-polyhedra: suppose P(H) is such
+a polyhedron.<br>
+For a halfspace
+<blockquote>
+	h={x | a&#183;x <=b},
+</blockquote>
+let h' be the
+halfspace in one dimension up with
+<blockquote>
+	h':={ [x x<sub>d+1</sub>]  | a&#183;x - bx<sub>d+1</sub> <= 0},
+</blockquote>
+and H' the set of h', together with the halfspace {x | x<sub>d+1</sub> >= 0}.
+
+Then P(H) = slice(P(H')), and P(H') is a cone.
+
+
+<h3>Caratheodory's theorem</h3>
+
+Every linear subspace L has a basis : a small set B in L with L=span(B).
+
+<table><tr><td>
+<p>
+As will be shown,
+the vertices of a bounded polyhedral set P are like a basis
+for convex combinations: P=conv(vert(P)).
+
+<p>
+However, there's no bound on the number of vertices, as a function of
+dim(P), as there is for a linear subspace.
+
+But:
+<td><img src="f0.gif">
+</table>
+<blockquote>
+<b>Theorem.</b>
+<ol type=i>
+<li>Given a set S, for any point p in conv(S) there is a subset T with
+p in conv(T), with |T| = dim(S)+1, and the points of S' are affinely
+independent.
+<li> Given a set S, for any point p in cone(S), there is a subset T of S
+with p in cone(T), with |T|=dim(S), and the points of T are linearly
+independent.
+</ol>
+</blockquote>
+
+Proof.
+Part (ii):
+Suppose T' is a subset of S
+such that:
+<blockquote>
+ 	p is in cone(T'),<br>
+ 	the size |T'| is as small as possible,<br>
+	but |T'| > dim(S).
+</blockquote>
+Suppose p=sum<sub>s in T'</sub> c<sub>s</sub> s.
+Then T' is linearly dependent, so for some
+coefficients d<sub>s</sub>,
+<blockquote>
+	sum<sub>s in T'</sub> d<sub>s</sub> c<sub>s</sub> s = 0.
+</blockquote>
+Pick the element s<sub>max</sub> of T' with the largest d<sub>s</sub>,
+and write
+<blockquote>
+	c<sub>s</sub>s <sub>max</sub> = sum<sub>s in T'\{s<sub>max</sub>}</sub> -d<sub>s</sub>/d<sub>max</sub> c<sub>s</sub> s.
+</blockquote>
+Note that that each coefficient on the right is greater than -c<sub>s</sub>.
+<p>
+Now substitute this expression for s<sub>max</sub> into the sum
+for p.  This eliminates the appearence of s<sub>max</sub> in the sum,
+and keeps all other coefficients nonnegative.  This contradicts
+the choice of T'.
+
+<p>
+Part (i) follows from conv(S)=slice(cone(lift(S))) and using 
+ <b>QED</b>
+
+<h3>A Farkas Lemma</h3>
+
+The Farkas Lemma is fundamental to the theory of polytopes; it
+is a form of linear programming duality, and takes many forms.<br>
+One form says:
+
+<table><tr><td>
+Given a set S and a point p, either
+<ol type=i>
+<li> p is in conv(S), or
+<li> there is a hyperplane h
+such that p is on one side of h, and S is on the other,
+</ol>
+but not both (i) and (ii).
+<td><img src="f1.gif"></tr></table>
+
+<p>
+It will be useful to have a version of this lemma for cones; it's
+possible to say more about the separating hyperplane, also:
+it can be the affine hull (in the convex case) or the linear span
+(in the cone case) of a subset of S.
+
+<blockquote>
+<b>Farkas Lemma.</b> Given a set S and a point p, either
+<ol type=i>
+<li> p is in cone(S), or
+<li> there is a linear subspace span(T), such that p is on one side of span(T),
+and S is on the other, where
+<blockquote>
+	T is a subset of S,<br>
+	|T| is no more than dim(S)-1, and<br>
+	T is linearly independent,<br>
+</blockquote>
+</ol>
+but not both (i) and (ii).
+</blockquote>
+
+<p>
+This can be viewed as a "theorem of the alternative": either one system
+of inequalities holds, expressing that (i) holds, or another
+system does, expressing that (ii) holds.
+
+<p>
+The Lemma can be viewed as showing that there is a "witness", span(T),
+to p not being in cone(S): an easy-to-check proof that p is not in cone(S).
+
+<p>
+Here we use it to show the relation between <i>V</i>-polyhedral sets, given as
+convex hulls, and <i>H</i>-polyhedral sets, given as halfspace intersections.
+
+<h3>Proof sketch of the Farkas Lemma</h3>
+
+If p is in cone(S), then there can be no a with
+<blockquote>
+	a&#183;p > 0 and a&#183;s <= 0 for all s in S,
+</blockquote>
+because p in cone(S) means p = sum<sub>s in S</sub> c<sub>s</sub> s, with c<sub>s</sub> >= 0 for all s.
+But then a&#183;s <= 0 for all s implies
+<blockquote>
+	0 > a&#183;p = a&#183;sum<sub>s in S</sub> c<sub>s</sub> s = sum<sub>s in S</sub> c<sub>s</sub> a&#183;s >= 0,
+</blockquote>
+contradiction.
+
+<table><tr><td>
+<p>
+Suppose p is not in cone(S).  Then by Caratheodory's theorem, p is not
+in any <i>simplicial cone</i> cone(S'), having |S'| = dim(S),
+and with S' a subset of S.
+
+<p>
+Pick a point q inside one such simplicial cone,
+and consider the intersections
+of the line qp with all such simplicial cones arising from S.
+Let q' be the intersection
+point closest to p.  Then q' is in some cone(T),
+where |T|=dim(S)-1, and span(T) separates S and p: suppose there is
+some point s on the same side of span(T) as p;
+Then, <i>as can be shown,</i> the intersection of L and
+cone(T union s) has an endpoint closer to p than q'.
+<td><img src="f2.gif"></table>
+<p>
+Put another way: pick a cone(T) with |T|=dim(S)-1, with q a point in cone(T),
+and suppose a point s of S is on the same side of span(T) as p.  Then for 
+some s' in T, cone(T union s \ s') has intersection with qp
+closer the p than the intersection of qp with cone(T).  Reset
+T to be T union s \ s', and repeat until either a separating plane
+is found, or p is in some cone.  <b>QED</b>
+
+<p>
+This proof is really a disguised form of the simplex algorithm
+for linear programming, of which more later. 
+
+<p>
+It is not hard to prove the <i> "as can be shown"</i> condition, using the linear
+independence of the sets T yielding the cones.
+
+
+<h3> Polarity </h3>
+
+Polarity, and more generally <i>duality</i>, are key concepts of convexity.
+
+<p>
+Suppose P(H) is a cone, with all bounding hyperplanes passing through
+the origin.
+
+<table><tr><td>
+<p>
+From the definition of P(H), we have
+<blockquote>
+h<sup>*</sup>&#183;x <= 0 for every h in H and every x in P(H), 
+</blockquote>
+where h<sup>*</sup> is any vector perpendicular to h and not in it.
+That is, every x in P(H) lies in every halfspace associated with each 
+h<sup>*</sup>.  However, the above also says that
+each h<sup>*</sup> lies in the intersection of a set of halfspaces,
+namely, those bounded by planes perpendicular to x.
+<td><img src="f3.gif"></table>
+
+<p>
+We'll define the <i>polar</i> P(H)<sup>*</sup> of P(H) as the
+intersection of all those halfspaces, so that, parallel to the above,
+<blockquote>
+y&#183;x <= 0 for every y in P(H)<sup>*</sup> and every x in P(H), 
+</blockquote>
+
+This may motivate the following definitions:
+<table>
+<tr><th valign=top align=right>h<sup>*</sup> </th><td>:= for a halfspace h, the ray of all vectors a with
+	so that h = {x | a&#183;x <= 0}.
+<tr><th valign=top align=right>r<sup>*</sup> </th><td>:= for a ray r, the halfspace of all vectors x with
+	b&#183;x <= 0 for b in r.
+<tr><th valign=top align=right>H<sup>*</sup> </th><td>:= {h<sup>*</sup> | h in H}.</td></tr>
+<tr><th valign=top align=right>P(H)<sup>*</sup> </th><td>:= {y | y&#183;x <= 0 for all x in P(H)}, the <i>polar</i> of P(H).</td></tr>
+</table>
+
+<table><tr><td>
+It will be convenient to confuse a ray h<sup>*</sup> and a member of it,
+so we will write h<sup>*</sup>&#183;x to mean that b&#183;x for
+b in h<sup>*</sup> of unit length.
+
+<p>
+Note that if H is a single halfspace h, then P(H)<sup>*</sup>=h<sup>*</sup>,
+so this notation is consistent.  Also h<sup>**</sup>=h.
+
+<p>
+The Farkas lemma for cones says that if p is not in cone(S),
+then there is some w with w&#183;s <= 0 for s in S, but w&#183;y > 0.
+That is, w is a member of cone(S)<sup>*</sup>, and w&#183;y > 0.
+
+<p>
+Polarity can be used to show that halfspace intersection is algorithmically
+equivalent to convex hull.  Dual transforms like
+polarity can be used to illuminate the relationship
+between Delaunay triangulations and Voronoi diagrams.
+<td><img src="f4.gif"></table>
+
+<blockquote>
+<b>Theorem.</b>  P(H)<sup>*</sup> = cone(H<sup>*</sup>).
+</blockquote>
+
+Proof.
+Suppose y is in cone(H<sup>*</sup>).  Then for any x in P(H),
+<blockquote>
+	y&#183;x = sum<sub>h in H</sub> c<sub>h</sub> h<sup>*</sup>&#183;x,
+</blockquote>
+for some nonnegative values c<sub>h</sub>.
+But this is no more than 0, since x is in P(H),
+and so y is in P(H)<sup>*</sup>.
+
+<p>
+Suppose y is not in cone(H<sup>*</sup>).  Then by the Farkas lemma,
+there is a vector w with y&#183;w > 0, and with w&#183;x <= 0 for all
+x in cone(H<sup>*</sup>).  But the latter implies w is in P(H), and so y&#183;w > 0
+implies y is not in P(H)<sup>*</sup>.
+ <b>QED</b>
+
+<blockquote>
+<b>Theorem.</b>  P(H)<sup>**</sup> = P(H).
+</blockquote>
+
+Proof.  That is, the polar of the polar is the original set.
+We have
+<blockquote>
+	P(H)<sup>**</sup> = { x | y&#183;x <= 0 for all y in P(H)<sup>*</sup>}.
+</blockquote>
+Suppose x is in P(H)<sup>**</sup>.  Then
+since P(H)<sup>*</sup>=cone(H<sup>*</sup>), which contains H<sup>*</sup>, x&#183;y <=0 for y in H<sup>*</sup>,
+but that implies x is in P(H).
+
+Now suppose x is in P(H).  This implies y&#183;x <= 0 for any y in P(H)<sup>*</sup>.
+Hence x is in P(H)<sup>**</sup>.
+ <b>QED</b>
+
+
+<h3><i>H</i>-cones and <i>V</i>-cones</h3>
+
+<blockquote>
+<b>Theorem. (Representation Theorem for Cones.)</b>
+A cone C has the form cone(S) for some finite set S iff C has the
+form P(H) for a finite set H of halfspaces.
+</blockquote>
+
+<b>Proof.</b>
+Given cone(S),
+suppose p is not in cone(S).  Then by the Farkas lemma,
+there is some span(T), with T a subset of S of size dim(S)-1, that separates
+p and S.  So if H<sub>S</sub> is the set of halfspaces
+<blockquote>
+	H<sub>S</sub> := {h | h is bounded by span(T), T subset S, |T| = dim(S)-1, h contains S},
+</blockquote>
+then p not in cone(S) implies that p is not in P(H<sub>S</sub>).
+That is, P(H<sub>S</sub>) is a subset of cone(S).
+But P(H<sub>S</sub>) contains S, and so contains cone(S), and so
+cone(S)=P(H<sub>S</sub>).
+
+
+<p>
+Given P(H),
+consider P(H)<sup>*</sup>=cone(H<sup>*</sup>).  As just seen,
+there is a finite set of halfspaces
+H<sub>c</sub> such that
+<blockquote>
+	P(H)<sup>*</sup> = cone(H<sup>*</sup>) = P(H<sub>c</sub>).
+</blockquote>
+But then
+<blockquote>
+	P(H)=P(H)<sup>**</sup> = P(H<sub>c</sub>)<sup>*</sup> = cone(H<sub>c</sub>),
+</blockquote>
+using the previous two theorems,
+and so P(H) can be written as cone generated by H<sub>c</sub>.
+ <b>QED</b>
+
+
+
+<blockquote>
+<b>Theorem.</b>
+A convex set C has the form P(H) for a finite set H of halfspaces
+if and only if it has the form conv(S<sub>1</sub>)+cone(S<sub>0</sub>) for some finite sets S<sub>1</sub> and S<sub>0</sub>.
+</blockquote>
+
+<b>Proof.</b>
+Pass from P(H) to the corresponding cone P(H') in one dimension higher,
+as discussed above.  By the Representation Theorem for cones,
+the cone P(H') is equal to cone(T), for some finite set T.  A point x' in T
+has the form [x x<sub>d+1</sub>], and since we're only interested in cone(T), we
+can change T to T', where T'= T<sub>1</sub> union T<sub>0</sub>, with
+<blockquote>
+	T<sub>1</sub> := {[x/x<sub>d+1</sub> 1] | [x x<sub>d+1</sub>] in T, x<sub>d+1</sub>!=0},
+</blockquote>
+and T<sub>0</sub> := T \ T<sub>1</sub>, that is, all the members of T with x<sub>d+1</sub>=0.
+Then cone(T)=cone(T<sub>1</sub>) + cone(T<sub>0</sub>);
+if we let
+<blockquote>
+	S<sub>1</sub> := {x | [x 1] is in T<sub>1</sub>}, and<br>
+	S<sub>0</sub> := {x | [x 0] is in T<sub>0</sub>},
+</blockquote>
+then
+<blockquote>
+	conv(S<sub>1</sub>)= {x | [x 1] in cone(T<sub>1</sub>)}, and <br>
+	cone(S<sub>0</sub>) = {x | [x 0] in cone(T<sub>0</sub>)},
+</blockquote>
+and
+<blockquote>
+	conv(S<sub>1</sub>) + cone(S<sub>0</sub>) = slice(cone(T)) = P(H).
+</blockquote>
+
+Showing that cone(S<sub>1</sub>) + cone(S<sub>0</sub>) is
+an <i>H</i>-polyhedron will probably be an exercise.
+ <b>QED</b>
+
+<p>
+From this, it follows that a polyhedron is a polytope iff it is bounded:
+that is, a polyhedron conv(S<sub>1</sub>)+cone(S<sub>0</sub>) is bounded iff cone(S<sub>0</sub>) is empty.
+
+
+<h3>Corollaries</h3>
+
+Here are some facts that follow easily from these results.
+Notice that the first two are easy for <i>H</i>-polyhedra, and the rest
+are easier for <i>V</i>-polyhedra.
+
+<blockquote>
+	The intersection of two polyhedra is a polyhedron.
+
+<p>
+	Since a flat is a polyhedron, the intersection of a polyhedron
+	with a flat is a polyhedron.
+
+<p>
+	The projection of a polyhedron is a polyhedron.
+
+<p>
+	The Minkowski sum of two polyhedra is a polyhedron.
+</blockquote>
+
+<h3>Polarity for Polyhedra</h3>
+
+So far, the definition of polarity has only been for the case of cones.
+To extend this concept to a polyhedron P, we define
+<blockquote>
+	P<sup>*</sup> := {y | y&#183;x <= 1 for all x in P}.
+</blockquote>
+This defintion is the same for cones as the previous one:
+if y&#183;x <= 1 for all x in a cone, then y&#183;x <= 0 for all x.
+<p>
+Any supporting halfspace h = {x | a&#183;x <= b} can also be decribed
+with b=1, as long as b!=0.  If P contains 0 in its interior,
+then all its supporting halfspaces can be put in a form that
+has b=1.  Also, P<sup>*</sup> always contains 0.  So, for
+theorems like P<sup>**</sup>=P, the additional condition that 0 is
+in the interior of P is needed.
+
+<p>
+If h={x | y&#183;x <= 1}, define h<sup>*</sup> as y and y<sup>*</sup> as h.
+
+<p>
+We have:
+<blockquote>
+<b> Facts</b>
+When P, P(H), and conv(S) are polytopes containing the origin, then
+their polars are also, and:
+<blockquote>
+	P<sup>**</sup>=P;<br>
+	P(H)<sup>*</sup> = conv(H<sup>*</sup>).<br>
+	conv(S)<sup>*</sup> = P(S<sup>*</sup>).<br>
+</blockquote>
+</blockquote>
+
+
+<b>Proof.</b> The last two can be proven using the mapping to cones and back.
+
+
+<h3>Faces</h3>
+
+<table>
+<tr><th valign=top>Supporting<br>halfspace:
+<td>A closed halfspace h is a <i>supporting halfspace</i> of a polyhedron P if
+h contains P.
+
+<tr><th valign=top>Face:
+<td>A <i>face</i> f of a polyhedron P is the intersection of
+P with the plane bounding a supporting halfspace h.
+We will say that h is a <i>witness</i> for f.
+
+</table>
+
+<p>
+Note that if h is a supporting halfspace of a cone C,
+then h<sup>*</sup> is in C<sup>*</sup>.
+
+<p>
+For completeness, we include the polyhedron itself as a face.  Notice
+that the empty set is a face.  The remaining faces are called 
+<i>proper</i>.
+<p>
+Let
+
+<table><tr><td>
+<table>
+<tr><th>faces(P)</th><td>
+denote the set of faces of a polyhedron P.
+
+<tr valign=top><th>vertices:</th><td>
+faces of P of dimension 0 (single points);
+the set of vertices is denoted vert(P).
+
+<tr valign=top><th>edges:</th><td>
+faces of P of dimension 1 (line segments).
+
+<tr valign=top><th>facets:</th><td>
+faces of P of dimension dim(P)-1.
+
+<tr valign=top><th>ridges:</th><td>
+faces of P of dimension dim(P)-2.
+</table>
+<td><img src="f5.gif"></table>
+
+<p>
+In Lecture 1, vertices were defined as points in the convex hull
+that could not be written as convex combinations of other points in
+the hull.  The two definitions are equivalent:
+
+<blockquote>
+<b>Lemma</b>.
+If v is in conv(S), then:
+<blockquote>
+	v is in vert(conv(S)) iff v is not in conv(S\{v}).
+</blockquote>
+</blockquote>
+
+<b>Proof</b>.
+Suppose v is a vertex, so there is some halfspace h={x | a&#183;x <=b} with
+S a subset of h, a&#183;v = b, and a&#183;x < b for all x in conv(S)\{v}.
+Then any convex combination
+<blockquote>
+	sum<sub>p in S\{v}</sub> c<sub>p</sub> p
+</blockquote>
+will have
+<blockquote>
+	a&#183;sum<sub>p in S\{v}</sub> c<sub>p</sub> p = sum<sub>p in S\{v}</sub> c<sub>p</sub> a&#183;p < b,
+</blockquote>
+and so v is not in conv(S\{v}).
+
+On the other hand, suppose v is in conv(S) but not conv(S\{v}).
+Then by the Farkas lemma, there a halfspace
+<blockquote>
+	h' := {x | a'&#183;x <= b'}
+</blockquote>
+with v not in h' but conv(S\{v}) a subset of h'.  It follows that
+<blockquote>
+	h'' := {x | a'&#183;x <= a'&#183;v}
+</blockquote>
+is a supporting halfspace with v on its bounding plane.  Hence
+v is a vertex.
+<b>QED</b>
+
+
+<p>
+From this it follows that:
+
+<blockquote>
+<b>Lemma</b>.
+If P=conv(S) is a polytope, then 
+<blockquote>
+	vert(P) is a subset of S, and
+	P=conv(vert(P)).
+</blockquote>
+</blockquote>
+
+<b>Proof</b>.
+Suppose v is a vertex of P; then conv(S\{v}) is not equal to conv(S),
+and so v must be in S.
+
+<p>
+So vert(P) is a subset of S, and so P=conv(S) contains conv(vert(P)).
+
+<p>
+If x is in S but not in vert(P), then conv(S)=conv(S\{x}),
+and so by induction on the size of S\vert(P), conv(S)=conv(vert(P)).
+<b>QED</b>
+
+<blockquote>
+<b>Lemma</b>.
+If P is a polyhedron, the intersection of two faces of P is a face of P.
+</blockquote>
+
+<p>
+<b>Proof</b>.
+Suppose f and g are faces, so there are supporting halfspaces 
+<blockquote>
+	h<sub>f</sub> := {x | a&#183;x <= b}, and<br>
+	h<sub>g</sub> := {x | a'&#183;x <= b'}<br>
+</blockquote>
+whose bounding planes intersect P at f and g.  Clearly the
+halfspace
+<blockquote>
+	h := {x | (a+a')&#183;x <= b+b'},
+</blockquote>
+has P a subset of h, and for any x in P, 
+<blockquote>
+	(a+a')&#183;x = b+b'
+</blockquote>
+only when both
+<blockquote>
+	a&#183;x = b and a'&#183;x = b';
+</blockquote>
+hence the intersection of f and g is the intersection of P with the
+bounding plane of h, and so is a face.
+<b>QED</b>
+
+<blockquote>
+<b>Lemma</b>.  Let P be a polyhedron.
+If g is in faces(P), and f is in faces(g), then f is in faces(P).
+</blockquote>
+
+<b>Proof</b>.
+Suppose
+<blockquote>
+	h<sub>g</sub> := {x | a<sub>g</sub>&#183;x <= b<sub>g</sub>}
+</blockquote>
+witnesses that g is a face of P: that is, h<sub>g</sub> is supporting and
+g is the intersection of h<sub>g</sub> with P.
+Suppose
+<blockquote>
+	h<sub>f</sub> := {x | a<sub>f</sub>&#183;x <= b<sub>f</sub>}
+</blockquote>
+is a witness that f is a face of g.
+
+<p>
+Notice that h<sub>f</sub> does not necessarily
+contain P.  Now for value z, consider
+<blockquote>
+	h<sub>z</sub> := {x | (a<sub>g</sub> + za<sub>f</sub>)x <= b<sub>g</sub> + zb<sub>f</sub>}.
+</blockquote>
+That is, h<sub>0</sub>=h<sub>g</sub>.
+Notice that f is in the bounding plane of h<sub>z</sub>, for any z.
+
+<p>
+Suppose P=conv(S<sub>1</sub>)+cone(S<sub>0</sub>).
+Now pick z>0, but small enough that all S<sub>1</sub> and S<sub>0</sub> are included in h<sub>z</sub>.
+Then P is in h<sub>z</sub>, but the intersection of P with the bounding plane of h<sub>z</sub>
+is f.  Hence f is a face of P.
+<b>QED</b>
+
+
+<blockquote>
+<b>Corollary</b>.
+Let P be a polyhedron.  If g is in faces(P),
+then
+<blockquote>
+	faces(g)={f in faces(P) | f is a subset of g}.
+</blockquote>
+</blockquote>
+
+<p>
+<b>Proof</b>.
+The previous lemma implies that the faces of g are a subset of the faces of P.
+
+<p>
+Suppose f is a face of P that lies in g.  If h witnesses that f is a face
+of P, then h also witnesses that f is a face of g.
+<b>QED</b>
+
+<p>
+In particular, the vertices of f in vert(P) are a subset of the vertices of P,
+and so if P=conv(S), then vert(f) is a subset S, and f=conv(f intersect S).
+
+<h3>Faces of Cones</h3>
+
+When v is a vertex of a polyhedron P, cone({v}) is an <i>extreme ray</i>
+of C:=cone(lift(P)); that is, cone({v}) is a 1-dimensional face of C.
+The set of extreme rays of a cone C is denote extr(C), and it can be shown
+that C=cone(extr(C)), which is analogous to P=conv(vert(P)) for a polytope P.
+
+<h3>Faces and lattices</h3>
+
+<p>
+We've seen that for a polyhedron P and a,b,c in faces(P):
+
+<blockquote>
+	P is a face of P;
+	if a is a face of b is a face of c, then a is a face of c.
+</blockquote>
+and easily:
+<blockquote>
+	if a is a face of b and b is a face of a, then a=b.
+</blockquote>
+
+<p>
+That is, the faces can be <i>partially ordered</i> under the "is a face of"
+relation.  The fact that the intersection of two faces is a face
+implies also that the faces form a mathematical structure called a <i>lattice</i>.
+
+<h3>Faces of Cones</h3>
+
+When v is a vertex of a polyhedron P, cone({v}) is an <i>extreme ray</i>
+of C:=cone(lift(P)); that is, cone({v}) is a 1-dimensional face of C.
+The set of extreme rays of a cone C is denoted extr(C), and it can be shown
+that C=cone(extr(C)), which is analogous to P=conv(vert(P)) for a polytope P.
+
+<h3>Faces, Cones, and Polarity</h3>
+
+<p>
+We've seen that the polar of a cone is cone.  There is a fundamental
+relation between the faces of a cone C and its polar C<sup>*</sup>.
+
+<p>
+Suppose f is a face of C, and h={x | h<sup>*</sup>&#183;x <= 0} is a witness to this.
+Since h is supporting, h<sup>*</sup> is a member of C<sup>*</sup>.  Let
+f<sup>o</sup> be the subset of C<sup>*</sup> comprising all h<sup>*</sup> for which h is a witness
+for f.  That is,
+<blockquote>
+	f<sup>o</sup> := {y | y&#183;x <0 for all x in C\f, y&#183;x = 0 for all x in f}.
+</blockquote>
+Moreover,
+<blockquote>
+	f<sup>o</sup> = {y | y&#183;x <0 for all x in extr(C)\extr(f),
+			y&#183;x = 0 for all x in extr(f)},
+</blockquote>
+and so f<sup>o</sup> is a face of C<sup>*</sup>: it is the intersection of C<sup>*</sup> with the 
+a set of planes associated with the vertices of f.
+
+<p>
+From the description of f<sup>o</sup>, it's immediate that
+<blockquote>
+	f is a face of g iff g<sup>o</sup> is a face of f<sup>o</sup>.
+</blockquote>
+
+<p>
+Is f<sup>o</sup>=f<sup>*</sup>?
+
+<p>
+What is f<sup>o</sup> if C is given as an intersection of halfspaces?
+We suppose for now that f is determined by the bounding planes of
+some subset H<sub>f</sub> of H.
+
+<blockquote>
+<b>Lemma</b>.
+If C=P(H), and f is a face of C given by
+<blockquote>
+	f = {x | h<sup>*</sup>&#183;x <0 for h in H\H<sub>f</sub>,
+		 h<sup>*</sup>&#183;x = 0 for h in H<sub>f</sub>},
+</blockquote>
+then f<sup>o</sup>=cone(H<sub>f</sub><sup>*</sup>).
+</blockquote>
+
+<p>
+<b>Proof</b>.  Any member y of H<sub>f</sub><sup>*</sup> has
+<blockquote>
+	y&#183;x = 0 for all x in f, and<br>
+	y&#183;x < 0 for all x in C\f,<br>
+</blockquote>
+and any positive combinations of such y's preserves these conditions,
+so cone(H<sub>f</sub><sup>*</sup>) is a subset of f<sup>o</sup>.
+
+<p>
+On the other hand, if y is in f<sup>o</sup>, then y is in cone(H<sup>*</sup>),
+so y=sum<sub>h<sup>*</sup> in H<sup>*</sup></sub> c<sub>h</sub> h<sup>*</sup>, with all c<sub>h</sub>>=0.
+If c<sub>h</sub>>0 for h<sup>*</sup> not in H<sub>f</sub><sup>*</sup>,
+then y&#183;x < 0 for x in f, which cannot happen for y in f<sup>o</sup>.  Hence
+y is in cone(H<<sub>f</sub>sup>*</sup>).
+<b>QED</b>
+
+<p>
+Finally:
+
+<blockquote>
+<b>Lemma</b>.
+If C is a cone and f is a face of C, then f<sup>oo</sup>=f.
+</blockquote>
+
+<p>
+<b>Proof</b>.  If C=cone(S), and f= cone(S<sub>f</sub>), then
+<blockquote>
+	f<sup>o</sup> = {y | y&#183;h<sup>*</sup> <0 for all h in (S\S<sub>f</sub>)<sup>*</sup>,
+			y&#183;h<sup>*</sup> = 0 for all h in S<sub>f</sub><sup>*</sup>},
+</blockquote>
+and f<sup>oo</sup> = cone(S<sub>f</sub><sup>**</sup>)= cone(S<sub>f</sub>)=f, using
+the previous lemma.
+<b>QED</b>
+
+<p>
+Thus, the mapping f-->f<sup>o</sup> is a 1-1 correspondence between the faces
+of C and the faces of C<sup>*</sup>, and reverses the "is a face of" relation.
+
+</body>
+</html>

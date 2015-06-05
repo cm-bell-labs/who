@@ -1,0 +1,18 @@
+
+Software Model Checking: Searching for Computations in the Abstract or
+the Concrete
+
+Patrice Godefroid
+
+Abstract:
+
+  We review and discuss the current approaches to software model
+  checking, including the complementary views of validation versus
+  falsification and those of static versus dynamic analysis.  For
+  falsification, also known as bug finding, we advocate the need for
+  blended approaches that combine the strengths of both static and
+  dynamic analysis. We outline possible directions of research in this
+  area.
+
+See also the companion paper co-authored with Nils Klarlund in the
+IFM'2005 proceedings.

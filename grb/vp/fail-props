@@ -1,0 +1,22 @@
+*
+* Failure properties of Slowscan model
+*
+
+* no deadlock 
+prop DeadlockFree = max(X.<<-eps>>T & [[-]]X);
+
+* only failures are reported
+prop NoFalseFail = max(X.[[det]]F & [[-fail]]X);
+
+* a failure will always be reported
+prop DetectsFail = max(X.[[fail]]min(Y.[[-det,eps]]Y) & [[-fail]]X);
+
+* a fail will always be reported (equivalent version)
+prop DetectsFail1 = max(X.[fail]min(Y.max(Z.[fail,io]Y & [tau]Z)) & [-fail]X);
+
+
+
+
+
+
+

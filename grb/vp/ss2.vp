@@ -1,0 +1,49 @@
+(* 
+   Slowscan with Fault-Detection
+*)
+
+const V = {0,1}		(* command and status values *)
+const n = 6
+const I = range(0,n)
+
+label cmdIn(V),cmdOut(V),statIn(V),statOut(V)
+label c1(V),c2(V),s1(V),s2(V)
+label rd(V),wt(V)
+label tks,tkt
+label inc,zero
+label fail,det
+label io
+
+agent CLink = c1(c).'c2(c).CLink
+agent SLink = s1(s).(fail.SLink' + 's2(s).SLink) + fail.SLink'
+agent SLink' = s1(s).SLink'
+
+agent LGL = CLink|SLink
+
+agent Clock = 'tks.'tkt.Clock + 'tkt.'tks.Clock
+
+agent Count(i:I) =
+    inc.(if i = n then det.Count(0) else Count(i + 1))
+  + zero.Count(0)
+agent SCmd(c:V) = 
+    tks.'inc.cmdIn(c').rd(s).'statOut(s).if c <> c' then 'c1(c').SCmd(c')
+                                                    else SCmd(c)
+agent SStat = s2(s).'zero.'wt(s).SStat
+agent Store(x:V) = 'rd(x).Store(x) + wt(x').Store(x')
+agent SPC = (SCmd(0)|SStat|Store(0)|Count(0))\{rd,wt,inc,zero}
+
+agent TStat(s:V) =
+    tkt.'s1(s).rd(c).'cmdOut(c).statIn(s').if s <> s' then 's1(s').TStat(s')
+                                                      else TStat(s)
+agent TCmd = c2(c).'wt(c).TCmd
+agent TPC = (TStat(0)|TCmd|Store(0))\{rd,wt}
+
+agent SS2   = (SPC|LGL|TPC|Clock)\{c1,c2,s1,s2,tks,tkt}
+
+(* relabel command and status *)
+
+agent SPC1 = SPC[io/'statOut(0),io/'statOut(1),io/cmdIn(0),io/cmdIn(0)]
+agent TPC1 = TPC[io/statIn(0),io/statIn(1),io/'cmdOut(0),io/'cmdOut(1)]
+
+
+

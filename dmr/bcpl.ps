@@ -1,0 +1,8078 @@
+%!PS-Adobe-3.0
+%%Title: Microsoft Word - bcpl.doc
+%%Creator: PSCRIPT.DRV Version 4.0
+%%CreationDate: 05/13/98 05:49:28
+%%BoundingBox: 19 9 593 784 
+%%Pages: (atend)
+%%PageOrder: Special
+%%Requirements: 
+%%DocumentNeededFonts: (atend)
+%%DocumentSuppliedFonts: (atend)
+%%DocumentData: Clean7Bit
+%%LanguageLevel: 1
+%%EndComments
+
+[{
+%%BeginFeature: *JobPatchFile 1
+
+save 
+/version23-manualfeedpatch where { pop false } { true }ifelse
+ % we don't do an explicit 'get' since product and version MAY
+ % be in systemdict or statusdict - this technique gets the lookup
+ % without failure
+statusdict begin
+  product (LaserWriter) eq        % true if LaserWriter
+  version cvr 23.0 eq             % true if version 23
+end
+
+and  % only install this patch if both are true
+and  % true only if patch is not installed and is for this printer
+     % save object and boolean on stack
+dup { exch restore }if
+% either true OR saveobject false
+dup
+{
+  /version23-manualfeedpatch true def
+  /oldversion23-showpage /showpage load def
+  /showpage       % this showpage will wait extra time if manualfeed is true
+  {%
+     statusdict /manualfeed known
+     {% manualfeed known in statusdict
+        statusdict /manualfeed get
+        {% if true then we loop for 5 seconds
+           usertime 5000 add       % target usertime
+           { % loop
+             dup usertime sub 0 lt
+             { exit }if
+           }loop
+           pop             % pop the usertime off the stac
+        }if
+     }if
+     oldversion23-showpage
+  }bind def
+}if
+not{ restore }if
+
+%%EndFeature
+} stopped cleartomark
+%%BeginProlog 
+%%BeginProcSet: Pscript_Win_ErrorHandler 1.0 1
+/currentpacking where{pop/oldpack currentpacking def/setpacking where{pop
+false setpacking}if}if/$brkpage 64 dict def $brkpage begin/prnt{dup type
+/stringtype ne{=string cvs}if dup length 6 mul/tx exch def/ty 10 def
+currentpoint/toy exch def/tox exch def 1 setgray newpath tox toy 2 sub moveto
+0 ty rlineto tx 0 rlineto 0 ty neg rlineto closepath fill tox toy moveto 0
+setgray show}bind def/nl{currentpoint exch pop lmargin exch moveto 0 -10
+rmoveto}def/=={/cp 0 def typeprint nl}def/typeprint{dup type exec}readonly def
+/lmargin 72 def/rmargin 72 def/tprint{dup length cp add rmargin gt{nl/cp 0 def
+}if dup length cp add/cp exch def prnt}readonly def/cvsprint{=string cvs
+tprint( )tprint}readonly def/integertype{cvsprint}readonly def/realtype{
+cvsprint}readonly def/booleantype{cvsprint}readonly def/operatortype{(--)
+tprint =string cvs tprint(-- )tprint}readonly def/marktype{pop(-mark- )tprint}
+readonly def/dicttype{pop(-dictionary- )tprint}readonly def/nulltype{pop
+(-null- )tprint}readonly def/filetype{pop(-filestream- )tprint}readonly def
+/savetype{pop(-savelevel- )tprint}readonly def/fonttype{pop(-fontid- )tprint}
+readonly def/nametype{dup xcheck not{(/)tprint}if cvsprint}readonly def
+/stringtype{dup rcheck{(\()tprint tprint(\))tprint}{pop(-string- )tprint}
+ifelse}readonly def/arraytype{dup rcheck{dup xcheck{({)tprint{typeprint}forall
+(})tprint}{([)tprint{typeprint}forall(])tprint}ifelse}{pop(-array- )tprint}
+ifelse}readonly def/packedarraytype{dup rcheck{dup xcheck{({)tprint{typeprint}
+forall(})tprint}{([)tprint{typeprint}forall(])tprint}ifelse}{pop
+(-packedarray- )tprint}ifelse}readonly def/courier/Courier findfont 10
+scalefont def end errordict/handleerror{systemdict begin $error begin $brkpage
+begin newerror{/newerror false store vmstatus pop pop 0 ne{grestoreall}if
+showpage initgraphics courier setfont lmargin 720 moveto(ERROR: )prnt
+errorname prnt nl(OFFENDING COMMAND: )prnt/command load prnt $error/ostack
+known{nl nl(STACK:)prnt nl nl $error/ostack get aload length{==}repeat}if
+systemdict/showpage get exec(%%[ Error: )print errorname =print
+(; OffendingCommand: )print/command load =print( ]%%)= flush}if end end end}
+dup 0 systemdict put dup 4 $brkpage put bind readonly put/currentpacking where
+{pop/setpacking where{pop oldpack setpacking}if}if
+%%EndProcSet
+userdict /Pscript_Win_Driver_Incr 200 dict dup begin put
+%%BeginResource: file Pscript_FatalError 2.0 0
+/FatalErrorIf{{initgraphics findfont exch scalefont setfont counttomark 3 div
+cvi{moveto show}repeat showpage quit}{cleartomark}ifelse}bind def
+%%EndResource
+/VM? {vmstatus exch sub exch pop gt { [
+(This job requires more memory than is available in this printer.) 100 500
+(Try one or more of the following, and then print again:) 100 485
+(In the PostScript dialog box, click Optimize For Portability.) 115 470
+(In the Device Options dialog box, make sure the Available Printer Memory is accurate.) 115 455
+(Reduce the number of fonts in the document.) 115 440
+(Print the document in parts.) 115 425
+12 /Times-Roman showpage
+(%%[ PrinterError: Low Printer VM ]%%) =
+true FatalErrorIf}if} bind def
+30000  VM?
+%%BeginResource: file Pscript_Win_Utils 2.0 0
+/|/def load def/,/load load |/~/exch , |/?/ifelse , |/!/pop , |/`/begin , |/^
+/index , |/@/dup , |/+/translate , |/$/roll , |/U/userdict , |/M/moveto , |/-
+/rlineto , |/&/currentdict , |/:/gsave , |/;/grestore , |/F/false , |/T/true ,
+|/N/newpath , |/E/end , |/Ac/arc , |/An/arcn , |/A/ashow , |/D/awidthshow , |
+/C/closepath , |/V/div , |/O/eofill , |/L/fill , |/I/lineto , |/-C/rcurveto ,
+|/-M/rmoveto , |/+S/scale , |/Ji/setfont , |/Lc/setlinecap , |/Lj/setlinejoin
+, |/Lw/setlinewidth , |/S/show , |/LH/showpage , |/K/stroke , |/W/widthshow ,
+|/R/rotate , |/b{bind |}bind |/bd{bind |}bind |/xd{~ |}bd/ld{, |}bd/lw/Lw ld
+/lc/Lc ld/lj/Lj ld/sg/setgray ld/L2? F/languagelevel where{! languagelevel 2
+ge{! T}if}if |/g{@ not{U/DefIf_save save put}if U/DefIf_bool 2 ^ put}b
+/DefIf_El{if U/DefIf_bool get not @{U/DefIf_save get restore}if}b/e{DefIf_El !
+}b/self & |/reinitialize{[/TextInit/GraphInit/UtilsInit counttomark{@ where{
+self eq}{F}?{cvx exec}{!}?}repeat cleartomark}b/initialize{`{/ADO_mxRot ~ |
+/TextInitialised? F | reinitialize E}{U/Pscript_Win_Data 200 dict @ ` put
+/ADO_mxRot ~ |/TextInitialised? F | reinitialize}?}b/terminate{!{& self eq{
+exit}{E}?}loop E}b/suspend/terminate , |/resume{` Pscript_Win_Data `}b/snap{
+transform 0.25 sub round 0.25 add ~ 0.25 sub round 0.25 add ~ itransform}b
+/dsnap{dtransform round ~ round ~ idtransform}b<04>cvn{}|/setjn{{statusdict
+/jobname known{statusdict/jobname 3 -1 $ put}if}stopped cleartomark}b/solid{[]
+0 setdash}b/setdsh{0 setdash}b/colspRefresh{}b/rp{4 2 $ M 1 ^ 0 - 0 ~ - neg 0
+-}b/rr{1 ^ 0 - 0 ~ - neg 0 - C}b
+%%EndResource
+%%BeginResource: file Pscript_Win_Utils_L1 2.0 0
+L2? not g{/rf{N rp L}b/fx{1 1 dtransform @ 0 ge{1 sub 1}{1 add -0.25}? 3 -1 $
+@ 0 ge{1 sub 1}{1 add -0.25}? 3 1 $ 4 1 $ idtransform 4 -2 $ idtransform}b/BZ{
+4 -2 $ snap + +S fx rf}b/rs{N rp C K}b/rc{N rp clip N}b/sg{setgray}b/sco{
+setrgbcolor}b/sgco{{sg}{sco}?}b}e
+%%EndResource
+%%BeginResource: file Pscript_Win_Utils_L2 2.0 0
+L2? g{/colspA/DeviceGray |/colspABC/DeviceRGB |/setAorABC{{colspA}{colspABC}?
+setcolorspace}b/rf/rectfill , |/fx{1 1 dtransform @ 0 ge{1 sub 0.5}{1 add -0.5
+}? 3 -1 $ @ 0 ge{1 sub 0.5}{1 add -0.5}? 3 1 $ 4 1 $ idtransform 4 -2 $
+idtransform}b/BZ{4 -2 $ snap + +S fx rf}b/rs/rectstroke , |/rc/rectclip , |/sg
+{@ @ setcolor}b/sco{setcolor}b/colspRefresh{colspABC setcolorspace}b/sgco{{sg
+}{sco}?}b/UtilsInit{F setglobal}b/definecolorrendering{/ColorRendering
+defineresource !}b/findcolorrendering{@/ColorRendering resourcestatus{! !
+/ColorRendering findresource T}{! F}?}b/selectcolorrendering{@/ColorRendering
+resourcestatus{! !/ColorRendering}{!/DefaultColorRendering/ColorRendering}?
+findresource setcolorrendering}b}e
+%%EndResource
+end
+%%EndProlog
+
+%%BeginSetup 
+[ 1.000 0 0 1.000 0 0 ] false Pscript_Win_Driver_Incr dup /initialize get exec
+
+[{0 
+/languagelevel where{pop languagelevel}{1}ifelse 2 ge{1 dict dup/JobTimeout  4 -1 roll put setuserparams}{statusdict/setjobtimeout get exec}ifelse 
+} stopped cleartomark
+[{240 
+/languagelevel where{pop languagelevel}{1}ifelse 2 ge{1 dict dup/WaitTimeout 4 -1 roll put setuserparams}{statusdict/waittimeout 3 -1 roll put}ifelse 
+} stopped cleartomark
+[{
+statusdict /manualfeed false put
+} stopped cleartomark
+[{
+%%BeginFeature: *InputSlot AutoSelect Tray
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *PageSize US Letter
+letter
+%%EndFeature
+} stopped cleartomark
+1 setlinecap 1 setlinejoin 
+/mysetup [ 0.240 0 0 -0.240 19.000 784.000 ] | 
+%%EndSetup
+
+userdict begin /savelevel0 save def end
+%%Page: 1 1
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc pagesave restore
+Pscript_Win_Driver_Incr begin
+%%BeginResource: file Pscript_Win_Encoding 2.0 0
+/bullets{{/bullet}repeat}b/ANSIEncoding[/grave/acute/circumflex/tilde/macron
+/breve/dotaccent/dieresis/ring/cedilla/hungarumlaut/ogonek/caron/dotlessi 18
+bullets StandardEncoding 32 95 getinterval aload ! 3 bullets/quotesinglbase
+/florin/quotedblbase/ellipsis/dagger/daggerdbl/circumflex/perthousand/Scaron
+/guilsinglleft/OE 4 bullets/quoteleft/quoteright/quotedblleft/quotedblright
+/bullet/endash/emdash/tilde/trademark/scaron/guilsinglright/oe 2 bullets
+/Ydieresis/space/exclamdown/cent/sterling/currency/yen/brokenbar/section
+/dieresis/copyright/ordfeminine/guillemotleft/logicalnot/hyphen/registered
+/macron/degree/plusminus/twosuperior/threesuperior/acute/mu/paragraph
+/periodcentered/cedilla/onesuperior/ordmasculine/guillemotright/onequarter
+/onehalf/threequarters/questiondown/Agrave/Aacute/Acircumflex/Atilde/Adieresis
+/Aring/AE/Ccedilla/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute
+/Icircumflex/Idieresis/Eth/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis
+/multiply/Oslash/Ugrave/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls
+/agrave/aacute/acircumflex/atilde/adieresis/aring/ae/ccedilla/egrave/eacute
+/ecircumflex/edieresis/igrave/iacute/icircumflex/idieresis/eth/ntilde/ograve
+/oacute/ocircumflex/otilde/odieresis/divide/oslash/ugrave/uacute/ucircumflex
+/udieresis/yacute/thorn/ydieresis]| ANSIEncoding @ 39/quotesingle put 96/grave
+put/ANSIEncodingOld ANSIEncoding 256 array copy | ANSIEncodingOld @[138 153
+154 169 172 174 177 178 179 181 185 188 189 190 208 215 221 222 240 247 253
+254]{/bullet put @}forall 166/bar put 176/ring put
+%%EndResource
+
+%%BeginResource: file Pscript_Win_Text 2.0 0
+/TextInit{TextInitialised? not{/Pscript_Windows_Font & |/TextInitialised? T |
+/fM[1 0 0 -1 0 0]|/mFM matrix |/iMat[1 0 0.212557 neg 1 0 0]|}if}b/xUP null |
+/yUP null |/uW null |/xSP null |/ySP null |/sW null |/copyfont{1 ^ length add
+dict `{1 ^/FID ne{|}{! !}?}forall & E}b/rF{3 copyfont @ `/Encoding
+ANSIEncoding &/CharStrings known{CharStrings/Eth known not{! ANSIEncodingOld}
+if}if | E}b/mF{findfont ~{@/Encoding get @ StandardEncoding eq{! T}{{
+ISOLatin1Encoding}stopped{! F}{eq}?{T}{@ ` T 32 1 127{Encoding 1 ^ get
+StandardEncoding 3 -1 $ get eq and}for E}?}?}{F}?{rF}{3 copyfont}? `
+/OrigFontType ~ |/OrigFontName ~ | & E 2 ^ ~ definefont fM 5 4 -1 $ put fM 4 0
+put fM makefont Pscript_Windows_Font 3 1 $ put}b/xF{scalefont
+Pscript_Windows_Font 3 1 $ put}b/xMF{mFM astore makefont Pscript_Windows_Font
+3 1 $ put}b/xF2/scalefont , |/xMF2{mFM astore makefont}b/sLT{: Lw -M
+currentpoint snap M 0 - 0 Lc K ;}b/sSU{N/uW ~ |/yUP ~ |/xUP ~ |}b/sU{xUP yUP
+uW sLT}b/sST{N/sW ~ |/ySP ~ |/xSP ~ |}b/sT{xSP ySP sW sLT}b/sR{: + R 0 0 M}b
+/sRxy{: matrix astore concat 0 0 M}b/eR/; , |
+%%EndResource
+
+end reinitialize
+userdict begin /pagesave save def end mysetup concat colspRefresh 
+: 0 0 0 sco 1 Lc 1 Lj solid 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+732 417 M 
+-0.200 0 (MASSACHUSETTS INSTITUTE OF TECHNOLOGY)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1057 507 M 
+-0.200 0 (PROJECT MAC)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1066 687 M 
+-0.200 0 (Memorandum-M-352)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1066 732 M 
+-0.200 0 (July 21, 1967)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1002 M 
+-0.200 0 (To:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+362 1002 M 
+-0.200 0 (Project MAC Participants)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1092 M 
+-0.200 0 (From:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+362 1092 M 
+-0.200 0 (Martin )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+537 1092 M 
+-0.200 0 (Richards)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1182 M 
+-0.200 0 (Subject:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+362 1182 M 
+-0.200 0 (The BCPL Reference Manual)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1095 1317 M 
+-0.200 0 (ABSTRACT)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 1452 M 
+-0.200 0 (BCPL is a simple recursive programming language designed for compiler writing and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1497 M 
+-0.200 0 (system programming: it was derived from true CPL \(Combined Programming Language\) by)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1542 M 
+-0.200 0 (removing those features of the full language which make compilation difficult namely,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1587 M 
+-0.200 0 (the type and mode matching rules and the variety of definition structures with their)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1632 M 
+-0.200 0 (associated scope rules.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 1 ]%%)  =
+%%PageTrailer
+
+%%Page: 2 2
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (0.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 237 M 
+-0.200 0 (Index)A 
+; pagesave restore
+Pscript_Win_Driver_Incr begin
+%%BeginResource: file Pscript_Win_Graphics 2.0 0
+/SavedCTM null |/CTMsave{/SavedCTM SavedCTM currentmatrix |}b/CTMrestore{
+SavedCTM setmatrix}b/mp null |/ADO_mxRot null |/GDIHMatrix null |
+/GDIHPatternDict 22 dict | GDIHPatternDict `/PatternType 1 |/PaintType 2 |
+/Reps L2?{1}{5}? |/XStep 8 Reps mul |/YStep XStep |/BBox[0 0 XStep YStep]|
+/TilingType 1 |/PaintProc{` 1 Lw[]0 setdash PaintData , exec E}b/FGnd null |
+/BGnd null |/HS_Horizontal{horiz}b/HS_Vertical{vert}b/HS_FDiagonal{fdiag}b
+/HS_BDiagonal{biag}b/HS_Cross{horiz vert}b/HS_DiagCross{fdiag biag}b/MaxXYStep
+XStep YStep gt{XStep}{YStep}? |/horiz{Reps{0 4 M XStep 0 - 0 8 +}repeat 0 -8
+Reps mul + K}b/vert{Reps{4 0 M 0 YStep - 8 0 +}repeat 0 -8 Reps mul + K}b/biag
+{Reps{0 0 M MaxXYStep @ - 0 YStep neg M MaxXYStep @ - 0 8 +}repeat 0 -8 Reps
+mul + 0 YStep M 8 8 - K}b/fdiag{Reps{0 0 M MaxXYStep @ neg - 0 YStep M
+MaxXYStep @ neg - 0 8 +}repeat 0 -8 Reps mul + MaxXYStep @ M 8 -8 - K}b E
+/makehatch{GDIHPatternDict/PaintData 3 -1 $ put CTMsave GDIHMatrix setmatrix
+GDIHPatternDict matrix mp CTMrestore ~ U ~ 2 ^ put}b/h0{/h0/HS_Horizontal
+makehatch}b/h1{/h1/HS_Vertical makehatch}b/h2{/h2/HS_FDiagonal makehatch}b/h3{
+/h3/HS_BDiagonal makehatch}b/h4{/h4/HS_Cross makehatch}b/h5{/h5/HS_DiagCross
+makehatch}b/GDIBWPatternDict 17 dict @ `/PatternType 1 |/PaintType L2?{1}{2}?
+|/RepsV L2?{1}{6}? |/RepsH L2?{1}{5}? |/BBox[0 0 RepsH 1]|/TilingType 1 |
+/XStep 1 |/YStep 1 |/Height 8 RepsV mul |/Width 8 |/mx[Width 0 0 Height neg 0
+Height]|/FGnd null |/BGnd null |/SetBGndFGnd L2?{{BGnd null ne{BGnd aload !
+sgco BBox aload ! 2 ^ sub ~ 3 ^ sub ~ rf}if FGnd null ne{FGnd aload ! sgco}if}
+}{{}}? b/PaintProc{` SetBGndFGnd RepsH{Width Height F mx PaintData imagemask
+Width 0 +}repeat E}b E |/GDIBWPatternMx null |/pfprep{save 4 1 $
+/PatternOfTheDay 4 1 $ GDIBWPatternDict `/PaintData ~ |/BGnd ~ |/FGnd ~ | E
+CTMsave GDIBWPatternMx setmatrix GDIBWPatternDict matrix mp CTMrestore ~ !}b
+/hrf null |/prf{pfprep ~ 6 1 $ 5 hrf restore}b/GraphInit{GDIHMatrix null eq{
+/SavedCTM matrix | : ADO_mxRot concat 0 0 snap + : 0.48 @ GDIHPatternDict `
+YStep mul ~ XStep mul ~ dsnap YStep V ~ XStep V ~ E +S/GDIHMatrix matrix
+currentmatrix readonly | ; : 0.24 -0.24 +S GDIBWPatternDict ` Width Height E
+dsnap +S/GDIBWPatternMx matrix currentmatrix readonly | ; ;}if}b/cirp{360 0 An
+C}b/ellp{CTMsave + +S 0.5 0 M 0 0 0.5 360 0 An C CTMrestore}b/rrp{/rad ~ |/y2
+~ |/x2 ~ |/y1 ~ |/x1 ~ | x2 x1 add 2 V y1 M x1 y1 x1 y2 rad arct x1 y2 x2 y2
+rad arct x2 y2 x2 y1 rad arct x2 y1 x1 y1 rad arct C}b/RRp{CTMsave + +S/dyS ~
+|/dxS ~ | dxS 2 V 0 M 0 0 0 dyS 0.5 arct 0 dyS dxS dyS 0.5 arct dxS dyS dxS 0
+0.5 arct dxS 0 0 0 0.5 arct C CTMrestore}b
+%%EndResource
+
+%%BeginResource: file Pscript_Win_Graphics_L1 2.0 0
+L2? not g{/arct{arcto ! ! ! !}b/GDIpattfill{@ ` BGnd null ne PaintType 2 eq
+and{: BGnd aload ! sgco fEOFill{O}{L}? ; FGnd aload ! U/fGray 2 ^ put{2}{4}?
+-1 $}if E @ patterncalc : 4 ^/PaintType get 2 eq{fGray{6 -1 $ sg}{8 -3 $ sco}?
+}if fEOFill{eoclip}{clip}? N patternfill ; N}b/hrf{/fGray 1 ^ 6 eq | -4 $ N rp
+C/fEOFill F | GDIpattfill}b/hfMain{/fEOFill ~ |/fGray ~ | GDIpattfill}b/hf{T
+hfMain}b/hfW{F hfMain}b/hs{currentpoint strokepath M hfW}b/pfMain{/fEOFill ~ |
+pfprep GDIpattfill restore N}b/pf{T pfMain}b/pfW{F pfMain}b/ps{currentpoint
+strokepath M pfW}b/mpstr 1 string |/mp{~ @ length 12 add dict copy `
+/PatternCTM matrix currentmatrix |/PatternMatrix ~ |/PatWidth XStep mpstr
+length mul |/PatHeight YStep |/FontType 3 |/Encoding 256 array | 3 string 0 1
+255{Encoding ~ @ 3 ^ cvs cvn put}for !/FontMatrix matrix |/FontBBox BBox |
+/BuildChar{! @ ` XStep 0 FontBBox aload ! setcachedevice/PaintProc , E : exec
+;}b & E ~ @ 3 -1 $ definefont}b/patterncalc{` : PatternCTM setmatrix
+PatternMatrix concat BBox aload ! ! ! + pathbbox ; PatHeight V ceiling 4 1 $
+PatWidth V ceiling 4 1 $ PatHeight V floor 4 1 $ PatWidth V floor 4 1 $ 2 ^
+sub cvi abs ~ 3 ^ sub cvi abs ~ 4 2 $ PatHeight mul ~ PatWidth mul ~ E}b
+/patternfill{5 -1 $ @ ` Ji PatternCTM setmatrix PatternMatrix concat 0 2 ^ 2 ^
+M 0 1 mpstr length 1 sub{1 ^ mpstr 3 1 $ put}for ! 2 ^{currentpoint 5 ^{mpstr
+S}repeat YStep add M}repeat ! ! ! ! E}b}e
+%%EndResource
+
+%%BeginResource: file Pscript_Win_Graphics_L2 2.0 0
+L2? g{/mp/makepattern , |/hrf{6 eq setAorABC setpattern rectfill}b/hf{
+setAorABC setpattern O}b/hfW{setAorABC setpattern L}b/hs{setAorABC setpattern
+K}b/pf{pfprep setpattern O restore N}b/pfW{pfprep setpattern L restore N}b/ps{
+pfprep setpattern K restore N}b}e
+%%EndResource
+
+end reinitialize
+userdict begin /pagesave save def end mysetup concat colspRefresh 
+
+271 280 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+271 327 M 
+-0.200 0 (1.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 327 M 
+-0.200 0 (Introduction)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 417 M 
+-0.200 0 (2.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 417 M 
+-0.200 0 (BCPL Syntax)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 462 M 
+-0.200 0 (2.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+584 462 M 
+-0.200 0 (Hardware Syntax)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 507 M 
+-0.200 0 (2.1:1 BCPL Canonical Symbols)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 552 M 
+-0.200 0 (2.1.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+584 552 M 
+-0.200 0 (Hardware Conventions and Preprocessor Rules)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 597 M 
+-0.200 0 (2.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 597 M 
+-0.200 0 (Canonical Syntax)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 687 M 
+-0.200 0 (3.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 687 M 
+-0.200 0 (Data Items)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 732 M 
+-0.200 0 (3.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 732 M 
+-0.200 0 (Rvalues, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+807 732 M 
+-0.200 0 (Lvalues and Data Items)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 777 M 
+-0.200 0 (3.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 777 M 
+-0.200 0 (Types)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 867 M 
+-0.200 0 (4.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 867 M 
+-0.200 0 (Primary Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 912 M 
+-0.200 0 (4.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 912 M 
+-0.200 0 (Names)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 957 M 
+-0.200 0 (4.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 957 M 
+-0.200 0 (String Constants)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1002 M 
+-0.200 0 (4.3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+581 1002 M 
+-0.200 0 (Numerical Constants)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1047 M 
+-0.200 0 (4.4)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+581 1047 M 
+-0.200 0 (True and False)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1092 M 
+-0.200 0 (4.5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+581 1092 M 
+-0.200 0 (Bracketted Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1137 M 
+-0.200 0 (4.6)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1137 M 
+-0.200 0 (Result Blocks)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1182 M 
+-0.200 0 (4.7)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1182 M 
+-0.200 0 (Vector Applications)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1227 M 
+-0.200 0 (4.8)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1227 M 
+-0.200 0 (Function Applications)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1272 M 
+-0.200 0 (4.9)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1272 M 
+-0.200 0 (Lv Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1317 M 
+-0.200 0 (4.10)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1317 M 
+-0.200 0 (Rv Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 1407 M 
+-0.200 0 (5.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1407 M 
+-0.200 0 (Compound Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1452 M 
+-0.200 0 (5.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1452 M 
+-0.200 0 (Arithmetic Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1497 M 
+-0.200 0 (5.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1497 M 
+-0.200 0 (Relational Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1542 M 
+-0.200 0 (5.3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1542 M 
+-0.200 0 (Shift Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1587 M 
+-0.200 0 (5.4)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1587 M 
+-0.200 0 (Logical Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1632 M 
+-0.200 0 (5.5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 1632 M 
+-0.200 0 (Conditional Expressions)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 2 ]%%)  =
+%%PageTrailer
+
+%%Page: 3 3
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (6.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 237 M 
+-0.200 0 (Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 282 M 
+-0.200 0 (6.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 282 M 
+-0.200 0 (Assignment Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 327 M 
+-0.200 0 (6.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 327 M 
+-0.200 0 (Simple Assignment Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 372 M 
+-0.200 0 (6.3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 372 M 
+-0.200 0 (Routine Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+264 417 M 
+-0.200 0 (6.4)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 417 M 
+-0.200 0 (Labelled Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+264 462 M 
+-0.200 0 (6.5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 462 M 
+-0.200 0 (Goto Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 507 M 
+-0.200 0 (6.6)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 507 M 
+-0.200 0 (If Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 552 M 
+-0.200 0 (6.7)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 552 M 
+-0.200 0 (Unless Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 597 M 
+-0.200 0 (6.8)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 597 M 
+-0.200 0 (While)A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+540 588 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+556 597 M 
+-0.200 0 (Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 642 M 
+-0.200 0 (6.9)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 642 M 
+-0.200 0 (Until Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 687 M 
+-0.200 0 (6.10)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 687 M 
+-0.200 0 (Test Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+264 732 M 
+-0.200 0 (6.11)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 732 M 
+-0.200 0 (Repeated Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 777 M 
+-0.200 0 (6.12)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 777 M 
+-0.200 0 (For Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+264 822 M 
+-0.200 0 (6.13)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 822 M 
+-0.200 0 (Break Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 867 M 
+-0.200 0 (6.14)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 867 M 
+-0.200 0 (Finish Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 912 M 
+-0.200 0 (6.15)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 912 M 
+-0.200 0 (Return Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 957 M 
+-0.200 0 (6.16)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 957 M 
+-0.200 0 (Resultis Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 1002 M 
+-0.200 0 (6.17)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1002 M 
+-0.200 0 (Switchon Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 1047 M 
+-0.200 0 (6.18)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1047 M 
+-0.200 0 (Blocks)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1137 M 
+-0.200 0 (7.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 1137 M 
+-0.200 0 (Definitions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1182 M 
+-0.200 0 (7.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1182 M 
+-0.200 0 (Scope Rules)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+264 1227 M 
+-0.200 0 (7.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1227 M 
+-0.200 0 (Space Allocation and Extent of Data Items)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+264 1272 M 
+-0.200 0 (7.3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1272 M 
+-0.200 0 (Global Declarations)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 1317 M 
+-0.200 0 (7.4)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1317 M 
+-0.200 0 (Manifest Declarations)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 1362 M 
+-0.200 0 (7.5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1362 M 
+-0.200 0 (Simple Definitions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1407 M 
+-0.200 0 (7.6)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1407 M 
+-0.200 0 (Vector Definitions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1452 M 
+-0.200 0 (7.7)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1452 M 
+-0.200 0 (Function Definitions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+264 1497 M 
+-0.200 0 (7.8)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1497 M 
+-0.200 0 (Routine Definitions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 1542 M 
+-0.200 0 (7.9)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1542 M 
+-0.200 0 (Simul)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+542 1542 M 
+-0.200 0 (taneous Definitions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1632 M 
+-0.200 0 (8.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1632 M 
+-0.200 0 (Example Program)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 3 ]%%)  =
+%%PageTrailer
+
+%%Page: 4 4
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (1.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 237 M 
+-0.200 0 (Introduction)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1997 237 M 
+-0.200 0 (1.)A 
+; 
+234 280 N M 300 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+264 327 M 
+-0.200 0 (BCPL is the heart of the BCPL Compiling System; It is a language which looks)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 372 M 
+-0.200 0 (much like true CPL [1] but is, in fact, a very simple language which is easy to compile)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 417 M 
+-0.200 0 (into efficient code. The main differences between BCPL and CPL are:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+264 507 M 
+-0.200 0 (\(1\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 507 M 
+-0.200 0 (A simplified syntax.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 597 M 
+-0.200 0 (\(2\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 597 M 
+-0.200 0 (All data items have )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+915 597 M 
+-0.200 0 (Rvalues which are bit patterns of the same length and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 642 M 
+-0.200 0 (the type of an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 642 M 
+-0.200 0 (Rvalue depends only on the context of its use and not on)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 687 M 
+-0.200 0 (the declaration of the data item. This simplifies the compiler and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 732 M 
+-0.200 0 (improves the object code efficiency but as a result there is no type)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 777 M 
+-0.200 0 (checking.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 867 M 
+-0.200 0 (\(3\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 867 M 
+-0.200 0 (BCPL has a manifest named constant facility.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 957 M 
+-0.200 0 (\(4\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 957 M 
+-0.200 0 (Functions and routines may only have free variables which are manifest)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1002 M 
+-0.200 0 (named constants or whose )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1040 1002 M 
+-0.200 0 (Lvalues are manifest constants \(i.e., explicit)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1047 M 
+-0.200 0 (functions or routines, labels or global variables\).)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1137 M 
+-0.200 0 (\(5\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1137 M 
+-0.200 0 (The user may manipulate both L and )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1290 1137 M 
+-0.200 0 (Rvalues explicitly.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1227 M 
+-0.200 0 (\(6\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1227 M 
+-0.200 0 (There is a scheme for separate compilation of segments of a program.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1317 M 
+-0.200 0 (2.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+229 1317 M 
+-0.200 0 (BCPL Syntax)A 
+; 
+229 1360 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1407 M 
+-0.200 0 (The syntactic notation used in this manual is basically BNF with the following)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1452 M 
+-0.200 0 (extensions:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1542 M 
+-0.200 0 (\(1\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1542 M 
+-0.200 0 (The symbols E, D and  C are used as shortha)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1490 1542 M 
+-0.200 0 (nd for <expression>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1587 M 
+-0.200 0 (<definition> and <command>.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1677 M 
+-0.200 0 (\(2\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1677 M 
+-0.200 0 (The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+515 1677 M 
+-0.200 0 (metalinguistic brackets '<' and '>' may be nested and thus used to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1722 M 
+-0.200 0 (group together more than one constituent sequence \(which may contain)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1767 M 
+-0.200 0 (alternatives\). An integer subscript may be attached to the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1890 1767 M 
+-0.200 0 (metalinguistic)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1812 M 
+-0.200 0 (bracket '>' and used to specify repetition; if it is the integer n, then)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1857 M 
+-0.200 0 (the sequence within the brackets must be repeated at least n times; if the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1902 M 
+-0.200 0 (integer is followed by a minus sign, then the sequence may be repeated at)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 1947 M 
+-0.200 0 (most n times or it may be absent.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2037 M 
+-0.200 0 (2.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 2037 M 
+-0.200 0 (Hardware Syntax)A 
+; 
+228 2080 N M 375 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 2127 M 
+-0.200 0 (The hardware syntax is the syntax of an actual implementation of the language)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2172 M 
+-0.200 0 (and is therefore necessarily implementation dependent since it depends on the character)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2217 M 
+-0.200 0 (set that is available. To simplify the description of any implementation of BCPL a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2262 M 
+-0.200 0 (canonical syntax has been defined and this is given in the section 2.2. The canonical)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2307 M 
+-0.200 0 (representation of a BCPL program consists of a sequence of symbols from the following)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2352 M 
+-0.200 0 (set.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 4 ]%%)  =
+%%PageTrailer
+
+%%Page: 5 5
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (2.1.1   )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+303 237 M 
+-0.200 0 (BCPL Canonical Symbols)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2152 237 M 
+-0.200 0 (2.)A 
+; 
+303 280 N M 550 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 327 M 
+-0.200 0 (NUMBER NAME STRINGCONST TRUE FALSE)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 417 M 
+-0.200 0 (VALOF LV RV DIV REM PLUS MINUS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 507 M 
+-0.200 0 (EQ NE LS GR LE GE NOT LSHIFT RSHIFT)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 597 M 
+-0.200 0 (LOGAND LOGOR EQV NEQV COND COMMA)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 687 M 
+-0.200 0 (AND ASS GOTO RESULTIS COLON TEST)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 777 M 
+-0.200 0 (FOR IF UNLESS WHILE UNTIL REPEAT REPEATWHILE)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 867 M 
+-0.200 0 (REPEATUNTIL BREAK RETURN FINISH SWITCHON CASE)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 957 M 
+-0.200 0 (DEFAULT LET MANIFEST GLOBAL)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 1047 M 
+-0.200 0 (BE SECTBRA SECTKET RBRA RKET SBRA SKET)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 1137 M 
+-0.200 0 (SEMICOLON INTO TO DO OR VEC STAR)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1227 M 
+-0.200 0 (The symbols NUMBER, NAME, STRINGCONST, SECTBRA and SECTKET denote composite)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1272 M 
+-0.200 0 (items which each have an associated sequence of characters.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1407 M 
+-0.200 0 (2.1.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1407 M 
+-0.200 0 (Hardware Conventions and Preprocessor Rules)A 
+; 
+272 1450 N M 1075 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 1497 M 
+-0.200 0 (\(a\) If the implementation character set contains both capital and small letters)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1542 M 
+-0.200 0 (then the following conventions hold:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1632 M 
+-0.200 0 (\(1\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+534 1632 M 
+-0.200 0 (A name is either a single small letter or a sequence of letters and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+534 1677 M 
+-0.200 0 (digits starting with a capital letter. The character immediately)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+534 1722 M 
+-0.200 0 (following a name may not be a letter or a digit.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1812 M 
+-0.200 0 (\(2\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+534 1812 M 
+-0.200 0 (A sequence of two or more small let)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1409 1812 M 
+-0.200 0 (ters which is not part of a NAME,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+534 1857 M 
+-0.200 0 (SECTBRA, SECTKET or STRINGCONST is a reserved system word and may be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+534 1902 M 
+-0.200 0 (used to represent a canonical symbol. For example:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+533 1992 M 
+-0.200 0 (let and )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+733 1992 M 
+-0.200 0 (logor could be used to represent LET and LOGOR but Let and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+533 2037 M 
+-0.200 0 (Logor are names.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 2127 M 
+-0.200 0 (\(b\) User\222s comment may be included in a program between a double slash '//' and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+122 2172 M 
+-0.200 0 (the end of the line. Example:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+533 2262 M 
+-0.200 0 (let R[] be    // This routine refills the vector )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1758 2262 M 
+-0.200 0 (Symb)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+582 2352 M 
+-0.200 0 (\247 for )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+732 2352 M 
+-0.200 0 (i = 1 to 200 do )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1132 2352 M 
+-0.200 0 (Readch [INPUT, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1507 2352 M 
+-0.200 0 (lv )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1582 2352 M 
+-0.200 0 (Symb*[)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1732 2352 M 
+-0.200 0 (i]] )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1832 2352 M 
+-0.200 0 (\247)A 
+; 
+1832 2395 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+272 2442 M 
+-0.200 0 (\(c\) Section brackets may be tagged with a sequence of letters and digits and two)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2487 M 
+-0.200 0 (section brackets are said to match if their tags are identical. More than one section)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2532 M 
+-0.200 0 (may be closed by a single closing section bracket since, on encountering a closing)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2577 M 
+-0.200 0 (section bracket, if the current opening section bracket is found not to match then the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2622 M 
+-0.200 0 (current section is automatically closed by the insertion of an extra closing bracket.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2667 M 
+-0.200 0 (The process is repeated until the matching open section bracket is found.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 5 ]%%)  =
+%%PageTrailer
+
+%%Page: 6 6
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+2020 237 M 
+-0.200 0 (3.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 327 M 
+-0.200 0 (\(d\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 327 M 
+-0.200 0 (The canonical symbol SEMICOLON is inserted between pairs of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1898 327 M 
+-0.200 0 ( items if they)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 372 M 
+-0.200 0 (appeared on different lines and if the first was from the set of items which may end a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 417 M 
+-0.200 0 (command or definition, namely:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 507 M 
+-0.200 0 (BREAK  RETURN  FINISH  REPEAT  SKET  RKET)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 597 M 
+-0.200 0 (SECTKET  NAME  STRINGCONST  NUMBER  TRUE  FALSE)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 687 M 
+-0.200 0 (and the second is from the set of items which may start: a command, namely:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 777 M 
+-0.200 0 (TEST  FOR  IF  UNLESS  UNTIL  WHILE  GOTO  RESULTIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 867 M 
+-0.200 0 (CASE  DEFAULT  BREAK  RETURN  FINISH  SECTBRA)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 957 M 
+-0.200 0 (RBRA  VALOF  LV  RV  NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+294 1047 M 
+-0.200 0 (\(e\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1047 M 
+-0.200 0 (The canonical symbol DO is inserted between pair of items if they appeared)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1092 M 
+-0.200 0 (on the same line and if the first is from the set of items which may end an expression,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1137 M 
+-0.200 0 (namely:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 1227 M 
+-0.200 0 (SKET  RKET  SECTKET  NAME  NUMBER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 1317 M 
+-0.200 0 (STRINGCONST  TRUE  FALSE)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1407 M 
+-0.200 0 (and the second is from the set of items which must start a command, namely:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 1497 M 
+-0.200 0 (TEST  FOR  IF  UNLESS  UNTIL  WHILE  GOTO  RESULTIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 1587 M 
+-0.200 0 (CASE  DEFAULT  BREAK  RETURN  FINISH)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 1677 M 
+-0.200 0 (\(f\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 1677 M 
+-0.200 0 (A directive of the form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1767 M 
+-0.200 0 (get)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+492 1767 M 
+-0.200 0 ( <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+542 1767 M 
+-0.200 0 (specifier>)A 
+; 
+417 1810 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1857 M 
+-0.200 0 (may be used anywhere in a BCPL program; it directs the compiler to replace the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1902 M 
+-0.200 0 (directive with the file or input stream of text referred to by the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1778 1902 M 
+-0.200 0 (specifier. The exact)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1947 M 
+-0.200 0 (syntactic form of the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+653 1947 M 
+-0.200 0 (specifier is implementation dependent but it will usually be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1992 M 
+-0.200 0 (either a string constant or an integer.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2082 M 
+-0.200 0 (Example:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+415 2127 M 
+-0.200 0 (The following is a complete program segment for separate compilation; it)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2172 M 
+-0.200 0 (is written in a fictitious hardware representation and exhibits some of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2217 M 
+-0.200 0 (preprocessor rules. Note that it was not necessary to write a single semicolon since)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2262 M 
+-0.200 0 (they will all be inserted automatically.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 6 ]%%)  =
+%%PageTrailer
+
+%%Page: 7 7
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+2001 237 M 
+-0.200 0 (4.\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 327 M 
+-0.200 0 (get 'HEAD2'    // This 'gets' the file called HEAD2 which presumably declares)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+533 372 M 
+-0.200 0 (Checkdistinct, Report and )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1183 372 M 
+-0.200 0 (Dvec)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 462 M 
+-0.200 0 (let)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+229 462 M 
+-0.200 0 (Checkdistinct[E, S] be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+362 507 M 
+-0.200 0 ($\(1  until E=S do  //  The symbol $\( represents a SECTBRA)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+581 597 M 
+-0.200 0 ($\( let p = E + 4)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+638 642 M 
+-0.200 0 (and N = )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+838 642 M 
+-0.200 0 (Dvec*[E])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+638 687 M 
+-0.200 0 (while p )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+838 687 M 
+-0.200 0 (ls S do    // Note that )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1438 687 M 
+-0.200 0 (ls is a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1066 732 M 
+-0.200 0 (  //  system word, p is a name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+757 777 M 
+-0.200 0 ($\( if )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+907 777 M 
+-0.200 0 (Dvec*[p]=N do Report [142, N])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+848 822 M 
+-0.200 0 (p := p + e $\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+624 867 M 
+-0.200 0 (E := E + e    $\)1   // Note that this closes)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1113 912 M 
+-0.200 0 ( // two sections.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 7 ]%%)  =
+%%PageTrailer
+
+%%Page: 8 8
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (2.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+178 237 M 
+-0.200 0 (  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 237 M 
+-0.200 0 (Canonical Syntax)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2101 237 M 
+-0.200 0 (5.)A 
+; 
+228 280 N M 400 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+319 327 M 
+-0.200 0 ( The syntax given in this section defines all the legal constructions in BCPL)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+214 372 M 
+-0.200 0 (without specifying either the relative binding powers or association rules of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+214 417 M 
+-0.200 0 (command and expression operators. These are given later in the manual in the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+214 462 M 
+-0.200 0 (descriptions of each construction.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+294 552 M 
+-0.200 0 (  To improve the readability of the syntax a hardware representation of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 597 M 
+-0.200 0 (canonical symbols has been used. For instance:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+410 687 M 
+-0.200 0 ( \( \) [ ] \247 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+685 687 M 
+-0.200 0 (\247)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+710 687 M 
+-0.200 0 ( are used to denote RBRA RKET SBRA SKET SECTBRA and SECTKET.)A 
+; 
+685 730 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 777 M 
+-0.200 0 (E)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+478 777 M 
+-0.200 0 (::= <name> | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+803 777 M 
+-0.200 0 (<)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+828 777 M 
+-0.200 0 (stringconst> } <number> | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1478 777 M 
+-0.200 0 (true)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1578 777 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1653 777 M 
+-0.200 0 (false)A 
+; 
+1478 820 N M 100 2 rr : 0 0 0 sco O ; 
+1653 820 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+478 822 M 
+-0.200 0 (\( E \) | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+678 822 M 
+-0.200 0 (valof)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+803 822 M 
+-0.200 0 ( <block> | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1078 822 M 
+-0.200 0 (lv)A 
+; 
+678 865 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1128 822 M 
+-0.200 0 ( E | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1253 822 M 
+-0.200 0 (rv)A 
+; 
+1078 865 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1303 822 M 
+-0.200 0 ( E | E [ E ] | E*[ E ])A 
+; 
+1253 865 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+478 876 M 
+-0.200 0 (E <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+553 876 M 
+-0.200 0 (diadic op> | ~E | +E | -E | E)A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Symbol
+(F2) cvn
+1.000 
+ (Symbol) cvn /Type1 
+F 
+(Symbol) cvn
+mF 
+(F2_42) cvn
+F2
+42 
+xF 
+F2_42
+Ji 
+1278 867 M 
+-0.454 0 (\256)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1319 876 M 
+-0.200 0 ( E, E } E < , E >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+1744 892 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 975 M 
+-0.200 0 (<)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+128 975 M 
+-0.200 0 (diadic op>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+459 975 M 
+-0.200 0 (::= * | /)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 975 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+759 975 M 
+-0.200 0 (rem)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+834 975 M 
+-0.200 0 ( | + | - | = | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1209 966 M 
+0.942 0 (\271)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1233 975 M 
+-0.200 0 ( | < | > | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1508 966 M 
+-0.058 0 (\263)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1531 975 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1606 975 M 
+-0.200 0 (lshift)A 
+; 
+759 1018 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1756 975 M 
+-0.200 0 ( + )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1831 975 M 
+-0.200 0 (rshift)A 
+; 
+1606 1018 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1981 975 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+2056 966 M 
+0.674 0 (\331)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2082 975 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+2157 966 M 
+0.674 0 (\332)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2183 975 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+2258 966 M 
+-0.058 0 (\272)A 
+; 
+1831 1018 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Oblique
+(F5) cvn
+0.857 
+ (Courier-Oblique) cvn /Type1 
+T 
+(Courier-Oblique) cvn
+mF 
+(F5_42) cvn
+F5
+42 
+xF 
+F5_42
+Ji 
+103 1065 M 
+-0.200 0 ([also, less-or-equal and )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F5_42
+Ji 
+728 1065 M 
+-0.200 0 (notequivalent; )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F5_42
+Ji 
+1103 1065 M 
+-0.200 0 (unrepresented in available font-- DMR])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1158 M 
+-0.200 0 (<constant>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+534 1158 M 
+-0.200 0 (::=  E)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1248 M 
+-0.200 0 (D)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+534 1248 M 
+-0.200 0 (::=  D < )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+759 1248 M 
+-0.200 0 (and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+834 1248 M 
+-0.200 0 ( D>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+909 1264 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+925 1248 M 
+-0.200 0 ( | <name> [ <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1250 1248 M 
+-0.200 0 (namelist>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1475 1264 M 
+-0.200 0 (1-)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1507 1248 M 
+-0.200 0 ( ] = E |)A 
+; 
+759 1291 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+609 1293 M 
+-0.200 0 (  <name> [ <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+909 1293 M 
+-0.200 0 (namelist>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1134 1309 M 
+-0.200 0 (1-)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1166 1293 M 
+-0.200 0 ( ] )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1241 1293 M 
+-0.200 0 (be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1291 1293 M 
+-0.200 0 ( <block> |)A 
+; 
+1241 1336 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+609 1338 M 
+-0.200 0 (  <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1338 M 
+-0.200 0 (namelist> = E | <name> = )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1309 1338 M 
+-0.200 0 (vec <constant>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1428 M 
+-0.200 0 (<)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+128 1428 M 
+-0.200 0 (namelist>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+534 1428 M 
+-0.200 0 (::= <name> <, <name> >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1084 1444 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1518 M 
+-0.200 0 (C)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+516 1518 M 
+-0.200 0 (::=  E :=  E)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1518 M 
+-0.200 0 ( | E[ E ] | E [ ] | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1316 1518 M 
+-0.200 0 (goto)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1416 1518 M 
+-0.200 0 ( E | <name> : < C >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1891 1534 M 
+-0.200 0 (1-)A 
+; 
+1316 1561 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+628 1563 M 
+-0.200 0 (if)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+678 1563 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+753 1563 M 
+-0.200 0 (do)A 
+; 
+628 1606 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+803 1563 M 
+-0.200 0 ( C | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+928 1563 M 
+-0.200 0 (unless)A 
+; 
+753 1606 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1078 1563 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1153 1563 M 
+-0.200 0 (do)A 
+; 
+928 1606 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1203 1563 M 
+-0.200 0 ( C | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1328 1563 M 
+-0.200 0 (while)A 
+; 
+1153 1606 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1453 1563 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1528 1563 M 
+-0.200 0 (do)A 
+; 
+1328 1606 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1578 1563 M 
+-0.200 0 ( C | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1703 1563 M 
+-0.200 0 (until)A 
+; 
+1528 1606 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1828 1563 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1903 1563 M 
+-0.200 0 (do)A 
+; 
+1703 1606 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1953 1563 M 
+-0.200 0 ( C |)A 
+; 
+1903 1606 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+628 1608 M 
+-0.200 0 (C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+678 1608 M 
+-0.200 0 (repeat)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+828 1608 M 
+-0.200 0 ( | C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+953 1608 M 
+-0.200 0 (repeatwhile)A 
+; 
+678 1651 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1228 1608 M 
+-0.200 0 ( E | C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1403 1608 M 
+-0.200 0 (repeatuntil)A 
+; 
+953 1651 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1678 1608 M 
+-0.200 0 ( E |)A 
+; 
+1403 1651 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+628 1653 M 
+-0.200 0 (test)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+728 1653 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+803 1653 M 
+-0.200 0 (then)A 
+; 
+628 1696 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+903 1653 M 
+-0.200 0 ( C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+978 1653 M 
+-0.200 0 (or)A 
+; 
+803 1696 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1028 1653 M 
+-0.200 0 ( C | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1153 1653 M 
+-0.200 0 (for)A 
+; 
+978 1696 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1228 1653 M 
+-0.200 0 ( <name> = E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1528 1653 M 
+-0.200 0 (to)A 
+; 
+1153 1696 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1578 1653 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1653 1653 M 
+-0.200 0 (do)A 
+; 
+1528 1696 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1703 1653 M 
+-0.200 0 ( C |)A 
+; 
+1653 1696 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+628 1698 M 
+-0.200 0 (break)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+753 1698 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+828 1698 M 
+-0.200 0 (return)A 
+; 
+628 1741 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+978 1698 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1053 1698 M 
+-0.200 0 (finish)A 
+; 
+828 1741 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1203 1698 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1278 1698 M 
+-0.200 0 (resultis)A 
+; 
+1053 1741 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1478 1698 M 
+-0.200 0 ( E |)A 
+; 
+1278 1741 N M 200 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+628 1743 M 
+-0.200 0 (switchon)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+828 1743 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+903 1743 M 
+-0.200 0 (into)A 
+; 
+628 1786 N M 200 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1003 1743 M 
+-0.200 0 ( <block> | case <constant> : < C >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1853 1759 M 
+-0.200 0 (1-)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1885 1743 M 
+-0.200 0 ( |)A 
+; 
+903 1786 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+628 1788 M 
+-0.200 0 (default : < C >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1003 1804 M 
+-0.200 0 (1-)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1035 1788 M 
+-0.200 0 ( | <block>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1878 M 
+-0.200 0 (<block>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+516 1878 M 
+-0.200 0 (::= \247 C < ; C >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+891 1894 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+907 1878 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+932 1878 M 
+-0.200 0 (\247)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+957 1878 M 
+-0.200 0 (  | \247 < )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1157 1878 M 
+-0.200 0 (let)A 
+; 
+932 1921 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1232 1878 M 
+-0.200 0 ( D | <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1382 1878 M 
+-0.200 0 (constdef> >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1657 1894 M 
+-0.200 0 (1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1673 1878 M 
+-0.200 0 ( <; C >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1848 1894 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1864 1878 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1889 1878 M 
+-0.200 0 (\247)A 
+; 
+1157 1921 N M 75 2 rr : 0 0 0 sco O ; 
+1889 1921 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1968 M 
+-0.200 0 (<)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+128 1968 M 
+-0.200 0 (constdef)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+328 1968 M 
+-0.200 0 (        )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+528 1968 M 
+-0.200 0 (::= < )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+678 1968 M 
+-0.200 0 (manifest)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+878 1968 M 
+-0.200 0 ( | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+953 1968 M 
+-0.200 0 (global)A 
+; 
+678 2011 N M 200 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1103 1968 M 
+-0.200 0 ( > \247 <name> < = | : > <constant>)A 
+; 
+953 2011 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+703 2013 M 
+-0.200 0 (< ; <name> < = | : > <constant> >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1528 2029 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1544 2013 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1569 2013 M 
+-0.200 0 (\247)A 
+; 
+1569 2056 N M 25 2 rr : 0 0 0 sco O ; 
+LH 
+pagesave restore
+
+(%%[ Page: 8 ]%%)  =
+%%PageTrailer
+
+%%Page: 9 9
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (3.0  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 237 M 
+-0.200 0 (Data Items)A 
+; 
+228 280 N M 250 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 327 M 
+-0.200 0 (3.1 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+203 327 M 
+-0.200 0 (Rvalues, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+428 327 M 
+-0.200 0 (Lvalues and Data Items)A 
+; 
+203 370 N M 775 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+241 417 M 
+-0.200 0 (An RVALUE is a binary bit pattern of a fixed length \(which is implementation)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 462 M 
+-0.200 0 (dependent\), it is usually the size of a computer word. )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1478 462 M 
+-0.200 0 (Rvalues may be used to represent)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 507 M 
+-0.200 0 (a variety of different kinds of objects such as integers, truth values, vectors or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 552 M 
+-0.200 0 (functions. The actual kind of object represented is called the TYPE of the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1978 552 M 
+-0.200 0 (Rvalue.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+241 642 M 
+-0.200 0 (A BCPL expression can be evaluated to yield an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1416 642 M 
+-0.200 0 (Rvalue but its type remains)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 687 M 
+-0.200 0 (undefined until the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+603 687 M 
+-0.200 0 (Rvalue is used in some definitive context and it is then assumed to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 732 M 
+-0.200 0 (represent an object of the required type. For example, in the following function)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 777 M 
+-0.200 0 (application)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+956 876 M 
+-0.200 0 (\(B*[)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1056 876 M 
+-0.200 0 (i] )A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Symbol
+(F2) cvn
+1.000 
+ (Symbol) cvn /Type1 
+F 
+(Symbol) cvn
+mF 
+(F2_42) cvn
+F2
+42 
+xF 
+F2_42
+Ji 
+1131 867 M 
+-0.454 0 (\256)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1172 876 M 
+-0.200 0 ( f, g\) [1, Z[)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1497 876 M 
+-0.200 0 (i]])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 975 M 
+-0.200 0 (the expression \(B*[)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+578 975 M 
+-0.200 0 (i] )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+653 966 M 
+-0.454 0 (\256)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+694 975 M 
+-0.200 0 ( f, g\) is evaluated to yield an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1494 975 M 
+-0.200 0 (Rvalue which is then)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1020 M 
+-0.200 0 (interpreted as the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+578 1020 M 
+-0.200 0 (Rvalue of a function since the expression occurred in the operator)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1065 M 
+-0.200 0 (position of a function application; whether f and g are in fact functions is not)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1110 M 
+-0.200 0 (explicitly checked. Similarly the expression B*[)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1303 1110 M 
+-0.200 0 (i] \(which is a vector application\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1155 M 
+-0.200 0 (occurs where are )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+528 1155 M 
+-0.200 0 (boolean is expected and so its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1303 1155 M 
+-0.200 0 (Rvalue is interpreted as a truth value.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+241 1245 M 
+-0.200 0 (There is no explicit check to ensure that there are no type mismatches.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+241 1335 M 
+-0.200 0 (An LVALUE is a bit pattern representing a storage location containing an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2066 1335 M 
+-0.200 0 (Rvalue.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1380 M 
+-0.200 0 (An )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+178 1380 M 
+-0.200 0 (Lvalue is the same size as an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+928 1380 M 
+-0.200 0 (Rvalue and is a type in BCPL. There is one context)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1425 M 
+-0.200 0 (where an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+328 1425 M 
+-0.200 0 (Rvalue is interpreted as an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1028 1425 M 
+-0.200 0 (Rvalue and that is as the operand of the monadic)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1470 M 
+-0.200 0 (operator )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+328 1470 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+378 1470 M 
+-0.200 0 (. For example, in the expression)A 
+; 
+328 1513 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+241 1560 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+291 1560 M 
+-0.200 0 ( f[)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+366 1560 M 
+-0.200 0 (i])A 
+; 
+241 1603 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1650 M 
+-0.200 0 (the expression f[)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+528 1650 M 
+-0.200 0 (i] is evaluated to yield an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1228 1650 M 
+-0.200 0 (Rvalue which is then interpreted as an)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1695 M 
+-0.200 0 (Lvalue since it is the operand of )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+953 1695 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1003 1695 M 
+-0.200 0 (. The application of )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1528 1695 M 
+-0.200 0 (rv)A 
+; 
+953 1738 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1578 1695 M 
+-0.200 0 ( on this )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1803 1695 M 
+-0.200 0 (Lvalue yields the)A 
+; 
+1528 1738 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1740 M 
+-0.200 0 (Rvalue which is contained in the location represented \(or referred to\) by the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2053 1740 M 
+-0.200 0 (Lvalue.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+241 1830 M 
+-0.200 0 (An )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+316 1830 M 
+-0.200 0 (Lvalue may be obtained by applying the operator )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1516 1830 M 
+-0.200 0 (lv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1566 1830 M 
+-0.200 0 ( to an identifier, a vector)A 
+; 
+1516 1873 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1875 M 
+-0.200 0 (application or an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+553 1875 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+603 1875 M 
+-0.200 0 ( expression, see section 4.9.)A 
+; 
+553 1918 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+241 1965 M 
+-0.200 0 (A DATA ITEM is composed of an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+991 1965 M 
+-0.200 0 (Lvalue, the referenced )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1566 1965 M 
+-0.200 0 (Rvalue and possibly an)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2010 M 
+-0.200 0 (associated identifier. The term is used loosely to mean the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1603 2010 M 
+-0.200 0 (Lvalue, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1803 2010 M 
+-0.200 0 (Rvalue or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2055 M 
+-0.200 0 (identifier depending on context.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 9 ]%%)  =
+%%PageTrailer
+
+%%Page: 10 10
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+1923 237 M 
+-0.200 0 (7.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 327 M 
+-0.200 0 (In BCPL a data item may have at most one identifier. The following diagram shows)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 372 M 
+-0.200 0 (a data item for a six bit machine.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Oblique
+(F2) cvn
+0.857 
+ (Courier-Oblique) cvn /Type1 
+T 
+(Courier-Oblique) cvn
+mF 
+(F2_42) cvn
+F2
+42 
+xF 
+F2_42
+Ji 
+482 507 M 
+-0.200 0 ([Diagram with broken line from x to box with 0 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1657 507 M 
+-0.200 0 (0 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1707 507 M 
+-0.200 0 (0 1 0 1,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+257 555 M 
+-0.200 0 (and also to 001101; unbroken arrow from that to the 0 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1607 555 M 
+-0.200 0 (0 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1657 555 M 
+-0.200 0 (0 1 0 1 box -- DMR])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 648 M 
+-0.200 0 (The broken line indicates the semantic association between an identifier x and the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 693 M 
+-0.200 0 (storage location which is represented by the box; the unbroken arrow shows the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 738 M 
+-0.200 0 (correspondence between the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+778 738 M 
+-0.200 0 (Lvalue 001101 and the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1328 738 M 
+-0.200 0 (Rvalue 000101, and the broken arrow)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 783 M 
+-0.200 0 (shows the correspondence between the identifier x and the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1553 783 M 
+-0.200 0 (Lvalue 001101.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 873 M 
+-0.200 0 (It is meaningful to say that the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1078 873 M 
+-0.200 0 (Lvalue of the data item x is the bit pattern)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 918 M 
+-0.200 0 (001101, that the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+528 918 M 
+-0.200 0 (Rvalue of the data item x is the bit pattern 000101 and that the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 963 M 
+-0.200 0 (Lvalue 001101 refers to the data item x.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1098 M 
+-0.200 0 (3.2  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 1098 M 
+-0.200 0 (Types)A 
+; 
+228 1141 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 1188 M 
+-0.200 0 (An )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+328 1188 M 
+-0.200 0 (Rvalue may represent an object of one of the following types:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 1278 M 
+-0.200 0 (integer, logical, Boolean, function, routine, label,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+287 1323 M 
+-0.200 0 (string, vector,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+770 1323 M 
+-0.200 0 (and )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+870 1323 M 
+-0.200 0 (Lvalue.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1413 M 
+-0.200 0 (Although the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+428 1413 M 
+-0.200 0 (bitpattern representations of each type is implementation dependent)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1458 M 
+-0.200 0 (certain relations between types is not.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 1548 M 
+-0.200 0 (\(1\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 1548 M 
+-0.200 0 (The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+512 1548 M 
+-0.200 0 (Rvalue of a vector v, say, is identical to the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1687 1548 M 
+-0.200 0 (Lvalue of its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2037 1548 M 
+-0.200 0 (zeroth)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 1593 M 
+-0.200 0 (element:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 1683 M 
+-0.200 0 (v = )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+512 1683 M 
+-0.200 0 (lv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+562 1683 M 
+-0.200 0 ( v*[0])A 
+; 
+512 1726 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 1773 M 
+-0.200 0 (and hence)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 1863 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+462 1863 M 
+-0.200 0 ( v = v*[0])A 
+; 
+412 1906 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 1953 M 
+-0.200 0 (\(2\)  The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+478 1953 M 
+-0.200 0 (Lvalue of the n)A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+853 1944 M 
+-0.200 0 (th)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+885 1953 M 
+-0.200 0 ( element of a vector v may be obtained by adding the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 1998 M 
+-0.200 0 (integer n to v; thus)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 2088 M 
+-0.200 0 (lv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+462 2088 M 
+-0.200 0 ( v*[n] = )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 2088 M 
+-0.200 0 (v+n)A 
+; 
+412 2131 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 2178 M 
+-0.200 0 (\(3\)  If x, y and t are the first, second and n)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1403 2169 M 
+-0.200 0 (th)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1435 2178 M 
+-0.200 0 ( parameters of a function or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 2223 M 
+-0.200 0 (routine and if v = )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+728 2223 M 
+-0.200 0 (lv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+778 2223 M 
+-0.200 0 ( x, then)A 
+; 
+728 2266 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 2313 M 
+-0.200 0 (v*[0] = x)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 2358 M 
+-0.200 0 (v*[l] = y)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 2403 M 
+-0.200 0 (and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 2403 M 
+-0.200 0 (v*[n] = t)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 10 ]%%)  =
+%%PageTrailer
+
+%%Page: 11 11
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (This property may be used to define functions and routines with a variable number of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 282 M 
+-0.200 0 (actual parameters. In the definition of such a function or routine it is necessary to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 327 M 
+-0.200 0 (give a formal parameter list which is at least as long as the longest actual parameter)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 372 M 
+-0.200 0 (list of any call for it.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 462 M 
+-0.200 0 (Example)A 
+; 
+103 505 N M 175 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+410 507 M 
+-0.200 0 (The following definition)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 597 M 
+-0.200 0 (let)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+487 597 M 
+-0.200 0 (   R[a, b, c, d, e, f] )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1062 597 M 
+-0.200 0 (be)A 
+; 
+412 640 N M 75 2 rr : 0 0 0 sco O ; 
+1062 640 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+559 687 M 
+-0.200 0 (\247 let v = )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+809 687 M 
+-0.200 0 (lv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 687 M 
+-0.200 0 ( a)A 
+; 
+809 730 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+559 732 M 
+-0.200 0 (  . . .)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+559 777 M 
+-0.200 0 (  . . . )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+759 777 M 
+-0.200 0 (\247)A 
+; 
+759 820 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 912 M 
+-0.200 0 (defines the routine R which may be called with 6 or less actual parameters. During the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 957 M 
+-0.200 0 (execution of the routine, the variable v may be used as a vector whose first n elements)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1002 M 
+-0.200 0 (are the first n actual parameters of the call; thus during the following call)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 1137 M 
+-0.200 0 (R[ 126, 36, 18, 99])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1227 M 
+-0.200 0 (the initial are )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+503 1227 M 
+-0.200 0 (Rvalues of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+412 1317 M 
+-0.200 0 (v*[0], v*[l], v*[2] and v*[3] are 126, 36, 18 and 99)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+281 1407 M 
+-0.200 0 (The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+381 1407 M 
+-0.200 0 (Rvalue of a label is a bit pattern representing the program position of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1452 M 
+-0.200 0 (labelled command. Note that it does not contain information about the activation level)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1497 M 
+-0.200 0 (of the function or routine in which the label occurred.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 1587 M 
+-0.200 0 (The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+371 1587 M 
+-0.200 0 (Rvalue of a function or routine is a representation of the entry point of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1632 M 
+-0.200 0 (the function or routine.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1767 M 
+-0.200 0 (4.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+229 1767 M 
+-0.200 0 (Primary expressions)A 
+; 
+229 1810 N M 475 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1857 M 
+-0.200 0 (4.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1857 M 
+-0.200 0 (Names)A 
+; 
+232 1900 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 1947 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1947 M 
+-0.200 0 (A name is a sequence )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1209 1947 M 
+-0.200 0 (of one or more characters from a restricted)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1992 M 
+-0.200 0 (alphabet called the name character alphabet.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 2037 M 
+-0.200 0 (The hardware representation of characters in this alphabet and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 2082 M 
+-0.200 0 (the rules for recognizing the starts and ends of names are)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 2127 M 
+-0.200 0 (implementation dependent.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 2172 M 
+-0.200 0 (One hardware representation is as follows:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+819 2217 M 
+-0.200 0 (The name character alphabet contains the letters)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 2262 M 
+-0.200 0 (A .... Z and a .... z and the digits 0 .... 9 and those are)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 11 ]%%)  =
+%%PageTrailer
+
+%%Page: 12 12
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+2013 237 M 
+-0.200 0 (9.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 327 M 
+-0.200 0 (all represented directly by the same hardware characters. A name)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 372 M 
+-0.200 0 (either starts with a capital letter and is terminated by the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 417 M 
+-0.200 0 (first non-letter or digit, or it is a single small letter.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 507 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 507 M 
+-0.200 0 (Two names are equal if they have the same sequence of name)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 552 M 
+-0.200 0 (alphabet characters. A name may always be evaluated to yield an)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 597 M 
+-0.200 0 (Rvalue. If the name was declared to be a manifest constant \(see)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 642 M 
+-0.200 0 (section 7.4\) then the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1236 642 M 
+-0.200 0 (Rvalue will be the same on every)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 687 M 
+-0.200 0 (evaluation; if the name was declared in any other way then it is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 732 M 
+-0.200 0 (a variable and its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1161 732 M 
+-0.200 0 (Rvalue may be changed dynamically by an)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 777 M 
+-0.200 0 (assignment command. If N is a variable then its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1886 777 M 
+-0.200 0 (Lvalue is the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 822 M 
+-0.200 0 (Rvalue of the expression:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1249 912 M 
+-0.200 0 (lv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1299 912 M 
+-0.200 0 ( N)A 
+; 
+1249 955 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1047 M 
+-0.200 0 (4.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+235 1047 M 
+-0.200 0 (String Constants)A 
+; 
+235 1090 N M 400 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+235 1137 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1137 M 
+-0.200 0 (')A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+715 1137 M 
+-0.200 0 ( <string alphabet character>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+1415 1153 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1431 1153 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1447 1137 M 
+-0.200 0 (')A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1227 M 
+-0.200 0 (The hardware representation of characters in the string alphabet)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1272 M 
+-0.200 0 (is implementation dependent. One hardware representation is as)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1317 M 
+-0.200 0 (follows:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1362 M 
+-0.200 0 (The string character alphabet contains all the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1407 M 
+-0.200 0 (characters except * and '  are represented directly. These two)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1452 M 
+-0.200 0 (exceptions are represented by)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+804 1542 M 
+-0.200 0 (**)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+913 1542 M 
+-0.200 0 (and *' respectively.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1587 M 
+-0.200 0 (In addition)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1632 M 
+-0.200 0 (*n represents    )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1237 1632 M 
+-0.200 0 (newline)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1677 M 
+-0.200 0 (*s)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1677 M 
+-0.200 0 (")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1237 1677 M 
+-0.200 0 (space)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1722 M 
+-0.200 0 (*b)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1722 M 
+-0.200 0 (")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1237 1722 M 
+-0.200 0 (backspace)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1767 M 
+-0.200 0 (*t)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1767 M 
+-0.200 0 (")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1237 1767 M 
+-0.200 0 (tab)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1857 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1857 M 
+-0.200 0 (A string constant of length one has an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1663 1857 M 
+-0.200 0 (Rvalue which is the bit)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1902 M 
+-0.200 0 (pattern representation of the character; this is right)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1947 M 
+-0.200 0 (justified and filled with zeros.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 2037 M 
+-0.200 0 (A string constant with length other than one is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 2082 M 
+-0.200 0 (represented as a BCPL vector; the length and the string)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 2127 M 
+-0.200 0 (characters are packed in successive words of the vector.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 12 ]%%)  =
+%%PageTrailer
+
+%%Page: 13 13
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+1977 237 M 
+-0.200 0 (10.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+391 282 M 
+-0.200 0 (Example:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+814 327 M 
+-0.200 0 (If characters are packed 4 per word then the string:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+814 372 M 
+-0.200 0 (  'Abc10*n')A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+814 417 M 
+-0.200 0 (is represented as follows:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Oblique
+(F2) cvn
+0.857 
+ (Courier-Oblique) cvn /Type1 
+T 
+(Courier-Oblique) cvn
+mF 
+(F2_42) cvn
+F2
+42 
+xF 
+F2_42
+Ji 
+682 507 M 
+-0.200 0 ([picture with )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1032 507 M 
+-0.200 0 (Rvalue pointing at box with)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1032 555 M 
+-0.200 0 (6 'A' 'b' 'c')A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1020 603 M 
+-0.200 0 ('1' '0' ')A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1245 603 M 
+-0.200 0 (*n' 0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1107 651 M 
+-0.200 0 (--DMR ])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 744 M 
+-0.200 0 (4.3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+235 744 M 
+-0.200 0 (Numerical Constants)A 
+; 
+235 787 N M 475 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 789 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+696 789 M 
+-0.200 0 (<digit>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+871 805 M 
+-0.200 0 (1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+887 789 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1078 789 M 
+-0.200 0 (or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1240 789 M 
+-0.200 0 (8)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1265 789 M 
+-0.200 0 ( <digit>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1465 805 M 
+-0.200 0 (1)A 
+; 
+1240 832 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 924 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 924 M 
+-0.200 0 (The sequence of digits is interpreted as a decimal integer in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 969 M 
+-0.200 0 (the former case, and as a right justified octal number in the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1014 M 
+-0.200 0 (latter.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1149 M 
+-0.200 0 (4.4)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+229 1149 M 
+-0.200 0 (True and False)A 
+; 
+229 1192 N M 350 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 1239 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+696 1239 M 
+-0.200 0 (true)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+917 1239 M 
+-0.200 0 (or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1078 1239 M 
+-0.200 0 (false)A 
+; 
+696 1282 N M 100 2 rr : 0 0 0 sco O ; 
+1078 1282 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 1329 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1329 M 
+-0.200 0 (The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+786 1329 M 
+-0.200 0 (Rvalue of true is a bit pattern entirely composed of ones;)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1374 M 
+-0.200 0 (the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+786 1374 M 
+-0.200 0 (Rvalue of )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1036 1374 M 
+-0.200 0 (false)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1161 1374 M 
+-0.200 0 ( is zero. Note that)A 
+; 
+1036 1417 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1419 M 
+-0.200 0 (  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+734 1419 M 
+-0.200 0 (true)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+834 1419 M 
+-0.200 0 ( =  ~ )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+984 1419 M 
+-0.200 0 (false)A 
+; 
+734 1462 N M 100 2 rr : 0 0 0 sco O ; 
+984 1462 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1509 M 
+-0.200 0 (4.5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1509 M 
+-0.200 0 (Bracketted Expressions)A 
+; 
+233 1552 N M 550 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1599 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1599 M 
+-0.200 0 (\( E \))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1689 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1689 M 
+-0.200 0 (Parentheses may enclose any expression; their sole purpose is to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1734 M 
+-0.200 0 (specify grouping.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1869 M 
+-0.200 0 (4.6)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1869 M 
+-0.200 0 (Result Blocks)A 
+; 
+233 1912 N M 325 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1914 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+682 1914 M 
+-0.200 0 (valof)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+807 1914 M 
+-0.200 0 ( <block>)A 
+; 
+682 1957 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 2004 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 2004 M 
+-0.200 0 (A result block is a form of BCPL expression; it is evaluated by)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 2049 M 
+-0.200 0 (executing the block until a )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1386 2049 M 
+-0.200 0 (resultis)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1586 2049 M 
+-0.200 0 ( statement is encountered,)A 
+; 
+1386 2092 N M 200 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 2094 M 
+-0.200 0 (this causes execution of the block to cease and returns the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 2139 M 
+-0.200 0 (value of the expression in the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1461 2139 M 
+-0.200 0 (resultis)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1661 2139 M 
+-0.200 0 ( command.)A 
+; 
+1461 2182 N M 200 2 rr : 0 0 0 sco O ; 
+LH 
+pagesave restore
+
+(%%[ Page: 13 ]%%)  =
+%%PageTrailer
+
+%%Page: 14 14
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (4.7)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+240 237 M 
+-0.200 0 (Vector Applications)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1981 237 M 
+-0.200 0 (11.)A 
+; 
+240 280 N M 475 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+236 327 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 327 M 
+-0.200 0 (El * [ E2 ])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 417 M 
+-0.200 0 (The asterisk is necessary to distinguish a vector)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 462 M 
+-0.200 0 (application from a function application. El is a primary)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 507 M 
+-0.200 0 (expression.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+236 597 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 597 M 
+-0.200 0 (A vector is represented by a pointer to a consecutive group of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 642 M 
+-0.200 0 (words which are the elements of the vector. The pointer points)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 687 M 
+-0.200 0 (to the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 687 M 
+-0.200 0 (zeroth element. To evaluate a vector application El and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 732 M 
+-0.200 0 (E2 are evaluated to yield two )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1438 732 M 
+-0.200 0 (Rvalues, the first is interpreted)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 777 M 
+-0.200 0 (as a vector pointer and the second as the subscript; the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 822 M 
+-0.200 0 (element is then accessed to yield the result.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 912 M 
+-0.200 0 (The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+916 912 M 
+-0.200 0 (Lvalue of an element may be obtained by evaluating the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 957 M 
+-0.200 0 (expression)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1147 1047 M 
+-0.200 0 (lv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1249 1047 M 
+-0.200 0 (El * [ E2 ])A 
+; 
+1147 1090 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1137 M 
+-0.200 0 (The representations of Vectors, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1612 1137 M 
+-0.200 0 (Lvalues and integers is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1182 M 
+-0.200 0 (such that the following relations are true:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+938 1272 M 
+-0.200 0 (E1*[E2] = )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1188 1272 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1238 1272 M 
+-0.200 0 ( \(El+E2\))A 
+; 
+1188 1315 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 1362 M 
+-0.200 0 (lv El * [ E2 ] = El + E2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1497 M 
+-0.200 0 (4.8)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 1497 M 
+-0.200 0 (Function Applications)A 
+; 
+228 1540 N M 525 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+229 1587 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+810 1587 M 
+-0.200 0 (El [ E2, E3, ... En ])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+810 1632 M 
+-0.200 0 (El is a primary expression.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1722 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1722 M 
+-0.200 0 (  The function application is evaluated by evaluating the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1767 M 
+-0.200 0 (expressions El, E2 ... En and assigning the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1786 1767 M 
+-0.200 0 (Rvalues of E2 ... En)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1812 M 
+-0.200 0 (to the first n-l formal parameters of the function whose )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2111 1812 M 
+-0.200 0 (Rvalue)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1857 M 
+-0.200 0 (is the value of El; this function is then entered. The result of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1902 M 
+-0.200 0 (the application is the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1261 1902 M 
+-0.200 0 (Rvalue of the expression in the function)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1947 M 
+-0.200 0 (definition, see section 7.7.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 14 ]%%)  =
+%%PageTrailer
+
+%%Page: 15 15
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (4.9: )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 237 M 
+-0.200 0 (Lv Expressions)A 
+; 
+228 280 N M 350 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+183 327 M 
+-0.200 0 (  Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+832 327 M 
+-0.200 0 (lv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+882 327 M 
+-0.200 0 ( E)A 
+; 
+832 370 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 372 M 
+-0.200 0 (E is a primary expression.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+236 462 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 462 M 
+-0.200 0 (The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+788 462 M 
+-0.200 0 (Lvalue of some expressions may be obtained by applying the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 507 M 
+-0.200 0 (operator )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+913 507 M 
+-0.200 0 (lv;)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+988 507 M 
+-0.200 0 ( it is only meaningful to apply )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1788 507 M 
+-0.200 0 (lv to a vector)A 
+; 
+913 550 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 552 M 
+-0.200 0 (application, an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1088 552 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1138 552 M 
+-0.200 0 ( expression or an identifier which is not a)A 
+; 
+1088 595 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 597 M 
+-0.200 0 (manifest constant.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+819 687 M 
+-0.200 0 (The result of the application depends on the leading)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 732 M 
+-0.200 0 (operator of the operand as follows:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 822 M 
+-0.200 0 (\(a\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+943 822 M 
+-0.200 0 (A vector applicatio)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1418 822 M 
+-0.200 0 (n.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1071 867 M 
+-0.200 0 (The result is the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1521 867 M 
+-0.200 0 (Lvalue of the element.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+943 912 M 
+-0.200 0 (referenced, see section 4.7.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1002 M 
+-0.200 0 (\(b\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+940 1002 M 
+-0.200 0 (An )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1015 1002 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1065 1002 M 
+-0.200 0 ( expression.)A 
+; 
+1015 1045 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1060 1047 M 
+-0.200 0 (The result is the value of the operand of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+943 1092 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1092 M 
+-0.200 0 (. The following relation is always true:)A 
+; 
+943 1135 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1149 1182 M 
+-0.200 0 (lv )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1224 1182 M 
+-0.200 0 (rv E = E)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1272 M 
+-0.200 0 (\(c\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 1272 M 
+-0.200 0 (A name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1068 1362 M 
+-0.200 0 (The result is the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1518 1362 M 
+-0.200 0 (Lvalue of the data item with)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+940 1407 M 
+-0.200 0 (the given name \(which must not be a manifest)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+940 1452 M 
+-0.200 0 (constant\). If the name was declared explicitly as a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+940 1497 M 
+-0.200 0 (function, routine, global or label then its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2040 1497 M 
+-0.200 0 (Lvalue is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+940 1542 M 
+-0.200 0 (a manifest constant \(but its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1665 1542 M 
+-0.200 0 (Rvalue is not\), see)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+940 1587 M 
+-0.200 0 (section 7.2.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1677 M 
+-0.200 0 (4.10)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+235 1677 M 
+-0.200 0 (Rv Expressions)A 
+; 
+235 1720 N M 350 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 1767 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+814 1767 M 
+-0.200 0 (rv E)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1812 M 
+-0.200 0 (E is a primary expression.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 1902 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1902 M 
+-0.200 0 (The value of an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1086 1902 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1136 1902 M 
+-0.200 0 ( expression is obtained by evaluating its)A 
+; 
+1086 1945 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1947 M 
+-0.200 0 (operand to yield an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1186 1947 M 
+-0.200 0 (Rvalue which is then interpreted as the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1992 M 
+-0.200 0 (Lvalue of a data item. The result is the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1711 1992 M 
+-0.200 0 (Rvalue of this data)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 2037 M 
+-0.200 0 (item.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 15 ]%%)  =
+%%PageTrailer
+
+%%Page: 16 16
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (5.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+229 237 M 
+-0.200 0 (Compound Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1967 237 M 
+-0.200 0 (13.)A 
+; 
+229 280 N M 500 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 327 M 
+-0.200 0 (5.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+229 327 M 
+-0.200 0 (Arithmetic Expressions)A 
+; 
+229 370 N M 550 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 372 M 
+-0.200 0 (Synt)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+332 372 M 
+-0.200 0 (actic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+807 372 M 
+-0.200 0 (El * E2 or El / E2 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1282 372 M 
+-0.200 0 (or El )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1432 372 M 
+-0.200 0 (rem)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1507 372 M 
+-0.200 0 ( E2 or)A 
+; 
+1432 415 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+807 417 M 
+-0.200 0 (El + E2 or +El or )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1257 417 M 
+-0.200 0 (El-E2 or -El)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+804 507 M 
+-0.200 0 (The operators * / and )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1354 507 M 
+-0.200 0 (rem)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1429 507 M 
+-0.200 0 ( are more binding than + and -and)A 
+; 
+1354 550 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 552 M 
+-0.200 0 (associate to the right. The operators + and - associate to the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 597 M 
+-0.200 0 (left.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 687 M 
+-0.200 0 (Semant)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+376 687 M 
+-0.200 0 (ics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 687 M 
+-0.200 0 (    All these operators interpret the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1636 687 M 
+-0.200 0 (Rvalues of their)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 732 M 
+-0.200 0 (operands as signed integers,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1386 732 M 
+-0.200 0 ( and all yield integer results.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 822 M 
+-0.200 0 (The operator * denotes integer multiplication.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 915 M 
+-0.200 0 (The division operator / yields the correct result of )A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Oblique
+(F2) cvn
+0.857 
+ (Courier-Oblique) cvn /Type1 
+T 
+(Courier-Oblique) cvn
+mF 
+(F2_42) cvn
+F2
+42 
+xF 
+F2_42
+Ji 
+2009 912 M 
+-0.200 0 ([the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+686 960 M 
+-0.200 0 (division of E1 by E2 if])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1286 963 M 
+-0.200 0 ( El is divisible by E2; it is otherwise)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1008 M 
+-0.200 0 (implementation dependent but the rounding error is never greater)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1053 M 
+-0.200 0 (than 1.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1143 M 
+-0.200 0 (The operator )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1009 1143 M 
+-0.200 0 (rem)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1084 1143 M 
+-0.200 0 ( yields the remainder of El divided by E2; its)A 
+; 
+1009 1186 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1188 M 
+-0.200 0 (exact specification is Implementation dependent.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1278 M 
+-0.200 0 (The operators + and - are self-explanatory.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1368 M 
+-0.200 0 (5.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1368 M 
+-0.200 0 (Relational Expressions)A 
+; 
+233 1411 N M 550 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+236 1458 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1458 M 
+-0.200 0 (El <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+788 1458 M 
+-0.200 0 (relop> E2 .... <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1188 1458 M 
+-0.200 0 (relop> En)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1512 M 
+-0.200 0 (where <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1512 M 
+-0.200 0 (relop> ::=  = | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Symbol
+(F4) cvn
+1.000 
+ (Symbol) cvn /Type1 
+F 
+(Symbol) cvn
+mF 
+(F4_42) cvn
+F4
+42 
+xF 
+F4_42
+Ji 
+1263 1503 M 
+0.942 0 (\271)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1287 1512 M 
+-0.200 0 ( | < | > | )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F4_42
+Ji 
+1562 1503 M 
+-0.058 0 (\243)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1585 1512 M 
+-0.200 0 ( | >=)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1560 M 
+-0.200 0 (and n >= 2     )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1063 1557 M 
+-0.200 0 ([Lack of real >= character is a font problem])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1650 M 
+-0.200 0 (The relational operators are less binding than the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1695 M 
+-0.200 0 (arithmetic operators.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1785 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1785 M 
+-0.200 0 (The result of evaluating an extended relation is true if and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1830 M 
+-0.200 0 (only if all the individual relations are true. The order of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1875 M 
+-0.200 0 (evaluation is undefined. The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1411 1875 M 
+-0.200 0 (Rvalues of the expressions El ...)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1920 M 
+-0.200 0 (En are interpreted as signed integers and the relational)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1965 M 
+-0.200 0 (operators have their usual mathematical meanings.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 16 ]%%)  =
+%%PageTrailer
+
+%%Page: 17 17
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (5.3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 237 M 
+-0.200 0 (Shift Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1969 237 M 
+-0.200 0 (14.)A 
+; 
+232 280 N M 425 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 327 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 327 M 
+-0.200 0 (El )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+887 327 M 
+-0.200 0 (lshift)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1037 327 M 
+-0.200 0 ( E2  or  El )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1337 327 M 
+-0.200 0 (rshift)A 
+; 
+887 370 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1487 327 M 
+-0.200 0 ( E2)A 
+; 
+1337 370 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 417 M 
+-0.200 0 (E2 is any primary or arithmetic expression and El is any)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 462 M 
+-0.200 0 (shift, relational, arithmetic or primary expression. Thus the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 507 M 
+-0.200 0 (shift operators are less binding than the relations on the left)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 552 M 
+-0.200 0 (and more binding on the right.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+235 642 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 642 M 
+-0.200 0 (The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 642 M 
+-0.200 0 (Rvalue of El is interpreted as a logical bit pattern and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 687 M 
+-0.200 0 (that of E2 as an integer. The result of El )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1765 687 M 
+-0.200 0 (lshift)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1915 687 M 
+-0.200 0 ( E2 is the bit)A 
+; 
+1765 730 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 732 M 
+-0.200 0 (pattern El shifted to the left by E2 places. El )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1890 732 M 
+-0.200 0 (rshift)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2040 732 M 
+-0.200 0 ( E2 is as)A 
+; 
+1890 775 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 777 M 
+-0.200 0 (for )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 777 M 
+-0.200 0 (lshift)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+940 777 M 
+-0.200 0 ( but shifts to the right. Vacated positions are)A 
+; 
+790 820 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 822 M 
+-0.200 0 (filled with zeros and the result is undefined if E2 is negative)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 867 M 
+-0.200 0 (or greater than the data item size.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 957 M 
+-0.200 0 (5.4)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 957 M 
+-0.200 0 (Logical Expressions)A 
+; 
+228 1000 N M 475 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+236 1056 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 1056 M 
+-0.200 0 (~ El or El )A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Symbol
+(F2) cvn
+1.000 
+ (Symbol) cvn /Type1 
+F 
+(Symbol) cvn
+mF 
+(F2_42) cvn
+F2
+42 
+xF 
+F2_42
+Ji 
+1088 1047 M 
+0.674 0 (\331)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1114 1056 M 
+-0.200 0 ( E2 or El )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1364 1047 M 
+0.674 0 (\332)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1390 1056 M 
+-0.200 0 ( E2 or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 1110 M 
+-0.200 0 (El )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+888 1101 M 
+-0.058 0 (\272)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+911 1110 M 
+-0.200 0 ( E2 or E1 NEQV E2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 1158 M 
+-0.200 0 (  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Oblique
+(F4) cvn
+0.857 
+ (Courier-Oblique) cvn /Type1 
+T 
+(Courier-Oblique) cvn
+mF 
+(F4_42) cvn
+F4
+42 
+xF 
+F4_42
+Ji 
+863 1155 M 
+-0.200 0 ([NEQV was a crossed triple-bar])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 1248 M 
+-0.200 0 (The operator ~ is most binding; then, in decreasing order)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1293 M 
+-0.200 0 (of binding power are:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1070 1338 M 
+0.674 0 (\331)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1096 1347 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1121 1338 M 
+0.674 0 (\332)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1147 1347 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1172 1338 M 
+-0.058 0 (\272)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1195 1347 M 
+-0.200 0 ( NEQV)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1392 M 
+-0.200 0 (All the logical operators are less binding than the shift)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1437 M 
+-0.200 0 (operators.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1527 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1527 M 
+-0.200 0 (The operands of all )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1186 1527 M 
+-0.200 0 (the logical operators are interpreted as)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1572 M 
+-0.200 0 (binary bit patterns of ones and zeros.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1662 M 
+-0.200 0 (The application of the operator ~ yields the logical)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1707 M 
+-0.200 0 (negation of its operand. The result of the application of any)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1752 M 
+-0.200 0 (other logical operator is a bit pattern whose nth bit depends)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1797 M 
+-0.200 0 (only on the nth bits of the operands and can be determined by)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1842 M 
+-0.200 0 (the following table.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+681 1932 M 
+-0.200 0 (The values of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1438 1932 M 
+-0.200 0 (Operator)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+681 1986 M 
+-0.200 0 (nth bits)A 
+; : 854 1986 1537 45 rc 0 0 0 sco F0_42
+Ji 
+881 1986 M 
+-0.200 0 32 (                )W 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1259 1977 M 
+0.674 0 (\331)A 
+; : 1258 1986 1133 45 rc 0 0 0 sco F0_42
+Ji 
+1285 1986 M 
+-0.200 0 32 (       )W 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1438 1977 M 
+0.674 0 (\332)A 
+; : 1437 1986 954 45 rc 0 0 0 sco F0_42
+Ji 
+1464 1986 M 
+-0.200 0 32 (        )W 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1643 1977 M 
+-0.058 0 (\272)A 
+; : 1639 1986 752 45 rc 0 0 0 sco F0_42
+Ji 
+1666 1986 M 
+-0.200 0 32 (     )W 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1769 1986 M 
+-0.200 0 (NEQV)A 
+; 
+681 2029 N M 1188 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+681 2031 M 
+-0.200 0 (both ones)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1260 2031 M 
+-0.200 0 (1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1439 2031 M 
+-0.200 0 (1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1641 2031 M 
+-0.200 0 (1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1844 2031 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+681 2076 M 
+-0.200 0 (both)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+781 2076 M 
+-0.200 0 ( zeros)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1260 2076 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1439 2076 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1641 2076 M 
+-0.200 0 (1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1844 2076 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+681 2121 M 
+-0.200 0 (otherwise)A 
+; : 879 2121 1512 45 rc 0 0 0 sco F0_42
+Ji 
+906 2121 M 
+-0.200 0 32 (               )W 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1260 2121 M 
+-0.200 0 (0)A 
+; : 1258 2121 1133 45 rc 0 0 0 sco F0_42
+Ji 
+1285 2121 M 
+-0.200 0 32 (       )W 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1439 2121 M 
+-0.200 0 (1)A 
+; : 1437 2121 954 45 rc 0 0 0 sco F0_42
+Ji 
+1464 2121 M 
+-0.200 0 32 (        )W 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1641 2121 M 
+-0.200 0 (0)A 
+; : 1639 2121 752 45 rc 0 0 0 sco F0_42
+Ji 
+1666 2121 M 
+-0.200 0 32 (        )W 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1844 2121 M 
+-0.200 0 (1)A 
+; 
+681 2164 N M 1188 2 rr : 0 0 0 sco O ; 
+LH 
+pagesave restore
+
+(%%[ Page: 17 ]%%)  =
+%%PageTrailer
+
+%%Page: 18 18
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (5.5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 237 M 
+-0.200 0 (Conditional Expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1967 237 M 
+-0.200 0 (15.)A 
+; 
+232 280 N M 575 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 336 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 336 M 
+-0.200 0 (El)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+736 336 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Symbol
+(F2) cvn
+1.000 
+ (Symbol) cvn /Type1 
+F 
+(Symbol) cvn
+mF 
+(F2_42) cvn
+F2
+42 
+xF 
+F2_42
+Ji 
+761 327 M 
+-0.454 0 (\256)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+802 336 M 
+-0.200 0 ( E2, E3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+803 426 M 
+-0.200 0 (El, E2 and E3 may be any logical expressions or expressions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 471 M 
+-0.200 0 (of greater binding power. E2 and E3 may, in addition, be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 516 M 
+-0.200 0 (conditional expressions.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+214 615 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 615 M 
+-0.200 0 (The value of the conditional expression El)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F2_42
+Ji 
+1740 606 M 
+-0.454 0 (\256)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1781 615 M 
+-0.200 0 ( E2, E3 is the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 660 M 
+-0.200 0 (Rvalue of E2 or E3 depending on whether the value of El)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 705 M 
+-0.200 0 (represents true or false respectively. In either case only one)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 750 M 
+-0.200 0 (alternative is evaluated. If the value of El does not represent)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 795 M 
+-0.200 0 (either true or false then the result of the conditional)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 840 M 
+-0.200 0 (expression is undefined.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 930 M 
+-0.200 0 (6.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 930 M 
+-0.200 0 (Commands)A 
+; 
+232 973 N M 200 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1020 M 
+-0.200 0 (6.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1020 M 
+-0.200 0 (Assignment Commands)A 
+; 
+232 1063 N M 475 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1110 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1110 M 
+-0.200 0 (Ll, L2, ... )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1116 1110 M 
+-0.200 0 (Ln := )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1266 1110 M 
+-0.200 0 (Rl, R2, ... )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1566 1110 M 
+-0.200 0 (Rn)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 1200 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1200 M 
+-0.200 0 (The semantics of the a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1238 1200 M 
+-0.200 0 (ssignment command is defined in terms of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1245 M 
+-0.200 0 (the simple assignment command; the command given above is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1290 M 
+-0.200 0 (semantically equivalent to the following sequence:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1335 M 
+-0.200 0 (Ll := )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1143 1335 M 
+-0.200 0 (Rl)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1380 M 
+-0.200 0 (L2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1043 1380 M 
+-0.200 0 ( := R2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1425 M 
+-0.200 0 (. . . .)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1470 M 
+-0.200 0 (Ln := )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1143 1470 M 
+-0.200 0 (Rn)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1560 M 
+-0.200 0 (Note that the individual assignments are executed from left to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1605 M 
+-0.200 0 (right and not simultaneously.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1695 M 
+-0.200 0 (6.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1695 M 
+-0.200 0 (Simple Assignment Commands)A 
+; 
+233 1738 N M 650 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1785 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1785 M 
+-0.200 0 (El :)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1785 M 
+-0.200 0 (E2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1875 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1875 M 
+-0.200 0 (El may either be an identifier, a vector application or an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2161 1875 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1920 M 
+-0.200 0 (expression, and its effect is as follows:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 2010 M 
+-0.200 0 (\(a\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 2010 M 
+-0.200 0 (If El is an identifier:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1051 2055 M 
+-0.200 0 (The identifier must refer to a data item which)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 2100 M 
+-0.200 0 (has an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+987 2100 M 
+-0.200 0 (Lvalue \(i.e., it must not be declared as a manifest)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 2145 M 
+-0.200 0 (named constant\). The assignment replaces the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1937 2145 M 
+-0.200 0 (Rvalue of this)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 2190 M 
+-0.200 0 (data item by the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1237 2190 M 
+-0.200 0 (Rvalue of E2.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 18 ]%%)  =
+%%PageTrailer
+
+%%Page: 19 19
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+819 237 M 
+-0.200 0 (\(b\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+944 237 M 
+-0.200 0 (If El is a vector application:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1060 282 M 
+-0.200 0 (The element referenced by El is updated with the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+944 327 M 
+-0.200 0 (Rvalue of E2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+819 417 M 
+-0.200 0 (\(c\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+944 417 M 
+-0.200 0 (If El is an)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1219 417 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1244 417 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1294 417 M 
+-0.200 0 ( expression:)A 
+; 
+1244 460 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1060 462 M 
+-0.200 0 (The operand of )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1435 462 M 
+-0.200 0 (rv)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1485 462 M 
+-0.200 0 ( is evaluated to yield a value)A 
+; 
+1435 505 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+944 507 M 
+-0.200 0 (which is then interpreted as an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1744 507 M 
+-0.200 0 (Lvalue; The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2044 507 M 
+-0.200 0 (Rvalue of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+944 552 M 
+-0.200 0 (E2 then replaces the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1469 552 M 
+-0.200 0 (Rvalue of the data item referred)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+944 597 M 
+-0.200 0 (to by the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1194 597 M 
+-0.200 0 (Lvalue.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 687 M 
+-0.200 0 (6.3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 687 M 
+-0.200 0 (Routine Commands)A 
+; 
+228 730 N M 400 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 777 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 777 M 
+-0.200 0 (El[ E2, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1012 777 M 
+-0.200 0 (E3, ... En])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 822 M 
+-0.200 0 (where El is a primary expression.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 912 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 912 M 
+-0.200 0 (The above command is executed by assigning the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1861 912 M 
+-0.200 0 (Rvalues of E2,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 957 M 
+-0.200 0 (E3, ... , En to the first n-l formal parameters of the routine)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1002 M 
+-0.200 0 (whose )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+836 1002 M 
+-0.200 0 (Rvalue is the value of El; this routine is then entered.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1047 M 
+-0.200 0 (The execution of this command is complete when the execution of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1092 M 
+-0.200 0 (the routine body is complete.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1182 M 
+-0.200 0 (6.4)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1182 M 
+-0.200 0 (Labelled Commands)A 
+; 
+233 1225 N M 425 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1272 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1272 M 
+-0.200 0 (N: C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+811 1272 M 
+-0.200 0 (    where N is a name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1362 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1362 M 
+-0.200 0 (This declares a data item with name N; its scope is the smallest)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1407 M 
+-0.200 0 (textually enclosing routine body or result block and its initial)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1452 M 
+-0.200 0 (Rvalue is a bit pattern representing the program position of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1497 M 
+-0.200 0 (command C. Its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1061 1497 M 
+-0.200 0 (Lvalue is a manifest constant, and refers to a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1542 M 
+-0.200 0 (position in the global vector \(see section 7.3\) if and only if)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1587 M 
+-0.200 0 (the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+786 1587 M 
+-0.200 0 (labelled command occurs within the scope of a global with)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1632 M 
+-0.200 0 (the same name as the label. The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1486 1632 M 
+-0.200 0 (Rvalue of a label is initialized)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1677 M 
+-0.200 0 (prior to execution of the program.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1767 M 
+-0.200 0 (6.5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1767 M 
+-0.200 0 (Goto Commands)A 
+; 
+233 1810 N M 325 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1857 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1857 M 
+-0.200 0 (goto)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+786 1857 M 
+-0.200 0 (  E)A 
+; 
+686 1900 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1947 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1947 M 
+-0.200 0 (E is evaluated to yield an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1361 1947 M 
+-0.200 0 (Rvalue, then execution is resumed at)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1992 M 
+-0.200 0 (the statement whose label had the same initial )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1861 1992 M 
+-0.200 0 (Rvalue.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 19 ]%%)  =
+%%PageTrailer
+
+%%Page: 20 20
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (6.6)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 237 M 
+-0.200 0 (If Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1972 237 M 
+-0.200 0 (17.)A 
+; 
+226 280 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 327 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 327 M 
+-0.200 0 (if)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 327 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+938 327 M 
+-0.200 0 (do)A 
+; 
+813 370 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+988 327 M 
+-0.200 0 ( C)A 
+; 
+938 370 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 417 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 417 M 
+-0.200 0 (E is evaluated to yield an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1363 417 M 
+-0.200 0 (Rvalue which is then interpreted as)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 462 M 
+-0.200 0 (a truth value. In BCPL, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1288 462 M 
+-0.200 0 (false)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1413 462 M 
+-0.200 0 ( is represented by zero and true)A 
+; 
+1288 505 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 507 M 
+-0.200 0 (by the complement of )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1213 507 M 
+-0.200 0 (false)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1338 507 M 
+-0.200 0 (.)A 
+; 
+1213 550 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1107 597 M 
+-0.200 0 (~ )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1157 597 M 
+-0.200 0 (false)A 
+; 
+1157 640 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 687 M 
+-0.200 0 (If the value of E represents )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1415 687 M 
+-0.200 0 (false)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1540 687 M 
+-0.200 0 ( then the command C is not)A 
+; 
+1415 730 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 732 M 
+-0.200 0 (executed; if it represents )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1365 732 M 
+-0.200 0 (true)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1465 732 M 
+-0.200 0 ( then it is executed and if it)A 
+; 
+1365 775 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 777 M 
+-0.200 0 (represents neither )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1165 777 M 
+-0.200 0 (true)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1265 777 M 
+-0.200 0 ( nor )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1390 777 M 
+-0.200 0 (false)A 
+; 
+1165 820 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1515 777 M 
+-0.200 0 ( then the effect is)A 
+; 
+1390 820 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 822 M 
+-0.200 0 (implementation dependent.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 912 M 
+-0.200 0 (6.7)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 912 M 
+-0.200 0 (Unless Commands)A 
+; 
+232 955 N M 375 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1002 M 
+-0.200 0 (Syntactic )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+482 1002 M 
+-0.200 0 (form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1002 M 
+-0.200 0 (unless)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+966 1002 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1041 1002 M 
+-0.200 0 (do)A 
+; 
+816 1045 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1091 1002 M 
+-0.200 0 ( C)A 
+; 
+1041 1045 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1092 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1092 M 
+-0.200 0 (This statement is exactly equivalent to the following:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1182 M 
+-0.200 0 (if)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+866 1182 M 
+-0.200 0 ( ~ \( E \) )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1091 1182 M 
+-0.200 0 (do)A 
+; 
+816 1225 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1141 1182 M 
+-0.200 0 ( C)A 
+; 
+1091 1225 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1272 M 
+-0.200 0 (6.8)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 1272 M 
+-0.200 0 (While Commands)A 
+; 
+226 1315 N M 350 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 1362 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1362 M 
+-0.200 0 (while)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+937 1362 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1012 1362 M 
+-0.200 0 (do)A 
+; 
+812 1405 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1062 1362 M 
+-0.200 0 ( C)A 
+; 
+1012 1405 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 1452 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1452 M 
+-0.200 0 (This is equiva)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1162 1452 M 
+-0.200 0 (lent to the following sequence:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1497 M 
+-0.200 0 (    )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+912 1497 M 
+-0.200 0 (goto)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1012 1497 M 
+-0.200 0 ( L)A 
+; 
+912 1540 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1542 M 
+-0.200 0 (M:  C)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1587 M 
+-0.200 0 (L:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 1587 M 
+-0.200 0 (if)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+974 1587 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1049 1587 M 
+-0.200 0 (goto)A 
+; 
+924 1630 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1149 1587 M 
+-0.200 0 ( M)A 
+; 
+1049 1630 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1632 M 
+-0.200 0 (where L and M are identifiers which do not occur elsewhere in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1677 M 
+-0.200 0 (the program.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1767 M 
+-0.200 0 (6.9)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1767 M 
+-0.200 0 (Until Commands)A 
+; 
+232 1810 N M 350 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1812 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+807 1812 M 
+-0.200 0 (until)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1812 M 
+-0.200 0 (E)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1018 1812 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1043 1812 M 
+-0.200 0 (do)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1093 1812 M 
+-0.200 0 ( C)A 
+; 
+1043 1855 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1857 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+807 1857 M 
+-0.200 0 (This statement is equivalent to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+807 1902 M 
+-0.200 0 (while)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1902 M 
+-0.200 0 (~ \( E \) )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1193 1902 M 
+-0.200 0 (do)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1243 1902 M 
+-0.200 0 ( C)A 
+; 
+1193 1945 N M 50 2 rr : 0 0 0 sco O ; 
+LH 
+pagesave restore
+
+(%%[ Page: 20 ]%%)  =
+%%PageTrailer
+
+%%Page: 21 21
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (6.10)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 237 M 
+-0.200 0 (Test Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2114 237 M 
+-0.200 0 (18.)A 
+; 
+232 280 N M 325 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 327 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 327 M 
+-0.200 0 (test B then C1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1166 327 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1191 327 M 
+-0.200 0 (or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1241 327 M 
+-0.200 0 ( C2)A 
+; 
+1191 370 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+235 417 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 417 M 
+-0.200 0 (This )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+815 417 M 
+-0.200 0 (statement is equivalent to the following sequence:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 507 M 
+-0.200 0 (if)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1058 507 M 
+-0.200 0 ( ~ \(E\) )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1233 507 M 
+-0.200 0 (goto)A 
+; 
+1008 550 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1333 507 M 
+-0.200 0 ( L)A 
+; 
+1233 550 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 597 M 
+-0.200 0 (Cl)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 642 M 
+-0.200 0 (goto)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1108 642 M 
+-0.200 0 ( M)A 
+; 
+1008 685 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 732 M 
+-0.200 0 (L:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 732 M 
+-0.200 0 (C2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 777 M 
+-0.200 0 (M:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 867 M 
+6.000 0 32 -0.200 0 (where L)D 
+6.800 0 32 ( )W 
+7.000 0 32 -0.200 0 (and M are identifiers which do not occur else)D 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2080 867 M 
+7.000 0 32 -0.200 0 (where in)D 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 912 M 
+-0.200 0 (the program.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1002 M 
+-0.200 0 (6.11)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 1002 M 
+-0.200 0 (Repeated Commands)A 
+; 
+234 1045 N M 425 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+240 1092 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+832 1092 M 
+-0.200 0 (C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+882 1092 M 
+-0.200 0 (repeat)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1124 1092 M 
+-0.200 0 (or)A 
+; 
+882 1135 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+819 1137 M 
+-0.200 0 (C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 1137 M 
+-0.200 0 (repeatwhile)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1144 1137 M 
+-0.200 0 ( E   or   C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1444 1137 M 
+-0.200 0 (repeatuntil)A 
+; 
+869 1180 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1719 1137 M 
+-0.200 0 ( E)A 
+; 
+1444 1180 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1227 M 
+10.000 0 32 -0.200 0 (Where C is any command other than an )D 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1817 1227 M 
+-0.200 0 (if,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1892 1227 M 
+9.800 0 32 ( )W 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1927 1227 M 
+-0.200 0 (unless)A 
+; 
+1817 1270 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2077 1227 M 
+10.000 0 32 -0.200 0 (, )D 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2137 1227 M 
+-0.200 0 (until)A 
+; 
+1927 1270 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2262 1227 M 
+-0.200 0 (,)A 
+; 
+2137 1270 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1272 M 
+-0.200 0 (while)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+941 1272 M 
+-0.200 0 (, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+991 1272 M 
+-0.200 0 (test)A 
+; 
+816 1315 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1091 1272 M 
+-0.200 0 ( or )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1191 1272 M 
+-0.200 0 (for)A 
+; 
+991 1315 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1266 1272 M 
+-0.200 0 ( command.)A 
+; 
+1191 1315 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1362 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1362 M 
+-0.200 0 (C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+736 1362 M 
+-0.200 0 (repeat)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+886 1362 M 
+-0.200 0 ( is equivalent to:)A 
+; 
+736 1405 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 1452 M 
+-0.200 0 (L:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 1452 M 
+-0.200 0 (C)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 1497 M 
+-0.200 0 (    )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1024 1497 M 
+-0.200 0 (goto)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1124 1497 M 
+-0.200 0 ( L)A 
+; 
+1024 1540 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1587 M 
+-0.200 0 (C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+862 1587 M 
+-0.200 0 (repeatwhile)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1137 1587 M 
+-0.200 0 ( E    is equivalent to:)A 
+; 
+862 1630 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 1632 M 
+-0.200 0 (L:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 1632 M 
+-0.200 0 (C)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 1677 M 
+-0.200 0 (if)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1058 1677 M 
+-0.200 0 ( E )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1133 1677 M 
+-0.200 0 (goto)A 
+; 
+1008 1720 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1233 1677 M 
+-0.200 0 ( L)A 
+; 
+1133 1720 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1767 M 
+-0.200 0 (C )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+862 1767 M 
+-0.200 0 (repeatuntil)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1137 1767 M 
+-0.200 0 ( B   is equivalent to:)A 
+; 
+862 1810 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+867 1812 M 
+-0.200 0 (L:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 1812 M 
+-0.200 0 (C)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 1857 M 
+-0.200 0 (if)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1058 1857 M 
+-0.200 0 ( ~ \( E \) )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1283 1857 M 
+-0.200 0 (goto)A 
+; 
+1008 1900 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1383 1857 M 
+-0.200 0 ( L)A 
+; 
+1283 1900 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1947 M 
+4.000 0 32 -0.200 0 (where L is an identifier)D 
+4.800 0 32 ( )W 
+5.000 0 32 -0.200 0 (which does not occur elsewhere in the)D 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1992 M 
+-0.200 0 (program.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 21 ]%%)  =
+%%PageTrailer
+
+%%Page: 22 22
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (6.12  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 237 M 
+-0.200 0 (For Commands)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2038 237 M 
+-0.200 0 (19.)A 
+; 
+253 280 N M 300 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+334 327 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+917 327 M 
+-0.200 0 (for)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+992 327 M 
+-0.200 0 ( N = El )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1192 327 M 
+-0.200 0 (to)A 
+; 
+917 370 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1242 327 M 
+-0.200 0 ( E2 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1342 327 M 
+-0.200 0 (do)A 
+; 
+1192 370 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1392 327 M 
+-0.200 0 ( C)A 
+; 
+1342 370 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 372 M 
+-0.200 0 (where N is a name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+334 462 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+917 462 M 
+-0.200 0 (The above statement is equivalent to:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1015 507 M 
+-0.200 0 (\247)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1124 507 M 
+-0.200 0 (let)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1199 507 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1224 507 M 
+-0.200 0 (N=El)A 
+; 
+1124 550 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1101 552 M 
+-0.200 0 (until)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1226 552 M 
+-0.200 0 ( N > E2 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1426 552 M 
+-0.200 0 (do)A 
+; 
+1101 595 N M 125 2 rr : 0 0 0 sco O ; 
+1426 595 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1228 597 M 
+-0.200 0 (\247 C)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1228 642 M 
+-0.200 0 ( N := N+1   )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1528 642 M 
+-0.200 0 (\247)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1553 642 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1578 642 M 
+-0.200 0 (\247)A 
+; 
+1528 685 N M 25 2 rr : 0 0 0 sco O ; 
+1578 685 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 732 M 
+-0.200 0 (6.13  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 732 M 
+-0.200 0 (Break Commands)A 
+; 
+253 775 N M 350 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+333 822 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+916 822 M 
+-0.200 0 (break)A 
+; 
+916 865 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+332 912 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 912 M 
+-0.200 0 (When this statement is executed it causes execution to be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 957 M 
+-0.200 0 (resumed at the point just after the smallest textually)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 1002 M 
+-0.200 0 (enclosing loop command. The loop commands are those with)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 1047 M 
+-0.200 0 (the following key words:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 1092 M 
+-0.200 0 (until,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1074 1092 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1099 1092 M 
+-0.200 0 (while,)A 
+; 
+924 1135 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1249 1092 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1274 1092 M 
+-0.200 0 (repeat)A 
+; 
+1099 1135 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1424 1092 M 
+-0.200 0 (, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1474 1092 M 
+-0.200 0 (repeatwhile, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1799 1092 M 
+-0.200 0 (repeatuntil)A 
+; 
+1274 1135 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2074 1092 M 
+-0.200 0 ( and)A 
+; 
+1799 1135 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+924 1137 M 
+-0.200 0 (for)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+999 1137 M 
+-0.200 0 (.)A 
+; 
+924 1180 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1272 M 
+-0.200 0 (6.14 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 1272 M 
+-0.200 0 (Finish Commands)A 
+; 
+228 1315 N M 375 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+333 1362 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+916 1362 M 
+-0.200 0 (finish)A 
+; 
+916 1405 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+333 1452 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+916 1452 M 
+-0.200 0 (This causes the execution of the program to cease.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1542 M 
+-0.200 0 (6.15)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+333 1542 M 
+-0.200 0 (Return Commands)A 
+; 
+333 1585 N M 375 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+333 1632 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+797 1632 M 
+-0.200 0 (return)A 
+; 
+797 1675 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+333 1722 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+797 1722 M 
+-0.200 0 (This causes a re)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1197 1722 M 
+-0.200 0 (turn from a routine body to the point just)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+797 1767 M 
+-0.200 0 (after the routine command which made the routine call.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+175 1902 M 
+-0.200 0 (6.16)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+332 1902 M 
+-0.200 0 (Resultis Commands)A 
+; 
+332 1945 N M 425 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+333 1992 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+916 1992 M 
+-0.200 0 (resultis)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1116 1992 M 
+-0.200 0 ( E)A 
+; 
+916 2035 N M 200 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+333 2082 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+797 2082 M 
+-0.200 0 (This causes exec)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1197 2082 M 
+-0.200 0 (ution of the smallest enclosing result)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+797 2127 M 
+-0.200 0 (block to cease and return the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1547 2127 M 
+-0.200 0 (Rvalue of E.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 22 ]%%)  =
+%%PageTrailer
+
+%%Page: 23 23
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (6.17)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 237 M 
+-0.200 0 (Switchon Commands)A 
+; 
+271 280 N M 425 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 327 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 327 M 
+-0.200 0 (switchon)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1069 327 M 
+-0.200 0 ( E into <block>)A 
+; 
+869 370 N M 200 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 372 M 
+-0.200 0 (where the block contains, labels of the form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 462 M 
+-0.200 0 (case)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+969 462 M 
+-0.200 0 ( <constant> :   or)A 
+; 
+869 505 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 507 M 
+-0.200 0 (default)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1044 507 M 
+-0.200 0 ( :)A 
+; 
+869 550 N M 175 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 597 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 597 M 
+-0.200 0 (The expression is first evaluated, then if a case exists)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 642 M 
+-0.200 0 (which has a constant with the same value then execution is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 687 M 
+-0.200 0 (resumed at that label; otherwise if there is a default label)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 732 M 
+-0.200 0 (then execution is continued from there; otherwise execution)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 777 M 
+-0.200 0 (is resumed just after the end of the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1666 777 M 
+-0.200 0 (switchon)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1866 777 M 
+-0.200 0 ( command.)A 
+; 
+1666 820 N M 200 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+872 822 M 
+-0.200 0 (The switch is implemented as a direct switch, a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 867 M 
+-0.200 0 (sequential search or a hash switch depending on the number)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 912 M 
+-0.200 0 (and range of the case constants.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1047 M 
+-0.200 0 (6.18)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1047 M 
+-0.200 0 (Blocks)A 
+; 
+233 1090 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+259 1137 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+867 1137 M 
+-0.200 0 (\247 C < ; C >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+1142 1153 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1158 1137 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1183 1137 M 
+-0.200 0 (\247)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1394 1137 M 
+-0.200 0 (or)A 
+; 
+1183 1180 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+872 1182 M 
+-0.200 0 (\247 < )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+972 1182 M 
+-0.200 0 (let)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1047 1182 M 
+-0.200 0 ( D | <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1197 1182 M 
+-0.200 0 (constdef> >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1472 1198 M 
+-0.200 0 (1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1488 1182 M 
+-0.200 0 ( .< ; C >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1713 1198 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1729 1182 M 
+-0.200 0 (  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1779 1182 M 
+-0.200 0 (\247)A 
+; 
+972 1225 N M 75 2 rr : 0 0 0 sco O ; 
+1779 1225 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1272 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1272 M 
+-0.200 0 (A block is executed by executing the declarations \(if any\) in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1317 M 
+-0.200 0 (sequence and then executing the commands of the block.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1407 M 
+-0.200 0 (The scope of the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1166 1407 M 
+-0.200 0 (definee of a declaration is the region of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1452 M 
+-0.200 0 (program consisting of the declaration itself, the succeeding)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1497 M 
+-0.200 0 (declarations and the command sequence.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1632 M 
+-0.200 0 (7.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1632 M 
+-0.200 0 (Definitions)A 
+; 
+233 1675 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1722 M 
+-0.200 0 (7.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1722 M 
+-0.200 0 (Scope Rules)A 
+; 
+233 1765 N M 275 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 1812 M 
+-0.200 0 (-The SCOPE of a name N is the textual region of program throughout which N)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1857 M 
+-0.200 0 (refers to the same data item. Every occurrence of a name must be in the scope of a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1902 M 
+-0.200 0 (declaration of the same name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 1992 M 
+-0.200 0 (There are three kinds of declaration:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 2082 M 
+-0.200 0 (\(1\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 2082 M 
+-0.200 0 (A formal parameter list of a function or routine: its scope is the function)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 2127 M 
+-0.200 0 (or routine body.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 2217 M 
+-0.200 0 (\(2\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 2217 M 
+-0.200 0 (The set of labels set by colon of a routine or result block)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1883 2217 M 
+-0.200 0 (: its scope is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 2262 M 
+-0.200 0 (the routine or result block body.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 23 ]%%)  =
+%%PageTrailer
+
+%%Page: 24 24
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+1980 237 M 
+-0.200 0 (21.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+271 327 M 
+-0.200 0 (\(3\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 327 M 
+-0.200 0 (Each declaration in the declaration sequence of a block: its scope is the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 372 M 
+-0.200 0 (region of program consisting of the declaration itself, the succeeding)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+423 417 M 
+-0.200 0 (declarations and the command sequence of the block.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 507 M 
+-0.200 0 (Two data items are said to be declared at the same level of definition if they)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 552 M 
+-0.200 0 (were declared in the same formal parameter list, as labels of the same routine or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 597 M 
+-0.200 0 (result block, or in the same definition.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 687 M 
+-0.200 0 (There are three semantic restrictions concerning scope rules; these are:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 777 M 
+-0.200 0 (\(a\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 777 M 
+-0.200 0 (Two data items with the same name may not be declared in the same level of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 822 M 
+-0.200 0 (definition.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 912 M 
+-0.200 0 (\(b\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 912 M 
+-0.200 0 (If a name N is used but not declared )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1333 912 M 
+-0.200 0 (within the body of a function or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 957 M 
+-0.200 0 (routine, then it must either be a manifest named constant or a data item)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 1002 M 
+-0.200 0 (with a manifest constant )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1033 1002 M 
+-0.200 0 (Lvalue, that is it must have been declared as a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 1047 M 
+-0.200 0 (global, an explicit function or routine, or as a label.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+267 1137 M 
+-0.200 0 (\(c\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1137 M 
+-0.200 0 (A label set by colon may not occur within the scope of a data item with)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1182 M 
+-0.200 0 (the same name if that data item was declared within the scope of the label)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+417 1227 M 
+-0.200 0 (and was not a global.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1407 M 
+-0.200 0 (7.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1407 M 
+-0.200 0 (Space Allocation and Extent of Data Items)A 
+; 
+233 1450 N M 1025 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 1497 M 
+-0.200 0 (The EXTENT of a data item is the time through which it exists and has an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2109 1497 M 
+-0.200 0 (Lvalue.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1542 M 
+-0.200 0 (Throughout the extent of a data item, its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1153 1542 M 
+-0.200 0 (Lvalue remains constant and its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1953 1542 M 
+-0.200 0 (Rvalue is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1587 M 
+-0.200 0 (changed only by assignment.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 1677 M 
+-0.200 0 (In BCPL data items can be divided into two classes)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 1767 M 
+-0.200 0 (\(1\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 1767 M 
+-0.200 0 (Static data items:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+474 1857 M 
+-0.200 0 (Those data items whose extents lasts as long as the program execution)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 1902 M 
+-0.200 0 (time; such data items have manifest constant )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1533 1902 M 
+-0.200 0 (Lvalues. Every static data)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 1947 M 
+-0.200 0 (item must have been declared either in a function or routine definition, in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 1992 M 
+-0.200 0 (a global declaration or as a label set by colon.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 2082 M 
+-0.200 0 (\(2\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 2082 M 
+-0.200 0 (Dynamic data items:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+474 2172 M 
+-0.200 0 (Those data items whose extent is limited; the extent of a dynamic data)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 2217 M 
+-0.200 0 (item starts when its declaration is executed and continues until execution)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 2262 M 
+-0.200 0 (leaves the scope of the declaration. Every dynamic data item must be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 2307 M 
+-0.200 0 (declared either by a simple definition, a vector definition or as a formal)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+408 2352 M 
+-0.200 0 (parameter. The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 2352 M 
+-0.200 0 (Lvalue of such a data item is not a manifest constant.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 24 ]%%)  =
+%%PageTrailer
+
+%%Page: 25 25
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+1907 237 M 
+-0.200 0 (22.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 327 M 
+-0.200 0 (A data item is initialized at most once at the start of its extent; static data)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 372 M 
+-0.200 0 (items are )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+353 372 M 
+-0.200 0 (intialized prior to execution of the program and a dynamic data item at the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 417 M 
+-0.200 0 (time when its declaration is executed. Both static and dynamic data items may have)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 462 M 
+-0.200 0 (their )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 462 M 
+-0.200 0 (Rvalues changed by assignment.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 552 M 
+-0.200 0 (During the execution of a recursive function or routine, a single textural)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 597 M 
+-0.200 0 (declaration may give rise to more than one activation of its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1628 597 M 
+-0.200 0 (definee. The only)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 642 M 
+-0.200 0 (declarations which can give rise to multiple )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1228 642 M 
+-0.200 0 (activations are those that declare dynamic)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 687 M 
+-0.200 0 (data items namely:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+356 777 M 
+-0.200 0 (simple definitions, vector definitions and formal parameters.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 867 M 
+-0.200 0 (7.3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 867 M 
+-0.200 0 (Global Declarations)A 
+; 
+226 910 N M 475 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 957 M 
+-0.200 0 (Syntatic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+853 957 M 
+-0.200 0 (global)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1003 957 M 
+-0.200 0 ( \247 <name> : <constant>)A 
+; 
+853 1000 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+909 1002 M 
+-0.200 0 (< ; <name> : <constant> >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+1534 1018 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1550 1002 M 
+-0.200 0 (~  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1625 1002 M 
+-0.200 0 (\247)A 
+; 
+1625 1045 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1137 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1137 M 
+-0.200 0 (The global vector is the sole means of communication between)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1182 M 
+-0.200 0 (separately compiled segments of a program. To call a function)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1227 M 
+-0.200 0 (or routine which is declared in one segment from a position)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1272 M 
+-0.200 0 (in another it is necessary to declare it as a global in each)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1317 M 
+-0.200 0 (of the two segments.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+867 1407 M 
+-0.200 0 (The above declaration declares a set of names to be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1452 M 
+-0.200 0 (global and allocates the positions in the global vector as)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 1497 M 
+-0.200 0 (defined by the manifest constants.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+872 1587 M 
+-0.200 0 (A global variable is a static data item and has an)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+684 1632 M 
+-0.200 0 (Lvalue which is a manifest constant.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1722 M 
+-0.200 0 (7.4)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1722 M 
+-0.200 0 (Manifest Declarations)A 
+; 
+232 1765 N M 525 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1812 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+857 1812 M 
+-0.200 0 (manifest)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1057 1812 M 
+-0.200 0 ( \247 <name> = <constant>)A 
+; 
+857 1855 N M 200 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+928 1857 M 
+-0.200 0 (< ; <name> = <constant> >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1553 1873 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1569 1857 M 
+-0.200 0 (  )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1619 1857 M 
+-0.200 0 (\247)A 
+; 
+1619 1900 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+233 1947 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1947 M 
+-0.200 0 (This declaration declares each name to be a manifest constant)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1992 M 
+-0.200 0 (with a value equal to the value of its associated constant)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 2037 M 
+-0.200 0 (expression. The meaning of a program would remain unchanged)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 2082 M 
+-0.200 0 (if all occurrences of manifest named constants were textually)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 2127 M 
+-0.200 0 (replaced by their corresponding values.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+860 2172 M 
+-0.200 0 (This facility has been provided to improve the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+736 2217 M 
+-0.200 0 (readability of programs and to give the programmer greater)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+736 2262 M 
+-0.200 0 (flexibility in the choice of internal representations of data.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 25 ]%%)  =
+%%PageTrailer
+
+%%Page: 26 26
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (7.5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 237 M 
+-0.200 0 (Simple Definitions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1747 237 M 
+-0.200 0 (.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1972 237 M 
+-0.200 0 (23.)A 
+; 
+226 280 N M 450 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 327 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+868 327 M 
+-0.200 0 (N1, N2, ... )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1168 327 M 
+-0.200 0 (Nn = El, E2, ... En)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 417 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 417 M 
+-0.200 0 (Data items with names )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1281 417 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1306 417 M 
+-0.200 0 (Nl ... )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1481 417 M 
+-0.200 0 (Nn are first declared, but not)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 462 M 
+-0.200 0 (initialized, and then the following assignment command is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 507 M 
+-0.200 0 (executed)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+862 597 M 
+-0.200 0 (Nl, N2, ... )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1162 597 M 
+-0.200 0 (Nn :=El, E2, ... En)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 687 M 
+-0.200 0 ( A simple definition declares dynamic data items.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 822 M 
+-0.200 0 (7.6)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+235 822 M 
+-0.200 0 (Vector Definitions)A 
+; 
+235 865 N M 450 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 912 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+860 912 M 
+-0.200 0 (N = )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+960 912 M 
+-0.200 0 (vec)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1035 912 M 
+-0.200 0 ( <constant>)A 
+; 
+960 955 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 957 M 
+-0.200 0 (      where N is a name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1047 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+650 1047 M 
+-0.200 0 (       The va)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+975 1047 M 
+-0.200 0 (lue of the constant expression must be a manifest)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1092 M 
+-0.200 0 (constant and it defines the maximum allowable subscript value)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1137 M 
+-0.200 0 (of the vector N. The minimum subscript value is always zero.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1182 M 
+-0.200 0 (The initial )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1041 1182 M 
+-0.200 0 (Rvalue of N is the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1516 1182 M 
+-0.200 0 (Lvalue of the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1866 1182 M 
+-0.200 0 (zeroth element)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1227 M 
+-0.200 0 (of the vector; both N and the elements of the vector are)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1272 M 
+-0.200 0 (dynamic data items.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 1317 M 
+-0.200 0 (    The use of a vector is described in section 4.7.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1452 M 
+-0.200 0 (7.7)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 1452 M 
+-0.200 0 (Function Definitions)A 
+; 
+234 1495 N M 500 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+226 1542 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+868 1542 M 
+-0.200 0 (N)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+893 1542 M 
+-0.200 0 ( [ <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+993 1542 M 
+-0.200 0 (namelist>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+1218 1558 M 
+-0.200 0 (1-)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1250 1542 M 
+-0.200 0 ( ] = E)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+868 1587 M 
+-0.200 0 (where N is a name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 1677 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 1677 M 
+-0.200 0 (This defines a function with name)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1556 1677 M 
+-0.200 0 ( N; the data item defined is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 1722 M 
+-0.200 0 (static and has its )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1206 1722 M 
+-0.200 0 (Rvalue initialized prior to execution of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 1767 M 
+-0.200 0 (the program. The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1156 1767 M 
+-0.200 0 (Lvalue of N is a manifest constant, and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 1812 M 
+-0.200 0 (refers to a position in the global vector if and only if the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 1857 M 
+-0.200 0 (function definition is in the scope of a global definition of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 1902 M 
+-0.200 0 (the same name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+860 1992 M 
+-0.200 0 (The names in the name list are called formal parameters)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 2037 M 
+-0.200 0 (and their scope is the body of the function E. The extent of a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 2082 M 
+-0.200 0 (formal parameter lasts from the moment of its initialization)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 2127 M 
+-0.200 0 (in a call until the time when the evaluation of the body is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 2172 M 
+-0.200 0 (complete.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+860 2262 M 
+-0.200 0 (All functions and routines may be defined and used)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+731 2307 M 
+-0.200 0 (recursively.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 2352 M 
+-0.200 0 (Function applications are described in section 4.8.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 26 ]%%)  =
+%%PageTrailer
+
+%%Page: 27 27
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+103 237 M 
+-0.200 0 (7.8)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 237 M 
+-0.200 0 (Routine Definitions)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1972 237 M 
+-0.200 0 (24.)A 
+; 
+234 280 N M 475 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Symbol
+(F2) cvn
+1.000 
+ (Symbol) cvn /Type1 
+F 
+(Symbol) cvn
+mF 
+(F2_42) cvn
+F2
+42 
+xF 
+F2_42
+Ji 
+234 327 M 
+-0.320 0 (\267)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+253 336 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+861 336 M 
+-0.200 0 (N)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+886 336 M 
+-0.200 0 ( [ <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+986 336 M 
+-0.200 0 (namelist>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+1211 352 M 
+-0.200 0 (1-)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1243 336 M 
+-0.200 0 ( ] )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1318 336 M 
+-0.200 0 (be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1368 336 M 
+-0.200 0 ( <block>)A 
+; 
+1318 379 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+860 426 M 
+-0.200 0 (where N is a name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 516 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+736 516 M 
+-0.200 0 (This defines a routine )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1311 516 M 
+-0.200 0 (with name N. The semantics of a routine)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+736 561 M 
+-0.200 0 (definition is exactly as for a function definition except that)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+736 606 M 
+-0.200 0 (the body of a routine is a block and therefore its application)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+736 651 M 
+-0.200 0 (yields no result. A routine should therefore only be called in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+736 696 M 
+-0.200 0 (the context of a command.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 786 M 
+-0.200 0 (Routine commands are described in section 6.3.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 921 M 
+-0.200 0 (7.9)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+229 921 M 
+-0.200 0 (Simultaneous Definitions)A 
+; 
+229 964 N M 600 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+228 1011 M 
+-0.200 0 (Syntactic form:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1113 1011 M 
+-0.200 0 (D <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1188 1011 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1213 1011 M 
+-0.200 0 (and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1288 1011 M 
+-0.200 0 ( D >)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_27
+Ji 
+1388 1027 M 
+-0.200 0 (0)A 
+; 
+1213 1054 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+232 1146 M 
+-0.200 0 (Semantics:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+553 1146 M 
+-0.200 0 (All the definitions are effectively executed  simultaneously and all)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+469 1191 M 
+-0.200 0 (the defined data items have the same scope which, by the scope rules)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+469 1236 M 
+-0.200 0 (given in 7.1, includes the simultaneous definition itself; a set of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+469 1281 M 
+-0.200 0 (mutually recursive functions and routines may thus be declared.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1416 M 
+-0.200 0 (8.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+234 1416 M 
+-0.200 0 (Example Program)A 
+; 
+234 1459 N M 375 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 1506 M 
+-0.200 0 (The program given in this section is part of the BCPL library used in the BCPL)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1551 M 
+-0.200 0 (compiler itself.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 1641 M 
+-0.200 0 (The hardware representation was specially designed to suit an IBM 1050)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1686 M 
+-0.200 0 (typewriter with a 938 golf ball. Note that the symbols '\(' and '\)' represent the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1731 M 
+-0.200 0 (canonical symbols SBRA and SKET respectively.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 1821 M 
+-0.200 0 (In the example \(which was run on the Project MAC 7094 computer\), two files were)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1866 M 
+-0.200 0 (printed out and then the former was compiled into )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1353 1866 M 
+-0.200 0 (relocatable binary.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+284 1911 M 
+-0.200 0 (It is hoped that this example exhibits the readability of BCPL as well as some)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 1956 M 
+-0.200 0 (of its features.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+103 2094 M 
+-0.200 0 (   )A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Oblique
+(F5) cvn
+0.857 
+ (Courier-Oblique) cvn /Type1 
+T 
+(Courier-Oblique) cvn
+mF 
+(F5_42) cvn
+F5
+42 
+xF 
+F5_42
+Ji 
+178 2091 M 
+-0.200 0 ([ but, regrettably, the example doesn't appear in the copy I have -- DMR ])A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 27 ]%%)  =
+%%PageTrailer
+
+%%Trailer
+%%DocumentNeededFonts: Courier-Bold
+%%+ Symbol
+%%+ Courier-Oblique
+%%DocumentSuppliedFonts: 
+Pscript_Win_Driver_Incr dup /terminate get exec
+savelevel0 restore 
+%%Pages: 27
+(%%[ LastPage ]%%)  =
+%%EOF
+

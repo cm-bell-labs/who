@@ -1,0 +1,175 @@
+<html>
+<title>Wise -- A Wireless System Engineering Tool</title>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+
+<h2>Wise -- A Wireless System Engineering Tool</h2>
+<p><img src="2base8.gif">
+Wise is a system developed by Bell Labs for
+helping to design indoor and outdoor wireless systems,
+focusing on where to put base stations to ensure proper radio
+coverage throughout some area.
+<p>
+Wise is a joint effort by several Bell Labs research and development groups.
+Wise is being used to design in-building systems
+for the
+Personal Wireless Telephone and is also one of the prediction components
+used to design outdoor cellular networks.
+For more information on research aspects, look at the 
+<a href="http://www.bell-labs.com/org/1131/wisext.html">Wise home page</a>,
+which includes more references and a cast of characters, or read a 
+<a href="http://cm.bell-labs.com/cm/cs/what/wise/paper-toc.html">
+paper from <i>IEEE Computational Science and Engineering</i></a>
+that, though several years old, is still accurate.
+
+<p>
+Wise has three major components:
+
+<p><li>Prediction: Using data like the location and composition of walls,
+or the terrain and buildings of a city,
+and a set of base station locations,
+Wise predicts received power at every point in the area.  
+The model includes the
+effects of angle of incidence, polarization,
+material dielectric constant, and antenna
+patterns.  Predictions can also account for
+diffraction effects around corners, which is
+particularly significant for outdoor microcell
+environments.  
+Sophisticated geometric algorithms make it possible to predict signal strength
+in a few seconds to a minute in most cases of interest.
+
+<p><li>Optimization: Given parameters and system requirements like
+the minimum allowable signal strength, Wise determines where
+to put base stations
+to maximize the fraction of the area over which the
+performance requirement is met.
+
+<p><li>Interaction: The Wise user interface displays plan, elevation and
+perspective views of a building, and shows signal strength
+throughout the building.  Parameters can be adjusted and
+base-station and portable locations can be set interactively.
+The pictures that follow are all examples of the interface at work.
+<p>
+Wise is a good example of interdisciplinary work:
+radio prediction models,
+computational geometry,
+mathematical optimization,
+and graphical user interfaces
+come together into an effective and efficient tool.
+<p>
+
+
+Here's an example of the kind of building for which Wise is useful:
+a large store, about 150 meters by 100 meters.  
+The picture shows plan and elevation views, and the rulers
+show the dimensions.
+<p><img src="bare.gif">
+
+<p>The next picture shows a perspective view of the building.
+Walls of different materials are shown in different colors;
+the type of material that a wall is made of
+affects how radio waves go through and bounce off it.
+The exterior walls
+are concrete; the blue areas are steel shelves; 
+other interior structures are wood, sheetrock, or glass.
+<p> <img src="perspect.gif">
+
+<p> Wise predicts radio coverage in a building by tracing
+rays from each base station to each point in the building.
+There are an enormous number of such rays, so the Wise
+algorithm makes extensive use of computational geometry to
+cut the number of computations down to something manageable.
+Here are some rays from one base station to one receiver point.
+Only paths with at most two bounces are shown.
+<p><img src="rays.gif">
+
+<p>
+The next step is to place some base stations, and let Wise
+predict the radio coverage throughout the building.
+A new base is added by selecting 
+"Add a base" from the "Base locs" menu
+and dropping it onto the plan view; it can then be moved
+anywhere on the plan and elevation views.
+<p><img src="2base.gif">
+
+<p>The color pattern shows the intensity of radio signal strength
+at each point; points where the signal is below -70 dBm are shown 
+in gray; 
+coverage isn't adequate at such points.
+<p>
+The building is 76 percent covered (shown just above the picture,
+towards the left), which isn't good enough.
+We could move these base stations around ourselves to try to do
+better, or let the program try to move them around for us
+(optimization), or just add more base stations (which costs
+more money).
+
+<p> The next picture shows the effect of moving the
+base stations a small distance
+towards the previously uncovered areas: the coverage goes up
+to 82.5 percent, which isn't bad, though still not good enough.
+<p><img src="2base2.gif">
+
+<p> The next step is to let Wise optimize the base positions
+itself.  This is mathematically quite difficult, so there's
+no guarantee that things will improve, but it's worth a try.
+After a considerable amount of computing, Wise finds slightly
+different positions for the bases, and increases the coverage to
+87.9 percent.  Wise actually finds a sequence of improvements;
+the dark blue circles represent
+base positions found during optimization 
+that were better than the previous best value.
+<p><img src="opt.gif">
+
+<p> The coverage map is left over from the original base positions;
+here's the new coverage map:
+<p><img src="afteropt.gif">
+
+<p>This is quite a bit better, but it seems unlikely that
+100 percent coverage will be reached with only two bases.
+Here's the result of adding one more base, and moving the
+original two around a bit:
+<p><img src="3base.gif">
+<p>This achieves 98 percent; with luck, optimization might be
+able to get this all the way to 100 percent.
+
+<p>Each point in the building receives signals from all
+bases, one of which is strongest.  The next picture shows which
+base gives the strongest signal at each point.  
+Because radio waves bounce around so much, it's quite possible
+for the strongest signal at a point to come from a more distant
+base.  Note especially the disconnected blue regions that are
+far away from the rightmost base station, but still receive
+their strongest signal from it, probably because of strong
+bounces off relatively unimpeded paths.
+<p><img src="strongest3.gif">
+
+<p>This picture shows the zero- and one-bounce rays from
+each base to a receiver point in the upper left corner.
+<p><img src="raytrace3.gif">
+<p>This is the same picture with the colored background
+removed; the rays might be seen more easily:
+<p><img src="raytrace3a.gif">
+
+
+<p>Although the pictures shown above are for indoor
+predictions, Wise is also used for outdoor predictions.
+There are several ways to model outdoor environments,
+and several prediction algorithms that balance accuracy
+against speed.
+The picture below shows a prediction for downtown Boston,
+treating the city as a set of ``urban canyons,'' that is,
+infinitely tall buildings that fill the entire area
+except for streets.
+The prediction itself is based on six bounces 
+and includes diffraction effects.
+<p><img src="boston.gif">
+
+<p>
+
+<hr>
+<a href="mailto:bwk@bell-labs.com">bwk</a>
+<FONT SIZE=-1>
+Mon Apr  6 17:06:05 EDT 1998
+</FONT>
+</body>

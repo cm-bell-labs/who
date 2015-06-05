@@ -1,0 +1,949 @@
+!<arch>
+crunch.c        362839912   9     1     100666  714       `
+#include "defs"
+
+main() {	/* index cruncher
+			accumulates line numbers for adjacent
+			identical lines */
+	char lin1[MAXLINE], lin2[MAXLINE];
+	int i, j;
+
+	if (getlin(lin1) == EOF)
+		return;
+	while (getlin(lin2) != EOF) {
+		for (i = 0; lin1[i] == lin2[i] &&
+		  lin1[i] != '\t' && lin1[i] != '\n'; i++)
+			;	/* compare thru tab */
+		if (lin1[i] != lin2[i]) {
+			putlin(lin1);	/* don't match */
+			for (i = 0; (lin1[i] = lin2[i]) != '\n'; i++)
+				;	/* copy 2 to 1 */
+			}
+		else if (lin1[i] != '\n') {	/* match */
+			for (j = ++i; lin1[j] != '\n'; j++)
+				;	/* find end of lin1 */
+			lin1[j++] = ',';
+			lin1[j++] = ' ';
+			while ((lin1[j++] = lin2[i++]) != '\n')
+				;	/* copy tail */
+			}
+		}
+	putlin(lin1);
+	}
+defs            362839913   9     1     100666  35        `
+#define EOF -1
+#define MAXLINE 200
+
+dofix           362839933   9     1     100666  137       `
+s/!/ /g
+s/	/  /
+s/^.............................................[^,]*,/&\
+     /
+s/~B/~3/g
+s/\([^	 ][^	 ]*\)~\(.\)/\\f\2\1\\fR/g
+s/"/ /g
+
+dofold          362839932   9     1     100666  61        `
+s/^.........................................[^,]*,/&\
+     /
+
+dofont          362839925   9     1     100666  46        `
+s/>B/>3/g
+s/\([^	][^	]*\)>\(.\)/\\f\2\1\\fR/g
+doindex         362839929   9     1     100777  82        `
+cat ch*\
+| permute\
+| sed -f dosetup\
+| sort +0f -1 +1n\
+| crunch\
+| sed -f dofix
+dosetup         362839938   9     1     100666  24        `
+s/ /!/g
+s/~/"/g
+s/>/~/g
+dosort          362839909   9     1     100777  20        `
+sort +0f -1 +1n ch*
+dotry           362839938   9     1     100666  87        `
+cat ch[0123]\
+| permute\
+| sed -f dosetup\
+| sort +0f -1 +1n\
+| crunch\
+| sed -f dofix
+
+first.0         362839823   9     1     100666  244       `
+.pn 325
+.ds RH INDEX OF FIRST LINES
+.ds CH
+.TL
+.PP
+This index contains an alphabetical list of the comment lines that introduce
+each routine,
+with the page number where the final version of the routine occurs.
+.nf
+.ft 3
+.sp 3
+.in .4i
+.tr -\(mi
+firstlines      362839898   9     1     100666  9308      `
+copy _ copy input characters to output	8
+charcount _ count characters in standard input	12
+linecount _ count lines in standard input	13
+wordcount _ count words in standard input	15
+detab _ convert tabs to equivalent number of blanks	20
+tabpos _ return YES if col is a tab stop	20
+settab _ set initial tab stops	21
+getc (simple version) _ get characters from standard input	31
+putc (simple version) _ put characters on standard output	32
+entab _ replace blanks by tabs and blanks	37
+overstrike _ convert backspaces into multiple lines	40
+compress _ compress standard input	44
+putbuf _ output buf(1) ... buf(nsave), clear nsave	44
+expand _ uncompress standard input	48
+crypt _ encrypt and decrypt	49
+xor _ exclusive\(hyor of  a  and  b	50
+index _ find character  c  in string  str	52
+length _ compute length of string	53
+xindex _ invert condition returned by index	54
+translit _ map characters	56
+makset _ make set from  array(k)  in  set	57
+addset _ put  c  in  set(j)  if it fits,  increment  j	57
+filset _ expand set at  array(i)  into  set(j),  stop at  delim	58
+esc _ map  array(i)  into escaped character if appropriate	59
+dodash _ expand array(i-1)-array(i+1) into set(j)... from valid	60
+putdec _ put decimal integer  n  in field width >= w	61
+itoc _ convert integer  int  to char string in  str	62
+ctoi _ convert string at in(i) to integer, increment i	63
+equal _ compare str1 to str2; return YES if equal, NO if not	69
+compare  (simple version) _ compare file 1 to file 2	70
+difmsg _ print line numbers and differing lines	70
+compare _ compare two files for equality	73
+getwrd _ get non\(hyblank word from in(i) into  out, increment i	76
+include _ replace  include file  by contents of file	76
+concat _ concatenate named files onto standard output	78
+fcopy _ copy file  in  to file  out	78
+print _ print files with headings	79
+fprint _ print file "name" from  fin	80
+skip _ output  n  blank lines	80
+head _ print top of page header	81
+print  (default input STDIN) _ print files with headings	82
+makecopy _ copy one file to another	85
+archive _ file maintainer	88
+help _ diagnostic printout	88
+getfns _ get file names into fname, check for duplicates	89
+update _ update existing files, add new ones at end	91
+amove _ move  name1  to  name2	92
+addfil _ add file "name"  to archive	92
+makhdr _ make header line for archive member	93
+scopy _ copy string at from(i) to to(j)	93
+fsize _ size of file in characters	94
+table _ print table of archive contents	95
+tprint _ print table entry for one member	95
+gethdr _ get header info from  fd	96
+fskip _ skip  n  characters on file  fd	96
+filarg _ check if name matches argument list	97
+notfnd _ print "not found" message	97
+extrac _ extract files from archive	99
+acopy _ copy  size  characters from  fdi  to  fdo	100
+delete _ delete files from archive	100
+replac _ replace or delete files	101
+bubble _ bubble sort v(1) ... v(n) increasing	105
+shell _ Shell sort v(1)...v(n) increasing	106
+sort _ sort text lines in memory	108
+gtext _ get text lines into linbuf	108
+ptext _ output text lines from linbuf	109
+shell _ Shell sort for character lines	109
+exchan _ exchange linbuf(lp1) with linbuf(lp2)	110
+compar _ compare linbuf(lp1) with linbuf(lp2)	111
+quick _ quicksort for character lines	115
+sort _ external sort of text lines	117
+makfil _ make new file for number  n	118
+gname _ make unique name for file id  n	118
+gopen _ open group of files low  ...  lim	118
+gremov _ remove group of files  low ... lim	119
+merge _ merge infil(1) ... infil(nfiles) onto outfil	120
+reheap _ propagate linbuf(linptr(1)) to proper place in heap	121
+unique _ strip adjacent duplicate lines	125
+kwic _ make keyword in context index	128
+putrot _ create lines with keyword at front	129
+rotate _ output rotated line	129
+type _ determine type of character	130
+unrot _ unrotate lines rotated by kwic	131
+find _ find patterns in text	139
+match _ find match anywhere on line	140
+amatch  (non\(hyrecursive) _ look for match starting at lin(from)	144
+patsiz _ returns size of pattern entry at pat(n)	145
+omatch _ try to match a single pattern at pat(j)	146
+locate _ look for c in char class at pat(offset)	147
+getpat _ convert argument into pattern	148
+makpat _ make pattern from arg(from), terminate at delim	150
+getccl _ expand char class at arg(i) into pat(j)	151
+stclos _ insert closure entry at pat(j)	152
+change _ change  "from"  into  "to"	156
+getsub _ get substitution pattern into sub	157
+maksub _ make substitution string in sub	158
+catsub _ add replacement text to end of  new	158
+getlst _ collect line numbers (if any) at lin(i), increment i	173
+getone _ evaluate one line number expression	174
+skipbl _ skip blanks and tabs at lin(i)...	175
+getnum _ convert one term to line number	175
+optpat _ make pattern if specified at lin(i)	176
+ptscan _ scan for next occurrence of pattern	177
+nextln _ get line after "line"	178
+prevln _ get line before "line"	178
+defalt _ set defaulted line numbers	180
+doprnt _ print lines from through to	181
+docmd _ handle all commands except globals (incomplete)	182
+append _ append lines after "line"	183
+clrbuf  (in memory) _ initialize for new file	185
+getind _ locate line index in buffer	186
+gettxt  (in memory) _ locate text for line and make available	186
+relink _ rewrite two half links	186
+setbuf (in memory) _ initialize line storage buffer	187
+inject  (in memory) _ put text from lin after curln	188
+ckp _ check for "p" after command	190
+delete _ delete lines from through to	190
+move _ move line1 through line2 after line3	192
+getrhs _ get substitution string for "s" command	194
+subst _ substitute "sub" for occurrences of pattern	195
+getfn _ get file name from lin(i)...	198
+doread _ read "file" after "line"	199
+dowrit _ write "from" through "to" into file	199
+ckglob _ if global prefix, mark lines to be affected	201
+doglob _ do command at lin(i) on all marked lines	202
+docmd _ handle all commands except globals	203
+edit _ main routine	206
+inject  (scratch file) _ insert lin after curln, write scratch	209
+maklin (scratch file) _ make new line entry, copy text to scratch	210
+gettxt (scratch file) _ locate text for line, copy to txt	211
+setbuf (scratch file) _ create scratch file, set up line 	212
+clrbuf  (scratch file) _ dispose of scratch file	212
+format _ text formatter main program	224
+comand _ perform formatting command	225
+comtyp _ decode command type	226
+getval _ evaluate optional numeric argument	227
+set _ set parameter and check range	228
+text _ process text lines (interim version 1)	229
+put _ put out line with proper spacing and indenting	230
+phead _ put out page header	231
+pfoot _ put out page footer	231
+puttl _ put out title line with optional page number	231
+gettl _ copy title from buf to ttl	232
+space _ space  n  lines or to bottom of page	233
+format _ text formatter main program	234
+leadbl _ delete leading blanks, set tival	236
+text _ process text lines (interim version 2)	237
+putwrd _ put a word in outbuf	238
+width _ compute width of character string	239
+brk _ end current filled line	239
+putwrd _ put a word in outbuf; includes margin justification	240
+spread _ spread words to justify right margin	241
+center _ center a line by setting tival	243
+underl _ underline a line	243
+text _ process text lines (final version)	244
+gettok _ get alphanumeric string or single non\(hyalpha for define	255
+putbak _ push character back onto input	256
+ngetc _ get a (possibly pushed back) character	256
+pbstr _ push string back onto input	257
+define _ simple string replacement macro processor	258
+getdef (for no arguments) _ get name and definition	259
+lookup _ locate name, extract definition from table	261
+instal _ add name and definition to table	262
+macro _ expand macros with arguments	270
+puttok _ put a token either on output or into evaluation stack	272
+putchr _ put single char on output or into evaluation stack	272
+push _ push ep onto argstk, return new pointer ap	272
+eval _ expand args i through j: evaluate builtin or push back defn	273
+dodef _ install definition in table	274
+doif _ select one of two arguments	278
+doincr _ increment argument by 1	278
+pbnum _ convert number to string, push back on input	278
+dosub _ select substring	279
+gettok _ get token for Ratfor	289
+synerr _ report Ratfor syntax error	290
+lex _ return lexical type of token	291
+alldig _ return YES if str is all digits	292
+parse _ parse Ratfor source program	299
+unstak _ unstack at end of statement	300
+ratfor _ main program for Ratfor	300
+ifcode _ generate initial code for if	302
+ifgo _ generate "if(.not.(...))goto lab"	302
+balpar _ copy balanced paren string	303
+elseif _ generate code for end of if before else	304
+labgen _ generate  n  consecutive labels, return first one	304
+labelc _ output statement number	305
+docode _ generate code for beginning of do	306
+eatup _ process rest of statement; interpret continuations	307
+dostat _ generate code for end of do statement	307
+whilec _ generate code for beginning of while 	308
+whiles _ generate code for end of while	308
+brknxt _ generate code for break and next	309
+otherc _ output ordinary Fortran statement	309
+outdon _ finish off an output line	310
+outch _ put one character into output buffer	310
+outtab _ get past column 6	311
+outstr _ output string	311
+outnum _ output decimal number	312
+outcon _ output "n   continue"	312
+outgo _ output "goto  n"	312
+getlin.c        362839915   9     1     100666  218       `
+#include "defs"
+
+getlin(lin)
+	char lin[];	/* get a line of text */
+	{int i;
+
+	for (i = 0; (lin[i] = getchar()) != '\n' && lin[i] != '\0'; i++)
+		;	/* eat thru newline or eof */
+	return ((lin[i] == '\n') ? i : EOF);
+	}
+ind.0           362839867   9     1     100666  864       `
+.pn 331
+.ds RH INDEX
+.ds CH
+.TL
+.PP
+.ds CH INDEX
+This index was prepared in large part with the tools
+described in the book, including
+.UL sort ,
+.UL find ,
+.UL translit ,
+.UL edit ,
+and only two small, special-purpose programs.
+The first, a variant of
+.UL kwic ,
+accepts lines of the form
+.P1
+self reference:331
+.P2
+and generates the permutations
+.P1
+self reference:331
+reference, self:331
+.P2
+These lines were sorted, by dictionary order before the colon
+and numerically after, then delivered to a variant of
+.UL unique
+that changes occurrences such as
+.P1
+self reference:331
+self reference:337
+.P2
+into
+.P1
+self reference:331, 337
+.P2
+.UL find
+was used extensively to locate references to indexed terms.
+.PP
+In this index, page numbers in italics refer to
+.ul
+definitions
+of routines and
+.UL common
+blocks.
+.sp 2
+.nr PS 8
+.nr VS 9
+.LP
+.if t .2C
+.nf
+.tr ~
+.tr ^
+n2doindex       362839939   9     1     100666  85        `
+cat ch*\
+| permute\
+| sed -f ndosetup\
+| sort +0df -1 +1n\
+| crunch\
+| sed -f ndofix
+
+names           362839900   9     1     100666  1336      `
+copy
+charcount
+linecount
+wordcount
+detab
+tabpos
+settab
+getc
+putc
+entab
+overstrike
+compress
+putbuf
+expand
+crypt
+xor
+index
+length
+xindex
+translit
+makset
+addset
+filset
+esc
+dodash
+putdec
+itoc
+ctoi
+equal
+compare
+difmsg
+compare
+getwrd
+include
+concat
+fcopy
+print
+fprint
+skip
+head
+print
+makecopy
+archive
+help
+getfns
+update
+amove
+addfil
+makhdr
+scopy
+fsize
+table
+tprint
+gethdr
+fskip
+filarg
+notfnd
+extrac
+acopy
+delete
+replac
+bubble
+shell
+sort
+gtext
+ptext
+shell
+exchan
+compar
+quick
+sort
+makfil
+gname
+gopen
+gremov
+merge
+reheap
+unique
+kwic
+putrot
+rotate
+type
+unrot
+find
+match
+amatch
+amatch
+a
+amatch
+patsiz
+omatch
+locate
+getpat
+makpat
+getccl
+stclos
+change
+getsub
+maksub
+catsub
+getlst
+getone
+skipbl
+getnum
+optpat
+ptscan
+nextln
+prevln
+defalt
+doprnt
+docmd
+append
+clrbuf
+getind
+gettxt
+relink
+setbuf
+inject
+ckp
+delete
+move
+getrhs
+subst
+getfn
+doread
+dowrit
+ckglob
+doglob
+edit
+docmd
+inject
+maklin
+gettxt
+setbuf
+clrbuf
+format
+comand
+comtyp
+getval
+set
+text
+put
+phead
+pfoot
+puttl
+gettl
+space
+format
+leadbl
+text
+putwrd
+width
+brk
+putwrd
+spread
+center
+underl
+text
+gettok
+ngetc
+putbak
+pbstr
+define
+getdef
+lookup
+instal
+macro
+puttok
+putchr
+push
+eval
+dodef
+equal
+doif
+doincr
+pbnum
+dosub
+gettok
+synerr
+lex
+alldig
+parse
+unstak
+ratfor
+ifcode
+ifgo
+balpar
+elseif
+labgen
+labelc
+docode
+eatup
+dostat
+whilec
+whiles
+brknxt
+otherc
+outdon
+outch
+outtab
+outstr
+outnum
+outcon
+outgo
+ndofix          362839938   9     1     100666  146       `
+s/!/>3/g
+s/"/>I/g
+s/\*/ /g
+s/+/~/g
+s/	/  /
+s/^.............................................[^,]*,/&\
+     /
+s/\([^	 ][^	 ]*\)>\(.\)/\\f\2\1\\fR/g
+ndoindex        362839926   9     1     100666  83        `
+cat ch*\
+| permute\
+| sed -f dosetup\
+| sort +0df -1 +1n\
+| crunch\
+| sed -f dofix
+
+ndosetup        362839939   9     1     100666  34        `
+s/>B/!/g
+s/>I/"/g
+s/ /*/g
+s/~/+/g
+permute.c       362839925   9     1     100666  700       `
+#include "defs"
+
+main() {	/* index permuter
+			generates permutations of index line */
+
+	char lin[MAXLINE];
+	int i, j, k, l;
+
+	while (getlin(lin) != EOF)
+		for (i = 0; ; ) {
+			for (j = i; lin[j] == ' '; j++)
+				;	/* skip blanks */
+			if (lin[j] == '\t' || lin[j] == '\n')
+				break;
+			for (k = j; lin[k] != '\t' && lin[k] != '\n'; k++)
+				putchar(lin[k]);	/* put head */
+			if (i > 0) {	/* put ", old head" */
+				putchar(',');
+				putchar(' ');
+				for (l = 0; l < i; l++)
+					putchar(lin[l]);
+				}
+			if (lin[k] != '\n')	/* put tail */
+				while (putchar(lin[k++]) != '\n')
+					;
+			for (i = j; lin[i] != ' ' && lin[i] != '\t' &&
+			  lin[i] != '\n'; i++)
+				;	/* find next word */
+			}
+	}
+prim.0          362839870   9     1     100666  2461      `
+.pn 323
+.ds RH PRIMITIVES AND SYMBOLIC CONSTANTS
+.ds CH APPENDIX
+.TL
+.PP
+The primitives are routines needed to interface the programs in this book
+to the operating system upon which they run.
+Most programs need only
+.UL getlin
+and
+.UL putlin
+or
+.UL getc
+and
+.UL putc ,
+and of course one of these pairs can be implemented
+in terms of the other.
+.UL getch
+and
+.UL putch
+fall into the same category.
+Similarly,
+.UL error
+and
+.UL cant
+can be written using
+.UL remark .
+.UL remark
+is called a primitive only because there is no implementation-independent way
+in Fortran
+to detect the end of a quoted string passed to a subroutine.
+.PP
+Many of the programs need
+.UL getarg ;
+an adequate temporary version can be made
+by reading arguments from a file,
+since all of the programs read the arguments
+in order and only once.
+.PP
+File system interactions 
+are handled by
+.UL open ,
+.UL close ,
+.UL create
+and
+.UL remove .
+These are needed by the file programs of
+Chapter 3,
+.UL sort
+in Chapter 4
+and
+.UL edit
+in Chapter 6.
+.UL edit
+also requires
+.UL seek
+and
+.UL readf
+for the scratch file version.
+.WS
+.PP
+The following routines, which were not presented in the text,
+are needed to complete certain programs.
+Some are available in Fortran, usually under an alias.
+These are
+.UL abs
+.UL iabs ), (
+.UL max
+.UL max0 ), (
+.UL min
+.UL min0 ), (
+and
+.UL mod .
+The logical functions
+.UL and ,
+.UL or
+and
+.UL not
+are used only by
+.UL xor
+in
+.UL crypt .
+The routines
+.UL init
+(for
+.UL format )
+and
+.UL initkw
+(for
+.UL ratfor )
+initialize parameters as specified in the text.
+.WS
+.PP
+The following is a list of consistent values
+for the symbolic constants used throughout the book.
+.IT n
+stands for an unspecified numeric value, typically the size of an array
+used for a stack or a string of characters.
+The list omits names beginning with
+.UL MAX ,
+which are also numeric values.
+Also omitted are
+constants of the form
+.UI LET x
+and
+.UI DIG n ,
+which
+indicate the internal representation used for
+the corresponding letter
+.IT x
+or digit
+.IT n ,
+respectively.
+It is assumed that characters are encoded internally as small positive integers.
+.PP
+Printable characters are used as much as possible for parameter
+values to improved the readability of code and of diagnostic
+printouts inserted while debugging.
+Non-printing characters are indicated in italic and actual numeric
+values are in Roman.
+.sp 100
+.nf
+.ps 8
+.nr PS 8
+.vs 9p
+.nr VS 9
+.tr -\(mi
+.ft 3
+.ta .9i 1.7i  2.6i 3.4i 4.3i
+
+prim.1          362839873   9     1     100666  1798      `
+ALPHA	a	FI	\fR1\fP	NOT	\*n
+AND	&	FO	\fR13\fP	OK	\fR\*m2\fP
+ANY	?	FOLD	$	PAGELEN	\fR66\fP
+APPENDCOM	a	FORWARD	\fR1\fP	PAGENUM	#
+ARB	\fIn\fP	GLOBAL	g	PAGEWIDTH	\fR60\fP
+ARGFLAG	$	HE	\fR12\fP	PERIOD	.
+ARGSIZE	\fIn\fP	HUGE	\fR1000\fP	PL	\fR14\fP
+BACKSCAN	\e	IFTYPE	\fR-5\fP	PLUS	+
+BACKSPACE	\fIbackspace\fP	IN	\fR7\fP	PREV	\fR0\fP
+BACKWARD	\fR-1\fP	INCTYPE	\fR-6\fP	PREVCL	\fR2\fP
+BLANK	\fIblank\fP	INFILE1	\fR1\fP	PRINT	p
+BOL	%	INFILE2	\fR2\fP	PRINTCUR	=
+BOTTOM	\fR62\fP	INSERT	i	PRINTFIL	f
+BP	\fR5\fP	INSIZE	\fIn\fP	QUIT	q
+BR	\fR3\fP	LASTLINE	$	RBRACE	}
+BUFENT	\fR5\fP	LBRACE	{	RBRACK	]
+BUFSIZE	\fIn\fP	LBRACK	[	RCODE	\fR0\fP
+CALLSIZE	\fIn\fP	LENG	\fR4\fP	READ	\fR0\fP
+CCL	[	LETTER	a	READCOM	\f3r\fP
+CCLEND	]	LEXBREAK	\fR-8\fP	READWRITE	\fR2\fP
+CE	\fR10\fP	LEXDIGITS	\fR-9\fP	RM	\fR8\fP
+CHANGE	c	LEXDO	\fR-10\fP	RPAREN	)
+CHAR	a	LEXELSE	\fR-11\fP	SCAN	\*S
+CLOSIZE	\fR4\fP	LEXIF	\fR-12\fP	SEEKADR	\fR3\fP
+CLOSURE	\*s	LEXNEXT	\fR-13\fP	SEMICOL	;
+COLON	:	LEXOTHER	\fR-14\fP	SHARP	#
+COMMA	,	LEXWHILE	\fR-15\fP	SKIP	\fIblank\fP
+COMMAND	.	LINE0	\fR0\fP	SP	\fR6\fP
+COUNT	\fR1\fP	LOGPTR	\fIn\fP	SQUOTE	\(fm
+CURLINE	.	LPAREN	(	STAR	\*s
+DASH	\*m	LS	\fR4\fP	START	\fR3\fP
+DEFTYPE	\fR-4\fP	MARGIN1	\fR2\fP	STDIN	\fR5\fP
+DEL	d	MARGIN2	\fR2\fP	STDOUT	\fR6\fP
+DELCOM	d	MARK	\fR2\fP	SUBSTITUTE	s
+DIGIT	0	MERGEORDER	\fR7\fP	SUBTYPE	\fR7\fP
+DITTO	\fR-3\fP	MERGETEXT	\fIn\fP	TAB	\fItab\fP
+DOLLAR	$	MIDDLE	\fR40\fP	TBL	t
+DQUOTE	"	MINUS	\*m	TEXT	\fR3\fP
+ENTER	e	MOVECOM	m	THRESH	\fR5\fP
+EOF	\fR-1\fP	NAMESIZE	\fIn\fP	TI	\fR9\fP
+EOL	$	NCCL	\f3n\fP	UL	\fR11\fP
+EOS	\fR-2\fP	NEXT	\fR1\fP	UNDERLINE	\(ru\(ru
+ERR	\fR-3\fP	NEWLINE	\fInewline\fP	UNKNOWN	\fR0\fP
+ERROUT	\fR7\fP	NF	\fR2\fP	UPD	u
+ESCAPE	\*a	NFILES	\fIn\fP	WRITE	\fR1\fP
+EVALSIZE	\fIn\fP	NO	\fR0\fP	WRITECOM	w
+EXCLUDE	x	NOSKIP	+	YES	\fR1\fP
+EXTR	x	NOSTATUS	\fR0\fP	
+putlin.c        362839924   9     1     100666  150       `
+#include "defs"
+
+putlin(lin)
+	char lin[];	/* put a line of text */
+	{int i;
+
+	for (i = 0; putchar(lin[i]) != '\n'; i++)
+		;	/* put thru newline */
+	}
+symcons         362839866   9     1     100666  1722      `
+ALPHA	a
+AND	&
+ANY	?
+APPENDCOM	a
+ARB	\fIn\fP
+ARGFLAG	$
+ARGSIZE	\fIn\fP
+BACKSCAN	\e
+BACKSPACE	\fIbackspace\fP
+BACKWARD	\e
+BLANK	\fIblank\fP
+BOL	%
+BOTTOM	\fR62\fP
+BP	\fR5\fP
+BR	\fR3\fP
+BUFENT	\fR5\fP
+BUFSIZE	\fIn\fP
+CALLSIZE	\fIn\fP
+CCL	[
+CCLEND	]
+CE	\fR10\fP
+CHANGE	c
+CHAR	a
+CLOSIZE	\fR4\fP
+CLOSURE	\*s
+COLON	:
+COMMA	,
+COMMAND	.
+COUNT	\fR1\fP
+CURLINE	.
+DASH	\*m
+DEFTYPE	\fR-4\fP
+DEL	d
+DELCOM	d
+DIGIT	0
+DITTO	\fR-2\fP
+DOLLAR	$
+DQUOTE	"
+ENTER	e
+EOF	\fR-3\fP
+EOL	$
+EOS	\fR-1\fP
+ERR	\fR-2\fP
+ERROUT	\fR7\fP
+ESCAPE	\*a
+EVALSIZE	\fIn\fP
+EXCLUDE	x
+EXTR	e
+FI	\fR1\fP
+FO	\fR13\fP
+FOLD	$
+FORWARD	\*S
+GLOBAL	g
+HE	\fR12\fP
+HUGE	\fR1000\fP
+IFTYPE	\fR-5\fP
+IN	\fR7\fP
+INCTYPE	\fR-6\fP
+INSERT	i
+INSIZE	\fIn\fP
+LASTLINE	$
+LBRACE	{
+LBRACK	[
+LENG	\fR4\fP
+LETTER	a
+LEXBREAK	\fR-8\fP
+LEXDIGITS	\fR-9\fP
+LEXDO	\fR-10\fP
+LEXELSE	\fR-11\fP
+LEXIF	\fR-12\fP
+LEXNEXT	\fR-13\fP
+LEXOTHER	\fR-14\fP
+LEXWHILE	\fR-15\fP
+LOGPTR	\fR30\fP
+LPAREN	(
+LS	\fR4\fP
+MARK	\fR2\fP
+MERGEORDER	\fR7\fP
+MERGETEXT	\fIn\fP
+MIDDLE	\fR40\fP
+MINUS	\*m
+MOVECOM	m
+NAMESIZE	\fIn\fP
+NAMESIZE	\fIn\fP
+NCCL	\fIn\fP
+NEXT	\fR1\fP
+NEWLINE	\fInewline\fP
+NF	\fR2\fP
+NFILES	\fIn\fP
+NO	\fR0\fP
+NOSKIP	+
+NOSTATUS	\fR-0\fP
+NOT	\*n
+OK	\fR-1\fP
+PAGELEN	\fR66\fP
+PAGENUM	#
+PAGEWIDTH	\fR60\fP
+PERIOD	.
+PL	\fR14\fP
+PLUS	+
+PREV	\fR0\fP
+PREVCL	\fR2\fP
+PRINT	p
+PRINTCUR	=
+PRINTFIL	f
+QUIT	q
+RBRACE	}
+RBRACK	]
+RCODE	\fR0\fP
+READ	\fR0\fP
+READCOM	\fIn\fP
+READWRITE	\fR2\fP
+RM	\fR8\fP
+RPAREN	)
+SCAN	\*S
+SEEKADR	\fR3\fP
+SEMICOL	;
+SHARP	#
+SKIP	\fRblank\fP
+SP	\fR6\fP
+SQUOTE	\(fm
+STAR	\*s
+START	\fR3\fP
+STDIN	\fR5\fP
+STDOUT	\fR6\fP
+SUBSTITUTE	s
+SUBTYPE	\fR7\fP
+TAB	\fItab\fP
+TBL	t
+TEXT	\fR3\fP
+THRESH	\fR5\fP
+TI	\fR9\fP
+UL	\fR11\fP
+UNDERLINE	\(ul
+UNKNOWN	\fR0\fP
+UPD	u
+WRITE	\fR1\fP
+WRITECOM	w
+YES	\fR1\fP

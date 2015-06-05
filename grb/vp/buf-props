@@ -1,0 +1,20 @@
+*
+* Buffer properties of slowscan model
+*
+
+* free from deadlocks?
+prop DeadlockFree = max(X.<<-eps>>T & [-]X);
+
+* can 0 be sent if never received? 
+prop AutoOut = max(X.[['cmdOut%0%]]F & [[-cmdIn%0%]]X);
+
+* if 0 is received will it eventually be sent? 
+prop EvenOut = max(X.([[cmdIn%1%]]min(Y.[[-'cmdOut%1%,eps]]Y)) & 
+		      [[-]]X);
+
+* if 0 is received continuously will it eventually be sent continuously? 
+prop ContOut = max(X.min(Y.max(Z.[[cmdIn%1%,'cmdOut%0%]]X &
+				 [[cmdIn%0%]]Y &
+				 [['cmdOut%1%,eps]]Z)));
+
+

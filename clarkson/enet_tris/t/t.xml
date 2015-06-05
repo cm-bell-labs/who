@@ -1,0 +1,517 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<?xml-stylesheet href="xbl-shape-bindings.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML"
+	xmlns:svg="http://www.w3.org/2000/svg" 
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+>
+
+<head>
+  <title>Metric Space Epsilon-nets and Their Applications</title>
+<!-- metadata -->
+  <meta name="generator" content="S5" />
+  <meta name="version" content="S5 1.1" />
+  <meta name="presdate" content="20050128" />
+  <meta name="author" content="Ken Clarkson &bull;" />
+  <meta name="company" content="Bell Labs" />
+<!-- configuration parameters -->
+  <meta name="defaultView" content="slideshow" />
+  <meta name="controlVis" content="hidden" />
+<!-- style sheet links -->
+  <link rel="stylesheet" href="ui/default/slides.css" type="text/css"
+ media="projection" id="slideProj" />
+  <link rel="stylesheet" href="ui/default/outline.css" type="text/css"
+ media="screen" id="outlineStyle" />
+  <link rel="stylesheet" href="ui/default/print.css" type="text/css"
+ media="print" id="slidePrint" />
+  <link rel="stylesheet" href="ui/default/opera.css" type="text/css"
+ media="projection" id="operaFix" />
+<!-- embedded styles -->
+  <style type="text/css" media="all">
+.imgcon {width: 525px; margin: 0 auto; padding: 0; text-align: center;}
+#anim {width: 270px; height: 320px; position: relative; margin-top: 0.5em;}
+#anim img {position: absolute; top: 42px; left: 24px;}
+img#me01 {top: 0; left: 0;}
+img#me02 {left: 23px;}
+img#me04 {top: 44px;}
+img#me05 {top: 43px;left: 36px;}
+  </style>
+  <style type="text/css" media="all">
+    .floatright {float : right;}
+  </style>
+  <script src="ASCIIMathML.js" type="text/javascript" />
+  <!-- S5 JS -->
+  <script src="graded_triang_data.js" type="text/javascript" />
+  <script src="impl.js" type="text/javascript" />
+  <script src="ui/default/slides.js" type="text/javascript" />
+
+</head>
+<body>
+<div class="layout">
+   <div id="controls">
+    <form action="#" id="controlForm" onmouseover="showHide('s');" onmouseout="showHide('h');">
+      <div id="navLinks" class="hideme">
+        <a accesskey="t" id="toggle" href="javascript:toggle();">&#216;</a>
+        <a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;</a>
+        <a accesskey="x" id="next" href="javascript:go(1);">&raquo;</a>
+      <div id="navList" ><select id="jumplist" onchange="go('j');"></select></div>
+      </div>
+    </form>
+  </div>
+<div id="currentSlide"><!-- DO NOT EDIT --></div>
+<div id="footer">
+   <h1>Nets</h1>
+   <h2>October 3, 2005</h2>
+</div>
+
+</div>
+
+<ol class="xoxo presentation">
+  <li class="slide">
+    <h1>Metric Space `epsilon`-Nets and Their Applications</h1>
+	<br/>
+     <div width="400" style="position:absolute; bottom:-1in; right:2in;">
+<!--		<canvas id="title_canvas" width="300" height="300"></canvas>-->
+	<applet code="jvLite.class" archive="javaView/jvLite.jar" name="JavaView"
+				width="350" height="350" style="float:right;" hspace="10" vspace="10" codebase="./">
+		<param name="Model" value="javaView/sphere.jvx"/>
+		<param name="displayFile" value="javaView/sphere.jvd"/>
+		<param name="autoRotate" value="Hide"/>
+		<param name="background" value="255;255;255"/>
+		<param name="Border" value="Hide"/>
+		<param name="Antialias" value="Show"/>
+		<param name="Depthcue" value="Hide"/>
+	</applet>
+
+     </div>
+   <h3>Ken Clarkson</h3>
+    <h4><a href="http://www.research.bell-labs.com/%7E/clarkson/" rel="external">Bell Labs</a></h4>
+  </li>
+  
+  
+  
+  
+   <li class="slide">
+    <h1>Outline</h1>
+    <ul>
+      <li>Metric spaces, `epsilon`-nets, coverings, packings, Delone sets...</li>
+      <li>Building nets</li>
+      <li>Using nets:</li>
+      <ul>
+		<li>as roadmaps</li>
+		<li>for nearest neighbor searching</li>
+		<li>as mesh vertices for approximating curves (and surfaces)</li>
+		<li>as triangulation vertices for approximating functions</li>
+	   </ul>
+	 </ul>
+ </li>
+
+
+  <li class="slide">
+    <h1>Metric Spaces</h1>
+    <ul>
+      <li>A metric space is a collection of points `U` and a distance measure `D` so that:</li>
+      <ul>
+        <li>`D(x,y)=0 iff x=y`<img src="f/metric_spaces.png" align="right"/></li>
+        <li>`D(x,y)=D(y,x)`</li>
+        <li>`D(x,z) &lt;= D(x,y) + D(y,z)`</li>
+      </ul>
+      <li>Examples:</li>
+      <ul>
+        <li>Nodes in a graph</li>
+        <li>Pixels in an image</li>
+        <li>Points on a surface</li>
+        <li>Sets</li>
+        <li>Functions</li>
+      </ul>
+    </ul>
+
+  </li>
+
+
+  <li class="slide">
+    <h1>Packings, Coverings, and Nets</h1>
+    <ul>
+      <li>Subsets of the points that are "nicely distributed"</li>
+      <li>`N subset U` is a:</li>
+      <ul>
+        <li><em>Covering</em> if every point in `U` has some point in `N` nearby</li>
+        <li><em>Packing</em> if no pairs of points in `N` is too close together</li>
+        <li><em>Net</em> or <em>Delone Set</em> if `N` is both a covering and a packing</li>
+        <ul>
+            <li>An `epsilon`-net has covering and packing distances `epsilon`</li>
+            <li>Delone `equiv` Delaunay `equiv` Делоне</li>
+        </ul>
+     </ul>
+    </ul>
+  </li>
+
+
+  <li class="slide">
+    <h1>Building Nets: the Greedy Algorithm</h1>
+    <ul>
+      <li>Nets exist: here's a simple greedy algorithm:
+     </li>
+      <ul>
+		<li>Start with `N` containing any point of `U`</li>
+		<li>Repeat until have `k` points:</li>
+      <ul>
+        <li>Pick the point in `U setminus N` farthest from `N`, add to `N`</li>
+      </ul>
+      </ul>
+    </ul>
+    <center><div align="center" style="margin-top:1em;">
+    <xul:hbox orient="horizontal" width="4in" height="3in" align="top">
+       <svg:svg id="canvas_enet" width="3.01in" height="3.02in" align="center">
+          <svg:circle id="enet_big_circ" r="1.5in" cx="1.5in" cy="1.5in"
+                  style="fill:red; fill-opacity:0.1; stroke:none;"/>
+       </svg:svg>
+	<spacer style="width:1in;"/>
+   	<xul:vbox align="top" height="60">
+		<svg:svg width="4in" height="82" >
+			<svg:text id="max_dist_label"  x="0" y="80">      </svg:text>
+		</svg:svg>
+		<spacer style="height:0.3in;"/>
+   		<svg:svg width="150" height="82">
+  			<svg:rect class="circ_control" id="circ_go" width="40" height="40"
+					y="0" x="0" style="fill:lightgreen;"/>
+   			<svg:rect class="circ_control" id="circ_step" width="40" height="40"
+					y="0" x="40" style="fill:yellow;"/>
+   			<svg:rect class="circ_control" id="circ_stop" width="40" height="40"
+					y="0" x="80" style="fill:red;"/>
+   		</svg:svg>
+		<xul:button class="control_but" oncommand="make_random();">random</xul:button>
+	</xul:vbox>
+   </xul:hbox></div></center>
+  </li>
+
+
+
+  <li class="slide">
+    <h1>Nets and the Greedy Algorithm</h1>
+  <ul>
+    <li>Optimal approximation algorithm, in a sense [Gonzalez]</li>
+    <ul><li>Within a factor of two of best possible</li></ul>
+    <li>Also called, for example:</li>
+    <ul>
+      <li>Bawden-Lajiness algorithm, in computational chemistry</li>
+      <li>Farthest Point Sampling, in image processing [Eldar et al.]</li>
+    </ul>
+    <li>Due to Kolmogorov/Tikhonov?</li>
+        <li>Typically `|N| = Theta(1//{:epsilon^d:})` as `epsilon -> 0`</li>
+        <ul>
+           <li>In `d`-space; so
+		<blockquote>`{:-log |N|:}//{:log epsilon:}`</blockquote>
+		estimates `d` [Kégl]</li>
+           <li>`equiv` box dimension</li>
+        </ul>
+  </ul>
+  </li>
+
+
+  
+  <li class="slide">
+    <h1>Nets as Roadmaps: Motion Planning</h1>
+    <ul>
+      <li>Consider moving a small object (a point) among obstacles	
+      </li>
+      <li>Want a plan to move from `a` to `b`</li>
+      <li>By using more dimensions, can model more complicated motions and objects</li>
+    </ul>
+	<center><img src="f/nets_as_roadmaps.png"/></center>
+  </li>
+
+  <li class="slide">
+    <h1>Nets as (Non)-Probabilistic Roadmaps</h1>
+  <ul>
+    <li>Original Approach:</li>
+    <ul><img src="f/nonprob.png" align="right"/>
+      <li>Pick points in "free" space at random </li>
+      <li>Find straight-line paths between nearby points</li>
+    </ul>
+    <li>Random points are nice, but</li>
+    <li>`epsilon`-nets (low <em>dispersion</em>) are nicer</li>
+    <li>Grid points seem to work ok, <em>Sobol</em> sets, etc.</li>
+  </ul>
+  </li>
+  
+  <li class="slide">
+    <h1>Nets as Roadmaps, Analysis</h1>
+    <ul><img src="f/nonprob_anal.png" align="right"/>
+      <li>Consider case where shortest path from `a` to `b` is a curve</li>
+      <li>Suppose `N` is a `delta^2`-net, `delta &le; 1`, `diam U = 1`</li>
+      <li>Suppose every `x,y in N cup \{a,b\}` with `D(x,y)&le;2delta` are connected </li>
+      <li>Then this scheme has `2 delta ` overhead:</li>
+      <ul>
+		<li>Split path into segments of length `delta`</li>
+		<li>Detour to `N` at each split, adds `&le; 1/delta (2delta^2) = 2delta`</li>
+		<li>Using triangle inequality, path along `N` is not longer</li>
+	  </ul>
+    </ul>
+  </li>
+  
+  <li class="slide">
+    <h1>Nets as "Beacons" or "Landmarks"</h1>
+    <ul>
+      <li>In networks: pick a net `N`<img src="f/nets_as_beacons.png" align="right"/></li>
+      <li>To route from `a->b`:</li>
+      <ul>
+        <li>Let `hat a` be nearest to `a` in `N`</li>
+        <li>Let `hat b` nearest to `b` in `N`</li>
+        <li>Walk `a -> hat a -> hat b -> b</li>
+      </ul>
+      <li>Simpler addressing, simpler network</li>
+      <li>Collection of distances to landmarks also used as a "coordinate system"</li>
+    </ul>
+  </li>
+
+  
+  
+  <li class="slide">
+    <h1>Approximate Nearest Neighbor Searching</h1>
+    <ul>
+ 		<img src="f/nn.png" align="right"/>
+     <li>Given `(U,D)`, `S subset U`, `diam S =1`
+      </li>
+      <li>Build a data structure so that for `q in U`, can find nearest `a in S`</li>
+      <li>Divide-and-conquer approach for approximation algorithm:</li>
+      <ul>
+		<li>Pick `delta &le; 1`, find `delta^2`-net `N subset S`</li>
+		<li>Recursively build data structure for each `S_p := B(p, 3delta) cap S`, `p in N`</li>
+		<li>To search: given `q`, find nearest `p in N`; recursively search `S_p`</li>
+      </ul>
+    </ul>
+  </li>
+  
+  
+  <li class="slide">
+    <h1>Approximate NN Searching, Analysis</h1>
+    <ul>
+      <li>It can be shown that either:</li>
+      <ul>
+          <li>`D(q,a)>=delta`, and `p` itself within `1+delta` of nearest, or</li>
+          <li>Nearest to `q` is in `S_p = B(p, 3delta) cap S`</li>
+      </ul>
+       <li>At level `k`, balls of size `(3delta)^k`; depth bounded for small "spread"</li>
+       <li>Proof:</li>
+       <div class="coverup">
+      <ul>
+         <li>Suppose `a` is nearest to `q` in `S`</li>
+         <li>Suppose `p_a` is nearest to `a` in `N`</li>
+         <li>We have `D(q,p) &le; D(q,p_a) &le; D(q,a) + D(a,p_a) &le; D(q,a) + delta^2`</li>
+         <li>If `D(q,a) >= delta`, then `p` is ok; otherwise
+     `D(a,p)
+        &le; D(a,q) + D(q,p)
+        &le; 2D(a,q) + delta^2
+        &le; 2delta + delta^2 &le; 3delta`
+ </li>
+      </ul></div>
+   </ul>
+   </li>
+
+
+  <li class="slide">
+    <h1>Nets as Vertices in Approximations</h1>
+  <ul>
+    <li>Polygonal approximation of smooth curves:</li>
+    <ul>
+      <li>Pick a distance measure for points on curve</li>
+      <li>Pick an `epsilon`-net using that distance</li>
+      <li>Connect the dots</li>
+    </ul>
+    <li>Due to McClure/Vitale, 1975; for `d>1`, by Gruber, Schneider,...
+    </li>
+  </ul>
+  <br/>
+		<center><img src="f/convex.png" align="center"/></center>
+  </li>
+
+
+  <li class="slide">
+    <h1>What Distance Measure?</h1>
+	<ul>
+		<li>Could use arc length, but misses large curvature</li>
+		<li>Could use turning angle, but misses scale</li>
+		<li>Sum of both works ok</li>
+		<li>Best may be `{:sqrt {:kappa(x):}:}` as a weight for distance</li>
+		<ul>
+		<li>`kappa(x)` is the curvature</li>
+		</ul>
+	</ul><br/>
+	<center><div>
+	<div style="float:left; margin-right:1em">
+		<img src="f/arc_length_only.png"/>
+		<center>Arc Length</center>
+	</div>
+	<div style="float:left; margin-right:1em; position: relative; bottom: 35px">
+		<img src="f/angle_only.png"/>
+		<center>Angle Only</center>
+	</div>
+	<div >
+		<img src="f/dudley.png"/>
+		<center>Both</center>
+	</div>
+	</div></center>
+	
+  </li>
+  
+
+
+
+  
+
+  <li class="slide">
+    <h1>Nets as Vertices of Graded Triangulations</h1>
+  <ul><img src="f/graded_triang_full.png" align="right" style="float:right; "/>
+    <li>Given a region and "walls", split into triangles so that:</li> 
+     <ul>
+      <li>Triangles are close to equilateral</li>
+      <li>Triangle edges don't cross the walls</li>
+    </ul>
+    <li>Triangles must be small near small features, get bigger gradually</li>
+    <li>Implies a "local feature size" `F(x)` at point `x`</li>
+  </ul>
+  </li>
+
+
+
+  <li class="slide">
+    <h1>A Metric Space Scaled to Local Feature Size</h1>
+  <ul>
+    <li>For "nice" functions `F` on `U`, there is a <em>metric</em> $D_F$ so that:</li>
+    <ul>
+      <li>`D_F(x,y) approx {:D(x,y):}//{:F(x):}` when `D_F` is small</li>
+    </ul>
+    <li>Greedy algorithm then `approx` Chew/Ruppert algorithms</li>
+    <li>Metric is:</li>
+    <blockquote>`D_F(x,y) := min { 1, {: 2D(x,y):}/{:D(x,y) + F(x) + F(y):} }`</blockquote>
+     </ul>
+  </li>
+  
+  <li class="slide">
+    <h1>Building a triangulation</h1>
+    <center>
+    <div align="center"><xul:hbox orient="horizontal" width="4in" height="3in" align="top">
+		<canvas id="graded_canvas" width="770" height="600"></canvas>
+   	   <xul:vbox align="top" height="300">
+		<spacer style="height:0.3in;"/>
+   		<svg:svg width="150" height="82">
+  			<svg:rect class="circ_control" id="circ_go_graded" width="40" height="40"
+					y="0" x="0" style="fill:lightgreen;"/>
+   			<svg:rect class="circ_control" id="circ_step_graded" width="40" height="40"
+					y="0" x="40" style="fill:yellow;"/>
+   			<svg:rect class="circ_control" id="circ_stop_graded" width="40" height="40"
+					y="0" x="80" style="fill:red;"/>
+   		</svg:svg>
+   		<xul:button class="control_but" oncommand="graded_draw_initial_enet();">Initial</xul:button>
+ 		<xul:button class="control_but" oncommand="draw_graded_edges();">Edges</xul:button>
+	   </xul:vbox>
+     </xul:hbox></div>
+ </center>
+  </li>
+  
+  
+  <li class="slide">
+    <h1>The Steinhaus Transform</h1>
+  <ul>
+    <li>`D_F` is proven to be a metric using the <em>Steinhaus</em> (biotope) transform</li>
+    <li>For `(U,D)` and `a in U`,
+      <blockquote>`hat D(x,y) := {:2D(x,y):} / {:D(x,a) + D(y,a) + D(x,y):}</blockquote>
+    is also a metric</li>
+  </ul>
+    <div align="center" style="position:relative; left:1in; bottom:0.5in; "><xul:hbox orient="horizontal" width="4in" height="3in" align="top">
+       <svg:svg id="canvas_enet_biotope" width="3.51in" height="3.52in" align="center">
+          <svg:circle id="enet_big_circ_biotope" r="1.5in" cx="1.75in" cy="1.75in"
+                  style="fill:red; fill-opacity:0;  stroke:none;"/>
+          <svg:circle r="5" cx="1.75in" cy="1.75in"
+                  style="fill:red; stroke:red;"/>
+       </svg:svg>
+   	<xul:vbox align="top" height="60">
+		<spacer style="height:0.3in;"/>
+   		<svg:svg width="150" height="82">
+  			<svg:rect class="circ_control" id="circ_go_biotope" width="40" height="40"
+					y="0" x="0" style="fill:lightgreen;"/>
+   			<svg:rect class="circ_control" id="circ_step_biotope" width="40" height="40"
+					y="0" x="40" style="fill:yellow;"/>
+   			<svg:rect class="circ_control" id="circ_stop_biotope" width="40" height="40"
+					y="0" x="80" style="fill:red;"/>
+   		</svg:svg>
+	</xul:vbox>
+     </xul:hbox></div>
+  </li>
+  
+  
+   <li class="slide">
+   <h1>Steinhaus Transform for Sets</h1>
+
+    <ul>
+       <li>Suppose `U` is all subsets of a set, `D(A,B) := |A Delta B|`</li>
+       <li>For `a=O/`, biotope transform is</li>
+           <blockquote>`hat D(A,B) = {:|A Delta B|:} / {:|A uu B|:}`</blockquote>
+       <li>Called the <em>Jaccard</em> or <em>Tanimoto</em> or <em>Steinhaus</em> distance, or <em>resemblance</em></li>
+       <li>Used in information retrieval, ecology, comp. chemistry, web page comparison</li>
+    </ul>
+  </li>
+
+  <li class="slide">
+    <h1>Scaling by Distance to Boundary</h1>
+  <ul>
+   <li>For `T subset U`, replacing `D(x,a) + D(y,a)` by `min_{a in T} D(x,a) + D(y,a)` also a metric
+   </li>
+    <li>Using a circle as `T`, space is `approx` Poincaire disk model of hyperbolic space:</li>
+   </ul><br/>
+    <div align="center"><xul:hbox orient="horizontal" width="4in" height="3in" align="top">
+       <svg:svg id="canvas_enet_hyperbolic" width="3.51in" height="3.52in" align="center">
+          <svg:circle id="enet_big_circ_hyperbolic" r="1.5in" cx="1.75in" cy="1.75in"
+                  style="fill:red; fill-opacity:0; stroke:red; stroke-width:4"/>
+       </svg:svg>
+	<spacer style="width:1in;"/>
+   	<xul:vbox align="top" height="60">
+   		<svg:svg width="150" height="82">
+  			<svg:rect class="circ_control" id="circ_go_hyperbolic" width="40" height="40"
+					y="0" x="0" style="fill:lightgreen;"/>
+   			<svg:rect class="circ_control" id="circ_step_hyperbolic" width="40" height="40"
+					y="0" x="40" style="fill:yellow;"/>
+   			<svg:rect class="circ_control" id="circ_stop_hyperbolic" width="40" height="40"
+					y="0" x="80" style="fill:red;"/>
+   		</svg:svg>
+	</xul:vbox>
+     </xul:hbox></div>
+  </li>
+
+
+  <li class="slide">
+    <h1>`epsilon`-nets vs. RMS</h1>
+    <ul>
+      <li>`D(p, N) := min_{p' in N} D(p,p')`</li>
+      <li>While `epsilon`-net `N` minimizes
+	<blockquote>`max_{p in U} D(p,N)` </blockquote>
+     </li>
+      <li>How about minimizing
+         <blockquote>`sum_{p in U} D(p,N)^2` ?</blockquote>
+      </li>
+      <li>In the smooth case, `epsilon`-nets are also pretty good for the latter </li>
+      <li>Implies results for optimum vector quantization, quadrature [Gruber]</li>
+    </ul>
+  </li>
+  
+   <li class="slide">
+    <h1>Concluding Remarks</h1>
+  <ul>
+    <li>`epsilon`-nets of functions used in learning theory</li>
+    <ul><li>Size of net is doubly exponential in domain dimension</li></ul>
+    <li>In surface reconstruction: when `T` is the medial axis,
+			net in scaled distance `D_T` implies provably good results [AB]</li>
+	<li>In motion planning, scaling by distance to boundary helps find a short path with good clearance</li>
+   <li>Having a "doubling constant" means that all subsets of `U` have small nets</li>
+   <li>Thanks!</li>
+  </ul>
+  </li>
+ 
+</ol>
+</body>
+</html>

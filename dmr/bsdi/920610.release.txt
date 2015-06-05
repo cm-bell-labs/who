@@ -1,0 +1,46 @@
+.ffam NS
+.ps 12
+.vs 14
+.sp 12
+.ta 4.5i
+.nf
+June 10, 1992	Press Contact:
+	Donnalyn Frey (703) 764 9342
+.sp 2
+
+.fi
+USL has filed a complaint against BSDI in federal court in New
+Jersey alleging false advertising in violation of Section 43(a)
+of the Lanham Act and unfair competition in violation of state
+laws.  The basis for the complaint is stated to be that BSDI's
+promotional materials are allegedly false and misleading in
+stating that no license from AT&T is required for the BSD/386
+product or indeed for any product derived from the Networking
+Release 2 from the University of California.
+
+The parties are now engaged in the process of requesting
+information from one another and responding to the other's
+request.
+
+BSDI has also filed a motion to dismiss USL's claims of false
+advertising and unfair competition.  This motion is based upon
+USL's failure to allege any basis for its allegation that the
+statements made by BSDI are false.  USL has not included any
+claim, for example, for violation of any proprietary rights (such
+as patent rights, trade secrets, or copyrights) based upon
+distributing the BSD/386 product without a license from AT&T. 
+BSDI contends that the reason USL has not done so is that it has
+no proprietary rights to violate with respect to the Networking
+Release 2 and products derived from it.  BSDI argues that absent
+an infringement of USL's proprietary rights, the statements made
+by BSDI could not be false or misleading.  Thus, USL's complaint
+is defective in that it has failed to give BSDI fair notice of
+its claims and the grounds upon which they rest.
+
+The complaint also requests a temporary restraining order and
+preliminary and permanent injunctions in connection with an
+allegation that BSDI has infringed USL's trademark rights in the
+word, UNIX.  The demand for a temporary restraining order has
+been withdrawn as the result of a partial settlement of the
+trademark issues.
+

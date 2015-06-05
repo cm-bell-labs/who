@@ -1,0 +1,44 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75C-SGI [en] (X11; U; IRIX64 6.5 IP27) [Netscape]">
+   <title>Eigensolve</title>
+</head>
+<body text="#000000" bgcolor="#FFFFCC" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center><b><font size=+4>Eigensolve</font></b></center>
+
+<p>Eigensolve is a program that approximates the roots of a univariate
+polynomial.&nbsp;&nbsp; The algorithm is described in the paper&nbsp; <a href="ieaarup.ps.gz">An
+iterated eigenvalue algorithm for approximating the roots of univariate
+polynomials</a> (an earlier
+<br>version appeared in&nbsp;ISSAC 2001).
+<p><img SRC="wilk320iter.gif" HSPACE=5 VSPACE=5 height=376 width=484 align=LEFT>
+This image shows the iterations of the algorithm on the Wilkinson polynomial
+of degree 320.&nbsp; The initial iteration is in blue, followed by red,
+green, yellow, magenta, and cyan.&nbsp; The roots are the integers from
+1 to 320, i.e. the black line in the center of the image.&nbsp; Each iteration
+is computed using a floating-point eigenvalue computation.&nbsp; The first
+eigenvalue computation uses the ordinary Sylvester companion matrix.&nbsp;&nbsp;
+Subsequent iterations use a generalized companion matrix constructed using
+the values of the polynomial at the previous iterate.&nbsp; This computation
+required 7 eigenvalue computations and took about 87 seconds (on a 250
+Mhz SGI R10000, with roots reported to 15 decimal digits).&nbsp; Here is
+a <a href="eigensolvealgorithm.html">description</a> of the algorithm and
+other examples of <a href="eigenvalueiterexamples.html">iterations.</a>
+<p>Eigensolve accepts polynomials in the same file format as the program
+MPSolve, written by <a href="http://fibonacci.dm.unipi.it/~bini/ric.html">Dario
+Bini</a> and Giuseppe Fiorentini (<a href="ftp://ftp.dm.unipi.it/pub/mpsolve/MPSolve-2.1.1.tgz">MPSolve
+tar file</a> ).&nbsp; For many polynomials, especially ill-conditioned
+polynomials of high degree, eigensolve is much faster than MPSolve.&nbsp;&nbsp;
+For example, MPSolve takes 2138 seconds on the same example.&nbsp;&nbsp;
+More details on the <a href="eigensolveperformance.html">performance</a>
+of eigensolve, including a comparison with MPSolve, are available.
+<p>The source for eigensolve is available for download (limited use noncommercial
+license) from the&nbsp; <a href="http://www.bell-labs.com/topic/swdist/">Lucent
+Technologies Research Software Distribution Site</a>&nbsp; .&nbsp; Browse
+through the list of packages to find eigensolve, then follow the directions.
+<br>&nbsp;
+</body>
+</html>

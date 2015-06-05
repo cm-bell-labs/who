@@ -1,0 +1,550 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<?xml-stylesheet href="xbl-shape-bindings.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xul="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+	<head>
+		<title>Approximating Surfaces with Meshes</title> <!-- metadata -->
+		<meta name="generator" content="S5" />
+		<meta name="version" content="S5 1.1" />
+		<meta name="presdate" content="20050128" />
+		<meta name="author" content="Ken Clarkson &bull;" />
+		<meta name="company" content="Bell Labs" /> <!-- configuration parameters -->
+		<meta name="defaultView" content="outline" />
+		<meta name="controlVis" content="hidden" /> <!-- style sheet links -->
+		<link rel="stylesheet" href="ui/default/slides.css" type="text/css" media="projection" id="slideProj" />
+		<link rel="stylesheet" href="ui/default/outline.css" type="text/css" media="screen" id="outlineStyle" />
+		<link rel="stylesheet" href="ui/default/print.css" type="text/css" media="print" id="slidePrint" />
+		<link rel="stylesheet" href="ui/default/opera.css" type="text/css" media="projection" id="operaFix" /> <!-- embedded styles -->
+		<style type="text/css" media="all">
+.imgcon {width: 525px; margin: 0 auto; padding: 0; text-align: center;}
+#anim {width: 270px; height: 320px; position: relative; margin-top: 0.5em;}
+#anim img {position: absolute; top: 42px; left: 24px;}
+img#me01 {top: 0; left: 0;}
+img#me02 {left: 23px;}
+img#me04 {top: 44px;}
+img#me05 {top: 43px;left: 36px;}
+  </style>
+		<style type="text/css" media="all">
+    .floatright {float : right;}
+  </style>
+		<script src="ASCIIMathML.js" type="text/javascript" /> <!-- S5 JS -->
+		<script src="graded_triang_data.js" type="text/javascript" />
+		<script src="impl.js" type="text/javascript" />
+		<script src="ui/default/slides.js" type="text/javascript" />
+	</head>
+	<body>
+		<div class="layout">
+			<div id="controls">
+				<form action="#" id="controlForm" onmouseover="showHide('s');" onmouseout="showHide('h');">
+					<div id="navLinks" class="hideme">
+						<a accesskey="t" id="toggle" href="javascript:toggle();">&#216;</a>
+						<a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;</a>
+						<a accesskey="x" id="next" href="javascript:go(1);">&raquo;</a>
+						<div id="navList">
+							<select id="jumplist" onchange="go('j');"></select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div id="currentSlide"> <!-- DO NOT EDIT --></div>
+			<div id="footer">
+				<h1>Surfaces and Meshes</h1>
+				<h2>March 28, 2006</h2>
+			</div>
+		</div>
+		<ol class="xoxo presentation">
+			<li class="slide">
+				<h1>Approximating Surfaces with Meshes</h1>
+				<br />
+				<div width="400" style="position:absolute; bottom:-1in; right:2in;"> <!--		<canvas id="title_canvas" width="300" height="300"></canvas>
+	<applet code="jvLite.class" archive="javaView/jvLite.jar" name="JavaView"
+				width="350" height="350" style="float:right;" hspace="10" vspace="10" codebase="./">
+		<param name="Model" value="javaView/sphere.jvx"/>
+		<param name="displayFile" value="javaView/sphere.jvd"/>
+		<param name="autoRotate" value="Hide"/>
+		<param name="background" value="255;255;255"/>
+		<param name="Border" value="Hide"/>
+		<param name="Antialias" value="Show"/>
+		<param name="Depthcue" value="Hide"/>
+	</applet>--></div>
+				<h3>Ken Clarkson</h3>
+				<h4>
+					<a href="http://cm.bell-labs.com/who/clarkson/" rel="external">Bell Labs</a>
+				</h4>
+			</li>
+			<li class="slide">
+				<h1>Outline</h1>
+				<ul>
+					<li>The problem: surfaces and meshes</li>
+					<li>Previous and new results</li>
+					<li>Upper bound</li>
+					<ul>
+						<li>`epsilon`-nets under curvature-based distance measures</li>
+					</ul>
+					<li>Lower bound</li>
+					<ul>
+						<li>Error of interpolation in a simplex, and the simplex volume</li>
+					</ul>
+					<li>
+						<div class="blinky">Warning and apology:
+         <blockquote>no pretty surfaces are shown</blockquote>
+         </div>
+					</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>The Problem: Surfaces and Meshes</h1>
+				<ul>
+					<li>Approximate a <em>surface</em> `M` that is:</li>
+					<ul>
+						<li>A `d`-manifold (looks locally like `RR^d`)</li>
+						<li>Smooth</li>
+						<ul>
+							<li>Smooth enough, say `C^3`</li>
+						</ul>
+						<li>Embedded in `(d+1)`-space;</li>
+					</ul>
+					<li>By a <em>mesh</em> `T`:</li>
+					<ul>
+						<li>A complex of `d`-simplices (each with `d+1` vertices)</li>
+						<li>Number of simplices `n`</li>
+					</ul>
+					<li>Within Hausdorff distance `delta`:</li>
+					<ul>
+						<li>For every point of one, there's a point of the other within distance `delta`</li>
+					</ul>
+					<li>Close to: anisotropic, data-dependent triangulations for function interpolation</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Curves Bounding a Convex Body in the Plane</h1>
+				<ul>
+					<li><img src="f/convex.png" align="right" />That is, `d=1`, `M` is "convex"</li>
+					<li>Distance is [Fejes Tóth][McClure/Vitale]</li>
+					<blockquote>`{:1/8:}(mu_{II}(M)//n)^2(1+o(1))`, as `n\rightarrow\infty`</blockquote>
+					<li>Here `mu_{II}(M)` is a size measure on `M`, based on curvature</li>
+					<ul>
+						<li>`mu_{II}(M) : = int_M {:sqrt kappa_x dx :}`</li>
+						<li>`kappa_x :=`curvature at point `x`</li>
+					</ul>
+					<li>For smoother curves, distance known up to `o(1//n^4)`[Ludwig]</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Higher Dimensions</h1>
+				<ul>
+					<li>`d > 1` , again `M` is "convex"</li>
+					<li>Distance is [Schneider][Gruber] </li>
+					<blockquote>`{:K_d:}(mu_{II}(M)//n)^{:2//d:}(1+o(1))` as `n\rightarrow\infty`</blockquote>
+					<li>`K_d` depends only on `d`</li>
+					<li>Again, `mu_{II}(M)` is a size measure on `M` based on curvature</li>
+					<ul>
+						<li>`mu_{II}(M):= int_M {:sqrt kappa_x dx :}`</li>
+						<li>`kappa_x :=` <em>Gaussian</em> curvature at point `x`,</li>
+					</ul>
+					<li>Similar bounds, up to a constant:</li>
+					<ul>
+						<li>Without smoothness [Dudley]</li>
+						<li>For function approximation in `L_p`[Huang][Chen/Sun]</li>
+					</ul>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Results Here</h1>
+				<ul>
+					<li>What if `M` doesn't bound a convex set?</li>
+					<li>Distance is `\Theta(mu_{II}(M) :}//n)^{:2//d:}`, as `n\rightarrow\infty`</li>
+					<li>`mu_{II}(M) := int_M {:sqrt {:| kappa |:}`</li>
+					<li>Upper bound may need a perturbation of the surface</li>
+					<ul>
+						<li>So surface never looks completely flat</li>
+						<li>Perturbation can be arbitrarily small</li>
+					</ul>
+					<li>Lower bound needs some conditions:</li>
+					<ul>
+						<li>Simplices of triangulation `T` are small enough</li>
+						<li>Simplices of `T` have a not-too-big "local average aspect ratio"</li>
+						<li>Manifold is smooth enough (a third derivative term not too big compared to second)</li>
+					</ul>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Upper Bound, Basic Idea</h1>
+				<ol>
+					<li>Choose a good distance metric on the manifold</li>
+					<ul>
+						<li>Based on curvature</li>
+					</ul>
+					<li>Find an `epsilon`-net `N subset M` in the metric</li>
+					<ul>
+						<li>An "evenly distributed" set of points w.r.t. the metric</li>
+						<li>Special case of Delone set</li>
+					</ul>
+					<li>Connect points of `N` with a Delaunay triangulation</li>
+					<ul>
+						<li>A "nice" one</li>
+						<li>(Delone `equiv` Delaunay `equiv` Делоне)</li>
+					</ul>
+				</ol>
+			</li>
+			<li class="slide">
+				<h1>Curvature of Curves</h1>
+				<ul>
+					<li>Curvature `kappa_p = 1//r`, where</li>
+					<img align="right" src="f/curvature.png" />
+					<ul>
+						<li>Curve `M` (that is, `d=1`)</li>
+						<li>`p in M`</li>
+						<li>`r=` radius of circle osculating curve at `p`</li>
+					</ul>
+					<li>If `M` is a circular arc of angular span `theta`,
+	      <blockquote>`int_M kappa_p dp = int_M {:1/r:} = (2 pi theta r){:1/r:} =  2 pi theta`</blockquote>
+	  </li>
+					<li>`int_M kappa_p dp approx` turning angle of `M`</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>What Metric?</h1>
+				<ul>
+					<li>Could use arc length `D_I(x, y) := \int_{x..y} ds` but bad at tight turns</li>
+					<li>Could use turning angle `D_{III}(x,y) := \int_{x..y} kappa_s ds`, but misses scale</li>
+					<li>Sum `\int_{x..y} (1 + kappa)ds` works ok, `D_{II} := int_{x..y} sqrt kappa_s ds` turns out to be better</li>
+				</ul>
+				<br />
+				<center>
+					<div>
+						<div style="float:left; margin-right:1em">
+							<img src="f/arc_length_only.png" />
+							<center>Arc Length</center>
+						</div>
+						<div style="float:left; margin-right:1em; position: relative; bottom: 35px">
+							<img src="f/angle_only.png" />
+							<center>Angle Only</center>
+						</div>
+						<div>
+							<img src="f/dudley.png" />
+							<center>Both</center>
+						</div>
+					</div>
+				</center>
+			</li>
+			<li class="slide">
+				<h1>`d>1`</h1>
+				How do this approach work for surfaces of higher dimension?
+				<ul>
+					<li>`epsilon`-nets</li>
+					<ul>
+						<li>For `d=1`, just equi-spaced points</li>
+						<li>For `d>1`, more elaborate</li>
+					</ul>
+					<li>Curvature</li>
+					<ul>
+						<li>For `d>1`, many possible curvatures and distances</li>
+					</ul>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>`epsilon`-nets</h1>
+				<ul>
+					<li>`N subset M` is an `epsilon`-net if:</li>
+					<ul>
+						<li>Covering: every point on `M` is within `epsilon` of some point of `N`</li>
+						<li>Packing: points in `N` are at least `epsilon` from each other</li>
+						<li>Delone set has cover distance `epsilon_c`, packing distance `epsilon_p`, not necessarily equal</li>
+					</ul>
+					<li>`epsilon`-nets on a `d`-manifold have size `n=Theta(1//epsilon^d)`.</li>
+					<ul><li>In a more general setting, this relation can <em>define</em> the dimension</li></ul>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Building Nets: the Greedy Algorithm</h1>
+				<ul>
+					<li>Nets exist: here's a simple greedy algorithm:</li>
+					<ul>
+						<li>Start with `N` containing any point of `M`</li>
+						<li>Repeat until have `k` points:</li>
+						<ul>
+							<li>Pick the point in `M setminus N` farthest from `N`, add to `N`</li>
+						</ul>
+					</ul>
+				</ul>
+				<center>
+					<div align="center" style="margin-top:1em;">
+						<xul:hbox orient="horizontal" width="4in" height="3in" align="top">
+							<svg:svg id="canvas_enet" width="3.01in" height="3.02in" align="center">
+								<svg:circle id="enet_big_circ" r="1.5in" cx="1.5in" cy="1.5in" style="fill:red; fill-opacity:0.1; stroke:none;" />
+							</svg:svg>
+							<spacer style="width:1in;" />
+							<xul:vbox align="top" height="60">
+								<svg:svg width="4in" height="82">
+									<svg:text id="max_dist_label" x="0" y="80"></svg:text>
+								</svg:svg>
+								<spacer style="height:0.3in;" />
+								<svg:svg width="150" height="82">
+									<svg:rect class="circ_control" id="circ_go" width="40" height="40" y="0" x="0" style="fill:lightgreen;" />
+									<svg:rect class="circ_control" id="circ_step" width="40" height="40" y="0" x="40" style="fill:yellow;" />
+									<svg:rect class="circ_control" id="circ_stop" width="40" height="40" y="0" x="80" style="fill:red;" />
+								</svg:svg>
+								<xul:button class="control_but" oncommand="make_random();">random</xul:button>
+							</xul:vbox>
+						</xul:hbox>
+					</div>
+				</center>
+			</li>
+			<li class="slide">
+				<h1>Curvature of Surfaces</h1>
+				<ul>
+					<li><em>Directional curvature</em> at `p in M` in direction `v`:</li>
+					<ul>
+						<li>Curvature of curve `c` at `p`, where</li>
+						<li>`p in c subset M`</li>
+						<li>Tangent to `c` at `p` is `v`</li>
+					</ul>
+					<li>Principle curvatures are eigenvalues of `A`, where `A` is matrix of quadric surface that osculates `M` at `p`</li>
+					<li>Gaussian curvature is `det A`</li>
+					<li>Gaussian curvature on sphere is `1//r^2`, on cylinder is 0, on saddle surface is negative</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Curvature-Based Distances</h1>
+				<ul>
+					<li>Distance between `x,y in M` is "length" of shortest curve between `x` and `y`</li>
+					<li>Length is `approx` sum of lengths of very short segments</li>
+					<li>Squared length of a short segment from `p` to `p+v` is a quadratic function of `v`, the <em>metric tensor</em>:</li>
+					<ul>
+						<li>`D_I(x,y)` : use squared Euclidean length of `v`</li>
+						<li>`D_{II}(x,y)` : use "convexified" directional curvature at `p`, direction `v`</li>
+						<li>`D_{III}(x,y)` : use squared diff. of normal vectors at `p` and `p+v`</li>
+					</ul>
+					<li>These metric tensors are close to the First, Second, and Third <em>Fundamental Forms</em></li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Curvature-Based Measures</h1>
+				<ul>
+					<li>The size of an `epsilon`-net in `D_X` is `{:mu_X(M):}//epsilon^d`, for `X in {I,II,III}`;</li>
+					<ul>
+						<li>`mu_I(M)=` surface area of `M`</li>
+						<li>`mu_{III}(M) = int_M |kappa_x| dx`, the <em>total absolute curvature</em></li>
+						<li>`mu_{II}(M) = int_M sqrt |kappa_x| dx`, I'll call "total root curvature"</li>
+					</ul>
+				    <li>With `epsilon`-net size = `n`, `epsilon \approx (mu_{II}(M)//n)^{1//d}`</li>
+					<li>Distance of `D_{II)`-based mesh to surface is about `epsilon^2`</li>
+					<ul>
+						<li>So distance of mesh is about `(mu_{II}(M)//n)^{2//d}`</li>
+					</ul>
+				</ul>
+			</li>
+			<li class="slide">
+              <h1>The Bigger Picture</h1>
+                <center>
+					<table border="2pt">
+						<tr>
+							<td>Dist</td>
+							<td>By</td>
+							<td>Dist. Measure</td>
+						</tr>
+						<tr>
+							<td>`(mu_{II}(M)//n)^{2//d}`</td>
+							<td>Mesh</td>
+							<td>Hausdorff </td>
+						</tr>
+						<tr>
+							<td>`(mu_{text{I}}(M)//n)^{1//d}`</td>
+							<td>Points on `M`</td>
+							<td>`max_{x in M} D_E(x, N)` (Hausdorff) </td>
+						</tr>
+						<tr>
+							<td>`(mu_{text{I}}(M)//n)^{1+2//d}`</td>
+							<td>Points on `M`</td>
+							<td> `int_M D(x, N)^2//n`</td>
+						</tr>
+						<tr>
+							<td>`(mu_{text{I}}(M)//n)^{1//d}`</td>
+							<td>N/A</td>
+							<td> Ave NN dist, uniform</td>
+						</tr>
+						<tr>
+							<td>`(mu_{:f:}(M)//n)^{1//d}`</td>
+							<td>N/A</td>
+							<td> Ave edge, TSP, density `f`[BHH]</td>
+						</tr>
+					</table>
+				</center>
+                Here again `mu_{text{I}}(M) :=` surface area, and <br />`mu_{:f:}(M) := (int_M f(x)^{1-1//d}dx)^d`.
+            </li>
+			<li class="slide">
+				<h1>Why `D_{II}`, `d=1`</h1>
+				<ul>
+					<img src="f/taylor.png" align="right" />
+					<li>For a point `p` on a curve, put `p` at the origin, make tangent horizontal</li>
+					<li>Close to `p=0`, curve looks like `y=f(x)`</li>
+					<li>Consider approximating a function `f(x)`, `x in RR` near `0`</li>
+					<li>By Taylor's Theorem,
+                          <blockquote>`f(x) = f(0) + f'(0)x + f''(0)x^2//2 + O(x^3)`</blockquote>
+                    </li>
+					<li>Here the coordinate system makes `f(0) = f'(0) = 0`, so
+                        <blockquote>`f(x) = f''(0)x^2//2 + O(x^3)`</blockquote>
+                    </li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Why `D_{II}`, `d=1`, More</h1>
+				<ul>
+					<img src="f/interp.png" align="right" />
+					<li>When `f(x) approx x^2 f''(0)//2` (assume `f''(0)>0`)</li>
+					<li>Max error of linear interp. is at midpoint `x//2`, and is `f(x)//4`</li>
+					<li>Curvature `kappa_x approx f''(x) approx f''(0)`, </li>
+					<li>`f(x) approx hat x^2`, where</li>
+					<li>`hat x := x sqrt{:{:f''(0):}//2:} approx \int_{0..x} sqrt{:{:f''(y):}//2:} dy approx int_{0..x} sqrt kappa_y = D_{II}(x,0)`</li>
+					<li>So: error `approx hat x^2 approx D_{II}(0,x)^2</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>`D_{II}`, `d >= 1`</h1>
+				<ul>
+					<li>Put `p` at the origin, make tangent horizontal</li>
+					<li>Have a Monge patch: near `p=0`, points on `M` are `(x, f(x))`, `x\in RR^d`</li>
+					<li>By Taylor's Theorem and rotation of tangent plane coordinate system,</li>
+					<blockquote>`f(x) approx x^T Z x = sum_i alpha_i x_i^2`,</blockquote>
+					<li>Where `Z` is a diagonal matrix with diagonal entries `alpha_i`.</li>
+					<li>Let `hat x := sqrt{:|Z|:}x`, that is, `hat x_i = x_i sqrt{:|alpha_i|:}`,</li>
+					<li>Then `f(x)=sum_i beta_i hat x_i^2`, where `beta_i = pm 1`, and `f(x) &le; hat x^2 = hat x cdot hat x`</li>
+					<li>So: error `approx |f(x)//4| &le; hat x^2`</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>`D_{II}`, Gaussian Curvature</h1>
+				<ul>
+					<li>Convexified directional curvature `kappa_0(v) = hat v^2`, unit vector `v`</li>
+					<li>So metric tensor is Euclidean, in `sqrt{:|Z|:}`-transformed space</li>
+					<li>`=> D_{II}(x,0)^2 approx hat x^2 >= |f(x)//4| approx` error of linear interp.</li>
+					<li>The Gaussian curvature `kappa_0 = det Z = prod_i alpha_i`</li>
+					<li>A unit ball `B` in `x` becomes an ellipsoid `sqrt{:|Z|:}B` in `hat x`-space</li>
+					<ul>
+						<li>Volume is scaled by
+                            <blockquote>`prod_i sqrt{:|alpha_i|:} = sqrt{:|det Z|:} = sqrt kappa` </blockquote>
+                        </li>
+					</ul>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Lower Bound</h1>
+				<ul>
+					<li>Consider in this talk only `(x, f(x))`, `x in RR^d`, function `f(x) := sum_i alpha_i x_i^2`, with `alpha_i = pm 1`.</li>
+					<li>As above, use linear interpolation as a proxy for Hausdorff distance</li>
+					<li>Simplex in mesh projects to a simplex in the tangent plane</li>
+					<li>This models the local behavior of a function, and with some conditions, a manifold</li>
+					<li>That is, after transformation by a local `sqrt{:|Z|:}`</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Distance and Error</h1>
+				<ul>
+					<li>As above:</li>
+					<ul>
+						<li>Interpolation error for line segment from 0 to `x` is `|f(x)//4|`</li>
+						<li>For segment from point `x` to point `y`, error is `|f(x-y)//4|`</li>
+						<li>When all `alpha_i` are positive (or all negative), Euclidean distance is sqrt of error</li>
+						<li><em>Not</em> true in mixed case</li>
+					</ul>
+					<li>Example: In 3d, `f(x) = x_1 x_2`, rotation of `f(x) = x_1^2 - x_2^2`</li>
+					<ul>
+						<li>For fixed value `a`, `{(a,x_2,z) | z = a x_2}` is a line</li>
+						<li>Euclidean distance says nothing about interpolation error</li>
+					</ul>
+					<li>Instead, use <em>volume</em> of simplex : large volume implies large error</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Error and Simplex Vertices</h1>
+				<ul>
+					<li>Suppose:</li>
+					<ul>
+						<li>Simplex in tangent plane has vertex at origin</li>
+						<li>Other vertices `[a_j\ b_j]` for `j=1...d`,</li>
+						<li>Function `f([a_j\ b_j])` is `a_j^2 - b_j^2` (plus and minus terms gathered together)</li>
+					</ul>
+					<li>Then error is `&le; epsilon` implies:</li>
+					<ul>
+						<li>`|f([a_j\ b_j] - 0)| = |a_j^2 - b_j^2| &le; 4epsilon` for `1 &le; j &le; d`</li>
+						<li>`|f([a_j\ b_j] - [a_k\ b_k])| &le; 4 epsilon implies |a_j cdot a_k - b_j cdot b_k| &le; 6 epsilon` for `1 &le; j,k &le; d` </li>
+						<li>If `A := [[a_1],[a_2],[.],[a_d]]` and `B := [[b_1],[b_2],[.],[b_d]]`, then `||A A^T - BB^T||_infty &le; 6 epsilon` </li>
+					</ul>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Vertex Determinant and Simplex Volume</h1>
+				<ul>
+					<li>Matrices `A` and `B` of two parts of vertex coordinates have `||A A^T - BB^T||_infty &le; 6 epsilon`</li>
+					<li>But volume of simplex is `|det [A\ B]|//d! = sqrt{: (det [A\ B])^2:}//d!`, and </li>
+					<li>`|det [A\ B]| = |det [A\ {:-B:}]^T|`, so </li>
+					<li>`(det [A\ B])^2 = |det [A\ B] cdot det [A\ -B]^T| = |det[A A^T - BB^T]|`</li>
+					<li>So `{:|det [A\ B]|//d!:} &le; {:sqrt{:(6epsilon)^d d!:}//d!:} = {:(6epsilon)^{d//2}//sqrt{:d!:}:}`.</li>
+				</ul>
+			</li>
+			<li class="slide">
+				<h1>Simplex Volume and Error</h1>
+				<ul>
+					<li>So: assumption that error is `&le; epsilon` implies</li>
+					<li>Volume of simplex is `&le; {:epsilon^{d//2}:}` (ignoring constants)</li>
+					<li>But with</li>
+					<ul>
+						<li>`n` simplices,</li>
+						<li> one simplex must have at least `V//n` volume, where</li>
+						<li>`V` is volume of domain</li>
+					</ul>
+					<li>So error is at least `(V//n)^{2//d}`.</li>
+					<li>Scaling by curvature, using local approximations gives manifold result</li>
+				</ul>
+			</li>
+			
+			<li class="slide">
+				<h1>Concluding Remarks:Complexity of Surfaces</h1>
+				<ul>
+					<li>`mu_{II}(M) := int_M sqrt kappa` is the "complexity" of a smooth surface,</li>
+					<ul>
+						<li>Asymptotically, with respect to mesh approximation</li>
+						<li>Use to give complexity of algorithmic problems, e.g. nearest neighbors?</li>
+					</ul>
+					<li>Alternative measures:</li>
+					<ul>
+					   <li>`mu_{:I:}(M) = ` surface area</li>
+					   <ul>
+					       <li>`approx` expected number of crossings by random line</li>
+					       <li>Useful as measure for ray-shooting algorithms</li>
+					    </ul>
+					   <li>`mu_{III}(M) = ` total abs. curv.</li>
+					   <ul>
+					       <li> `approx` expected number of critical points of a random height function</li>
+					       <li>Related to complexity of decomposing surface</li>
+					   </ul>
+					   <li>`int_M c^2 = ` squared mean curv. `approx` bending energy of surface</li>
+					</ul>
+				</ul>
+			</li>
+			
+			<li class="slide">
+				<h1>Concluding Remarks: Other Questions</h1>
+				<ul>
+					<li>Other distance measures: `epsilon`-nets also give upper bound</li>
+					<li>More general lower bound?</li>
+					<li>Thanks!</li>
+				</ul>
+			</li>
+<!--
+			<li class="slide">
+				<h1>Laptop Screen Size</h1>
+				<div width="400" style="position:absolute; top:0; left:0;">
+					<svg:svg>
+						<svg:rect width="1020" height="764" y="0" x="0" style="fill:lightgreen;" />
+					</svg:svg>
+				</div>
+			</li>
+-->
+
+		</ol>
+	</body>
+</html>

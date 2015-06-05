@@ -1,0 +1,226 @@
+<HTML>
+<head>
+<!-- BELL-LABS
+username        Ritchie, Dennis
+category        user
+contact         dmr@bell-labs.com
+-->
+<title>BCPL Reference Manual (1967)</title>
+</head>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+<BASE HREF="/who/dmr/">
+<center>
+<h3>
+Martin Richards's BCPL Reference Manual, 1967
+</center>
+</h3>
+I dug up a copy of an old BCPL manual.  Designated Memorandum M-352
+of MIT Project MAC, it is dated July 21, 1967.
+Thanks to the kind permission of its author, it is available for study.
+<h4>
+Contents
+</h4>
+Presented here is a (186KB)
+<a href="bcpl.ps">Postscript</a> or <a href="bcpl.pdf">PDF</a>
+(smaller at 41K)
+version of the edited result of OCR of the document.
+A <a href="bcpl.ps.gz">gzip-compressed version of the Postscript</a> at 31K is
+available as well.
+The OCR was done by the Textbridge package;
+editing and Postscript output was done by me with Word 7.0.
+For the scholar, there is also a big (2.7MB)
+<a href="bcpl.tif">TIFF representation of the scanned image</a>,
+so you can check the transcription.
+
+<p>
+Recently, Karl Kleine at Fachhochschule Jena, Germany,
+made available another scan of a version of this
+same document, with the same contents, including the date
+and memo number
+on its title page.  The interesting thing is that his
+document was produced on a different typewriter!
+His version was done on a typewriter with a larger
+type pitch, and there are fewer characters on each line,
+so the pagination is different.  Apparently the contents
+are identical (including the hand-drawn characters).
+His version, however, includes the example programs
+at the end that are missing from my copy.
+Neither of us quite understands yet why this needed
+to be done.  His rendition is available at
+his <A href="http://www.fh-jena.de/~kleine/history">
+history page</A>, which also has early manuals for several
+other languages, including Fortran, Algol 60, Pascal, and
+Modula-2.
+
+<p>
+The paper is a xerographic copy of a typewritten memo.  In (copied)
+handwriting at the top of the front page are the initials PGN, for Peter G. Neumann
+(he of the Risks Digest: at the time he was the technical leader
+of the Multics project at Bell Labs).
+At the lower right is the notation "Copies to [Ken] Thompson, [Doug] McIlroy,
+[Bob] Morris," evidently Neumann's distribution list.
+<p>
+It was a bit resistent to OCR because some of the characters
+were evidently inserted by hand, particularly a section symbol (those funny stacked S's
+that might print as &#167; in your browser)
+used in its "publication" syntax to indicate the start of a block.
+The corresponding symbol that closes a block is a section symbol with a vertical
+overstriking line.  In the Postscript redaction, I represent it
+by an understruck section symbol.  Likewise, certain operators like not-equivalent
+are not present in the available font; they're italicized in square brackets.
+And I used those same brackets to describe a couple of diagrams whose rendition
+is omitted.
+<p>
+The document was also marked up somewhat in colored pencil.
+Some of the notations are apparently notes, probably by Rudd Canaday.
+Some seem to be "check off" marks on bits of the syntax, as if he (or someone)
+was comparing code to the language definition.
+<p>
+The Postscript version adheres fairly closely to the layout of the original except
+that I did not try too hard to fiddle the indentation to correct
+the mysterious beliefs and conventions of
+Textbridge and Word.  Word division in running
+text is not preserved, and line-spacing is only approximated.
+Page divisions are preserved.
+<p>
+Besides errors that I introduced in the editing, there are also a few errors in the
+original, some doubtless introduced by the original typist.  For example, on p. 4,
+a comment introduced by // spills across two lines.
+I generally resisted amending the original, except that in a few places an obviously-meant
+"0" has been substituted for a lower-case "o".
+
+<p>
+<h4>
+Context
+</h4>
+BCPL has had a productive life of its own, but my interest in it is more in the basis
+it provided for the development of <a href="kbman.html">the B language</a>
+and then in the <a href="chist.html">history of C</a>. This influence is traced,
+with gratitude, in the latter paper.
+As it tells, the BCPL language definition when B was developed was just the manual
+recorded here, together with the compiler that Richards contemporaneously wrote
+for the CTSS system.
+<p>
+BCPL changed somewhat from that time; its definition became clearer and the language
+more useful.  But in observing the divergences, it's useful to record the
+precise point on the stem from which the B and then the C branch sprouted.
+Martin Richards's <a href="http://www.cl.cam.ac.uk/users/mr">home page</a> has links for obtaining
+a current version of a compiler and examples of the language.
+
+<p>
+The modern version of BCPL is described in the book by
+Richards and Colin Whitby-Strevens, "BCPL--the language and its compiler,"
+ISBN 0521286816, Cambridge University Press, 1981.
+This now seems to be out of print, although until
+recently some of the online book stores listed it.
+Thanks to the continuing generosity of Martin Richards, and with
+the assistance of Guy Haworth, I
+received in April 2001 my own copy of the book from the last of Richards's personal
+stock.
+<p>
+This early manual describes (or perhaps one might say,
+"alludes to") the lexical representation of
+real programs in three ways.
+There is a canonical representation using uppercase words like
+NUMBER, NAME, COND, SECTBRA for terminal symbols of the grammar.
+The syntax as given, however,
+uses a sort of "publication style," rich with symbols and
+underlined keywords; it recalls Algol 60 with its publication language
+intended for journals, but in practice punched on cards, paper tape,
+or available terminals with a less-rich symbol set.
+This third style, the one actually used in the compiler on CTSS,
+is only hinted at and but briefly illustrated in the examples
+in the document.
+
+<p>
+These lexical details changed at various times both in Richards's own usage
+and in our rendition of his compiler at Bell Labs.
+Richards's first BCPL compiler was written using the 6-bit BCD character
+set on CTSS, and adapted shortly thereafter to use the characters
+available on the IBM "golf-ball" 1050 and 2741 terminals.
+At about the same time, CTSS was beginning to adapt to the ASCII character
+set for Multics development.
+<p>
+Some of the lexical conventions actually used in early BCPL were
+directly adopted into B; some more recent ones may owe to back-influence from C.
+For example, the SECTBRA and SECTKET symbols, written as the section-sign and
+overstruck section-sign in the manual's syntax, were already represented
+as <tt>$(</tt> and <tt>$)</tt> even in the compiler
+that Richards wrote on CTSS.
+In some, but not all, of the example programs that Richards provides today,
+the canonical symbols are written {} as in B and C.
+
+<p>
+Similarly the operators
+with formal name LOGAND and LOGOR were represented in this
+manual as the propositional calculus characters resembling
+/\ and \/, but were actually typed (in the compiler of 11 Sept. 1967)
+usually as keywords <tt>logand</tt> and <tt>logor</tt>.
+However in some parts <tt>&</tt> was already used for LOGAND.
+In B they definitively were <tt>&amp;</tt> and <tt>|</tt>.
+They are now visible too in modern BCPL, and almost certainly
+were adopted very soon into barely-past-1967 BCPL along with other obvious
+representations like <tt>&gt; &lt;</tt> for the <tt>gt lt</tt> used
+by and accepted by the compiler in 1967.
+But the particular notebook I have, and the manual and compiler listing I have,
+date between July and November 1967 and do not record them yet. 
+
+<p>
+Important semantic issues remained unresolved in the 1967 manual, for example
+the actual meaning of the LOGAND and LOGOR operators.
+The compiler in 1967 distinguished between <tt>& |</tt> used in `truth-value'
+contexts and ordinary
+value contexts; in the first context they were handled as sequential tests,
+in the second as bit operations.
+The manual doesn't talk about this.  The difficulty of explaining the situation
+led, several years later, to the separation
+of the C <tt>&& ||</tt> operators from <tt>& |</tt>.
+
+
+<p>
+Some of the other lexical or similarly low level changes that happened over the years include
+<ul>
+<p>
+<li>Originally a word (sequence of alphabetic characters) of more than one letter, and
+beginning with a lower-case letter, was reserved to the system for keywords.
+Ordinary names for users could be single lower-case characters or longer words beginning with an
+upper-case letter.
+In the current language, the keywords are all uppercase.
+
+<p>
+<li>In the language of the 1967 manual, function and routine applications used the notation <tt>F[...]</tt>
+and vector applications used <tt>V*[E]</tt>.
+These changed over time to <tt>F(...)</tt> and <tt>V!E</tt> respectively in
+Richards's BCPL, and
+early in the Bell Labs dialect, to <tt>F(...)</tt> and <tt>V*(E)</tt>.
+The change to <tt>F(...)</tt> was certainly influenced by its more conventional look;
+we at Bell Labs found a different way of avoiding the ambiguity of <tt>V*(E)</tt> (or for that matter
+<tt>V*[E]</tt>).
+Things became easier because by this time [] could also be typed readily.
+<p>
+<li>C was invented in part to provide a plausible way of dealing with characters
+when one begins with a word-oriented language.
+B did it clumsily with two routines <tt>char(v, i)</tt> that extracted the i-th character
+from a vector v,
+and <tt>lchar(v, i, c)</tt> that stored a value in the i-th character.
+Richards tells me that early BCPL had similar routines (<tt>getbyte</tt>, <tt>putbyte</tt>).
+BCPL later found a solution better, on its own terms, by providing an operator (<tt>%</tt>) analogous
+to its <tt>!</tt>, such that <tt>v%i</tt> designates the i-th character in a vector.
+However, the earliest BCPL applications tended not to process packed characters in vectors,
+but to spread them out early into one character per word, process, and then pack them
+again if necessary.
+
+</ul>
+
+<p>
+<hr>
+<p>
+<em>
+Fiddled April, 2001, to boast about getting the book from Richards;
+last modified July 2002 to refer to the Kleine material.
+
+</em></body>
+
+</body>
+</html>
+

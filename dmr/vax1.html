@@ -1,0 +1,218 @@
+<html>
+<title>
+1977 take on VAX
+</title>
+<body BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+<H2>Summary of DEC 32-bit machine.
+</H2>
+<DL><DD><I>DMR, from notes by JFO [Joe Ossanna]<br>
+</I></DL>
+<br>&#32;<br>
+<center>
+(DEC confidential--subject to non-disclosure agreement)
+</center>
+<blockquote>
+[presumably the agreement has expired by now!]
+</blockquote>
+<p>
+The project is called `VAX'-- Virtual Address Extension.
+The first hardware is called `STAR' (unoriginal name!) and the operating
+system STARLET.
+Its speed, in native mode, is "between 1 and 2 times the 11/70."
+<blockquote>
+[It wasn't.  On programs that didn't need much memory an 11/70
+was noticeably faster.]
+</blockquote>
+The speed emulating an 11/70 in user mode is about that of an 11/70.
+The cost is intended to be comparable to an 11/70.
+<blockquote>
+[It was considerably more, actually.]
+</blockquote>
+We could get a machine on a field test basis toward the end
+of 1977.
+<blockquote>
+[We didn't, in our group; another research group at Bell Labs
+did, and produced Unix 32/V, direct predecessor to the UC Berkeley
+distributions]
+</blockquote>
+I don't know when regular deliveries are scheduled.
+They are now "past the breadboard stage;" which seems to mean at least
+that they have at least one machine electrically,
+but not mechanically, the same as the final version.
+I gather that a "field test" machine is free but of course it
+is likely to be used for training FE's and would not be our own.
+<H4>Instruction set architecture.
+</H4>
+The machine is byte-addressed, with a 32-bit virtual address.
+It handles the following data formats:
+<blockquote>
+	[Here I delete a long section describing data formats,
+	 address modes, and instructions.  It is pretty much
+	 correct; Joe must have taken excellent notes.]
+</blockquote>
+Calls.  The machine has a built-in calling sequence.
+I'll try to reproduce it exactly.
+Briefly, though, it appears to be possible to do just what C wants.
+I'll try to make clear just what the hardware does do that it can be
+checked.
+<blockquote>
+	[ Here there is a long, essentially correct, description
+	  of 'calls' and 'callg' and how to use them--access
+	  arguments, allocate and refer to locals, and so forth.]
+</blockquote>
+As a side note, SCJ [Steve Johnson] with some advice from me has just written
+a description of what C wants from a calling sequence
+and what it is forced to take on some machines.
+So far as I can determine, this organization embodies every desirable
+feature that was imagined by us and several more besides.
+I am astonished at how well it is designed, particularly considering
+that this is the same company that gave us the `mark' instruction.
+<blockquote>
+[1999 addition: although it's not remarked upon in the 1988
+netnews posting, my gushing admiration of the VAX calling
+instructions is one of the things most attackable from the
+RISC perspective, and in fact we and others discovered that
+even on VAX it was possible to call faster with the
+simpler instructions.]
+</blockquote>
+<br>&#32;<br>
+There are lot more miscellaneous instructions.
+<blockquote>
+[things like insque and find-first-set; I omit.]
+</blockquote>
+Memory mapping and system features.
+<br>&#32;<br>
+This area is rather complicated and somewhat less nice.
+The virtual address is 32 bits (maybe it was really 31,
+but it hardly matters).
+The high order bit selects "system" or "program" space;
+this has no protection implications, but does help determine the style of mapping.
+The next bit selects "program 0" or "program 1"
+if the "system" bit is off.
+"System" plus the "program 1" bit is undefined and reserved.
+The machine is paged, but not segmented, except
+that the three legal states of the program bit with the system bit
+select one of three page tables.
+The page size is XX bytes.
+<blockquote>
+[Note that either we missed hearing this
+or they didn't say!]
+</blockquote>
+Suppose an address lies in system space.
+Then the YY bits below the S and P bits are used to look up in a
+system page table; its base is stored in a hardware register
+and there is a limit.
+The page table word (discussed more below) gives the physical
+address.
+The system page table lies on a physical page boundary.
+<br>&#32;<br>
+If the address is in program space, the page number is looked up
+in either the p0 or p1 page tables.
+The base and limits of both of these are in hardware registers,
+however the base is not a physical address but is mapped according to the
+system address space.
+Incidentally, the P1 page table goes backwards in memory.
+One thinks of a P1 address as a moderately small
+31-bit negative number.
+<br>&#32;<br>
+The page table word ultimately accessed has a present bit, 4 bits
+(15 states) of protection information,
+and a physical address.
+I don't know the size of the bit bield, but it is generous
+compared to the 2MB of memory that can be attached to the machine
+at the moment.
+There is a "modified" bit but no "accessed" bit.
+<br>&#32;<br>
+The machine is designed for virtual memory.
+Any instruction can be restarted.
+They don't promise that if you look at the detailed
+state of things when a page-fail interrupt occurs
+you will see anything interesting; just that you get the virtual
+address of the failing reference,
+and that the instruction can be restarted from the beginning
+with the right results.
+The implication is, that things work right, but that all pages
+referenced by an instruction must be in core for the whole
+instruction.
+You can't step through a piece at a time.
+Thus there is theoretically a minimum set of pages that have to be present
+and it is not entirely trivial (perhaps as big as 20)
+for some of the odder instructions.
+<br>&#32;<br>
+There are four protection domains, something like kernel,
+executive, supervisor, user.
+The latter three cannot execute privileged instructions
+and in general they claim attempts have been made to
+prevent a less privileged domain from interfering with a more privileged.
+The 15 states in a page table word somehow encode
+a nested set of access rights to the page.
+This must be some subset of the cross product (read, write [,execute?])X(k,e,s,u).
+I don't know the details.
+One hopes it is sensible.
+<H4>Critique
+</H4>
+The design of the user-available instruction set is
+is one of the most attractive I have ever seen.
+We could not investigate all the nooks and crannies,
+but it appears to be extremely regular in its treatment of both operators
+and operands; this tends to make a compiler's code generator
+simple
+(and thus more nearly able to approach optimality).
+DEC claims that despite the doubled number of bits in the virtual
+address space, the size in bytes of programs should approach
+that of the 11.
+I intend to investigate this with C outputs,
+but I am inclined to accept the claim.
+The architecture loses bits in most address modes (which occupy
+at least one byte, and sometimes several more),
+but gains in being able to express small displacements from registers
+and small literals.
+For example, to load a small constant, or a value at a small
+displacement from a register, takes three bytes on VAX and four
+on the 11.
+<br>&#32;<br>
+Some care will be needed to produce programs in which all the
+addresses have minimal length.
+Fortunately, the same techniques which we use on the Interdata
+remain applicable.
+<br>&#32;<br>
+The memory mapping is not so good, mainly because it
+does not seem easy to use the very large virtual address space.
+If information is placed at random the page tables become
+huge (2^21 words!).
+However, the user page tables can themselves be paged,
+and this may provide an out.
+I asked Steve Rothman why they did not go to a segmented scheme,
+and the reply was that the overhead
+(presumably on address-cache misses)
+seemed too large.
+I should have investigated this further,
+because I don't believe it.
+He may have had in mind segmentation
+combined with full mapping of the user
+addressing tables.
+This might indeed be pretty messy.
+<br>&#32;<br>
+They talked some about software.
+It was rather depressing.
+Most of it will be emulated.
+(Presumably in a 2MB machine you will still have to tell the
+assembler how big a symbol table to use.)
+The system itself will be new, but unimaginative.
+They did not seem to understand, for example,
+why or even how
+the command interpreter should be a separate process
+and not in the system, and why commands themselves
+should be processes.
+They are also still stuck mostly in assembly language.
+There are companies that
+are learning about how to write software,
+but DEC is evidently not one of them.
+<br>&#32;<br>
+My general impression is that this is a remarkably good machine.
+DEC talked about lots of other features, such as the physical
+design, self-checking, and subset isolation;
+at least they were soothing to hear.
+It sounded pretty good, but it's hard to know how it will work
+out in practice.
+</body></html>

@@ -1,0 +1,1820 @@
+JAMES H. FORTE (2248)
+SAIBER SCHLESINGER SATZ & GOLDSTEIN
+1 Gateway Center
+Newark, New Jersey 07102-5311
+(201) 622-3333
+
+HELLER, EHRMAN, WHITE & McAULIFFE
+525 University Avenue, 9th Floor
+Palo Alto, California 94301
+Telephone: (415) 326-7600
+
+Attorneys for Defendant Berkeley Software Design, Inc.
+
+UNITED STATES DISTRICT COURT
+DISTRICT OF NEW JERSEY
+
+UNIX SYSTEM LABORATORIES, INC., 
+
+Plaintiff,
+
+v.
+
+BERKELEY SOFTWARE DESIGN, INC.,  
+Defendant.
+
+Hon. Dickinson R. Debevoise
+Civil Action No. 92-1667  (DRD)
+
+Defendant Berkeley Software Design's Opposition
+To USL's Motion For Preliminary Injunction
+
+
+TABLE OF CONTENTS
+
+INTRODUCTION ...........
+
+FACTUAL BACKGROUND .....................
+
+ARGUMENT . . . . . . . . . . . . . . . . . .  . . . . . . 14
+
+I. 	USL HAS NOT MET ITS HEAVY BURDEN OF ESTABLISHING
+	ENTITLEMENT TO A PRELIMINARY INJUNCTION , . . . . . . .  4
+
+II.	USL IS NOT LIKELY TO SUCCEED ON ITS COPYRIGHT
+	INFRINGEMENT CLAIM . . . . . . . . . . . . . . . . . . 16
+
+	A. 	USL Has No Valid Copyright in the 32V code . . . lo
+
+		1.	The Limited Publication Doctrine is Inapplicable
+
+		2.	The Header Files Which USL Claims Have Been
+			Infringed Have Been Included in Binary 		
+			Distributions
+			Made By USL Licensees With 
+			No Copyright Notice . . . . . . . . , . . . 26
+
+	B. 	THE SIMILARITIES RELIED UPON BY USL WOULD NOT
+		ESTABLISH COPYRIGHT INFRINGEMENT EVEN IF THE
+		32V CODE WERE COPYRIGHTED...............
+
+
+		1.	The Features Relied Upon By USL's Experts
+			Are Not Protectible
+
+		2. 	The Similarities Relied Upon By USL's Expert
+			Are Neither Quantitatively Nor Qualitatively
+			Substantial
+
+		3. 	USL Could Not Enforce A 32V Copyright
+			Against The University Or BSDI Because
+			Of The Lack Of Copyright Notice . . . . . . 3 7
+
+	III. 	USL CANNOT DEMONSTRATE A LIKELIHOOD OF SUCCESS ON
+		ITS TRADE SECRET CLAIM
+
+		A.	To Prevail On Its Trade Secret Claim, USL Must 
+			Demonstrate
+			That BSD/386 Contains USL Trade Secrets
+
+			1.	The License Agreements Authorize Use Of The
+				UNIX 32V Code To Create Modifications, 
+				Enhancements and Derivative Works
+
+			2.	The License Agreements Permit Derivative 
+				Works
+				Not Containing USL Trade Secrets To Be Made
+				Available to Non-Licensees
+
+			3. 	The Duty of Confidentiality Does Not Apply
+To 
+				Information That Is Or Becomes Generally 
+				Known . . 1l 9
+
+		B .	USL Cannot Demonstrate That Net2 or BSD/386
+			Contain Any USL Trade Secrets
+
+	IV.	USL CANNOT SHOW IRREPARABLE HARM
+
+	V.	THE PUBLIC INTEREST FAVORS DENIAL OF THE 
+		PRELIMINARY INJUNCTION
+
+	VI.	EVEN IF USL COULD ESTABLISH THAT NET2 CONTAINED 
+		SOME USL PROPRIETARY INFORMATION, THE INJUNCTION IT 
+		SEEKS IS OVERLY BROAD
+
+		A.	An Injunction Against The Entire BSD/386 Program 
+			WouldBe Impermissibly Overbroad
+
+		B.	Plaintiff is Misusing its Copyright by Attempting 
+			to EnjoinAll of BSD/386
+	,
+787 F.2d 875 (3d Cir. 1986) cert. dismissed, 488
+U.S. 918 (1988) . . . . . . . . . . . . . . . . . . . . 53
+
+Apollo Technologies Corp. v. Centrosphere Industrial Corp,.,
+No. 92-3712 (AJL), 1992 WL 289943 (D.N.J. 1992) . . . . 15
+
+Apple Computer, Inc. v. Franklin Computer Corp.,
+714 F.2d 1240 (3d Cir. (1983), cert. dismissed, 464
+U.S. 1033 (1984) . . . . . . . . . . . . . . . . . . .	  7
+
+Baker v. Selden,
+101 U. S . 99 . . . . . . . . . . .	. . . . . . . . . . .	 3 6
+
+Breffort v. I Had A Ball Co.,
+271 F. Supp. 623 (S.D.N.Y. 1967) . . . . . . . . . . . 54
+
+Brown v. Tabb,
+714 F.2d 1088 (11th Cir. 1983). . . . . . . . . . . 19, 20, 23, 24
+
+Brown Bag Software v. Symantec Corp.,
+960 F.2d 1465 (9th Cir. 1992) . . . . . . . . . . . . . 33
+
+Campbell Soup Co. v. ConAgra. Inc.,
+977 F.2d 86 (3d Cir. 1992) . . . . . . . . . . . . . . 15
+
+Colonial Book Co.. Inc. v. AMSCO School Publications. Inc.,
+41 F. Supp. 156 (S.D.N.Y. 1941) . . . . . . . . . . . . 54
+
+Craft v. Kobler,
+667 F. Supp. 120 (S.D.N.Y. 1987) . . . . . . . . . . . 54
+
+Data General Corp. v. Digital Computer Controls. Inc.,
+188 U.S.P.Q. 276 (Del. Ch. 1975) . . . . . . . . . . . 24
+
+Davis v. Romney,
+490 F.2d 1360 (3d Cir. 1973) . . . . . . . . . . . . . 53
+
+Educational Testing Services v. Katzman,
+793 F.2d 533 (3d Cir. 1986) . . . . . . . . . . . . . . ~5
+
+Feist Publications. Inc. v. Rural Telephone Service Co.,
+499 U.S. ___, 113 L. Ed. 2d 358, 111 S. Ct. 1282
+(1991) ~                           . . . . . . . . 27, 2~, 29
+
+Ferroline Corp. v. General Aniline & Film Corp.,
+207 F.2d 912 (7th Cir. 1953), cert. denied., 347
+U.S. 953 (1954) . . . . . . . . . . . . . . . . . . . . 49
+
+Frank's GMC Truck Center. Inc. v. General Motors Corp.,
+847 F.2d 100 (3d Cir. 1988) . . . . . . . . . . . . 14, 15
+
+Hubco Data Products Corp. v. Management Assistance. Inc.,
+219 U.S.P.Q. 450 (D. Idaho 1983) . . . . . . . . . . . 24
+
+Ideal Toy Corp. v. Plawner Toy Mfg. Corp.,
+685 F.2d 78 (3d Cir. 1982) . . . . . . . . . . . . . . 53
+
+International Film Service Co., v. Affiliated Distributors,
+283 F. 229 (S.D.N.Y. 1922) . . . . . . . . . . . . . . 54
+
+Landsberg v. Scrabble Crossword Game Players. Inc.,
+736 F.2d 485 (9th Cir. 1984) . . . . . . . . . . . 28, 31
+
+Lasercomb America, Inc. v. Reynolds,
+911 F.2d 970 (4th Cir. 1990) aff'd without op. 961
+F.2d 211 (1992) . . . . . . . . . . . . . . . . . . . . 56
+
+Magic Marketing v. Mailing Services of Pittsburg. Inc.,
+634 F. Supp. 769 (W.D. Pa. 198, 1986) . . . . . . . . . 33
+
+McLendon v. Continental Can Co.,
+908 F.2d 1171 (3d Cir. 1990) . . . . . . . . . . . . . 53
+
+Merchant & Evans v. Roosevelt Building Products,
+963 F.2d 628 (3d Cir. 1992) . . . . . . . . . . . . . . 15
+
+Morton v. Beyer,
+822 F.2d 364 (3d Cir. 1987) . . . . . . . . . . . . . . 15
+
+National Broadcasting Co. v. Sonneborn,
+630 F. Supp. 524 (D. Conn. 1985) . . . . . . . . . . . 24
+
+Orth-o-Vision. Inc. v Home Box Office,
+474 F. Supp. 672 (S.D.N.Y. 1979) . . . . . . . . . 29, 54
+
+Paramount Pictures Corp. v. Rubinowitz,
+217 U.S.P.Q. 48 (E.D.N.Y. 1981) . . . . . . . . . . 24, 25
+
+- iv-
+
+qad. inc. v. ALN Associates, Inc.,
+770 F. Supp. 1261 (N.D. Ill. 1991) . . . . . . . . . . ,,
+
+Rexnord. Inc. v. Modern Handling Systems, Inc.,
+379 F. Supp. 1190 (D. Del. 1974) . . . . . . . . . 16, 13,27
+
+Reyher v. Children's Television Workshop,
+533 F.2d 87 (2nd Cir. 1976) . . . . . . . . . . . . . . 29
+
+SEGA Enterprises LTD., Accolade, Inc.,
+24 U.S.P.Q. 2d 1561 (9th Cir. 1992) . . . . . . . . . . 31
+
+Salinger v. Random House, Inc.,
+811 F.2d 90 (2d Cir.) cert. denied, 484 U.S. 890
+(1987) . . . . . . . . . . . . . . . . . . . . . . . . 54
+
+See v. Durang,
+711 F.2d 141 (9th Cir. 1983) . . . . . . . . . . . . . 29
+
+Sen-Torq, Inc. v. K Mart Corp.,,
+936 F.2d 851 (6th Cir. 1991) . . . . . . . . . . . . . 33
+
+Walker v. Time Life Films. Inc.,
+615 F. Supp. 430 (U.S.D.C. SD. NY, 1985) . . . . . . . 30
+
+Warner Bros. Inc. v. American Broadcasting Companies. Inc.,
+770 F.2d 231 (2nd Cir. 1983) . . . . . . . . . . . . . 28
+
+Whelan Associates, Inc. v. Jaslow Dental Laboratory. Inc.,
+797 F.2d 1222 (3d Cir. 1986), cert. denied . . . . . . 32
+
+White v. Kimmell,
+193 F.2d 744 (9th Cir.), cert. denied, 343 U.S. 957
+(1952) . . . . . . . . . . . . . . . . . . . . . . 18, 19,
+23, 2~,
+
+STATUTES
+
+17 U.S.C. S 401 (former version) . . . . . . . . . . . . . . 16
+
+17 U.S.C. Section 401(a) (former version applicable) . . . . 20
+
+17 U.S.C. S 405 . . . . . . . . . . . . . . . . . . . . . . . 16
+
+37 C.F.R. 202.1(9) (1985) . . . . . . . . . . . . . . . . 27, 3~
+
+37 C.F.R.  202.1(a) . . . . . . . . . . . . . . . . . . . . 33
+
+OTHER AUTHORITIES
+
+3 Nimmer, Nimmer on Copyright,  3.03 [F][5] . . . . . . . . 28
+
+1 Nimmer on Copyright  4.13[A], at 4-70 n.13.1 (1992) . . . 25
+
+11 Wright & Miller, Federal Practice and Procedure: Civil
+2947, at 424 (1973) . . . . . . . . . . . . . . .	53
+
+3 Nimmer on Copyright, supra  13.03[F][2], 
+ 
+3 Nimmer on Copyright, supra,  14.06[C]
+
+3 Nimmer on Copyright. supra, 14.06[c]
+
+
+JAMES H. FORTE (2248)
+SAIBER SCHLESINGER SATZ & GOLDSTEIN
+1 Gateway Center
+Newark, New Jersey 07102-5311
+(201) 622-3333
+
+HELLER, EHRMAN, WHITE & McAULIFFE
+525 University Avenue, 9th Floor
+Palo Alto, California 94301
+Telephone: (415) 326-7600
+
+Attorneys for Defendant Berkeley Software Design, Inc.
+
+UNITED STATES DISTRICT COURT
+DISTRICT OF NEW JERSEY
+
+	UNIX SYSTEM LABORATORIES, INC.,
+	               Plaintiff,	
+
+-against-	
+
+	BERKELEY SOFTWARE DESIGN, INC., and
+	the Following lndividuals in their Collective
+	Capacity as THE REGENTS OF THE 
+	UNIVERSITY OF CALIFORNIA: PETE	
+	WILSON, LEO T. MCCARTHY, WILLIE L.	
+	BROWN, JR., et al.,
+	     Defendants.
+
+		Civil Action No.92-1667 (DRD)
+
+MEMORANDUM OF LAW ON BEHALF OF DEFENDANT
+BERKELEY SOFTWARE DESIGN, INC. IN FURTHER OPPOSITION
+TO PLAINTIFF'S MOTION FOR PRELIMINARY INJUNCTION
+
+Introduction
+
+With this motion, plaintiff UNIX System Laboratories, Inc., ("USL") 
+asks this Court to prohibit Berkeley Software Design, Inc. ("BSDI") 
+from selling its only product and from maintaining any of its current 
+employees, based on the fact that, like most experienced computer 
+programmers, they have had access to UNIX source code. USL's 
+supposedly secret source code has been licensed to universities and 
+companies around the world for many years and has been so widely 
+available that many aspects of it have become industry standards. In 
+addition, hundreds of books have been written describing the code in 
+great detail with no complaint from USL. (See Joint Declaration of 
+Marshall Kirk McKusick and Keith Bostic, ~ 28.5 and 36; Affidavit of 
+David Kashtan, ~ 6, 8, 14, 15, 17-19, 23; Affidavit of Michael Karels, 
+~ 34-36).[fn1]  Thus, this is hardly the "garden variety" 
+misappropriation suit USL claims it is.
+
+Having chosen to disclose its source code to students and computer 
+programmers all over the world, and having promoted it as an 
+industry standard, USL's attempt to portray it as a closely guarded 
+secret, based on its own internal safeguards, is ludicrous.
+
+As in any trade secret case, a finding of misappropriation requires a 
+showing that the specific items BSDI allegedly misappropriated are 
+in fact secret. No such showing has been or can be made. In fact, 
+most of the items USL relies on are standard features, consisting of 
+file names and mnemonics commonly used, both in USL-licensed 
+products and in UNIX-compatible products for which no USL license 
+is required or are disclosed in publicly available materials. (See 
+McKusick and Bostic Decl. ~ 26-28.4, 28.6.2, 28.7, 32, 33, 37, 39, 45, 
+53, 56, 59, and 61; Karels Aff. ~ 34-36; Kashtan Aff. ~ 3, 5, 7, 12, 
+17, 19, 21, 23).
+
+  [fn1]  The Joint Declaration of Marshall Kirk McKusick and Keith 
+Bostic shall be referred to as the "McKusick and Bostic Decl.," 
+respectively. The Affidavits of David Kashtan and Michael Karels 
+shall be referred to as "Kashtan Aff." and "Karels Aff.," respectively.
+
+Unable to find significant similarities in the actual code, USL points 
+to these same standard file names and mnemonics as evidence of 
+copyright infringement, even though USL forfeited any copyright 
+protection in the 32V code long ago, by making it widely available 
+with no copyright notice. Even if USL had not forfeited copyright 
+protection in the 32V code, it could not show copyright 
+infringement, since mnemonics and common industry standards are 
+not protectible under copyright law and their use does not prove 
+illicit copying.
+
+As for the actual code, out of the over 1.5 million lines of code in 
+BSD/386, USL's expert relies solely on a few lines interspersed in 
+two functions, ignoring the fact that instructions on how to 
+implement those functions are contained in various textbooks. (See 
+McKusick and Bostic Decl., ~1 53-56; Kashtan Aff., ~1 4-6). Given 
+the specific instructions available in such books, the trivial 
+similarities relied on by USL are to be expected and prove neither 
+copying nor use of the 32V code.
+
+In short, with this motion, USL seeks to exclude a legitimate 
+competitor from the marketplace by attempting to invoke a 
+nonexistent copyright, by relying on commonly used industry 
+standards as evidence of copying, and by falsely claiming generally 
+known information as its trade secrets.
+
+Not content to destroy one potential competitor, USL also seeks to 
+keep a stranglehold on the entire market by claiming that everyone 
+who has had ever had access to UNIX source code a group that 
+include~ most experienced programmers in the industry is "mentally 
+contaminated" and may not develop any functionally similar product, 
+without first purchasing an exorbitantly expensive license from USL. 
+In accordance with this argument, USL requests this Court to 
+prohibit BSDI from hiring anyone who has had access to UNIX source 
+code. USL's request would not only require BSDI to fire all of its 
+current employees, but would make it difficult to find any qualified 
+replacements. Having chosen to widely disseminate its source code 
+in order to build a market for its product and having succeeded in 
+making it an industry standard, USL cannot now claim that everyone 
+with knowledge of it is restricted from developing competing 
+products.
+
+USL is also unable to show irreparable harm, as it must in order to 
+obtain a preliminary injunction. As authorized under its license 
+agreements with USL, the University of California has distributed 
+the Net2 software on which BSD/386 is based, with no restrictions 
+on further disclosure and distribution. The Net2 software was 
+written by students and employees of the University of California 
+and thousands of other individuals around the world who have 
+contributed their work to the University. (See Karels Aff. ~l 13-14). 
+Hundreds of thousands of copies of Net2 have been publicly 
+distributed and Net2 remains available from a variety of public 
+archives. (See Affidavit of Richard F. Adams, Jr., ~1 15-16) ("Adams 
+Aff.). In addition, at least one other company has created a complete 
+system based on Net2 and continues to market that system. (Adams 
+Aff., ~ 17). USL has taken no legal action against that company or 
+against any of the numerous other entities still distributing Net2.
+
+The number of additional copies of the code BSDI will sell while this 
+case is pending is insignificant relative to the huge number of 
+copies already distributed and which remain freely available to the 
+public. Thus, USL's claim of irreparable harm is totally divorced 
+from reality. BSDI, on the other hand, will be forced out of business 
+long before any trial is had and will be unable to pay for its defense, 
+if it is prevented from continuing to sell its only product. For all of 
+these reasons, USL is unable to meet the standards required for a 
+preliminary injunction and its attempt to force BSDI out of business 
+without affording it a full trial must be denied.
+
+Factual Background 
+
+A. The Parties.
+
+Plaintiff USL is a majority-owned affiliate of AT&T. It was 
+formerly a division within AT&T and was spun off to form a separate 
+company with the goal of marketing UNIX source code and other 
+software. (Thiel Dep. T. 80-8 to 80-25, 81-1 to 81-24).[fn2]  It has 
+recently been announced that AT&T's stock in USL will be sold to 
+Novell Corporation. (See Affidavit of James H. Forte, 2) (hereinafter 
+"Forte Aff.").
+
+Defendant University of California ("the University") is a world-
+renowned university. For many years, the University has distributed, 
+on a nonprofit basis, software developed by its Computer Systems 
+Research Group ("CSRG"). These distributions are known as Berkeley 
+Software Distributions, and have been used by many companies, 
+including USL, in a variety of commercial products. (See Karels Aff., 
+11 3-10, 12-13, 20).
+
+Some of the Berkeley Software Distributions have included code 
+licensed to the University by USL and thus have been provided only to 
+USL licensees. (Id., 1 9). Others not including any USL-licensed code 
+have been made available to anyone, without requiring proof of a USL 
+source code license. (Id., ~1 9-13). As discussed below, such 
+distributions were expressly authorized in the University's license 
+agreements with USL.
+
+
+  [fn2] All citations to the deposition transcript of Charles Thiel are 
+attached as Exhibit A to the Affidavit of James H. Forte.
+
+In July of 1991, the University began distributing its Second 
+Networking Release ("Net2"), which did not contain USL proprietary 
+code and thus required no USL license. USL now falsely accuses the 
+University of violating its trade secrets and copyrights by releasing 
+Net2 to non-licensees.
+
+Defendant BSDI is a small startup company that has spent 
+approximately eleven man-years developing the Net2 release into a 
+commercially viable product - BSD/386 - which is potentially 
+competitive with USL's UNIX operating system. (Adams Aff., ~ 3-6). 
+Initially, USL sued only BSDI, even though the claim was based on an 
+allegation that the University's release of Net2 violated its 
+intellectual property rights. Subsequently, USL added the University 
+as a defendant and alleged that the code added to Net2 by BSDI also 
+violated its rights. 
+
+B. The Technology
+
+A computer program is a set of instructions implementing 
+algorithms that enable a computer to perform various functions. 
+Computer programs are written in a form called "source code," 
+which consists of humanly-comprehensible instructions in one of 
+many computer languages. UNIX source code is usually written in a 
+language called "C". Before source code can be run on a computer it 
+must be compiled into machine-readable code called object code or 
+binary code. Through the use of a compiler program, the source code 
+is turned into binary code, which consists of "1s" and "Os" strung 
+together in a particular order. The binary code is used to operate the 
+computer or perform a particular application.
+
+There are different kinds of computer programs, including operating 
+system programs and application programs. An operating system is a 
+program that directs the internal operations of the computer and 
+interacts with a variety of compatible application programs. An 
+application program is a program that enables the computer to 
+perform a specific task, such as word processing, accounting or 
+mathematical calculations. See Apple Computer. Inc. v. Franklin 
+Computer Corp., 714 F.2d 1240, 1243 (3d Cir. (1983), cert. 
+dismissed, 464 U.S. 1033 (1984). C. History of the UNIX Source Code
+The original UNIX operating system was developed by employees of 
+AT&T's Bell Laboratories in the late 1960's, and was based on an 
+earlier system called Multics. (See Maurice J. Bach, The Design of 
+the UNIX Operating System, pp. 1-3, attached as Exhibit B to the 
+Forte Aff.; McKusick and Bostic Decl., f 28.1.3). At that time, AT&T 
+was prohibited from selling software and developed the UNIX code 
+solely for its own internal use. Subsequently AT&T began licensing 
+the UNIX source code to universities for educational use, ;
+
+[REDACTED]
+
+This marketing strategy has been so successful that many aspects of 
+the UNIX operating system have become industry standards. (See 
+Exhibit D to the Forte Aff.; see generally McKusick and Bostic Decl.).
+
+  [fn3]  All citations to the deposition transcript of Edwin G. Baldwin 
+are attached as Exhibit C to the Forte Aff.
+
+Unlike most software companies, who distribute their products only 
+in object code, USL has distributed its operating system in source 
+code form. (Thiel Dep- T- 95-20 to 96-5). In licensing its source 
+code to universities for research and other educational uses, USL has 
+required universities to distribute their enhancements and 
+derivative works developed using the code to anyone, including 
+AT&T, at a nominal cost. (See Karels Decl.,
+23). To the extent the enhancements or derivative works have 
+included the licensed source code, they could be provided only to 
+licensees, but still had to be provided at nominal cost. (See Karels 
+Decl., ~ 23). As a result, USL has received the benefit of free 
+development work from thousands of computer programmers, and has 
+incorporated the best of that work into its own system. (See Karels 
+Decl., ~ 20 and 34).
+
+After divestiture, which took place in 1984, AT&T began to market 
+its UNIX source code actively in the United States and in many other 
+countries as a commercial product. As a result of this widespread 
+licensing and the access permitted to students all over the world, as 
+USL admits, the UNIX source code has become "world-renowned," and 
+many portions of it have become industry standards. Although USL 
+may have strict internal safeguards in place, it has so widely 
+licensed its UNIX source code that it cannot be considered a "secret" 
+by any stretch of the imagination. Indeed, since the source code has 
+been licensed to universities all around the country, most people 
+who have studied computer science at universities over the past 
+fifteen years have had access to the source code at some time,
+E to the Forte Aff.). Further, the strict safeguards USL claims to 
+observe have not been observed by its thousands of licensees. 
+consequently, USL's licensed code periodically appears on publicly 
+accessible computers. (Bond Dep. T. 71-24 to 74-16;[fn4] Adams 
+Aff., ~ 10).
+
+  [fn4] All citations to the deposition transcript of Mitzi D. Bond are 
+attached as Exhibit F to the Forte Aff.
+
+
+USL has also permitted numerous books to be written on the UNIX 
+source code. These books describe nearly every aspect of the code, 
+including its design, architecture, sequence, organization, structure, 
+implementation and algorithms, and provide instruction on how to 
+write UNIX-compatible code. See infra. Among other things, such 
+publicly available reference materials disclose the specific features 
+USL's expert relies upon as evidence of copying and trade secret 
+misappropriation. (See generally McKusick and Bostic Decl.; Kashtan 
+Aff., ~l 6, 8). 
+
+D. The Berkeley Distributions
+
+The University began releasing its Berkeley Software Distributions 
+in the late 1970's. The original distributions were modifications and 
+enhancements of the AT&T-licensed code. Over the years, the 
+University continued to modify the licensed code and rewrote many 
+of the programs from scratch. It also developed many additional 
+programs which it included in its releases and obtained a variety of 
+other programs from outside contributors. (See Karels Aff. Il 2-14). 
+What is now known as Berkeley UNIX has been very popular and has 
+been included in a variety of commercial products including 
+operating systems marketed by Sun Microsystems, Digital Equipment 
+Corporation, and USL. (See Karels Aff. ~ 6 and 20). Thus, USL has 
+benefitted enormously by its licensing of UNIX source code to the 
+University and other educational institutions.
+
+In accordance with the terms of its license agreements with USL, 
+the University has made several of its releases available to non-
+licensees, since they did not contain any of USL's licensed code. The 
+first of these was in 1987 and consisted of a reimplementation of a 
+particular function for handling daylight savings time that existed 
+in the 32V code. The second was a package of networking code 
+distributed in 1988. Both of these releases were made via 
+anonymous FTP, which means that they were placed on a publicly 
+accessible computer network, with over a million users. (See Karels 
+Aff. ~ 9-10).
+
+Starting with the BSD4.3-Tahoe release in 1987, the University also 
+began marking files which did not contain AT&T code with a special 
+legend, indicating that they were freely redistributable. (See Karels 
+Aff. ~ 9). Although the University provided the 4.3 Tahoe release only 
+to AT&T licensees, USL has never objected to the designation of 
+certain files as freely redistributable, and those files have in fact 
+been redistributed by those who obtained the release. (See Karels 
+Aff. ~ 9-11).
+
+In 1988, the University distributed its first Networking Release 
+("Net1"), which consisted of 134 source files from the networking 
+portion of the BSD kernel, a login program, and a number of utility 
+and C-Library programs. No AT&T source code license was required 
+to obtain the Net1 release. (See Karels Aff. I 10). Contrary to USL's 
+representation, Net1 did include some code that had a functional 
+analogue in 32V and, like the Net2 release, made reference to code 
+that was not included. In both the Net1 and Net2 releases, these 
+references are present because the code is intended to be used with 
+other programs that contain the referenced code. (See Karels Aff. ~ 
+10, 15-16). Thus, they do not indicate mindless copying, as USL 
+suggests.
+
+After the Net1 release, the University made another release called 
+BSD4.3-Reno. Although this release was provided only to USL 
+licensees, it contained more files marked freely redistributable, and 
+such files have in fact been distributed to non-licensees by others. 
+(See Karels Aff. ~ 12). Although USL received a copy of both the 
+Tahoe and Reno releases, and used portions of them in its own code, 
+USL made no objection to any of the designations. Nor has it ever 
+objected to the distribution of Net1 to non-licensees. (See Karels 
+Aff. f 12).
+
+The University released its second license-free release, the Net2 
+software at issue in this action, in July of 1991. This included not 
+only an updated version of the networking software included in the 
+earlier Net1 release, but a host of other programs that had been 
+written by University students and employees or contributed to the 
+University. (See Karels Aff. ~1 13-14). This release was the 
+culmination of a project begun years earlier to sort out the 
+programs that were not subject to AT&T license restrictions and 
+make them available to anyone, as contemplated by the University's 
+license agreements with AT&T. (See Karels Aff. 1 17). Thus, it 
+includes the work of thousands of authors written at different times 
+over a period of many years.
+
+On several occasions, CSRG members attempted to obtain USL's 
+views as to whether certain programs contained any USL proprietary 
+matter. (Bostic Dep. T. 39-7 to 40-1, 41-11 to 41-i,, and exhibits P-
+70 and P-71 attached as Exhibit I to the Forte Aff.; McKusick Dep. T. 
+267-2 to 268-24).[fn5]   Although USL has provided such opinions to 
+others, USL refused to take any position on the code submitted by 
+the CSRG members. (Id.).
+Prior to the release of Net2, CSRG members discussed the release 
+many times with University counsel and performed a detailed code 
+comparison to make sure that the Net2 release did not include USL-
+proprietary code, applying criteria received from University counsel. 
+The release was then reviewed by University counsel in conjunction 
+with outside counsel and a technical expert, and ultimately was 
+approved by University officials. (see Karels Aff. ~ 18-27). 
+
+  [fn5]  All citations to the deposition transcripts of Keith Bostic 
+and Marshall Kirk McKusick are attached as Exhibits G and H, 
+respectively, to the Forte Aff.
+
+E. The Formation of BSDI and the Development of BSD/386
+
+After the release of Net1, CSRG members had made several public 
+announcements regarding the additional software they planned to 
+include in the next USL-license-free release. After hearing these 
+announcements, Richard Adams, who is now the president of BSDI, 
+became interested in the possibility of developing a commercial 
+product based on the upcoming release and discussed his idea with 
+various acquaintances, including three CSRG members, Keith Bostic, 
+Kirk McKusick and Michael Karels. (See Karels Aff., ~ 19; Adams Aff., 
+~ 4). Believing the release to be imminent, in January of 1991, he 
+organized a meeting with these and several other interested 
+individuals to explore the feasibility of the idea. Because they were 
+concerned that USL would not like a high-quality, lower-priced 
+competitor in the market, and might try to drive them out, they also 
+discussed the concept with attorneys to satisfy themselves that USL 
+would have no basis for interfering with the project. (See Karels 
+Aff., 19; Adams Aff., ~ 4).
+
+At the time of that meeting, the CSRG members had nearly 
+completed the process of reviewing the University's software to 
+determine what could be included in Net2, based on the criteria that 
+had been supplied to them by the University's counsel. They also had 
+made several public announcements of the upcoming release and 
+what programs they anticipated would be included in it. These 
+announcements took place long before BSDI existed, and before 
+anyone associated with BSDI ever discussed the idea of using the 
+release in a product. Thus, USL's suggestion that BSDI instigated the 
+release is ridiculous. It was the announcement of the release that 
+"induced" the formation of BSDI, not the other way around.
+
+At the time of the January meeting, Mr. Adams was unsuccessful in 
+persuading any of the CSRG members to leave the University to join 
+the company he was contemplating. The CSRG members also did not 
+agree to invest any money in the venture at that time, nor did they 
+receive any commitments from BSDI. (See Karels Aff., 1 19-21; 
+McKusick Dep. T. 151-20 to 152-17; Bostic Dep. T. 152-16 to 153-7; 
+Adams Aff., 1 4). Thus, USL's assertions that the CSRG members had 
+a financial interest in BSDI while they were working on the Net2 
+release is completely false. No CSRG member had any interest in 
+BSDI until after the release of Net2. Although USL has gone to great 
+lengths to try to portray BSDI as the driving force behind the Net2 
+release - including misrepresenting the testimony of BSDI and CSRG 
+employees - USL has failed to present any evidence to support such a 
+claim.
+
+BSDI received the Net2 release with the understanding that it 
+contained no USL-proprietary code and put a great deal of effort and 
+expense into making it a usable operating system.[fn6]  In doing so, 
+BSDI relied entirely on publicly available reference materials. (See 
+Adams Aff., ~ 5). USL now seeks to enjoin BSDI from continuing to 
+sell its BSD/386 product, which it has been selling in pre-
+production form for over nine months. USL further seeks to enjoin 
+BSDI from hiring any employees that have had access to UNIX source 
+code, a limitation that would rule out not only all of its current 
+employees, but the thousands of other computer programmers who 
+have had access to UNIX source code as students or employees.
+
+  [fn6] USL's argument that the indemnification clause contained in 
+the Net2 agreement should have put BSDI on notice of possible 
+violations is belied by the fact that the same clause was included in 
+the University's earlier licenses of BSD code to AT&T. (See Exhibit J 
+to the Forte Aff., ~ 12).
+
+ARGUMENT
+
+I. USL HAS NOT MET ITS BURDEN OF ESTABLISHING ENTITLEMENT TO A 
+PRELIMINARY INJUNCTION.
+
+The Third Circuit has held repeatedly that "injunctive relief is an 
+extraordinary remedy which should be granted only in limited 
+circumstances." Frank's GMC Truck Center. Inc. v. General Motors 
+Corp., 847 F.2d 100, 102 (3d Cir. 1988). To obtain such extraordinary 
+relief, the moving party bears a heavy burden of establishing:
+
+(1) The probability of irreparable injury to the moving party in the 
+absence of relief;
+(2) The absence of possibility of harm to the nonmoving party if 
+relief were granted;
+(3) The likelihood of success on the merits; and
+(4) The public interest in granting preliminary relief. Merchant & 
+Evans v. Roosevelt Building Products, 963 F.2d 628, 632 (3d Cir. 
+1992); Apollo Technologies Corp. v. Centrosphere Industrial Corp., No. 
+92-3712 (AJL) 1992 WL 289943 (D.N.J. 1992). The injunction should 
+issue only if plaintiff produces sufficient evidence showing that "all 
+four factors favor preliminary relief." Merchant & Evans, 963 F.2d at 
+632-33.
+
+Of these four requirements, the Third Circuit places particular 
+weight on the probability of irreparable harm and the likelihood of 
+success on the merits. If "either or both of these prerequisites are 
+absent," the circuit court will reverse the grant of an injunction by 
+the district court. Frank's GMC, 847 F.2d at 102 (quoting In re Arthur 
+Treacher's Franchisee Litigation, 689 F.2d 1137, 1143 (3d Cir. 
+1982)); Morton v. Beyer, 822 F.2d 364, 367 (3d Cir. 1987).
+
+Further, the moving party must make a "clear showing of immediate 
+irreparable harm." Campbell Soup Co. v. ConAgra. Inc., 977 F.2d 86, 
+91, (3d Cir. 1992). To bear this burden, "the plaintiff must 
+demonstrate potential harm which cannot be redressed by a legal or 
+an equitable remedy following a trial. The preliminary injunction 
+must be the only way of protecting the plaintiff from harm." Id.
+
+As shown in detail below, USL has failed to make the required 
+showing on any of the four factors necessary to obtain the requested 
+preliminary injunction. Thus, its motion should be denied.
+
+II. USL IS NOT LIKELY TO SUCCEED ON ITS COPYRIGHT INFRINGEMENT 
+CLAIM. 
+
+A. USL Has No Valid Copyright In The 32V Code.
+
+USL's copyright infringement claim is fundamentally flawed, in that 
+USL has no valid copyright in the UNIX/32V source code, which USL 
+permitted to be widely published without a copyright notice. Before 
+March 1, 1989 (the effective date of the Berne Convention 
+Implementation Act), the law required that a copyright notice be 
+placed on published works to notify recipients that the author 
+intended to claim a copyright in the work. See 17 U.S.C.  401 (former 
+version); 17 U.S.C.  405.[fn7]  Without such a notice, those receiving 
+the work could assume that the author did not intend to claim 
+copyright.
+
+  [fn7] 17 U.S.C.  401 was amended in connection with passage of the 
+Berne Convention in 1988, and no longer requires notice to be placed 
+on copies of published works.
+
+Thus, publication of a work without a copyright notice resulted in 
+forfeiture of any copyright protection, unless adequate steps were 
+taken to cure the lack of notice and the work was registered within 
+five years. See 17 U.S.C. S 405; see also Rexnord. Inc. v. Modern 
+Handling Systems. Inc., 379 F. Supp. 1190, 1197 (D. Del. 1974) 
+("Copyrighted material loses its protected status if it is published 
+without notice of copyright."). No such steps were taken with 
+respect to the 32V code. As recently as 1992, USL belatedly 
+registered its copyright in UNIX and 32V. See Exhibits A - D to 
+Plaintiffs' Amended Complaint (copyright registration for UNIX 
+operating system, editions 5, 6, 7, and 32V).
+
+Prior to 1989, USL made the 32V code available to thousands of 
+educational, commercial and governmental entities throughout the 
+world, without any copyright notice.
+
+[REDACTED]
+
+In discovery, USL produced a 3-inch-thick list of licenses which 
+indicates that, as of 1986, at least [REDACTED] computers were 
+licensed under either System III or System V, and thus also were 
+licensed under 32V. (A copy of this list is attached to the Forte Aff. 
+as Exhibit M).
+
+[REDACTED]
+
+Since AT&T permitted the widespread distribution of the32V source 
+code without a copyright notice prior to 1989, USL has lost any 
+copyright protection it might otherwise have had in it,and, as a 
+matter of law, there can be no claim for copyright infringement of 
+the 32V code.
+
+  [fn8] All citations to the deposition transcript of David Frasure are 
+attached as Exhibit K to the Forte Aff.
+
+  [fn9] All citations to the deposition transcript of Chuck Greene are 
+attached as Exhibit N to the Forte Aff.
+
+1. The Limited Publication Doctrine Is Inapplicable.
+
+In an attempt to dodge this fatal defect in its copyright claim, USL 
+makes the incredible assertion that the 32V source code is an 
+unpublished work, even though it has been marketed to the 
+commercial world for many years and has been made available to 
+many thousands of commercial, educational and governmental 
+entities. Compare USL's Moving Brief, at 27 with R.L. Martin The UNIX 
+System: Preface, and A.V. Aho, The UNIX System: Foreword, AT&T 
+Bell Laboratories Technical Journal, Vol. 63, No. 8, October 1984, pp. 
+1571-73, a copy of which is attached to the Forte Aff. as Exhibit P. 
+To make such a claim, USL contends that its widespread commercial 
+distribution has been only a "limited publication," and thus has not 
+forfeited its copyright protection.
+
+Although courts have created a narrow exception to the forfeiture 
+doctrine known as the doctrine of limited publication, this doctrine 
+is not applicable here. Under the doctrine of limited publication, a 
+work published without the proper notice will not fall into the 
+public domain if the copyright owner can prove that its distribution 
+was limited to (1) a definitely selected group, (2) for a limited 
+purpose, and (3) without the right of diffusion, reproduction, 
+distribution or sale. See White v. Kimmell, 193 F.2d 744, 746-47 
+(9th Cir.), cert. denied, 343 U.S. 957 (1952); Rexnord, 379 F. Supp. at 
+1197. Unless all three of these criteria are met, however, a 
+publication cannot qualify as a limited publication. White, 193 F.2d 
+at 746-47.
+
+Accordingly, restrictions on use or redistribution alone are not 
+sufficient.
+Plainly, USL cannot meet the first of these requirements. 
+Distribution of the 32V source code has not been limited to a 
+definitely selected group. Rather, the 32V source code has been 
+available to 
+
+[REDACTED]
+
+1988, attached as Exhibit 0 to the Forte Aff.; see also AT&T 
+Technical Journal, p. 1573 ("UNIX System V is available to the 
+commercial world from AT&T in a fully supported form) (emphasis 
+added)) (See Exhibit P to the Forte Aff.). USL representatives have 
+testified that
+
+[REDACTED] as if the category of [REDACTED] could be a "definitely 
+selected group" under the test set forth in White. The limited 
+publication exception is much more narrowly drawn than this. See 
+Brown, 714 F.2d at 1092 (Court found that group consisting of "all 
+automobile dealers or dealers in markets where the [allegedly 
+copyrighted work] was not already in use" did not constitute a 
+limited group).
+
+Moreover, considering the realities of the marketplace, this so-
+called "restriction" is really no restriction at all. As [REDACTED] 
+well.[fn10] (Affidavit of Michael J. DeFazio in Support of Plaintiff's 
+Motion for Preliminary Injunction, 11 and n.3 at pp. 11-12). In 
+reality, rather than limiting its source code to a narrowly selected 
+group, USL has actively marketed its UNIX source code [REDACTED]
+
+Forte Aff.). Limitations on sales to particular foreign countries are 
+irrelevant to the publication issue, since a copyright notice was 
+required to preserve USL's rights upon publication of the code "in the 
+United States or elsewhere". 17 U.S.C. Section 401(a) (former 
+version applicable).
+
+  [fn10]  The fact that one had to pay for a work in order to receive it 
+does not make it a limited publication. See Brown v. Tabb, 71; F.2d 
+1088 (11th Cir. 1983).
+
+  [fn11] A copy of Plaintiff's Response to Defendant's Third Set of 
+Interrogatories is attached as Exhibit Q to the Forte Aff.
+
+In comparison with the 3-inch thick list of 1986 licensees USL 
+produced in discovery, in its interrogatory responses, USL was able 
+to identify only [REDACTED] who had been refused a license.
+
+[REDACTED]
+
+  [fn12] A copy of Exh. D-2 is attached as Exhibit S to the Forte Aff.
+
+  [fn13] [REDACTED]
+
+  [fn14] All citations to the deposition transcript of Otis L. Wilson 
+are attached as Exhibit U to the Forte Aff.
+
+
+. T. 86-21 to 87-4, 87-25 to 88-4, 94-15 to 97-3; Bond Dep. T. 17-
+23 to 19-21).
+
+[REDACTED]
+
+23).[fn15]  Thus, this practice did not in fact place any significant 
+limitation on the group to whom the code was available. Neither the 
+ability to pay nor the willingness to adhere to restrictions on use 
+are sufficient limitations to establish a limited publication. See 
+Brown, 714 F.2d at 1092 (no limited group where the alleged 
+copyrighted jingle "was available to any automobile dealer doing 
+business in a market not yet exposed to the jingle who would pay the 
+price"); White, 193 F.2d at 746-47 (the requirement that there be 
+restrictions on use is separate and distinct from the requirement 
+that there be a limited group). 
+
+In fact, the instant case is virtually identical to a recent Ninth 
+Circuit decision, D.C.I. Computer Systems. Inc. v. Pardini, 1992 U.S. 
+App. Lexis 29951; 1992 Copyright L. Rep. (CCH) ~27,005 ( 9th Cir.) (A 
+copy of this case is attached as Exhibit V to the Forte Aff.). In D.C.I., 
+the Ninth Circuit upheld the district court's ruling that by licensing 
+its software to automobile dealers without a copyright notice, D.C.I. 
+published the software and forfeited its copyright in the work. Under 
+circumstances virtually identical to those in the present case, the 
+Court found that the limited publication doctrine did not apply:
+
+D.C.I. did not select a particular group of people and then offer to 
+distribute ~the program] to members of that group. It is undisputed 
+that D.C.I. licensed its F & I program to any automobile or 
+recreational vehicle dealership in the country that would agree to 
+enter into a contract, and so fails the select group test. 
+
+The court in D.C.I. also noted that D.C.I. failed to meet the second 
+prong of the test: "Moreover, it did not meet the limited purpose 
+prong, since its purpose in distribution was pecuniary gain." See also 
+Academy of Motion Picture Arts and Sciences v. Creative House 
+Promotions, 944 F.2d 1445, 1453 (9th Cir. 1991). Obviously, since 
+USL marketed its 32V code commercially, it cannot meet this prong 
+of the test either. Having chosen "'the more worldly rewards that 
+come with exploitation of [its] work"' (Brown, 714 F.2d at 1092), 
+USL's widespread distribution of the 32V source code without a 
+copyright notice forfeited any copyright protection in the work.
+
+Both the Hubco case and the Data General case cited by USL are 
+inapplicable. In those cases, the code was distributed only to those 
+who purchased a computer from the plaintiff. See Hubco Data 
+Products Corp. v. Management Assistance. Inc., 219 U.S.P.Q. 450 (D. 
+Idaho 1983); Data General Corp. v. Digital Computer Controls. Inc., 
+188 U.S.P.Q. 276 (Del. Ch. 1975). There has been no such restriction 
+on the UNIX source code. Although AT&T does sell computers, the 
+source code itself has been marketed as a separate product.
+
+Nor can USL find solace in a couple of questionable district court 
+opinions, in which works distributed to a small number of entities 
+through separately negotiated agreements were held to be limited 
+publications. See National Broadcasting Co. v. Sonneborn, 630 F. Supp. 
+524 (D. Conn. 1985); Paramount Pictures Corp. v. Rubinowitz, 217 
+U.S.P.Q. 48 (E.D.N.Y. 1981). These cases are distinguishable in that, as 
+explained above, USL has actively marketed its source code
+
+[REDACTED]
+
+13 to 80-17, 81-16 to 18-23); AT&T Technical Journal, Vol. 63, No 
+8, p. 1573, attached as Exhibit P to the Forte Aff. ("UNIX System V is 
+available to the commercial world from AT&T in a fully supported 
+form"). Moreover, these cases have been criticized by Nimmer, who 
+reasoned that "[u]nless the [parties] which might engage in such 
+negotiations were limited in some manner, it would seem that there 
+was no limitation as to persons." I Nimmer on Copyright  4.13[A], at 
+4-70 n.13.1 (1992). In the instant case, where USL has permitted 
+distribution of its source code to thousands of entities, application 
+of the questionable rationale espoused by Paramount and NBC would 
+obliterate the notice requirement.
+
+USL emphasizes that its publication has been limited based on the 
+fact that it has been distributed subject to restrictive licenses. 
+(See USL's Moving Brief, p. 12 n. 4; Affidavit of Michael J. DeFazio in 
+Support of Plaintiff's Motion for Preliminary Injunction, p. 27 n. 14). 
+Unlike other types of copyrighted works, software is virtually 
+always distributed subject to license restrictions. In any event, this 
+argument addresses only one prong of the test for limited 
+publication. As the court emphasized in White v. Kimmel, "the 
+circulation must be restricted k~ as to persons and purpose, or it 
+cannot be called a private or limited publication." White, 193 F.2d at 
+747 (emphasis added). Thus, USL cannot meet the limited publication 
+test, regardless of any restrictions placed on its customers' use of 
+the source code.
+
+Because AT&T's distribution of the 32V code constituted a general 
+publication, and because such publication occurred without a valid 
+copyright notice, AT&T's work has fallen into the public domain. 
+Accordingly, USL has absolutely no basis to claim any copyright 
+protection for its 32V source code.
+
+2. The Header Files Which USL Claims Have Been Infringed Have Been 
+Included in Binary Distributions Made by USL Licensees With No 
+Copyright Notice.
+
+The binary version of the UNIX operating system has been even more 
+widely distributed than the source code version. Although current 
+binary versions of the code contain copyright notices, earlier 
+versions did not. (See Bostic & McKusick Decl., 28.4).
+
+Moreover, these binary distributions included some source code 
+files, and in particular, included the header files USL accuses the 
+University of copying in Net2. (Bostic & McKusick Decl., ~ 28.4; 
+Kashtan Aff. ~ 8).
+
+USL itself has never distributed binary code, but has sublicensed 
+numerous other companies to distribute binary versions of its UNIX 
+operating system, placing no limitations on whom they could license 
+it to, other than those required by law. Thus, USL cannot possibly 
+argue that the distribution of the binary code (including the header 
+files in source form) was a limited publication. Not only is it 
+impossible for USL to meet the "definitely selected group" test, but 
+simply offering a work "for further distribution," as USL did with its 
+binary code, in itself constitutes a general publication of the work. 
+See White, 193 F.2d at 746-47; Rexnord, 379 F. Supp. at 1197. Thus, 
+USL has no basis for claiming any copyright in the header files.
+
+B. THE SIMILARITIES RELIED UPON BY USL WOULD NOT ESTABLISH 
+COPYRIGHT INFRINGEMENT EVEN IF THE 32V CODE WERE COPYRIGHTED.
+
+Even if USL did have a valid copyright in the 32V code, USL would not 
+be able to establish a substantial likelihood of success on its 
+infringement claim. Copyright law, unlike trade secret or patent 
+law, protects only original expression. It does not protect ideas, 
+processes, concepts or methods. Computer Associates International. 
+Inc. v. Altai. Inc., 1992 WL 372273, at p. 9 (2d. Cir. Dec. 17, 1992). As 
+the Supreme Court recently reaffirmed: "The mere fact that a work 
+is copyrighted does not mean that every element of the work may be 
+protected." Feist Publications. Inc. v. Rural Telephone Service Co., 
+499 U.S. 113 L.E.2d 358, 371 (1991). Whether the claim is based on 
+direct or indirect evidence of copying, infringement may be found 
+only where there is substantial similarity in protectible expression. 
+Computer Associates. Inc. v. Altai. Inc., 1992 WL 372273, p. 7; 
+Landsberg v. Scrabble Crossword Game Players. Inc., 736 F.2d 485, 
+488 (9th Cir. 1984). De minimis copying or copying of unprotectible 
+portions of a work do not give rise to an infringement claim. Feist. 
+113 L.E.2d at 379 ("not all copying . . . is copyright infringement"); 
+Computer Associates v. Altai, 1992 WL 372273, at 22; Warner Bros. 
+Inc. v. American Broadcasting Companies. Inc., 720 F.2d at 242; see 
+also 3 Nimmer on Copyright, S 13-03 [F][5]. USL has made no attempt 
+to distinguish between similarities in protectible elements of its 
+software and similarities in unprotectible elements. As explained 
+below, virtually all of the specific items discussed in the Carson 
+Declaration fall into the category of unprotected elements. Moreover 
+the similarities are neither quantitatively nor qualitatively 
+substantial.
+
+Indeed, the Carson Declaration seems to be aimed simply at 
+establishing that Net2 was "derived" from the 32V code in the 
+colloquial sense. For purposes of copyright law, however, a 
+derivative work, like any other work, can be infringing only if it 
+contains substantial, protectible expression from the prior work. 1 
+Nimmer on Copyright, 1 3.01 at p. 3-3 (1992) ("A work is not 
+derivative unless it has substantially copied from a prior work. If 
+that which is borrowed consists merely of ideas and not of the 
+expression of ideas, then although the work may have been in part 
+derived from prior works, it is not a derivative work".); Reyher v. 
+Children's Television Workshop, 533 F.2d 87, 90 (2nd Cir. 1976) 
+(quoting from Treatise). Thus, if Net2 does not contain substantial 
+protectible expression from 32V, it cannot infringe any copyright in 
+32V. Id.
+
+Merely "using" a prior copyrighted work, or referring to it in 
+developing one's own work, does not amount to copyright 
+infringement. Feist v. Rural Telephone Service, supra, 111 S. Ct. 
+1282, 1290; Sega Enterprises Ltd v. Accolade Inc., 1992 WL 293141, 
+at p. 15 (9th Cir.) ("the fundamental purpose of the Copyright Act [is] 
+to encourage the production of original works by protecting the 
+expressive elements of those works while leaving the ideas, facts, 
+and functional concepts in the public domain for others to build on"). 
+Anyone is free to make a "derivative work" that uses unprotectible 
+aspects of a copyrighted work, such as ideas, methods or concepts.
+
+It is also permissible to remove or replace those portions of an 
+otherwise infringing work that are protected by copyright. See, e.q., 
+Computer Associates v. Altai, supra, 1992 WL 372273 (program from 
+which infringing portions had been removed held non-infringing); See 
+v. Durang, 711 F.2d 141, 143 (9th Cir. 1983); Orth-o-Vision. Inc. v 
+Home Box Office, 474 F. Supp. 672, 686 n.14 (S.D.N.Y. 1979) ("when 
+the infringing portion of a defendants work may be removed from the 
+remainder, injunctive relief ought extend only to the former"); see 
+also Sega v Accolade, 1992 WL 293941,at p. 6 (intermediate copying 
+may infringe regardless of whether the final product infringes). In 
+such instances, even if an intermediate version might have 
+constituted an infringement, a subsequent version which does not 
+contain substantial expression from the copyrighted work does not 
+infringe. Id. In the instant case, there can be no claim for 
+intermediate copying. As explained at length below in connection 
+with the trade secret claim, the University's license agreements 
+with USL expressly permit it to make modifications, enhancements 
+and derivative works based on the licensed software. Thus, it is not 
+copying per se that USL challenges, but the fact that Net2 was 
+distributed to non-licensees. Since any prior BSD releases that 
+contained AT&T proprietary code were distributed only to licensees, 
+there can be no claim of intermediate copying. Thus, regardless of 
+whether portions of Net2 were once included in a distribution that 
+also included code derived from USL licensed code, the question is 
+whether the Net2 distribution itself contains any substantial 
+protectible expression from 32V. As explained below, it does not.
+
+
+1. The Features Relied Upon by USL's Expert Are Not Protectible. 
+
+Not all copyrighted works are entitled to the same level of 
+protection. See SEGA Enterprises Ltd. v. Accolade Inc., 1992 WL 
+293141 at p 12. In particular, works that are highly factual, 
+functional, technical or utilitarian in nature receive less protection 
+than fictional works." Id. at p. 12-13. The reason for this distinction 
+is that as a work becomes more technical or functional, the range of 
+options for expressing ideas narrows. If there are only a limited 
+number of ways to express a particular idea, of necessity, there will 
+tend to be similarity in two works expressing the same idea. Such 
+similarity cannot be the basis for a finding of copyright 
+infringement. Otherwise, later authors would be barred from using 
+the unprotected ideas, concepts and methods expressed in an earlier 
+work a result that is completely contrary to the fundamental tenets 
+of copyright law. For this reason, a much greater degree of 
+similarity is required before such works will be found to infringe. 
+See Landsberg v. Scrabble Crossword Game Players, Inc. v. Crown 
+Publishers. Inc., 736 F.2d 485, 488-89 (9th Cir.), cert. denied, 469 
+U.S. 1037 (1984). In some cases, an idea, method or concept can be 
+expressed in such a limited number of ways that virtual identity in 
+expression will be required before infringement will be found. This 
+principle is applicable to computer programs as with any other 
+copyrighted work:
+
+[C]opyrighted language may be copied without infringing when there 
+is but a limited number of ways to express a given idea . . . . In the 
+computer context, this means that when specific instructions, even 
+though previously copyrighted, are the only and essential means of 
+accomplishing a given task, their later use by another will not 
+amount to infringement. 
+
+National Commission on Technological Uses of Copyrighted Works 
+("CONTU"), Final Report 1, at 20 (1979) ("CONTU Report"). [fn16]
+
+  [fn16] Congress adopted all of the statutory changes recommended 
+by CONTU verbatim. Subsequent Congresses, the courts, and 
+commentators have regarded the CONTU Report as the authoritative 
+guide to Congressional intent. SEGA Enterprises LTD.. Accolade. Inc., 
+24 U.S.P.Q. 2d 1561, 1567 fn.5 (9th Cir. 1992).
+
+A computer programmer's choices of expression also are limited by 
+efficiency considerations. Thus, although there might be many 
+possible ways of implementing a given task, there might be a very 
+limited number of ways to do so efficiently. In such instances, two 
+programmers attempting to achieve the same result in the most 
+efficient manner would be likely to arrive at similar programming 
+solutions. As stated in Altai, "while hypothetically, there might be a 
+myriad of ways in which a programmer may effectuate certain 
+functions within a program, i.e., express the idea embodied in a given 
+subroutine efficiency concerns may so narrow the practical range of 
+choice as to make only one or two forms of expression workable 
+options." See 3 Nimmer on Copyright, supra,  13.03~F][2], at 13-89-
+13-90; Whelan Associates. Inc. v. Jaslow Dental Laboratory. Inc., 797 
+F.2d 1222, 1243 n.43 (3d Cir. 1986), cert. denied, 479 U.S. 1031 
+(1987) ("It is true that for certain tasks there are only a very 
+limited number of file structures available, and in such cases the 
+structures might not be copyrightable . . . .) Thus, if there are only a 
+very limited number of ways to implement a particular feature 
+efficiently, similarities in such implementations do not provide 
+evidence of copying. Computer Associates v Altai, supra, 1992 WL 
+372273, at 15-16.
+
+Other external considerations which limit the range of options for 
+programmers and hence limit the degree of protectible expression in 
+computer programs include:
+
+(1) the mechanical specifications of the computer on which a 
+particular program is intended to run;
+(2) compatibility requirements of other programs with which a 
+program is designed to operate in conjunction;
+(3) computer manufacturers' design standards; and
+(4) demands of the industry being serviced.
+
+Computer Associates v Altai, supra, 1992 WL 372273, at 17; Sega v. 
+Accolade, supra 1992 WL 293141 at p. 12. If such external factors 
+dictate particular features, the use of such features does not give 
+rise to an infringement claim. Id.
+
+Copyright law also does not protect "fragmentary words and 
+phrases" and "lists of contents". 37 C.F.R. S 202.1(a); Sen-Torq. Inc. v. 
+K Mart Corp.., 936 F.2d 851, 854-55 (6th Cir. 1991); Magic Marketing 
+v. Mailing Services of Pittsburg. Inc., 634 F. Supp.
+769, 771 (W.D. Pa. 1986) (copyright law does not protect 
+"fragmentary words and phrases" or "forms of expression dictated by 
+functional considerations"). Nor does it protect standard forms of 
+expression. This is particularly significant in the computer industry 
+where a variety of accepted programming practices, techniques and 
+conventions are widely used by programmers. As stated by Nimmer, 
+"in many instances it is virtually impossible to write a program to 
+perform particular functions in a specific computing environment 
+without employing standard techniques." 3 Nimmer on Copyright,  
+13.03 [F][3] at 1365. The fact that such standard programming 
+techniques appear in two programs does not evidence copying, and 
+such techniques cannot be monopolized by one programmer- See 
+Brown Bag Software v. Symantec Corp., 960 F.2d 1465, 1973 (9th 
+Cir.), cert. denied, L.E.2d 141 (1992) ("affirming the district courts' 
+finding that [p]laintiffs may not claim copyright protection of an . . . 
+expression that is, if not standard, then commonplace in the 
+computer software industry"); Computer Associates International. 
+Inc. v. Altai Inc., supra, 1992 WL 372273, at 16-17. There is also a 
+large amount of software that is freely available and freely 
+redistributable. Such material is in the public domain and cannot be 
+claimed by a single author simply by including it in a copyrighted 
+work. Computer Associates International Inc. v. Altai. Inc., supra, 
+1992 WL 372273, at p. 17-18.
+
+Virtually all of the specific features relied on by USL's expert fall 
+into one of these categories and thus are not protectible. It is 
+notable that with the exception of two extremely short functions 
+[REDACTED] which on their face differ from the supposedly copied 
+32V Code - Carson does not point out any similarities in the actual 
+code itself. Instead, he relies on similarities in things such as file 
+names and function names, which consist of simple and obvious 
+mnemonics, all of which are standard in the industry and well-
+documented in the literature. As noted above, short words and 
+phrases are not protectible under copyright law. 37 C.F.R. Section 
+202.1(9). Indeed the Compendium of Copyright Office Practices 
+includes such "mnemonics" in a list of examples of noncopyrightable 
+elements in computer programs. (A copy of this rule is attached as 
+Exhibit W to the Forte Aff.). USL's expert also attempts to rely on 
+the ordering of such mnemonics, but since the order has no 
+significance, it is simply an unprotectible list, devoid of any 
+element of authorship or expression. (See Kashtan Aff., ~ 14).
+
+UNIX operating systems are specifically designed to permit users to 
+modify, enhance and write their own additions or replacement 
+programs. Some of these programs are application programs, while 
+others, such as device drivers, become part of the operating system 
+itself. To enable customers to write their own programs, the 
+required interface definitions are described in the header files. As 
+noted above, these header files are included not only in the source 
+code distributed by USL, but also in the binary versions distributed 
+by various other companies. Header files are provided precisely for 
+the purpose of being used by programmers in writing UNIX-
+compatible software. (McKusick and Bostic Decl., ~ 28.4 and 28.4; 
+Kashtan Aff., I 9). Thus, there can be no claim of copyright 
+infringement based on the use of the information contained in such 
+files.
+
+Likewise, numerous books describe how to write UNIX-compatible 
+programs. These materials provide all the information needed to 
+write UNIX-compatible programs, and in particular provide detailed 
+information about the interfaces and how to write them, including 
+such elements as the file names, function names, and the defined 
+symbols which USL's expert relies upon. (See generally McKusick and 
+Bostic Decl.; see generally Kashtan Aff.). The fact that these 
+features appear in Net2 or BSD/386 thus does not establish copying. 
+Id. Nor are these features protectible given that their use is either 
+dictated by external considerations, including the need for 
+compatibility with other programs, or merely reflects terms that 
+are standard in the industry. Id.
+
+With respect to the discussion of [REDACTED] in the Carson 
+Declaration, these are simply two functions within a single file 
+called [REDACTED].  The implementation of these functions is well-
+described in the literature and includes standard features. Numerous 
+books have been written telling programmers exactly how to 
+implement these functions in the most efficient manner. If one 
+follows those instructions, using standard programming 
+conventions, the range of options is extremely narrow, and 
+similarities are virtually guaranteed. (See McKusick and Bostic 
+Decl., 1 53-56; Kashtan Aff., ~ 4-6). For these reasons, similarities 
+in the way these functions are implemented do not indicate that the 
+code was copied, and cannot form the basis for a copyright 
+infringement claim. 3 Nimmer on Copyright,  13.03 [F][3]; see also, 
+Baker v. Selden, 101 U.S. 99, 102-04 (one may copy expressive 
+elements that must be used to express the underlying ideas, 
+functional concepts or facts).
+
+A comparison of the 32V implementation of the [REDACTED] and 
+[REDACTED] functions and the implementation of these functions in 
+BSD/386 shows that in neither case are they the same. In the 
+[REDACTED] function, only [REDACTED]  lines are similar. And in 
+[REDACTED]" only [REDACTED] lines are similar. (See tables in 
+Affidavit of John H. Carson, at pp. 34 and 36). This degree of 
+similarity is to be expected given the various reference books 
+available that teach one how to implement such code. (See generally 
+McKusick and Bostic Decl.; Kashtan Aff., ~ 4-6).
+
+2. The Similarities Relied upon by USL's Expert Are Neither 
+	Quantitatively Nor Qualitatively Substantial.
+
+USL completely ignores how minuscule the points of similarity 
+relied upon by their expert are in a quantitative sense. USL further 
+distorts their qualitative significance by equating their value with 
+the value of the kernel as a whole.
+
+Out of the over 8,000 files in BSD/386, only 80 are accused in this 
+motion, only 30 of which have even been named. Moreover, most of 
+them are accused simply because they use similar standard 
+mnemonics, and not because there was any similarity in the actual 
+code. (USL's Moving Brief at 21). Only two functions, both contained 
+in the file [REDACTED] are challenged on the basis of actual working 
+code. Thus, out of 1.5 million lines of code, only [REDACTED] lines of 
+working code are challenged, and only a few of them are even similar 
+to lines in 32V. (See Kashtan Aff., ~ 46 and 23). There has been no 
+showing whatsoever that these particular lines of code provide any 
+significant value to the kernel. With respect to the other items, 
+[REDACTED] (See Affidavit of John Carson, ~ 23). They are 
+significant now only because they are needed for purposes of 
+compatibility with other code. Thus, although the kernel as a whole 
+is significant, the particular items USL claims have been copied are 
+both unprotectible and de minimis and do not give rise to a claim of 
+copyright infringement. (See generally Bostic and McKusick Decl.; 
+Kashtan Aff., ~ 4-6 and 23).
+
+3. USL Could not Enforce a 32V Copyright Against the University or 
+BSDI Because of the Lack of Copyright Notice.
+
+Even if USL had not forfeited its copyright in the 32V code, such a 
+copyright could not be enforced against the University or BSDI due to 
+the lack of notice. 17 U.S.C.  405(b). Where notice has been omitted 
+from a copyrighted work, section 405 of the Copyright Act bars 
+enforcement of the copyright against an innocent infringer who 
+relied on the lack of notice, even if the copyright is later recaptured 
+by taking the necessary steps to cure the omission. Both the 
+University and BSDI believed AT&T did not claim copyright in the 
+32V code because it had been widely distributed with no copyright 
+notice, and that USL had chosen to rely on trade secret law instead. 
+(McKusick Dep. T. 247-1 to 25115; McKusick and Bostic Decl., ~ 28.4 
+and 28.5). Thus, to the extent there were any infringement, it would 
+not be actionable due to the lack of notice.
+
+III. USL CANNOT DEMONSTRATE A LIKELIHOOD OF SUCCESS ON ITS 
+TRADE SECRET CLAIM.
+
+The Affidavits submitted by Keith Bostic, Kirk McKusick and David 
+Kashtan establish unequivocally that none of the features USL relies 
+on in support of its motion are trade secrets. In an attempt to 
+salvage its trade secret claim, USL argues that mere access to its 
+licensed code was sufficient to "taint" the authors of Net2, whether 
+or not Net2 actually contains or discloses any USL trade secrets. In 
+order to make this argument, USL blatantly ignores the terms of its 
+own software license agreements with the University, which 
+preclude such a claim.
+
+A. To Prevail On Its Trade Secret Claim USL Must Demonstrate That
+BSD/386 Contains USL Trade SECRETS.
+
+As USL itself admits, its agreements with the University authorize 
+the University to develop its own versions of the UNIX software. 
+What is more, those agreements expressly provide that derivative 
+works which do not "include" USL proprietary information are to be 
+made available to anyone for unrestricted use.
+
+1. The LICENSE Agreements Authorize Use of the UNIX 32-V
+Code To Create Modifications, Enhancements and Derivative Works
+
+Over the course of their relationship, in the late 1970s and 1980s, 
+USL's predecessors-in-interest and the University entered into a 
+series of software license agreements governing use of the UNIX 
+32V software. Although those agreements were clarified and made 
+more specific over time, all had the same basic meaning concerning 
+the University's right to use the licensed software for research 
+purposes, to create derivative works based upon it and to publicly 
+release its results, modifications, enhancements and derivative 
+works, so long as they did not contain the licensed trade secrets.
+
+The first agreement governing use of the UNIX 32V software was the 
+April 1, 1979 Software Agreement between Western Electric 
+Company and the University of California (the "April 1, 1979 
+Agreement"), which USL has attached as Exhibit B to the Affidavit of 
+Michael J. DeFazio. This agreement-- the earliest of the series-- is 
+the only agreement USL refers to in its motion papers.
+
+The second agreement governing use of the UNIX 32-V 
+software,[fnl7] was the August 1, 1981 Software Agreement 
+between western Electric and the University of California (the 
+"August 1, 1981 Agreement") (attached as Exhibit X to the Forte Aff.).
+
+  [fn17] See, e.q., Baldwin Dep. T. 59-6 to 59-13.
+
+The most recent agreement governing the University's use of the 32V 
+source code was entered into on November 12, 1985, and is called 
+the Educational Software License Agreement, E-SOFT-00089 
+(hereinafter the "E-SOFT-00089 Agreement"). (Bond Dep. T. 32-17 to 
+32-25, 33-1 to 33-9, 39-7 to 43-5 and Exhibits D-25 and D-26 (see 
+Exh
+
+[REDACTED]
+
+(Wilson Dep. T. 60-11 to 61-2; Bond Dep. T. 32-25 to 33-9, 132-10 
+to 133-19). Further, since the E-SOFT-00089 agreement expressly 
+supersedes all prior agreements on the subject matter contained 
+therein, it is the language of the E-SOFT-00089 that governs in this 
+action. See paragraph 4 of the E-SOFT-00089 Agreement (attached 
+as Exhibit F to the Forte Aff.).
+
+Although the language in these agreements was clarified over time, 
+the basic intent with respect to the University's right to use the 
+software and its confidentiality obligation was the same in each of 
+them. (See, Karels Aff., 1 24; see also Wilson Dep. T. 36-17 to 37-8). 
+Under each of these agreements, the University was authorized to 
+make modifications, enhancements and derivative works using the 
+licensed software. If a derivative  work contained the licensed 
+software or disclosed any proprietary methods or concepts used in 
+the licensed software, it could be distributed only to those who had 
+purchased a source code license from AT&T. As demonstrated below, 
+however, if an enhancement, modification or derivative work did not 
+contain or disclose any AT&T proprietary information, it belonged to 
+the University, and was not governed by the restrictions applicable 
+to the licensed software. See discussion infra.
+
+2. The License Agreements Permit Derivative Works Not Containing 
+USL Trade Secrets To Be Made Available To Non Licensees 
+
+Section 2.01(b) of the E-SOFT-00089 Agreement expressly provides 
+that the University was to distribute to anyone, on an unrestricted 
+basis, modifications and enhancements that did not include USL's 
+proprietary information. Likewise, Section 2.01(a) of the E-SOFT-
+00089 Agreement, provides that derivative works "that contain" 
+licensed software must be treated as licensed software i.e, must be 
+subject to the same restrictions on disclosure as the licensed 
+software:
+
+[Licensee's] right to use includes the right to modify such software 
+product and to prepare derivative works based on such software 
+product, *provided that any such modification or derivative work 
+that contains any part of a software product subject to this 
+Agreement is treated hereunder the same as such software product.*
+(See Exhibit D-25 to Bond Dep.T. (emphasis added)). 
+
+The negotiations leading up to the execution of this agreement, as 
+well as the prior course of dealing between the parties, make it 
+clear that the words "that contains any part of a software product 
+subject to this agreement" were intended to distinguish between 
+derivative works that actually contained licensed software and 
+derivative works that did not- while the former were subject to the 
+license restrictions, the latter were not.
+
+In the negotiations leading up to the execution of the E-SOFT-00089 
+Agreement, USL initially proposed language providing that any 
+derivative work "based on" the licensed materials was to be treated 
+as licensed software. The University objected to that language, 
+however, and insisted that it be changed to cover only derivative 
+works "that contain" licensed software. USL accepted this 
+modification, providing a new version of the E-SOFT-00089 
+Agreement in which the language "based on" licensed materials had 
+been changed to "that contains" licensed software. (Wilson Dep. T., 
+Exh. D-67 and D-68 (attached as Exhibits Y and Z to the Forte Aff.).
+
+This same clarification i.e., that only derivative works containing 
+AT&T code had to be treated as licensed software had also been 
+made in discussions surrounding a prior license agreement, the "UNIX 
+System V Agreement". This agreement initially included within the 
+definition of "LICENSED SOFTWARE" any derivative works prepared by 
+the licensee "based on" the licensed materials. The University 
+objected to that provision, which had not appeared in any of its prior 
+agreements with AT&T, and was contrary to its understanding of its 
+obligations. (See Karels Aff., ~ 23-26). Following discussions 
+regarding the provision, USL wrote a letter agreement to the 
+University "clarifying" the definition of "Licensed Software" by 
+deleting from the definition "derivative works prepared by the 
+licensees'.  The letter further stated that AT&T never had intended 
+to claim any interest in such works. (See Exhibit B to Karels Aff.; 
+Exhibit D-34 to Wilson Dep. T. (Bates P000243) (Exhibit aa to the 
+Forte Aff.)). In place of the prior language, a sentence was added 
+stating "LICENSEE agrees that any modification or derivative work 
+prepared by it *that contains any LICENSED SOFTWARE* shall be 
+treated as LICENSED SOFTWARE hereunder." (Emphasis added). 
+
+USL now attempts to read into the earlier 32V agreement (which it 
+mistakenly argues applies), the same language that was deleted 
+from both the System V Agreement and the E-SOFT-00089 
+Agreement even though no such language appears in either of those 
+agreements. Contrary to USL's argument, this same point also was 
+clarified with respect to the April, 1979 Agreement: In a letter 
+dated January 18, 1978, the University inquired whether it could 
+distribute UNIX-derived software.[fn18]  In a written response, 
+Edwin G. Baldwin, who was AT&T's Director of Technology Licensing 
+at the time, stated:
+
+We take no position with regard to your use or distribution of 
+software developed by you which does not contain any of our 
+proprietary information such as, without limitation, the computer 
+programs and documentation, or any portion thereof, related to the 
+UNIX operating system, including the methods and concepts utilized 
+therein.
+
+With regard to the distribution of any software which does contain 
+some of our proprietary information, our primary concern is the 
+prevention of unauthorized disclosure, either intentional or 
+inadvertent, which might jeopardize our valuable proprietary rights 
+in such information.
+
+  [fn18]  Exhibit D-11 to Baldwin Dep. T. (attached as Exhibit bb to 
+the Forte Aff.).
+
+(See Exhibit-12 to Baldwin Dep- T- (attached as Exhibit cc to the 
+Forte Aff.) (emphasis added)). Mr- Baldwin testified at his
+
+[REDACTED]
+
+(Baldwin Dep. T. 33-15 to 34-16). Mr. Baldwin further testified that
+
+[REDACTED]
+
+Another USL employee, Mitzi Bond, similarly testified to her 
+understanding that
+
+[REDACTED]
+
+  [fn19]  ?
+
+
+(Bond Dep. T. 138-14 to 138-19, 137-13 to 138-13).
+
+After consulting with Ms. Bond during a break at the deposition, 
+USL's attorney cross-examined her, at which point she changed her 
+testimony, now stating that it was her understanding [REDACTED]
+
+215-24, 216-20 to 216-25, 217-6 to 217-15, 219-3 to 219-15, 
+224-18 to 224-25).
+
+[REDACTED]
+
+(Frasure Dep. T. 172-11 to 172-20).
+
+[REDACTED]
+
+36-18 to 39-10, 49-20 to 50-2).
+
+Given that USL twice attempted to include a provision that any 
+derivative work "based on" the licensed software would have to be 
+treated as licensed software (in the 1983 System V Agreement and 
+the 198S E-SOFT-00089 Agreement)   and both times the University 
+insisted that the language be narrowed to cover only derivative 
+works that "contain" licensed software -- the argument that the 
+intent was to cover any work "based on" the licensed software, or 
+any work benefiting from knowledge of the licensed software, is 
+completely unsupportable, much less the argument that anyone who 
+has ever seen UNIX source code is "mentally contaminated" and may 
+never write another piece of code that is not subject to USL's 
+license.
+
+This argument is further contradicted by USL's own conduct ; 
+[REDACTED]
+
+The testimony of USL's witnesses is contradicted by the express 
+language of the agreements, the conduct of the parties, the 
+testimony given by other USL witnesses, and in some cases, even 
+their own prior testimony. Their alleged understanding is also 
+contrary to the understanding of the representatives of the 
+University who were involved in the negotiation of those 
+agreements. (See Karels Aff.     18-36; McKusick Dep. T. 247-1 to 
+251-25). In interpreting the agreement, the Court should look to the 
+parties' words and conduct before this litigation arose and 
+particularly to the language of the agreement itself and not to USL's 
+litigation construct. The agreements themselves and the conduct of 
+both parties make it very clear that only enhancements, 
+modifications and derivative works that contain or disclose USL 
+proprietary information must be treated as licensed software.
+
+This interpretation is further confirmed by the confidentiality 
+provision in the agreements. Section 7.05(a) of the E-SOFT-00089 
+Agreement provides that confidentiality must be maintained for the 
+Software Products subject to the Agreement, including methods or 
+concepts utilized therein. It does not require that confidentiality be 
+maintained for derivative works not containing such Software 
+Products or methods and concepts utilized therein.[fn.20]
+
+Likewise, section 5.06 of the August 1, 1981 Agreement and section 
+4.06 of the April 1, 1979 Agreement prohibit only disclosure of the 
+Licensed Software (including methods or concepts utilized therein." 
+At page 9 of the August l, 1981 Agreement and p. 7 of the April 1, 
+1979 Agreement, "Licensed Software" is defined to mean "the 
+Computer Programs and the documentation, or any portions thereof, 
+generally identified below and specifically listed in the attached 
+schedule . . . ."
+
+As explained above, the one time when USL attempted to include 
+derivative works prepared by the licensee in the definition of 
+Licensed Software, the University objected to that definition, and 
+the agreement was "clarified" by removing that language from the 
+definition. In its place, a new sentence was added providing instead 
+that derivative works "that contain" licensed software had to be 
+treated as licensed software. Thus, USL's attempt to read into the 
+earlier agreements a provision that derivative works not containing 
+or disclosing AT&T proprietary information are subject to the same 
+confidentiality restrictions as the licensed software must be 
+rejected.
+
+Since the license agreements expressly impose a duty of secrecy 
+only for the licensed software and methods and concepts utilized 
+therein, and the parties' understanding in this regard was repeatedly 
+clarified to limit the license restrictions to derivative works that 
+actually contain or disclose USL proprietary information, no duty of 
+secrecy can be implied for derivative works that do not contain or 
+disclose any of USL's proprietary code, methods or concepts. See 
+Ferroline Corp. v. General Aniline & Film Corp., 207 F.2d 912, 922, 
+925-26 (7th Cir. 1953), cert. denied, 347 U.S. 953 (1954) (where a 
+license agreement expressly imposes an obligation of secrecy with 
+respect to certain information, no further confidentiality 
+restrictions can be implied). Thus, the cases USL cites with respect 
+to advantages obtained by familiarity with the code are inapplicable. 
+In this case, unlike in those, the University was authorized to use 
+licensed software in developing its own code and was prohibited 
+from distributing it to non-licensees only if it contained USL trade 
+secrets.
+
+3. The Duty of Confidentiality Does Not Apply to Information
+That is or Becomes Generally Known. 
+
+Consistent with fundamental trade secret law, the agreements 
+governing use of the UNIX 32-V Software expressly provide that no 
+duty of confidentiality extends to information already generally 
+known. Section 7.05(a) of the E-SOFT-00089 Agreement states:
+
+If information relating to a SOFTWARE PRODUCT subject to this 
+Agreement at any time becomes available without restriction to the 
+general public by acts not attributable to LICENSEE or its employees, 
+students or faculty members, LICENSEE's obligations under this 
+section shall not apply to such information after such time. 
+
+Section 5.07 of the August 1, 1981 Agreement and Section 4.07 of 
+the April 1, 1979 Agreement contain similar provisions excluding 
+information that is or becomes generally known from the 
+University's obligation of confidentiality. Thus, there can be no 
+claim of misappropriation based on use or disclosure of generally 
+known information, regardless of where the numerous authors of 
+Net2 obtained that information. 
+
+In this case, therefore, the only issue to be determined is whether 
+by releasing Net2 to non-licensees, the University disclosed to non-
+licensees any code, method or concept that can be considered a trade 
+secret. USL has not made and cannot make any such showing.
+
+B. USL Cannot Demonstrate That Net 2 or BSD/386 Contain any USL Trade Secrets
+
+The affidavit of USL's expert misses the point entirely since he has 
+failed to identify any original licensed code, methods or concepts 
+contained in Net2 that still qualified as USL trade secrets at the 
+time of Net2's release. Although at one time portions of the code, 
+methods and concepts may have been trade secrets, UNIX source code 
+has now been so widely licensed and is so well-documented in the 
+technical literature that its internal operation, algorithms, design, 
+sequence, structure and organization, and many portions of the 
+specific code, are generally known or readily ascertainable. Indeed 
+in many respects it has become a standard in the industry. The 
+Affidavits submitted by Keith Bostic, Kirk McKusick and David 
+Kashtan demonstrate conclusively that USL has failed to establish 
+the presence of any USL trade secrets in Net2 or BSD/386, since all 
+the items USL relies on in this motion are disclosed in publicly 
+available materials and are commonly known in the industry. Thus, 
+USL's trade secret claim cannot possibly succeed.
+
+IV. USL CANNOT SHOW IRREPARABLE HARM
+
+USL also cannot meet the requirement of irreparable harm. Although 
+USL has submitted a lengthy declaration outlining the supposed harm 
+it will suffer if lower-priced competition is permitted, USL ignores 
+the fact that Net2 has been distributed to hundreds of thousands of 
+individuals and remains freely available from at least 66 different 
+sources. At least one other company has already widely distributed a 
+complete system based on Net2 and USL has taken no action against 
+that company. (See Adams Aff., 9 -11).
+
+Moreover, a number of other UNIX clones which share many of the 
+same features USL relies on in its motion, have been available for 
+years. Although these systems are inferior to BSDI's, they disclose 
+and make use of the same types of information BSDI is alleged to 
+have misappropriated. (Bostic & McKusick Decl., ~ 28.1.3). Thus, in 
+reality, USL cannot show any urgent need to put BSDI out of business 
+pending the trial in this action.
+
+BSDI, on the other hand, will suffer irreparable harm if the 
+preliminary injunction USL requests is granted. BSDI will be forced 
+out of business and will have no way to finance its defense of this 
+lawsuit. (Adams Aff., ~ 14). USL not only seeks to keep BSDI's only 
+product off the market, but also seeks to force BSDI to fire all of its 
+employees based on the fact that they, like so many other 
+experienced computer programmers, have had access at some point 
+to UNIX source code. This is a frivolous request that, if taken 
+seriously, would strike fear into the hearts of programmers all over 
+the world, who would also potentially be subject to such 
+restrictions on their employment opportunities as a result of their 
+access to UNIX source code as students or employees.
+
+V. The Public Interest Favors Denial of the Preliminary Injunction.
+
+BSDI makes its system available to programmers who could not 
+afford [REDACTED] for a source license from USL. USL is able to 
+charge this exorbitant fee only because of the lack of competition. 
+Denial of USL's motion thus will serve the public interest by 
+promoting competition. Denial will also prevent USL from unjustly 
+inhibiting the employment opportunities of the thousands of 
+computer programmers who have had access to UNIX source code.
+
+VI. EVEN IF USL COULD ESTABLISH THAT NET2 CONTAINED SOME USL 
+PROPRIETARY INFORMATION, THE INJUNCTION IT SEEKS IS OVERLY BROAD.
+
+A. An Injunction Against the Entire BSD/386 Program Would Be 
+Impermissibly Overbroad.
+
+Injunctive relief "must be tailored to remedy the specific harms 
+shown," Davis v. Romney, 490 F.2d 1360, 1370 (3d Cir. 1973), and 
+should "be no broader than necessary to provide full relief to the 
+aggrieved plaintiff." McLendon v. Continental Can Co., 908 F.2d 1171, 
+1182 (3d Cir. 1990); see also Ameron. Inc. v. U.S. Army Corps of 
+Engineers, 787 F.2d 875, 890 (3d Cir. 1986) cert. dismissed, 488 U.S. 
+918 (1988) (an injunction which exceeds what is required to provide 
+plaintiff with complete relief is contrary to "jurisprudence 
+governing injunctive remedies."); Ideal Toy Corp. v. Plawner Toy Mfg. 
+Corp., 685 F.2d 78, 84 (3d Cir. 1982) ("The injunctive decree must be 
+broad enough to protect the plaintiff, yet sufficiently narrow to 
+avoid affording undeserved patent protection, and to permit the 
+defendant to participate in activity outside the intended scope of 
+the injunction").
+
+This Court thus has the discretion and the responsibility to "mold its 
+[preliminary injunction] decree to meet the exigencies of [the] 
+particular case." 11 Wright & Miller, Federal Practice and Procedure: 
+Civil  2947, at 424 (1973). USL would have this court far exceed 
+those boundaries by granting a preliminary injunction whose 
+sweeping effect would enjoin the entire BSD/386 product, even 
+though USL accuses only 80 of the more than 8000 files, and points 
+to only a few lines of similar code out of 1.5 million. Given that the 
+Net 2 files were written separately by thousands of different 
+authors over a period of many years, there would no basis 
+whatsoever for finding copying as to all of them based on 
+allegations or evidence against only one. 
+
+Thus, even if USL could establish infringement as to a few lines of 
+code, which as explained at length above it has not, there would still 
+be no basis for preventing BSDI from using the remaining code in 
+BSD/386:
+
+[I]f the infringing portion of defendant's work can be removed 
+without destroying the usefulness of the remainder of the work, the 
+whole of the work need not be enjoined. 
+
+3 Nimmer on Copyrights. supra, li.06[c], at 14-91-92; see also Orth-
+O-Vision. Inc. v. Home Box Office, 474 F. Supp. 672, 686 n.14 (S.D.N.Y. 
+1979) ("When the infringing portion of a defendant's work may be 
+removed from the remainder, injunctive relief ought extend only to 
+the former."); Breffort v. I Had A Ball Co., 271 F. Supp. 623, 625-26 
+(S.D.N.Y. 1967) (excluding from injunction prohibiting performance of 
+a copyright infringing play the independent performance of original 
+music created for the play); Craft v. Kobler, 667 F. Supp. 120, 125 
+(S.D.N.Y. 1987) (noting that injunction prohibiting sale of author's 
+infringing biography nevertheless allowed author to revise the work 
+so as to eliminate the infringing materials); Salinger v. Random 
+House. Inc., 811 F.2d 90, 100 (2d Cir.) (same), cert. denied, 484 U.S. 
+890 (1987); International Film Service Co. v. Affiliated Distributors, 
+283 F 229, 235 (S.D.N.Y. 1922) (allowing defendant to remake movie 
+so as to delete those scenes which infringed plaintiff's copyright); 
+Colonial Book Co.. Inc. v. AMSCO School Publications Inc., 41 F. Supp. 
+156, (S.D.N.Y. 1941) (injunction must be limited to the eleven pages 
+of defendant's work which infringed plaintiff's copyright). 
+Otherwise, USL would be granted a monopoly over a huge volume of 
+material which even USL admits was not copied.
+
+In Educational Testing, plaintiffs' request for a similarly broad 
+preliminary injunction was rejected by this circuit. See Educational 
+Testing, 793 F.2d 533, 545 (3d Cir. 1986). The plaintiff in 
+Educational Testing, claiming that defendant infringed its copyright 
+in certain test materials, sought to enjoin defendants' "use of 
+information obtained from" plaintiff's copyrighted tests and from 
+"adapting" any of plaintiffs' materials. Id. The court noted that such 
+an injunction would prohibit legitimate uses of plaintiffs' work as 
+well as legitimate original works by defendants. See also 3 Nimmer 
+on Copyright, supra,  14.06[C], at 14-92-14-93.
+
+B. Plaintiff is Misusing its Copyright by Attempting to Enjoin All Or BSD/386.
+
+A misuse of copyright protection is found when a copyright holder 
+attempts to utilize his copyright to gain protection beyond that 
+which copyright law allows. When analyzing a copyright holder's 
+conduct for misuse, the court does not look to the validity of the 
+copyright, but rather to the manner in which the copyright is being 
+used. qad. inc. v. ALN Associates. Inc., 770 F. Supp. 1261, 1266 n.14 
+(N.D. Ill. 1991). As the court noted in qad, "[n]o party can use the 
+limited grant that a copyright confers to gain control of components 
+over which it has no such right." Id. at 1266
+
+The plaintiff in qad asserted copyright infringement of its computer 
+software program, alleging that its entire program, of which it 
+claimed defendant's was a derivative, was original with plaintiff. 
+When it became apparent that, in fact, much of plaintiff's program 
+was itself copied from yet another program, the court denied 
+plaintiff any relief even with regard to those portions of defendant's 
+program which were infringing. The court noted that "[w]hen a 
+copyright holder attempts to use legal proceedings to protect an 
+improper extension of a copyright, the court may refuse to enforce 
+the copyright." See also Lasercomb America. Inc. v. Reynolds, 911 
+F.2d 970, 976-78 (4th Cir. 1990), aff'd without op., 961 F.2d 211 
+(1992) (plaintiff was guilty of misuse of copyright where it 
+licensed copyrighted program on the condition that licensee refrain 
+for 99 years from creating a competing program).
+
+Plaintiffs in this action likewise are attempting to use their alleged 
+copyright to enjoin BSDI's use not only of those programs accused 
+of-being infringing, but of thousands of other files, consisting of 
+hundreds of computer programs, that USL does not even accuse. In 
+addition, USL improperly seeks to enjoin the use of standard file 
+names and mnemonics that are protected neither by copyright nor 
+trade secret law.
+
+For all of the reasons outlined above, plaintiffs cannot gain the 
+expansive preliminary injunction that they seek in this action. 
+Although no injunction is warranted, to the extent the Court grants 
+any injunction, it must be narrowly tailored to the few lines of code 
+USL relies upon.
+
+Conclusion
+
+Both USL's trade secret claim and its copyright infringement claim 
+are fundamentally flawed. One because the information allegedly 
+misappropriated is not in fact secret. And the other because USL has 
+no valid copyright in 32V and can show no substantial copying of 
+protectible expression. A grant of USL's motion will put BSDI out of 
+business permanently and will prevent it from having the means to 
+defend itself in this action. A denial of USL's motion will simply 
+maintain the status quo, since BSDI has been selling BSD/386 for 
+over twelve months and the Net2 code is available from dozens of 
+other sources. For all the foregoing reasons, BSDI respectfully 
+requests that USL's motion for preliminary injunction be denied in 
+its entirety.
+
+Respectfully submitted,
+
+SAIBER SCHLESINGER SATZ
+& GOLDSTEIN
+Attorney f or Defendant
+Berkeley Software ~ Design, Inc.
+
+JAMES H. FORTE 
+A Member of the Firm
+Dated: January 8, 1992
+
+-56-
+

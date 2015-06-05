@@ -1,0 +1,899 @@
+%!PS-Adobe-2.0
+%%Version: 0.1
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+%
+% Version 3.3.2 prologue for troff files.
+%
+
+/#copies 1 store
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+%
+% Tries to round clipping path dimensions, as stored in array pagebbox, so they
+% match one of the known sizes in the papersizes array. Lower left coordinates
+% are always set to 0.
+%
+
+/roundpagebbox {
+    7 dict begin
+	/papersizes [8.5 inch 11 inch 14 inch 17 inch] def
+
+	/mappapersize {
+		/val exch def
+		/slop .5 inch def
+		/diff slop def
+		/j 0 def
+		0 1 papersizes length 1 sub {
+			/i exch def
+			papersizes i get val sub abs
+			dup diff le {/diff exch def /j i def} {pop} ifelse
+		} for
+		diff slop lt {papersizes j get} {val} ifelse
+	} def
+
+	pagebbox 0 0 put
+	pagebbox 1 0 put
+	pagebbox dup 2 get mappapersize 2 exch put
+	pagebbox dup 3 get mappapersize 3 exch put
+    end
+} bind def
+
+%%EndProlog
+%%BeginSetup
+mark
+%
+% Encoding vector and redefinition of findfont for the ISO Latin1 standard.
+% The 18 characters missing from ROM based fonts on older printers are noted
+% below.
+%
+
+/ISOLatin1Encoding [
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/space
+	/exclam
+	/quotedbl
+	/numbersign
+	/dollar
+	/percent
+	/ampersand
+	/quoteright
+	/parenleft
+	/parenright
+	/asterisk
+	/plus
+	/comma
+	/minus
+	/period
+	/slash
+	/zero
+	/one
+	/two
+	/three
+	/four
+	/five
+	/six
+	/seven
+	/eight
+	/nine
+	/colon
+	/semicolon
+	/less
+	/equal
+	/greater
+	/question
+	/at
+	/A
+	/B
+	/C
+	/D
+	/E
+	/F
+	/G
+	/H
+	/I
+	/J
+	/K
+	/L
+	/M
+	/N
+	/O
+	/P
+	/Q
+	/R
+	/S
+	/T
+	/U
+	/V
+	/W
+	/X
+	/Y
+	/Z
+	/bracketleft
+	/backslash
+	/bracketright
+	/asciicircum
+	/underscore
+	/quoteleft
+	/a
+	/b
+	/c
+	/d
+	/e
+	/f
+	/g
+	/h
+	/i
+	/j
+	/k
+	/l
+	/m
+	/n
+	/o
+	/p
+	/q
+	/r
+	/s
+	/t
+	/u
+	/v
+	/w
+	/x
+	/y
+	/z
+	/braceleft
+	/bar
+	/braceright
+	/asciitilde
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/dotlessi
+	/grave
+	/acute
+	/circumflex
+	/tilde
+	/macron
+	/breve
+	/dotaccent
+	/dieresis
+	/.notdef
+	/ring
+	/cedilla
+	/.notdef
+	/hungarumlaut
+	/ogonek
+	/caron
+	/space
+	/exclamdown
+	/cent
+	/sterling
+	/currency
+	/yen
+	/brokenbar		% missing
+	/section
+	/dieresis
+	/copyright
+	/ordfeminine
+	/guillemotleft
+	/logicalnot
+	/hyphen
+	/registered
+	/macron
+	/degree			% missing
+	/plusminus		% missing
+	/twosuperior		% missing
+	/threesuperior		% missing
+	/acute
+	/mu			% missing
+	/paragraph
+	/periodcentered
+	/cedilla
+	/onesuperior		% missing
+	/ordmasculine
+	/guillemotright
+	/onequarter		% missing
+	/onehalf		% missing
+	/threequarters		% missing
+	/questiondown
+	/Agrave
+	/Aacute
+	/Acircumflex
+	/Atilde
+	/Adieresis
+	/Aring
+	/AE
+	/Ccedilla
+	/Egrave
+	/Eacute
+	/Ecircumflex
+	/Edieresis
+	/Igrave
+	/Iacute
+	/Icircumflex
+	/Idieresis
+	/Eth			% missing
+	/Ntilde
+	/Ograve
+	/Oacute
+	/Ocircumflex
+	/Otilde
+	/Odieresis
+	/multiply		% missing
+	/Oslash
+	/Ugrave
+	/Uacute
+	/Ucircumflex
+	/Udieresis
+	/Yacute			% missing
+	/Thorn			% missing
+	/germandbls
+	/agrave
+	/aacute
+	/acircumflex
+	/atilde
+	/adieresis
+	/aring
+	/ae
+	/ccedilla
+	/egrave
+	/eacute
+	/ecircumflex
+	/edieresis
+	/igrave
+	/iacute
+	/icircumflex
+	/idieresis
+	/eth			% missing
+	/ntilde
+	/ograve
+	/oacute
+	/ocircumflex
+	/otilde
+	/odieresis
+	/divide			% missing
+	/oslash
+	/ugrave
+	/uacute
+	/ucircumflex
+	/udieresis
+	/yacute			% missing
+	/thorn			% missing
+	/ydieresis
+] def
+
+/NewFontDirectory FontDirectory maxlength dict def
+
+%
+% Apparently no guarantee findfont is defined in systemdict so the obvious
+%
+%	systemdict /findfont get exec
+%
+% can generate an error. So far the only exception is a VT600 (version 48.0).
+%
+
+userdict /@RealFindfont known not {
+	userdict begin
+		/@RealFindfont systemdict begin /findfont load end def
+	end
+} if
+
+/findfont {
+	dup NewFontDirectory exch known not {
+		dup
+		%dup systemdict /findfont get exec	% not always in systemdict
+		dup userdict /@RealFindfont get exec
+		dup /Encoding get StandardEncoding eq {
+			dup length dict begin
+				{1 index /FID ne {def}{pop pop} ifelse} forall
+				/Encoding ISOLatin1Encoding def
+				currentdict
+			end
+			/DummyFontName exch definefont
+		} if
+		NewFontDirectory 3 1 roll put
+	} if
+	NewFontDirectory exch get
+} bind def
+
+%%Patch from lp
+%%EndPatch from lp
+
+setup
+%%EndSetup
+%%Page: 1 1
+/saveobj save def
+mark
+1 pagesetup
+12 /Times-Bold f
+(Recent) 2346 840 w
+(Changes) 2728 840 w
+(to C) 3198 840 w
+12 /Times-Italic f
+(November) 2409 1080 w
+(15, 1978) 2931 1080 w
+10 /Times-Roman f
+(A) 970 1356 w
+(few) 1069 1356 w
+(extensions) 1246 1356 w
+(have) 1696 1356 w
+(been) 1912 1356 w
+(made) 2128 1356 w
+(to) 2372 1356 w
+(the) 2478 1356 w
+(C) 2628 1356 w
+(language) 2723 1356 w
+(beyond) 3111 1356 w
+(what) 3433 1356 w
+(is) 3655 1356 w
+(described) 3750 1356 w
+(in) 4160 1356 w
+(the) 4266 1356 w
+(reference) 4416 1356 w
+(docu\255) 4813 1356 w
+(ment \(``The C Programming Language,'' Prentice\255Hall, 1978\).) 720 1476 w
+10 /Times-Bold f
+(1. Structure assignment) 720 1752 w
+10 /Times-Roman f
+(Structures) 970 1908 w
+(may) 1405 1908 w
+(be) 1607 1908 w
+(assigned,) 1731 1908 w
+(passed) 2130 1908 w
+(as) 2426 1908 w
+(arguments) 2539 1908 w
+(to) 2985 1908 w
+(functions,) 3093 1908 w
+(and) 3521 1908 w
+(returned) 3696 1908 w
+(by) 4059 1908 w
+(functions.) 4190 1908 w
+(The) 4643 1908 w
+(types) 4829 1908 w
+(of) 720 2028 w
+(the) 831 2028 w
+(operands) 980 2028 w
+(taking) 1367 2028 w
+(part) 1644 2028 w
+(must) 1826 2028 w
+(be) 2048 2028 w
+(the) 2169 2028 w
+(same.) 2318 2028 w
+(Other) 2600 2028 w
+(plausible) 2854 2028 w
+(operators,) 3242 2028 w
+(such) 3665 2028 w
+(as) 3875 2028 w
+(equality) 3985 2028 w
+(comparison,) 4334 2028 w
+(have) 4852 2028 w
+(not been implemented.) 720 2148 w
+(There) 970 2304 w
+(is) 1240 2304 w
+(a) 1345 2304 w
+(defect) 1427 2304 w
+(in) 1708 2304 w
+(the) 1825 2304 w
+(PDP\25511) 1986 2304 w
+(implementation) 2342 2304 w
+(of) 3009 2304 w
+(functions) 3131 2304 w
+(that) 3542 2304 w
+(return) 3731 2304 w
+(structures:) 4008 2304 w
+(if) 4463 2304 w
+(an) 4563 2304 w
+(interrupt) 4696 2304 w
+(occurs) 720 2424 w
+(during) 1007 2424 w
+(the) 1295 2424 w
+(return) 1443 2424 w
+(sequence,) 1707 2424 w
+(and) 2123 2424 w
+(the) 2293 2424 w
+(same) 2441 2424 w
+(function) 2672 2424 w
+(is) 3031 2424 w
+(called) 3124 2424 w
+(reentrantly) 3388 2424 w
+(during) 3846 2424 w
+(the) 4133 2424 w
+(interrupt,) 4281 2424 w
+(the) 4676 2424 w
+(value) 4824 2424 w
+(returned from the first call may be corrupted.) 720 2544 w
+(The problem can occur only in the presence of true interrupts,) 2571 2544 w
+(as) 720 2664 w
+(in) 835 2664 w
+(an) 945 2664 w
+(operating) 1071 2664 w
+(system) 1480 2664 w
+(or) 1790 2664 w
+(a) 1905 2664 w
+(user) 1981 2664 w
+(program) 2179 2664 w
+(that) 2549 2664 w
+(makes) 2731 2664 w
+(significant) 3018 2664 w
+(use) 3472 2664 w
+(of) 3637 2664 w
+(signals;) 3752 2664 w
+(ordinary) 4090 2664 w
+(recursive) 4460 2664 w
+(calls) 4857 2664 w
+(are quite safe.) 720 2784 w
+10 /Times-Bold f
+(2. Enumeration type) 720 3060 w
+10 /Times-Roman f
+(There) 970 3216 w
+(is) 1230 3216 w
+(a) 1325 3216 w
+(new) 1397 3216 w
+(data) 1591 3216 w
+(type) 1785 3216 w
+(analogous) 1985 3216 w
+(to) 2418 3216 w
+(the) 2524 3216 w
+(scalar) 2674 3216 w
+(types) 2934 3216 w
+(of) 3173 3216 w
+(Pascal.) 3284 3216 w
+(To) 3617 3216 w
+(the) 3756 3216 w
+(type\255specifiers) 3906 3216 w
+(in) 4521 3216 w
+(the) 4628 3216 w
+(syntax) 4779 3216 w
+(on p. 193 of the C book add) 720 3336 w
+9 /Times-Italic f
+(enum\255specifier) 1440 3506 w
+10 /Times-Roman f
+(with syntax) 720 3686 w
+9 /Times-Italic f
+(enum\255specifier:) 1440 3856 w
+9 /Courier f
+(enum {) 1872 3966 w
+9 /Times-Italic f
+(enum\255list) 2250 3966 w
+9 /Courier f
+(}) 2608 3966 w
+(enum) 1872 4076 w
+9 /Times-Italic f
+(identifier) 2142 4076 w
+9 /Courier f
+(W {) 2495 4076 w
+9 /Times-Italic f
+(enum\255list) 2711 4076 w
+9 /Courier f
+(W}) 3069 4076 w
+(enum) 1872 4186 w
+9 /Times-Italic f
+(identifier) 2142 4186 w
+(enum\255list:) 1440 4416 w
+(enumerator) 1872 4526 w
+(enum\255list) 1872 4636 w
+9 /Courier f
+(,) 2230 4636 w
+9 /Times-Italic f
+(enumerator) 2307 4636 w
+(enumerator:) 1440 4866 w
+(identifier) 1872 4976 w
+(identifier) 1872 5086 w
+9 /Courier f
+(=) 2225 5086 w
+9 /Times-Italic f
+(constant\255expression) 2333 5086 w
+10 /Times-Roman f
+(The) 720 5266 w
+(role) 904 5266 w
+(of) 1088 5266 w
+(the) 1200 5266 w
+(identifier) 1351 5266 w
+(in) 1746 5266 w
+(the) 1853 5266 w
+(enum\255specifier) 2004 5266 w
+(is) 2631 5266 w
+(entirely) 2727 5266 w
+(analogous) 3062 5266 w
+(to) 3497 5266 w
+(that) 3605 5266 w
+(of) 3785 5266 w
+(the) 3898 5266 w
+(structure) 4050 5266 w
+(tag) 4429 5266 w
+(on) 4581 5266 w
+(a) 4711 5266 w
+(struct\255) 4785 5266 w
+(specifier; it names a particular enumeration.) 720 5386 w
+(For example,) 2527 5386 w
+9 /Courier f
+(enum color { chartreuse, burgundy, claret, winedark };) 1440 5556 w
+(. . .) 1440 5666 w
+(enum color *cp, col;) 1440 5776 w
+10 /Times-Roman f
+(makes) 720 5956 w
+10 /Courier f
+(color) 1002 5956 w
+10 /Times-Roman f
+(the) 1329 5956 w
+(enumeration\255tag) 1478 5956 w
+(of) 2159 5956 w
+(a) 2269 5956 w
+(type) 2340 5956 w
+(describing) 2539 5956 w
+(various) 2982 5956 w
+(colors,) 3303 5956 w
+(and) 3599 5956 w
+(then) 3770 5956 w
+(declares) 3969 5956 w
+10 /Courier f
+(cp) 4322 5956 w
+10 /Times-Roman f
+(as) 4469 5956 w
+(a) 4579 5956 w
+(pointer) 4651 5956 w
+(to) 4962 5956 w
+(an object of that type, and) 720 6076 w
+10 /Courier f
+(col) 1782 6076 w
+10 /Times-Roman f
+(as an object of that type.) 1987 6076 w
+(The) 970 6232 w
+(identifiers) 1164 6232 w
+(in) 1608 6232 w
+(the) 1725 6232 w
+(enum\255list) 1886 6232 w
+(are) 2303 6232 w
+(declared) 2463 6232 w
+(as) 2839 6232 w
+(constants,) 2961 6232 w
+(and) 3397 6232 w
+(may) 3580 6232 w
+(appear) 3792 6232 w
+(wherever) 4097 6232 w
+(constants) 4507 6232 w
+(are) 4919 6232 w
+(required.) 720 6352 w
+(If) 1131 6352 w
+(no) 1226 6352 w
+(enumerators) 1355 6352 w
+(with) 1877 6352 w
+10 /Courier f
+(=) 2084 6352 w
+10 /Times-Roman f
+(appear,) 2173 6352 w
+(then) 2492 6352 w
+(the) 2693 6352 w
+(values) 2844 6352 w
+(of) 3128 6352 w
+(the) 3240 6352 w
+(constants) 3391 6352 w
+(begin) 3792 6352 w
+(at) 4043 6352 w
+(0) 4144 6352 w
+(and) 4223 6352 w
+(increase) 4396 6352 w
+(by) 4751 6352 w
+(1) 4879 6352 w
+(as) 4957 6352 w
+(the) 720 6472 w
+(declaration) 878 6472 w
+(is) 1357 6472 w
+(read) 1460 6472 w
+(from) 1667 6472 w
+(left) 1897 6472 w
+(to) 2066 6472 w
+(right.) 2180 6472 w
+(An) 2455 6472 w
+(enumerator) 2613 6472 w
+(with) 3103 6472 w
+10 /Courier f
+(=) 3317 6472 w
+10 /Times-Roman f
+(gives) 3413 6472 w
+(the) 3660 6472 w
+(associated) 3818 6472 w
+(identifier) 4264 6472 w
+(the) 4666 6472 w
+(value) 4824 6472 w
+(indicated; subsequent identifiers continue the progression from the assigned value.) 720 6592 w
+(Enumeration) 970 6748 w
+(tags) 1529 6748 w
+(and) 1733 6748 w
+(constants) 1920 6748 w
+(must) 2335 6748 w
+(all) 2573 6748 w
+(be) 2716 6748 w
+(distinct,) 2853 6748 w
+(and) 3216 6748 w
+(unlike) 3404 6748 w
+(structure) 3698 6748 w
+(tags) 4091 6748 w
+(and) 4296 6748 w
+(members,) 4484 6748 w
+(are) 4919 6748 w
+(drawn from the same set as ordinary identifiers.) 720 6868 w
+(Objects) 970 7024 w
+(of) 1307 7024 w
+(a) 1422 7024 w
+(given) 1498 7024 w
+(enumeration) 1752 7024 w
+(type) 2283 7024 w
+(are) 2487 7024 w
+(regarded) 2640 7024 w
+(as) 3020 7024 w
+(having) 3135 7024 w
+(a) 3439 7024 w
+(type) 3515 7024 w
+(distinct) 3719 7024 w
+(from) 4046 7024 w
+(objects) 4272 7024 w
+(of) 4587 7024 w
+(all) 4702 7024 w
+(other) 4835 7024 w
+(types,) 720 7144 w
+(and) 986 7144 w
+10 /Times-Italic f
+(lint) 1160 7144 w
+10 /Times-Roman f
+(flags) 1324 7144 w
+(type) 1548 7144 w
+(mismatches.) 1750 7144 w
+(In) 2302 7144 w
+(the) 2415 7144 w
+(PDP\25511) 2567 7144 w
+(implementation) 2914 7144 w
+(all) 3572 7144 w
+(enumeration) 3702 7144 w
+(variables) 4230 7144 w
+(are) 4619 7144 w
+(treated) 4769 7144 w
+(as if they were) 720 7264 w
+10 /Courier f
+(int) 1329 7264 w
+10 /Times-Roman f
+(.) 1509 7264 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 1 1
+%%Trailer
+done
+%%DocumentFonts: Times-Roman Times-Italic Times-Bold Courier
+%%Pages: 1

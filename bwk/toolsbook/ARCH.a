@@ -1,0 +1,559 @@
+!<arch>
+acopy.r         362839469   9     1     100666  271       `
+include common
+# acopy _ copy  size  characters from  fdi  to  fdo
+	subroutine acopy(fdi, fdo, size)
+	character getch
+	character c
+	integer fdi, fdo, i, size
+
+	for (i = 1; i <= size; i = i + 1) {
+		if (getch(c, fdi) == EOF)
+			break
+		call putch(c, fdo)
+		}
+	return
+	end
+
+addfil.r        362839463   9     1     100666  421       `
+include common
+# addfil _ add file "name"  to archive
+	subroutine addfil(name, fd, errcnt)
+	character head(MAXLINE), name(ARB)
+	integer open
+	integer errcnt, fd, nfd
+
+	nfd = open(name, READ)
+	if (nfd == ERR) {
+		call putlin(name, ERROUT)
+		call remark(": can't add.")
+		errcnt = errcnt + 1
+		}
+	if (errcnt == 0) {
+		call makhdr(name, head)
+		call putlin(head, fd)
+		call fcopy(nfd, fd)
+		call close(nfd)
+		}
+	return
+	end
+
+amove.r         362839463   9     1     100666  315       `
+include common
+# amove _ move  name1  to  name2
+	subroutine amove(name1, name2)
+	character name1(ARB), name2(ARB)
+	integer create, open
+	integer fd1, fd2
+
+	fd1 = open(name1, READ)
+	if (fd1 == ERR)
+		call cant(name1)
+	fd2 = create(name2, WRITE)
+	if (fd2 == ERR)
+		call cant(name2)
+	call fcopy(fd1, fd2)
+	return
+	end
+
+archdefs        362839464   9     1     100666  121       `
+define	NAMESIZE	20
+define	MAXFILES	5
+
+define	TBL	LETT
+define	PRINT	LETP
+define	EXTR	LETX
+define	UPD	LETU
+define	DEL	LETD
+
+archive.r       362839461   9     1     100666  457       `
+include common
+# archive _ file maintainer
+	character aname(NAMESIZE)
+	integer getarg
+	integer comand(2)
+
+	if (getarg(1, comand, 2) == EOF
+	   | getarg(2, aname, NAMESIZE) == EOF)
+		call help
+	call getfns
+	if (comand(1) == UPD)
+		call update(aname)
+	else if (comand(1) == TBL)
+		call table(aname)
+	else if (comand(1) == EXTR | comand(1) == PRINT)
+		call extrac(aname, comand(1))
+	else if (comand(1) == DEL)
+		call delete(aname)
+	else
+		call help
+	stop
+	end
+
+blockd.r        362839464   9     1     100666  89        `
+include common
+# block data for archive
+	block data
+	include carch
+	data errcnt /0/
+	end
+
+carch           362839460   9     1     100666  255       `
+common /carch/ fname(NAMESIZE, MAXFILES), fstat(MAXFILES), nfiles, errcnt
+   character fname		# file arguments
+   integer fstat		# YES if touched, NO otherwise; init = NO
+   integer nfiles		# number of file args
+   integer errcnt		# error count; init = 0
+
+common          362839461   9     1     100666  48        `
+include /usr/style/io/globdefs
+include archdefs
+delete.r        362839468   9     1     100666  715       `
+include common
+# delete _ delete files from archive
+	subroutine delete(aname)
+	character aname(NAMESIZE), in(MAXLINE)
+	integer create, open
+	integer afd, tfd
+	include carch
+#	string tname "archtemp"
+	integer tname(4)
+	data tname(1), tname(2), tname(3), tname(4)/LETA, LETA, LETA, EOS/
+
+	if (nfiles <= 0)	# protect innocents
+		call error("delete by name only.")
+	afd = open(aname, READWRITE)
+	if (afd == ERR)
+		call cant(aname)
+	tfd = create(tname, READWRITE)
+	if (tfd == ERR)
+		call cant(tname)
+	call replac(afd, tfd, DEL, errcnt)
+	call notfnd
+	call close(afd)
+	call close(tfd)
+	if (errcnt == 0)
+		call amove(tname, aname)
+	else
+		call remark("fatal errors - archive not altered.")
+	call remove(tname)
+	return
+	end
+
+extrac.r        362839469   9     1     100666  761       `
+include common
+# extrac _ extract files from archive
+	subroutine extrac(aname, cmd)
+	character aname(NAMESIZE), ename(NAMESIZE), in(MAXLINE)
+	integer create, filarg, gethdr, open
+	integer afd, cmd, efd, size
+	include carch
+
+	afd = open(aname, READ)
+	if (afd == ERR)
+		call cant(aname)
+	if (cmd == PRINT)
+		efd = STDOUT
+	else
+		efd = ERR
+	while (gethdr(afd, in, ename, size) != EOF)
+		if (filarg(ename) == NO)
+			call fskip(afd, size)
+		else {
+			if (efd != STDOUT)
+				efd = create(ename, WRITE)
+			if (efd == ERR) {
+				call putlin(ename, ERROUT)
+				call remark(": can't create.")
+				errcnt = errcnt + 1
+				call fskip(afd, size)
+				}
+			else {
+				call acopy(afd, efd, size)
+				if (efd != STDOUT)
+					call close(efd)
+				}
+			}
+	call notfnd
+	return
+	end
+
+filarg.r        362839467   9     1     100666  365       `
+include common
+# filarg _ check if name matches argument list
+	integer function filarg(name)
+	character name(ARB)
+	integer equal, getarg
+	integer i
+	include carch
+
+	if (nfiles <= 0) {
+		filarg = YES
+		return
+		}
+	for (i = 1; i <= nfiles; i = i + 1)
+		if (equal(name, fname(1, i)) == YES) {
+			fstat(i) = YES
+			filarg = YES
+			return
+			}
+	filarg = NO
+	return
+	end
+
+fsize.r         362839465   9     1     100666  308       `
+include common
+# fsize _ size of file in characters
+	integer function fsize(name)
+	character getch
+	character c, name(ARB)
+	integer open
+	integer fd
+
+	fd = open(name, READ)
+	if (fd == ERR)
+		fsize = ERR
+	else {
+		for (fsize = 0; getch(c, fd) != EOF; fsize = fsize + 1)
+			;
+		call close(fd)
+		}
+	return
+	end
+fskip.r         362839467   9     1     100666  212       `
+include common
+# fskip _ skip  n  characters on file  fd
+	subroutine fskip(fd, n)
+	character getch
+	character c
+	integer fd, i, n
+
+	for (i = 1; i <= n; i = i + 1)
+		if (getch(c, fd) == EOF)
+			break
+	return
+	end
+getfns.r        362839465   9     1     100666  637       `
+include common
+# getfns _ get file names into fname, check for duplicates
+	subroutine getfns
+	integer equal, getarg
+	integer i, j
+	include carch
+
+	errcnt = 0
+	for (i = 1; i <= MAXFILES; i = i + 1)
+		if (getarg(i+2, fname(1, i), NAMESIZE) == EOF)
+			break
+	nfiles = i - 1
+	if (i > MAXFILES)
+		if (getarg(i+2, j, 1) != EOF)
+			call error("too many file names.")
+	for (i = 1; i <= nfiles; i = i + 1)
+		fstat(i) = NO
+	for (i = 1; i < nfiles; i = i + 1)
+		for (j = i + 1; j <= nfiles; j = j + 1)
+			if (equal(fname(1, i), fname(1, j)) == YES) {
+				call putlin(fname(1, i), ERROUT)
+				call error(": duplicate file name.")
+				}
+	return
+	end
+
+gethdr.r        362839466   9     1     100666  556       `
+include common
+# gethdr _ get header info from  fd
+	integer function gethdr(fd, buf, name, size)
+	character buf(MAXLINE), c, name(NAMESIZE), temp(NAMESIZE)
+	integer ctoi, equal, getlin, getwrd
+	integer fd, i, len, size
+#	string hdr"-h- "
+	integer hdr(4)
+	data hdr(1),hdr(2),hdr(3),hdr(4)/MINUS,LETH,MINUS,EOS/
+
+	if (getlin(buf, fd) == EOF) {
+		gethdr = EOF
+		return
+		}
+	i = 1
+	len = getwrd(buf, i, temp)
+	if (equal(temp, hdr) == NO)
+		call error("archive not in proper format.")
+	gethdr = YES
+	len = getwrd(buf, i, name)
+	size = ctoi(buf, i)
+	return
+	end
+getwrd.r        362839470   9     1     100666  382       `
+include common
+# getwrd _ get non\(hyblank word from in(i) into  out, increment i
+	integer function getwrd(in, i, out)
+	integer in(ARB), out(ARB)
+	integer i, j
+
+	while (in(i) == BLANK | in(i) == TAB)
+		i = i + 1
+	j = 1
+	while (in(i) != EOS & in(i) != BLANK & in(i) != TAB & in(i) != NEWLINE) {
+		out(j) = in(i)
+		i = i + 1
+		j = j + 1
+		}
+	out(j) = EOS
+	getwrd = j - 1
+	return
+	end
+globdefs        362839462   9     1     100666  1868      `
+define	STDIN	0
+define	STDOUT	1
+define	ERROUT	2
+define	READ	0
+define	WRITE	2
+define	READWRITE	2
+
+define	character	integer
+define	LETTER	1
+define	DIGIT	2
+define	OTHER	3
+define	YES	1
+define	NO	0
+define  OK	0
+define	MAXLINE	100
+define	ARB	100
+
+define	EOF	-3
+define	ERR	-1
+define	EOS	-2
+
+define	BACKSPACE	8
+define	TAB	9
+define	NEWLINE	10
+define	BLANK	32	# octal 40
+define	BANG	33
+define	DQUOTE	34
+define	SHARP	35
+define	DOLLAR	36	# 44/8
+define	PERCENT	37
+define  AND 	38
+define	SQUOTE	39
+define	LPAREN	40
+define	RPAREN	41
+define	STAR	42
+define	PLUS	43
+define	COMMA	44
+define	MINUS	45
+define	PERIOD	46
+define  SLASH	47
+define	COLON	58
+define	SEMICOL	59
+define	LESS	60
+define  EQUALS	61
+define	GREATER	62
+define  QMARK	63
+define	ATSIGN	64
+define	LBRACK	91
+define	BACKSLASH	92
+define	RBRACK	93
+define	UNDERLINE	95
+define	LBRACE	123
+define	BAR	124
+define	RBRACE	125
+
+define	LETA	97
+define	LETB	98
+define	LETC	99
+define	LETD	100
+define	LETE	101
+define	LETF	102
+define	LETG	103
+define	LETH	104
+define	LETI	105
+define	LETJ	106
+define	LETK	107
+define	LETL	108
+define	LETM	109
+define	LETN	110
+define	LETO	111
+define	LETP	112
+define	LETQ	113
+define	LETR	114
+define	LETS	115
+define	LETT	116
+define	LETU	117
+define	LETV	118
+define	LETW	119
+define	LETX	120
+define	LETY	121
+define	LETZ	122
+define	BIGA	65
+define	BIGB	66
+define	BIGC	67
+define	BIGD	68
+define	BIGE	69
+define	BIGF	70
+define	BIGG	71
+define	BIGH	72
+define	BIGI	73
+define	BIGJ	74
+define	BIGK	75
+define	BIGL	76
+define	BIGM	77
+define	BIGN	78
+define	BIGO	79
+define	BIGP	80
+define	BIGQ	81
+define	BIGR	82
+define	BIGS	83
+define	BIGT	84
+define	BIGU	85
+define	BIGV	86
+define	BIGW	87
+define	BIGX	88
+define	BIGY	89
+define	BIGZ	90
+define	DIG0	48
+define	DIG1	49
+define	DIG2	50
+define	DIG3	51
+define	DIG4	52
+define	DIG5	53
+define	DIG6	54
+define	DIG7	55
+define	DIG8	56
+define	DIG9	57
+
+define	open	fopen
+define	getarg	gtarg
+define	seek	fseek
+help.r          362839462   9     1     100666  131       `
+include common
+# help _ diagnostic printout
+	subroutine help
+
+	call error("usage: archive {dptux} archname [files].")
+	return
+	end
+
+makhdr.r        362839464   9     1     100666  524       `
+include common
+define	MAXCHARS	10
+# makhdr _ make header line for archive member
+	subroutine makhdr(name, head)
+	character head(MAXLINE), name(NAMESIZE)
+	integer fsize, itoc, length
+	integer i
+#	string hdr"-h- "
+	integer hdr(4)
+	data hdr(1),hdr(2),hdr(3),hdr(4)/MINUS,LETH,MINUS,EOS/
+
+	call scopy(hdr, 1, head, 1)
+	i = length(hdr) + 1
+	head(i) = BLANK
+	call scopy(name, 1, head, i+1)
+	i = length(head) + 1
+	head(i) = BLANK
+	i = i + 1 + itoc(fsize(name), head(i+1), MAXCHARS)
+	head(i) = NEWLINE
+	head(i+1) = EOS
+	return
+	end
+notfnd.r        362839467   9     1     100666  272       `
+include common
+# notfnd _ print "not found" message
+	subroutine notfnd
+	integer i
+	include carch
+
+	for (i = 1; i <= nfiles; i = i + 1)
+		if (fstat(i) == NO) {
+			call putlin(fname(1, i), ERROUT)
+			call remark(": not in archive.")
+			errcnt = errcnt + 1
+			}
+	return
+	end
+replac.r        362839468   9     1     100666  467       `
+include common
+# replac _ replace or delete files
+	subroutine replac(afd, tfd, cmd, errcnt)
+	character in(MAXLINE), uname(NAMESIZE)
+	integer filarg, gethdr
+	integer afd, cmd, errcnt, size, tfd
+
+	while (gethdr(afd, in, uname, size) != EOF)
+		if (filarg(uname) == YES) {
+			if (cmd == UPD)	# add new one
+				call addfil(uname, tfd, errcnt)
+			call fskip(afd, size)	# discard old one
+			}
+		else {
+			call putlin(in, tfd)
+			call acopy(afd, tfd, size)
+			}
+	return
+	end
+
+table.r         362839465   9     1     100666  398       `
+include common
+# table _ print table of archive contents
+	subroutine table(aname)
+	character aname(NAMESIZE), in(MAXLINE), lname(NAMESIZE)
+	integer filarg, gethdr, open
+	integer afd, size
+
+	afd = open(aname, READ)
+	if (afd == ERR)
+		call cant(aname)
+	while (gethdr(afd, in, lname, size) != EOF) {
+		if (filarg(lname) == YES)
+			call tprint(in)
+		call fskip(afd, size)
+		}
+	call notfnd
+	return
+	end
+tprint.r        362839466   9     1     100666  143       `
+include common
+# tprint _ print table entry for one member
+	subroutine tprint(buf)
+	character buf(ARB)
+
+	call putlin(buf, STDOUT)
+	return
+	end
+
+update.r        362839463   9     1     100666  876       `
+include common
+# update _ update existing files, add new ones at end
+	subroutine update(aname)
+	character aname(NAMESIZE)
+	integer create, getarg, open
+	integer afd, i, tfd
+	include carch
+#	string tname "archtemp"
+	integer tname(4)
+	data tname(1), tname(2), tname(3), tname(4)/LETA, LETA, LETA, EOS/
+
+	afd = open(aname, READWRITE)
+	if (afd == ERR)		# maybe it's a new one
+		afd = create(aname, READWRITE)
+	if (afd == ERR)
+		call cant(aname)
+	tfd = create(tname, READWRITE)
+	if (tfd == ERR)
+		call cant(tname)
+	call replac(afd, tfd, UPD, errcnt)		# update existing
+	for (i = 1; i <= nfiles; i = i + 1)		# add new ones
+		if (fstat(i) == NO) {
+			call addfil(fname(1, i), tfd, errcnt)
+			fstat(i) = YES
+			}
+	call close(afd)
+	call close(tfd)
+	if (errcnt == 0)
+		call amove(tname, aname)
+	else
+		call remark("fatal errors - archive not altered.")
+	call remove(tname)
+	return
+	end

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<?xml-stylesheet href="xbl-shape-bindings.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:svg="http://www.w3.org/2000/svg" 
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+
+<head>
+	<title>Robustness of l_1 vs l_2</title>
+	<script src="demo_impl.js" type="text/javascript"></script>
+</head>
+
+<body onload="regression2_init(); pic_init();" >
+
+<center>
+	<svg:svg id="canvas_regression2" width="4in" height="3in" align="center">
+		<svg:shape name="fit_control_point" id="fit_control_point_id" x1="150" y1="200">
+			<controlpoint xvar="x1" yvar="y1"/>
+		</svg:shape>
+		<svg:line id="l2_fit_line" fill="red" stroke="red" stroke-width="2" x1="0in" y1="1.5in" x2="4in" y2="1.5in"/>
+		<svg:line id="l1_fit_line" fill="lightgreen" stroke="green" stroke-width="2" x1="0in" y1="1.5in" x2="4in" y2="1.5in"/>
+		<svg:text id="total_dist_label2"  x="0in" y="2.75in">(Drag the green point; l_1 and l_2 fits include it)</svg:text>
+	</svg:svg>
+</center>
+
+<!--	<svg:svg viewBox="0 0 500 500" style="width:100%; height:100%">
+		<svg:rect z-index="-1" fill="gray" stroke="none" id="canvas_regression2" x="0" y="0" height="400" width="500"/>
+		<svg:shape name="fit_control_point" id="fit_control_point_id" x1="150" y1="200">
+			<controlpoint xvar="x1" yvar="y1"/>
+		</svg:shape>
+		<svg:line id="l2_fit_line" fill="red" stroke="red" stroke-width="2" x1="0in" y1="0in" x2="510" y2="3in"/>
+		<svg:line id="l1_fit_line" fill="lightgreen" stroke="green" stroke-width="2" x1="0in" y1="0in" x2="510" y2="3in"/>
+		<svg:text id="total_dist_label2"  x="0in" y="480">sum= 0 rms= 0</svg:text>
+	</svg:svg>
+-->
+
+</body>
+</html>

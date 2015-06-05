@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+		
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=iso-8859-1">
+		
+  <meta content="Mozilla/4.04 [en] (X11; U; IRIX64 6.4 IP27) [Netscape]"
+ name="GENERATOR">
+  <title>Msb: Nearest neighbor searching in metric spaces</title>
+</head>
+	<body>
+		
+<h2>Msb: Nearest neighbor searching in metric spaces</h2>
+		
+<hr width="100%"> 		Version 0.11 ("very preliminary release") 		<br>
+Jan 2003 		
+<hr width="100%"> 		
+<h3>Introduction</h3>
+		<font face="Courier New,Courier">Msb </font><font
+ face="Times New Roman,Times">is a 			collection of subroutines and
+drivers for nearest neighbor searching in metric 			spaces.&nbsp; It
+is written in ANSI C, and also compiles under C++.&nbsp; The
+			routines are given as input a <i>distance function </i></font><font
+ face="Courier New,Courier"> 			dist(size_t, size_t), </font><font
+ face="Times New Roman,Times">which satisfies 			the metric space
+conditions that</font> 		
+<ol>
+			<dt><font face="Courier New,Courier">dist(a,a)=0,</font> </dt>
+  <dt><font face="Courier New,Courier"> 						dist(a,b)=dist(b,a);</font> </dt>
+  <dt><font face="Courier New,Courier">dist(a,c) &lt;=
+							dist(a,b) + dist(b,c), (</font><font face="Times New Roman,Times">the<i>triangle</i>
+							inequality)</font> </dt>
+		
+</ol>
+		<font face="Times New Roman,Times">Here <font
+ face="Courier New,Courier">dist</font> 			is assumed to give the
+distance between points: dist(1,2) is the distance 			between "point
+number 1" and "point number 2". Some examples of metric spaces
+			include: points with the Euclidean distance measure or other <i>L<sub>p</sub></i>
+			measures, strings under hamming or edit distance, and bit vectors
+under hamming 			distance. The drivers given here give examples of
+these measures.</font> 		
+<p><font face="Times New Roman,Times">The data structures are a means
+of potentially 				speeding up the <i>nearest neighbor searching </i>problem:</font> </p>
+<blockquote><font face="Times New Roman,Times">Given 					a set <i>S</i>
+of points (also called <i>sites</i>) in a metric space, build a
+					data structure so that given a query point <i>q</i>, the nearest
+site to <i>q</i> 					can be found quickly.</font></blockquote>
+The <i>sb(S)</i> data 			structure given here can be built for
+arbitrary metric spaces. <a href="white_paper.pdf"> 				Measurements</a>
+		for several cases have shown that it can be effective, and is, at
+least, does 		no harm. 		
+<p><font face="Times New Roman,Times">The data structure needs
+typically a (small) 				constant amount of additional space per site.
+The data structures may well bog 				down and give no improvement over
+brute force for high dimensional points, or 				some sets of strings.
+However, this is not predictable, since a given set of 				sites may
+have a lot of structure, even if it lies in a very high-dimensional
+				ambient space. So&nbsp; the data structure may be worth a try. There
+is also 				available a quadtree-like data structure, coded by <a
+ href="http://www.cs.umd.edu/%7Emount/ANN/"> 					Arya and Mount,</a></font>
+for <i>L<sub>p</sub></i> 		spaces, which is&nbsp;faster in that setting.
+		</p>
+<p><font face="Times New Roman,Times">The </font><font
+ face="Courier New,Courier">SB </font> 			<font
+ face="Times New Roman,Times">library also includes functions for fixed
+radius 				queries, where all sites closer than some given distance
+are desired, and <i>k</i>'th 				nearest queries, where the closest <i>k</i>
+sites are desired, for some input 				integer <i>k</i>.</font>&nbsp;
+The code also internally supports <em>inverse 				nearest neighbor </em>
+		queries, although that capability is not currently supported in the
+interface. 		</p>
+<p> 			</p>
+<h3>License</h3>
+		
+<p><font face="Times New Roman,Times">The </font><font
+ face="Courier New,Courier">SB </font> 			<font
+ face="Times New Roman,Times">library is provided under the Gnu General
+Public 				License,and the usual disclaimers apply:</font></p>
+		
+<pre>/****************************************************************************<br>* Copyright (C)2002 Lucent Technologies                                     *<br>* (clarkson@research.bell-labs.com http://cm.bell-labs.com/who/clarkson)    *<br>*                                                                           *<br>* This program is free software; you can redistribute it and/or             *<br>* modify it under the terms of the GNU General Public License               *<br>* as published by the Free Software Foundation; either                      *<br>* version 2 of the License, or (at your option) any later version.          *<br>*                                                                           *<br>* This program is distributed in the hope that it will be useful,           *<br>* but WITHOUT ANY WARRANTY; without even the implied warranty of            *<br>* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the             *<br>* GNU General Public License for more details.                              *<br>*                                                                           *<br>* You should have received a copy of the GNU General Public License         *<br>* along with this program; if not, write to the Free Software               *<br>* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA,                 *<br>* or visit http://www.gnu.org/licenses/gpl.html                             *<br>*****************************************************************************/<br></pre>
+		
+<h3><font face="Times New Roman,Times"><a
+ href="http://cm.bell-labs.com/who/clarkson/Msb/Msb_0.11.tar.gz">Source
+					Code, tar'd, gzipped</a></font></h3>
+		
+<h3><font face="Times New Roman,Times"><a
+ href="http://cm.bell-labs.com/who/clarkson/Msb/Msb_0.11.zip">Source
+					Code, zipfile</a></font> 		</h3>
+		
+<h3><font face="Times New Roman,Times"><a
+ href="http://cm.bell-labs.com/who/clarkson/Msb/t/vv.ps">Slides from
+a talk</a></font></h3>
+		 		
+<h3><font face="Times New Roman,Times">Installation</font></h3>
+		The .zip file can be downloaded and extracted using, for example,
+winzip. <font face="Times New Roman,Times"> 			To extract the tar file</font><font
+ face="Courier New,Courier"> Msb_0.1.tar.gz,</font><font
+ face="Times New Roman,Times"> 			run gunzip on it, and tar to create
+the directory Msb_0.1, and cd to that 			directory:</font> 		
+<ol>
+			<dt><font face="Courier New,Courier">gunzip Msb_0.11.tar.gz</font> </dt>
+  <dt><font face="Courier New,Courier"> 						tar xf Msb_0.11.tar</font> </dt>
+  <dt><font face="Courier New,Courier">cd Msb_0.11</font> 					</dt>
+		
+</ol>
+		<font face="Times New Roman,Times"><strong>Building using make.&nbsp; </strong>Now
+			adjust the macros in </font><font face="Courier New,Courier">Make_config</font><font
+ face="Times New Roman,Times"> 			to look in the appropriate
+directories, and use the appropriate compiler, 			random number
+generator, and library creation and use. The code has been 			compiled
+under ANSI C and C++ on SGI's and under Visual Studio on
+			Windows.&nbsp; Finally, type</font>
+<blockquote><font face="Courier New,Courier">make 				library</font></blockquote>
+<font face="Times New Roman,Times">to create the 			library, and</font>
+<blockquote><font face="Courier New,Courier">make drives</font></blockquote>
+		
+<p><font face="Times New Roman,Times">to produce the drivers for points
+under the 				Euclidean norm, strings under hamming distance, strings
+under edit distance, 				and bitvectors under hamming distance.</font>
+		</p>
+		
+<p><strong>Building using Visual Studio 7.&nbsp; </strong>The folder
+'win' contains 			the solution sb.sln, which contains projects to
+build the library and driver.</p>
+		
+<p><font face="Times New Roman,Times"> 				
+<h3>Using the library</h3>
+			</font> 		</p>
+<p></p>
+		<font face="Times New Roman,Times">The declarations for the functions
+for creating 			and using </font><font face="Times New Roman,Times"><i>sb(S)</i>
+are given in </font> 		<font face="Courier New,Courier"><a
+ href="include/sb.h">include/sb.h</a>. So</font> 		
+<blockquote><font face="Courier New,Courier">#include &lt;sb.h&gt;</font></blockquote>
+		<font face="Times New Roman,Times">must be added to programs calling
+these 			functions, where the directory containing that file must be
+in the include path 			when compiling the program.</font> 		
+<p><font face="Times New Roman,Times">To load these functions into the
+resulting 				program, on most systems the linker should be told of
+the library libSB.a with 				the option </font><font
+ face="Courier New,Courier">-lSB</font><font
+ face="Times New Roman,Times">, 				and using the -L option to tell
+the linker where that library is.</font> 			</p>
+<h3><font face="Times New Roman,Times">Using the drivers</font></h3>
+			<font face="Times New Roman,Times">The command</font>
+<blockquote><font face="Courier New,Courier">make 					drives</font></blockquote>
+<font face="Times New Roman,Times">given in the 				Msb_0.11
+directory, will produce drivers and distance functions for euclidean
+				data in euclid, strings under hamming distance in hamming, strings
+under edit 				distance in string, and bitvectors in (you guessed it)
+bitvector. Some 				corresponding data sets are included in those
+directories also.&nbsp; The 				drivers take data from stdin, and
+print test results on stdout.&nbsp; They are 				included here mainly
+to show various applications of the library, and the user 				will
+need to examine and change the source code to adapt them to other needs.</font>
+		
+<p><font face="Times New Roman,Times">The executable<font
+ face="Courier New,Courier"> test_sb 				</font><font
+ face="Times New Roman,Times">can be make'd in the euclid subdirectory,
+					and will&nbsp;generate a variety of distributions of random sites,
+build the 					data structure, and then test the data structure on
+those sites.</font> 				
+<h3><font face="Times New Roman,Times">A Variant Data Structure</font></h3>
+				
+<p>Also included is the "MM" data structure, built with the <font
+ face="Courier New,Courier"> 						build_M</font> function, searched with
+the <font face="Courier New,Courier">search_M 					</font>function,
+and with driver drive_M. This data structure does not require 					the
+triangle inequality, but does need some additional points, that are
+used as 					representatives of typical query points.&nbsp; Most users
+would probably prefer 					the <em>sb </em>data structure.</p>
+				
+<h4><font face="Times New Roman,Times">Author</font></h4>
+				
+<blockquote><font face="Times New Roman,Times"><a
+ href="http://cm.bell-labs.com/who/clarkson/">Ken 							Clarkson</a></font>
+					<br>
+					<font face="Times New Roman,Times">Room 2C-455</font> 					<br>
+					<font face="Times New Roman,Times">Bell Laboratories</font> 					<br>
+					<font face="Times New Roman,Times">600 Mountain Ave</font> 					<br>
+					<font face="Times New Roman,Times">Murray Hill, NJ</font> 					<br>
+					<font face="Times New Roman,Times">07974</font> 					<br>
+					<font face="Times New Roman,Times"><a
+ href="mailto:clarkson@bell-labs.com">clarkson@bell-labs.com</a></font></blockquote>
+				<i><font face="Times New Roman,Times">Last Modified</font></i> 				<br>
+				<i><font face="Times New Roman,Times">Jan 2003</font></i></font> 	</p>
+</body>
+</html>

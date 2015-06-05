@@ -1,0 +1,146 @@
+<html><head>
+<!-- base href="http://cm.bell-labs.com/who/alw/" --><title>Home Page</title>
+
+
+<link rel="stylesheet" type="text/css" href="ImageSty/style.css">
+<link rel="stylesheet" type="text/css" href="ImageSty/special_styles.css">
+<script type="text/javascript" src="ImageSty/script.js"></script></head>
+<body>
+
+<div id="top_nav">
+
+<div id="top_menu_shade">&nbsp;</div>
+
+<table class="top_menu">
+<tbody><tr>
+    <td class="top_menu_button_off" id="button_0" onmouseover="change_bttn('top_menu_button_on','button_0')" onmouseout="change_bttn('top_menu_button_off','button_0')">
+    <a href="http://www.alcatel-lucent.com/" target="_new"><div>
+       &nbsp;&nbsp;Alcatel-Lucent&nbsp;&nbsp;</div></a>
+  </td>
+      <td class="top_menu_button_off" id="button_1" onmouseover="change_bttn('top_menu_button_on','button_1')" onmouseout="change_bttn('top_menu_button_off','button_1')">
+    <a href="http://www.bell-labs.com/" target="_new"><div>
+       &nbsp;&nbsp;Bell Laboratories&nbsp;&nbsp;</div></a>
+  </td>
+      <td class="top_menu_button_off" id="button_2" onmouseover="change_bttn('top_menu_button_on','button_2')" onmouseout="change_bttn('top_menu_button_off','button_2')">
+    <a href="http://ect.bell-labs.com" target="_new"><div>
+       &nbsp;&nbsp;ECT&nbsp;&nbsp;</div></a>
+  </td>
+      <td class="top_menu_button_off" id="button_3" onmouseover="change_bttn('top_menu_button_on','button_3')" onmouseout="change_bttn('top_menu_button_off','button_3')">
+    <a href="http://cm.bell-labs.com/cm/ms/departments/mnc" target="_new"><div>
+       &nbsp;&nbsp;Math. Netw. Commun. Dept.&nbsp;&nbsp;</div></a>
+  </td>
+      <td class="top_menu_button_off" id="button_4" onmouseover="change_bttn('top_menu_button_on','button_4')" onmouseout="change_bttn('top_menu_button_off','button_4')">
+    <a href="http://cm.bell-labs.com/cm/ms/departments/css" target="_new"><div>
+       &nbsp;&nbsp;Commun. &amp; Signal Proc. Group&nbsp;&nbsp;</div></a>
+  </td>
+      <td class="top_menu_button_on" id="button_5" onmouseover="change_bttn('top_menu_button_on','button_5')">
+    <a href="http://cm.bell-labs.com/who/alw/"><div>
+       &nbsp;&nbsp;Home Page&nbsp;&nbsp;</div></a>
+  </td>
+  </tr>
+</tbody></table>
+
+</div>
+<div id="photo">
+  <img src="ImageSty/alw_jpg.jpeg" alt="" title="" height="150" width="100" border="0">
+</div>
+<div id="side_nav">
+
+<table class="side_menu" border="0" cellpadding="0" cellspacing="1">
+<tbody><tr>
+  <td id="side_bttn0" class="side_menu_button_on" onmouseover="change_bttn('side_menu_button_on','side_bttn0')">
+    <a href="http://cm.bell-labs.com/who/alw/"><div>
+       &nbsp;&nbsp;Home Page&nbsp;&nbsp;</div></a></td>
+</tr>
+<tr>
+  <td id="side_bttn1" class="side_menu_button_off" onmouseover="change_bttn('side_menu_button_on','side_bttn1')" onmouseout="change_bttn('side_menu_button_off','side_bttn1')">
+    <a href="http://cm.bell-labs.com/who/alw/biography/"><div>
+       &nbsp;&nbsp;Biography&nbsp;&nbsp;</div></a></td>
+</tr>
+<tr>
+  <td id="side_bttn2" class="side_menu_button_off" onmouseover="change_bttn('side_menu_button_on','side_bttn2')" onmouseout="change_bttn('side_menu_button_off','side_bttn2')">
+    <a href="http://cm.bell-labs.com/who/alw/activities/"><div>
+       &nbsp;&nbsp;Activities&nbsp;&nbsp;</div></a></td>
+</tr>
+<tr>
+  <td id="side_bttn3" class="side_menu_button_off" onmouseover="change_bttn('side_menu_button_on','side_bttn3')" onmouseout="change_bttn('side_menu_button_off','side_bttn3')">
+    <a href="http://cm.bell-labs.com/who/alw/research/"><div>
+       &nbsp;&nbsp;Research&nbsp;&nbsp;</div></a></td>
+</tr>
+<tr>
+  <td id="side_bttn4" class="side_menu_button_off" onmouseover="change_bttn('side_menu_button_on','side_bttn4')" onmouseout="change_bttn('side_menu_button_off','side_bttn4')">
+    <a href="http://cm.bell-labs.com/who/alw/publications/"><div>
+       &nbsp;&nbsp;Publications&nbsp;&nbsp;</div></a></td>
+</tr>
+<tr>
+  <td id="side_bttn5" class="side_menu_button_off" onmouseover="change_bttn('side_menu_button_on','side_bttn5')" onmouseout="change_bttn('side_menu_button_off','side_bttn5')">
+    <a href="http://cm.bell-labs.com/who/alw/links/"><div>
+       &nbsp;&nbsp;Links&nbsp;&nbsp;</div></a></td>
+</tr>
+<tr>
+  <td id="side_bttn6" class="side_menu_button_off" onmouseover="change_bttn('side_menu_button_on','side_bttn6')" onmouseout="change_bttn('side_menu_button_off','side_bttn6')">
+    <a href="http://cm.bell-labs.com/who/alw/contact/"><div>
+       &nbsp;&nbsp;Contact&nbsp;&nbsp;</div></a></td>
+</tr>
+</tbody></table>
+
+</div>
+<div id="MAIN_title">
+
+<div class="name_text">Adriaan J. de Lind van Wijngaarden</div>
+
+<div class="title_text">
+Member of Technical Staff<br>
+Communications and Signal Processing Group<br>
+Bell Laboratories, Alcatel-Lucent<br>
+Room MH 2C-360, 600 Mountain Ave<br>
+Murray Hill, NJ 07974, USA
+</div>
+
+</div>
+
+
+
+<div id="main_doc">
+
+<div style="text-align: center;">
+<br>
+
+<p>
+<p>
+<p>
+&nbsp;<p>
+&nbsp;<p>
+<p>
+&nbsp;<p>
+<p>
+<div class="page_title">Please use the menus to navigate.</div><br>
+<p>
+&nbsp;<p>
+<p>
+&nbsp;<p>
+<p>
+&nbsp;<p>
+<p>
+&nbsp;<p>
+</div>
+
+<p></p><div id="footer">
+
+<hr>
+
+<div class="footer_text">
+  <a href="http://www.alcatel-lucent.com/wps/portal/termsofuse">Terms of Use</a>&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="http://www.alcatel-lucent.com/wps/portal/privacy">Privacy Statement</a>
+</div>
+    
+<hr>
+
+<div><em>Copyright 1998-2008</em></div>
+
+</div>
+<p></p>
+
+</div>
+
+</body></html>

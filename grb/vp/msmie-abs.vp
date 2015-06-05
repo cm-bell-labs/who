@@ -1,0 +1,63 @@
+(* Abstract version of the MSMIE protocol *)
+
+const I = "i"				
+const S = "s"
+const N = "n"
+const M = "m"
+const Bufstat = {I,S,N,M} 			
+const Bid     = {1,2,3}
+const Mid     = {1,2}
+const Readers = pow(Mid)
+const Buf     = prod(Bufstat,Bid)
+const Onebuf  = {{b}           | b:Buf}
+const Twobuf  = {{b#1,b#2}     | b:prod(Buf,Buf)}
+const B1      = {{<<a#1,1>>,<<a#2,2>>,<<a#3,3>>}|a:prod(Bufstat,Bufstat,Bufstat)}
+const B2      = {b|size({c:b|c#1 = M}) < 2 where b:B1}
+const B3      = {b|size({c:b|c#1 = S}) = 1 where b:B2}
+const Bufs    = {b|size({c:b|c#1 = N}) < 2 where b:B3}
+
+label slave
+label ma_Mid, mr_Mid
+label ma1, ma2, mr1, mr2
+
+agent M(B:Bufs,r:Readers) =
+(* 1 *)
+    sum(v:{v:prod(Bid,Bid,Bid)    | B = {<<S,v#1>>,<<N,v#2>>,<<I,v#3>>}},
+        slave.M({<<N,v#1>>,<<S,v#2>>,<<I,v#3>>},r))
+(* 2 *)
+  + sum(v:{v:prod(Bid,Bid,Bid)    | B = {<<S,v#1>>,<<N,v#2>>,<<I,v#3>>}},
+        slave.M({<<N,v#1>>,<<I,v#2>>,<<S,v#3>>},r))
+(* 3 *)
+  + sum(v:{v:prod(Bid,Bid,Onebuf) | B = union({<<S,v#1>>,<<I,v#2>>},v#3) 
+                                    and not member(N,{b#1|b:v#3})},
+        slave.M(union({<<N,v#1>>,<<S,v#2>>},v#3),r))
+(* 4 *)
+  + sum(v:{v:prod(Bid,Bid,Onebuf) | B = union({<<S,v#1>>,<<N,v#2>>},v#3) 
+                                    and not member(I,{b#1|b:v#3})},
+        slave.M(union({<<N,v#1>>,<<S,v#2>>},v#3),r))
+(* 5 *)
+  + sum(v:{v:prod(Bid,Twobuf,Mid) | B = union({<<M,v#1>>},v#2) 
+                                    and not member(v#3,r)},
+        ma_(v#3).M(union({<<M,v#1>>},v#2),union(r,{v#3})))
+(* 6 *)
+  + sum(v:{v:prod(Bid,Twobuf,Mid) | B = union({<<N,v#1>>},v#2) 
+                                    and r = {} 
+                                    and not member(M,{b#1|b:v#2})},
+        ma_(v#3).M(union({<<M,v#1>>},v#2),{v#3}))
+(* 7 *)
+  + sum(v:{v:prod(Bid,Twobuf,Mid) | B = union({<<M,v#1>>},v#2) 
+                                    and member(v#3,r) and size(r) > 1},
+        mr_(v#3).M(union({<<M,v#1>>},v#2),diff(r,{v#3})))
+(* 8 *)
+  + sum(v:{v:prod(Bid,Bid,Onebuf,Mid) | B = union({<<M,v#1>>,<<N,v#2>>},v#3) 
+                                        and r = {v#4}},
+        mr_(v#4).M(union({<<I,v#1>>,<<N,v#2>>},v#3),{}))
+(* 9 *)
+  + sum(v:{v:prod(Bid,Twobuf,Mid) | B = union({<<M,v#1>>},v#2) 
+                                    and r = {v#3} 
+                                    and not member(N,{b#1|b:v#2})},
+        mr_(v#3).M(union({<<N,v#1>>},v#2),{}))
+
+(* the agent is relabelled to give it the same sort as the natural model *)
+agent Msmie' = M({<<S,1>>,<<I,2>>,<<I,3>>},{})[ma1/ma_1,ma2/ma_2,mr1/mr_1,mr2/mr_2]
+

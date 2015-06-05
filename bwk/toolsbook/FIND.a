@@ -1,0 +1,404 @@
+!<arch>
+amatch.r        362839545   9     1     100666  1091      `
+include common
+# amatch  (non\(hyrecursive) _ look for match starting at lin(from)
+	integer function amatch(lin, from, pat)
+	character lin(MAXLINE), pat(MAXPAT)
+	integer omatch, patsiz
+	integer from, i, j, offset, stack
+
+	stack = 0
+	offset = from		# next unexamined input character
+	for (j = 1; pat(j) != EOS; j = j + patsiz(pat, j))
+		if (pat(j) == CLOSURE) {		# a closure entry
+			stack = j
+			j = j + CLOSIZE		# step over CLOSURE
+			for (i = offset; lin(i) != EOS; )	# match as many as
+				if (omatch(lin, i, pat, j) == NO)	# possible
+					break
+			pat(stack+COUNT) = i - offset
+			pat(stack+START) = offset
+			offset = i		# character that made us fail
+			}
+		else if (omatch(lin, offset, pat, j) == NO) {	# non\(hyclosure
+			for ( ; stack > 0; stack = pat(stack+PREVCL))
+				if (pat(stack+COUNT) > 0)
+					break
+			if (stack <= 0) {		# stack is empty
+				amatch = 0		# return failure
+				return
+				}
+			pat(stack+COUNT) = pat(stack+COUNT) - 1
+			j = stack + CLOSIZE
+			offset = pat(stack+START) + pat(stack+COUNT)
+			}
+		# else omatch succeeded
+	amatch = offset
+	return		# success
+	end
+
+amatch0.x       362839559   9     1     100666  328       `
+include common
+# amatch with no metacharacters
+	integer function amatch(lin, from, pat)
+	character lin(MAXLINE), pat(MAXPAT)
+	integer from, i, j
+
+	i = from
+	for (j = 1; pat(j) != EOS; j = j + 1) {
+		if (lin(i) != pat(j)) {
+			amatch = 0
+			return		# with no match
+			}
+		i = i + 1
+		}
+	amatch = i
+	return				# successfully
+	end
+amatch1.x       362839587   9     1     100666  361       `
+include common
+# amatch with some metacharacters
+	integer function amatch(lin, from, pat)
+	character lin(MAXLINE), pat(MAXPAT)
+	integer omatch, patsiz
+	integer from, i, j
+
+	i = from
+	for (j = 1; pat(j) != EOS; j = j + patsiz(pat, j))
+		if (omatch(lin, i, pat, j) == NO) {
+			amatch = 0
+			return		# with no match
+			}
+	amatch = i
+	return				# successfully
+	end
+
+common          362839541   9     1     100666  317       `
+include /usr/style/io/globdefs
+
+define MAXARG	128
+define MAXPAT	128
+
+define COUNT	1
+define PREVCL	2
+define START	3
+define CLOSIZE	4
+
+define NOT	BANG
+define BOL	PERCENT
+define ANY	QMARK
+define EOL	DOLLAR
+define CLOSURE	STAR
+define CCL	LBRACK
+define CCLEND	RBRACK
+define NCCL	LETN
+define CHAR	LETA
+define ESCAPE	ATSIGN
+
+find.r          362839541   9     1     100666  376       `
+include common
+# find _ find patterns in text
+	character arg(MAXARG), lin(MAXLINE), pat(MAXPAT)
+	integer getarg, getlin, getpat, match
+
+	if (getarg(1, arg, MAXARG) == EOF)
+		call error("usage: find pattern.")
+	if (getpat(arg, pat) == ERR)
+		call error("illegal pattern.")
+	while (getlin(lin, STDIN) != EOF)
+		if (match(lin, pat) == YES)
+			call putlin(lin, STDOUT)
+	stop
+	end
+getccl.r        362839543   9     1     100666  549       `
+include common
+# getccl _ expand char class at arg(i) into pat(j)
+	integer function getccl(arg, i, pat, j)
+	character arg(MAXARG), pat(MAXPAT)
+	integer addset
+	integer i, j, jstart, junk
+
+	i = i + 1		# skip over [
+	if (arg(i) == NOT) {
+		junk = addset(NCCL, pat, j, MAXPAT)
+		i = i + 1
+		}
+	else
+		junk = addset(CCL, pat, j, MAXPAT)
+	jstart = j
+	junk = addset(0, pat, j, MAXPAT)		# leave room for count
+	call filset(CCLEND, arg, i, pat, j, MAXPAT)
+	pat(jstart) = j - jstart - 1
+	if (arg(i) == CCLEND)
+		getccl = OK
+	else
+		getccl = ERR
+	return
+	end
+
+getpat.r        362839542   9     1     100666  190       `
+include common
+# getpat _ convert argument into pattern
+	integer function getpat(arg, pat)
+	integer arg(MAXARG), pat(MAXPAT)
+	integer makpat
+
+	getpat = makpat(arg, 1, EOS, pat)
+	return
+	end
+locate.r        362839608   9     1     100666  340       `
+include common
+# locate _ look for c in char class at pat(offset)
+	integer function locate(c, pat, offset)
+	character c, pat(MAXPAT)
+	integer i, offset
+	# size of class is at pat(offset), characters follow
+
+	for (i = offset + pat(offset); i > offset; i = i - 1)
+		if (c == pat(i)) {
+			locate = YES
+			return
+			}
+	locate = NO
+	return
+	end
+makpat.r        362839542   9     1     100666  1117      `
+include common
+# makpat _ make pattern from arg(from), terminate at delim
+	integer function makpat(arg, from, delim, pat)
+	character esc
+	character arg(MAXARG), delim, pat(MAXPAT)
+	integer addset, getccl, stclos
+	integer from, i, j, junk, lastcl, lastj, lj
+
+	j = 1		# pat index
+	lastj = 1
+	lastcl = 0
+	for (i = from; arg(i) != delim & arg(i) != EOS; i = i + 1) {
+		lj = j
+		if (arg(i) == ANY)
+			junk = addset(ANY, pat, j, MAXPAT)
+		else if (arg(i) == BOL & i == from)
+			junk = addset(BOL, pat, j, MAXPAT)
+		else if (arg(i) == EOL & arg(i + 1) == delim)
+			junk = addset(EOL, pat, j, MAXPAT)
+		else if (arg(i) == CCL) {
+			if (getccl(arg, i, pat, j) == ERR)
+				break
+			}
+		else if (arg(i) == CLOSURE & i > from) {
+			lj = lastj
+			if (pat(lj)==BOL | pat(lj)==EOL | pat(lj)==CLOSURE)
+				break
+			lastcl = stclos(pat, j, lastj, lastcl)
+			}
+		else {
+			junk = addset(CHAR, pat, j, MAXPAT)
+			junk = addset(esc(arg, i), pat, j, MAXPAT)
+			}
+		lastj = lj
+		}
+	if (arg(i) != delim)	# terminated early
+		makpat = ERR
+	else if (addset(EOS, pat, j, MAXPAT) == NO)	# no room
+		makpat = ERR
+	else
+		makpat = i
+	return
+	end
+
+match.r         362839544   9     1     100666  279       `
+include common
+# match _ find match anywhere on line
+	integer function match(lin, pat)
+	character lin(MAXLINE), pat(MAXPAT)
+	integer amatch
+	integer i
+
+	for (i = 1; lin(i) != EOS; i = i + 1)
+		if (amatch(lin, i, pat) > 0) {
+			match = YES
+			return
+			}
+	match = NO
+	return
+	end
+
+omatch.r        362839544   9     1     100666  794       `
+include common
+# omatch _ try to match a single pattern at pat(j)
+	integer function omatch(lin, i, pat, j)
+	character lin(MAXLINE), pat(MAXPAT)
+	integer locate
+	integer bump, i, j
+
+	omatch = NO
+	if (lin(i) == EOS)
+		return
+	bump = -1
+	if (pat(j) == CHAR) {
+		if (lin(i) == pat(j + 1))
+			bump = 1
+		}
+	else if (pat(j) == BOL) {
+		if (i == 1)
+			bump = 0
+		}
+	else if (pat(j) == ANY) {
+		if (lin(i) != NEWLINE)
+			bump = 1
+		}
+	else if (pat(j) == EOL) {
+		if (lin(i) == NEWLINE)
+			bump = 0
+		}
+	else if (pat(j) == CCL) {
+		if (locate(lin(i), pat, j + 1) == YES)
+			bump = 1
+		}
+	else if (pat(j) == NCCL) {
+		if (lin(i) != NEWLINE & locate(lin(i), pat, j + 1) == NO)
+			bump = 1
+		}
+	else
+		call error("in omatch: can't happen.")
+	if (bump >= 0) {
+		i = i + bump
+		omatch = YES
+		}
+	return
+	end
+patsiz.r        362839572   9     1     100666  426       `
+include common
+# patsiz _ returns size of pattern entry at pat(n)
+	integer function patsiz(pat, n)
+	character pat(MAXPAT)
+	integer n
+
+	if (pat(n) == CHAR)
+		patsiz = 2
+	else if (pat(n) == BOL | pat(n) == EOL | pat(n) == ANY)
+		patsiz = 1
+	else if (pat(n) == CCL | pat(n) == NCCL)
+		patsiz = pat(n + 1) + 2
+	else if (pat(n) == CLOSURE)		# optional
+		patsiz = CLOSIZE
+	else
+		call error("in patsiz: can't happen.")
+	return
+	end
+stclos.r        362839543   9     1     100666  567       `
+include common
+# stclos _ insert closure entry at pat(j)
+	integer function stclos(pat, j, lastj, lastcl)
+	character pat(MAXPAT)
+	integer addset
+	integer j, jp, jt, junk, lastcl, lastj
+
+	for (jp = j - 1; jp >= lastj; jp = jp - 1) {	# make a hole
+		jt = jp + CLOSIZE
+		junk = addset(pat(jp), pat, jt, MAXPAT)
+		}
+	j = j + CLOSIZE
+	stclos = lastj
+	junk = addset(CLOSURE, pat, lastj, MAXPAT)	# put closure in it
+	junk = addset(0, pat, lastj, MAXPAT)		# COUNT
+	junk = addset(lastcl, pat, lastj, MAXPAT)	# PREVCL
+	junk = addset(0, pat, lastj, MAXPAT)		# START
+	return
+	end
+
+catsub.r        362839617   9     1     100666  427       `
+include common
+# catsub _ add replacement text to end of  new
+	subroutine catsub(lin, from, to, sub, new, k, maxnew)
+	integer addset
+	integer from, i, j, junk, k, maxnew, to
+	character lin(MAXLINE), new(maxnew), sub(MAXPAT)
+
+	for (i = 1; sub(i) != EOS; i = i + 1)
+		if (sub(i) == DITTO)
+			for (j = from; j < to; j = j + 1)
+				junk = addset(lin(j), new, k, maxnew)
+		else
+			junk = addset(sub(i), new, k, maxnew)
+	return
+	end
+
+change.r        362839616   9     1     100666  1116      `
+include common
+# change _ change  "from"  into  "to"
+	character lin(MAXLINE), new(MAXLINE), pat(MAXPAT), sub(MAXPAT)
+	character arg(MAXARG)
+	integer addset, amatch, getarg, getlin, getpat, getsub
+	integer i, junk, k, lastm, m
+
+	if (getarg(1, arg, MAXARG) == EOF)
+		call error("usage: change from to.")
+	if (getpat(arg, pat) == ERR)
+		call error("illegal from pattern.")
+	if (getarg(2, arg, MAXARG) == EOF)
+		arg(1) = EOS
+	if (getsub(arg, sub) == ERR)
+		call error("illegal to.")
+	while (getlin(lin, STDIN) != EOF) {
+		k = 1
+		lastm = 0
+		for ( i =1; lin(i) != EOS; ) {
+			m = amatch(lin, i, pat)
+			if (m > 0 & lastm != m) {	# replace matched text
+				call catsub(lin, i, m, sub, new, k, MAXLINE)
+				lastm = m
+				}
+			if (m == 0 | m == i) {	# no match or null match
+				junk = addset(lin(i), new, k, MAXLINE)
+				i = i + 1
+				}
+			else				# skip matched text
+				i = m
+			}
+		if (addset(EOS, new, k, MAXLINE) == NO) {
+			k = MAXLINE
+			junk = addset(EOS, new, k, MAXLINE)
+			call remark("line truncated:.")
+			call putlin(new, ERROUT)
+			call putch(NEWLINE, ERROUT)
+			}
+		call putlin(new, STDOUT)
+		}
+	stop
+	end
+getsub.r        362839616   9     1     100666  196       `
+include common
+# getsub _ get substitution pattern into sub
+	integer function getsub(arg, sub)
+	character arg(MAXARG), sub(MAXPAT)
+	integer maksub
+
+	getsub = maksub(arg, 1, EOS, sub)
+	return
+	end
+maksub.r        362839616   9     1     100666  547       `
+include common
+# maksub _ make substitution string in sub
+	integer function maksub(arg, from, delim, sub)
+	character esc
+	character arg(MAXARG), delim, sub(MAXPAT)
+	integer addset
+	integer from, i, j, junk
+
+	j = 1
+	for (i = from; arg(i) != delim & arg(i) != EOS; i = i + 1)
+		if (arg(i) == AND)
+			junk = addset(DITTO, sub, j, MAXPAT)
+		else
+			junk = addset(esc(arg, i), sub, j, MAXPAT)
+	if (arg(i) != delim)	# missing delimiter
+		maksub = ERR
+	else if (addset(EOS, sub, j, MAXPAT) == NO)	# no room
+		maksub = ERR
+	else
+		maksub = i
+	return
+	end
+

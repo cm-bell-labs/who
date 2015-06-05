@@ -1,0 +1,354 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+		"http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd">
+		
+<?xml-stylesheet href="xbl-shape-bindings.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:svg="http://www.w3.org/2000/svg" 
+      xmlns:math="http://www.w3.org/1998/Math/MathML" 
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+  <head>
+    <style>
+      [class~="circle"] 
+      {
+        stroke: red;
+        stroke-width: 2;
+        fill: red;
+        fill-opacity: 0.1;
+      }
+     <style>
+		[class~="circ_control"]:hover {stroke:black; stroke-width:2; fill-opacity:0.2;}
+		li:hover {color:blue}
+	</style>
+    </style>
+
+    <script>
+      <![CDATA[
+
+	var ca, cb, cc;
+	var NUM_POINTS = 200;
+
+	function distsqr(jx, jy, ix, iy)
+	{
+		return (ix-jx)*(ix-jx) + (iy-jy)*(iy-jy);
+
+	}
+
+	function distsqrC(ca, cb)
+	{
+		return distsqr(ca.cx.baseVal.value, ca.cy.baseVal.value,
+					   cb.cx.baseVal.value, cb.cy.baseVal.value);
+	}
+	
+	function update_center(T)
+	{
+	   var cent = document.getElementById("triangle_center");
+	   var circum = document.getElementById("triangle_circum");
+	   var inscrib = document.getElementById("triangle_inscrib");
+	   if (T==undefined) {
+		return;
+		}
+	   var x1 = T.getAttribute("x1")*1.0;
+	   var x2 = T.getAttribute("x2")*1.0;
+	   var x3 = T.getAttribute("x3")*1.0;
+  	   var y1 = T.getAttribute("y1")*1.0;
+	   var y2 = T.getAttribute("y2")*1.0;
+	   var y3 = T.getAttribute("y3")*1.0;
+	   
+	   var xa = x2 - x3;
+	   var ya = y2 - y3;
+	   var xb = x1 - x3;
+	   var yb = y1 - y3;
+	   var sa = xa*xa + ya*ya;
+	   var sb = xb*xb + yb*yb;
+	   var dot = xa*xb + ya*yb + sa*sb;
+	   var nb = xb*xb + yb*yb + sb*sb;
+	   xa = xa - xb*dot/nb;
+	   ya = ya - yb*dot/nb;
+	   sa = sa - sb*dot/nb;
+	   var na = xa*xa + ya*ya + sa*sa;
+	   
+	   var xc = 0;
+	   var yc = 0;
+	   var sc = 1;
+	   var dotca = xc*xa + yc*ya + sc*sa;
+	   var dotcb = xc*xb + yc*yb + sc*sb;
+	   xc = xc - xa*dotca/na - xb*dotcb/nb;
+	   yc = yc - ya*dotca/na - yb*dotcb/nb;
+	   sc = sc - sa*dotca/na - sb*dotcb/nb;
+	   
+	   xc = -0.5*xc/sc + x3;
+	   yc = -0.5*yc/sc + y3;
+	  
+	   inscrib.cx.baseVal.value = circum.cx.baseVal.value = cent.cx.baseVal.value = xc;
+	   inscrib.cy.baseVal.value = circum.cy.baseVal.value = cent.cy.baseVal.value = yc;
+
+	   var circum_dist = distsqr(cent.cx.baseVal.value, cent.cy.baseVal.value, x1, y1);
+	   circum.r.baseVal.value = Math.sqrt(circum_dist);
+	   
+	   	var max_dist = distsqr(x1, y1, x2, y2);
+	   	var dist = distsqr(x1, y1, x3, y3);
+	   	if (dist > max_dist)
+	   		max_dist = dist;
+	   	dist = distsqr(x3, y3, x2, y2);
+		if (dist > max_dist)
+	   		max_dist = dist;
+	    inscrib.r.baseVal.value = Math.sqrt(circum_dist - max_dist/4);
+	}
+	
+	
+	function farthest(jx, jy)
+	{
+		var max_dist = 0;
+		var max_i = -1;
+		for (var i=0; i < NUM_POINTS; i++) {
+			var ci = document.getElementById(circ_id(i));
+			var dist = distsqr(jx, jy, ci.cx.baseVal.value, ci.cy.baseVal.value);
+			if (dist > max_dist) {
+				max_dist = dist;
+				max_i = i;
+			}
+		}
+		var ci = document.getElementById(circ_id(max_i));
+        	ci.setAttribute( 'style', 'fill: blue');
+		return ci;
+      }
+
+	function circ_id(i) {return "circle_"+i ;}
+
+	function line_id(t) {return "line_"+t ;}
+
+	function selectRandom()
+	{
+		var cj = document.getElementById(circ_id(Math.floor(Math.random()*NUM_POINTS)));
+		cj.setAttribute( 'style', 'fill: blue');
+		return cj;
+	}
+
+	function dotLine(t)
+	{
+ 		var lin = document.getElementById(line_id(t));
+		lin.setAttribute('style', 'stroke-dasharray:30,10,5,10;');
+
+	}
+      
+	function resetLine(ca, cb, t, tcol)
+	{
+		var lin = document.getElementById(line_id(t));
+		lin.setAttribute('points', ca.cx.baseVal.value + ',' + ca.cy.baseVal.value
+			+ ',' + cb.cx.baseVal.value + ',' + cb.cy.baseVal.value);
+		lin.setAttribute('style', 'stroke: '+tcol+";");
+	}
+
+
+    function hideLine(t)
+    {
+		var lin = document.getElementById(line_id(t));
+		lin.setAttribute('points', '0,0,0,0');
+	}
+		
+	function makeLine(ca, cb, t)
+	{
+		var lin = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+		lin.setAttribute('points', ca.cx.baseVal.value + ',' + ca.cy.baseVal.value
+			+ ',' + cb.cx.baseVal.value + ',' + cb.cy.baseVal.value);
+		lin.setAttribute('style', 'stroke:black; fill:none; stroke-width:2');
+		lin.setAttribute('id', line_id(t));
+        var canvas = document.getElementById("canvas");
+		canvas.appendChild(lin);
+	}
+
+	function init()
+	{
+		var canvas = document.getElementById("canvas");
+		var group = document.createElementNS("http://www.w3.org/2000/svg", "group");
+		canvas.appendChild(group);
+
+		for (var i = 0; i < NUM_POINTS; ++i) {
+				var circ = createCircle(i);
+				group.appendChild(circ);
+		}
+		ca = selectRandom();
+		cb = selectRandom();
+		cc = ca;  //selectRandom();
+
+		makeLine(ca, cb, 'ab');
+		makeLine(cb, cc, 'bc');
+		makeLine(cc, ca, 'ca');
+		var c=document.getElementById("circ_go");
+		c.addEventListener("mousedown", go_mousedown, false);
+		c = document.getElementById("circ_step");	
+		c.addEventListener("mousedown", step_mousedown, false);
+		c = document.getElementById("circ_stop");	
+		c.addEventListener("mousedown", stop_mousedown, false);
+		
+		var T = document.getElementById("triangle_ex");
+		update_center(T);
+	}
+	
+	function go_mousedown(evt)
+	{
+		start_animation();
+	}
+	
+	function step_mousedown(evt)
+	{
+		one_step();
+	}
+	
+	function stop_mousedown(evt)
+	{
+		stop_animation();
+	}
+	
+	function re_init()
+	{
+		for (var i=0; i < NUM_POINTS; ++i) {
+			var circ = document.getElementById(circ_id(i));
+			circ.cx.baseVal.value = Math.random()*595;
+			circ.cy.baseVal.value = Math.random()*395 + 100;
+			circ.setAttribute('style', 'fill:black');
+		}
+		ca = selectRandom();
+		cb = selectRandom();
+		cc = ca;  //selectRandom();
+		resetLine(ca, cb, 'ab', "blue");
+		resetLine(cb, cc, 'bc', "blue");
+		resetLine(cc, ca, 'ca', "blue");
+		need_reset = 0;
+		adding_point = 1;
+	}
+
+      function createCircle(i)
+      {
+        var x = Math.random()*595;
+        var y = Math.random()*395 + 100;
+
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute( 'id', circ_id(i));
+        circle.setAttribute( 'cx', x );
+        circle.setAttribute( 'cy', y );
+        circle.setAttribute( 'r', 5 );
+//        circle.setAttribute( 'style', 'fill: black; opacity: 0.2;' );
+
+        return circle;
+      }
+
+      var anim_running = 0;
+      
+
+	var adding_point = 1;
+	var need_reset = 0;
+	var got_to_done = 0;
+
+      function start_animation()
+      {
+		if (need_reset) {
+			re_init();
+		}
+        animate();
+      }
+      
+      function stop_animation()
+      {
+        if (!anim_running)
+			return;
+        clearTimeout(anim_running);
+        anim_running = 0;
+        need_reset = 1;
+      }
+      
+      function animate()
+      {
+        if (!one_step())
+        	anim_running = setTimeout("animate()",30);
+        else
+			need_reset = 1;
+      }
+      
+      
+      function one_step()
+      {
+		var labval;
+		if (need_reset) {
+			re_init();
+			return 0;
+		}
+		if (adding_point) {
+			labval = "foo";
+			cc.setAttribute('style', 'fill: black');
+
+			cc = farthest((ca.cx.baseVal.value + cb.cx.baseVal.value)/2,
+						(ca.cy.baseVal.value + cb.cy.baseVal.value)/2
+						);
+			cc.setAttribute('style', 'fill: lightgreen');
+			resetLine(cc, ca, 'ca', 'red');
+			resetLine(cb, cc, 'bc', 'red');
+			adding_point = 0;
+			return 0;
+		} else {
+			labval = "bar";
+
+			var max_dist = distsqrC(ca, cb);
+			var t = 'ab';
+
+			var dist = distsqrC(cb, cc);
+			if (max_dist < dist) {
+				max_dist = dist;
+				t = 'bc';
+			}
+			if (max_dist < distsqrC(cc, ca)) {
+				t = 'ca';
+				var tmp = cb;
+				cb = cc;
+				cc = tmp;
+			} else if (t=='bc') {
+				var tmp = ca;
+				ca = cc;
+				cc = tmp;
+			}
+			
+			cc.setAttribute('style', 'fill: red');
+			ca.setAttribute('style', 'fill:blue');
+			cb.setAttribute('style', 'fill:blue');
+			resetLine(ca, cb, 'ab', 'black');
+			hideLine('bc');
+			hideLine('ca');
+			adding_point = 1;
+			if (t=='ab') {
+				stop_animation();
+				need_reset = 1;
+				alert("done!");
+				return 1;
+			}
+			return 0;
+		}
+		var al = document.getElementById('anim_label');
+		var rng = document.createRange();
+		rng.setStartBefore(al);
+		var htmlFrag = rng.createContextualFragment(labval);
+		while (al.hasChildNodes())
+			al.removeChild(al.lastChild);
+		al.appendChild(htmlFrag);
+      }
+
+      ]]>
+    </script>
+  </head>
+  <body onload="init();">
+    <svg:svg style="width:90%; height:90%;" viewBox="0 0 700 600">
+		<svg:g width="600" height="42" >
+			<svg:circle class="circ_control"  title="go" tooltip="foo" id="circ_go" r="20" cx="220" cy="20" style="fill:lightgreen;"/>
+			<svg:circle class="circ_control" title="single step" id="circ_step" r="20" cx="300" cy="20" style="fill:yellow;"/>
+			<svg:circle class="circ_control" title = "stop" id="circ_stop" r="20" cx="370" cy="20" style="fill:red;"/>
+		</svg:g>
+		<svg:g id="canvas" width="700" height="500" y="100"></svg:g>
+    </svg:svg>
+
+</body>
+
+
+</html>

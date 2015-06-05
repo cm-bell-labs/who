@@ -1,0 +1,5922 @@
+%!PS-Adobe-2.0
+%%Version: 0.1
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+%
+% Version 3.3.2 prologue for troff files.
+%
+
+/#copies 1 store
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/show {{//show} 0 get exec} bind def	% so later references don't bind
+/widthshow {{//widthshow} 0 get exec} bind def
+/stringwidth {{//stringwidth} 0 get exec} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+%
+% Tries to round clipping path dimensions, as stored in array pagebbox, so they
+% match one of the known sizes in the papersizes array. Lower left coordinates
+% are always set to 0.
+%
+
+/roundpagebbox {
+    7 dict begin
+	/papersizes [8.5 inch 11 inch 14 inch 17 inch] def
+
+	/mappapersize {
+		/val exch def
+		/slop .5 inch def
+		/diff slop def
+		/j 0 def
+		0 1 papersizes length 1 sub {
+			/i exch def
+			papersizes i get val sub abs
+			dup diff le {/diff exch def /j i def} {pop} ifelse
+		} for
+		diff slop lt {papersizes j get} {val} ifelse
+	} def
+
+	pagebbox 0 0 put
+	pagebbox 1 0 put
+	pagebbox dup 2 get mappapersize 2 exch put
+	pagebbox dup 3 get mappapersize 3 exch put
+    end
+} bind def
+
+%%EndProlog
+%%BeginSetup
+mark
+%
+% Encoding vector and redefinition of findfont for the ISO Latin1 standard.
+% The 18 characters missing from ROM based fonts on older printers are noted
+% below.
+%
+
+/ISOLatin1Encoding [
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/space
+	/exclam
+	/quotedbl
+	/numbersign
+	/dollar
+	/percent
+	/ampersand
+	/quoteright
+	/parenleft
+	/parenright
+	/asterisk
+	/plus
+	/comma
+	/minus
+	/period
+	/slash
+	/zero
+	/one
+	/two
+	/three
+	/four
+	/five
+	/six
+	/seven
+	/eight
+	/nine
+	/colon
+	/semicolon
+	/less
+	/equal
+	/greater
+	/question
+	/at
+	/A
+	/B
+	/C
+	/D
+	/E
+	/F
+	/G
+	/H
+	/I
+	/J
+	/K
+	/L
+	/M
+	/N
+	/O
+	/P
+	/Q
+	/R
+	/S
+	/T
+	/U
+	/V
+	/W
+	/X
+	/Y
+	/Z
+	/bracketleft
+	/backslash
+	/bracketright
+	/asciicircum
+	/underscore
+	/quoteleft
+	/a
+	/b
+	/c
+	/d
+	/e
+	/f
+	/g
+	/h
+	/i
+	/j
+	/k
+	/l
+	/m
+	/n
+	/o
+	/p
+	/q
+	/r
+	/s
+	/t
+	/u
+	/v
+	/w
+	/x
+	/y
+	/z
+	/braceleft
+	/bar
+	/braceright
+	/asciitilde
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/dotlessi
+	/grave
+	/acute
+	/circumflex
+	/tilde
+	/macron
+	/breve
+	/dotaccent
+	/dieresis
+	/.notdef
+	/ring
+	/cedilla
+	/.notdef
+	/hungarumlaut
+	/ogonek
+	/caron
+	/space
+	/exclamdown
+	/cent
+	/sterling
+	/currency
+	/yen
+	/brokenbar		% missing
+	/section
+	/dieresis
+	/copyright
+	/ordfeminine
+	/guillemotleft
+	/logicalnot
+	/hyphen
+	/registered
+	/macron
+	/degree			% missing
+	/plusminus		% missing
+	/twosuperior		% missing
+	/threesuperior		% missing
+	/acute
+	/mu			% missing
+	/paragraph
+	/periodcentered
+	/cedilla
+	/onesuperior		% missing
+	/ordmasculine
+	/guillemotright
+	/onequarter		% missing
+	/onehalf		% missing
+	/threequarters		% missing
+	/questiondown
+	/Agrave
+	/Aacute
+	/Acircumflex
+	/Atilde
+	/Adieresis
+	/Aring
+	/AE
+	/Ccedilla
+	/Egrave
+	/Eacute
+	/Ecircumflex
+	/Edieresis
+	/Igrave
+	/Iacute
+	/Icircumflex
+	/Idieresis
+	/Eth			% missing
+	/Ntilde
+	/Ograve
+	/Oacute
+	/Ocircumflex
+	/Otilde
+	/Odieresis
+	/multiply		% missing
+	/Oslash
+	/Ugrave
+	/Uacute
+	/Ucircumflex
+	/Udieresis
+	/Yacute			% missing
+	/Thorn			% missing
+	/germandbls
+	/agrave
+	/aacute
+	/acircumflex
+	/atilde
+	/adieresis
+	/aring
+	/ae
+	/ccedilla
+	/egrave
+	/eacute
+	/ecircumflex
+	/edieresis
+	/igrave
+	/iacute
+	/icircumflex
+	/idieresis
+	/eth			% missing
+	/ntilde
+	/ograve
+	/oacute
+	/ocircumflex
+	/otilde
+	/odieresis
+	/divide			% missing
+	/oslash
+	/ugrave
+	/uacute
+	/ucircumflex
+	/udieresis
+	/yacute			% missing
+	/thorn			% missing
+	/ydieresis
+] def
+
+/NewFontDirectory FontDirectory maxlength dict def
+
+%
+% Apparently no guarantee findfont is defined in systemdict so the obvious
+%
+%	systemdict /findfont get exec
+%
+% can generate an error. So far the only exception is a VT600 (version 48.0).
+%
+
+userdict /@RealFindfont known not {
+	userdict begin
+		/@RealFindfont systemdict begin /findfont load end def
+	end
+} if
+
+/findfont {
+	dup NewFontDirectory exch known not {
+		dup
+		%dup systemdict /findfont get exec	% not always in systemdict
+		dup userdict /@RealFindfont get exec
+		dup /Encoding get StandardEncoding eq {
+			dup length dict begin
+				{1 index /FID ne {def}{pop pop} ifelse} forall
+				/Encoding ISOLatin1Encoding def
+				currentdict
+			end
+			/DummyFontName exch definefont
+		} if
+		NewFontDirectory 3 1 roll put
+	} if
+	NewFontDirectory exch get
+} bind def
+
+%%Patch from lp
+%%EndPatch from lp
+
+setup
+%%EndSetup
+%%Page: 1 1
+/saveobj save def
+mark
+1 pagesetup
+12 /Times-Bold f
+(File) 1752 1230 w
+(Security and the) 1976 1230 w
+10 /Times-Bold f
+(UNIX) 2847 1230 w
+12 /Times-Bold f
+(Crypt) 3132 1230 w
+(Command) 3468 1230 w
+10 /Times-Italic f
+(J.A. Reeds) 2671 1470 w
+(P.J. Weinberger) 2554 1650 w
+10 /Times-Roman f
+(Bell Laboratories) 2532 1830 w
+(Murray Hill, New Jersey 07974) 2246 1950 w
+10 /Times-Italic f
+(ABSTRACT) 2643 2450 w
+10 /Times-Roman f
+(Sufficiently) 1330 2710 w
+(large) 1846 2710 w
+(files) 2089 2710 w
+(encrypted) 2305 2710 w
+(with) 2742 2710 w
+(the) 2964 2710 w
+9 /Times-Roman f
+(UNIX) 3128 2710 w
+10 /Times-Roman f
+(\256) 3353 2710 w
+10 /Times-Italic f
+(crypt) 3473 2710 w
+10 /Times-Roman f
+(command) 3722 2710 w
+(can) 4160 2710 w
+(be) 4342 2710 w
+(deci\255) 4481 2710 w
+(phered) 1080 2830 w
+(in) 1381 2830 w
+(a) 1489 2830 w
+(few) 1562 2830 w
+(hours) 1740 2830 w
+(by) 1991 2830 w
+(algebraic) 2120 2830 w
+(techniques) 2514 2830 w
+(and) 2970 2830 w
+(human) 3143 2830 w
+(interaction.) 3444 2830 w
+(We) 3950 2830 w
+(outline) 4117 2830 w
+(such) 4424 2830 w
+(a) 4636 2830 w
+(decryption) 1080 2950 w
+(method,) 1536 2950 w
+(and) 1890 2950 w
+(show) 2063 2950 w
+(it) 2303 2950 w
+(to) 2388 2950 w
+(be) 2496 2950 w
+(applicable) 2620 2950 w
+(to) 3060 2950 w
+(a) 3168 2950 w
+(proposed) 3242 2950 w
+(strengthened) 3638 2950 w
+(algorithm) 4178 2950 w
+(as) 4597 2950 w
+(well.) 1080 3070 w
+(We also discuss the role of encryption in file security.) 1327 3070 w
+(May 30, 1998) 720 3550 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 1 1
+%%Page: 2 2
+/saveobj save def
+mark
+2 pagesetup
+12 /Times-Bold f
+(File) 1752 1230 w
+(Security and the) 1976 1230 w
+10 /Times-Bold f
+(UNIX) 2847 1230 w
+12 /Times-Bold f
+(Crypt) 3132 1230 w
+(Command) 3468 1230 w
+10 /Times-Italic f
+(J.A. Reeds) 2671 1470 w
+(P.J. Weinberger) 2554 1650 w
+10 /Times-Roman f
+(Bell Laboratories) 2532 1830 w
+(Murray Hill, New Jersey 07974) 2246 1950 w
+10 /Times-Bold f
+(1.) 720 2310 w
+(File Security) 845 2310 w
+10 /Times-Roman f
+(Sometimes) 970 2466 w
+(one) 1442 2466 w
+(wants) 1613 2466 w
+(to) 1873 2466 w
+(protect) 1979 2466 w
+(a) 2284 2466 w
+(file) 2356 2466 w
+(from) 2517 2466 w
+(being) 2739 2466 w
+(read) 2989 2466 w
+(by) 3188 2466 w
+(unauthorized) 3316 2466 w
+(users) 3865 2466 w
+(or) 4098 2466 w
+(programs,) 4209 2466 w
+(while) 4639 2466 w
+(still) 4889 2466 w
+(keeping) 720 2586 w
+(the) 1080 2586 w
+(file) 1246 2586 w
+(available) 1423 2586 w
+(to) 1827 2586 w
+(its) 1949 2586 w
+(proper) 2088 2586 w
+(users.) 2392 2586 w
+(Only) 2690 2586 w
+(in) 2933 2586 w
+(isolation) 3054 2586 w
+(is) 3442 2586 w
+(the) 3552 2586 w
+(problem) 3717 2586 w
+(easy:) 4093 2586 w
+(put) 4341 2586 w
+(the) 4512 2586 w
+(file) 4677 2586 w
+(on) 4853 2586 w
+(a) 4996 2586 w
+(machine only you have access) 720 2706 w
+(to,) 1954 2706 w
+(and) 2083 2706 w
+(keep) 2253 2706 w
+(all) 2467 2706 w
+(copies) 2593 2706 w
+(of) 2874 2706 w
+(the) 2983 2706 w
+(file) 3131 2706 w
+(locked) 3290 2706 w
+(up.) 3582 2706 w
+10 /Times-Italic f
+(crypt) 3758 2706 w
+10 /Times-Roman f
+(is) 3989 2706 w
+(useful) 4082 2706 w
+(in) 4352 2706 w
+(the) 4456 2706 w
+(more) 4604 2706 w
+(com\255) 4835 2706 w
+(plicated) 720 2826 w
+(environment) 1063 2826 w
+(of) 1595 2826 w
+(a) 1705 2826 w
+(multi\255user) 1776 2826 w
+(system.) 2214 2826 w
+10 /Times-Italic f
+(crypt) 2569 2826 w
+10 /Times-Roman f
+(is) 2801 2826 w
+(a) 2894 2826 w
+(file\255encryption) 2964 2826 w
+(program) 3583 2826 w
+(which) 3947 2826 w
+(is) 4217 2826 w
+(also) 4310 2826 w
+(part) 4497 2826 w
+(of) 4678 2826 w
+(one) 4787 2826 w
+(of) 4957 2826 w
+(the) 720 2946 w
+(text) 879 2946 w
+(editors.) 1066 2946 w
+(The) 1425 2946 w
+(algorithm) 1617 2946 w
+(is) 2043 2946 w
+(described) 2148 2946 w
+(in) 2568 2946 w
+(the) 2684 2946 w
+(next) 2844 2946 w
+(section.) 3054 2946 w
+(The) 3425 2946 w
+(advantage) 3618 2946 w
+(of) 4060 2946 w
+(having) 4181 2946 w
+(the) 4491 2946 w
+(algorithm) 4651 2946 w
+(embedded in an editor is that the clear text never need be present in the file system.) 720 3066 w
+(No) 970 3222 w
+(technique) 1132 3222 w
+(can) 1560 3222 w
+(be) 1738 3222 w
+(secure) 1872 3222 w
+(against) 2166 3222 w
+(wire\255tapping) 2489 3222 w
+(or) 3040 3222 w
+(its) 3164 3222 w
+(equivalent) 3300 3222 w
+(in) 3757 3222 w
+(the) 3876 3222 w
+(computer.) 4039 3222 w
+(Therefore) 4507 3222 w
+(no) 4940 3222 w
+(technique) 720 3342 w
+(can) 1143 3342 w
+(be) 1316 3342 w
+(secure) 1445 3342 w
+(against) 1734 3342 w
+(the) 2052 3342 w
+(system) 2209 3342 w
+(administrator) 2522 3342 w
+(or) 3089 3342 w
+(other) 3206 3342 w
+(sufficiently) 3445 3342 w
+(privileged) 3934 3342 w
+(users.) 4373 3342 w
+(For) 4662 3342 w
+(these) 4835 3342 w
+(folk it is a simple matter to replace the encryption programs with programs that look the same) 720 3462 w
+(to) 4497 3462 w
+(their) 4601 3462 w
+(users,) 4810 3462 w
+(but) 720 3582 w
+(which) 875 3582 w
+(reveal) 1146 3582 w
+(the) 1416 3582 w
+(key) 1565 3582 w
+(to) 1736 3582 w
+(the) 1841 3582 w
+(sufficiently) 1990 3582 w
+(privileged.) 2471 3582 w
+(Sophisticates) 2952 3582 w
+(may) 3506 3582 w
+(be) 3704 3582 w
+(able) 3824 3582 w
+(to) 4016 3582 w
+(detect) 4120 3582 w
+(this) 4384 3582 w
+(kind) 4555 3582 w
+(of) 4759 3582 w
+(sub\255) 4868 3582 w
+(stitution if it is not done carefully, but the naive user has no chance.) 720 3702 w
+(To) 970 3858 w
+(protect) 1113 3858 w
+(files) 1423 3858 w
+(from) 1628 3858 w
+(being) 1855 3858 w
+(read) 2110 3858 w
+(by) 2314 3858 w
+(a) 2447 3858 w
+(casual) 2524 3858 w
+(browser) 2806 3858 w
+(there) 3160 3858 w
+(are) 3392 3858 w
+(two) 3546 3858 w
+(independent) 3729 3858 w
+(techniques,) 4250 3858 w
+(permis\255) 4735 3858 w
+(sions) 720 3978 w
+(and) 954 3978 w
+(encryption.) 1126 3978 w
+(The) 1631 3978 w
+(authorization) 1814 3978 w
+(mechanisms) 2369 3978 w
+(supported) 2891 3978 w
+(by) 3313 3978 w
+(the) 3441 3978 w
+(system) 3591 3978 w
+(may) 3896 3978 w
+(make) 4095 3978 w
+(the) 4338 3978 w
+(file) 4487 3978 w
+(inaccessi\255) 4647 3978 w
+(ble) 720 4098 w
+(to) 873 4098 w
+(any) 982 4098 w
+(but) 1157 4098 w
+(its) 1316 4098 w
+(owner.) 1442 4098 w
+(Encryption) 1772 4098 w
+(may) 2247 4098 w
+(make) 2450 4098 w
+(the) 2698 4098 w
+(contents) 2852 4098 w
+(incomprehensible.) 3217 4098 w
+(The) 4009 4098 w
+(former) 4196 4098 w
+(does) 4499 4098 w
+(not) 4714 4098 w
+(pro\255) 4874 4098 w
+(tect) 720 4218 w
+(copies) 893 4218 w
+(of) 1177 4218 w
+(the) 1288 4218 w
+(file) 1438 4218 w
+(on) 1599 4218 w
+(dump) 1727 4218 w
+(tapes.) 1983 4218 w
+(The) 2266 4218 w
+(latter) 2449 4218 w
+(is) 2682 4218 w
+(difficult) 2777 4218 w
+(to) 3127 4218 w
+(implement.) 3233 4218 w
+(The) 3739 4218 w
+(difficulty) 3922 4218 w
+(is) 4322 4218 w
+(not) 4417 4218 w
+(in) 4573 4218 w
+(finding) 4679 4218 w
+(a) 4996 4218 w
+(secure) 720 4338 w
+(encryption) 1000 4338 w
+(algorithm,) 1453 4338 w
+(but) 1893 4338 w
+(in) 2048 4338 w
+(finding) 2153 4338 w
+(one) 2469 4338 w
+(that) 2640 4338 w
+(is) 2817 4338 w
+(not) 2911 4338 w
+(prohibitively) 3066 4338 w
+(expensive) 3610 4338 w
+(to) 4036 4338 w
+(use,) 4141 4338 w
+(not) 4326 4338 w
+(subject) 4481 4338 w
+(to) 4791 4338 w
+(fast) 4896 4338 w
+(search of key space, fits in with an editor, and is also suffiently secure.) 720 4458 w
+(File) 970 4614 w
+(encryption) 1154 4614 w
+(then) 1609 4614 w
+(is) 1809 4614 w
+(roughly) 1904 4614 w
+(equivalent) 2244 4614 w
+(in) 2689 4614 w
+(protection) 2796 4614 w
+(to) 3230 4614 w
+(putting) 3337 4614 w
+(the) 3650 4614 w
+(contents) 3801 4614 w
+(of) 4163 4614 w
+(the) 4275 4614 w
+(file) 4426 4614 w
+(in) 4588 4614 w
+(a) 4695 4614 w
+(safe) 4768 4614 w
+(or) 4957 4614 w
+(a) 720 4734 w
+(locked) 792 4734 w
+(desk) 1086 4734 w
+(or) 1297 4734 w
+(an) 1408 4734 w
+(unlocked) 1530 4734 w
+(desk.) 1924 4734 w
+(The) 2185 4734 w
+(technical) 2368 4734 w
+(contribution) 2756 4734 w
+(of) 3272 4734 w
+(this) 3382 4734 w
+(paper) 3554 4734 w
+(is) 3802 4734 w
+(that) 3896 4734 w
+10 /Times-Italic f
+(crypt) 4073 4734 w
+10 /Times-Roman f
+(is) 4305 4734 w
+(rather) 4399 4734 w
+(more) 4658 4734 w
+(like) 4890 4734 w
+(the last than the first.) 720 4854 w
+10 /Times-Bold f
+(2.) 720 5094 w
+9 /Times-Bold f
+(UNIX) 841 5094 w
+10 /Times-Roman f
+(\256) 1071 5094 w
+10 /Times-Bold f
+(Crypt) 1172 5094 w
+10 /Times-Roman f
+(The) 970 5250 w
+9 /Times-Roman f
+(UNIX) 1178 5250 w
+10 /Times-Roman f
+(crypt) 1458 5250 w
+(command) 1718 5250 w
+(operates) 2168 5250 w
+(on) 2556 5250 w
+(consecutive) 2712 5250 w
+(blocks) 3239 5250 w
+(of) 3556 5250 w
+(256) 3695 5250 w
+(characters,) 3901 5250 w
+(which) 4385 5250 w
+(we) 4685 5250 w
+(term) 4857 5250 w
+10 /Times-Italic f
+(cryptoblocks) 720 5370 w
+10 /Times-Roman f
+(to) 1262 5370 w
+(avoid) 1372 5370 w
+(confusion) 1626 5370 w
+(with) 2052 5370 w
+(the) 2262 5370 w
+(file) 2416 5370 w
+(system) 2580 5370 w
+(blocks.) 2889 5370 w
+(If) 3231 5370 w
+(the) 3328 5370 w
+10 /Times-Italic f
+(i) 3481 5370 w
+10 /Times-Roman f
+(\255th) 3509 5370 w
+(plaintext) 3651 5370 w
+(and) 4032 5370 w
+(ciphertext) 4207 5370 w
+(characters) 4637 5370 w
+(in the) 720 5490 w
+10 /Times-Italic f
+(j) 970 5490 w
+10 /Times-Roman f
+(\255th cryptoblock are denoted) 998 5490 w
+10 /Times-Italic f
+(p) 2123 5490 w
+7 /Times-Italic f
+(i) 2184 5510 w
+(j) 2209 5510 w
+10 /Times-Roman f
+(and) 2262 5490 w
+10 /Times-Italic f
+(c) 2431 5490 w
+7 /Times-Italic f
+(i) 2486 5510 w
+(j) 2511 5510 w
+10 /Times-Roman f
+(, respectively, they are related by the following formula.) 2539 5490 w
+10 /Times-Italic f
+(c) 2185 5670 w
+7 /Times-Italic f
+(i) 2240 5690 w
+(j) 2265 5690 w
+10 /Times-Roman f
+10 /S f
+(=) 2342 5670 w
+10 /Times-Roman f
+10 /Times-Italic f
+(R) 2446 5670 w
+7 /S f
+(-) 2518 5630 w
+7 /Times-Roman f
+(1) 2568 5630 w
+10 /Times-Roman f
+([) 2619 5670 w
+10 /Times-Italic f
+(S) 2660 5670 w
+10 /Times-Roman f
+([) 2718 5670 w
+10 /Times-Italic f
+(R) 2759 5670 w
+10 /Times-Roman f
+([) 2828 5670 w
+10 /Times-Italic f
+(i) 2869 5670 w
+10 /S f
+(+) 2921 5670 w
+10 /Times-Italic f
+(p) 2992 5670 w
+7 /Times-Italic f
+(i) 3053 5690 w
+(j) 3078 5690 w
+10 /Times-Roman f
+(]) 3114 5670 w
+10 /S f
+(+) 3163 5670 w
+10 /Times-Italic f
+(j) 3234 5670 w
+10 /Times-Roman f
+(]) 3270 5670 w
+10 /S f
+(-) 3319 5670 w
+10 /Times-Italic f
+(j) 3390 5670 w
+10 /Times-Roman f
+(]) 3426 5670 w
+10 /S f
+(-) 3475 5670 w
+10 /Times-Italic f
+(i) 3546 5670 w
+10 /Times-Roman f
+(\(1\)) 4924 5670 w
+(In) 720 5850 w
+(\(1\)) 831 5850 w
+(addition) 975 5850 w
+(and) 1331 5850 w
+(subtraction) 1503 5850 w
+(are) 1975 5850 w
+(done) 2124 5850 w
+(modulo) 2346 5850 w
+(256.) 2680 5850 w
+10 /Times-Italic f
+(R) 2908 5850 w
+10 /Times-Roman f
+(is) 2998 5850 w
+(a) 3094 5850 w
+(permutation) 3167 5850 w
+(of) 3679 5850 w
+(the) 3791 5850 w
+(set) 3942 5850 w
+({0,) 4082 5850 w
+(...,) 4234 5850 w
+(255},) 4363 5850 w
+10 /Times-Italic f
+(S) 4615 5850 w
+10 /Times-Roman f
+(is) 4694 5850 w
+(a) 4790 5850 w
+(self\255) 4863 5850 w
+(inverse) 720 5970 w
+(permutation) 1041 5970 w
+(of) 1557 5970 w
+(the) 1672 5970 w
+(same) 1826 5970 w
+(set,) 2063 5970 w
+(having) 2231 5970 w
+(no) 2535 5970 w
+(fixed) 2667 5970 w
+(points.) 2904 5970 w
+(Therefore) 3231 5970 w
+10 /Times-Italic f
+(S) 3655 5970 w
+10 /Times-Roman f
+(is) 3737 5970 w
+(the) 3836 5970 w
+(product) 3990 5970 w
+(of) 4327 5970 w
+(128) 4442 5970 w
+(disjoint) 4624 5970 w
+(2\255) 4957 5970 w
+(cycles,) 720 6090 w
+(and) 1024 6090 w
+(for) 1198 6090 w
+(all) 1344 6090 w
+10 /Times-Italic f
+(i) 1475 6090 w
+10 /Times-Roman f
+(and) 1534 6090 w
+10 /Times-Italic f
+(j) 1709 6090 w
+10 /Times-Roman f
+(it) 1768 6090 w
+(is) 1855 6090 w
+(true) 1953 6090 w
+(that) 2139 6090 w
+10 /Times-Italic f
+(p) 2320 6090 w
+7 /Times-Italic f
+(i) 2381 6110 w
+(j) 2406 6110 w
+10 /LucidaSansUnicode22 f
+(`) 2442 6090 w
+10 /Times-Italic f
+(c) 2530 6090 w
+7 /Times-Italic f
+(i) 2585 6110 w
+(j) 2610 6110 w
+10 /Times-Roman f
+(.) 2638 6090 w
+10 /Times-Italic f
+(R) 2719 6090 w
+10 /Times-Roman f
+(and) 2811 6090 w
+10 /Times-Italic f
+(S) 2986 6090 w
+10 /Times-Roman f
+(constitute) 3067 6090 w
+(the) 3487 6090 w
+(key) 3640 6090 w
+(of) 3815 6090 w
+(the) 3929 6090 w
+(cipher,) 4082 6090 w
+(and) 4387 6090 w
+(thus) 4562 6090 w
+(are) 4760 6090 w
+(not) 4912 6090 w
+(known) 720 6210 w
+(to) 1026 6210 w
+(the) 1138 6210 w
+(cryptanalyst) 1294 6210 w
+(at) 1816 6210 w
+(the) 1922 6210 w
+(beginning) 2078 6210 w
+(of) 2512 6210 w
+(his) 2629 6210 w
+(labors.) 2780 6210 w
+(\(See) 3108 6210 w
+(section) 3318 6210 w
+(5) 3634 6210 w
+(for) 3717 6210 w
+(a) 3866 6210 w
+(discussion) 3943 6210 w
+(of) 4393 6210 w
+(how) 4509 6210 w
+(they) 4714 6210 w
+(are) 4919 6210 w
+(determined) 720 6330 w
+(from) 1200 6330 w
+(the) 1425 6330 w
+(key) 1578 6330 w
+(the) 1753 6330 w
+(user) 1906 6330 w
+(types,) 2103 6330 w
+(and) 2370 6330 w
+(how) 2545 6330 w
+(part) 2749 6330 w
+(of) 2936 6330 w
+(the) 3051 6330 w
+(key) 3205 6330 w
+(the) 3381 6330 w
+(user) 3535 6330 w
+(types) 3733 6330 w
+(can) 3976 6330 w
+(be) 4146 6330 w
+(determined) 4272 6330 w
+(from) 4753 6330 w
+10 /Times-Italic f
+(R) 4979 6330 w
+10 /Times-Roman f
+(and) 720 6450 w
+10 /Times-Italic f
+(S) 889 6450 w
+10 /Times-Roman f
+(.\)) 939 6450 w
+(An operator notation is more useful, in which equation \(1\) can be rewritten) 970 6606 w
+10 /Times-Italic f
+(c) 2280 6786 w
+7 /Times-Italic f
+(i) 2335 6806 w
+(j) 2360 6806 w
+10 /Times-Roman f
+10 /S f
+(=) 2437 6786 w
+10 /Times-Roman f
+10 /Times-Italic f
+(C) 2541 6786 w
+7 /S f
+(-) 2619 6746 w
+7 /Times-Italic f
+(i) 2669 6746 w
+10 /Times-Italic f
+(R) 2697 6786 w
+7 /S f
+(-) 2769 6746 w
+7 /Times-Roman f
+(1) 2819 6746 w
+10 /Times-Italic f
+(C) 2870 6786 w
+7 /S f
+(-) 2948 6746 w
+7 /Times-Italic f
+(j) 2998 6746 w
+10 /Times-Italic f
+(SC) 3034 6786 w
+7 /Times-Italic f
+(j) 3162 6746 w
+10 /Times-Italic f
+(RC) 3198 6786 w
+7 /Times-Italic f
+(i) 3337 6746 w
+10 /Times-Italic f
+(p) 3365 6786 w
+7 /Times-Italic f
+(i) 3426 6806 w
+(j) 3451 6806 w
+10 /Times-Roman f
+(\(2\)) 4924 6786 w
+(where) 720 6966 w
+10 /Times-Italic f
+(C) 988 6966 w
+10 /Times-Roman f
+(mapping) 1080 6966 w
+10 /Times-Italic f
+(x) 1455 6966 w
+10 /Times-Roman f
+(to) 1524 6966 w
+10 /Times-Italic f
+(x) 1627 6966 w
+10 /S f
+(+) 1695 6966 w
+10 /Times-Roman f
+(1 is the cyclic shift transformation \(Caesar shift is the usual jargon\).) 1766 6966 w
+(One weak point in the cipher is that the index) 970 7122 w
+10 /Times-Italic f
+(i) 2812 7122 w
+10 /Times-Roman f
+(hardly enters into formula \(2\).) 2865 7122 w
+(If we let) 4121 7122 w
+10 /Times-Italic f
+(A) 2472 7302 w
+7 /Times-Italic f
+(j) 2544 7322 w
+10 /Times-Roman f
+10 /S f
+(=) 2621 7302 w
+10 /Times-Roman f
+10 /Times-Italic f
+(R) 2725 7302 w
+7 /S f
+(-) 2797 7262 w
+7 /Times-Roman f
+(1) 2847 7262 w
+10 /Times-Italic f
+(C) 2898 7302 w
+7 /S f
+(-) 2976 7262 w
+7 /Times-Italic f
+(j) 3026 7262 w
+10 /Times-Italic f
+(SC) 3062 7302 w
+7 /Times-Italic f
+(j) 3190 7262 w
+10 /Times-Italic f
+(R) 3226 7302 w
+10 /Times-Roman f
+(\(3\)) 4924 7302 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 2 2
+%%Page: 3 3
+/saveobj save def
+mark
+3 pagesetup
+10 /Times-Roman f
+(\255 2 \255) 2797 480 w
+(then) 720 840 w
+10 /Times-Italic f
+(c) 2491 1020 w
+7 /Times-Italic f
+(i) 2546 1040 w
+(j) 2571 1040 w
+10 /Times-Roman f
+10 /S f
+(=) 2648 1020 w
+10 /Times-Roman f
+10 /Times-Italic f
+(C) 2752 1020 w
+7 /S f
+(-) 2830 980 w
+7 /Times-Italic f
+(i) 2880 980 w
+10 /Times-Italic f
+(A) 2908 1020 w
+7 /Times-Italic f
+(j) 2980 1040 w
+10 /Times-Italic f
+(C) 3016 1020 w
+7 /Times-Italic f
+(i) 3094 980 w
+10 /Times-Italic f
+(p) 3122 1020 w
+7 /Times-Italic f
+(i) 3183 1040 w
+(j) 3208 1040 w
+10 /Times-Roman f
+(,) 3244 1020 w
+(where) 720 1200 w
+10 /Times-Italic f
+(A) 988 1200 w
+7 /Times-Italic f
+(j) 1060 1220 w
+10 /Times-Roman f
+(is self\255inverse, and without fixed points.) 1113 1200 w
+(This) 970 1356 w
+(decomposes) 1174 1356 w
+(the) 1688 1356 w
+(cryptanalysis) 1836 1356 w
+(into) 2389 1356 w
+(two) 2571 1356 w
+(parts,) 2747 1356 w
+(the) 2992 1356 w
+(first) 3140 1356 w
+(being) 3327 1356 w
+(the) 3575 1356 w
+(recovery) 3723 1356 w
+(of) 4097 1356 w
+10 /Times-Italic f
+(A) 4207 1356 w
+7 /Times-Italic f
+(j) 4279 1376 w
+10 /Times-Roman f
+(in) 4334 1356 w
+(each) 4439 1356 w
+(of) 4648 1356 w
+(several) 4758 1356 w
+(successive cryptoblocks, and the second being processing information about the) 720 1476 w
+10 /Times-Italic f
+(A) 3940 1476 w
+7 /Times-Italic f
+(j) 4012 1496 w
+10 /Times-Roman f
+('s to get) 4040 1476 w
+10 /Times-Italic f
+(R) 4387 1476 w
+10 /Times-Roman f
+(and) 4473 1476 w
+10 /Times-Italic f
+(S) 4642 1476 w
+10 /Times-Roman f
+(.) 4692 1476 w
+10 /Times-Bold f
+(3.) 720 1716 w
+(Recovering) 845 1716 w
+10 /Times-Italic f
+(A) 1352 1716 w
+7 /Times-Italic f
+(j) 1424 1736 w
+10 /Times-Bold f
+(3.1.) 720 1956 w
+(Known Plaintext Solution) 920 1956 w
+10 /Times-Roman f
+(Suppose) 970 2112 w
+(the) 1350 2112 w
+(cryptanalyst) 1513 2112 w
+(has) 2042 2112 w
+(parallel) 2216 2112 w
+(plaintext) 2556 2112 w
+(and) 2947 2112 w
+(ciphertext.) 3132 2112 w
+(This) 3622 2112 w
+(should) 3841 2112 w
+(be) 4150 2112 w
+(enough) 4286 2112 w
+(to) 4622 2112 w
+(recover) 4742 2112 w
+(most) 720 2232 w
+(of) 942 2232 w
+(the) 1052 2232 w
+10 /Times-Italic f
+(A) 1201 2232 w
+7 /Times-Italic f
+(j) 1273 2252 w
+10 /Times-Roman f
+(.) 1301 2232 w
+(Concentrate) 1378 2232 w
+(on) 1886 2232 w
+(one) 2012 2232 w
+(cryptoblock,) 2182 2232 w
+(and) 2710 2232 w
+(drop) 2880 2232 w
+(the) 3089 2232 w
+(subscript) 3237 2232 w
+10 /Times-Italic f
+(j) 3624 2232 w
+10 /Times-Roman f
+(.) 3652 2232 w
+(For) 3728 2232 w
+(each) 3893 2232 w
+(value) 4101 2232 w
+(of) 4343 2232 w
+10 /Times-Italic f
+(i) 4452 2232 w
+10 /Times-Roman f
+(for) 4506 2232 w
+(which) 4648 2232 w
+(the) 4918 2232 w
+(cryptanalyst has) 720 2352 w
+10 /Times-Italic f
+(c) 1391 2352 w
+7 /Times-Italic f
+(i) 1446 2372 w
+10 /Times-Roman f
+(and) 1499 2352 w
+10 /Times-Italic f
+(p) 1668 2352 w
+7 /Times-Italic f
+(i) 1729 2372 w
+10 /Times-Italic f
+(C) 2581 2532 w
+7 /Times-Italic f
+(i) 2659 2492 w
+10 /Times-Italic f
+(c) 2687 2532 w
+7 /Times-Italic f
+(i) 2742 2552 w
+10 /Times-Roman f
+10 /S f
+(=) 2819 2532 w
+10 /Times-Roman f
+10 /Times-Italic f
+(AC) 2923 2532 w
+7 /Times-Italic f
+(i) 3062 2492 w
+10 /Times-Italic f
+(p) 3090 2532 w
+7 /Times-Italic f
+(i) 3151 2552 w
+10 /Times-Roman f
+(from) 720 2712 w
+(the) 943 2712 w
+(definition) 1094 2712 w
+(of) 1512 2712 w
+10 /Times-Italic f
+(A) 1624 2712 w
+10 /Times-Roman f
+(.) 1685 2712 w
+(Thus) 1764 2712 w
+10 /Times-Italic f
+(A) 1993 2712 w
+10 /Times-Roman f
+([) 2062 2712 w
+10 /Times-Italic f
+(i) 2103 2712 w
+10 /S f
+(+) 2155 2712 w
+10 /Times-Italic f
+(p) 2226 2712 w
+7 /Times-Italic f
+(i) 2287 2732 w
+10 /Times-Roman f
+(]) 2323 2712 w
+10 /S f
+(=) 2372 2712 w
+10 /Times-Italic f
+(i) 2443 2712 w
+10 /S f
+(+) 2495 2712 w
+10 /Times-Italic f
+(c) 2566 2712 w
+7 /Times-Italic f
+(i) 2621 2732 w
+10 /Times-Roman f
+(,) 2649 2712 w
+(and) 2703 2712 w
+(because) 2876 2712 w
+10 /Times-Italic f
+(A) 3220 2712 w
+10 /Times-Roman f
+(is) 3311 2712 w
+(self\255inverse,) 3408 2712 w
+10 /Times-Italic f
+(A) 3928 2712 w
+10 /Times-Roman f
+([) 3997 2712 w
+10 /Times-Italic f
+(i) 4038 2712 w
+10 /S f
+(+) 4090 2712 w
+10 /Times-Italic f
+(c) 4161 2712 w
+7 /Times-Italic f
+(i) 4216 2732 w
+10 /Times-Roman f
+(]) 4252 2712 w
+10 /S f
+(=) 4301 2712 w
+10 /Times-Italic f
+(i) 4372 2712 w
+10 /S f
+(+) 4424 2712 w
+10 /Times-Italic f
+(p) 4495 2712 w
+7 /Times-Italic f
+(i) 4556 2732 w
+10 /Times-Roman f
+(.) 4584 2712 w
+(If) 4664 2712 w
+(all) 4760 2712 w
+(256) 4890 2712 w
+(plaintext) 720 2832 w
+(characters) 1097 2832 w
+(are) 1527 2832 w
+(known) 1675 2832 w
+(for) 1974 2832 w
+(the) 2117 2832 w
+(cryptoblock,) 2266 2832 w
+(there) 2794 2832 w
+(will) 3019 2832 w
+(be) 3201 2832 w
+(a) 3321 2832 w
+(lot) 3391 2832 w
+(of) 3523 2832 w
+(these) 3632 2832 w
+(equations,) 3863 2832 w
+(and) 4297 2832 w
+(most) 4467 2832 w
+(of) 4688 2832 w
+10 /Times-Italic f
+(A) 4797 2832 w
+10 /Times-Roman f
+(will) 4884 2832 w
+(be known.) 720 2952 w
+(More) 970 3108 w
+(precisely,) 1221 3108 w
+10 /Times-Italic f
+(A) 1641 3108 w
+10 /Times-Roman f
+(is) 1737 3108 w
+(the) 1839 3108 w
+(product) 1996 3108 w
+(of) 2336 3108 w
+(128) 2454 3108 w
+(disjoint) 2639 3108 w
+(2\255cycles.) 2975 3108 w
+(Each) 3392 3108 w
+10 /Times-Italic f
+(i) 3626 3108 w
+10 /Times-Roman f
+(for) 3689 3108 w
+(which) 3841 3108 w
+(the) 4121 3108 w
+(plaintext) 4279 3108 w
+(is) 4665 3108 w
+(known) 4768 3108 w
+(determines) 720 3228 w
+(one) 1184 3228 w
+(of) 1354 3228 w
+(the) 1463 3228 w
+(2\255cycles.) 1611 3228 w
+(If) 2019 3228 w
+(one) 2111 3228 w
+(assumes that the 2\255cycles have equal probability of being chosen, the) 2281 3228 w
+(chance) 720 3348 w
+(of) 1033 3348 w
+(a) 1153 3348 w
+(given) 1234 3348 w
+(2\255cycle) 1493 3348 w
+(not) 1823 3348 w
+(being) 1988 3348 w
+(chosen) 2247 3348 w
+(is) 2561 3348 w
+(\() 2666 3348 w
+(127) 2707 3348 w
+10 /Times-Italic f
+(/) 2865 3348 w
+10 /Times-Roman f
+(128) 2901 3348 w
+(\)) 3059 3348 w
+7 /Times-Roman f
+(256) 3097 3308 w
+10 /S f
+(=) 3226 3348 w
+10 /Times-Roman f
+(\() 3297 3348 w
+(1) 3338 3348 w
+10 /S f
+(-) 3404 3348 w
+10 /Times-Roman f
+(2) 3475 3348 w
+10 /Times-Italic f
+(/) 3533 3348 w
+10 /Times-Roman f
+(256) 3569 3348 w
+(\)) 3727 3348 w
+7 /Times-Roman f
+(256) 3765 3308 w
+10 /Times-Roman f
+(,) 3878 3348 w
+(the) 3941 3348 w
+(expected) 4101 3348 w
+(number) 4493 3348 w
+(of) 4836 3348 w
+(2\255) 4957 3348 w
+(cycles) 720 3468 w
+(not) 1020 3468 w
+(chosen) 1199 3468 w
+(is) 1527 3468 w
+(128) 1645 3468 w
+(\() 1803 3468 w
+(1) 1844 3468 w
+10 /S f
+(-) 1910 3468 w
+10 /Times-Roman f
+(2) 1981 3468 w
+10 /Times-Italic f
+(/) 2039 3468 w
+10 /Times-Roman f
+(256) 2075 3468 w
+(\)) 2233 3468 w
+7 /Times-Roman f
+(256) 2271 3428 w
+10 /Times-Roman f
+(,) 2384 3468 w
+(and) 2460 3468 w
+(the) 2655 3468 w
+(expected) 2827 3468 w
+(number) 3231 3468 w
+(of) 3586 3468 w
+(known) 3719 3468 w
+(values) 4041 3468 w
+(is) 4346 3468 w
+(approximately) 4463 3468 w
+(256) 720 3588 w
+(\() 878 3588 w
+(1) 919 3588 w
+10 /S f
+(-) 985 3588 w
+10 /Times-Italic f
+(e) 1056 3588 w
+7 /S f
+(-) 1111 3548 w
+7 /Times-Roman f
+(2) 1161 3548 w
+10 /Times-Roman f
+(\), which is 221.35.) 1212 3588 w
+(Thus, each block of known plaintext should give all but about 35 of the) 2006 3588 w
+(val\255) 4885 3588 w
+(ues of) 720 3708 w
+10 /Times-Italic f
+(A) 986 3708 w
+7 /Times-Italic f
+(j) 1058 3728 w
+10 /Times-Roman f
+(.) 1086 3708 w
+10 /Times-Bold f
+(3.2.) 720 3948 w
+(Unknown Plaintext Solution) 920 3948 w
+10 /Times-Roman f
+(This,) 970 4104 w
+(of) 1207 4104 w
+(course,) 1324 4104 w
+(is) 1643 4104 w
+(harder.) 1744 4104 w
+(We) 2082 4104 w
+(assume) 2254 4104 w
+(that) 2582 4104 w
+(the) 2766 4104 w
+(plaintext) 2922 4104 w
+(is) 3306 4104 w
+(all) 3407 4104 w
+(ascii,) 3541 4104 w
+(and) 3784 4104 w
+(that) 3963 4104 w
+(the) 4148 4104 w
+(cryptanalyst) 4305 4104 w
+(has) 4828 4104 w
+(a) 4996 4104 w
+(stock of probable words or phrases that the plaintext plausibly contains.) 720 4224 w
+(We) 970 4380 w
+(proceed) 1141 4380 w
+(by) 1489 4380 w
+(trying) 1622 4380 w
+(to) 1894 4380 w
+(place) 2006 4380 w
+(a) 2250 4380 w
+(probable) 2328 4380 w
+(word) 2711 4380 w
+(in) 2950 4380 w
+(all) 3062 4380 w
+(possible) 3196 4380 w
+(positions) 3558 4380 w
+(in) 3954 4380 w
+(the) 4066 4380 w
+(current) 4222 4380 w
+(cryptoblock.) 4538 4380 w
+(Most) 720 4500 w
+(of) 952 4500 w
+(these) 1061 4500 w
+(trial) 1292 4500 w
+(placements) 1479 4500 w
+(will result in contradictions.) 1954 4500 w
+(Either they imply that some plaintext characters) 3126 4500 w
+(cannot be ascii, or they are self\255contradictory, or they contradict) 720 4620 w
+(the) 3303 4620 w
+(implications) 3451 4620 w
+(of) 3972 4620 w
+(a) 4081 4620 w
+(previous) 4151 4620 w
+(placement) 4521 4620 w
+(of) 4957 4620 w
+(a probable word.) 720 4740 w
+(We consider these cases one by one.) 1443 4740 w
+(Suppose) 970 4896 w
+(that) 1339 4896 w
+(one) 1519 4896 w
+(plaintext) 1693 4896 w
+(character,) 2073 4896 w
+(say) 2492 4896 w
+10 /Times-Italic f
+(p) 2655 4896 w
+7 /Times-Italic f
+(i) 2716 4916 w
+10 /Times-Roman f
+(,) 2744 4896 w
+(is) 2799 4896 w
+(known.) 2896 4896 w
+(Then) 3248 4896 w
+(one) 3483 4896 w
+(of) 3657 4896 w
+(the) 3770 4896 w
+(2\255cycles) 3923 4896 w
+(of) 4286 4896 w
+10 /Times-Italic f
+(A) 4400 4896 w
+10 /Times-Roman f
+(is) 4492 4896 w
+(known,) 4590 4896 w
+(the) 4918 4896 w
+(one) 720 5016 w
+(which) 897 5016 w
+(interchanges) 1174 5016 w
+10 /Times-Italic f
+(p) 1710 5016 w
+7 /Times-Italic f
+(i) 1771 5036 w
+10 /S f
+(+) 1815 5016 w
+10 /Times-Italic f
+(i) 1886 5016 w
+10 /Times-Roman f
+(and) 1946 5016 w
+10 /Times-Italic f
+(c) 2122 5016 w
+7 /Times-Italic f
+(i) 2177 5036 w
+10 /S f
+(+) 2221 5016 w
+10 /Times-Italic f
+(i) 2292 5016 w
+10 /Times-Roman f
+(.) 2320 5016 w
+(There) 2402 5016 w
+(are) 2666 5016 w
+(255) 2819 5016 w
+(other) 3001 5016 w
+(values) 3238 5016 w
+(of) 3525 5016 w
+10 /Times-Italic f
+(i) 3640 5016 w
+10 /Times-Roman f
+(for) 3700 5016 w
+(which) 3848 5016 w
+10 /Times-Italic f
+(c) 4124 5016 w
+7 /Times-Italic f
+(i) 4179 5036 w
+10 /S f
+(+) 4223 5016 w
+10 /Times-Italic f
+(i) 4294 5016 w
+10 /Times-Roman f
+(might) 4354 5016 w
+(fall) 4620 5016 w
+(in) 4785 5016 w
+(this) 4895 5016 w
+(2\255cycle,) 720 5136 w
+(and) 1076 5136 w
+(the) 1258 5136 w
+(chance) 1418 5136 w
+(that) 1732 5136 w
+(none) 1920 5136 w
+(does) 2153 5136 w
+(is) 2375 5136 w
+(\() 2481 5136 w
+(127) 2522 5136 w
+10 /Times-Italic f
+(/) 2680 5136 w
+10 /Times-Roman f
+(128) 2716 5136 w
+(\)) 2874 5136 w
+7 /Times-Roman f
+(255) 2912 5096 w
+10 /Times-Roman f
+(,) 3025 5136 w
+(which) 3089 5136 w
+(is) 3372 5136 w
+(about) 3478 5136 w
+(.135.) 3739 5136 w
+(\(Since) 4003 5136 w
+(the) 4297 5136 w
+(success) 4458 5136 w
+(of) 4796 5136 w
+(the) 4918 5136 w
+(attack) 720 5256 w
+(doesn't) 993 5256 w
+(depend) 1322 5256 w
+(on) 1645 5256 w
+(these) 1780 5256 w
+(calculations,) 2020 5256 w
+(the) 2557 5256 w
+(hidden) 2714 5256 w
+(randomness) 3021 5256 w
+(assumptions) 3533 5256 w
+(can) 4062 5256 w
+(remain) 4234 5256 w
+(hidden.\)) 4545 5256 w
+(So) 4934 5256 w
+(with) 720 5376 w
+(probability) 925 5376 w
+(about) 1391 5376 w
+(86.5%) 1640 5376 w
+(we) 1925 5376 w
+(find) 2068 5376 w
+(some) 2257 5376 w
+(other) 2496 5376 w
+(value) 2729 5376 w
+(of) 2973 5376 w
+10 /Times-Italic f
+(j) 3084 5376 w
+10 /Times-Roman f
+(for) 3140 5376 w
+(which) 3284 5376 w
+10 /Times-Italic f
+(c) 3556 5376 w
+7 /Times-Italic f
+(j) 3611 5396 w
+10 /S f
+(+) 3655 5376 w
+10 /Times-Italic f
+(j) 3726 5376 w
+10 /Times-Roman f
+(is) 3782 5376 w
+(in) 3877 5376 w
+(the) 3983 5376 w
+(known) 4133 5376 w
+(2\255cycle,) 4433 5376 w
+(and) 4779 5376 w
+(so) 4951 5376 w
+(the) 720 5496 w
+(corresponding) 868 5496 w
+(value) 1465 5496 w
+(of) 1707 5496 w
+10 /Times-Italic f
+(p) 1816 5496 w
+7 /Times-Italic f
+(j) 1877 5516 w
+10 /Times-Roman f
+(is) 1931 5496 w
+(known) 2024 5496 w
+(too.) 2322 5496 w
+(If) 2526 5496 w
+(the) 2618 5496 w
+(initial) 2766 5496 w
+(guess) 3026 5496 w
+(at) 3274 5496 w
+10 /Times-Italic f
+(p) 3372 5496 w
+7 /Times-Italic f
+(i) 3433 5516 w
+10 /Times-Roman f
+(were) 3487 5496 w
+(wrong,) 3706 5496 w
+(then) 4012 5496 w
+(this guess at) 4210 5496 w
+10 /Times-Italic f
+(p) 4724 5496 w
+7 /Times-Italic f
+(j) 4785 5516 w
+10 /Times-Roman f
+(has a) 4838 5496 w
+(50% chance of) 720 5616 w
+(not) 1338 5616 w
+(being) 1492 5616 w
+(ascii) 1740 5616 w
+(\(assuming) 1949 5616 w
+(that) 2386 5616 w
+(all) 2562 5616 w
+(128) 2688 5616 w
+(ascii) 2864 5616 w
+(characters) 3073 5616 w
+(are) 3502 5616 w
+(legal\).) 3649 5616 w
+(Thus) 3952 5616 w
+(each) 4178 5616 w
+(individual) 4386 5616 w
+(guess) 4818 5616 w
+(at) 720 5736 w
+(a) 824 5736 w
+(plaintext) 900 5736 w
+(character) 1282 5736 w
+(has) 1678 5736 w
+(better) 1843 5736 w
+(than) 2102 5736 w
+(a) 2306 5736 w
+(40%) 2382 5736 w
+(chance) 2597 5736 w
+(of) 2905 5736 w
+(being) 3019 5736 w
+(shown) 3272 5736 w
+(wrong) 3564 5736 w
+(because) 3850 5736 w
+(it) 4196 5736 w
+(would) 4283 5736 w
+(imply) 4564 5736 w
+(some) 4829 5736 w
+(plaintext) 720 5856 w
+(character) 1100 5856 w
+(is) 1494 5856 w
+(not) 1591 5856 w
+(ascii.) 1749 5856 w
+(A) 2012 5856 w
+(longer) 2114 5856 w
+(probable) 2399 5856 w
+(word,) 2778 5856 w
+(incorrect) 3038 5856 w
+(in) 3422 5856 w
+(all) 3530 5856 w
+(its) 3660 5856 w
+(letters,) 3785 5856 w
+(is) 4084 5856 w
+(even) 4181 5856 w
+(less) 4399 5856 w
+(likely) 4579 5856 w
+(to) 4837 5856 w
+(be) 4946 5856 w
+(acceptable.) 720 5976 w
+(There) 970 6132 w
+(is) 1233 6132 w
+(another) 1331 6132 w
+(kind) 1661 6132 w
+(of) 1871 6132 w
+(constraint) 1986 6132 w
+(probable) 2412 6132 w
+(text) 2793 6132 w
+(imposes) 2975 6132 w
+(on) 3335 6132 w
+(the) 3467 6132 w
+(ciphertext.) 3621 6132 w
+(If) 4102 6132 w
+(there) 4200 6132 w
+(are) 4431 6132 w
+(two) 4584 6132 w
+(places,) 4766 6132 w
+(say) 720 6252 w
+10 /Times-Italic f
+(i) 881 6252 w
+10 /Times-Roman f
+(and) 937 6252 w
+10 /Times-Italic f
+(j) 1109 6252 w
+10 /Times-Roman f
+(,) 1137 6252 w
+(in) 1190 6252 w
+(the) 1296 6252 w
+(same) 1446 6252 w
+(cryptoblock) 1679 6252 w
+(of) 2184 6252 w
+(plaintext) 2295 6252 w
+(satisfying) 2673 6252 w
+10 /Times-Italic f
+(p) 3090 6252 w
+7 /Times-Italic f
+(i) 3151 6272 w
+10 /S f
+(+) 3195 6252 w
+10 /Times-Italic f
+(i) 3266 6252 w
+10 /S f
+(=) 3318 6252 w
+10 /Times-Italic f
+(p) 3389 6252 w
+7 /Times-Italic f
+(j) 3450 6272 w
+10 /S f
+(+) 3494 6252 w
+10 /Times-Italic f
+(j) 3565 6252 w
+10 /Times-Roman f
+(,) 3593 6252 w
+(then) 3646 6252 w
+(the) 3846 6252 w
+(definition) 3996 6252 w
+(of) 4413 6252 w
+10 /Times-Italic f
+(A) 4524 6252 w
+10 /Times-Roman f
+(shows) 4613 6252 w
+(that) 4890 6252 w
+10 /Times-Italic f
+(c) 720 6372 w
+7 /Times-Italic f
+(j) 775 6392 w
+10 /S f
+(-) 819 6372 w
+10 /Times-Italic f
+(c) 890 6372 w
+7 /Times-Italic f
+(i) 945 6392 w
+10 /S f
+(=) 989 6372 w
+10 /Times-Italic f
+(i) 1060 6372 w
+10 /S f
+(-) 1112 6372 w
+10 /Times-Italic f
+(j) 1183 6372 w
+10 /Times-Roman f
+(.) 1211 6372 w
+(For) 1288 6372 w
+(instance,) 1454 6372 w
+(the) 1833 6372 w
+(word) 1982 6372 w
+(`include',) 2214 6372 w
+(common) 2627 6372 w
+(near) 3005 6372 w
+(the) 3204 6372 w
+(beginning) 3354 6372 w
+(of) 3782 6372 w
+(C) 3893 6372 w
+(programs,) 3988 6372 w
+(contains) 4418 6372 w
+(two) 4779 6372 w
+(of) 4957 6372 w
+(these) 720 6492 w
+(constraints,) 951 6492 w
+(`n.l') 1435 6492 w
+(and) 1630 6492 w
+(`i....d'.) 1800 6492 w
+(One) 2120 6492 w
+(expects) 2312 6492 w
+(only) 2637 6492 w
+(about) 2841 6492 w
+(one) 3089 6492 w
+(place) 3259 6492 w
+(in each cryptoblock where even one of) 3495 6492 w
+(these) 720 6612 w
+(constraints) 963 6612 w
+(is) 1434 6612 w
+(satisfied) 1539 6612 w
+(\(other) 1910 6612 w
+(than) 2186 6612 w
+(at) 2396 6612 w
+(the) 2506 6612 w
+(place) 2666 6612 w
+(where) 2914 6612 w
+(`include') 3196 6612 w
+(belongs\),) 3595 6612 w
+(so) 4003 6612 w
+(the) 4131 6612 w
+(chance) 4292 6612 w
+(of) 4607 6612 w
+(the) 4729 6612 w
+(two) 4890 6612 w
+(being satisfied erroneously is quite small \(but not negligible\).) 720 6732 w
+(Finally, a trial placement may be incompatible with earlier, accepted, placements of probable words.) 970 6888 w
+(This) 970 7044 w
+(is) 1180 7044 w
+(all) 1279 7044 w
+(easy) 1411 7044 w
+(to) 1620 7044 w
+(package) 1730 7044 w
+(into) 2088 7044 w
+(programs.) 2276 7044 w
+(One) 2735 7044 w
+(could) 2933 7044 w
+(start) 3187 7044 w
+(with) 3391 7044 w
+(a) 3601 7044 w
+(special\255purpose) 3677 7044 w
+(editor) 4336 7044 w
+(which) 4602 7044 w
+(gets) 4879 7044 w
+(probable) 720 7164 w
+(text) 1097 7164 w
+(from) 1275 7164 w
+(the) 1497 7164 w
+(user) 1647 7164 w
+(and) 1841 7164 w
+(presents) 2013 7164 w
+(all) 2368 7164 w
+(contradiction\255free) 2496 7164 w
+(placements) 3238 7164 w
+(and) 3715 7164 w
+(resulting) 3887 7164 w
+(decipherment.) 4265 7164 w
+(The) 4885 7164 w
+(user) 720 7284 w
+(then) 914 7284 w
+(accepts) 1114 7284 w
+(those) 1435 7284 w
+(placements) 1675 7284 w
+(that) 2153 7284 w
+(produce) 2332 7284 w
+(the) 2682 7284 w
+(best) 2833 7284 w
+(looking) 3023 7284 w
+(decipherment,) 3358 7284 w
+(and) 3955 7284 w
+(suggests) 4128 7284 w
+(new) 4496 7284 w
+(probable) 4691 7284 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 3 3
+%%Page: 4 4
+/saveobj save def
+mark
+4 pagesetup
+10 /Times-Roman f
+(\255 3 \255) 2797 480 w
+(words.) 720 840 w
+(Such) 1050 840 w
+(an) 1285 840 w
+(editor) 1414 840 w
+(can) 1682 840 w
+(be) 1855 840 w
+(used) 1984 840 w
+(to) 2202 840 w
+(decrypt) 2315 840 w
+(a) 2649 840 w
+(completely) 2728 840 w
+(unknown) 3207 840 w
+(C) 3614 840 w
+(program) 3716 840 w
+(in) 4089 840 w
+(a) 4202 840 w
+(few) 4281 840 w
+(hours,) 4465 840 w
+(or) 4747 840 w
+(less.) 4865 840 w
+(Getting) 720 960 w
+(one) 1047 960 w
+(block) 1218 960 w
+(generally) 1467 960 w
+(takes) 1865 960 w
+(a) 2097 960 w
+(while,) 2168 960 w
+(but) 2442 960 w
+(then) 2597 960 w
+(the) 2796 960 w
+(cryptanalyst) 2945 960 w
+(has) 3460 960 w
+(a) 3620 960 w
+(good) 3691 960 w
+(idea) 3918 960 w
+(of) 4111 960 w
+(the) 4221 960 w
+(style) 4370 960 w
+(and) 4586 960 w
+(subject) 4757 960 w
+(of the program, and other blocks take less time.) 720 1080 w
+(Sometimes) 970 1236 w
+(it) 1452 1236 w
+(is) 1546 1236 w
+(useful) 1651 1236 w
+(to) 1933 1236 w
+(first) 2049 1236 w
+(look) 2248 1236 w
+(for) 2464 1236 w
+(all) 2618 1236 w
+(contradiction\255free) 2756 1236 w
+(placements) 3508 1236 w
+(of) 3995 1236 w
+(a) 4116 1236 w
+(single) 4198 1236 w
+(long) 4475 1236 w
+(probable) 4691 1236 w
+(word in all blocks of a file rather than look for several probable words in a single block.) 720 1356 w
+10 /Times-Bold f
+(3.3.) 720 1596 w
+(A statistical attack) 920 1596 w
+10 /Times-Roman f
+(The) 970 1752 w
+(following) 1157 1752 w
+(idea) 1578 1752 w
+(is) 1776 1752 w
+(due) 1875 1752 w
+(to) 2051 1752 w
+(Robert) 2186 1752 w
+(Morris.) 2490 1752 w
+(Before) 2844 1752 w
+(attacking) 3148 1752 w
+(an) 3547 1752 w
+(unknown) 3674 1752 w
+(plaintext,) 4079 1752 w
+(one) 4487 1752 w
+(can) 4664 1752 w
+(auto\255) 4835 1752 w
+(matically generate a lot of plausible plaintext by a statistical analysis of each of the cryptoblocks.) 720 1872 w
+(In) 970 2028 w
+(essence) 1094 2028 w
+(one) 1439 2028 w
+(applies) 1624 2028 w
+(the) 1948 2028 w
+(unknown) 2111 2028 w
+(plaintext) 2524 2028 w
+(attack) 2915 2028 w
+(outlined) 3194 2028 w
+(above) 3563 2028 w
+(to) 3842 2028 w
+(the) 3961 2028 w
+(20) 4125 2028 w
+(one\255letter) 4267 2028 w
+(probable) 4691 2028 w
+(words) 720 2148 w
+(formed) 1001 2148 w
+(by) 1326 2148 w
+(the) 1462 2148 w
+(20) 1620 2148 w
+(most) 1756 2148 w
+(common) 1987 2148 w
+(ascii) 2373 2148 w
+(letters.) 2592 2148 w
+(Each) 2922 2148 w
+(of) 3157 2148 w
+(the) 3276 2148 w
+(possible) 3434 2148 w
+(5120) 3798 2148 w
+(trial) 4034 2148 w
+(placements) 4231 2148 w
+(of) 4716 2148 w
+(these) 4835 2148 w
+(`words') 720 2268 w
+(in) 1063 2268 w
+(a) 1174 2268 w
+(given) 1251 2268 w
+(cryptoblock) 1506 2268 w
+(is) 2016 2268 w
+(scored) 2116 2268 w
+(according) 2409 2268 w
+(to) 2835 2268 w
+(the) 2946 2268 w
+(resulting) 3102 2268 w
+(plaintext) 3486 2268 w
+(it) 3870 2268 w
+(generates,) 3960 2268 w
+(using) 4395 2268 w
+(a) 4646 2268 w
+(formula) 4724 2268 w
+(involving) 720 2388 w
+(logarithms) 1131 2388 w
+(of) 1586 2388 w
+(the) 1696 2388 w
+(probabilities) 1845 2388 w
+(of) 2372 2388 w
+(the) 2482 2388 w
+(ascii) 2631 2388 w
+(letters.) 2841 2388 w
+(Any) 3162 2388 w
+(decipherment) 3361 2388 w
+(resulting) 3931 2388 w
+(in) 4307 2388 w
+(non) 4411 2388 w
+(ascii) 4587 2388 w
+(letters) 4796 2388 w
+(is) 720 2508 w
+(immediately) 818 2508 w
+(ruled) 1349 2508 w
+(out.) 1585 2508 w
+(Otherwise) 1794 2508 w
+(disputes) 2235 2508 w
+(between) 2595 2508 w
+(contradictory) 2959 2508 w
+(trial) 3523 2508 w
+(placements) 3716 2508 w
+(are) 4197 2508 w
+(resolved) 4350 2508 w
+(in) 4720 2508 w
+(favor) 4830 2508 w
+(of the trial placement with the greater score.) 720 2628 w
+(This) 970 2784 w
+(process) 1178 2784 w
+(ends) 1507 2784 w
+(with) 1721 2784 w
+(a) 1930 2784 w
+(partially) 2005 2784 w
+(deciphered) 2369 2784 w
+(cryptoblock) 2837 2784 w
+(with) 3345 2784 w
+(lots) 3554 2784 w
+(of) 3730 2784 w
+(`noisy') 3844 2784 w
+(plaintext) 4158 2784 w
+(visible) 4539 2784 w
+(to) 4837 2784 w
+(an) 4946 2784 w
+(indulgent) 720 2904 w
+(eye.) 1124 2904 w
+(It) 1338 2904 w
+(is) 1425 2904 w
+(easy) 1518 2904 w
+(to) 1721 2904 w
+(use) 1825 2904 w
+(guesses) 1984 2904 w
+(based) 2315 2904 w
+(on) 2568 2904 w
+(this) 2694 2904 w
+(noisy) 2865 2904 w
+(plaintext) 3108 2904 w
+(as) 3484 2904 w
+(a) 3593 2904 w
+(starting point for a session with an) 3663 2904 w
+(interactive) 720 3024 w
+10 /Times-Italic f
+(crypt) 1166 3024 w
+10 /Times-Roman f
+(\255breaking editor, as described above.) 1371 3024 w
+10 /Times-Bold f
+(4.) 720 3264 w
+(Knitting) 845 3264 w
+10 /Times-Roman f
+(Once) 970 3420 w
+(several) 1209 3420 w
+(blocks) 1520 3420 w
+(have) 1810 3420 w
+(been) 2027 3420 w
+(mostly) 2244 3420 w
+(decrypted,) 2546 3420 w
+(the) 2993 3420 w
+(corresponding) 3144 3420 w
+(information) 3744 3420 w
+(about) 4245 3420 w
+(the) 4496 3420 w
+10 /Times-Italic f
+(A) 4648 3420 w
+7 /Times-Italic f
+(j) 4720 3440 w
+10 /Times-Roman f
+(can) 4778 3420 w
+(be) 4946 3420 w
+(used to recover) 720 3540 w
+10 /Times-Italic f
+(R) 1354 3540 w
+10 /Times-Roman f
+(and) 1440 3540 w
+10 /Times-Italic f
+(S) 1609 3540 w
+10 /Times-Roman f
+(.) 1659 3540 w
+(Let) 1734 3540 w
+10 /Times-Italic f
+(Z) 1892 3540 w
+10 /S f
+(=) 1972 3540 w
+10 /Times-Italic f
+(R) 2043 3540 w
+7 /S f
+(-) 2115 3500 w
+7 /Times-Roman f
+(1) 2165 3500 w
+10 /Times-Italic f
+(CR) 2216 3540 w
+10 /Times-Roman f
+(.) 2344 3540 w
+(Then \(3\) can be rewritten as) 2419 3540 w
+10 /Times-Italic f
+(A) 2568 3720 w
+7 /Times-Italic f
+(j) 2640 3740 w
+10 /Times-Roman f
+10 /S f
+(=) 2717 3720 w
+10 /Times-Roman f
+10 /Times-Italic f
+(Z) 2821 3720 w
+7 /S f
+(-) 2888 3680 w
+7 /Times-Italic f
+(j) 2938 3680 w
+10 /Times-Italic f
+(A) 2974 3720 w
+7 /Times-Roman f
+(0) 3046 3740 w
+10 /Times-Italic f
+(Z) 3097 3720 w
+7 /Times-Italic f
+(j) 3164 3680 w
+10 /Times-Roman f
+(and hence) 720 3900 w
+10 /Times-Italic f
+(ZA) 2579 4080 w
+7 /Times-Italic f
+(j) 2707 4100 w
+7 /S f
+(+) 2738 4100 w
+7 /Times-Roman f
+(1) 2788 4100 w
+10 /Times-Roman f
+10 /S f
+(=) 2880 4080 w
+10 /Times-Roman f
+10 /Times-Italic f
+(A) 2984 4080 w
+7 /Times-Italic f
+(j) 3056 4100 w
+10 /Times-Italic f
+(Z) 3092 4080 w
+(.) 3156 4080 w
+10 /Times-Roman f
+(We) 720 4260 w
+(call) 884 4260 w
+(this) 1054 4260 w
+(the) 1225 4260 w
+10 /Times-Italic f
+(knitting) 1373 4260 w
+(equation) 1705 4260 w
+10 /Times-Roman f
+(:) 2055 4260 w
+10 /Times-Italic f
+(Z) 2109 4260 w
+10 /Times-Roman f
+(knits) 2191 4260 w
+(the) 2412 4260 w
+10 /Times-Italic f
+(A) 2560 4260 w
+7 /Times-Italic f
+(j) 2632 4280 w
+10 /Times-Roman f
+(sequence) 2687 4260 w
+(together.) 3079 4260 w
+(We) 3483 4260 w
+(solve) 3648 4260 w
+(this) 3886 4260 w
+(last) 4058 4260 w
+(equation) 4224 4260 w
+(for) 4595 4260 w
+10 /Times-Italic f
+(Z) 4738 4260 w
+10 /Times-Roman f
+(,) 4794 4260 w
+(from) 4846 4260 w
+(which a value for) 720 4380 w
+10 /Times-Italic f
+(R) 1440 4380 w
+10 /Times-Roman f
+(can be found.) 1526 4380 w
+(Once) 2116 4380 w
+10 /Times-Italic f
+(R) 2351 4380 w
+10 /Times-Roman f
+(is known, the equation) 2437 4380 w
+10 /Times-Italic f
+(S) 2611 4560 w
+10 /Times-Roman f
+10 /S f
+(=) 2710 4560 w
+10 /Times-Roman f
+10 /Times-Italic f
+(RA) 2814 4560 w
+7 /Times-Italic f
+(j) 2947 4580 w
+10 /Times-Italic f
+(R) 2983 4560 w
+7 /S f
+(-) 3055 4520 w
+7 /Times-Roman f
+(1) 3105 4520 w
+10 /Times-Roman f
+(gives) 720 4740 w
+(a) 958 4740 w
+(value) 1030 4740 w
+(for) 1274 4740 w
+10 /Times-Italic f
+(S) 1418 4740 w
+10 /Times-Roman f
+(.) 1468 4740 w
+(Even) 1546 4740 w
+(if) 1779 4740 w
+(all) 1868 4740 w
+(this) 1996 4740 w
+(works) 2169 4740 w
+(out,) 2441 4740 w
+10 /Times-Italic f
+(R) 2622 4740 w
+10 /Times-Roman f
+(and) 2711 4740 w
+10 /Times-Italic f
+(S) 2883 4740 w
+10 /Times-Roman f
+(are) 2961 4740 w
+(not) 3110 4740 w
+(completely) 3266 4740 w
+(determined,) 3738 4740 w
+(for) 4240 4740 w
+(if) 4384 4740 w
+(the) 4473 4740 w
+(pair) 4623 4740 w
+(\() 4806 4740 w
+10 /Times-Italic f
+(R) 4847 4740 w
+10 /Times-Roman f
+(,) 4916 4740 w
+10 /Times-Italic f
+(S) 4949 4740 w
+10 /Times-Roman f
+(\)) 5007 4740 w
+(works, so will \() 720 4860 w
+10 /Times-Italic f
+(C) 1350 4860 w
+7 /Times-Italic f
+(k) 1428 4820 w
+10 /Times-Italic f
+(R) 1467 4860 w
+10 /Times-Roman f
+(,) 1536 4860 w
+10 /Times-Italic f
+(C) 1569 4860 w
+7 /Times-Italic f
+(k) 1647 4820 w
+10 /Times-Italic f
+(SC) 1686 4860 w
+7 /S f
+(-) 1814 4820 w
+7 /Times-Italic f
+(k) 1864 4820 w
+10 /Times-Roman f
+(\), for any) 1911 4860 w
+10 /Times-Italic f
+(k) 2304 4860 w
+10 /Times-Roman f
+(.) 2348 4860 w
+(The idea behind solving for) 970 5016 w
+10 /Times-Italic f
+(Z) 2099 5016 w
+10 /Times-Roman f
+(is simple.) 2180 5016 w
+(Suppose we) 2614 5016 w
+(hypothesize) 3120 5016 w
+10 /Times-Italic f
+(Zx) 3623 5016 w
+10 /S f
+(=) 3747 5016 w
+10 /Times-Italic f
+(y) 3818 5016 w
+10 /Times-Roman f
+(.) 3862 5016 w
+(Then) 3938 5016 w
+(for) 4169 5016 w
+(each) 4311 5016 w
+(value) 4519 5016 w
+(of) 4761 5016 w
+10 /Times-Italic f
+(j) 4870 5016 w
+10 /Times-Roman f
+(for) 4924 5016 w
+(which) 720 5136 w
+10 /Times-Italic f
+(A) 992 5136 w
+7 /Times-Italic f
+(j) 1064 5156 w
+10 /Times-Roman f
+([) 1100 5136 w
+10 /Times-Italic f
+(y) 1141 5136 w
+10 /Times-Roman f
+(]) 1193 5136 w
+10 /S f
+(=) 1242 5136 w
+10 /Times-Italic f
+(v) 1313 5136 w
+10 /Times-Roman f
+(and) 1385 5136 w
+10 /Times-Italic f
+(A) 1557 5136 w
+7 /Times-Italic f
+(j) 1629 5156 w
+7 /S f
+(+) 1660 5156 w
+7 /Times-Roman f
+(1) 1710 5156 w
+10 /Times-Roman f
+([) 1761 5136 w
+10 /Times-Italic f
+(x) 1802 5136 w
+10 /Times-Roman f
+(]) 1854 5136 w
+10 /S f
+(=) 1903 5136 w
+10 /Times-Italic f
+(u) 1974 5136 w
+10 /Times-Roman f
+(are) 2052 5136 w
+(known,) 2201 5136 w
+(it) 2526 5136 w
+(must) 2609 5136 w
+(be) 2831 5136 w
+(true) 2952 5136 w
+(that) 3134 5136 w
+10 /Times-Italic f
+(Zu) 3311 5136 w
+10 /S f
+(=) 3441 5136 w
+10 /Times-Italic f
+(v) 3512 5136 w
+10 /Times-Roman f
+(.) 3556 5136 w
+(Hence) 3633 5136 w
+(if) 3914 5136 w
+(several) 4002 5136 w
+(successive) 4311 5136 w
+10 /Times-Italic f
+(A) 4759 5136 w
+10 /Times-Roman f
+('s) 4820 5136 w
+(are) 4919 5136 w
+(fairly well known, each hypothesis about) 720 5256 w
+10 /Times-Italic f
+(Z) 2387 5256 w
+10 /Times-Roman f
+(will generate several more, and so forth,) 2468 5256 w
+(and) 4101 5256 w
+(all) 4271 5256 w
+(these) 4397 5256 w
+(have) 4628 5256 w
+(to) 4842 5256 w
+(be) 4946 5256 w
+(consistent) 720 5376 w
+(with) 1151 5376 w
+(all) 1360 5376 w
+(that) 1491 5376 w
+(is) 1672 5376 w
+(known) 1770 5376 w
+(about) 2073 5376 w
+(the) 2325 5376 w
+10 /Times-Italic f
+(A) 2477 5376 w
+10 /Times-Roman f
+('s.) 2538 5376 w
+(In) 2690 5376 w
+(practice) 2803 5376 w
+(there) 3148 5376 w
+(is) 3377 5376 w
+(a) 3474 5376 w
+(chain) 3548 5376 w
+(reaction) 3794 5376 w
+(of) 4145 5376 w
+(hypotheses) 4258 5376 w
+(about) 4732 5376 w
+10 /Times-Italic f
+(Z) 4984 5376 w
+10 /Times-Roman f
+(which quickly lead to a contradiction if the initial guess was wrong.) 720 5496 w
+(Once) 970 5652 w
+10 /Times-Italic f
+(Z) 1211 5652 w
+10 /Times-Roman f
+(has) 1298 5652 w
+(been) 1462 5652 w
+(mostly) 1681 5652 w
+(recovered,) 1985 5652 w
+(one) 2433 5652 w
+(can) 2608 5652 w
+(use) 2777 5652 w
+(the) 2941 5652 w
+(knitting) 3094 5652 w
+(equation) 3437 5652 w
+(to) 3812 5652 w
+(fill) 3921 5652 w
+(in) 4069 5652 w
+(missing) 4178 5652 w
+(values) 4521 5652 w
+(in) 4808 5652 w
+(the) 4918 5652 w
+10 /Times-Italic f
+(A) 720 5772 w
+10 /Times-Roman f
+('s.) 781 5772 w
+10 /Times-Bold f
+(5.) 720 6012 w
+(Recovering some key bytes) 845 6012 w
+10 /Times-Roman f
+(Once) 970 6168 w
+10 /Times-Italic f
+(R) 1205 6168 w
+10 /Times-Roman f
+(and) 1291 6168 w
+10 /Times-Italic f
+(S) 1460 6168 w
+10 /Times-Roman f
+(are known, it is possible to determine the first 2 letters of the key the user typed.) 1535 6168 w
+(At) 4792 6168 w
+(the) 4918 6168 w
+(same time we discover which of the 256 equivalent \() 720 6288 w
+10 /Times-Italic f
+(R) 2838 6288 w
+10 /Times-Roman f
+(,) 2907 6288 w
+10 /Times-Italic f
+(S) 2940 6288 w
+10 /Times-Roman f
+(\) pairs was generated by) 2998 6288 w
+10 /Times-Italic f
+(crypt) 3992 6288 w
+10 /Times-Roman f
+(.) 4197 6288 w
+10 /Times-Bold f
+(5.1.) 720 6528 w
+(How) 920 6528 w
+10 /Times-Italic f
+(R) 1145 6528 w
+10 /Times-Bold f
+(and) 1231 6528 w
+10 /Times-Italic f
+(S) 1418 6528 w
+10 /Times-Bold f
+(are Built) 1493 6528 w
+10 /Times-Roman f
+(The) 970 6684 w
+(user's) 1158 6684 w
+(key) 1430 6684 w
+(is) 1608 6684 w
+(transformed) 1709 6684 w
+(into) 2225 6684 w
+(13) 2415 6684 w
+(bytes) 2549 6684 w
+10 /Times-Italic f
+(b) 2794 6684 w
+7 /Times-Roman f
+(0) 2855 6704 w
+10 /Times-Roman f
+(,) 2898 6684 w
+10 /Times-Italic f
+(b) 2957 6684 w
+7 /Times-Roman f
+(1) 3018 6704 w
+10 /Times-Roman f
+(,) 3061 6684 w
+(...,) 3120 6684 w
+10 /Times-Italic f
+(b) 3254 6684 w
+7 /Times-Roman f
+(12) 3315 6704 w
+10 /Times-Roman f
+(by) 3427 6684 w
+(the) 3561 6684 w
+(same) 3717 6684 w
+(subroutine) 3956 6684 w
+(used) 4412 6684 w
+(to) 4629 6684 w
+(encrypt) 4741 6684 w
+9 /Times-Roman f
+(UNIX) 720 6804 w
+10 /Times-Roman f
+(passwords.) 976 6804 w
+10 /Times-Italic f
+(b) 1473 6804 w
+7 /Times-Roman f
+(0) 1534 6824 w
+10 /Times-Roman f
+(and) 1608 6804 w
+10 /Times-Italic f
+(b) 1783 6804 w
+7 /Times-Roman f
+(1) 1844 6824 w
+10 /Times-Roman f
+(can) 1918 6804 w
+(be) 2086 6804 w
+(any) 2210 6804 w
+(characters) 2384 6804 w
+(the) 2817 6804 w
+(user) 2969 6804 w
+(can) 3165 6804 w
+(type,) 3333 6804 w
+(so) 3560 6804 w
+(0) 3679 6804 w
+10 /LucidaSansUnicode22 f
+(f) 3737 6804 w
+10 /Times-Italic f
+(b) 3825 6804 w
+7 /Times-Roman f
+(0) 3886 6824 w
+10 /Times-Roman f
+(,) 3937 6804 w
+10 /Times-Italic f
+(b) 3970 6804 w
+7 /Times-Roman f
+(1) 4031 6824 w
+10 /Times-Italic f
+(<) 4090 6804 w
+10 /Times-Roman f
+(128,) 4174 6804 w
+(while) 4379 6804 w
+(the) 4631 6804 w
+(rest) 4783 6804 w
+(of) 4957 6804 w
+(the) 720 6924 w
+10 /Times-Italic f
+(b) 867 6924 w
+7 /Times-Italic f
+(i) 928 6944 w
+10 /Times-Roman f
+(are restricted to the 64 characters `/', `.', `0', ..., `9', 'a', ..., 'z', `A', ..., `Z'.) 981 6924 w
+(From) 970 7080 w
+(these) 1213 7080 w
+(bytes) 1444 7080 w
+(the) 1681 7080 w
+(program) 1829 7080 w
+(builds) 2193 7080 w
+(various) 2464 7080 w
+(pseudo\255random) 2784 7080 w
+(numbers) 3431 7080 w
+(from) 3801 7080 w
+(which) 4022 7080 w
+(it) 4293 7080 w
+(constructs) 4376 7080 w
+10 /Times-Italic f
+(R) 4808 7080 w
+10 /Times-Roman f
+(and) 4896 7080 w
+10 /Times-Italic f
+(S) 720 7200 w
+10 /Times-Roman f
+(.) 770 7200 w
+(The details are a bit tedious.) 845 7200 w
+(First mix all the) 2021 7200 w
+10 /Times-Italic f
+(b) 2683 7200 w
+7 /Times-Italic f
+(i) 2744 7220 w
+10 /Times-Roman f
+(together:) 2797 7200 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 4 4
+%%Page: 5 5
+/saveobj save def
+mark
+5 pagesetup
+10 /Times-Roman f
+(\255 4 \255) 2797 480 w
+10 /Times-Italic f
+(x) 1080 900 w
+7 /Times-Roman f
+(0) 1135 920 w
+10 /S f
+(=) 1227 900 w
+10 /Times-Roman f
+(123) 1331 900 w
+10 /Times-Italic f
+(x) 1080 1020 w
+7 /Times-Italic f
+(i ) 1135 1040 w
+7 /S f
+(+) 1171 1040 w
+7 /Times-Roman f
+(1) 1221 1040 w
+10 /S f
+(=) 1313 1020 w
+10 /Times-Italic f
+(x) 1417 1020 w
+7 /Times-Italic f
+(i) 1472 1040 w
+10 /Times-Italic f
+(b) 1508 1020 w
+7 /Times-Italic f
+(i) 1569 1040 w
+10 /S f
+(+) 1613 1020 w
+10 /Times-Italic f
+(i) 1684 1020 w
+10 /Times-Roman f
+(0) 1830 1020 w
+10 /LucidaSansUnicode22 f
+(f) 1888 1020 w
+10 /Times-Italic f
+(i) 1976 1020 w
+(<) 2028 1020 w
+10 /Times-Roman f
+(12.) 2112 1020 w
+(Here arithmetic is done modulo 2) 720 1200 w
+7 /Times-Roman f
+(32) 2065 1160 w
+10 /Times-Roman f
+(, and) 2143 1200 w
+10 /Times-Italic f
+10 /S f
+(-) 2362 1200 w
+10 /Times-Roman f
+(2) 2433 1200 w
+7 /Times-Roman f
+(31) 2488 1160 w
+10 /LucidaSansUnicode22 f
+(f) 2574 1200 w
+10 /Times-Italic f
+(x) 2662 1200 w
+7 /Times-Italic f
+(i) 2717 1220 w
+10 /Times-Italic f
+(<) 2761 1200 w
+10 /Times-Roman f
+(2) 2845 1200 w
+7 /Times-Roman f
+(31) 2900 1160 w
+10 /Times-Roman f
+(.) 2978 1200 w
+(Now compute a sequence of) 3053 1200 w
+10 /Times-Italic f
+(s) 4208 1200 w
+10 /Times-Roman f
+('s:) 4247 1200 w
+10 /Times-Italic f
+(s) 1080 1380 w
+7 /S f
+(-) 1130 1400 w
+7 /Times-Roman f
+(1) 1180 1400 w
+10 /S f
+(=) 1272 1380 w
+10 /Times-Italic f
+(x) 1376 1380 w
+7 /Times-Roman f
+(0) 1431 1400 w
+10 /Times-Italic f
+(s) 1080 1500 w
+7 /Times-Italic f
+(i) 1130 1520 w
+10 /S f
+(=) 1207 1500 w
+10 /Times-Roman f
+(5) 1311 1500 w
+10 /Times-Italic f
+(s) 1369 1500 w
+7 /Times-Italic f
+(i ) 1419 1520 w
+7 /S f
+(-) 1455 1520 w
+7 /Times-Roman f
+(1) 1505 1520 w
+10 /S f
+(+) 1564 1500 w
+10 /Times-Italic f
+(b) 1635 1500 w
+7 /Times-Italic f
+(i) 1696 1520 w
+10 /Times-Roman f
+(0) 1830 1500 w
+10 /LucidaSansUnicode22 f
+(f) 1888 1500 w
+10 /Times-Italic f
+(i) 1976 1500 w
+(<) 2028 1500 w
+10 /Times-Roman f
+(256.) 2112 1500 w
+(Here) 720 1680 w
+10 /Times-Italic f
+(s) 949 1680 w
+7 /Times-Italic f
+(i) 999 1700 w
+10 /Times-Roman f
+(is) 1063 1680 w
+(computed) 1166 1680 w
+(modulo) 1596 1680 w
+(2) 1938 1680 w
+7 /Times-Roman f
+(32) 1993 1640 w
+10 /Times-Roman f
+(,) 2071 1680 w
+10 /S f
+(-) 2133 1680 w
+10 /Times-Roman f
+(2) 2204 1680 w
+7 /Times-Roman f
+(31) 2259 1640 w
+10 /LucidaSansUnicode22 f
+(f) 2345 1680 w
+10 /Times-Italic f
+(s) 2433 1680 w
+7 /Times-Italic f
+(i) 2483 1700 w
+10 /Times-Italic f
+(<) 2527 1680 w
+10 /Times-Roman f
+(2) 2611 1680 w
+7 /Times-Roman f
+(31) 2666 1640 w
+10 /Times-Roman f
+(,) 2744 1680 w
+(and) 2806 1680 w
+(the) 2987 1680 w
+(subscript) 3146 1680 w
+(on) 3544 1680 w
+10 /Times-Italic f
+(b) 3681 1680 w
+10 /Times-Roman f
+(is) 3768 1680 w
+(evaluated) 3872 1680 w
+(modulo) 4291 1680 w
+(13.) 4634 1680 w
+(Next,) 4821 1680 w
+(compute some) 720 1800 w
+10 /Times-Italic f
+(r) 1325 1800 w
+10 /Times-Roman f
+('s:) 1364 1800 w
+10 /Times-Italic f
+(r) 1080 1980 w
+7 /Times-Italic f
+(i) 1130 2000 w
+10 /LucidaSansUnicode22 f
+(a) 1199 1980 w
+10 /Times-Italic f
+(s) 1320 1980 w
+7 /Times-Italic f
+(i) 1370 2000 w
+10 /Times-Roman f
+(\() 1439 1980 w
+(mod) 1480 1980 w
+(65521) 1699 1980 w
+10 /LucidaSansUnicode22 f
+(\036) 1957 1980 w
+10 /Times-Roman f
+(\) ,) 2059 1980 w
+(where) 720 2160 w
+(the) 994 2160 w
+(peculiar) 1147 2160 w
+(notation) 1499 2160 w
+(means) 1858 2160 w
+(that) 2144 2160 w
+10 /Times-Italic f
+(r) 2325 2160 w
+7 /Times-Italic f
+(i) 2375 2180 w
+10 /Times-Roman f
+(has) 2434 2160 w
+(the) 2598 2160 w
+(same) 2751 2160 w
+(sign) 2987 2160 w
+(as) 3185 2160 w
+10 /Times-Italic f
+(s) 3299 2160 w
+7 /Times-Italic f
+(i) 3349 2180 w
+10 /Times-Roman f
+(and) 3408 2160 w
+10 /S f
+(-) 3583 2160 w
+10 /Times-Roman f
+(65520) 3654 2160 w
+10 /LucidaSansUnicode22 f
+(f) 3912 2160 w
+10 /Times-Italic f
+(r) 4000 2160 w
+7 /Times-Italic f
+(i) 4050 2180 w
+10 /LucidaSansUnicode22 f
+(f) 4086 2160 w
+10 /Times-Roman f
+(65520.) 4174 2160 w
+(Whew.) 4505 2160 w
+(Now) 4846 2160 w
+(compute) 720 2280 w
+10 /Times-Italic f
+(u) 1080 2460 w
+7 /Times-Italic f
+(i) 1141 2480 w
+10 /LucidaSansUnicode22 f
+(a) 1210 2460 w
+10 /Times-Italic f
+(r) 1331 2460 w
+7 /Times-Italic f
+(i) 1381 2480 w
+10 /Times-Roman f
+(\() 1450 2460 w
+(mod) 1491 2460 w
+(256) 1710 2460 w
+(\),) 1868 2460 w
+(0) 2080 2460 w
+10 /LucidaSansUnicode22 f
+(f) 2138 2460 w
+10 /Times-Italic f
+(u) 2226 2460 w
+7 /Times-Italic f
+(i) 2287 2480 w
+10 /Times-Italic f
+(<) 2331 2460 w
+10 /Times-Roman f
+(256,) 2415 2460 w
+10 /Times-Italic f
+(v) 1080 2580 w
+7 /Times-Italic f
+(i) 1135 2600 w
+10 /LucidaSansUnicode22 f
+(a) 1204 2580 w
+10 /Times-Italic f
+(r) 1325 2580 w
+7 /Times-Italic f
+(i) 1375 2600 w
+10 /Times-Italic f
+(/) 1411 2580 w
+10 /Times-Roman f
+(256) 1447 2580 w
+(\() 1638 2580 w
+(mod) 1679 2580 w
+(256) 1898 2580 w
+(\),) 2056 2580 w
+(0) 2330 2580 w
+10 /LucidaSansUnicode22 f
+(f) 2388 2580 w
+10 /Times-Italic f
+(v) 2476 2580 w
+7 /Times-Italic f
+(i) 2531 2600 w
+10 /Times-Italic f
+(<) 2575 2580 w
+10 /Times-Roman f
+(256.) 2659 2580 w
+(Alternately,) 720 2760 w
+(write) 1220 2760 w
+10 /Times-Italic f
+(r) 1451 2760 w
+7 /Times-Italic f
+(i) 1501 2780 w
+10 /Times-Roman f
+(in) 1555 2760 w
+(2's) 1659 2760 w
+(complement) 1807 2760 w
+(binary.) 2327 2760 w
+(Then) 2658 2760 w
+10 /Times-Italic f
+(u) 2889 2760 w
+7 /Times-Italic f
+(i) 2950 2780 w
+10 /Times-Roman f
+(is) 3004 2760 w
+(the) 3097 2760 w
+(number) 3245 2760 w
+(given) 3576 2760 w
+(by) 3824 2760 w
+(the) 3950 2760 w
+(low) 4098 2760 w
+(order) 4275 2760 w
+(8) 4512 2760 w
+(bits,) 4589 2760 w
+(and) 4786 2760 w
+10 /Times-Italic f
+(v) 4957 2760 w
+7 /Times-Italic f
+(i) 5012 2780 w
+10 /Times-Roman f
+(is the next 8 bits.) 720 2880 w
+(Initialize an array representing) 970 3036 w
+10 /Times-Italic f
+(R) 2216 3036 w
+10 /Times-Roman f
+(\() 2285 3036 w
+10 /Times-Italic f
+(i) 2326 3036 w
+10 /Times-Roman f
+(\) so that) 2362 3036 w
+10 /Times-Italic f
+(R) 2709 3036 w
+10 /Times-Roman f
+(\() 2778 3036 w
+10 /Times-Italic f
+(i) 2819 3036 w
+10 /Times-Roman f
+(\)) 2855 3036 w
+10 /S f
+(=) 2904 3036 w
+10 /Times-Italic f
+(i) 2975 3036 w
+10 /Times-Roman f
+(for all) 3028 3036 w
+10 /Times-Italic f
+(i) 3294 3036 w
+10 /Times-Roman f
+(.) 3322 3036 w
+(Then compute) 3397 3036 w
+10 /Times-Italic f
+(R) 3996 3036 w
+10 /Times-Roman f
+(\() 4065 3036 w
+10 /Times-Italic f
+(i) 4106 3036 w
+10 /Times-Roman f
+(\) from the) 4142 3036 w
+10 /Times-Italic f
+(x) 4566 3036 w
+7 /Times-Italic f
+(i) 4621 3056 w
+10 /Times-Roman f
+(by doing) 4674 3036 w
+10 /Times-Italic f
+(x) 1080 3216 w
+7 /Times-Italic f
+(i) 1135 3236 w
+10 /LucidaSansUnicode22 f
+(a) 1204 3216 w
+10 /Times-Italic f
+(u) 1325 3216 w
+7 /Times-Italic f
+(i) 1386 3236 w
+10 /Times-Roman f
+(\() 1455 3216 w
+(mod) 1496 3216 w
+10 /Times-Italic f
+(i) 1715 3216 w
+10 /S f
+(+) 1767 3216 w
+10 /Times-Roman f
+(1) 1838 3216 w
+(\),) 1896 3216 w
+(0) 2080 3216 w
+10 /LucidaSansUnicode22 f
+(f) 2138 3216 w
+10 /Times-Italic f
+(x) 2226 3216 w
+7 /Times-Italic f
+(i) 2281 3236 w
+10 /Times-Italic f
+(<) 2325 3216 w
+(i) 2409 3216 w
+10 /S f
+(+) 2461 3216 w
+10 /Times-Roman f
+(1) 2532 3216 w
+(swap) 1080 3336 w
+10 /Times-Italic f
+(R) 1310 3336 w
+10 /Times-Roman f
+(\() 1379 3336 w
+(255) 1420 3336 w
+10 /S f
+(-) 1586 3336 w
+10 /Times-Italic f
+(i) 1657 3336 w
+10 /Times-Roman f
+(\) and) 1693 3336 w
+10 /Times-Italic f
+(R) 1920 3336 w
+10 /Times-Roman f
+(\() 1989 3336 w
+10 /Times-Italic f
+(x) 2030 3336 w
+7 /Times-Italic f
+(i) 2085 3356 w
+10 /Times-Roman f
+(\),) 2121 3336 w
+(successively) 720 3516 w
+(for) 1250 3516 w
+10 /Times-Italic f
+(i) 1397 3516 w
+10 /S f
+(=) 1449 3516 w
+10 /Times-Roman f
+(0,) 1520 3516 w
+10 /Times-Italic f
+(i) 1626 3516 w
+10 /S f
+(=) 1678 3516 w
+10 /Times-Roman f
+(1,) 1749 3516 w
+(...,) 1855 3516 w
+10 /Times-Italic f
+(i) 1986 3516 w
+10 /S f
+(=) 2038 3516 w
+10 /Times-Roman f
+(255.) 2109 3516 w
+(If) 2340 3516 w
+(the) 2437 3516 w
+10 /Times-Italic f
+(r) 2590 3516 w
+7 /Times-Italic f
+(i) 2640 3536 w
+10 /Times-Roman f
+(were) 2699 3516 w
+(uniformly) 2923 3516 w
+(distributed) 3354 3516 w
+(over) 3813 3516 w
+(a) 4022 3516 w
+(suitable) 4098 3516 w
+(set) 4441 3516 w
+(of) 4584 3516 w
+(integers,) 4699 3516 w
+(then all 256! possible) 720 3636 w
+10 /Times-Italic f
+(R) 1603 3636 w
+10 /Times-Roman f
+(would be equally likely.) 1689 3636 w
+(Initialize an array representing) 970 3792 w
+10 /Times-Italic f
+(S) 2216 3792 w
+10 /Times-Roman f
+(\() 2274 3792 w
+10 /Times-Italic f
+(i) 2315 3792 w
+10 /Times-Roman f
+(\) to) 2351 3792 w
+10 /Times-Italic f
+(S) 2512 3792 w
+10 /Times-Roman f
+(\() 2570 3792 w
+10 /Times-Italic f
+(i) 2611 3792 w
+10 /Times-Roman f
+(\)) 2647 3792 w
+10 /S f
+(=) 2696 3792 w
+10 /Times-Roman f
+(0 for all) 2767 3792 w
+10 /Times-Italic f
+(i) 3108 3792 w
+10 /Times-Roman f
+(.) 3136 3792 w
+(Then for) 3211 3792 w
+10 /Times-Italic f
+(i) 3582 3792 w
+10 /S f
+(=) 3634 3792 w
+10 /Times-Roman f
+(0,) 3705 3792 w
+10 /Times-Italic f
+(i) 3805 3792 w
+10 /S f
+(=) 3857 3792 w
+10 /Times-Roman f
+(1, ...,) 3928 3792 w
+10 /Times-Italic f
+(i) 4153 3792 w
+10 /S f
+(=) 4205 3792 w
+10 /Times-Roman f
+(255, successively,) 4276 3792 w
+(If) 1080 3972 w
+10 /Times-Italic f
+(S) 1171 3972 w
+10 /Times-Roman f
+(\() 1229 3972 w
+(255) 1270 3972 w
+10 /S f
+(-) 1436 3972 w
+10 /Times-Italic f
+(i) 1507 3972 w
+10 /Times-Roman f
+(\)) 1543 3972 w
+10 /LucidaSansUnicode22 f
+(`) 1592 3972 w
+10 /Times-Roman f
+(0, do nothing.) 1680 3972 w
+(Otherwise, let) 1080 4092 w
+10 /Times-Italic f
+(y) 1330 4212 w
+7 /Times-Italic f
+(i) 1385 4232 w
+10 /LucidaSansUnicode22 f
+(a) 1454 4212 w
+10 /Times-Italic f
+(v) 1575 4212 w
+7 /Times-Italic f
+(i) 1630 4232 w
+10 /Times-Roman f
+(\() 1699 4212 w
+(mod) 1740 4212 w
+10 /Times-Italic f
+(i) 1959 4212 w
+10 /Times-Roman f
+(\),) 1995 4212 w
+(and then) 1080 4332 w
+(while) 1330 4452 w
+10 /Times-Italic f
+(S) 1577 4452 w
+10 /Times-Roman f
+(\() 1635 4452 w
+10 /Times-Italic f
+(y) 1676 4452 w
+7 /Times-Italic f
+(i) 1731 4472 w
+10 /Times-Roman f
+(\)) 1767 4452 w
+10 /S f
+(=) 1816 4452 w
+10 /Times-Roman f
+(0) 1887 4452 w
+10 /Times-Italic f
+(y) 1580 4572 w
+7 /Times-Italic f
+(i) 1635 4592 w
+10 /LucidaSansUnicode22 f
+(a) 1704 4572 w
+10 /Times-Italic f
+(y) 1825 4572 w
+7 /Times-Italic f
+(i) 1880 4592 w
+10 /S f
+(+) 1924 4572 w
+10 /Times-Roman f
+(1) 1995 4572 w
+(\() 2086 4572 w
+(mod) 2127 4572 w
+10 /Times-Italic f
+(i) 2346 4572 w
+10 /Times-Roman f
+(\)) 2382 4572 w
+(then) 1330 4692 w
+10 /Times-Italic f
+(S) 1527 4692 w
+10 /Times-Roman f
+(\() 1585 4692 w
+(255) 1626 4692 w
+10 /S f
+(-) 1792 4692 w
+10 /Times-Italic f
+(i) 1863 4692 w
+10 /Times-Roman f
+(\)) 1899 4692 w
+10 /S f
+(=) 1948 4692 w
+10 /Times-Italic f
+(y) 2019 4692 w
+7 /Times-Italic f
+(i) 2074 4712 w
+10 /Times-Roman f
+(, and) 2102 4692 w
+10 /Times-Italic f
+(S) 2321 4692 w
+10 /Times-Roman f
+(\() 2379 4692 w
+10 /Times-Italic f
+(y) 2420 4692 w
+7 /Times-Italic f
+(i) 2475 4712 w
+10 /Times-Roman f
+(\)) 2511 4692 w
+10 /S f
+(=) 2560 4692 w
+10 /Times-Roman f
+(255) 2631 4692 w
+10 /S f
+(-) 2797 4692 w
+10 /Times-Italic f
+(i) 2868 4692 w
+10 /Times-Roman f
+(.) 2896 4692 w
+(Then) 720 4872 w
+10 /Times-Italic f
+(S) 950 4872 w
+10 /Times-Roman f
+(is the product of 128 2\255cycles.) 1025 4872 w
+10 /Times-Bold f
+(5.2.) 720 5112 w
+(Finding) 920 5112 w
+10 /Times-Italic f
+(k) 1280 5112 w
+10 /Times-Roman f
+(Decrypting) 970 5268 w
+(a) 1449 5268 w
+(file) 1523 5268 w
+(produces) 1687 5268 w
+(256) 2078 5268 w
+(cryptographically) 2259 5268 w
+(equivalent) 2994 5268 w
+(possibilities) 3441 5268 w
+(for) 3951 5268 w
+(\() 4098 5268 w
+10 /Times-Italic f
+(R) 4139 5268 w
+10 /Times-Roman f
+(,) 4208 5268 w
+10 /Times-Italic f
+(S) 4241 5268 w
+10 /Times-Roman f
+(\).) 4299 5268 w
+(It) 4413 5268 w
+(is) 4505 5268 w
+(possible) 4603 5268 w
+(to) 4962 5268 w
+(determine which) 720 5388 w
+10 /Times-Italic f
+(crypt) 1413 5388 w
+10 /Times-Roman f
+(used and to recover the) 1643 5388 w
+10 /Times-Italic f
+(b) 2593 5388 w
+7 /Times-Italic f
+(i) 2654 5408 w
+10 /Times-Roman f
+(all at once.) 2707 5388 w
+(First suppose we knew the values of all the) 970 5544 w
+10 /Times-Italic f
+(r) 2715 5544 w
+7 /Times-Italic f
+(i) 2765 5564 w
+10 /Times-Roman f
+(.) 2793 5544 w
+(Then) 2868 5544 w
+10 /Times-Italic f
+(s) 1080 5724 w
+7 /Times-Italic f
+(i) 1130 5744 w
+10 /S f
+(=) 1207 5724 w
+10 /Times-Roman f
+(65521) 1311 5724 w
+10 /Times-Italic f
+(c) 1569 5724 w
+7 /Times-Italic f
+(i) 1624 5744 w
+10 /S f
+(+) 1668 5724 w
+10 /Times-Italic f
+(r) 1739 5724 w
+7 /Times-Italic f
+(i) 1789 5744 w
+10 /Times-Roman f
+(,) 1817 5724 w
+10 /S f
+(-) 2080 5724 w
+10 /Times-Roman f
+(65521) 2151 5724 w
+10 /LucidaSansUnicode22 f
+(f) 2409 5724 w
+10 /Times-Italic f
+(c) 2497 5724 w
+7 /Times-Italic f
+(i) 2552 5744 w
+10 /LucidaSansUnicode22 f
+(f) 2588 5724 w
+10 /Times-Roman f
+(65521) 2676 5724 w
+10 /Times-Italic f
+(s) 1080 5844 w
+7 /Times-Italic f
+(i ) 1130 5864 w
+7 /S f
+(+) 1166 5864 w
+7 /Times-Roman f
+(1) 1216 5864 w
+10 /S f
+(=) 1308 5844 w
+10 /Times-Roman f
+(5) 1412 5844 w
+10 /Times-Italic f
+(s) 1470 5844 w
+7 /Times-Italic f
+(i) 1520 5864 w
+10 /S f
+(+) 1564 5844 w
+10 /Times-Italic f
+(b) 1635 5844 w
+7 /Times-Italic f
+(i) 1696 5864 w
+10 /S f
+(+) 1740 5844 w
+10 /Times-Italic f
+(M) 1811 5844 w
+7 /Times-Italic f
+(i) 1905 5864 w
+10 /Times-Roman f
+(2) 1941 5844 w
+7 /Times-Roman f
+(32) 1996 5804 w
+10 /Times-Roman f
+(,) 2074 5844 w
+10 /S f
+(-) 2330 5844 w
+10 /Times-Roman f
+(2) 2401 5844 w
+10 /LucidaSansUnicode22 f
+(f) 2459 5844 w
+10 /Times-Italic f
+(M) 2547 5844 w
+7 /Times-Italic f
+(i) 2641 5864 w
+10 /LucidaSansUnicode22 f
+(f) 2677 5844 w
+10 /Times-Roman f
+(2.) 2765 5844 w
+(The bounds on) 720 6024 w
+10 /Times-Italic f
+(c) 1339 6024 w
+10 /Times-Roman f
+(and) 1408 6024 w
+10 /Times-Italic f
+(M) 1577 6024 w
+10 /Times-Roman f
+(follow from the bounds on) 1685 6024 w
+10 /Times-Italic f
+(s) 2776 6024 w
+10 /Times-Roman f
+(and) 2840 6024 w
+10 /Times-Italic f
+(b) 3009 6024 w
+10 /Times-Roman f
+(.) 3059 6024 w
+(Substituting and rearranging gives) 3134 6024 w
+10 /Times-Italic f
+(b) 1080 6204 w
+7 /Times-Italic f
+(i) 1141 6224 w
+10 /S f
+(=) 1218 6204 w
+10 /Times-Italic f
+(r) 1322 6204 w
+7 /Times-Italic f
+(i ) 1372 6224 w
+7 /S f
+(+) 1408 6224 w
+7 /Times-Roman f
+(1) 1458 6224 w
+10 /S f
+(-) 1517 6204 w
+10 /Times-Roman f
+(5) 1588 6204 w
+10 /Times-Italic f
+(r) 1646 6204 w
+7 /Times-Italic f
+(i) 1696 6224 w
+10 /S f
+(-) 1740 6204 w
+10 /Times-Roman f
+(225) 1811 6204 w
+10 /Times-Italic f
+(M) 1969 6204 w
+7 /Times-Italic f
+(i) 2063 6224 w
+10 /S f
+(+) 2107 6204 w
+10 /Times-Roman f
+(65521) 2178 6204 w
+(\() 2436 6204 w
+10 /Times-Italic f
+(c) 2477 6204 w
+7 /Times-Italic f
+(i ) 2532 6224 w
+7 /S f
+(+) 2568 6224 w
+7 /Times-Roman f
+(1) 2618 6224 w
+10 /S f
+(-) 2677 6204 w
+10 /Times-Roman f
+(5) 2748 6204 w
+10 /Times-Italic f
+(c) 2806 6204 w
+7 /Times-Italic f
+(i) 2861 6224 w
+10 /S f
+(-) 2905 6204 w
+10 /Times-Roman f
+(65551) 2976 6204 w
+10 /Times-Italic f
+(M) 3234 6204 w
+7 /Times-Italic f
+(i) 3328 6224 w
+10 /Times-Roman f
+(\).) 3364 6204 w
+(Consider) 720 6384 w
+(this) 1107 6384 w
+(equation) 1278 6384 w
+(modulo) 1648 6384 w
+(65521.) 1980 6384 w
+10 /Times-Italic f
+(b) 2306 6384 w
+10 /Times-Roman f
+(must) 2382 6384 w
+(be) 2603 6384 w
+(ascii,) 2723 6384 w
+(at) 2957 6384 w
+(least,) 3055 6384 w
+(there) 3289 6384 w
+(are) 3514 6384 w
+(only) 3661 6384 w
+(5) 3865 6384 w
+(possible) 3942 6384 w
+(values) 4297 6384 w
+(for) 4579 6384 w
+10 /Times-Italic f
+(M) 4722 6384 w
+7 /Times-Italic f
+(i) 4816 6404 w
+10 /Times-Roman f
+(,) 4844 6384 w
+(and) 4896 6384 w
+(the) 720 6504 w
+10 /Times-Italic f
+(r) 872 6504 w
+10 /Times-Roman f
+('s) 911 6504 w
+(are) 1013 6504 w
+(known.) 1164 6504 w
+(Bogus) 1516 6504 w
+(values) 1802 6504 w
+(are) 2087 6504 w
+(unlikely) 2238 6504 w
+(to) 2596 6504 w
+(give) 2704 6504 w
+(acceptable) 2905 6504 w
+10 /Times-Italic f
+(b) 3354 6504 w
+10 /Times-Roman f
+('s.) 3404 6504 w
+(Also,) 3555 6504 w
+(each) 3798 6504 w
+(value) 4009 6504 w
+(of) 4254 6504 w
+10 /Times-Italic f
+(b) 4366 6504 w
+7 /Times-Italic f
+(i) 4427 6524 w
+10 /Times-Roman f
+(is) 4484 6504 w
+(constrained) 4580 6504 w
+(by values of) 720 6624 w
+10 /Times-Italic f
+(i) 1233 6624 w
+10 /Times-Roman f
+(13 apart.) 1286 6624 w
+(So knowing the) 1685 6624 w
+10 /Times-Italic f
+(r) 2338 6624 w
+7 /Times-Italic f
+(i) 2388 6644 w
+10 /Times-Roman f
+(will determine the) 2441 6624 w
+10 /Times-Italic f
+(b) 3193 6624 w
+7 /Times-Italic f
+(i) 3254 6644 w
+10 /Times-Roman f
+(.) 3282 6624 w
+(For the first part, we try each of the 256 possibilities in turn, assuming the current ones are) 970 6780 w
+(the) 4616 6780 w
+(correct) 4764 6780 w
+10 /Times-Italic f
+(R) 720 6900 w
+10 /Times-Roman f
+(and) 811 6900 w
+10 /Times-Italic f
+(S) 985 6900 w
+10 /Times-Roman f
+(,) 1035 6900 w
+(and) 1090 6900 w
+(attempting) 1264 6900 w
+(to) 1722 6900 w
+(reconstruct) 1829 6900 w
+(all) 2301 6900 w
+(the) 2430 6900 w
+10 /Times-Italic f
+(b) 2581 6900 w
+10 /Times-Roman f
+('s.) 2631 6900 w
+(In) 2782 6900 w
+(practice,) 2894 6900 w
+(for) 3263 6900 w
+(the) 3408 6900 w
+(255) 3559 6900 w
+(incorrect) 3738 6900 w
+(values) 4121 6900 w
+(of) 4405 6900 w
+10 /Times-Italic f
+(k) 4517 6900 w
+10 /Times-Roman f
+(the) 4590 6900 w
+(process) 4741 6900 w
+(below fails to construct a consistent set of) 720 7020 w
+10 /Times-Italic f
+(b) 2418 7020 w
+10 /Times-Roman f
+('s, and so excludes all but the correct) 2468 7020 w
+10 /Times-Italic f
+(k) 3973 7020 w
+10 /Times-Roman f
+(.) 4017 7020 w
+(From) 970 7176 w
+(the) 1215 7176 w
+(trial) 1365 7176 w
+10 /Times-Italic f
+(R) 1554 7176 w
+10 /Times-Roman f
+(it) 1643 7176 w
+(is) 1727 7176 w
+(easy) 1822 7176 w
+(to) 2027 7176 w
+(read) 2133 7176 w
+(off) 2332 7176 w
+(the) 2476 7176 w
+10 /Times-Italic f
+(x) 2626 7176 w
+7 /Times-Italic f
+(i) 2681 7196 w
+10 /Times-Roman f
+(which) 2737 7176 w
+(generated) 3009 7176 w
+(it.) 3424 7176 w
+(First,) 3558 7176 w
+10 /Times-Italic f
+(x) 3795 7176 w
+7 /Times-Roman f
+(255) 3850 7196 w
+10 /S f
+(=) 3979 7176 w
+10 /Times-Italic f
+(R) 4050 7176 w
+10 /Times-Roman f
+(\() 4119 7176 w
+(255) 4160 7176 w
+(\).) 4318 7176 w
+(Then) 4429 7176 w
+(modify) 4662 7176 w
+10 /Times-Italic f
+(R) 4979 7176 w
+10 /Times-Roman f
+(by) 720 7296 w
+(making) 865 7296 w
+10 /Times-Italic f
+(R) 1210 7296 w
+10 /Times-Roman f
+(\() 1279 7296 w
+10 /Times-Italic f
+(x) 1320 7296 w
+7 /Times-Roman f
+(255) 1375 7316 w
+10 /Times-Roman f
+(\)) 1496 7296 w
+10 /S f
+(=) 1545 7296 w
+10 /Times-Italic f
+(R) 1616 7296 w
+10 /Times-Roman f
+(\() 1685 7296 w
+(255) 1726 7296 w
+(\),) 1884 7296 w
+(and) 1987 7296 w
+(proceed) 2176 7296 w
+(by) 2536 7296 w
+(induction.) 2681 7296 w
+(Here's) 3154 7296 w
+(an) 3464 7296 w
+(example,) 3602 7296 w
+(with) 4009 7296 w
+(a) 4231 7296 w
+(permutation) 4319 7296 w
+(on) 4846 7296 w
+(8) 4990 7296 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 5 5
+%%Page: 6 6
+/saveobj save def
+mark
+6 pagesetup
+10 /Times-Roman f
+(\255 5 \255) 2797 480 w
+(things:) 720 840 w
+10 /S f
+(_) 1932 920 w
+(_____________________________________) 1977 920 w
+10 /Times-Italic f
+(k) 2057 1040 w
+10 /Times-Roman f
+(0) 2327 1040 w
+(1) 2527 1040 w
+(2) 2727 1040 w
+(3) 2927 1040 w
+(4) 3127 1040 w
+(5) 3327 1040 w
+(6) 3527 1040 w
+(7) 3727 1040 w
+10 /Times-Italic f
+(R) 1982 1160 w
+10 /Times-Roman f
+(\() 2051 1160 w
+10 /Times-Italic f
+(k) 2092 1160 w
+10 /Times-Roman f
+(\)) 2144 1160 w
+(2) 2327 1160 w
+(6) 2527 1160 w
+(5) 2727 1160 w
+(7) 2927 1160 w
+(0) 3127 1160 w
+(1) 3327 1160 w
+(3) 3527 1160 w
+(4) 3727 1160 w
+10 /S f
+(_) 1932 1180 w
+(_____________________________________) 1977 1180 w
+(\347) 1932 1180 w
+(\347) 1932 1120 w
+(\347) 1932 1020 w
+(\347) 2252 1180 w
+(\347) 2252 1120 w
+(\347) 2252 1020 w
+(\347) 3827 1180 w
+(\347) 3827 1120 w
+(\347) 3827 1020 w
+10 /Times-Italic f
+(R) 720 1360 w
+10 /Times-Roman f
+(\() 789 1360 w
+(7) 830 1360 w
+(\)) 888 1360 w
+(was) 957 1360 w
+(constructed,) 1148 1360 w
+(by) 1669 1360 w
+(the) 1805 1360 w
+(algorithm) 1963 1360 w
+(above,) 2388 1360 w
+(by) 2687 1360 w
+(switching) 2823 1360 w
+(the) 3248 1360 w
+(previous) 3406 1360 w
+(value) 3787 1360 w
+(of) 4040 1360 w
+10 /Times-Italic f
+(R) 4160 1360 w
+10 /Times-Roman f
+(\() 4229 1360 w
+(7) 4270 1360 w
+(\)) 4328 1360 w
+(with) 4398 1360 w
+(some) 4613 1360 w
+10 /Times-Italic f
+(R) 4861 1360 w
+10 /Times-Roman f
+(\() 4930 1360 w
+10 /Times-Italic f
+(i) 4971 1360 w
+10 /Times-Roman f
+(\)) 5007 1360 w
+(with) 720 1480 w
+10 /Times-Italic f
+(i) 923 1480 w
+10 /Times-Roman f
+(less than 7.) 976 1480 w
+(Hence) 1473 1480 w
+10 /Times-Italic f
+(x) 1752 1480 w
+7 /Times-Roman f
+(7) 1807 1500 w
+10 /Times-Roman f
+(is 4, and at the next step, we consider a permutation on 7 things:) 1875 1480 w
+10 /S f
+(_) 2032 1560 w
+(_________________________________) 2077 1560 w
+10 /Times-Italic f
+(k) 2157 1680 w
+10 /Times-Roman f
+(0) 2427 1680 w
+(1) 2627 1680 w
+(2) 2827 1680 w
+(3) 3027 1680 w
+(4) 3227 1680 w
+(5) 3427 1680 w
+(6) 3627 1680 w
+10 /Times-Italic f
+(R) 2082 1800 w
+10 /Times-Roman f
+(\() 2151 1800 w
+10 /Times-Italic f
+(k) 2192 1800 w
+10 /Times-Roman f
+(\)) 2244 1800 w
+(2) 2427 1800 w
+(6) 2627 1800 w
+(5) 2827 1800 w
+(4) 3027 1800 w
+(0) 3227 1800 w
+(1) 3427 1800 w
+(3) 3627 1800 w
+10 /S f
+(_) 2032 1820 w
+(_________________________________) 2077 1820 w
+(\347) 2032 1820 w
+(\347) 2032 1760 w
+(\347) 2032 1660 w
+(\347) 2352 1820 w
+(\347) 2352 1760 w
+(\347) 2352 1660 w
+(\347) 3727 1820 w
+(\347) 3727 1760 w
+(\347) 3727 1660 w
+10 /Times-Roman f
+(From) 720 2000 w
+(this) 973 2000 w
+10 /Times-Italic f
+(x) 1154 2000 w
+7 /Times-Roman f
+(6) 1209 2020 w
+10 /Times-Roman f
+(is) 1288 2000 w
+(3,) 1391 2000 w
+(and) 1502 2000 w
+(so) 1682 2000 w
+(forth.) 1807 2000 w
+(The) 2087 2000 w
+(process) 2278 2000 w
+(is) 2613 2000 w
+(just) 2716 2000 w
+(running) 2897 2000 w
+(the) 3244 2000 w
+(construction) 3402 2000 w
+(of) 3932 2000 w
+10 /Times-Italic f
+(R) 4051 2000 w
+10 /Times-Roman f
+(backwards.) 4148 2000 w
+(Note) 4660 2000 w
+(that) 4890 2000 w
+(although) 720 2120 w
+10 /Times-Italic f
+(R) 1102 2120 w
+10 /Times-Roman f
+(could) 1195 2120 w
+(plausibly) 1449 2120 w
+(be) 1848 2120 w
+(argued) 1974 2120 w
+(to) 2277 2120 w
+(be) 2387 2120 w
+(a) 2513 2120 w
+(random) 2589 2120 w
+(permutation,) 2926 2120 w
+(it) 3466 2120 w
+(is) 3554 2120 w
+(one) 3653 2120 w
+(which) 3829 2120 w
+(in) 4105 2120 w
+(no) 4215 2120 w
+(way) 4347 2120 w
+(conceals) 4544 2120 w
+(the) 4918 2120 w
+(data) 720 2240 w
+(from) 915 2240 w
+(which) 1138 2240 w
+(it) 1411 2240 w
+(was) 1497 2240 w
+(constructed.) 1682 2240 w
+(Randomness) 2222 2240 w
+(in) 2763 2240 w
+(the) 2871 2240 w
+(sense) 3023 2240 w
+(of) 3269 2240 w
+(uniform) 3382 2240 w
+(distribution) 3734 2240 w
+(is) 4226 2240 w
+(by) 4323 2240 w
+(no) 4453 2240 w
+(means) 4583 2240 w
+(syn\255) 4868 2240 w
+(onymous) 720 2360 w
+(with) 1115 2360 w
+(the) 1321 2360 w
+(intuitive) 1471 2360 w
+(meaning) 1833 2360 w
+(of) 2205 2360 w
+(not) 2316 2360 w
+(containing) 2472 2360 w
+(information.) 2922 2360 w
+(It) 3472 2360 w
+(is) 3561 2360 w
+(the) 3656 2360 w
+(latter) 3806 2360 w
+(property) 4038 2360 w
+(which) 4403 2360 w
+(is) 4674 2360 w
+(impor\255) 4768 2360 w
+(tant to cryptography.) 720 2480 w
+(A) 970 2636 w
+(similar) 1068 2636 w
+(process) 1372 2636 w
+(allows) 1697 2636 w
+(us) 1984 2636 w
+(to) 2099 2636 w
+(get) 2203 2636 w
+(some) 2351 2636 w
+(of) 2588 2636 w
+(the) 2697 2636 w
+10 /Times-Italic f
+(y) 2845 2636 w
+7 /Times-Italic f
+(i) 2900 2656 w
+10 /Times-Roman f
+(.) 2928 2636 w
+(We) 3004 2636 w
+(get) 3168 2636 w
+10 /Times-Italic f
+(y) 3317 2636 w
+7 /Times-Roman f
+(255) 3372 2656 w
+10 /Times-Roman f
+(the) 3512 2636 w
+(same) 3661 2636 w
+(way) 3893 2636 w
+(we) 4086 2636 w
+(got) 4229 2636 w
+10 /Times-Italic f
+(x) 4384 2636 w
+7 /Times-Roman f
+(255) 4439 2656 w
+10 /Times-Roman f
+(,) 4552 2636 w
+(but) 4604 2636 w
+(we) 4759 2636 w
+(can) 4902 2636 w
+(only) 720 2756 w
+(deduce) 929 2756 w
+(other) 1242 2756 w
+10 /Times-Italic f
+(y) 1478 2756 w
+7 /Times-Italic f
+(i) 1533 2776 w
+10 /Times-Roman f
+(when) 1592 2756 w
+(we) 1839 2756 w
+(are) 1986 2756 w
+(sure) 2138 2756 w
+(that) 2335 2756 w
+(neither) 2516 2756 w
+(the) 2824 2756 w
+10 /Times-Italic f
+(while) 2977 2756 w
+10 /Times-Roman f
+(step) 3225 2756 w
+(nor) 3416 2756 w
+(the) 3579 2756 w
+(do\255nothing) 3731 2756 w
+(step) 4200 2756 w
+(in) 4391 2756 w
+(the) 4499 2756 w
+(algorithm) 4651 2756 w
+(above were not executed.) 720 2876 w
+(Now) 970 3032 w
+(how) 1197 3032 w
+(close) 1402 3032 w
+(do) 1640 3032 w
+10 /Times-Italic f
+(x) 1773 3032 w
+7 /Times-Italic f
+(i) 1828 3052 w
+10 /Times-Roman f
+(and) 1889 3032 w
+10 /Times-Italic f
+(y) 2066 3032 w
+7 /Times-Italic f
+(i) 2121 3052 w
+10 /Times-Roman f
+(come) 2183 3032 w
+(to) 2433 3032 w
+(determining) 2545 3032 w
+10 /Times-Italic f
+(r) 3062 3032 w
+7 /Times-Italic f
+(i) 3112 3052 w
+10 /Times-Roman f
+(?) 3140 3032 w
+(First) 3243 3032 w
+(suppose) 3461 3032 w
+(we) 3817 3032 w
+(knew) 3967 3032 w
+10 /Times-Italic f
+(u) 4217 3032 w
+7 /Times-Italic f
+(i) 4278 3052 w
+10 /Times-Roman f
+(and) 4340 3032 w
+10 /Times-Italic f
+(v) 4518 3032 w
+7 /Times-Italic f
+(i) 4573 3052 w
+10 /Times-Roman f
+(.) 4601 3032 w
+(Then) 4685 3032 w
+(we) 4924 3032 w
+(would) 720 3152 w
+(have) 997 3152 w
+(16) 1212 3152 w
+(bits) 1339 3152 w
+(in) 1511 3152 w
+(the) 1616 3152 w
+(binary) 1765 3152 w
+(representation) 2047 3152 w
+(of) 2638 3152 w
+10 /Times-Italic f
+(r) 2747 3152 w
+7 /Times-Italic f
+(i) 2797 3172 w
+10 /Times-Roman f
+(.) 2825 3152 w
+(Unfortunately) 2901 3152 w
+(the) 3487 3152 w
+(possible) 3635 3152 w
+(values) 3989 3152 w
+(of) 4270 3152 w
+10 /Times-Italic f
+(r) 4379 3152 w
+7 /Times-Italic f
+(i) 4429 3172 w
+10 /Times-Roman f
+(require) 4483 3152 w
+(nearly) 4791 3152 w
+(17) 720 3272 w
+(bits,) 854 3272 w
+(so) 1058 3272 w
+(each) 1181 3272 w
+(pair) 1397 3272 w
+(\() 1586 3272 w
+10 /Times-Italic f
+(u) 1627 3272 w
+7 /Times-Italic f
+(i) 1688 3292 w
+7 /Times-Roman f
+(,) 1713 3292 w
+10 /Times-Italic f
+(v) 1747 3272 w
+7 /Times-Italic f
+(i) 1802 3292 w
+10 /Times-Roman f
+(\)) 1838 3272 w
+(probably) 1905 3272 w
+(is) 2294 3272 w
+(consistent) 2395 3272 w
+(with) 2829 3272 w
+(two) 3041 3272 w
+(values) 3225 3272 w
+(of) 3514 3272 w
+10 /Times-Italic f
+(r) 3631 3272 w
+7 /Times-Italic f
+(i) 3681 3292 w
+10 /Times-Roman f
+(,) 3709 3272 w
+(and) 3768 3272 w
+(so) 3946 3272 w
+(in) 4069 3272 w
+(the) 4181 3272 w
+(expression) 4338 3272 w
+(for) 4800 3272 w
+10 /Times-Italic f
+(b) 4951 3272 w
+7 /Times-Italic f
+(i) 5012 3292 w
+10 /Times-Roman f
+(above) 720 3392 w
+(there) 986 3392 w
+(are) 1213 3392 w
+(likely) 1362 3392 w
+(to) 1618 3392 w
+(be) 1724 3392 w
+(4) 1845 3392 w
+(choices) 1922 3392 w
+(for) 2248 3392 w
+(\() 2391 3392 w
+10 /Times-Italic f
+(r) 2424 3392 w
+7 /Times-Italic f
+(i) 2474 3412 w
+10 /Times-Roman f
+(,) 2510 3392 w
+10 /Times-Italic f
+(r) 2543 3392 w
+7 /Times-Italic f
+(i ) 2593 3412 w
+7 /S f
+(+) 2629 3412 w
+7 /Times-Roman f
+(1) 2679 3412 w
+10 /Times-Roman f
+(\).) 2730 3392 w
+(Clearly) 2840 3392 w
+(there) 3161 3392 w
+(is) 3387 3392 w
+(still) 3481 3392 w
+(not) 3659 3392 w
+(much) 3814 3392 w
+(chance) 4063 3392 w
+(of) 4366 3392 w
+(getting) 4476 3392 w
+(even) 4781 3392 w
+(a) 4996 3392 w
+(single bad guess of a) 720 3512 w
+10 /Times-Italic f
+(b) 1577 3512 w
+7 /Times-Italic f
+(i) 1638 3532 w
+10 /Times-Roman f
+(.) 1666 3512 w
+(So how do we get) 970 3668 w
+10 /Times-Italic f
+(u) 1711 3668 w
+7 /Times-Italic f
+(i) 1772 3688 w
+10 /Times-Roman f
+(and) 1825 3668 w
+10 /Times-Italic f
+(v) 1994 3668 w
+7 /Times-Italic f
+(i) 2049 3688 w
+10 /Times-Roman f
+(?) 2077 3668 w
+(Since) 2171 3668 w
+10 /Times-Italic f
+(x) 1080 3848 w
+7 /Times-Italic f
+(i) 1135 3868 w
+10 /LucidaSansUnicode22 f
+(a) 1204 3848 w
+10 /Times-Italic f
+(u) 1325 3848 w
+7 /Times-Italic f
+(i) 1386 3868 w
+10 /Times-Roman f
+(\() 1455 3848 w
+(mod) 1496 3848 w
+(256) 1715 3848 w
+(\)) 1873 3848 w
+(for) 720 4028 w
+(each) 869 4028 w
+10 /Times-Italic f
+(i) 1084 4028 w
+10 /LucidaSansUnicode22 f
+(g) 1120 4028 w
+10 /Times-Roman f
+(128) 1208 4028 w
+(there) 1391 4028 w
+(are) 1623 4028 w
+(at) 1777 4028 w
+(most) 1882 4028 w
+(two) 2110 4028 w
+(choices) 2293 4028 w
+(of) 2625 4028 w
+10 /Times-Italic f
+(u) 2741 4028 w
+7 /Times-Italic f
+(i) 2802 4048 w
+10 /Times-Roman f
+(\(namely) 2863 4028 w
+10 /Times-Italic f
+(x) 3223 4028 w
+7 /Times-Italic f
+(i) 3278 4048 w
+10 /Times-Roman f
+(and) 3339 4028 w
+10 /Times-Italic f
+(x) 3516 4028 w
+7 /Times-Italic f
+(i) 3571 4048 w
+10 /S f
+(+) 3615 4028 w
+10 /Times-Italic f
+(i) 3686 4028 w
+10 /S f
+(+) 3738 4028 w
+10 /Times-Roman f
+(1\)) 3809 4028 w
+(for) 3925 4028 w
+(each) 4074 4028 w
+(value) 4290 4028 w
+(of) 4540 4028 w
+10 /Times-Italic f
+(x) 4657 4028 w
+7 /Times-Italic f
+(i) 4712 4048 w
+10 /Times-Roman f
+(.) 4740 4028 w
+(Like\255) 4824 4028 w
+(wise,) 720 4148 w
+(if) 962 4148 w
+(we) 1057 4148 w
+(know) 1207 4148 w
+10 /Times-Italic f
+(y) 1463 4148 w
+7 /Times-Italic f
+(i) 1518 4168 w
+10 /Times-Roman f
+(,) 1546 4148 w
+(there) 1605 4148 w
+(are) 1838 4148 w
+(at) 1993 4148 w
+(most) 2099 4148 w
+(two) 2328 4148 w
+(choices) 2512 4148 w
+(for) 2845 4148 w
+10 /Times-Italic f
+(v) 2995 4148 w
+7 /Times-Italic f
+(i) 3050 4168 w
+10 /Times-Roman f
+(.) 3078 4148 w
+(Thus) 3162 4148 w
+(there) 3396 4148 w
+(are) 3629 4148 w
+(4) 3784 4148 w
+(more) 3867 4148 w
+(choices) 4105 4148 w
+(to) 4437 4148 w
+(be) 4548 4148 w
+(made) 4675 4148 w
+(for) 4924 4148 w
+(each guess at an) 720 4268 w
+10 /Times-Italic f
+(r) 1390 4268 w
+7 /Times-Italic f
+(i) 1440 4288 w
+10 /Times-Roman f
+(.) 1468 4268 w
+(In) 970 4424 w
+(practice) 1088 4424 w
+(this) 1438 4424 w
+(is) 1618 4424 w
+(all) 1720 4424 w
+(nearly) 1856 4424 w
+(enough) 2141 4424 w
+(to) 2471 4424 w
+(determine) 2585 4424 w
+(all) 3020 4424 w
+(of) 3156 4424 w
+(the) 3275 4424 w
+10 /Times-Italic f
+(b) 3433 4424 w
+7 /Times-Italic f
+(i) 3494 4444 w
+10 /Times-Roman f
+(uniquely) 3558 4424 w
+(for) 3944 4424 w
+(exactly) 4096 4424 w
+(one) 4420 4424 w
+(value) 4600 4424 w
+(of) 4852 4424 w
+10 /Times-Italic f
+(k) 4971 4424 w
+10 /Times-Roman f
+(.) 5015 4424 w
+(That) 720 4544 w
+(is,) 934 4544 w
+(there) 1057 4544 w
+(is) 1287 4544 w
+(only) 1385 4544 w
+(one) 1594 4544 w
+(of) 1769 4544 w
+(the) 1883 4544 w
+(256) 2036 4544 w
+(equivalent) 2217 4544 w
+(\() 2663 4544 w
+10 /Times-Italic f
+(R) 2704 4544 w
+10 /Times-Roman f
+(,) 2773 4544 w
+10 /Times-Italic f
+(S) 2806 4544 w
+10 /Times-Roman f
+(\)) 2864 4544 w
+(pairs) 2927 4544 w
+(for) 3151 4544 w
+(which) 3297 4544 w
+(there) 3571 4544 w
+(are) 3800 4544 w
+(any) 3951 4544 w
+10 /Times-Italic f
+(b) 4125 4544 w
+10 /Times-Roman f
+('s) 4175 4544 w
+(left,) 4277 4544 w
+(and) 4465 4544 w
+(then) 4639 4544 w
+(there) 4841 4544 w
+(are) 720 4664 w
+(never) 868 4664 w
+(more) 1116 4664 w
+(than) 1348 4664 w
+(a) 1547 4664 w
+(few) 1619 4664 w
+(hundred) 1796 4664 w
+(possible) 2151 4664 w
+(sets.) 2507 4664 w
+(Only) 2735 4664 w
+(one) 2963 4664 w
+(of) 3135 4664 w
+(them,) 3246 4664 w
+(and) 3499 4664 w
+(therefore) 3671 4664 w
+(the) 4058 4664 w
+(correct) 4208 4664 w
+(one,) 4512 4664 w
+(regener\255) 4709 4664 w
+(ates) 720 4784 w
+10 /Times-Italic f
+(R) 907 4784 w
+10 /Times-Roman f
+(and) 1000 4784 w
+10 /Times-Italic f
+(S) 1176 4784 w
+10 /Times-Roman f
+(.) 1226 4784 w
+(There) 1308 4784 w
+(was) 1572 4784 w
+(no) 1759 4784 w
+(trouble) 1891 4784 w
+(doing) 2206 4784 w
+(this) 2465 4784 w
+(in) 2641 4784 w
+(190) 2750 4784 w
+(trials.) 2931 4784 w
+(Each) 3212 4784 w
+(trial) 3442 4784 w
+(takes) 3634 4784 w
+(a) 3870 4784 w
+(minute) 3945 4784 w
+(or) 4254 4784 w
+(two) 4368 4784 w
+(of) 4549 4784 w
+(computer) 4663 4784 w
+(time.) 720 4904 w
+(Thus decrypting files enough to determine \() 973 4904 w
+10 /Times-Italic f
+(R) 2734 4904 w
+10 /Times-Roman f
+(,) 2803 4904 w
+10 /Times-Italic f
+(S) 2836 4904 w
+10 /Times-Roman f
+(\) also enables the cryptanalyst to find) 2894 4904 w
+10 /Times-Italic f
+(b) 4411 4904 w
+7 /Times-Roman f
+(0) 4472 4924 w
+10 /Times-Roman f
+(, ...,) 4515 4904 w
+10 /Times-Italic f
+(b) 4690 4904 w
+7 /Times-Roman f
+(12) 4751 4924 w
+10 /Times-Roman f
+(.) 4829 4904 w
+(This) 970 5060 w
+(would) 1177 5060 w
+(not) 1456 5060 w
+(be) 1613 5060 w
+(more) 1736 5060 w
+(than) 1971 5060 w
+(a) 2173 5060 w
+(curiosity,) 2247 5060 w
+(except) 2652 5060 w
+(for) 2942 5060 w
+(the) 3088 5060 w
+(fact) 3240 5060 w
+(that) 3419 5060 w
+(the) 3599 5060 w
+(first) 3751 5060 w
+(two) 3942 5060 w
+(bytes) 4122 5060 w
+(of) 4363 5060 w
+(the) 4476 5060 w
+(user's) 4628 5060 w
+(key) 4896 5060 w
+(pass) 720 5180 w
+(through) 918 5180 w
+(unchanged) 1255 5180 w
+(and) 1713 5180 w
+(become) 1883 5180 w
+10 /Times-Italic f
+(b) 2219 5180 w
+7 /Times-Roman f
+(0) 2280 5200 w
+10 /Times-Roman f
+(and) 2349 5180 w
+10 /Times-Italic f
+(b) 2519 5180 w
+7 /Times-Roman f
+(1) 2580 5200 w
+10 /Times-Roman f
+(.) 2623 5180 w
+(This knowledge is clearly of great use in guessing how the) 2699 5180 w
+(user makes up his keys.) 720 5300 w
+10 /Times-Bold f
+(6.) 720 5540 w
+(A proposed enhancement) 845 5540 w
+10 /Times-Roman f
+(A) 970 5696 w
+(recent) 1081 5696 w
+(proposal) 1363 5696 w
+(for) 1746 5696 w
+(strengthening) 1901 5696 w
+(the) 2484 5696 w
+10 /Times-Italic f
+(crypt) 2645 5696 w
+10 /Times-Roman f
+(command) 2889 5696 w
+(is) 3323 5696 w
+(as) 3430 5696 w
+(follows.) 3553 5696 w
+(Instead) 3943 5696 w
+(of) 4271 5696 w
+(relating) 4394 5696 w
+(the) 4739 5696 w
+10 /Times-Italic f
+(i) 4901 5696 w
+10 /Times-Roman f
+(\255th) 4929 5696 w
+(plaintext and ciphertext letters in the) 720 5816 w
+10 /Times-Italic f
+(j) 2207 5816 w
+10 /Times-Roman f
+(\255th cryptoblock by) 2235 5816 w
+10 /Times-Italic f
+(c) 2280 5996 w
+7 /Times-Italic f
+(i) 2335 6016 w
+(j) 2360 6016 w
+10 /Times-Roman f
+10 /S f
+(=) 2437 5996 w
+10 /Times-Roman f
+10 /Times-Italic f
+(C) 2541 5996 w
+7 /S f
+(-) 2619 5956 w
+7 /Times-Italic f
+(i) 2669 5956 w
+10 /Times-Italic f
+(R) 2697 5996 w
+7 /S f
+(-) 2769 5956 w
+7 /Times-Roman f
+(1) 2819 5956 w
+10 /Times-Italic f
+(C) 2870 5996 w
+7 /S f
+(-) 2948 5956 w
+7 /Times-Italic f
+(j) 2998 5956 w
+10 /Times-Italic f
+(SC) 3034 5996 w
+7 /Times-Italic f
+(j) 3162 5956 w
+10 /Times-Italic f
+(RC) 3198 5996 w
+7 /Times-Italic f
+(i) 3337 5956 w
+10 /Times-Italic f
+(p) 3365 5996 w
+7 /Times-Italic f
+(i) 3426 6016 w
+(j) 3451 6016 w
+10 /Times-Roman f
+(it is proposed to use) 720 6176 w
+10 /Times-Italic f
+(c) 2231 6360 w
+7 /Times-Italic f
+(i) 2286 6380 w
+(j) 2311 6380 w
+10 /Times-Roman f
+10 /S f
+(=) 2388 6360 w
+10 /Times-Roman f
+10 /Times-Italic f
+(C) 2492 6360 w
+7 /S f
+(-) 2570 6306 w
+7 /Times-Italic f
+(f) 2625 6306 w
+4 /Times-Italic f
+(i) 2651 6320 w
+10 /Times-Italic f
+(R) 2683 6360 w
+7 /S f
+(-) 2755 6320 w
+7 /Times-Roman f
+(1) 2805 6320 w
+10 /Times-Italic f
+(C) 2856 6360 w
+7 /S f
+(-) 2934 6320 w
+7 /Times-Italic f
+(j) 2984 6320 w
+10 /Times-Italic f
+(SC) 3020 6360 w
+7 /Times-Italic f
+(j) 3148 6320 w
+10 /Times-Italic f
+(RC) 3184 6360 w
+7 /Times-Italic f
+(f) 3323 6306 w
+4 /Times-Italic f
+(i) 3349 6320 w
+10 /Times-Italic f
+(p) 3381 6360 w
+7 /Times-Italic f
+(i) 3442 6380 w
+(j) 3467 6380 w
+10 /Times-Italic f
+(.) 3503 6360 w
+(R) 720 6540 w
+10 /Times-Roman f
+(and) 806 6540 w
+10 /Times-Italic f
+(S) 975 6540 w
+10 /Times-Roman f
+(are) 1050 6540 w
+(as) 1197 6540 w
+(before.) 1306 6540 w
+(The) 1636 6540 w
+(new) 1817 6540 w
+(item) 2009 6540 w
+(is) 2213 6540 w
+(the) 2306 6540 w
+(function) 2454 6540 w
+10 /Times-Italic f
+(f) 2813 6540 w
+10 /Times-Roman f
+(which) 2867 6540 w
+(may) 3137 6540 w
+(be) 3335 6540 w
+(interpreted) 3455 6540 w
+(as) 3913 6540 w
+(an) 4022 6540 w
+(irregular) 4142 6540 w
+(rotor) 4511 6540 w
+(motion.) 4731 6540 w
+(The) 720 6660 w
+(key) 907 6660 w
+(now) 1082 6660 w
+(is) 1285 6660 w
+(the) 1383 6660 w
+(triple) 1536 6660 w
+(\() 1778 6660 w
+10 /Times-Italic f
+(R) 1819 6660 w
+10 /Times-Roman f
+(,) 1888 6660 w
+10 /Times-Italic f
+(S) 1921 6660 w
+10 /Times-Roman f
+(,) 1979 6660 w
+10 /Times-Italic f
+(f) 2020 6660 w
+10 /Times-Roman f
+(\).) 2072 6660 w
+(If) 2186 6660 w
+10 /Times-Italic f
+(f) 2283 6660 w
+10 /Times-Roman f
+(were) 2342 6660 w
+(known,) 2566 6660 w
+(then) 2894 6660 w
+(the) 3097 6660 w
+(new) 3250 6660 w
+(cipher) 3447 6660 w
+(would) 3727 6660 w
+(be) 4008 6660 w
+(breakable) 4133 6660 w
+(by) 4551 6660 w
+(the) 4682 6660 w
+(same) 4835 6660 w
+(methods as the old.) 720 6780 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 6 6
+%%Page: 7 7
+/saveobj save def
+mark
+7 pagesetup
+10 /Times-Roman f
+(\255 6 \255) 2797 480 w
+10 /Times-Bold f
+(6.1.) 720 840 w
+(Known plaintext attack of proposed enhancement) 920 840 w
+10 /Times-Roman f
+(We) 970 996 w
+(first) 1162 996 w
+(recover) 1377 996 w
+(the) 1729 996 w
+10 /Times-Italic f
+(f) 1905 996 w
+7 /Times-Italic f
+(i) 1944 1016 w
+10 /Times-Roman f
+(,) 1972 996 w
+(and) 2051 996 w
+(the) 2249 996 w
+(proceed) 2425 996 w
+(as) 2794 996 w
+(before.) 2931 996 w
+(We) 3289 996 w
+(note) 3481 996 w
+(that) 3708 996 w
+(in) 3913 996 w
+(a) 4046 996 w
+(given) 4145 996 w
+(cryptoblock,) 4422 996 w
+(if) 4979 996 w
+10 /Times-Italic f
+(p) 720 1116 w
+7 /Times-Italic f
+(i) 781 1136 w
+10 /S f
+(+) 825 1116 w
+10 /Times-Italic f
+(f) 904 1116 w
+7 /Times-Italic f
+(i) 943 1136 w
+10 /S f
+(=) 987 1116 w
+10 /Times-Italic f
+(p) 1058 1116 w
+7 /Times-Italic f
+(k) 1119 1136 w
+10 /S f
+(+) 1174 1116 w
+10 /Times-Italic f
+(f) 1253 1116 w
+7 /Times-Italic f
+(k) 1292 1136 w
+10 /Times-Roman f
+(,) 1331 1116 w
+(for) 1394 1116 w
+(some) 1548 1116 w
+10 /Times-Italic f
+(i) 1797 1116 w
+10 /Times-Roman f
+(and) 1862 1116 w
+10 /Times-Italic f
+(k) 2043 1116 w
+10 /Times-Roman f
+(,) 2087 1116 w
+(then) 2149 1116 w
+10 /Times-Italic f
+(c) 2358 1116 w
+7 /Times-Italic f
+(i) 2413 1136 w
+10 /S f
+(+) 2457 1116 w
+10 /Times-Italic f
+(f) 2536 1116 w
+7 /Times-Italic f
+(i) 2575 1136 w
+10 /S f
+(=) 2619 1116 w
+10 /Times-Italic f
+(c) 2690 1116 w
+7 /Times-Italic f
+(k) 2745 1136 w
+10 /S f
+(+) 2800 1116 w
+10 /Times-Italic f
+(f) 2879 1116 w
+7 /Times-Italic f
+(k) 2918 1136 w
+10 /Times-Roman f
+(.) 2957 1116 w
+(Also,) 3044 1116 w
+(because) 3295 1116 w
+(the) 3647 1116 w
+(encryption) 3806 1116 w
+(is) 4270 1116 w
+(an) 4374 1116 w
+(involution,) 4505 1116 w
+(if) 4979 1116 w
+10 /Times-Italic f
+(p) 720 1236 w
+7 /Times-Italic f
+(i) 781 1256 w
+10 /S f
+(+) 825 1236 w
+10 /Times-Italic f
+(f) 904 1236 w
+7 /Times-Italic f
+(i) 943 1256 w
+10 /S f
+(=) 987 1236 w
+10 /Times-Italic f
+(c) 1058 1236 w
+7 /Times-Italic f
+(k) 1113 1256 w
+10 /S f
+(+) 1168 1236 w
+10 /Times-Italic f
+(f) 1247 1236 w
+7 /Times-Italic f
+(k) 1286 1256 w
+10 /Times-Roman f
+(, then) 1325 1236 w
+10 /Times-Italic f
+(c) 1572 1236 w
+7 /Times-Italic f
+(i) 1627 1256 w
+10 /S f
+(+) 1671 1236 w
+10 /Times-Italic f
+(f) 1750 1236 w
+7 /Times-Italic f
+(i) 1789 1256 w
+10 /S f
+(=) 1833 1236 w
+10 /Times-Italic f
+(p) 1904 1236 w
+7 /Times-Italic f
+(k) 1965 1256 w
+10 /S f
+(+) 2020 1236 w
+10 /Times-Italic f
+(f) 2099 1236 w
+7 /Times-Italic f
+(k) 2138 1256 w
+10 /Times-Roman f
+(.) 2177 1236 w
+(We can exploit these identities as follows.) 970 1392 w
+(If) 2704 1392 w
+10 /Times-Italic f
+(p) 2541 1572 w
+7 /Times-Italic f
+(i) 2602 1592 w
+10 /S f
+(+) 2646 1572 w
+10 /Times-Italic f
+(f) 2725 1572 w
+7 /Times-Italic f
+(i) 2764 1592 w
+10 /Times-Roman f
+10 /S f
+(=) 2841 1572 w
+10 /Times-Roman f
+10 /Times-Italic f
+(p) 2945 1572 w
+7 /Times-Italic f
+(k) 3006 1592 w
+10 /S f
+(+) 3061 1572 w
+10 /Times-Italic f
+(f) 3140 1572 w
+7 /Times-Italic f
+(k) 3179 1592 w
+10 /Times-Roman f
+(\(4\)) 4924 1572 w
+(then) 720 1752 w
+10 /Times-Italic f
+(c) 2547 1932 w
+7 /Times-Italic f
+(i) 2602 1952 w
+10 /S f
+(+) 2646 1932 w
+10 /Times-Italic f
+(f) 2725 1932 w
+7 /Times-Italic f
+(i) 2764 1952 w
+10 /Times-Roman f
+10 /S f
+(=) 2841 1932 w
+10 /Times-Roman f
+10 /Times-Italic f
+(c) 2945 1932 w
+7 /Times-Italic f
+(k) 3000 1952 w
+10 /S f
+(+) 3055 1932 w
+10 /Times-Italic f
+(f) 3134 1932 w
+7 /Times-Italic f
+(k) 3173 1952 w
+10 /Times-Roman f
+(and hence) 720 2112 w
+10 /Times-Italic f
+(p) 2541 2292 w
+7 /Times-Italic f
+(i) 2602 2312 w
+10 /S f
+(-) 2646 2292 w
+10 /Times-Italic f
+(p) 2717 2292 w
+7 /Times-Italic f
+(k) 2778 2312 w
+10 /Times-Roman f
+10 /S f
+(=) 2866 2292 w
+10 /Times-Roman f
+10 /Times-Italic f
+(f) 2978 2292 w
+7 /Times-Italic f
+(k) 3017 2312 w
+10 /S f
+(-) 3072 2292 w
+10 /Times-Italic f
+(f) 3151 2292 w
+7 /Times-Italic f
+(i) 3190 2312 w
+10 /Times-Roman f
+(and) 720 2472 w
+10 /Times-Italic f
+(c) 2547 2652 w
+7 /Times-Italic f
+(i) 2602 2672 w
+10 /S f
+(-) 2646 2652 w
+10 /Times-Italic f
+(c) 2717 2652 w
+7 /Times-Italic f
+(k) 2772 2672 w
+10 /Times-Roman f
+10 /S f
+(=) 2860 2652 w
+10 /Times-Roman f
+10 /Times-Italic f
+(f) 2972 2652 w
+7 /Times-Italic f
+(k) 3011 2672 w
+10 /S f
+(-) 3066 2652 w
+10 /Times-Italic f
+(f) 3145 2652 w
+7 /Times-Italic f
+(i) 3184 2672 w
+10 /Times-Roman f
+(and) 720 2832 w
+10 /Times-Italic f
+(p) 2517 3012 w
+7 /Times-Italic f
+(i) 2578 3032 w
+10 /S f
+(-) 2622 3012 w
+10 /Times-Italic f
+(p) 2693 3012 w
+7 /Times-Italic f
+(k) 2754 3032 w
+10 /Times-Roman f
+10 /S f
+(=) 2842 3012 w
+10 /Times-Roman f
+10 /Times-Italic f
+(c) 2946 3012 w
+7 /Times-Italic f
+(i) 3001 3032 w
+10 /S f
+(-) 3045 3012 w
+10 /Times-Italic f
+(c) 3116 3012 w
+7 /Times-Italic f
+(k) 3171 3032 w
+10 /Times-Italic f
+(.) 3218 3012 w
+10 /Times-Roman f
+(\(5\)) 4924 3012 w
+(Thus) 720 3192 w
+(\(4\)) 951 3192 w
+(for) 1098 3192 w
+(some) 1245 3192 w
+10 /Times-Italic f
+(i) 1487 3192 w
+10 /Times-Roman f
+(and) 1546 3192 w
+10 /Times-Italic f
+(k) 1721 3192 w
+10 /Times-Roman f
+(imply) 1796 3192 w
+(\(5\)) 2061 3192 w
+(for) 2208 3192 w
+(the) 2355 3192 w
+(same) 2508 3192 w
+10 /Times-Italic f
+(i) 2744 3192 w
+10 /Times-Roman f
+(and) 2803 3192 w
+10 /Times-Italic f
+(k) 2978 3192 w
+10 /Times-Roman f
+(.) 3022 3192 w
+(We) 3103 3192 w
+(take) 3272 3192 w
+(the) 3469 3192 w
+(occurrence) 3622 3192 w
+(of) 4089 3192 w
+(\(5\)) 4203 3192 w
+(as) 4350 3192 w
+(a) 4464 3192 w
+(sign) 4539 3192 w
+(that) 4737 3192 w
+(the) 4918 3192 w
+(four) 720 3312 w
+(equations) 912 3312 w
+(of) 1321 3312 w
+(\(4\)) 1430 3312 w
+(might) 1572 3312 w
+(have) 1832 3312 w
+(happened,) 2046 3312 w
+(and) 2479 3312 w
+(further) 2649 3312 w
+(take) 2946 3312 w
+(the) 3138 3312 w
+(common) 3286 3312 w
+(value) 3662 3312 w
+10 /Times-Italic f
+(p) 3904 3312 w
+7 /Times-Italic f
+(i) 3965 3332 w
+10 /S f
+(-) 4009 3312 w
+10 /Times-Italic f
+(p) 4080 3312 w
+7 /Times-Italic f
+(k) 4141 3332 w
+10 /S f
+(=) 4196 3312 w
+10 /Times-Italic f
+(c) 4267 3312 w
+7 /Times-Italic f
+(i) 4322 3332 w
+10 /S f
+(-) 4366 3312 w
+10 /Times-Italic f
+(c) 4437 3312 w
+7 /Times-Italic f
+(k) 4492 3332 w
+10 /Times-Roman f
+(as a) 4556 3312 w
+10 /Times-Italic f
+(vote) 4733 3312 w
+10 /Times-Roman f
+(for) 4924 3312 w
+(the value of) 720 3432 w
+10 /Times-Italic f
+(f) 1216 3432 w
+7 /Times-Italic f
+(k) 1255 3452 w
+10 /S f
+(-) 1310 3432 w
+10 /Times-Italic f
+(f) 1389 3432 w
+7 /Times-Italic f
+(i) 1428 3452 w
+10 /Times-Roman f
+(.) 1456 3432 w
+(Similarly, the occurrence of) 1531 3432 w
+10 /Times-Italic f
+(p) 2533 3612 w
+7 /Times-Italic f
+(i) 2594 3632 w
+10 /S f
+(-) 2638 3612 w
+10 /Times-Italic f
+(c) 2709 3612 w
+7 /Times-Italic f
+(k) 2764 3632 w
+10 /Times-Roman f
+10 /S f
+(=) 2852 3612 w
+10 /Times-Roman f
+10 /Times-Italic f
+(c) 2956 3612 w
+7 /Times-Italic f
+(i) 3011 3632 w
+10 /S f
+(-) 3055 3612 w
+10 /Times-Italic f
+(p) 3126 3612 w
+7 /Times-Italic f
+(k) 3187 3632 w
+10 /Times-Roman f
+(is a vote that) 720 3792 w
+10 /Times-Italic f
+(f) 1253 3792 w
+7 /Times-Italic f
+(k) 1292 3812 w
+10 /S f
+(-) 1347 3792 w
+10 /Times-Italic f
+(f) 1426 3792 w
+7 /Times-Italic f
+(i) 1465 3812 w
+10 /Times-Roman f
+(has this common value.) 1518 3792 w
+(Experiments) 970 3948 w
+(show) 1503 3948 w
+(that) 1742 3948 w
+(of) 1920 3948 w
+(all) 2031 3948 w
+(occurrences) 2159 3948 w
+(of) 2663 3948 w
+(\(5\),) 2775 3948 w
+(about) 2945 3948 w
+(half) 3196 3948 w
+(are) 3380 3948 w
+(caused) 3530 3948 w
+(by) 3830 3948 w
+(\(4\)) 3959 3948 w
+(and) 4104 3948 w
+(half) 4277 3948 w
+(are) 4461 3948 w
+(accidental.) 4611 3948 w
+(The) 720 4068 w
+(accidental) 902 4068 w
+(occurrences) 1333 4068 w
+(scatter) 1835 4068 w
+(their) 2122 4068 w
+(votes) 2332 4068 w
+(higgledy) 2570 4068 w
+(piggledy) 2947 4068 w
+(but) 3324 4068 w
+(the) 3479 4068 w
+(causal) 3628 4068 w
+(occurrences) 3904 4068 w
+(vote) 4406 4068 w
+10 /Times-Italic f
+(en) 4605 4068 w
+(bloc) 4726 4068 w
+10 /Times-Roman f
+(for) 4924 4068 w
+(the correct value of) 720 4188 w
+10 /Times-Italic f
+(f) 1517 4188 w
+7 /Times-Italic f
+(k) 1556 4208 w
+10 /S f
+(-) 1611 4188 w
+10 /Times-Italic f
+(f) 1690 4188 w
+7 /Times-Italic f
+(i) 1729 4208 w
+10 /Times-Roman f
+(.) 1757 4188 w
+(Thus) 970 4344 w
+(for) 1208 4344 w
+(each) 1362 4344 w
+(cryptoblock) 1582 4344 w
+(we) 2097 4344 w
+(enumerate) 2251 4344 w
+(all) 2704 4344 w
+(votes) 2842 4344 w
+(of) 3091 4344 w
+(the) 3212 4344 w
+(above) 3372 4344 w
+(type,) 3648 4344 w
+(representing) 3883 4344 w
+(them) 4414 4344 w
+(by) 4652 4344 w
+(triples) 4790 4344 w
+(\() 720 4464 w
+10 /Times-Italic f
+(i) 761 4464 w
+10 /Times-Roman f
+(,) 797 4464 w
+10 /Times-Italic f
+(k) 830 4464 w
+10 /Times-Roman f
+(,) 882 4464 w
+10 /Times-Italic f
+(d) 915 4464 w
+10 /Times-Roman f
+(\)) 973 4464 w
+(meaning) 1035 4464 w
+(that) 1408 4464 w
+(there) 1587 4464 w
+(is) 1815 4464 w
+(a) 1911 4464 w
+(vote) 1984 4464 w
+(that) 2185 4464 w
+10 /Times-Italic f
+(f) 2363 4464 w
+7 /Times-Italic f
+(i) 2402 4484 w
+10 /S f
+(-) 2446 4464 w
+10 /Times-Italic f
+(f) 2525 4464 w
+7 /Times-Italic f
+(k) 2564 4484 w
+10 /S f
+(=) 2619 4464 w
+10 /Times-Italic f
+(d) 2690 4464 w
+10 /Times-Roman f
+(.) 2740 4464 w
+(Let) 2818 4464 w
+10 /Times-Bold f
+(S) 2979 4464 w
+10 /Times-Roman f
+(be) 3063 4464 w
+(the) 3185 4464 w
+(set) 3335 4464 w
+(of) 3474 4464 w
+(all) 3585 4464 w
+(the) 3713 4464 w
+(votes.) 3863 4464 w
+(We) 4152 4464 w
+(attempt) 4318 4464 w
+(to) 4646 4464 w
+(resolve) 4752 4464 w
+(these) 720 4584 w
+(votes) 956 4584 w
+(by) 1198 4584 w
+(discarding) 1329 4584 w
+(about) 1776 4584 w
+(1/2) 2029 4584 w
+(of) 2188 4584 w
+(them) 2302 4584 w
+(and) 2534 4584 w
+(building) 2710 4584 w
+(the) 3076 4584 w
+(others) 3230 4584 w
+(into) 3506 4584 w
+(a) 3694 4584 w
+(self\255consistent) 3770 4584 w
+(set) 4379 4584 w
+(of) 4522 4584 w
+(values) 4637 4584 w
+(for) 4924 4584 w
+(the) 720 4704 w
+10 /Times-Italic f
+(f) 877 4704 w
+7 /Times-Italic f
+(i) 916 4724 w
+10 /Times-Roman f
+(.) 944 4704 w
+(Note) 1029 4704 w
+(that) 1258 4704 w
+(although) 1443 4704 w
+(each) 1828 4704 w
+(instance) 2045 4704 w
+(of) 2407 4704 w
+(a) 2524 4704 w
+(vote) 2602 4704 w
+(comes) 2808 4704 w
+(from) 3097 4704 w
+(one) 3325 4704 w
+(cryptoblock,) 3503 4704 w
+(the) 4039 4704 w
+10 /Times-Italic f
+(f) 4195 4704 w
+7 /Times-Italic f
+(i) 4234 4724 w
+10 /Times-Roman f
+(are) 4296 4704 w
+(the) 4451 4704 w
+(same) 4607 4704 w
+(from) 4846 4704 w
+(block to block, so that the votes from all the known blocks can be combined.) 720 4824 w
+(Each cryptoblock contributes about 500 such votes, so 2500 characters of known plaintext) 970 4980 w
+(will) 4604 4980 w
+(gener\255) 4786 4980 w
+(ate about 5000 triples.) 720 5100 w
+10 /Times-Bold f
+(6.2.) 720 5340 w
+(Voting) 920 5340 w
+10 /Times-Roman f
+(We are given a set) 970 5496 w
+10 /Times-Bold f
+(S) 1731 5496 w
+10 /Times-Roman f
+(of 5000 or more triples \() 1812 5496 w
+10 /Times-Italic f
+(i) 2799 5496 w
+10 /Times-Roman f
+(,) 2835 5496 w
+10 /Times-Italic f
+(k) 2868 5496 w
+10 /Times-Roman f
+(,) 2920 5496 w
+10 /Times-Italic f
+(d) 2953 5496 w
+10 /Times-Roman f
+(\), each representing an equation) 3011 5496 w
+10 /Times-Italic f
+(f) 2642 5676 w
+7 /Times-Italic f
+(i) 2681 5696 w
+10 /S f
+(-) 2725 5676 w
+10 /Times-Italic f
+(f) 2804 5676 w
+7 /Times-Italic f
+(k) 2843 5696 w
+10 /Times-Roman f
+10 /S f
+(=) 2931 5676 w
+10 /Times-Roman f
+10 /Times-Italic f
+(d) 3035 5676 w
+(.) 3093 5676 w
+10 /Times-Roman f
+(We) 720 5856 w
+(want) 887 5856 w
+(to) 1110 5856 w
+(find) 1217 5856 w
+(a) 1407 5856 w
+(maximal) 1480 5856 w
+(consistent) 1859 5856 w
+(subset) 2288 5856 w
+(of) 2567 5856 w
+(these) 2679 5856 w
+(equations.) 2913 5856 w
+(That) 3375 5856 w
+(is,) 3587 5856 w
+(we) 3708 5856 w
+(want) 3853 5856 w
+(values) 4076 5856 w
+10 /Times-Italic f
+(f) 4360 5856 w
+7 /Times-Roman f
+(0) 4399 5876 w
+10 /Times-Roman f
+(,) 4450 5856 w
+10 /Times-Italic f
+(f) 4505 5856 w
+7 /Times-Roman f
+(1) 4544 5876 w
+10 /Times-Roman f
+(,) 4595 5856 w
+(. . . ) 4675 5831 w
+(,) 4833 5856 w
+10 /Times-Italic f
+(f) 4888 5856 w
+7 /Times-Roman f
+(255) 4927 5876 w
+10 /Times-Roman f
+(that solve as many of these equations as possible.) 720 5976 w
+(Here is one method that works in practice.) 2743 5976 w
+(We) 970 6132 w
+(solve) 1147 6132 w
+(instead) 1397 6132 w
+(a) 1719 6132 w
+(seemingly) 1802 6132 w
+(more) 2253 6132 w
+(complicated) 2498 6132 w
+(problem:) 3026 6132 w
+(find) 3427 6132 w
+(probability) 3628 6132 w
+(laws) 4107 6132 w
+10 /Times-Italic f
+(P) 4330 6132 w
+7 /Times-Roman f
+(0) 4402 6152 w
+10 /Times-Roman f
+(,) 4445 6132 w
+10 /Times-Italic f
+(P) 4510 6132 w
+7 /Times-Roman f
+(1) 4582 6152 w
+10 /Times-Roman f
+(,) 4625 6132 w
+(...,) 4690 6132 w
+10 /Times-Italic f
+(P) 4830 6132 w
+7 /Times-Roman f
+(255) 4902 6152 w
+10 /Times-Roman f
+(,) 5015 6132 w
+(each on the integers mod 256, such that) 720 6252 w
+10 /Times-Italic f
+(L) 2041 6517 w
+10 /Times-Roman f
+10 /S f
+(=) 2146 6517 w
+10 /Times-Roman f
+7 /Times-Roman f
+(\() 2250 6617 w
+7 /Times-Italic f
+(i) 2278 6617 w
+7 /Times-Roman f
+(,) 2303 6617 w
+7 /Times-Italic f
+(j) 2332 6617 w
+7 /Times-Roman f
+(,) 2357 6617 w
+7 /Times-Italic f
+(d) 2380 6617 w
+7 /Times-Roman f
+(\)) 2420 6617 w
+7 /LucidaSansUnicode03 f
+(\265) 2454 6617 w
+7 /Times-Bold f
+(S) 2496 6617 w
+15 /S f
+(P) 2334 6547 w
+10 /S f
+(\354) 2550 6430 w
+(\357) 2550 6530 w
+(\356) 2550 6630 w
+10 /Times-Roman f
+(2) 2624 6587 w
+(1) 2624 6457 w
+10 /S1 f
+(_) 2609 6487 w
+(_) 2639 6487 w
+10 /Times-Roman f
+(256) 2724 6587 w
+(1) 2774 6457 w
+10 /S1 f
+(_) 2709 6487 w
+(___) 2739 6487 w
+10 /S f
+(+) 2915 6517 w
+10 /Times-Roman f
+(2) 3011 6587 w
+(1) 3011 6457 w
+10 /S1 f
+(_) 2996 6487 w
+(_) 3026 6487 w
+10 /Times-Italic f
+(P) 3094 6517 w
+10 /Times-Roman f
+(\() 3163 6517 w
+10 /Times-Italic f
+(X) 3204 6517 w
+7 /Times-Italic f
+(i) 3276 6537 w
+10 /S f
+(-) 3320 6517 w
+10 /Times-Italic f
+(X) 3391 6517 w
+7 /Times-Italic f
+(j) 3463 6537 w
+10 /S f
+(=) 3507 6517 w
+10 /Times-Italic f
+(d) 3578 6517 w
+10 /Times-Roman f
+(\)) 3636 6517 w
+10 /S f
+(\374) 3669 6430 w
+(\357) 3669 6530 w
+(\376) 3669 6630 w
+10 /Times-Roman f
+(is) 720 6802 w
+(maximized,) 846 6802 w
+(where) 1374 6802 w
+(the) 1676 6802 w
+10 /Times-Italic f
+(X) 1857 6802 w
+10 /Times-Roman f
+('s) 1918 6802 w
+(are) 2049 6802 w
+(independent) 2229 6802 w
+(random) 2776 6802 w
+(variables,) 3140 6802 w
+(each) 3584 6802 w
+10 /Times-Italic f
+(X) 3826 6802 w
+7 /Times-Italic f
+(i) 3898 6822 w
+10 /Times-Roman f
+(with) 3986 6802 w
+(law) 4224 6802 w
+10 /Times-Italic f
+(P) 4428 6802 w
+7 /Times-Italic f
+(i) 4500 6822 w
+10 /Times-Roman f
+(.) 4528 6802 w
+(If) 4638 6802 w
+(we) 4764 6802 w
+(let) 4940 6802 w
+10 /Times-Italic f
+(g) 720 6922 w
+7 /Times-Italic f
+(i) 781 6942 w
+(j) 806 6942 w
+10 /S f
+(=) 850 6922 w
+10 /Times-Italic f
+(P) 921 6922 w
+10 /Times-Roman f
+(\() 990 6922 w
+10 /Times-Italic f
+(X) 1031 6922 w
+7 /Times-Italic f
+(i) 1103 6942 w
+10 /S f
+(=) 1147 6922 w
+10 /Times-Italic f
+(j) 1218 6922 w
+10 /Times-Roman f
+(\)) 1254 6922 w
+10 /S f
+(=) 1303 6922 w
+10 /Times-Italic f
+(P) 1374 6922 w
+7 /Times-Italic f
+(i) 1446 6942 w
+10 /Times-Roman f
+(\() 1482 6922 w
+10 /Times-Italic f
+({) 1523 6922 w
+(j) 1579 6922 w
+(}) 1615 6922 w
+10 /Times-Roman f
+(\), then) 1663 6922 w
+10 /Times-Italic f
+(L) 1220 7187 w
+10 /Times-Roman f
+10 /S f
+(=) 1325 7187 w
+10 /Times-Roman f
+15 /S f
+(P) 1445 7217 w
+10 /S f
+(\354) 1593 7100 w
+(\357) 1593 7200 w
+(\356) 1593 7300 w
+10 /Times-Roman f
+(2) 1667 7257 w
+(1) 1667 7127 w
+10 /S1 f
+(_) 1652 7157 w
+(_) 1682 7157 w
+10 /Times-Roman f
+(256) 1767 7257 w
+(1) 1817 7127 w
+10 /S1 f
+(_) 1752 7157 w
+(___) 1782 7157 w
+10 /S f
+(+) 1958 7187 w
+10 /Times-Roman f
+(2) 2054 7257 w
+(1) 2054 7127 w
+10 /S1 f
+(_) 2039 7157 w
+(_) 2069 7157 w
+7 /Times-Italic f
+(t) 2187 7287 w
+15 /S f
+(S) 2153 7217 w
+10 /Times-Italic f
+(P) 2258 7187 w
+10 /Times-Roman f
+(\() 2327 7187 w
+10 /Times-Italic f
+(X) 2368 7187 w
+7 /Times-Italic f
+(j) 2440 7207 w
+10 /S f
+(=) 2484 7187 w
+10 /Times-Italic f
+(t) 2555 7187 w
+10 /Times-Roman f
+(and) 2624 7187 w
+10 /Times-Italic f
+(X) 2809 7187 w
+7 /Times-Italic f
+(i) 2881 7207 w
+10 /S f
+(=) 2925 7187 w
+10 /Times-Italic f
+(t) 2996 7187 w
+10 /S f
+(+) 3048 7187 w
+10 /Times-Italic f
+(d) 3119 7187 w
+10 /Times-Roman f
+(\)) 3177 7187 w
+10 /S f
+(\374) 3210 7100 w
+(\357) 3210 7200 w
+(\376) 3210 7300 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 7 7
+%%Page: 8 8
+/saveobj save def
+mark
+8 pagesetup
+10 /Times-Roman f
+(\255 7 \255) 2797 480 w
+10 /S f
+(=) 1341 925 w
+10 /Times-Roman f
+15 /S f
+(P) 1461 955 w
+10 /S f
+(\354) 1609 838 w
+(\357) 1609 938 w
+(\356) 1609 1038 w
+10 /Times-Roman f
+(2) 1683 995 w
+(1) 1683 865 w
+10 /S1 f
+(_) 1668 895 w
+(_) 1698 895 w
+10 /Times-Roman f
+(256) 1783 995 w
+(1) 1833 865 w
+10 /S1 f
+(_) 1768 895 w
+(___) 1798 895 w
+10 /S f
+(+) 1974 925 w
+10 /Times-Roman f
+(2) 2070 995 w
+(1) 2070 865 w
+10 /S1 f
+(_) 2055 895 w
+(_) 2085 895 w
+7 /Times-Italic f
+(t) 2203 1025 w
+15 /S f
+(S) 2169 955 w
+10 /Times-Italic f
+(g) 2274 925 w
+7 /Times-Italic f
+(i) 2335 945 w
+7 /Times-Roman f
+(,) 2360 945 w
+7 /Times-Italic f
+(t ) 2383 945 w
+7 /S f
+(+) 2419 945 w
+7 /Times-Italic f
+(d) 2469 945 w
+10 /Times-Italic f
+(g) 2520 925 w
+7 /Times-Italic f
+(j) 2581 945 w
+7 /Times-Roman f
+(,) 2606 945 w
+7 /Times-Italic f
+(t) 2629 945 w
+10 /S f
+(\374) 2657 838 w
+(\357) 2657 938 w
+(\376) 2657 1038 w
+10 /Times-Italic f
+(.) 2714 925 w
+(L) 720 1260 w
+10 /Times-Roman f
+(is) 811 1260 w
+(a) 913 1260 w
+(function) 992 1260 w
+(of) 1360 1260 w
+(the) 1478 1260 w
+(65,536) 1635 1260 w
+(non\255negative) 1945 1260 w
+(variables) 2502 1260 w
+10 /Times-Italic f
+(g) 2898 1260 w
+7 /Times-Italic f
+(i) 2959 1280 w
+(j) 2984 1280 w
+10 /Times-Roman f
+(subject) 3048 1260 w
+(to) 3367 1260 w
+(the) 3481 1260 w
+(256) 3639 1260 w
+(constraints) 3825 1260 w
+7 /Times-Italic f
+(j) 4296 1360 w
+7 /S f
+(=) 4327 1360 w
+7 /Times-Roman f
+(0) 4377 1360 w
+15 /S f
+(S) 4310 1290 w
+7 /Times-Roman f
+(255) 4302 1160 w
+10 /Times-Italic f
+(g) 4423 1260 w
+7 /Times-Italic f
+(i) 4484 1280 w
+(j) 4509 1280 w
+10 /S f
+(=) 4553 1260 w
+10 /Times-Roman f
+(1.) 4624 1260 w
+(Such) 4760 1260 w
+(a) 4996 1260 w
+(function may be readily maximized by the algorithm of Baum and Eagon, also called the EM algorithm.) 720 1460 w
+(In) 970 1616 w
+(practice) 1088 1616 w
+(the) 1438 1616 w
+(maximizing) 1595 1616 w
+10 /Times-Italic f
+(g) 2109 1616 w
+7 /Times-Italic f
+(i) 2170 1636 w
+(j) 2195 1636 w
+10 /Times-Roman f
+(values) 2259 1616 w
+(are) 2550 1616 w
+(all) 2707 1616 w
+(close) 2843 1616 w
+(to) 3084 1616 w
+(0) 3198 1616 w
+(or) 3284 1616 w
+(1,) 3403 1616 w
+(and) 3514 1616 w
+(we) 3694 1616 w
+(take) 3846 1616 w
+(for) 4048 1616 w
+10 /Times-Italic f
+(f) 4200 1616 w
+7 /Times-Italic f
+(i) 4239 1636 w
+10 /Times-Roman f
+(that) 4303 1616 w
+(value) 4489 1616 w
+(of) 4741 1616 w
+10 /Times-Italic f
+(j) 4860 1616 w
+10 /Times-Roman f
+(for) 4924 1616 w
+(which) 720 1736 w
+10 /Times-Italic f
+(g) 989 1736 w
+7 /Times-Italic f
+(i) 1050 1756 w
+(j) 1075 1756 w
+10 /Times-Roman f
+(is biggest.) 1128 1736 w
+(This takes about 20 minutes of VAX time.) 970 1892 w
+10 /Times-Bold f
+(7.) 720 2132 w
+(Summary) 845 2132 w
+10 /Times-Roman f
+(It) 970 2288 w
+(turns) 1064 2288 w
+(out) 1297 2288 w
+(from) 1458 2288 w
+(this) 1685 2288 w
+(work) 1863 2288 w
+(that) 2101 2288 w
+(the) 2284 2288 w
+9 /Times-Roman f
+(UNIX) 2438 2288 w
+10 /Times-Roman f
+(file) 2697 2288 w
+(encryption) 2864 2288 w
+(command) 3325 2288 w
+(is) 3753 2288 w
+(not) 3854 2288 w
+(as) 4016 2288 w
+(strong) 4133 2288 w
+(as) 4417 2288 w
+(its) 4534 2288 w
+(designers) 4663 2288 w
+(had) 720 2408 w
+(hoped.) 898 2408 w
+(While) 1226 2408 w
+(a) 1504 2408 w
+(simple) 1582 2408 w
+(modification) 1883 2408 w
+(like) 2428 2408 w
+(the) 2612 2408 w
+(one) 2768 2408 w
+(discussed) 2946 2408 w
+(above) 3363 2408 w
+(makes) 3635 2408 w
+(encrypting) 3924 2408 w
+(short) 4384 2408 w
+(files) 4617 2408 w
+(safer,) 4822 2408 w
+(finding a much more satisfactory replacement appears hard.) 720 2528 w
+10 /Times-Bold f
+(8.) 720 2768 w
+(Reference) 845 2768 w
+10 /Times-Roman f
+(Leonard) 720 2924 w
+(E) 1079 2924 w
+(Baum) 1167 2924 w
+(and) 1433 2924 w
+(J) 1604 2924 w
+(A) 1670 2924 w
+(Eagon,) 1769 2924 w
+10 /Times-Italic f
+(An) 2076 2924 w
+(Inequality) 2214 2924 w
+(with) 2646 2924 w
+(Applications) 2846 2924 w
+(to) 3379 2924 w
+(Statistical) 3484 2924 w
+(Estimation) 3912 2924 w
+(for) 4373 2924 w
+(Probabilistic) 4517 2924 w
+(Functions) 720 3044 w
+(of) 1152 3044 w
+(Markov) 1262 3044 w
+(Processes) 1604 3044 w
+(and) 2035 3044 w
+(to) 2217 3044 w
+(a) 2327 3044 w
+(Model) 2409 3044 w
+(for) 2696 3044 w
+(Ecology) 2845 3044 w
+10 /Times-Roman f
+(,) 3172 3044 w
+(Bulletin) 3229 3044 w
+(of) 3584 3044 w
+(the) 3699 3044 w
+(AMS,) 3852 3044 w
+10 /Times-Bold f
+(73) 4125 3044 w
+10 /Times-Roman f
+(May) 4256 3044 w
+(1967,) 4470 3044 w
+(pp) 4726 3044 w
+(360\255) 4857 3044 w
+(363.) 720 3164 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 8 8
+%%Trailer
+done
+%%DocumentFonts: Times-Roman LucidaSansUnicode03 LucidaSansUnicode22 Times-Italic Times-Bold S1 S
+%%Pages: 8

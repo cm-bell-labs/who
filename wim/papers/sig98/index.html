@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+<title>MAPS: Multiresolution Adaptive Parameterization of Surfaces</title>
+</head>
+<body bgcolor="#ffffff" link="#aa1133" alink="#ff3300" vlink="##000055">
+<center>
+<b>
+<h2>MAPS: Multiresolution Adaptive Parameterization of Surfaces</h2>
+Aaron W. F. Lee
+&nbsp; &nbsp; &nbsp;
+Wim Sweldens
+&nbsp; &nbsp;&nbsp;
+Peter Schr&ouml;der
+&nbsp; &nbsp;&nbsp;
+Lawrence Cowsar
+&nbsp; &nbsp;&nbsp;
+David Dobkin
+</b>
+</center>
+<br>
+<br>
+<b>Abstract:</b>
+  We construct smooth parameterizations of
+  irregular connectivity triangulations of arbitrary genus
+  2-manifolds. Our algorithm uses hierarchical
+  simplification to efficiently induce a parameterization of
+  the original mesh over a base domain consisting of a small number of
+  triangles.
+  This initial parameterization is further improved through a
+  hierarchical smoothing procedure based on Loop subdivision applied
+  in the parameter domain.  Our
+  method supports both fully automatic and user constrained
+  operations. In the latter, we accommodate point and edge constraints
+  to force the alignment of iso-parameter lines with desired features.  We
+  show how to use the parameterization for fast, hierarchical
+  subdivision connectivity remeshing with guaranteed error bounds. The
+  remeshing algorithm constructs an adaptively subdivided mesh directly
+  without first resorting to uniform subdivision followed
+  by subsequent sparsification. It thus avoids the
+  exponential cost of the latter. Our parameterizations are also
+  useful for texture mapping and morphing applications, among others.
+<p>
+<b>Status:</b>
+   Computer Graphics Proceedings (SIGGRAPH 98), pp. 95-104, 1998.
+<p>
+<b>BiBTeX entry:</b>
+<pre><font size=-1>
+   @article{lsscd:sig98,
+    author = {A. W. F. Lee and W. Sweldens and P. Schr{\"o}der
+              and L. Cowsar and D. Dobkin},
+    title = {MAPS: Multiresolution Adaptive Parameterization of Surfaces},
+    journal = {Computer Graphics Proceedings (SIGGRAPH 98)},
+    pages = {95-104},
+    publisher = {ACM Siggraph},
+    year = {1998}
+   }
+</font></pre>
+<b>Files:</b>
+<br>
+<a href="sig98.ps.gz">Compressed PostScript with images</a> (4.8M
+expands to 32M),
+<br>
+<a href="sig98.pdf">PDF v3.0 with images</a> (840K),
+<br>
+<a href="sig98_nofig.ps">PostScript without images</a> (107K).
+<br>
+<p>
+<b>Note:</b>
+<br>
+Aaron Lee wrote a very nice and easy to read article on MAPS in <a
+href="http://www.gamasutra.com/features/20000908/lee_01.htm"
+target="_top">Gamasutra</a>,
+the online game developers magazine.
+<p>
+<b>Images and captions:</b>
+<p>
+<br>
+<center><a href="fig1b.jpg"><img src="fig1.jpg" border=0></a></center><br>
+<b>Figure 1:</b> Overview of our algorithm.  Top left: a scanned input
+ mesh (courtesy Cyberware). Next the parameter or base domain,
+ obtained through mesh simplification.  Top right: regions of the
+ original mesh colored according to their assigned base domain
+ triangle.  Bottom left: adaptive remeshing with subdivision
+ connectivity (&epsilon;=1%).
+<br>
+<br>
+<center>
+<a href="fig2b.jpg"><img src="fig2.jpg" border=0 valign=center></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="fig3b.jpg"><img src="fig3.jpg" border=0 valign=center></a>
+</center><br>
+<b>Figure 2-3:</b> Left: Examples of different atomic mesh simplification 
+ steps. At the top vertex removal, in the middle half-edge
+ collapse, and edge collapse at the bottom.
+ Middle: A mesh with a maximally independent set
+ of vertices marked by heavy dots. Each vertex in the independent set
+ has its respective star highlighted. Note that the star's of
+ the independent set do not tile the mesh (two triangles are left
+ white). Right: Retriangulation after vertex
+ removal.
+<br>
+<br>
+<center>
+<a href="fig4lb.jpg"><img src="fig4l.jpg" border=0></a>
+<a href="fig4mb.jpg"><img src="fig4m.jpg" border=0></a>
+<a href="fig4rb.jpg"><img src="fig4r.jpg" border=0></a>
+</center><br>
+<b>Figure 4:</b> Example of a modified DK mesh hierarchy.  At the left
+ the finest (original) mesh followed by an intermediate mesh, and the
+ coarsest (base) mesh at the right (original dataset courtesy
+ University of Washington).
+<br>
+<br>
+<center>
+<a href="fig5b.jpg"><img src="fig5.jpg" border=0></a>
+<a href="fig6b.jpg"><img src="fig6.jpg" border=0></a>
+</center><br>
+<b>Figure 5-6:</b> In order to remove a vertex p<sub>i</sub>, its
+ star(i) is mapped from 3-space to a plane using the map
+ z<sup>a</sup>. In the plane the central vertex is removed and the
+ resulting hole retriangulated (bottom right).
+ After retriangulation of a hole in the plane (left),
+ the just removed vertex gets assigned barycentric
+ coordinates with respect to the containing triangle on the coarser
+ level (right).  Similarly, all the finest level vertices that were mapped to
+ a triangle of the hole now need to be reassigned to a triangle of the
+ coarser level.
+<br>
+<br>
+<center><a href="fig7b.jpg"><img src="fig7.jpg" border=0></a></center><br>
+<b>Figure 7:</b> Base domain.  For each point p<sub>i</sub> from the
+ original mesh, its mapping &Pi;(p<sub>i</sub>) is shown with a dot on
+ the base domain.
+<br>
+<br>
+<center><a href="fig8b.jpg"><img src="fig8.jpg" border=0></a></center><br>
+<b>Figure 8:</b> Although the mapping &Pi; from the original mesh to a
+ base domain triangle is a bijection, triangles do not in general get
+ mapped to triangles. Three vertices of the original mesh get mapped
+ to a concave configuration on the base domain, causing the piecewise
+ linear approximation of the map to flip the triangle.
+<br>
+<br>
+<center><a href="fig9b.jpg"><img src="fig9.jpg" border=0></a></center><br>
+<b>Figure 9:</b> When a vertex with two incident feature edges is
+ removed, we want to ensure that the subsequent retriangulation adds a
+ new feature edge to replace the two old ones.
+<br>
+<br>
+<center><a href="fig10b.jpg"><img src="fig10.jpg" border=0></a>
+<a href="fig11b.jpg"><img src="fig11.jpg" border=0></a></center><br>
+<b>Figure 10-11:</b> Left: Remeshing of 3 holed torus using midpoint
+ subdivision.  The parameterization is smooth within each base domain
+ triangle, but clearly not across base domain triangles.
+ Right: The same remeshing of the 3-holed torus,
+ but this time with respect to a Loop smoothed
+ parameterization. Note: Because the Loop scheme only enters in
+ smoothing the <i>parameterization</i> the surface shown is still a
+ sampling of the original mesh, <i>not</i> a Loop surface
+ approximation of the original.
+<br>
+<br>
+<center>
+<a href="fig12lb.jpg"><img src="fig12l.jpg" border=0></a>
+<a href="fig12rb.jpg"><img src="fig12r.jpg" border=0></a>
+</center><br>
+<b>Figure 12:</b> Example remesh of a surface with boundaries.
+<br>
+<br>
+<center>
+<a href="fig13.1b.jpg"><img src="fig13.1.jpg" border=0></a>
+<a href="fig13.2b.jpg"><img src="fig13.2.jpg" border=0></a>
+<a href="fig13.3b.jpg"><img src="fig13.3.jpg" border=0></a>
+<br>
+<a href="fig13.4b.jpg"><img src="fig13.4.jpg" border=0></a>
+<a href="fig13.5b.jpg"><img src="fig13.5.jpg" border=0></a>
+<a href="fig13.6b.jpg"><img src="fig13.6.jpg" border=0></a>
+</center><br>
+<b>Figure 13:</b> Top (left to right): three levels in the DK
+ pyramid, finest (L=15) with 12946, intermediate (l=8) with 1530, and
+ coarsest (l=0) with 168 triangles.  Feature edges, dart and corner
+ vertices survive on the base domain.  Bottom (left to right): adaptive
+ mesh with &\epsilon; = 5% and 1120 triangles (left), &\epsilon; = 1% and
+ 3430 triangles (middle), and uniform level 3 (right). (Original dataset
+ courtesy University of Washington.)
+<br>
+<br>
+<center><a href="fig14b.jpg"><img src="fig14.jpg" border=0></a></center><br>
+<b>Figure 14:</b> Example of a constrained parameterization based on
+ user input. Top: original input mesh (100000 triangles) with edge
+ tags superimposed in red, green lines show some smooth iso-parameter
+ lines of our parameterization.  The middle shows an adaptive
+ subdivision connectivity remesh. The bottom one patches corresponding
+ to the eye regions (right eye was constrained, left eye was not) are
+ highlighted to indicate the resulting alignment of top level patches
+ with the feature lines. (Dataset courtesy Cyberware.)
+<br>
+
+
+
+
+
+<hr>
+<font size=-2> 
+Copyright &copy; 1998 Aaron Lee, Wim Sweldens, Peter Schr&ouml;der,
+Lawrence Cowsar, David Dobkin.
+</font> 
+</body> </html>

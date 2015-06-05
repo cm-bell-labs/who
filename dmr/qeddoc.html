@@ -1,0 +1,406 @@
+<html><head>
+<title>
+qeddoc
+</title></head>
+<body BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+<center><H2>QED Implementation
+</H2>
+<DL><DD><I>Dennis Ritchie<br>
+</I></DL></center>
+<br>&#32;<br>
+<blockquote><i>
+[This document is a rendering and redaction into HTML of some notes
+I made about my implementation of the QED editor for the GE-TSS
+(later Honeywell TSS) system.
+The change-date on the file from which I resurrected it is February 1978,
+but that is surely much later than the time it was actually
+written, which must have been in the early 1970s,
+when this version of QED was actually in use.
+<P>
+This was intended to be a paper, but I gave up on it.
+The figures to which it refers don't exist.
+The discussion of the
+implementation of regular expressions is greatly incomplete;
+this was the part I started but didn't finish.
+<P>
+The main thing that interests me about these notes
+are their reminder that I was seriously interested in coroutine
+control structures even in my (relative) youth.  -- DMR]
+</i></blockquote>
+<H4>1. Data Structures
+</H4>
+<P>
+Almost all data inside QED is stored in 4-word blocks, including
+text and regular expressions.
+There is no garbage collection; instead each block must be
+explicitly freed when it becomes unused.
+The blocks currently free are stored on the Free List (Fig. 1).
+The allocation routine
+first attempts to find a block on the free list; if none
+is there, it tries to generate a new block from the top of memory;
+if there is no room at the top of memory, TSS is asked
+for more core.
+</P>
+<H4>1.1 Buffers
+</H4>
+<P>
+Text in QED is arranged in a three-level hierarchy: there may be several
+buffers, each of which contains several lines, each of which contains 
+several blocks of text.
+The root of the tree which contains all buffers, lines and text is BLIST, which
+points to the head of a list of Buffer Headers (Fig. 2).
+The buffer headers constitute a doubly linked circular list,
+so that they can be searched when a buffer name is mentioned and
+so that new buffers can be created easily.
+Each buffer header has the structure shown in Figure 3.
+It contains
+</P>
+<DL COMPACT>
+<DT>1.<DD>
+Pointers to the previous and next buffers
+<DT>2.<DD>
+A pointer to the Line Header Block for line 0 of the contents
+of the buffer (see below).
+<DT>3.<DD>
+A pointer to line "." in the buffer (correct only when this is
+<I>not</I>
+the current buffer; "." for the current buffer
+is kept elsewhere).
+<DT>4.<DD>
+A pointer to the name of the buffer, stored in the same format
+as a Line Contents block list (see below).
+<DT>5.<DD>
+A pointer to a Buffer Extension block containing
+<DT>5a.<DD>
+The number in the number register with the same name as
+the buffer,
+<DT>5b.<DD>
+The number of digits to be used when the number register is retrieved,
+<DT>5c.<DD>
+A pointer to the named regular expression with the same
+name as the buffer,
+<DT>5d.<DD>
+A pointer to the list of blocks representing the regular expression
+with the same name as the buffer.
+</dl>
+<H4>1.2 Lines
+</H4>
+<P>
+Each line in a buffer has a Line Header (Fig. 4).  The line headers
+for a buffer are linked just like the list of buffer headers (and some of
+the same routines manipulate them).  Each buffer has a line 0, which
+cannot in general be referred to by QED commands. The purpose
+of line 0 is to provide a fixed location through which
+the contents of a buffer can be retrieved.  The most important
+thing about line 0, then, is that it cannot be deleted, for if
+it could, the line pointer in the buffer header would point to a
+non-existent line.
+</P>
+<P>
+As mentioned, line headers are a doubly linked circular list, so that
+line $ precedes line 0. Thus it is easy to insert and delete lines.
+Each line header block contains
+</P>
+<DL COMPACT>
+<DT>1.<DD>
+A previous and next line pointer.
+<DT>2.<DD>
+An absolute line number for benefit of the "'" address form and the ":"
+command.
+<DT>3.<DD>
+Space for a flag used in G and V commands to mark that the line
+will be affected by the command.
+<DT>4.<DD>
+A pointer to the blocks constituting the Line Contents (Fig. 5).
+</dl>
+<P>
+Line Contents blocks are singly linked
+and contain 14 9-bit characters. The end of the line is marked
+by either a null (zero) character or (if the last block is full)
+by a null next-block pointer.
+</P>
+<H4>2. IO Structure
+</H4>
+<P>
+The IO (for Input-Output) pushdown is used to keep track of the current
+status of expansion of "\B" and "\R" directives.
+At the top of the IO list at all times is a block defining
+the current source of characters; thus, most of the time at command
+level IO will specify the console typewriter, but if "\B(name)"
+is typed, IO will be pushed down and will specify buffer "name".
+There are several types of IO classified according to the routine
+used to supply characters; they are
+</P>
+<DL COMPACT>
+<DT>1.<DD>
+Console typewriter (top level and expansion of "\R").
+<DT>2.<DD>
+Buffer (characters out of a buffer; used during "\B" and
+also, for example, while writing or printing a buffer).
+<DT>3.<DD>
+Unused
+<DT>4.<DD>
+Global (like Buffer, but used while executing the commands
+in a G or V request).
+<DT>5.<DD>
+Number (used to expand "\N", print line numbers, etc.)
+<DT>6.<DD>
+Bootstrap (only during execution of the QED bootstrap loader.)
+</dl>
+<P>
+The IO list is a simple pushdown store.  Each block on the store
+contains at a minimum the IO type it represents
+and a pointer to the next lower item on the stack.
+Buffer and Global IO blocks also contain
+</P>
+<DL COMPACT>
+<DT>1.<DD>
+A pointer to the last line to be expanded;
+<DT>2.<DD>
+A pointer to the current line being expanded;
+<DT>3.<DD>
+A tally word pointing to the next character to be returned from
+the buffer.
+</dl>
+<P>
+Blocks for Number IO contain
+</P>
+<DL COMPACT>
+<DT>1.<DD>
+The number being expanded, or its absolute value if it
+was negative and its sign has been generated;
+<DT>2.<DD>
+The number of digits desired;
+<DT>3.<DD>
+The number of digits already generated.
+</dl>
+<H4>Sources and Sinks.
+</H4>
+<P>
+The essential notion in the character handling sections of QED
+is that of the coroutine (see [Knuth], [McIlroy]).
+The typical feature of coroutine organization is a number of
+procedures which call among themselves in such a way
+that no routine can fairly be called a subroutine
+of another; instead, each routine calls on the others
+and in turn is called by them.
+Character manipulation is perhaps the most common application
+of coroutines, so it is not surprising that QED uses them so heavily.
+</P>
+<P>
+As a simple example, consider a program to list a file on the
+typewriter.  It will, of course, have two basic parts:
+one to pull characters from the file, and one to put them
+on the typewriter.
+(The program could also be coded as one big loop, so that
+it was difficult to separate the reading from the
+writing, but presumably we want to be able to call these
+programs from other places as well.)
+There are a number of routines which act as sources of characters:
+typewriter input, file input, retrieval of the next character from
+a buffer, and others.  Likewise, the are several sinks for characters:
+typewriter and file output, placing the next character into a buffer.
+In general, the source-type routines are called and return the
+next character from the source in a register. The sink routines
+are typically handed the name of a source routine which they call
+whenever they need characters.
+Thus, the Print (P) command works as follows: the typewriter output
+routine is called, and its argument is the name (i.e., the address)
+of the routine which retrieves characters from a buffer.
+(the latter routine must, of course, have been set up so as to
+read from the specified lines of the appropriate buffer.)
+Likewise the List (l) command hands the name of the file-input
+routine to the typewriter-output subroutine.
+</P>
+<P>
+There are only a few primitive routines that act as
+sources; they are:
+</P>
+<DL COMPACT>
+<DT>1.<DD>
+TTINCH returns the next character from the console typewriter;
+<DT>2.<DD>
+READ9 and READ6 return the next character from the ASCII
+or Hollerith file currently being read (if any).
+<DT>3.<DD>
+GETBUF return the next character from the buffer currently
+being read. GETBUF consults the entry at the top of the I/O list to
+determine whence it should take characters.
+</dl>
+<P>
+The file-read routines and GETBUF must both be set up properly before
+being called; an appropriate OPEN routine is used for
+READ6 and READ9, and SETBUF is called (with arguments indicating the
+the first and last lines to be expanded) to generate the appropriate
+entry on the I/O list.
+</P>
+<P>
+All of these routines do essentially no processing of the characters
+they handle; in particular, no expansion of the "\B" or "\R"
+text directives is done.
+(Actually, the typewriter-input routine handles escape characters:
+for example, it turns "\" followed by "B" into "\B"; but
+it does not expand the buffer.)
+Expansion of "\B", "\R", and "\N" directives is done by another
+character-source routine: GETCHA.
+GETCHA consults the I/O list to determine from where to take characters.
+Whenever it finds "\B" not suppressed by a preceding "\C",
+it pushes down the I/O list, and enters at its top the
+named buffer.  Similarly, "\N" and "\R" cause stacking
+of entries for Number and Typewriter I/O respectively.
+GETCHA is called, for example, by the command processor subroutine.
+</P>
+<P>
+The routines which act as sinks of characters include:
+</P>
+<DL COMPACT>
+<DT>1.<DD>
+APPEND, which places the characters it picks up after
+the line of the buffer which it is handed as argument;
+<DT>2.<DD>
+TTYOUT, which copies characters to the console typewriter;
+<DT>3.<DD>
+WRITE9 and WRITE6, which place characters into the
+ASCII or Hollerith file currently being written.
+</dl>
+<P>
+As indicated, sink routines are handed the name of a source.
+The argument subroutine is called to obtain characters until an
+end-of-file character is returned. Every sink return considers
+the character "\777" to denote the end of the
+current source of characters. At this point the sink routine generally
+returns to its caller.
+</P>
+<P>
+APPEND accepts an additional argument specifying an
+end-of-file character. Thus, the Append (A) command is implemented
+bye calling subroutine APPEND with arguments indicating
+the appropriate line to append to, source routine GETCHA, and
+end-of-file character "\F".
+More simply, the Read command (R) calls APPEND with the
+file-input routine as source and "\777" as end-of-file character.
+</P>
+<H4>4. The Store
+</H4>
+<P>
+Throughout most of QED, the previously described
+method of handling characters is quite satisfactory.
+That is, the sink routine acts as the driver, calling
+upon a source routine to supply characters.
+There are several situations, however, in which the opposite
+situation is more useful; sometimes a source
+routine which call the sink to dispose of characters.
+Consider, for example, the problem of typing out internally
+generated messages, as in the Status (X) command and the error subroutine.
+Under the previously described discipline, it would be necessary
+to set up a special source of characters whose name must be passed
+to the typewriter output subroutine in order to write
+the message.
+Instead, a facility called the Store is provided. Conceptually,
+the Store operates as follows: One routine (STORE) is provided
+which acts as a sink of characters; however, unlike previously-described
+sinks, STORE is
+<I>called</I>
+in order to stuff away characters.
+Conversely, routine GETSTR is called, after the store is
+full, to get characters from the store.
+Thus, in order to write a message on the typewriter, one calls
+STORE for each message character; then TTYOUT is called
+with GETSTR as source of characters.
+</P>
+<P>
+The original implementation of the Store was in fact the scheme
+that seems to be implied by the above description: an array of
+into which characters were placed by STORE and
+from which characters were retrieved by GETSTR.
+This method suffers from an important limitation, however;
+the store, by its nature, is of fixed size. For merely
+writing messages on the typewriter, this is not important, since
+they are all short. But the Store is also used
+to hold the new line generated by the Substitute command, for
+example; thus there is a definite limitation on the size of
+a line resulting from the Substitute command.
+If the size of the Store is large, there is an annoying
+inefficiency, in that space is not being utilized well most of
+the time; if the limit is small, there are complaints
+that the Substitute command does not word properly for long lines.
+</P>
+<P>
+Now, notice that QED uses two kins of relation between
+sources and sinks:
+</P>
+<DL COMPACT>
+<DT>1.<DD>
+Most sinks
+<I>call</I>
+sources in order to obtain characters;
+<DT>2.<DD>
+Sometimes, however, it is convenient for sources
+to call sinks in order to dispose of characters.
+The solution is to make the Store act merely as an adapter between these two kinds
+of routines.
+</dl>
+<H4>Regular Expressions
+</H4>
+<P>
+The most unusual feature of QED is its use of regular
+expressions.
+The method used is basically that described by its inventor,
+K. L. Thompson, in his article "Regular Expression Search
+Algorithm" (Communications of the ACM, Vol. 11, Number 6, June,
+1968).
+Several improvements and extensions of that algorithm
+have been made, some by Thompson, some by the author,
+so the entire scheme will be described.
+</P>
+<H4>Overview
+</H4>
+<P>
+Non-deterministic algorithms tend to be elegant but impractical.
+This method is one of the few in which a non-deterministic
+algorithm has been efficiently applied to a real problem.
+One of its most important characteristics is that no backup is
+required; that is, once a character has been picked up
+from the text being searched, it need not be rescanned.
+Consider the expression
+<DL><DT><DD><TT><PRE>
+     /abcdefg|ab/
+</PRE></TT></DL>
+applied to the text "abcdefx".  Many recognition algorithms
+would match the characters "a" through "f" in the text, and
+then discover that the "x" fails to match the "g"
+of the expression; at that point, a backup 
+would have to be performed in order to match the alternative
+"ab".  In QED's algorithm, the backup is not necessary, since
+the two alternatives of the expression, "ab" and "abcdefg", are
+being matched simultaneously.  That is, when the non-matching
+"x" is discovered in the text, it is known that the
+expression "ab" has already been found, so it is not necessary
+to rescan the text in order to match it.
+</P>
+<P>
+There are two stages in the handling of each regular expression.
+The first stage is a relatively ordinary compiler
+which accepts an expression to be matched and produces
+the code which performs the search.  The second stage is the
+execution of the code produced by the first stage.
+The two phases can be decoupled somewhat by the use
+of the null regular expression and by named regular expressions.
+For example, in the command
+<DL><DT><DD><TT><PRE>
+     "/abc/s//cba/"
+</PRE></TT></DL>
+the regular expression "abc" is compiled only
+once; the substitute command uses the same code compiled
+by the search.
+In the Enter command, e.g.
+<DL><DT><DD><TT><PRE>
+     e(rename)/abcdefg|ab/
+</PRE></TT></DL>
+the compilation of the regular expression is done without
+any execution until the expression is called.
+</P>
+<br>&#32;<br>
+<A href=http://www.lucent.com/copyright.html>
+Copyright</A> &#169; 1996 Lucent Technologies Inc.  All rights reserved.
+</body></html>

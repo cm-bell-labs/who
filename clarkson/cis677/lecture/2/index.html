@@ -1,0 +1,629 @@
+<HTML>
+<HEADER>
+<TITLE> CIS677: Notes for lecture 2, orthogonal range search and its relatives
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center>
+	CIS677<br> Notes for lecture 2: <br>
+Orthogonal Range Search and its Relatives
+</center></H1>
+<BR>
+
+<h2> Coordinate-wise dominance and minima</h2>
+
+<dl><dt><b>Definition: dominates</b> </dt><dd>
+	Say that point (x,y) <em>dominates</em> (x', y') if x<=x' and y<=y'
+		and they're not equal.<br>
+	example: comparison of towns for livability
+</dd></dl>
+<img src="f1.gif">
+
+
+<dl><dt><b>Definition: minima</b> </dt><dd>
+given point set S, <em>minima</em> of S have no dominators in S.
+</dd></dl>
+
+In the plane, minima are linearly ordered:
+	listing in increasing x-order also gives decreasing y order.
+
+
+<h3>relation to convex hulls:</h3>
+	Given point set S in the plane,<br>
+	let S<sup>+-</sup> denote {(x,-y) | (x,y) in S}, define S<sup>-+</sup> analogously, etc.<br>
+	consider minima of S<sup>++</sup>, S<sup>+-</sup>, S<sup>--</sup>,
+		S<sup>-+</sup>.<br>
+
+<dl><dt><b>Fact:</b></dt><dd>
+	if a point of S yields no minima in any of these four sets,<br>
+	that point is not extreme in S (not a vertex of the convex hull)
+	</dd>
+</dl>
+
+<h3>computation of minima</h3>
+
+<ul>
+	<li>divide-and-conquer gives O(n log n) computation of minima
+	<li>for random points (e.g., uniform in the square)
+		much faster computation is possible,
+			since lower left corner is likely to contain a point.
+		(since only ordering is used, any distribution with
+		coordinates independent is equivalent to uniform.)
+
+</ul>
+
+<h3>dominance queries</h3>
+<dl>
+	<dd>data:</dd> set S of n points
+	<dd>query:</dd> point q
+	<dd>output:</dd> set of all p in S dominated by q
+</dl>
+<img src="f2.gif">
+
+
+<p>
+The set of points dominated by q is a <em>box</em>:
+<p>
+<dl>
+<dt><b>Definition: box</b></dt>
+<dd>
+	A <em>box</em> is a cross-product of intervals.<br>
+	(also called rectangle, ortho-rectangle, rectilinear rectangle, rectagon)
+</dd></dl>
+
+<p>
+A box has 2d sides in d dimensions, each side a box in d-1 dimensions.
+
+
+<h3>Uses of dominance relation</h3>
+
+testimony: use of minima in a networking problem
+
+<p>
+interval/interval or box/box intersections as dominance queries:
+
+<p>
+<dl>
+<dt><b>min(B).</b></dt>
+<dd>
+	For box B, let <em>min(B)</em> be the point of B dominating all others in B.
+</dd>
+<dt><b>max(B)</b></dt><dd>
+	The point of B dominated by all others in B.
+</dd></dl>
+<img src="f3.gif">
+
+<p>
+<dl>
+<dt><b>B and B' intersect iff:</b></dt><dd>
+	min(B) dominated by max(B'), and <br>
+	min(B') dominated by max(B),<br>
+	or: (min(B), -max(B)) dominated by (max(B'), -min(B'))
+</dd></dl>
+
+It follows that a data structure for dominance queries can be used to 
+for:
+<h2>Box windowing</h3>
+<dl>
+	<dd>data:</dd> set S of planar boxes
+	<dd>query:</dd> planar box B, the window
+	<dd>output:</dd> all boxes of S meeting B
+</dl>
+<img src="f5.gif">
+
+
+
+<p>
+Dominance queries are a special case of:
+
+<h3>Orthogonal range queries</h3>
+<dl>
+	<dd>data:</dd> set S of n points
+	<dd>query:</dd> box B
+	<dd>output:</dd> set of all p in S and B
+
+</dl>
+<img src="f4.gif">
+
+<p>
+A box query in 2d can be answered by a dominance query in 4d.
+
+<p>
+First, consider:
+
+<h2> 1d range queries</h2>
+
+<h3>Definition:</h3>
+
+<dl>
+	<dd>data:</dd> set S of n values
+	<dd>query:</dd> interval I=[a b]
+	<dd>output:</dd> all p in S between a and b
+</dl>
+
+<p>
+one trivial solution for 1d queries: a sorted array of values in S.
+
+<p>
+<b>for queries:</b><br>
+	find smallest value in S > a using binary search<br>
+	walk through array until greater than b.<br>
+
+<p>
+This is O(A + log n) time solution;<br>
+It doesn't seem to generalize to 2d.
+
+<p>
+<h3>Range tree (binary tree) solution</h3>
+
+Build a balanced binary tree for S to answer queries.
+
+<p>
+Some definitions:
+<dl>
+	<dt><b>S(m)</b></dt> <dd> denotes the values stored in the subtree rooted at m;</dd> 
+	<dt><b>split(m)</b></dt> <dd> denotes the partioning value at m;</dd> 
+	<dt><b>I(m)</b></dt> <dd> denotes the interval (low(m) high(m)] containing S(m).<br>
+	The subtree of the left child of m will store values in (low(m) split(m)]<br>
+	The subtree of the right child of m will store values in (split(m) high(m)]<br>
+</dd> 
+</dl>
+
+<p>
+To answer a query I=[a b], traverse the tree, starting at root.
+
+<p>
+to visit a node m:
+<pre>
+	if m is a leaf, output the value point(m) if it is in I.
+	otherwise:
+		if I(m) meets I,
+		then visit the children of m.
+</pre>
+
+<h3>Query time O(A+log n):</h3>
+<ul>
+	<li>constant work per node m
+	<li>O(log n) nodes have I(m) contain a and b,<br>
+		corresponding to search paths for a and b;
+	<li>O(A) nodes have I(m) meet I but not contain a or b:<br>
+		that is, I(m) is a subset of I, and <br>
+		all of S(m) is output, but subtree at m has O(S(m)) nodes.
+</ul>
+
+
+To extend this to 2d, we need
+
+<h3>Binary representation of intervals</h3>
+	Suppose I(m) is contained in I, but I(parent(m)) is not.<br>
+	There are O(log n) such nodes m,<br>
+	and the union of such intervals is I (when I has endpoints in S).<br>
+	This is a "binary" or "canonical" representation of I.
+<p>
+
+If the S={0..2<sup>k</sup>-1}, and I=[0 b], then<br>
+(with suitable def. of median)<br>
+the intervals can be read off from the binary represention of b.
+
+
+<p>
+If we store S(m) at m, then I can be output as the union of O(log n) such sets.
+
+<p>
+Now consider
+
+<h2>2d range queries</h2>
+<dl>
+	<dd>data:</dd> set S of n planar points
+	<dd>query:</dd> box B=[x<sub>l</sub> x<sub>h</sub>] X [y<sub>l</sub> y<sub>h</sub>]
+	<dd>output:</dd> all p in S and B
+</dl>
+
+<p>
+In the 2d case, the binary representation<br>
+allows fast answering of "slab" queries,<br>
+with box B=[x<sub>l</sub> x<sub>h</sub>] X [-inf, +inf],<br>
+by building tree for x-coordinates of points of S.
+
+<p>
+For a node m in the tree,<br>
+S(m) becomes the set of points in a vertical slab.
+
+<h3>2d Range trees</h3>
+<p>
+For fast 2d range queries,<br>
+for each node m of the tree,<br>
+build a "secondary" tree using y coordinates of points in S(m).
+
+<p>
+Find all nodes in primary tree for binary representation of [x<sub>l</sub> x<sub>h</sub>]<br>
+for each such node, use its secondary tree to find points with y-coordinates
+in [y<sub>l</sub> y<sub>h</sub>].
+
+<h3>Query time:</h3>
+	O(A<sub>m</sub> + log n) for each node m of primary tree,
+	where A<sub>m</sub> is output for m;<br>
+	so O(A + log<sup>2</sup> n) time altogether.
+
+<h3>Space</h3>
+O(n log n), since each point of S appears in O(log n) secondary trees.
+
+<h3>Higher dimensional orthogonal range queries</h3>
+
+<dl>
+	<dd>data:</dd> point set S in R<sup>d</sup>
+	<dd>query:</dd> box B=[x<sub>l</sub> x<sub>h</sub>] X [y<sub>l</sub> y<sub>h</sub>] X ...
+	<dd>output:</dd> all points in B and S
+
+</dl>
+	solution:<br>
+		build primary tree on x;<br>
+		for each node, build structure for (d-1)-dimensional case.<br>
+
+<p>
+Bounds:<br>
+	O(n log<sup>d-1</sup> n) space and O(A+log<sup>d</sup> n) query time<br>
+
+<p>
+OK but not great for small d and for box windowing.
+
+<p>
+Let's turn to a better solution for:
+
+<h2>Box windowing</h3>
+<dl>
+	<dd>data:</dd> set S of planar boxes
+	<dd>query:</dd> planar box B, the window
+	<dd>output:</dd> all boxes of S meeting B
+
+</dl>
+<p>
+A given box B' in S either contains B, or one of its bounding
+segments has an endpoint in B, or has a bounding segment that crosses B.
+
+<p>
+We ignore the first possibility for now.
+
+<p>
+Consider <em>short</em> segments, with an endpoint in B, and<br>
+<em>crossing</em> segments, that cross B.
+
+<p>
+A 2d orthogonal range query data structure can report short segments.
+
+<p>
+A crossing segment must cross a left or bottom bounding edge of B.
+
+We need a:
+<h3>Crossing segment data structure</h3>
+<dl>
+	<dd>data:</dd> horizontal segments H
+	<dd>query:</dd> vertical segment v
+	<dd>output:</dd> segments in H crossed by v
+
+</dl>
+
+The problem of reporting vertical crossing segments is solved
+the same data structure, rotated 90 degrees.
+
+<p>
+This problem leads to
+
+<h2> Interval trees </h2>
+
+<h3>1d case of crossing segment problem:</h3>
+<dl>
+	<dd>data:</dd> intervals S
+	<dd>query:</dd> value q
+	<dd>output:</dd> all intervals in S containing q
+
+</dl>
+
+This can be solved by dominance range query data structure in higher
+dimension, but this is more expensive than necessary.
+
+<h3>Interval trees:</h3>
+	build a balanced tree on the 2n endpoints of S<br>
+	at a given node m, store<br>
+	<em>straddle(m)</em>, theintervals of S containing split(m).
+
+
+<h3>To answer a query:</h3>
+	follow search path in tree for q;<br>
+	at a given node m on path, check if intervals in straddle(m) contain q.<br>
+	To do this, build a data structure on straddle(m).
+
+<h3>straddle sets</h3>
+	the condition that the intervals contain split(m) is helpful for search.<br>
+	like interval queries, but grounded:<br>
+	want a in S with min(a) < q, or max(a) > q.<br>
+	That is, build a 1d range query data structure for endpoints of straddle(m).<br>
+	The "sorted array" solution is adequate.
+
+<h3>extension to crossing segment data structure</h3>
+
+An interval tree solves the problem for vertical line queries, but what about
+segments?  Need to find segments in H that cross segment, not whole line.
+
+<p>
+For a vertical segment [x x] X [y<sub>l</sub> y<sub>h</sub>],<br>
+any straddle set member in answer has an endpoint in [-inf x] X [y<sub>l</sub> y<sub>h</sub>].
+
+<p>
+Instead of just an ordered list for straddle set,<br>
+could use a 2d orthogonal range query data structure built on the straddle<br>
+set endpoints.
+
+<p>
+The range queries are of a special, grounded form,<br>
+better solved with:
+
+
+<h2>Priority search trees</h2>
+
+Solves the grounded box range query problem:
+<p>
+<dl>
+	<dd>data:</dd> set S of points in the plane
+	<dd>query:</dd> grounded box B = [x<sub>l</sub> x<sub>h</sub>] X [-inf y<sub>h</sub>]
+	<dd>output:</dd> all values in S and B
+</dl>
+
+<p>
+The 1d case of a "grounded" query is just:
+
+<h3>1d grounded query:</h3>
+<dl>
+	<dd>data:</dd> values S
+	<dd>query:</dd> value q
+	<dd>output:</dd> all values in S <= q
+</dl>
+
+
+As in straddle sets, could use an ordered list; alternatively, use:
+
+<h3>Heap:</h3>
+<ul>
+	<li>a balanced binary tree
+	<li>heap condition: value at node <= values at children
+	<li>recursively visit all nodes of value <= q
+	<li>O(A) time: reporting of value "pays for" checking its children
+</ul>
+value at root must be lowest in set,
+but left and right subtrees are otherwise open.
+
+
+<h3>Priority search tree</h3>
+
+<ul>
+	<li>a tree, not a tree
+	<li>represents a point set, one point/node
+	<li>satisfies heap conditions on y coordinates
+	<li> satisfies binary tree conditions on x coordinates
+
+</ul>
+
+<h3>construction:</h3>
+<ul>
+	<li>pick site with lowest y coordinate, make it point(root)
+	<li>split sites by median x coordinate into S<sub>R</sub> and S<sub>L</sub>
+	<li>recursively build left and right subtrees using two sets
+
+</ul>
+
+<p>
+Each node m has a corresponding box B(m):<br>
+	min y of B(m) >= min y of parent B(m') <br>
+	vertical slab containing B(m') contains the union of slabs for children.
+
+<p>
+To answer an orthogonal range query for a grounded box B,<br>
+recursively visit the nodes of the PST;<br>
+For a given node m,<br>
+	check if point(m) in B;<br>
+	if B(m) meets B, visit the children of m.<br>
+
+
+<h3>Query time</h3>
+<ul>
+	<li>constant work/node visited
+	<li>two classes of node m, depending on parent m':
+<ul>
+	<li>	m' with x-interval contained in that of B, or
+	<li>	....<em>not</em> contained in that of B;	
+
+</ul>
+</ul>
+
+The nodes whose x-intervals are not contained in that of B are the same
+as for range trees, O(log n) total.
+
+<p>
+If the x-interval of m' is contained in that of B,
+then m is visited
+<blockquote>
+	only if B(m') meets B,<br>
+	only if min y of B(m') less than max y of B,<br>
+	only if point(m') in B(m) and B,<br>
+	only if point(m') is output,<br>
+</blockquote>
+so O(A) such nodes are visited.
+
+
+<p>
+Hence, the work for a query is O(A + log n).
+
+<h3>Summarizing windowing queries for horizontal segments:</h3>
+	need range trees for short segments, whose endpoints are in window;<br>
+	interval trees handle segments crossing window,<br>
+		using priority search trees on straddle sets.
+
+
+<h2>Windowing queries for general segments</h2>
+
+<h3>The general segment problem:</h3>
+<dl>
+	<dd>data:</dd> set S of noncrossing line segments in the plane
+	<dd>query:</dd> box B
+	<dd>output:</dd> all segments in S meeting B
+</dl>
+
+<p>
+One approach to this problem is to use the bounding boxes of the segments in S,
+and answer box queries for those bounding boxes.
+
+<p>
+In typical situations, the set of segments with bounding boxes meeting B is
+a small superset of the correct output: the boxes allow "filtering"
+down to a small superset of the output.
+
+<p>But not in the worst case!
+
+<p>
+Another solution to this problem uses:
+
+<h3>Segment trees</h3>
+	Given a set S of intervals,<br>
+	store its 2n endpoints in a binary tree<br>
+	store each interval  I at a node m if:<br>
+<ul>
+	<li>	I contains B(m), and
+	<li>	I does not contain B(parent(m))
+
+</ul>
+<p>
+	that is, store I at nodes yielding its binary representation.<br>
+	I stored at some of the nodes that would be visited<br>
+	for I as a query in range search on the tree.<br>
+	Storage is O(n log n)<br>
+
+<p>
+As for box windowing,<br>
+use range queries for "short" segments;<br>
+crossing segments cross a boundary edge of the window.
+
+<h3>window queries for crossing segments:</h3>
+<dl>
+	<dd>data:</dd> set of non-intersecting segments
+	<dd>query:</dd>  window q	
+	<dd>output:</dd> segments that cross q
+</dl>
+
+<p>
+build a segment tree for x-projections of segments<br>
+
+<p>
+The segments stored at a node<br>
+<em>span</em> the corresponding vertical slab.<br>
+build a 1D range tree for their intersection points with a vertical line:<br>
+	any vertical line in the node's vertical slab meets the segments in the same order<br>
+	this gives a total ordering of the segments,<br>
+	and searching uses point/segment comparisons,<br>
+		not value/value comparisons<br>
+
+<h3>To answer crossing segment queries,</h3> for a vertical boundary edge:
+	search segment tree for its projection<br>
+	for each node on search path, use node's range tree to find<br>
+		segments meeting edge
+
+<h3>A few general tricks:</h3>
+<ul>
+	<li>range trees
+<ul>
+	<li>	express query interval as union of canonical intervals
+	<li>	multi-level data structure
+
+</ul>
+	<li>interval trees: use special property of straddle sets
+	<li>priority search trees:
+<ul>
+	<li>	pay-as-you-go search, that is,
+	<li>	each output site pays for more testing
+</ul>
+	<li>segment trees:
+<ul>
+	<li>	allow multi-level data structure
+	<li>	use special property of spanning segments
+</ul>
+</ul>
+
+
+
+		
+<h2>Filtering search</h2>
+
+
+like interval trees, but even simpler and sometimes faster.
+
+<dl>
+	<dd>data:</dd> set S of intervals
+	<dd>query:</dd> point q
+	<dd>output:</dd> all intervals in S containing q
+</dl>
+
+<p>
+The data structure is easily extended for the case where q is an interval.
+
+<p>
+The idea: partition the line into "apertures" (that is, intervals), such that:
+<ol type=i>
+	<li>Any point in an aperture Z is in at least half the intervals meeting Z
+	<li>The total number of interval/aperture pairs that meet is O(n).
+
+</ol>
+<p>
+For each aperture, store a list of the sites that meet it.
+The storage is O(n) by (ii).
+
+<p>
+Given such a data structure, to answer a query:
+<blockquote>
+	find all apertures meeting q<br>
+	for each such aperture, check each interval meeting it for containment of q.
+</blockquote>
+
+<p>
+There is an initial O(log n) cost to find the aperture containing q.
+
+<p>
+For each aperture, at least half the intervals meeting it will be output.
+
+<p>
+So, a query takes O(A + log n).
+
+<p>
+The discrete case: the endpoints of S and q are from some set of O(n) values.<br>
+Then initial search is O(1), and so O(A) overall.
+
+<p>
+The apertures act as "filters", giving a small superset of the output.
+
+
+
+<h3>Finding the apertures</h3>
+
+The algorithm finding the apertures is:
+
+<p>
+Sort the 2n endpoints of S,<br>
+and consider each one from left to right.<br>
+At any moment, an aperture is being grown to the right of some point.
+
+<p>
+<b>maintain:</b>
+<blockquote>
+	the current number C of intervals containing the current endpoint,<br>
+	the minimum number Low of C over the current aperture,<br>
+	T, the number of intervals meeting the current aperture.
+</blockquote>
+
+<p>
+Form a new aperture when Low becomes less than T/2, just before (i) is violated.
+
+
+
+</body>
+</html>
+

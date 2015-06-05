@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="xbl-shape-bindings.css" type="text/css"?>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+		"http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd">
+		
+
+<?xml-stylesheet href="foo.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:svg="http://www.w3.org/2000/svg" 
+      xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      >
+<style>
+
+div.FooterLeft {
+	font: inherit;
+	font-size: 0.5em;
+	position: absolute;
+	display: block;
+	bottom: 1.5em;
+	left: .25em;
+	height: 1em;
+	color: black;
+}
+
+div.FooterRight {
+	font: inherit;
+	font-size: 0.5em;
+	position: absolute;
+	display: block;
+	bottom: 1.5em;
+	right: .25em;
+	height: 1em;
+	color: black;
+}
+
+
+div.nav	{
+	position: absolute;
+	bottom: 0.5em;
+	right: 2.1em;
+	margin:	4px;
+}
+
+div.nav	:link, div.nav :visited, div.nav span {
+	text-decoration: none;
+	background:	#006;
+	color: white;
+	padding: 0 0.3em 0.1em 0.3em;
+	line-height: 1.0em;
+}
+
+div.nav	:link:hover, div.nav :visited:hover	{
+	background:	#00f;
+}
+
+svg {
+	font: inherit;
+	font-size: 20px;
+	fill: blue;
+}
+
+body {
+	font-size: 2.5em;
+	font-family: Comic Sans	MS;
+	font-weight: bold;
+	background:	white;
+	color: black;
+	margin-left: 1.5em;
+	margin-right: 1em;
+}
+
+h1 {
+	font: inherit;
+	font-size: 1.5em;
+	text-align:	center;
+	margin-bottom: 1em;
+	/* border-bottom: 0.1em solid black; */
+}
+
+/*
+ul {
+	padding: 0 0 0 1.5em;
+	margin: 0;
+}
+*/
+
+li { margin-left: 0.5em; padding: 0; }
+
+
+table.tree {
+	margin:	auto;
+}
+
+table.tree td {
+	text-align:	center;
+	empty-cells: hide;
+}
+
+table.tree tr:not(.arrows) td {
+	font-family: monospace;
+	border:	0.1em solid;
+}
+
+@media screen,projection {
+	div.slide {
+		display: none; 
+	}
+}
+@media print {
+	div.slide {
+		display: block;
+		page-break-after: always;
+	}
+	div.nav {
+		display: none;
+	}
+	div.FooterLeft {
+		display: none;
+	}
+	div.FooterRight {
+		display: none;
+	}
+
+}
+
+
+.important {
+	color: red;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+[class~="circle"]	
+{
+	stroke:	red;
+	stroke-width: 2;
+	fill: red;
+	fill-opacity: 0.1;
+}
+
+[class~="circ_control"]:hover {stroke:black; stroke-width:2; fill-opacity:0.2;}
+	li:hover {color:blue}
+
+
+a {color:inherit; text-decoration:none;}
+
+</style>
+      
+<script type="application/x-javascript" src="impl.js"/>
+<script type="text/javascript" src="ASCIIMathML.js"/>
+<script type="text/javascript" src="active_set_anim.js"/>
+
+<script>mathcolor="Black"</script>
+
+
+<head>
+   <title>A Model of Soft Handoff under Dynamic Shadow Fading</title>
+ </head>
+
+
+<body onload="onload_init(); translate() ; anim_init(); ">
+
+	<svg:svg id="slide one" viewBox="0 0 600 555" style="height:90%;width:100%">
+		<svg:g width="600" height="42">
+			<svg:rect class="circ_control" title="go" id="circ_go" width="40" height="40" y="0" x="420" style="fill:lightgreen;"/>
+			<svg:rect class="circ_control" title="single step" id="circ_step" width="40" height="40" y="0" x="460" style="fill:yellow;"/>
+			<svg:rect class="circ_control" title="stop" id="circ_stop" width="40" height="40" y="0" x="500" style="fill:red;"/>
+		</svg:g>
+		<svg:g id="canvas" width="650" height="505" >
+			<svg:g id="all_lines" />
+			<svg:g>
+				<svg:line x1="260" y1="0" x2="260" y2="505" style="fill:none; stroke:black; stroke-width: 3;"/>
+				<svg:line x1="0" y1="300" x2="555" y2="300" style="fill:none; stroke:red; stroke-width: 3;"/>
+				<svg:text x="555" y="300">T_DROP</svg:text>
+				
+				<svg:line x1="0" y1="200" x2="555" y2="200" style="fill:none; stroke:red; stroke-width: 3;"/>
+				<svg:text x="555" y="200">T_ADD</svg:text>
+				
+				<svg:circle class="circ_status" id="circ_status_c" r="10" cx="275" cy="490" style="fill:red;"/>
+				<svg:text x="285" y="500">Active</svg:text>
+				<svg:text id="since_td_label"  x="380" y="500">Since >T_DROP: 0</svg:text>
+				
+				<svg:circle class="circ_status" id="circ_cur_status_c" r="10" cx="245" cy="490" style="fill:red;"/>
+				<svg:text text-anchor="end" x="235" y="500">Current</svg:text>
+			</svg:g>
+		</svg:g>
+	</svg:svg>
+
+</body></html>

@@ -1,0 +1,472 @@
+!<arch>
+compress.r      362839451   9     1     100666  1010      `
+include /usr/style/io/globdefs
+define RCODE STAR
+define MAXCHUNK 10
+define THRESH 5
+# compress _ compress standard input
+	character getc
+	character buf(MAXCHUNK), c, lastc
+	integer nrep, nsave
+	# must have RCODE > MAXCHUNK or RCODE = 0
+
+	nsave = 0
+	for (lastc = getc(lastc); lastc != EOF; lastc = c) {
+		for (nrep = 1; getc(c) == lastc; nrep = nrep + 1)
+			if (nrep >= MAXCHUNK)	# count repetitions
+				break
+		if (nrep < THRESH)			# append short string
+			for ( ; nrep > 0; nrep = nrep - 1) {
+				nsave = nsave + 1
+				buf(nsave) = lastc
+				if (nsave >= MAXCHUNK)
+					call putbuf(buf, nsave)
+				}
+		else {
+			call putbuf(buf, nsave)
+			call putc(RCODE)
+			call putc(lastc)
+			call putc(nrep)
+			}
+		}
+	call putbuf(buf, nsave)	# put last chunk
+	stop
+	end
+
+# putbuf _ output buf(1) ... buf(nsave), clear nsave
+	subroutine putbuf(buf, nsave)
+	character buf(MAXCHUNK)
+	integer i, nsave
+
+	if (nsave > 0) {
+		call putc(nsave)
+		for (i = 1; i <= nsave; i = i + 1)
+			call putc(buf(i))
+		}
+	nsave = 0
+	return
+	end
+copy.p          362839450   9     1     100666  262       `
+/* copy _ copy input characters to output */
+	copy: procedure options (main);
+	declare getc entry (fixed binary) returns (fixed binary);
+	declare putc entry (fixed binary);
+	declare c fixed binary;
+	
+	do while (getc(c) ^= EOF);
+		call putc(c);
+		end;
+	end copy;
+crypt.r         362839453   9     1     100666  345       `
+include /usr/style/io/globdefs
+define MAXKEY 50
+# crypt _ encrypt and decrypt
+	character getc, xor
+	character c, key(MAXKEY)
+	integer getarg, mod
+	integer i, keylen
+
+	keylen = getarg(1, key, MAXKEY)
+	if (keylen == EOF)
+		call error("usage: crypt key.")
+	for (i = 1; getc(c) != EOF; i = mod(i, keylen) + 1)
+		call putc(xor(c, key(i)))
+	stop
+	end
+
+detab.p         362839452   9     1     100666  1172      `
+/* detab _ convert tabs into equivalent number of blanks */
+	detab: procedure options (main);
+	declare getc entry (fixed binary) returns (fixed binary);
+	declare putc entry (fixed binary);
+	declare c fixed binary;
+	declare settab entry ((*)fixed binary);
+	declare tabpos entry (fixed binary, (*)fixed binary) returns (fixed binary);
+	declare (col, tabs(MAXLINE)) fixed binary;
+
+	call settab(tabs);	/* set initial tab stops */
+	col = 1;
+	do while (getc(c) ^= EOF);
+		if c = TAB then do;
+		   loop:
+			call putc(BLANK);
+			col = col + 1;
+			if tabpos(col, tabs) ^= YES then
+				goto loop;
+			end;
+		else if c = NEWLINE then do;
+			call putc(NEWLINE);
+			col = 1;
+			end;
+		else do;
+			call putc(c);
+			col = col + 1;
+			end;
+		end;
+	end detab;
+
+/* tabpos _ return YES if col is a tab stop */
+	tabpos: procedure (col, tabs) returns (fixed binary);
+	declare (col, tabs(*)) fixed binary;
+
+	if col > MAXLINE then
+		return(YES);
+	else
+		return(tabs(col));
+	end tabpos;
+
+/* settab _ set initial tab stops */
+	settab: procedure (tabs);
+	declare (i, tabs(*)) fixed binary;
+
+	do i = 1 to MAXLINE;
+		if mod(i, 8) = 1 then
+			tabs(i) = YES;
+		else
+			tabs(i) = NO;
+		end;
+	end settab;
+detab.r         362839440   9     1     100666  866       `
+include /usr/style/io/globdefs
+# detab _ convert tabs to equivalent number of blanks
+	character getc
+	character c
+	integer tabpos
+	integer col, i, tabs(MAXLINE)
+
+	call settab(tabs)	# set initial tab stops
+	col = 1
+	while (getc(c) != EOF)
+		if (c == TAB)
+			repeat {
+				call putc(BLANK)
+				col = col + 1
+				} until (tabpos(col, tabs) == YES)
+		else if (c == NEWLINE) {
+			call putc(NEWLINE)
+			col = 1
+			}
+		else {
+			call putc(c)
+			col = col + 1
+			}
+	stop
+	end
+
+# tabpos _ return YES if col is a tab stop
+	integer function tabpos(col, tabs)
+	integer col, i, tabs(MAXLINE)
+
+	if (col > MAXLINE)
+		tabpos = YES
+	else
+		tabpos = tabs(col)
+	return
+	end
+
+# settab _ set initial tab stops
+	subroutine settab(tabs)
+	integer mod
+	integer i, tabs(MAXLINE)
+
+	for (i = 1; i <= MAXLINE; i = i + 1)
+		if (mod(i, 8) == 1)
+			tabs(i) = YES
+		else
+			tabs(i) = NO
+	return
+	end
+dtab.pli        362839446   9     1     100666  1133      `
+/* detab _ convert tabs into equivalent number of blanks */
+	detab: procedure options (main);
+	declare getc entry (fixed binary) returns (fixed binary);
+	declare putc entry (fixed binary);
+	declare c fixed binary;
+	declare tabpos entry (fixed binary, (*)fixed binary) returns (fixed binary);
+	declare settab entry ((*)fixed binary);
+	declare (col, tabs(20)) fixed binary;
+
+	call settab(tabs);	/* set initial tab stops */
+	col = 1;
+	do while (getc(c) ^= -1);
+		if c = 11 then do;
+		   loop:
+			call putc(32);
+			col = col + 1;
+			if tabpos(col, tabs) ^= 1 then
+				goto loop;
+			end;
+		else if c = 10 then do;
+			call putc(10);
+			col = 1;
+			end;
+		else do;
+			call putc(c);
+			col = col + 1;
+			end;
+		end;
+	end detab;
+
+/* tabpos _ return 1 if col is a tab stop */
+	tabpos: procedure (col, tabs) returns (fixed binary);
+	declare (col, tabs(*)) fixed binary;
+
+	if col > 20 then
+		return(1);
+	else
+		return(tabs(col));
+	end tabpos;
+
+/* settab _ set initial tab stops */
+	settab: procedure (tabs);
+	declare (i, tabs(*)) fixed binary;
+
+	do i = 1 to 20;
+		if mod(i, 8) = 1 then
+			tabs(i) = 1;
+		else
+			tabs(i) = 0;
+		end;
+	end settab;
+
+entab.r         362839442   9     1     100666  961       `
+include /usr/style/io/globdefs
+# entab _ replace blanks by tabs and blanks
+	character getc
+	character c
+	integer tabpos
+	integer col, i, newcol, tabs(MAXLINE)
+
+	call settab(tabs)
+	col = 1
+	repeat {
+		newcol = col
+		while (getc(c) == BLANK) {	# collect blanks
+			newcol = newcol + 1
+			if (tabpos(newcol, tabs) == YES) {
+				call putc(TAB)
+				col = newcol
+				}
+			}
+		for ( ; col < newcol; col = col + 1)
+			call putc(BLANK)		# output leftover blanks
+		if (c == EOF)
+			break
+		call putc(c)
+		if (c == NEWLINE)
+			col = 1
+		else
+			col = col + 1
+		}
+	stop
+	end
+
+# tabpos _ return YES if col is a tab stop
+	integer function tabpos(col, tabs)
+	integer col, i, tabs(MAXLINE)
+
+	if (col > MAXLINE)
+		tabpos = YES
+	else
+		tabpos = tabs(col)
+	return
+	end
+
+# settab _ set initial tab stops
+	subroutine settab(tabs)
+	integer mod
+	integer i, tabs(MAXLINE)
+
+	for (i = 1; i <= MAXLINE; i = i + 1)
+		if (mod(i, 8) == 1)
+			tabs(i) = YES
+		else
+			tabs(i) = NO
+	return
+	end
+
+expand.r        362839448   9     1     100666  489       `
+include /usr/style/io/globdefs
+define RCODE STAR
+# expand _ uncompress standard input
+	character getc
+	character c, code
+
+	while (getc(code) != EOF)
+		if (code == RCODE) {	# expand repetition
+			if (getc(c) == EOF)
+				break
+			if (getc(code) == EOF)
+				break
+			for ( ; code > 0; code = code - 1)
+				call putc(c)
+			}
+		else {				# expand chunk
+			for ( ; code > 0; code = code - 1) {
+				if (getc(c) == EOF)
+					break
+				call putc(c)
+				}
+			if (c == EOF)
+				break
+			}
+	stop
+	end
+
+fdetab.r        362839449   9     1     100666  1039      `
+include /usr/style/io/globdefs
+#c  detab _ convert tabs to equivalent number of blanks; Fortran version
+	integer getc
+	integer c
+	integer tabpos
+	integer col, i, tabs(MAXLINE)
+#c
+#c	set initial tab stops
+	call settab(tabs)
+	col = 1
+10	if (getc(c) .eq. EOF)  goto 60
+		if (c .ne. TAB)  goto 30
+20			call putc(BLANK)
+			col = col + 1
+			if (tabpos(col, tabs) .ne. YES)  goto 20
+			goto 50
+#c		else if
+30		if (c .ne. NEWLINE)  goto 40
+			call putc(NEWLINE)
+			col = 1
+			goto 50
+#c		else
+40			call putc(c)
+			col = col + 1
+50		goto 10
+60	stop
+	end
+
+#c  tabpos _ return YES if col is a tab stop; Fortran version
+	integer function tabpos(col, tabs)
+	integer col, i, tabs(MAXLINE)
+#c
+	if (col .gt. MAXLINE) tabpos = YES
+	if (col .le. MAXLINE) tabpos = tabs(col)
+	return
+	end
+
+#c  settab _ set initial tab stops; Fortran version
+	subroutine settab(tabs)
+	integer mod
+	integer i, tabs(MAXLINE)
+#c
+	i = 1
+10	if (i .gt. MAXLINE) goto 20
+		if (mod(i, 8) .eq. 1) tabs(i) = YES
+		if (mod(i, 8) .ne. 1) tabs(i) = NO
+		i = i + 1
+		goto 10
+20	return
+	end
+
+getput.p        362839447   9     1     100666  1167      `
+     /* getc for pl1 */
+     getc: procedure (c) returns(fixed binary);
+          declare c fixed binary;
+          declare (buf(80), i) fixed binary;
+          declare lastc fixed binary init(81);
+     
+          on endfile do;
+               c = -3;
+               return(-3);
+               end;
+     
+          lastc = lastc + 1;
+          if lastc > 81 then do;
+               get edit ((buf(i) do i = 1, 80)) ((80)a1);
+               buf(81) = 10;
+               lastc = 1;
+               end;
+          c = buf(lastc);
+          return(c);
+     end getc;
+     
+     /* putc for pl1 */
+     putc: procedure (c);
+          declare c fixed binary;
+          declare (buf(80), i) fixed binary;
+          declare lastc fixed binary init(0);
+               init( (80)0, 0, 0);
+     
+          if lastc > 80 | c = 10 then do;
+               do i = lastc+1 to 80;
+                    buf(i) = ' ';
+                    end;
+               put edit( (buf(i) do i = 1, 80) )((80)a1);
+               put skip;
+               lastc = 0;
+               end;
+          if c = 10 then return;
+          lastc = lastc + 1;
+          buf(lastc) = c;
+          return;
+     end;
+
+over.r          362839453   9     1     100666  694       `
+include /usr/style/io/globdefs
+define NOSKIP PLUS
+define SKIP STAR
+# overstrike _ convert backspaces into multiple lines
+	character getc
+	character c
+	integer max
+	integer col, newcol
+
+	col = 1
+	repeat {
+		newcol = col
+		while (getc(c) == BACKSPACE)	# eat up backspaces
+			newcol = max(newcol-1, 1)
+		if (newcol < col) {			# start overstrike line
+			call putc(NEWLINE)
+			call putc(NOSKIP)
+			for (col = 1; col < newcol; col = col + 1)
+				call putc(BLANK)
+			}
+		else if (col == 1 & c != EOF)	# start normal line
+			call putc(SKIP)
+							# else middle of line
+		if (c == EOF)
+			break
+		call putc(c)				# normal character
+		if (c == NEWLINE)
+			col = 1
+		else
+			col = col + 1
+		}
+	stop
+	end
+xor.r           362839447   9     1     100666  195       `
+include /usr/style/io/globdefs
+# xor _ exclusive\(hyor of  a  and  b
+	character function xor(a, b)
+	character and, not, or
+	character a, b
+
+	xor = or(and(a, not(b)), and(not(a), b))
+	return
+	end
+
+xor.s           362839453   9     1     100666  156       `
+.globl xor.
+.globl retrn
+
+xor.:
+	answer
+	.+2
+	mov	2(r3),r1
+	mov	2(r1),answer+2
+	mov	4(r3),r1
+	mov	2(r1),r0
+	xor	r0,answer+2
+	jmp	retrn
+
+.bss
+answer:
+	.=.+4

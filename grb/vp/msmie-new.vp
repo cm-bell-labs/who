@@ -1,0 +1,100 @@
+(* Improved four-buffer protocol based on MSMIE *)
+
+(* The following constraints on memory states are used
+   to reduce the size of the generated agent.  It is
+   easy to prove the constraints by showing they hold
+   initially and are invariant over the transitions.
+   1. (rm = emptyset and #masters = 0) or 
+      (not rm = emptyset and #masters = 1)
+   2. Likewise but for old masters.
+*)
+
+const I       = "i"
+const S       = "s"
+const N       = "n"
+const M       = "m"
+const O       = "old"
+
+const Status  = {I,S,N,M,O}
+const MI      = {1,2}
+const BI      = {1,2,3,4}
+const readers = pow(MI)
+const rpair   = {p|union(diff(MI,p#1),diff(MI,p#2)) = MI 
+                   where p:prod(readers,readers)}
+const b1      = {{<<a#1,1>>,<<a#2,2>>,<<a#3,3>>,<<a#4,4>>}|
+                 a:prod(Status,Status,Status,Status)}
+const b2      = {b:b1|size({c:b|c#1 = S}) = 1}
+const b3      = {b:b2|size({c:b|c#1 = N}) < 2}
+const b4      = {b:b3|size({c:b|c#1 = M}) < 2}
+const Bufs    = {b:b4|size({c:b|c#1 = O}) < 2}
+
+label slave
+label ma_MI, ma'_MI, mr_MI
+label ma1,ma2,ma1',ma2',mr1,mr2
+
+agent Buffers(B:Bufs,r:rpair) =
+(* 1,2 *)
+    sum(b1:B, sum(b2:diff(B,{b1}), sum(b3:diff(B,{b1,b2}), 
+    ((if b1#1 = S and b2#1 = N and b3#1 = I then
+        slave.(Buffers(union({<<N,b1#2>>,<<S,b2#2>>,<<I,b3#2>>},
+                             diff(B,{b1,b2,b3})),r)
+             + Buffers(union({<<N,b1#2>>,<<I,b2#2>>,<<S,b3#2>>},
+                             diff(B,{b1,b2,b3})),r)))))))
+(* 3 *)
+  + sum(b1:B, sum(b2:diff(B,{b1}), 
+    (if b1#1 = S and b2#1 = I and not member(N,{b#1|b:diff(B,{b1,b2})}) then
+        slave.Buffers(union({<<N,b1#2>>,<<S,b2#2>>},diff(B,{b1,b2})),r))))
+(* 4 *)
+  + sum(b1:B, sum(b2:diff(B,{b1}), 
+    (if b1#1 = S and b2#1 = N and not member(I,{b#1|b:diff(B,{b1,b2})}) then
+        slave.Buffers(union({<<N,b1#2>>,<<S,b2#2>>},diff(B,{b1,b2})),r))))
+
+(* 5 *)
+  + sum(b1:B, sum(b2:diff(B,{b1}),
+    (if b1#1 = M and b2#1 = O then
+        sum(k:diff(MI,union(r#1,r#2)),
+            ma_k.Buffers(union({<<M,b1#2>>,<<O,b2#2>>},
+                               diff(B,{b1,b2})),<<r#1,union(r#2,{k})>>)))))
+(* 6 *)
+  + sum(b1:B, 
+    (if b1#1 = M and not member(N,{b#1|b:diff(B,{b1})}) then
+        sum(k:diff(MI,union(r#1,r#2)),
+            ma_k.Buffers(union({<<M,b1#2>>},diff(B,{b1})),
+                         <<r#1,union(r#2,{k})>>))))
+(* 7 *)
+  + sum(b1:B, sum(b2:diff(B,{b1}), 
+    (if b1#1 = M and b2#1 = N and r#1 = {} then
+        sum(k:diff(MI,r#2), 
+            ma'_k.Buffers(union({<<O,b1#2>>,<<M,b2#2>>},
+                                diff(B,{b1,b2})),<<r#2,{k}>>)))))
+(* 8 *)
+  + sum(b1:B, 
+    (if b1#1 = N and r#2 = {} then
+        sum(k:diff(MI,r#1), 
+            ma'_k.Buffers(union({<<M,b1#2>>},
+                                diff(B,{b1})),<<r#1,{k}>>))))
+(* 9 *)
+  + (if size(r#1) > 1 then
+        sum(k:r#1, mr_k.Buffers(B,<<diff(r#1,{k}),r#2>>)))
+(* 10 *)
+  + sum(b1:B, 
+    (if b1#1 = O and size(r#1) = 1 then
+        sum(k:r#1, mr_k.Buffers(union({<<I,b1#2>>},
+                                      diff(B,{b1})),<<{},r#2>>))))
+(* 11 *)
+  + (if size(r#2) > 1 then
+        sum(k:r#2, mr_k.Buffers(B,<<r#1,diff(r#2,{k})>>)))
+(* 12 *)
+  + sum(b1:B, sum(b2:diff(B,{b1}),
+    (if b1#1 = M and b2#1 = N and size(r#2) = 1 then
+        sum(k:r#2, ma_k.Buffers(union({<<I,b1#2>>,<<N,b2#2>>},
+                                      diff(B,{b1,b2})),<<r#1,{}>>)))))
+
+(* 13 *)
+  + sum(b1:B, 
+    (if b1#1 = M and size(r#2) = 1 and not member(N,{b#1|b:diff(B,{b1})}) 
+     then sum(k:r#2, 
+              ma_k.Buffers(union({<<N,b1#2>>},diff(B,{b1})),<<r#1,{}>>))))
+
+agent NewMsmie = Buffers({<<S,1>>,<<I,2>>,<<I,3>>,<<I,4>>},<<{},{}>>)
+                 [ma1/ma_1,ma1'/ma'_1,ma2/ma_2,ma2'/ma'_2,mr1/mr_1,mr2/mr_2]

@@ -1,0 +1,475 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl"  href="http://www1.chapman.edu/~jipsen/mathml/pmathml.xsl"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML">
+  <head>
+    <title>Nearest Neighbor Search and Metric Space Dimensions</title>
+    <meta name="version" content="S5 1.0" />
+	<link rel="stylesheet" href="ui/asciimath.css" type="text/css"/>
+    <link rel="stylesheet" href="ui/slides.css" type="text/css" media="projection,print" id="slideProj" />
+    <link rel="stylesheet" href="ui/opera.css" type="text/css" media="projection" id="operaFix" />
+    <link rel="stylesheet" href="ui/print.css" type="text/css" media="print" id="slidePrint" />
+    <script type="text/javascript" src="ui/ASCIIMathML.js"></script>
+    <script src="ui/slides.js" type="text/javascript"></script>
+    <script type="text/javascript">
+  AMsymbols = AMsymbols.concat([
+  {input:"ni", tag:"mo", output:"\u220B", tex:"ni"},
+  {input:"Prob",  tag:"mo", output:"Prob", tex:null, ttype:CONST},
+  {input:"length",  tag:"mo", output:"length", tex:null, ttype:CONST},
+  {input:"diam",  tag:"mo", output:"diam", tex:null, ttype:SPACER},
+  {input:"doub",  tag:"mo", output:"doub", tex:null, ttype:SPACER},
+  {input:"supr",  tag:"mo", output:"sup", tex:null, ttype:UNDEROVER},
+  {input:"inf",  tag:"mo", output:"inf", tex:null, ttype:UNDEROVER},
+  {input:"diffmu",   tag:"mi", output:"d\u03BC",  tex:null, ttype:CONST},
+ ]);
+  mathcolor = "black";
+  </script>
+  </head>
+  <body onload="startup(); translate();">
+    <div class="layout">
+      <div id="currentSlide"></div>
+      <div id="header"></div>
+      <div id="footer">
+        <h2>Ken Clarkson</h2>
+        <h2>Nearest Neighbor Search and Metric Space Dimensions</h2>
+        <div id="controls">
+          <form action="#" id="controlForm">
+            <div>
+              <a accesskey="t" id="toggle" href="javascript:toggle();">&#216;</a>
+              <a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;</a>
+              <a accesskey="x" id="next" href="javascript:go(1);">&raquo;</a>
+            </div>
+            <div onmouseover="showHide('s');" onmouseout="showHide('h');">
+              <select id="jumplist" onchange="go('j');"></select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="presentation">
+    
+      <div class="slide">
+        <h1>Nearest Neighbor Search and Metric Space Dimensions</h1>
+        <h1>Ken Clarkson</h1>
+        <h1>Bell Labs</h1>
+      </div>
+      
+      <div class="slide">
+        <h1>Nearest Neighbor Search: the Problem</h1>
+        Given 
+        <ul>
+          <li>A set of sites (points) `S subset U`</li>
+          <li>In metric space `(U,D)`</li>
+          <li>Build a data structure so that:</li>
+          <blockquote>Given `q in U`, the closest site in `S` to a given query point `q` can be found quickly</blockquote>
+        </ul>
+      </div>
+      
+      
+      <div class="slide">
+        <h1>Nearest Neighbor Search: Synonyms</h1> 
+        <ul>
+          <li>Considered for at least thirty years, called:</li>
+          <li><em>Post Office problem</em> (McNutt, '72)</li>
+          <li><em>Best match file searching</em> [BK73]</li>
+          <li>Index for similarity search [HS03]</li>
+          <li>Vector quantization encoder </li>
+          <li>Fast nearest-neighbor classifier</li>
+        </ul>
+      </div>
+      
+     <div class="slide">
+        <h1>Metric Space Dimension</h1> 
+        <ul>
+          <li>Roughly, a notion of how "size" of `U` changes with measurement scale</li>
+          <li>Intimately related to NN searching</li>
+          <ul>
+	    <li>Some dimensional measures (e.g., Assouad) give provable upper bounds [C97], [KR02], [KL04], [HPM05]</li>
+	    <li>Empirically, can be used to predict NN search performance [BF98], [TFP03]</li>
+	    <li>NN search useful for estimating dimension</li>
+	  <ul>
+            <li>Correlation dimension via batched NN queries</li>
+	    <li>Pointwise dim. is related to NN distance</li>
+	    <li>Renyi dimensions via extremal graphs</li>
+          </ul>
+        </ul>
+        </ul>
+      </div>
+    
+      
+      <div class="slide">
+        <h1>Outline</h1> 
+        <ul>
+          <li>Some basics about metric spaces: repair and construction</li>
+          <ul><li>Packings, coverings, nets, Gonzalez construction</li></ul>
+          <li>Dimensions: box, packing, Assouad</li>
+          <li>Metric measure spaces</li>
+          <ul><li>Renyi and pointwise dimensions, doubling measures</li></ul>
+          <li>Approaches to NN searching, relation to doubling constant and measures</li>
+        </ul>
+      </div>
+      
+      
+      
+      <div class="slide">
+        <h1>Metric Spaces: Definition and Repairs</h1>
+        A metric space `(U,D)` has `D(x,y) ge 0` and `D(x,x)=0` for all `x,y in U`,
+        and also:
+        <ul>
+          <li>Isolation: `x ne y` implies `D(x,y) ge 0`</li>
+			<ul>
+			  <li>If not: <em>pseudometric</em>, fix with equivalence classes</li>
+			</ul>
+          <li>Symmetry: `D(x,y)=D(y,x)`</li>
+			<ul>
+			  <li>If not: <em>quasimetric</em>; `hat D (x,y) := (D(x,y) + D(y,x))//2`</li>
+			  </ul>
+         <li>Triangle Inequality: `D(x,z) le D(x,y) + D(y,z)`</li>
+			<ul>
+			  <li>If not: <em>semimetric</em>; `hat D (x,y) := inf sum_i D(z_i, z_{i+1})`, `x=z_0`, `y=z_k`</li>
+			</ul>
+       </ul>
+     </div>
+     
+      <div class="slide">
+        <h1>New Metrics from Old</h1>
+        Start with uniform metric on finite set, or (RR, |x-y|)`;<br/>
+        Suppose `(U,D)`, and `(U_1,D_1)...(U_d,D_d)` are metric spaces.
+        <ul>
+          <li>`L_p`: `hat U:= U_1 xx U_2 xx cdots xx U_d`, etc.</li>
+          <li>Strings over `U`</li>
+          <li>Nonnegative combinations: `U_1=U_2= cdots =U_d`, given `alpha_1 ldots alpha_d`, `hat D(x,y) := sum_i alpha_i D_i(x,y)`</li>
+          <li>Distance on subsets `A,B subset U`</li>
+          <ul>
+			<li>Hausdorf</li>
+			<li>Given measure `mu`, distance `mu(A Delta B)`</li>
+	      </ul>
+        </ul>
+      </div>
+
+       <div class="slide">
+        <h1>New Metrics from Old: Transforms</h1>
+        <ul>
+          <li>Given `f(z)` on `RR` with:</li>
+          <ul>
+            <li>`f(0)=0`</li>
+            <li>`f` monotone increasing</li>
+            <li>`f` concave</li>
+          </ul>
+          <li>Have:</li>
+          <ul><li>`hat D(x,y) := f(D(x,y))` also a metric</li></ul>
+          <li>For `epsilon ge 0`, `f(z) := z^epsilon`, the "snowflake"</li>
+          <ul><li>Alternate fix for semimetric</li></ul>
+          <li>`f(z) := z/(1+z)` : bounded space</li>
+          <li>For `lambda > 0`, `f(z) := 1 - e^{: - lambda z:}` : Schoenberg transform</li>
+        </ul>
+      </div>
+
+
+       <div class="slide">
+        <h1>The Biotope Transform</h1>
+        Given `a in U`, the <em>biotope</em> or <em>Steinhaus</em> transform
+         <blockquote>`hat D(x,y) := {: 2D(x,y):} / {:D(x,a) + D(y,a) + D(x,y):}</blockquote>
+        yields a metric.(How did I not know this?)<br/>
+        
+        For `D(A,B)=mu(A Delta B)` and `a=O/`, get
+         <blockquote>`hat D(A,B) = {:mu(A Delta B):} / {:mu(A uu B):}`</blockquote>
+         
+        Generalizations?  Replacing `D(x,a) + D(y,a)` by `min_{a in T} D(x,a) + D(y,a)` seems to work,
+        for `T subset U`.
+        
+       </div>
+
+
+       <div class="slide">
+        <h1>Biotope Distance : a.k.a.</h1>
+        <ul>
+          <li>Marczewski-Steinhaus [MS58] in ecology, 32 hits</li>
+          <li>Tanimoto [RT60] in chem and genetics, 157 hits</li>
+          <li>Jaccard [J01] in CS and genetics, 262 hits</li>
+          <li>Set similarity in TCS [Cha02]</li>
+          <li>Resemblance in TCS/Web [B97]</li>
+        </ul>
+      </div>
+       
+
+       <div class="slide">
+        <h1>Packings, Coverings, Nets</h1>
+        Given `(U ,D)`, `epsilon > 0`, `P subset U` is an:
+        <ul>
+          <li>`epsilon`-covering: `D(x,P) le epsilon` for all `x in U`</li>
+          <li>`epsilon`-packing: `D(x,y) ge 2 epsilon` for all `x,y in P`</li>
+          <li>`epsilon`-net: `epsilon`-cover and `epsilon/2`-packing</li>
+          <li>(Haussler/Welzl `epsilon`-net hits all balls of large <em>volume</em>)</li>
+          <li>Gonzalez construction:</li>
+          <ul>
+            <li>starting with `P = {x}` for some `x in U`, repeat:</li>
+            <li>Add `y` to `P` that is farthest from `P`</li>
+            <li>Until have `epsilon`-net</li>
+          </ul>
+        </ul>
+      </div>
+
+       <div class="slide">
+        <h1>Gonzalez Construction Properties</h1>
+        <ul>
+          <li>Optimal approximation algorithm, in a sense [G85][ST85]</li>
+          <li>Used in building NN data structures [Bri95][WOj03][C03][HPM05]</li>
+          <li>Bawden-Lajiness algorithm in comp. chem.</li>
+          <li>Farthest Point Sampling in image proc. [ELPZ97]</li>
+          <li>Not far from Chew's algorithm for building triangulations</li>
+        </ul>
+      </div>
+
+       <div class="slide">
+        <h1>Box Dimension</h1>
+        <ul>
+          <li>Given `Z = (U,D)`, let `mathcal N (Z, epsilon)` be `epsilon`-net size for `Z`</li>
+          <li>Suppose there is some `d` so that
+          <blockquote>`mathcal N (Z, epsilon) =  {: {:1:} // {: epsilon^{:d+o(1):} :} :}`</blockquote>
+          as `epsilon -> 0`.</li>
+          <li>Then `d` is `dim_B(Z)`, the <em>box dimension</em> of `Z`.</li>
+          <li>Note that `{: {:1:} // {: epsilon^{:o(1):} :} :}` may not be `O(1)`</li>
+          
+         </ul>
+      </div>
+
+       <div class="slide">
+        <h1>Box Dimension Equivalents</h1>
+        <ul>
+         <li>Equivalently
+          <blockquote>`dim_B(Z) = lim_ {:epsilon -> 0 :} {: {: - log mathcal N (Z, epsilon) :} / {: log epsilon :} :}</blockquote> </li>
+          <li>Could also define using covering number `mathcal C (Z, epsilon)`</li>
+          <ul><li>Constant factor doesn't matter in the asymptotic expression</li></ul>
+          <li>`dim_B(Z)` is critical value of <em>`t`-content</em>
+          <blockquote>`lim_ {:epsilon -> 0 :} mathcal C (Z, epsilon) epsilon^t
+			= lim_ {:epsilon -> 0 :} {: epsilon^{:t - dim_B(Z) + o(1):} :}`</blockquote></li>
+        </ul>
+      </div>
+      
+       <div class="slide">
+        <h1>Hausdorff  Dimension</h1>
+        <ul>
+          <li>`epsilon`-cover `mathcal E` is a collection of balls `B` all with `diam B le epsilon`</li>
+          <li>Use `t`-content
+            <blockquote>`inf_{mathcal E text{an} epsilon text{-cover} :}  sum_{:B in mathcal E:} {:diam (B)^t:}  </blockquote>
+          </li>
+          <li>More balls than `mathcal C(Z,epsilon)`, but small ones count less</li>
+         <li>Get Hausdorff dimension `dim_H(Z)`.</li>
+        </ul>
+      </div>
+
+      
+      <div class="slide">
+        <h1>Assouad Dimension</h1>
+         <ul>
+           <li>A stronger, more uniform condition:</li>
+           <li>All balls `B(x,r)` have an `(epsilon r)`-net that isn't too big:
+             <blockquote>`{:supr_{:x in U text(and) r>0:} mathcal C (B(x,r), epsilon r):} = 1 // {:epsilon^{:d+o(1):}:}`,</blockquote>
+           </li>
+           <li>`d` is the Assouad dimension, `dim_A(Z)`</li>
+           <li>Have `dim_T(Z) le dim_H(Z) le dim_B(Z) le dim_A(Z)`</li>
+           
+         </ul>
+      </div>
+
+      
+      <div class="slide">
+        <h1>Doubling Constant</h1>
+         <ul>
+           <li>Closely related <em>doubling constant</em> `doub_C(Z)` has largest
+                 packing `mathcal P (B(x,r), r//2) le doub_C(Z)` for all `x in U`, `r > 0`.</li>
+           <li>Several papers give approximation or expected algorithms assuming bounded `dim_A(Z)`[C97][KL04][HPM05]</li>
+        </ul>
+      </div>
+      
+      
+       <div class="slide">
+        <h1>Metric Measure Spaces</h1>
+         <ul>
+           <li>Suppose there is also a measure `mu`, so have a metric measure space `(U,D,mu)`</li>
+           <li>Can use empirical estimator `mu(A) approx |A cap S|//n`,</li>
+           <ul><li>where `S` is random sample of `n` sites, with distribution `mu`</li></ul>
+         </ul>
+      </div>
+      
+      
+       <div class="slide">
+        <h1>Renyi dimension</h1>
+        Given `epsilon > 0`, let:
+        <ul>
+          <li>`mu_epsilon(x) := mu(B(x,epsilon)),</li>
+          <li>and `|\|mu_epsilon|\| _v` be the `L_v` norm of `mu_epsilon` with respect to `mu`:
+            <blockquote>`{:|\|mu_epsilon|\|:}_v ^v  := int mu_epsilon^v diffmu`.</blockquote></li>
+          <li>That is, if `X_1 ldots X_{v+1}` have distribution `mu`, then `{:|\|mu_epsilon|\|:}_v^v` is the
+            probability that all are within `epsilon` of `X_1`.</li>
+            
+         </ul>
+      </div>
+      
+      
+       <div class="slide">
+        <h1>Renyi dimension, correlation dimension</h1>
+        Given `epsilon > 0`, let:
+        <ul>
+            
+          <li>`{:|\|mu_epsilon|\|:}_1` is the <em>correlation integral</em></li>
+          <li>Empirical estimator is number of pairs of sites of `S` closer than `epsilon`</li>
+          <li><em>Renyi dimension</em> `dim_v(mu)` is `d` such that
+          <blockquote>`{:|\|mu_epsilon|\|:}_{v-1} = epsilon ^{:d+o(1):}`,</blockquote>
+          as `epsilon -> 0`.</li>
+          <li>`dim_2(mu)` is the <em>correlation dimension</em></li>
+        </ul>          
+      </div>
+      
+       <div class="slide">
+        <h1>Renyi dimension and NN Search</h1>
+        <ul>
+          <li>Correlation dimension used in study of "strange attractors" of dynamical systems</li>
+          <li>Computing estimator of correlation integral:</li>
+          <ul>
+             <li>batched fixed-radius query problem, a.k.a.</li>
+             <li><em>spatial join</em></li>
+          </ul>
+          <li>In Euclidean space, fast estimates of integral can be done with bucketing [BF98]</li>
+          <li>Dimension can also be estimated using `k`-NN distances [LB04]</li>
+        </ul>          
+      </div>
+      
+      
+      <div class="slide">
+        <h1>Renyi and Information Dimensions</h1>
+        <ul>
+          <li>`{:|\|mu_epsilon|\|:}_0` can be defined as a limit, giving `dim_1(mu)` as the `d` such that
+          <blockquote>`int mu_epsilon(y) log(mu_epsilon(y)) {:diffmu(y):} = epsilon ^{:d+o(1):}`</blockquote>
+          as `epsilon -> 0`</li>
+          <li>This is the <em>information dimension</em></li>
+        </ul>          
+      </div>
+     
+      <div class="slide">
+        <h1>Information and Pointwise Dimensions</h1>
+        <ul>
+          <li>At `x in U`, the pointwise dimension `alpha _mu (x)` is the `d` so that:
+          <blockquote>`mu(B(x,epsilon)) =  epsilon ^{:d+o(1):}</blockquote>
+          as `epsilon -> 0`</li>
+          <li>Equivalently,
+           <blockquote>`alpha _mu (x) = lim_{epsilon -> 0} {:log mu(B(x,epsilon)):} / {:log epsilon :} </blockquote></li>
+          <li>Under mild conditions, `E[alpha_mu(x)] = dim_1(mu)`, where the expectation is with respect to `x~mu`</li>
+        </ul>          
+      </div>
+      
+       <div class="slide">
+        <h1>Pointwise Dimension and Others</h1>
+        <ul>
+          <li>a.k.a. <em>local dimension</em>, <em>Hoelder exponent</em></li>
+          <li>Roughly, bounds Hausdorff dimension of support of `mu`</li>
+          <li><em>Multi-fractal analysis</em> uses function `f_mu(hat alpha)`</li>
+          <ul><li>Hausdorff dimension of `x` with `alpha_mu(x)=hat alpha</li></ul>
+          <li>Can be computed from <em>Renyi spectrum</em>, the set of all values `dim_v(mu)`</li>
+          <li>Also related to <em>energy</em> dimension</li>
+          <li>Tao et al.: use estimates of pointwise dim. to predict NN search costs for nearby points</li>
+          <li>Used in graphs for routing [GZ04]</li>
+        </ul>          
+      </div>
+
+
+
+       <div class="slide">
+        <h1>Pointwise Dimension and NNs</h1>
+        <ul>
+          <li>For:</li>
+          <ul>
+            <li>random sample `S`,</li>
+            <li>integer `k`,</li>
+            <li>`delta_{:k:n:}(x)=` `k`'th NN dist,</li>
+          </ul>
+          <li>Have: [CD89]
+            <blockquote>`alpha_mu(x) = lim_{:n -> oo:} {:log(k//n):}/{:log delta_{:k:n:}(x) :}`</blockquote> </li>
+          <li>Heuristically:</li>
+          <ul>
+            <li>choose `epsilon_k` such that `mu(B(x,epsilon_k)) = k//n`</li>
+            <li>have `delta_{:k:n:}(x) approx epsilon_k`</li>
+            <li>`{:k//n:} = mu(B(x,epsilon_k)) approx epsilon_k^{:alpha_mu(x):} approx delta_{:k:n:}(x)^{:alpha_mu(x):}`</li>
+          </ul>
+         </ul>          
+      </div>
+
+       <div class="slide">
+        <h1>Extremal Graphs</h1>
+        <ul>
+          <li>Let `G` be NN graph, MST, TSP, matching...</li>
+          <li>Let `L(G, beta) := sum_{e "an edge of" G} length(e)^beta</li>
+          <li> In `d`-manifold, have
+            `d = lim_{:n -> oo:} {:log(1//n):}/{log(L(G,1)//n):}`
+          </li>
+          <li>Matches previous formula for `G=` 1-NN graph</li>
+          <li>Kozma et al.: `supr_{S subset U} L(T(S),t)` is a `t`-content yielding (upper) box dim.</li>
+          <ul><li>Where `T(S)` is the MST</li></ul>
+         </ul>          
+      </div>
+
+
+       <div class="slide">
+        <h1>Dimensions and NN Data Structures</h1>
+        
+	`Z=(U,D,mu)` a metric measure space.
+        <ul>
+          <li>`doub_A(Z)`: recall `mathcal P (B(x,r), r//2) le doub_C(Z)`</li>
+          <li>doubling measure `doub_M(Z)` has, for all `x in U`, `r > 0`:
+          <blockquote>`mu(B(x,r)) le mu(B(x,r//2))2^{:doub_M(Z):}` </blockquote></li>
+          <li>doubling measure condition is much stronger than doubling constant, and `doub_A(Z) le doub_M(Z)`</li>
+          <li>Near-linear space/prep., `o(n^gamma)` query time:</li>
+          <ul>
+            <li>`doub_A(Z)` bounded, expected, <em>exchangeable</em> queries [C97]</li>
+            <li>`doub_M(Z)` bounded, high prob. for given query [KR02]</li>
+            <li>`doub_A(Z)` bounded, approx. [KL04]</li>
+          </ul>
+         </ul>          
+      </div>
+
+
+       <div class="slide">
+        <h1>Divide-and-Conquer</h1>
+
+        Several approaches could be sketched as:
+        <ul>
+          <li>Find `P subset S`, `{:|P|:} =m`, ball `B_p` for each `p in P`, such that</li>
+          <li>if query `q` has `p` nearest in `P`, nearest to `q` is in `S cap B_p`</li>
+          <li>So: build data structure recursively for each `S cap B_p`</li>
+          <li>Answer query by finding nearest in `P`-set of root, then search that child</li>
+         </ul>          
+      </div>
+
+
+       <div class="slide">
+        <h1>Divide-and-Conquer Approaches</h1>
+
+        <ul>
+          <li>`P` is random, `B_p` prob. contains nearest, `{:|B_p|:} = O^**(n//m)`</li>
+            <ul><li>doubling constant, exchangeable, <em>spread</em> is in bound</li><li>roughly [C97]</li></ul>
+          <li>`P` is random, `B_p` contains nearest with high prob., `{:|B_p|:} = O^**(n//m)`</li>
+             <ul><li>doubling measure, prob. per query</li><li>Roughly [KR02]</li></ul>
+          <li>`P` is an `epsilon`-net, either `p` is approx NN, or `B_p` contains nearest; `B_p` small</li>
+             <ul><li>doubling constant; resulting bound includes spread</li><li>Roughly [KL04]</li></ul>
+        </ul>          
+      </div>
+
+
+
+  
+      
+      
+      
+ 
+      
+   
+      
+    </div>
+  </body>
+</html>

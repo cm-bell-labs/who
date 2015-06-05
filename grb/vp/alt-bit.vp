@@ -1,0 +1,30 @@
+(* 
+   Value-passing TCCS example
+   Alternating Bit Protocol with timeouts
+
+   (From 'A Temporal Calculus of Communicating Systems',
+    LFCS report ECS-LFCS-91-140, available through
+    http://www.dcs.ed.ac.uk/lfcsreps/author/authorM.html)
+*)
+
+const Bit = {0,1}
+const ttr = 1
+const trc = 3
+
+label send,receive
+label s(Bit),r(Bit),sack(Bit),rack(Bit)
+
+agent S = S(0)
+agent S(b:Bit) = send.S'(b)
+agent S'(b:Bit) = 's(b).($rack(b).S(1-b) + <trc>.S'(b))
+
+agent R = $r(b).R(b)
+agent R(b:Bit) = receive.R'(b)
+agent R'(b:Bit) = 'sack(b).($r(b).R(1-b) + <trc>.R'(b))
+
+agent M = s(b).<ttr>.'r(b).M + sack(b).<ttr>.'rack(b).M 
+
+agent ABP = (S | M | R)\{s,r,sack,rack}
+
+agent Spec = send.<ttr>.receive.<ttr>.Spec
+

@@ -1,0 +1,12 @@
+
+Timed value-passing CCS extends the language for value-passing CCS.
+The syntax of the new constructs is:
+
+  $0		timed zero
+  $a.P		delayed action prefix; 'a' an action that can be
+                indexed and/or parametrized
+  i.P		timed prefix; 'i' a NUM
+  <e>.P		timed prefix; 'e' a postive integer expression
+  P ++ Q	strong plus
+  ssum(x:e,P)   strong summation; 'e' a set expression
+

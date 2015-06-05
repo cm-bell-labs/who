@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+
+<title>Wavelet Families of Increasing Order in Arbitrary Dimensions</title>
+</head>
+<body bgcolor="#ffffff" link="#aa1133" alink="#ff3300" vlink="##000055">
+<center>
+<font size=2 face=Helvetica>
+<br>
+<b>
+<h2>Wavelet Families of Increasing Order<br> in Arbitrary Dimensions</h2>
+<br>
+Jelena Kovacevic
+&nbsp; &nbsp; &nbsp;
+Wim Sweldens
+</b>
+</center>
+<br>
+<br>
+<b>Abstract:</b>
+  We build compactly supported biorthogonal wavelets and perfect
+  reconstruction filter banks for any lattice in any dimension with
+  any number of primal and dual vanishing moments.  The resulting
+  scaling functions are interpolating.  Our construction relies on the
+  lifting scheme and inherits all of its advantages: fast transform,
+  in-place calculation, and integer-to-integer transforms. We show
+  that two lifting steps suffice: predict and update. The predict step
+  can be built using multivariate polynomial interpolation, while
+  update is a multiple of the adjoint of predict.
+<p>
+<b>Status:</b>
+   IEEE Trans. Image Proc., vol. 9, nr. 3, pp. 480-496, 2000.
+<p>
+<b>Dates:</b>
+<table border=0>
+
+<tr><td valign=top align=left><font size=2 face=Helvetica> May 1999:
+</tr>
+<td><font size=2 face=Helvetica> Revised posting. An earlier mistake in the FCO
+and checkboard lattice section pointed out by Jeremy McDonald has been
+corrected.
+
+<tr><td valign=top align=left><font size=2 face=Helvetica> December&nbsp;1997:
+</tr>
+<td><font size=2 face=Helvetica> Initial posting.
+
+</table>
+
+<p>
+<b>Download:</b> <a href="mdlift.pdf">PDF v3.0 (.pdf)</a> (392K).
+<p>
+<b>BiBTeX entry:</b> 
+  <pre><font size=-1>
+   @article{ks:mdlift,
+    author = {J. Kova\v{c}evi\'{c} and W. Sweldens},
+    title = {Wavelet Families of Increasing Order in Arbitrary Dimensions},
+    journal = {IEEE Trans. Image Proc.},
+    month = {March},
+    volume = 9,
+    number = 3,
+    pages = {480-496},
+    year = {2000}		  
+   }
+</font></pre> 
+</font> 
+</body> </html>
+

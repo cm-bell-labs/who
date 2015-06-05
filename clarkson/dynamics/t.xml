@@ -1,0 +1,384 @@
+<?xml version="1.0"?>
+
+<?xml-stylesheet href="xbl-shape-bindings.css" type="text/css"?>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+		"http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd">
+		
+
+<?xml-stylesheet href="foo.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:svg="http://www.w3.org/2000/svg" 
+      xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:xi="http://www.w3.org/2001/XInclude"
+      >
+<style>
+
+div.FooterLeft {
+	font: inherit;
+	font-size: 0.5em;
+	position: absolute;
+	display: block;
+	bottom: 1.5em;
+	left: .25em;
+	height: 1em;
+	color: black;
+}
+
+div.FooterRight {
+	font: inherit;
+	font-size: 0.5em;
+	position: absolute;
+	display: block;
+	bottom: 1.5em;
+	right: .25em;
+	height: 1em;
+	color: black;
+}
+
+
+div.nav	{
+	position: absolute;
+	bottom: 0.5em;
+	right: 2.1em;
+	margin:	4px;
+}
+
+div.nav	:link, div.nav :visited, div.nav span {
+	text-decoration: none;
+	background:	#006;
+	color: white;
+	padding: 0 0.3em 0.1em 0.3em;
+	line-height: 1.0em;
+}
+
+div.nav	:link:hover, div.nav :visited:hover	{
+	background:	#00f;
+}
+
+svg {
+	font: inherit;
+	font-size: 20px;
+	fill: blue;
+}
+
+body {
+	font-size: 2.5em;
+	font-family: Comic Sans	MS;
+	font-weight: bold;
+	background:	white;
+	color: black;
+	margin-left: 1.5em;
+	margin-right: 1em;
+}
+
+h1 {
+	font: inherit;
+	font-size: 1.5em;
+	text-align:	center;
+	margin-bottom: 1em;
+	/* border-bottom: 0.1em solid black; */
+}
+
+/*
+ul {
+	padding: 0 0 0 1.5em;
+	margin: 0;
+}
+*/
+
+li { margin-left: 0.5em; padding: 0; }
+
+
+table.tree {
+	margin:	auto;
+}
+
+table.tree td {
+	text-align:	center;
+	empty-cells: hide;
+}
+
+table.tree tr:not(.arrows) td {
+	font-family: monospace;
+	border:	0.1em solid;
+}
+
+@media screen,projection {
+	div.slide {
+		display: none; 
+	<!--	display: block;-->
+		background: "ocelotlogo.gif"
+	}
+}
+@media print {
+	div.slide {
+		display: block;
+		page-break-after: always;
+	}
+	div.nav {
+		display: none;
+	}
+	div.FooterLeft {
+		display: none;
+	}
+	div.FooterRight {
+		display: none;
+	}
+
+}
+
+
+.important {
+	color: red;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+[class~="circle"]	
+{
+	stroke:	red;
+	stroke-width: 2;
+	fill: red;
+	fill-opacity: 0.1;
+}
+
+[class~="circ_control"]:hover {stroke:black; stroke-width:2; fill-opacity:0.2;}
+	li:hover {color:blue}
+
+
+a {color:inherit; text-docoration:none;}
+
+</style>
+      
+<script type="application/x-javascript" src="impl.js"/>
+<script type="text/javascript" src="ASCIIMathML.js"/>
+<script type="text/javascript" src="active_set_anim.js"/>
+
+<script>mathcolor="Black"</script>
+
+
+<head>
+   <title>A Model of Soft Handoff under Dynamic Shadow Fading</title>
+ </head>
+
+
+<body onload="onload_init(); translate() ; anim_init(); ">
+
+
+<div class="slide" id="slide one" style="display: block ! important">
+	<table style="margin: auto">
+		<tr>
+			<td>
+				<h1>A Model of Soft Handoff under Dynamic Shadow Fading</h1><br/>
+				<h1>Kenneth L. Clarkson<br/>John D. Hobby<br/><br/>Bell Labs<br/>Lucent Technologies</h1>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="slide">
+	<h1>Simplified IS95a Model of Soft Handoff</h1>
+	<ul>
+		<li>Antenna <em>becomes</em> active (in soft handoff) when:</li>
+		<ul>
+			<li>Signal &gt; T_ADD</li>
+		</ul>
+		<li>Antenna <em>stays</em> active when:</li>
+		<ul>
+			<li>Signal &gt; T_DROP recently</li>
+			<ul><li>Within T_TDROP seconds</li></ul>
+		</ul>
+	</ul>
+	
+	<ul>
+		<li>Reduces variability of active set</li>
+		<li>Reduces chance that temporary reduction in signal takes antenna out</li>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<h1>In Pictures</h1>
+	<table border="0" align="center"><tr>
+	<td>
+		<svg:svg width="600" height="42">
+			<svg:rect class="circ_control"   id="circ_go" width="40" height="40" y="0" x="420" style="fill:lightgreen;"/>
+			<svg:rect class="circ_control" id="circ_step" width="40" height="40" y="0" x="460" style="fill:yellow;"/>
+			<svg:rect class="circ_control" id="circ_stop" width="40" height="40" y="0" x="500" style="fill:red;"/>
+		</svg:svg>
+		<svg:svg id="canvas" width="650" height="505" >
+			<svg:g id="all_lines" />
+			<svg:g>
+				<svg:line x1="260" y1="0" x2="260" y2="505" style="fill:none; stroke:black; stroke-width: 3;"/>
+				<svg:line x1="0" y1="300" x2="555" y2="300" style="fill:none; stroke:red; stroke-width: 3;"/>
+				<svg:text x="555" y="300">T_DROP</svg:text>
+				
+				<svg:line x1="0" y1="200" x2="555" y2="200" style="fill:none; stroke:red; stroke-width: 3;"/>
+				<svg:text x="555" y="200">T_ADD</svg:text>
+				
+				<svg:circle class="circ_status" id="circ_status_c" r="10" cx="275" cy="490" style="fill:red;"/>
+				<svg:text x="285" y="500">Active</svg:text>
+				<svg:text id="since_td_label"  x="380" y="500">Since >T_DROP: 0</svg:text>
+				
+				<svg:circle class="circ_status" id="circ_cur_status_c" r="10" cx="245" cy="490" style="fill:red;"/>
+				<svg:text text-anchor="end" x="235" y="500">Current</svg:text>
+			</svg:g>
+		</svg:svg>
+	</td>
+	</tr></table>
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+<div class="slide" id="foo">
+	<h1>Challenges for Performance Modeling</h1>
+	
+	For a given mobile, want to estimate the active set numerically.
+	<ul>
+		<li>Needed for analyzing capacity, for example</li>
+		<li>Set is quasi-random, because fading is;</li>
+		<li>Will assume fading is lognormal [G]</li>
+		<li>Generally, rough approximation is good enough</li>
+	</ul>
+		
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+<div class="slide" id="foo">
+	<h1>Modeling Approaches</h1>
+		
+		
+	<ul>
+		<li>"Snapshot" models fail to capture effects over time
+		</li>
+		<ul>
+			<li>(Models of conditions at a given instant)
+			</li>
+			<li>Could use `P_d\equiv`prob of being above T_DROP </li>
+			<li>Or `P_a`, or `(P_a+P_d)/2`</li>
+		</ul>
+		<li>Dynamic simulations:
+		</li>
+		<ul>
+			<li>Too slow for some applications
+			</li>
+			<li>Need data (speed, direction, history) we don't have
+			</li>
+		</ul>
+	</ul>	
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+<div class="slide" id="foo">
+	<h1>An Easy Case: Steady State</h1>
+	
+	<ul>
+		<li>Consider vehicle moving at constant speed, and no change in mean signal
+		</li>
+		<li>Active-set probability can be readily found:
+		</li>
+		<ul>
+			<li>Initially assume discrete time steps</li>
+			<li>Simple function of probabilities `P_a` and `P_d`:</li>
+			 <center>`1/(1+(1/Q-1)\frac{P_d}{P_a})`</center>
+		</ul>
+	</ul>
+	where		
+		<table align="center">
+			<tr><td>`Q`</td><td align="left">=`1 - (1-P_d)^{k+1}`</td></tr>
+			<tr><td>`k`</td><td align="left">=time steps in T_TDROP</td></tr>
+		</table>
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>			
+</div>
+
+
+<div class="slide" id="foo">
+	<h1>Our Steady-State Approximation</h1>
+	
+	We can also find a linear recurrence for the probability (as in [LM]), but that's still expensive.<br/>
+	
+	<br/>
+	Instead:
+	
+	<ul>
+		<li>Pretend conditions at each location are steady-state</li>
+		<li>Hope that average over time of steady-state equals average of time for real situation</li>
+		<li>Close to accurate for some situations</li>
+	</ul>
+	
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<h1>Experiments</h1>
+	
+	We consider straight-line "trips" for a moving mobile, with basic conditions:
+	<ul>
+	<li>Constant speed</li>
+	<li>T_TDROP = 4s</li>
+	<li>Initially: assume fades 20m apart are independent</li>
+	<li>Start of trip at 400m from antenna</li>
+	<li>Equal traffic in both directions</li>
+	</ul>
+	
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<h1>Experiments, more about</h1>
+	
+	We compare our approximation to the recurrence, and to just using `P_d`,
+	for all combinations of:
+	
+	<ul>
+	<li>Speeds from 1 to 30 m/s</li>
+	<li>Trips of 12, 18, and 24s duration</li>
+	<li>`P_d` at start of 0.05, 0.15,0.25,...0.95</li>
+	<li>`P_d` at end of 0.95</li>
+	<li>T_ADD - T_DROP of 2, 4, 6 dB</li>
+	</ul>
+	
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+
+<div class="slide" id="foo">
+	<h1>Active Set Estimates, Steady State</h1>
+	<div align="center"><img src="fig_1.gif"/></div>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<h1>Active Set Estimates, General</h1>
+	<div align="center"><img src="fig_2.gif"/></div>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<h1>Conclusions</h1>
+	
+	<ul>
+		<li>Simulation of motion not needed for rough estimates</li>
+		<li>More analysis of AR</li>
+		<li>Apply to more complicated algorithms?</li>
+		<li>Thanks!</li>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+</body></html>

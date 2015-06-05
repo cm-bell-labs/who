@@ -1,0 +1,364 @@
+                                                                      
+Michael D. Loprete (MDL1695)
+CRUMMY, DEL DEO, DOLAN,
+  GRIFFINGER & VECCHIONE, P.C.
+One Riverfront Plaza
+Newark, New Jersey 07102
+(201) 596-4500
+
+George L. Graff
+James W. Kennedy
+Charles B. Ortner
+MILGRIM THOMAJAN & LEE P.C.
+New York, New York 10005-2815
+(212) 858-5300
+
+Sanford Tannebaum
+Executive Vice President and General Counsel
+UNIX System Laboratories, Inc.
+190 River Road
+Summit, New Jersey  07901-1444
+(908) 522-6666
+
+Attorneys for Plaintiff Unix System Laboratories, Inc.
+
+
+UNITED STATES DISTRICT COURT
+DISTRICT OF NEW JERSEY
+
+                                          
+
+UNIX SYSTEM LABORATORIES, INC.,
+
+             	        Plaintiff,		Civil Action No.
+						92-1667 (DRD)
+          -against-
+						COMPLAINT 
+BERKELEY SOFTWARE DESIGN, INC.,
+
+			Defendant.
+
+
+	Plaintiff UNIX System Laboratories, Inc. ("USL"), for
+its Complaint against defendant Berkeley Software Design, Inc.
+("BSDI"), avers as follows:
+
+The Nature of The Action
+
+	1. This is an action for trademark infringement, false 
+advertising and unfair competition under the federal Lanham 
+Trademark Act, 15 U.S.C. Section 1051, et seq., and under the 
+statutory and common law of New Jersey and of each State in 
+which BSDI has engaged in the conduct detailed below. USL 
+seeks injunctive relief and damages to redress BSDI's ongoing 
+unauthorized use of the UNIX(R) trademark in BSDI's toll-free 
+telephone number, 1-800-ITS UNIX, and its inclusion in its 
+advertising and promotional materials of materially false and 
+misleading statements in violation of the rights of USL. 
+
+
+	Jurisdiction and Venue
+
+	2. This Court has subject matter jurisdiction over this 
+action pursuant to 15 U.S.C. Section 1121(a) and 28 U.S.C. 
+Sections 1331, 1338. 
+
+	3. Venue is properly laid in this district pursuant to 
+28 U.S.C. Section1391(b). 
+
+
+	The Parties
+
+	4. USL is a Delaware corporation with its principal place of 
+business located in Summit, New Jersey. USL is a subsidiary of 
+American Telephone and Telegraph Company ("AT&T") 
+engaged in the development, manufacture, licensing and sale of 
+computer software operating systems and related products and 
+servlces. 
+
+	5. Defendant BSDI is a Delaware corporation engaged in the 
+manufacture and sale of computer software operating systems 
+and related services. BSDI's principal place of business is located 
+in Richmond Falls, Virginia.                        
+
+
+	Background
+
+	6. Beginning in the early 1970s, AT&T's Bell Laboratories 
+developed proprietary computer operating system software and 
+other computer related products which it identified with the 
+trademark "UNIX." 
+
+	7. On May 6, 1986, AT&T's UNIX trademark was placed on 
+the Principal Register of the United States Patent and Trademark 
+Office for computer programs, under Registration No. 1,392,203. A 
+copy of the registration is annexed as Exhibit A. This registration is 
+valid, subsisting, in full force and effect, and is now incontestable 
+pursuant to 15 U.S.C. Section 1065. 
+
+	8. AT&T has assigned all of its proprietary rights in the UNIX 
+trademark and the software sold and licensed thereunder to USL. 
+For more than fifteen years, AT&T and its successor, USL, have 
+widely used the trademark UNIX to identify their system software, 
+computers and related products and services, including educational 
+and training services, system manuals, and technical and consulting 
+services. 
+
+	10. The trademark UNIX is widely known as identifying the 
+products of AT&T and its successor, USL. 
+
+	11. Pursuant to agreement with AT&T, the Regents of the 
+University of California (the "Regents") have been authorized to 
+distribute to third parties certain works derived from UNIX system 
+software subject to various restrictions intended to protect and 
+preserve AT&T's proprietary rights thereto. Those restrictions 
+include a requirement limiting such distribution to persons who 
+have also acquired licenses from AT&T or USL. The derivative 
+works distributed by the Regents are generally known as "Berkeley 
+Software Distributions," and USL-authorized releases thereof have 
+been widely distributed by the Regents under the initials "BSD" 
+(e.g., "4.3BSD"). 
+
+	12. BSDI is not affiliated with the Regents, nor has it entered 
+into any license agreements with USL pertaining to UNIX brand 
+software, computers or related products. 
+
+	13. BSDI is attempting to develop a computer operating system 
+software product that is directly competitive to products 
+sold or licensed by USL and/or its licensees, and to market that 
+product under the name "BSD/386". Exhibit B is a copy of a BSDI 
+promotional brochure for its "BSD/386" system software. 
+
+	14. Substantial portions of BSDI's BSD/386 operating system 
+are copied from, based upon, or otherwise derived from, USL's 
+proprietary software products. Plaintiff reserves the right to seek 
+an amendment of this Complaint to add claims for relief with respect 
+to violations by BSDI of USL's proprietary rights upon the 
+development of additional facts. 
+
+	15. BSDI has attempted to market its BSD/386 software 
+product to prospective licensees in New Jersey and elsewhere 
+throughout the United States and beyond. 
+
+
+	First Claim for Relief
+	Federal Trademark Infringement
+
+	16. Some time prior to January 1992, BSDI acquired a toll-
+free telephone number that would permit someone to contact BSDI 
+by dialing "1-800-ITS-UNIX". 
+
+	17. BSDI has included the "ITS-UNIX" telephone number in its 
+advertising and promotional materials and has otherwise used the 
+UNIX trademark in connection with the sale, distribution or 
+advertising of its goods and/or services in commerce. 
+
+	18. BSDI's use of the "ITS-UNIX" telephone number is intended 
+to and likely to cause confusion, or to cause mistake, or to deceive in 
+that BSD/386 is not a "UNIX" product nor is BSDI authorized or 
+licensed to use the UNIX trademark in connection with any of its 
+products or services. 
+
+	19. USL acted promptly to protect its rights in its UNIX 
+trademark and to protest BSDI's conduct. 
+
+	20. In response to USL's objections, BSDI, through its attorneys, 
+represented that "BSDI has taken steps to discontinue advertising 
+containing the mark, UNIX, as part of a telephone number." However, 
+BSDI has failed or refused to discontinue its use of the 1-800-ITS-
+UNIX telephone number. 
+
+	21. BSDI's unauthorized use of the UNIX trademark has caused, 
+and, unless enjoined, will continue to cause, irreparable injury to USL 
+for which there is no adequate remedy at law. 
+
+	22. In addition, BSDI's unauthorized use of the UNIX trademark 
+has caused USL to sustain damage to its business, and to the value of 
+its trademark and the goodwill associated with that mark. 
+
+	23. BSDI's conduct constitutes infringement of a registered 
+trademark in violation of Section 32 of the Lanham Act, 15 U.S.C. 
+Section 1114. 
+
+
+	Second Claim for Relief
+	False Descriptions of Origin,
+	Source, Sponsorship or Authorization
+
+	24. As shown in Exhibit B, BSDI's promotional materials contain 
+the following representations concerning its "BSD/386" system: 
+
+	BSD/386 is a "Berkeley UNIX" compatible operating system for 
+	the 386 and 486 PC architectures. It is based on the most 
+	recent release from the Computer Systems Research Group of 
+	the University of California, Berkeley - the Networking Release 
+	2. The NET2 tape contained no AT&T licensed code, but was not 
+	a complete system. BSDI has completed the system and added 
+	additional drivers. The resulting system does not require a 
+	license from AT&T, and so is available in source form at a 
+	fraction of AT&T's price. 
+
+	25. This statement is materially false and misleading in that, 
+among other things, the "Networking Release 2" referred to therein 
+contains software code that was copied from, based upon, or derived 
+from, code licensed to the Regents by AT&T, such that any operating 
+system derived from "Networking Release 2" requires a license from 
+AT&T or its successor, USL. 
+
+	26. In the License Agreement by which BSDI sells its BSD/386 
+software product to consumers, BSDI represents that "THE LICENSED 
+PROGRAM DOES NOT CONTAIN CODE FROM AT&T'S UNIX OPERATING 
+SYSTEM CURRENTLY LICENSED BY UNIX SYSTEMS [sic] 
+LABORATORIES." A copy of BSDI's form of License Agreement is 
+attached as Exhibit C.
+
+	27. This statement is likewise materially false and misleading 
+in that, to the extent the BSDI "LICENSED PROGRAM" is (as BSDI 
+claims) based upon Berkeley's Networking Release 2, it is in fact 
+based upon, copied from or derived from AT&T's code, such that 
+users of the BSDI program require a license from AT&T or its 
+successor, USL. 
+
+	28. BSDI's conduct constitutes the use in commerce, in 
+connection with goods or services, of false or misleading descriptions 
+of fact or false or misleading representations of fact in commercial 
+advertising or promotion which misrepresent the nature, 
+characteristics or qualities of BSDI's goods, services or commercial 
+activities. 
+
+	29. BSDI's false and misleading use of the UNIX trademark has 
+caused, and unless enjoined, will continue to cause irreparable injury 
+to USL for which there is no adequate remedy at law. 
+
+	30. BSDI's false and misleading use of the UNIX trademark has 
+caused USL to sustain damage to its business, and to the value of its 
+trademark and the goodwill associated with that mark. 
+
+	31. BSDI's conduct constitutes false advertising in violation of 
+Section 43(a) of the Lanham Act, 15 U.S.C. Section 1125. 
+
+
+	Third Claim for Relief
+	Dilution
+
+	32. Plaintiff repeats the foregoing allegations as if fully set 
+forth herein. 
+
+	33. BSDI's conduct threatens to and does impair the distinctive 
+significance of the UNIX mark, in violation of USL's statutory and 
+common law rights. 
+
+
+	Fourth Claim for Relief
+	Unfair Competition and Deceptive Trade
+	Practices under State Statutory and Common law
+
+	34. Plaintiff repeats the foregoing allegations as if fully set 
+forth herein. 
+
+	35. BSDI's conduct constitutes unfair competition and 
+deceptive trade practices in violation of applicable statutory and 
+common law. 
+
+
+	WHEREFORE, USL demands judgment as follows: 
+
+	1. A temporary restraining order, and preliminary and 
+permanent injunctions: 
+
+	(a) restraining BSDI, its officers, agents, employees, servants, 
+and all persons in active concert or participation with them, from 
+any and all use of a telephone number that can be expressed with 
+the letters "UNIX"; 
+
+	(b) directing BSDI to publish and distribute corrective 
+advertising and promotional matter; 
+
+	(c) directing BSDI, its officers, agents, servants, employees, 
+and all persons in active concert with them, to surrender up for 
+destruction all advertising or other material that contains reference 
+to the telephone number "l-800-ITS-UNIX". 
+
+	2. A preliminary and permanent injunction: 
+
+	(a) restraining BSDI, its officers, agents, employees, servants, 
+and all persons in active concert or participation with them, from 
+stating or implying in any advertising or promotional materials of 
+any kind that (i) the BSD/386 system, or the "Networking Release 2" 
+upon which it is based, contains no AT&T or USL licensed code or 
+derivatives thereof and/or (ii) the BSD/386 system does not require 
+a license from AT&T or USL; 
+
+	(b) directing BSDI to publish and distribute corrective 
+advertising and promotional matter; 
+
+	(c) directing BSDI, its officers, agents, servants, employees, 
+and all persons in active concert with them, to surrender up for 
+destruction all advertising or other material that states or implies 
+that (i) the BSD/386 system, or the "Networking Release 2" upon 
+which it is based, contains no AT&T or USL licensed code or 
+derivatives thereof and/or (ii) the BSD/386 system does not 
+require a license from AT&T or USL. 
+
+	3. An award of compensatory damages in an amount to be 
+determined at trial, and treble damages pursuant to 15 U.S.C. 
+Section 1117. 
+
+	4. An award of punitive damages in an amount to be 
+determined at trial. 
+
+	5. An accounting and disgorgement of BSDI's profits derived 
+as a result of its wrongful acts or such other amount as the court 
+shall find to be just according to the circumstances of the case. 
+
+	6. An award of attorneys fees and expenses incurred by USL 
+herein, pursuant to 15 U.S.C. Section 1117. 
+
+	7. Such other and further relief as this Court may deem just 
+and proper. 
+
+
+Dated:	Newark, New Jersey
+		April 20, 1992
+
+
+CRUMMY, DEL DEO, DOLAN,
+  GRIFFINGER & VECCHIONE, P.C.
+
+
+
+By:
+			Michael D. Loprete (MDL1695)
+			One Riverfront Plaza
+			Newark, New Jersey  07102
+			(201) 596-4500
+
+				and
+
+			MILGRIM THOMAJAN & LEE P.C.
+
+
+
+
+By:
+
+			George L. Graff
+			James W. Kennedy
+			Charles B. Ortner
+			53 Wall Street
+			New York, New York 10005-2815
+			(212) 858-5300
+
+			Attorneys for Plaintiff 
+			Unix System Laboratories, Inc.
+
+Of Counsel:
+
+Sanford Tannenbaum
+Executive Vice President and General Counsel
+UNIX System Laboratories, Inc.
+190 River Road
+Summit, New Jersey  07901-1444
+(908) 522-6666
+
+

@@ -1,0 +1,788 @@
+<HTML>
+<HEADER>
+<TITLE> CIS677: Notes for lecture 8: Convexity and Algorithms
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center>
+	CIS677<br> Notes for lecture 8: Convexity and Algorithms
+</center></H1>
+<BR>
+
+<h3>Outline</h3>
+<ul>
+<li>	convex hulls and intersections of halfspaces
+<li>	faces and the face lattice
+<li>	faces and polarity
+<li>	convex hulls and Delaunay triangulations
+<li>	algorithms, including randomized incremental
+</ul>
+
+<p>
+Before going back into the mathematics of faces and polarity,
+let's consider a couple simple algorithms from the point of view
+of duality.
+
+
+<h3>A dual view of Jarvis march</h3>
+
+<p>
+In the algorithm of Jarvis for planar convex hulls, a line is seen to
+"rotate" about the sites; at each moment the line rotates about a site,
+until another site is hit by the line.
+
+<p>
+The rotating lines correspond to supporting halfspaces of the sites.
+
+<p>
+The polars of these halfspaces are therefore all in the polar set of
+</sub>the convex hull of the sites.  The polars S<sup>*</sup> of the sites are
+halfspaces, and the polar of conv(S) is the intersection P(S<sup>*</sup>)
+of halfspaces.
+
+<p>
+In the polar setting, the polar of the "rotating line" is a point that moves
+along a line bounding the polar halfspace of some site.  The motion
+begins at a vertex of the halfspace intersection.
+
+<p>
+The process of finding the site hit by the rotating line in "primal space"
+corresponds to finding the first line hit by the moving point in "dual space".
+
+<img src="f1.gif">
+
+
+
+<h3>A dual view of incremental algorithms</h3>
+
+<p>
+In an incremental convex hull algorithm, the convex hull of a subset
+R of S is maintained, and sites are added one by one to R.
+
+<p>
+Dually, the intersection P(R<sup>*</sup>) is maintained, and halfspaces
+are added one by one from S<sup>*</sup>.  Each additional halfspace s<sup>*</sup>
+clips away a portion of the previous intersection.  The new vertices and
+edge in the dual space correspond to the new edges and vertex in the
+primal space.
+
+<p>
+Notice that the "clipped off" portion is itself a polygon, the intersection
+of the complement of s<sup>*</sup> with P(R<sup>*</sup>).
+
+<p>
+<img src="f2.gif">
+
+
+
+<h3>Vertices and faces</h3>
+
+<p>
+In Lecture 7, we found that a point v is a vertex iff v is not in conv(S\{v}).
+
+From this it follows that:
+
+<blockquote>
+<b>Lemma</b>.
+If P=conv(S) is a polytope, then 
+<blockquote>
+	vert(P) is a subset of S, and
+	P=conv(vert(P)).
+</blockquote>
+</blockquote>
+
+<b>Proof</b>.
+Suppose v is a vertex of P; then conv(S\{v}) is not equal to conv(S),
+and so v must be in S.
+
+<p>
+So vert(P) is a subset of S, and so P=conv(S) contains conv(vert(P)).
+
+<p>
+If x is in S but not in vert(P), then conv(S)=conv(S\{x}),
+and so by induction on the size of S\vert(P), conv(S)=conv(vert(P)).
+<b>QED</b>
+
+<blockquote>
+<b>Lemma</b>.
+If P is a polyhedron, the intersection of two faces of P is a face of P.
+</blockquote>
+
+<p>
+<b>Proof</b>.
+Suppose f and g are faces, so there are supporting halfspaces 
+<blockquote>
+	h<sub>f</sub> := {x | a&#183;x <= b}, and<br>
+	h<sub>g</sub> := {x | a'&#183;x <= b'}<br>
+</blockquote>
+whose bounding planes intersect P at f and g.  Clearly the
+halfspace
+<blockquote>
+	h := {x | (a+a')&#183;x <= b+b'},
+</blockquote>
+has P a subset of h, and for any x in P, 
+<blockquote>
+	(a+a')&#183;x = b+b'
+</blockquote>
+only when both
+<blockquote>
+	a&#183;x = b and a'&#183;x = b';
+</blockquote>
+hence the intersection of f and g is the intersection of P with the
+bounding plane of h, and so is a face.
+<b>QED</b>
+
+<blockquote>
+<b>Lemma</b>.  Let P be a polyhedron.
+If g is in faces(P), and f is in faces(g), then f is in faces(P).
+</blockquote>
+
+<b>Proof</b>.
+Suppose
+<blockquote>
+	h<sub>g</sub> := {x | a<sub>g</sub>&#183;x <= b<sub>g</sub>}
+</blockquote>
+witnesses that g is a face of P: that is, h<sub>g</sub> is supporting and
+g is the intersection of h<sub>g</sub> with P.
+Suppose
+<blockquote>
+	h<sub>f</sub> := {x | a<sub>f</sub>&#183;x <= b<sub>f</sub>}
+</blockquote>
+is a witness that f is a face of g.
+
+<p>
+Notice that h<sub>f</sub> does not necessarily
+contain P.  Now for value z, consider
+<blockquote>
+	h<sub>z</sub> := {x | (a<sub>g</sub> + za<sub>f</sub>)x <= b<sub>g</sub> + zb<sub>f</sub>}.
+</blockquote>
+That is, h<sub>0</sub>=h<sub>g</sub>.
+Notice that f is in the bounding plane of h<sub>z</sub>, for any z.
+
+<p>
+Suppose P=conv(S<sub>1</sub>)+cone(S<sub>0</sub>).
+Now pick z>0, but small enough that all S<sub>1</sub> and S<sub>0</sub> are included in h<sub>z</sub>.
+Then P is in h<sub>z</sub>, but the intersection of P with the bounding plane of h<sub>z</sub>
+is f.  Hence f is a face of P.
+<b>QED</b>
+
+
+<blockquote>
+<b>Corollary</b>.
+Let P be a polyhedron.  If g is in faces(P),
+then
+<blockquote>
+	faces(g)={f in faces(P) | f is a subset of g}.
+</blockquote>
+</blockquote>
+
+<p>
+<b>Proof</b>.
+The previous lemma implies that the faces of g are a subset of the faces of P.
+
+<p>
+Suppose f is a face of P that lies in g.  If h witnesses that f is a face
+of P, then h also witnesses that f is a face of g.
+<b>QED</b>
+
+<p>
+In particular, the vertices of f in vert(P) are a subset of the vertices of P,
+and so if P=conv(S), then vert(f) is a subset S, and f=conv(f intersect S).
+
+<h3>Faces and lattices</h3>
+
+<p>
+We've seen that for a polyhedron P and a,b,c in faces(P):
+
+<blockquote>
+	P is a face of P;
+	if a is a face of b is a face of c, then a is a face of c.
+</blockquote>
+and easily:
+<blockquote>
+	if a is a face of b and b is a face of a, then a=b.
+</blockquote>
+
+<p>
+That is, the faces can be <i>partially ordered</i> under the "is a face of"
+relation.  The fact that the intersection of two faces is a face
+implies also that the faces form a mathematical structure called a <i>lattice</i>.
+
+<h3>Faces of Cones</h3>
+
+When v is a vertex of a polyhedron P, cone({v}) is an <i>extreme ray</i>
+of C:=cone(lift(P)); that is, cone({v}) is a 1-dimensional face of C.
+The set of extreme rays of a cone C is denoted extr(C), and it can be shown
+that C=cone(extr(C)), which is analogous to P=conv(vert(P)) for a polytope P.
+(Actually, this requires that C have a vertex, which not all cones have.)
+
+<h3>Faces, Cones, and Polarity</h3>
+
+<p>
+We've seen that the polar of a cone is cone.  There is a fundamental
+relation between the faces of a cone C and its polar C<sup>*</sup>.
+
+<p>
+Suppose f is a face of C, and h={x | h<sup>*</sup>&#183;x <= 0} is a witness to this.
+Since h is supporting, h<sup>*</sup> is a member of C<sup>*</sup>.  Let
+f<sup>o</sup> be the subset of C<sup>*</sup> comprising all h<sup>*</sup> for which h is a witness
+for f.  That is,
+<blockquote>
+	f<sup>o</sup> := {y | y&#183;x <0 for all x in C\f, y&#183;x = 0 for all x in f}.
+</blockquote>
+Moreover,
+<blockquote>
+	f<sup>o</sup> = {y | y&#183;x <0 for all x in extr(C)\extr(f),
+			y&#183;x = 0 for all x in extr(f)},
+</blockquote>
+and so f<sup>o</sup> is a face of C<sup>*</sup>: it is the intersection of C<sup>*</sup> with the 
+a set of planes associated with the vertices of f.
+
+<p>
+From the description of f<sup>o</sup>, it's immediate that
+<blockquote>
+	f is a face of g iff g<sup>o</sup> is a face of f<sup>o</sup>.
+</blockquote>
+
+<p>
+Is f<sup>o</sup>=f<sup>*</sup>?
+
+<p>
+What is f<sup>o</sup> if C is given as an intersection of halfspaces?
+We suppose for now that f is determined by the bounding planes of
+some subset H<sub>f</sub> of H.
+
+<blockquote>
+<b>Lemma</b>.
+If C=P(H), and f is a face of C given by
+<blockquote>
+	f = {x | h<sup>*</sup>&#183;x <0 for h in H\H<sub>f</sub>,
+		 h<sup>*</sup>&#183;x = 0 for h in H<sub>f</sub>},
+</blockquote>
+then f<sup>o</sup>=cone(H<sub>f</sub><sup>*</sup>).
+</blockquote>
+
+<p>
+<b>Proof</b>.  Any member y of H<sub>f</sub><sup>*</sup> has
+<blockquote>
+	y&#183;x = 0 for all x in f, and<br>
+	y&#183;x < 0 for all x in C\f,<br>
+</blockquote>
+and any positive combinations of such y's preserves these conditions,
+so cone(H<sub>f</sub><sup>*</sup>) is a subset of f<sup>o</sup>.
+
+<p>
+On the other hand, if y is in f<sup>o</sup>, then y is in cone(H<sup>*</sup>),
+so y=sum<sub>h<sup>*</sup> in H<sup>*</sup></sub> c<sub>h</sub> h<sup>*</sup>, with all c<sub>h</sub>>=0.
+If c<sub>h</sub>>0 for h<sup>*</sup> not in H<sub>f</sub><sup>*</sup>,
+then y&#183;x < 0 for x in f, which cannot happen for y in f<sup>o</sup>.  Hence
+y is in cone(H<<sub>f</sub>sup>*</sup>).
+<b>QED</b>
+
+<p>
+Finally:
+
+<blockquote>
+<b>Lemma</b>.
+If C is a cone and f is a face of C, then f<sup>oo</sup>=f.
+</blockquote>
+
+<p>
+<b>Proof</b>.  If C=cone(S), and f= cone(S<sub>f</sub>), then
+<blockquote>
+	f<sup>o</sup> = {y | y&#183;h<sup>*</sup> <0 for all h in (S\S<sub>f</sub>)<sup>*</sup>,
+			y&#183;h<sup>*</sup> = 0 for all h in S<sub>f</sub><sup>*</sup>},
+</blockquote>
+and f<sup>oo</sup> = cone(S<sub>f</sub><sup>**</sup>)= cone(S<sub>f</sub>)=f, using
+the previous lemma.
+<b>QED</b>
+
+<p>
+Thus, the mapping f-->f<sup>o</sup> is a 1-1 correspondence between the faces
+of C and the faces of C<sup>*</sup>, and reverses the "is a face of" relation.
+
+<p>
+A similar mapping holds between the faces of a polyhedron and the faces
+of its polar.
+
+<p>
+From this relation, we can get some additional facts about polyhedra, for example,
+that a face is the intersection of the facets containing it.
+
+
+<h3>Complexity of the convex hull</h3>
+
+For now, we'll only state the following:
+
+<p>
+<blockquote>
+<b>Upper Bound Theorem</b>.
+A polytope with n vertices in d dimensions has Theta(n<sup>floor(d/2)</sup>) facets.
+</blockquote>
+
+<p>
+That is, for d=2 or 3, floor(d/2)=1 so the hull has linear complexity.
+In fact, using Euler's relation, a polytope in three dimension
+whose n vertices are in general position has exactly 2n-4 facets.
+
+<p>
+In four or five dimensions, a polyhedron with n vertices can have
+as many as Theta(n<sup>2</sup>) facets.
+
+
+<h3>Algorithms for convex hulls</h3>
+
+If a set S of points is in general position, then the facets of conv(S)
+are simplices and so the faces of conv(S) are trivially obtainable
+if the vert(f) is known for each facet f of conv(S).  This information
+is also sufficient to give the adjacencies between facets:
+Two facets are adjacent iff they share a common ridge:
+they have dim(P)-2 vertices in common.  Such pairs of facets can be found
+relatively quickly using radix-sort-based methods.
+
+
+<ul>
+<li>	gift-wrapping
+<ul>
+<li>		==Jarvis in the plane
+<li>		rotate a hyperplane about a ridge until it hits a site
+<li>		get new ridges, and do more rotations
+<li>		O(nA) in 3d, fast only when A is small
+</ul>
+<li>	divide-and-conquer
+<ul>
+<li>		split sites by a plane x=a, n/2 sites on each side.
+<li>		recursively compute hulls on either side
+<li>		marry results
+<li>			~~giftwrap using a plane whose normal is in x=a
+<li>		O(n log n) in 3d as well as 2d
+<li>		hard to code
+</ul>
+<li>	sorting-based incremental
+<ul>
+<li>		worst-case optimal in even dimension
+<ul>
+<li>			in 2d, 2 facets created per step
+<li>			in 4d, facets are 3d polyhedra-->O(n) complexity per step
+</ul>
+</ul>
+<li>	randomized incremental
+<ul>
+<li>		worst-case optimal in any dimension
+<li>		can be faster for real data
+</ul>
+</ul>
+
+Before discussing a randomized incremental algorithm:
+
+
+<h3>Delaunay triangulations and convex hulls</h3>
+
+<p>
+As I've mentioned before, there is a very close relation
+between Delaunay triangulations and convex hulls; the Delaunay graph
+of a set of sites in d dimensions can be found by computing the
+convex hull of a corresponding set of sites in d+1 dimensions.
+
+<p>
+How does this work for planar Delaunay graphs?
+
+<table><tr><td>
+<p>
+Define a mapping dlift on points in the plane as follows;
+for a point x in the plane, let
+<blockquote>
+	dlift(x) := [x x<sup>2</sup>] = [x x&#183;x] = (x<sub></sub>1, x<sub>2</sub>, x<sub>1</sub><sup>2</sup>+x<sub>2</sub><sup>2</sup>),
+</blockquote>
+when p=(x<sub>1</sub>,x<sub>2</sub>).
+
+<p>
+The image of the plane under dlift, or
+<blockquote>
+	D := dlift(E<sup>2</sup>) = {dlift(x) | x a point},
+</blockquote>
+is a paraboloid of revolution.
+
+<td><img src="f3.gif">
+</table>
+
+<p>
+Say that a plane h is <b>nonvertical</b> if h does not contain two points
+with the same x and y coordinates.  For any such plane, the idea of
+above and below is well-defined: a given point in 3-space is either
+above, on, or below a nonvertical plane.
+
+<blockquote>
+<b>Lemma</b>.  The projection of the intersection of a nonvertical plane h with
+D is either empty, a point, or a circle.
+</blockquote>
+
+<p>
+<b>Proof.</b>
+A nonvertical plane h can be written as
+<blockquote>
+	h={[x z] | x in E<sup>2</sup>, z = x&#183;a + b},
+</blockquote>
+or as
+<blockquote>
+	h={[x z] | x in E<sup>2</sup>, z = 2x&#183;p - p&#183;p + c},
+w</blockquote>
+here p := a/2 and c := b + p&#183;p.
+
+<p>
+The vertical distance between a point [x z] on h and the paraboloid D
+is x&#183;x - z, or
+<blockquote>
+	x&#183;x - 2x&#183;p + p&#183;p - c = (x-p)&#183;(x-p) - c = r2 - c,
+</blockquote>
+where r2 is the squared distance from x to p.
+
+<p>
+The relation of h and D depends on c:
+
+<table>
+<tr><th valign=top>c < 0: <td> the vertical distance from D to any point on h is positive,
+and h is below D everywhere.
+
+<tr><th valign=top>c=0: <td> the vertical distance is zero at x=p, and positive everywhere else:
+that is, h is tangent to D at [p, p<sup>2</sup>], and the intersection of h and D is
+the point [p p<sup>2</sup>].
+
+<tr><th valign=top> c > 0: <td>since the vertical distance is r2-c, it is zero when r=sqrt(c),
+that is, when the point x is at distance sqrt(c) from p.  Otherwise:
+<table>
+	<tr><th valign=top>vertical distance < 0:</th> <td> holds when r2 < c,
+		so D is below h, and x is closer to p than sqrt(c).
+	
+	<tr><th valign=top>vertical distance > 0:</th> <td> holds when r2 > c, so D is above h,
+		and x is farther to p than sqrt(c).
+</table>
+</table>
+
+<b>QED</b>
+
+<table>
+<tr><th valign=top>lower face:<td> a face f of conv(dlift(S)) is a <b>lower</b> face
+if there is a witness
+plane h for f such that h is nonvertical and dlift(S) is above or on h.
+<tr><th valign=top align=right>proj(P): <td> For a set P in E<sup>3</sup>,
+the set {(x<sub>1</sub>, x<sub>2</sub>) | there is z with (x<sub>1</sub>, x<sub>2</sub>, z) in P}
+</table>
+
+<blockquote>
+<b>Theorem.</b>
+Let f be a lower face of conv(dlift(S)). Then
+proj(f) is a face
+of the Delaunay triangulation DG(S), and every face of DG(S) is such a
+projection.
+</blockquote>
+
+<p>
+<b>Proof</b>. Since vert(f) is a subset of dlift(S), and f is a lower face,
+there is some witness plane h for f, which means that vert(f) is a subset
+of h as well.  Hence there is some circle
+such that the projection of vert(f) is on the circle, and
+all other sites are outside the circle.  Hence proj(f) is part of
+the Delaunay triangulation of S.
+
+<p>
+The converse is easily shown, using the circle containing the Delaunay
+cell vertices to define the needed nonvertical witness plane.
+<b>QED</b>
+
+<h3>Voronoi diagrams and halfspace intersections</h3>
+
+For a site s and point x in E<sup>2</sup>, define
+
+<table>
+<tr><th>h<sub>s</sub>(x)<td> := 2 x&#183;s - s<sup>2</sup>
+
+<tr><th>h<sub>s</sub><td> := {[x z] | z>=h<sub>s</sub>(x)}
+
+<tr><th>H<sub>S</sub><td> := {h<sub>s</sub> | s in S}
+</table>
+
+<blockquote>
+<b>Theorem.</b>
+Let f be a face of P(H<sub>S</sub>) with f a subset of h<sub>s</sub> for s in some set of sites
+S', then proj(f) is the Voronoi region VR(S').
+</blockquote>
+
+<p>
+<b>Proof</b>.
+For two sites s and s',
+<blockquote>
+	h<sub>s</sub>(x)-h<sub>s'</sub>(x) = 2 x&#183;s - s&#183;s - 2 x&#183;s' - s'&#183;s'<br>
+		= (x-s)<sup>2</sup> - (x-s')<sup>2</sup>.
+</blockquote>
+
+<p>
+That is, if the vertical distance of x to h<sub>s</sub> is greater than the vertical
+distance of x to h<sub>s'</sub>, the x is farther to s than to s'.
+
+<p>
+Thus if x in on a face f of P(H<sub>S</sub>), where x is on the bounding
+planes of h<sub>s</sub> for s in some subset S', then x is is equidistant to all
+s in S', and farther to any site in S\S' than to any site in S'.
+<b>QED</b>
+
+
+
+<h3>Duality, VD(S), and DG(S)</h3>
+
+The duality between the Voronoi diagram and the Delaunay graph can
+now be expressed in a way similar to polarity.
+
+<p>
+For a nonvertical upper halfspace
+<blockquote>
+	h = {[x z] | z >= h<sub>n</sub>&#183;z - h<sub>z</sub>},
+</blockquote>
+and point p = [h<sub>n</sub> h<sub>z</sub>], let p<sup>#</sup>:= h and h<sup>#</sup> := p.
+
+<p>
+Then a point q is in h iff h<sup>#</sup> is in q<sup>#</sup>, and so a given halfspace h
+contains a set of points T iff h<sup>#</sup> is contained in each of the
+halfspaces T<sup>#</sup>; that is, h contains conv(T) iff h<sup>#</sup> is in P(T<sup>#</sup>).
+
+<p>
+Notice that the point [0 inf] is in any upper halfspace h; just at the
+condition that 0 be in polytope P is needed for polarity between
+polytopes, so the condition that the T include [0 inf] is needed for
+this duality mapping.
+
+<p>
+With this inclusion, the duality between DG(S) and VD(S) is then the
+"projection" of the duality between the lower hull of conv(dlift(S) union [0 inf])
+and P(dlift(S)<sup>#</sup>).
+
+<h3>A randomized incremental algorithm for convex hulls</h3>
+
+<p>
+We suppose for now that S is in general position: no d+1 sites
+are on a common hyperplane.
+
+<p>
+Given a set S in d dimensions, the randomized incremental
+algorithm maintains conv(R<sub>i</sub>), for i=1..n, where R<sub>i</sub> is a random subset
+of S.
+
+<p>
+As in the planar case, adding a site to conv(R<sub>i</sub>) has a <b>search</b> phase
+and an <b>update</b> phase:
+
+<table>
+<tr><th valign=top>search:<td> find a facet of conv(R<sub>i-1</sub>) visible to p<sub>i</sub>
+<tr><th valign=top>update:<td> find all the new facets of conv(R<sub>i</sub>) incident to p<sub>i</sub>.
+</table>
+
+<p>
+The algorithm of Lecture 1, and that given in the text, maintain
+for each p<sub>k</sub> with k>j, a visible facet of R<sub>j</sub>.  This makes the
+search phase easy, but is offline: the sites p<sub>k</sub> must be considered
+throughout the algorithm.
+
+<p>
+The randomized incremental algorithm for trapezoidal diagrams
+maintains a data structure for speeding search; the data structure
+uses the <b>history</b> of TD(R<sub>i</sub>): the trapezoids of
+TD(R<sub>j</sub>) for j<i.
+
+The randomized incremental Delaunay algorithm given in the text
+is similar to the convex hull algorithm given here, but I think
+that this algorithm and analysis are simpler.  You be the judge.
+
+<p>
+<table><tr><td>
+Here we use the history of the convex hull construction in a particularly
+convenient way: we keep a triangulation TR(R<sub>i</sub>) of
+R<sub>i</sub> which encodes
+the history of the construction of conv(R<sub>i</sub>), as follows:
+when p<sub>i</sub> is added,
+for each facet f of conv(R<sub>i</sub>) visible to p<sub>i</sub>,
+a simplex t=conv(f union {p<sub>i</sub>})
+is added to TR(R<sub>i</sub>).
+The facet f
+will be called the <b>base</b> facet of t, and p<sub>i</sub> will be called t's
+<b>peak</b> vertex.
+
+<td><img src="f4.gif">
+</table>
+
+<h3>Representation</h3>
+
+The triangulation TR(R<sub>i</sub>) is represented so that for each simplex t in
+TR(R<sub>i</sub>), t knows each of its vertices v , and the corresponding simplex
+t<sub>v</sub> opposite v, where t<sub>v</sub> has all the vertices of t except v.
+
+<p>
+This representation is enough to navigate through the triangulation.
+
+<p>
+There is an initial root simplex, which is the convex hull of R<sub>d+1</sub>.
+
+<p>
+The facets of the convex hull of R<sub>i</sub> can be represented as simplices of this
+triangulation: they will have a peak vertex which is null.
+
+
+<h3>Search</h3>
+
+To search TR(R<sub>i-1</sub>) to find a facet, start at the root simplex,
+and do the following:
+
+<pre>
+repeat
+if
+	a simplex is the root,
+	or has a peak vertex on the same side of it base facet as p<sub>i</sub>,
+then
+	search the neighbors of the simplex.
+until the visited simplex has a null peak.
+</pre>
+
+<p>
+Say that a non-root simplex of TR(R<sub>i-1</sub>) visited under these conditions
+has a <b>visible base facet</b>.
+
+<p>
+Suppose that a simplex has peak vertex p<sub>j</sub>.
+The search condition means that if p<sub>i</sub> had been added at time j,
+then the base facet would have been visible to p<sub>i</sub>.
+That is, the searched simplices correspond to facets of the hull
+at different times that would be visible to p<sub>i</sub>.
+
+<p>
+For this procedure to be correct in finding a currently visible
+facet, it's enough to show that such a facet is connected to the
+root in the
+adjacency graph on the simplices, where the path comprises simplices
+with visible base facets.  Such a path can be found by walking the
+line segment between p<sub>i</sub> and some point inside the root simplex.
+Each simplex along the walk has a visible base facet.
+
+<h3>Update</h3>
+
+<p>
+The updating procedure considers each simplex with a visible base facet
+and null peak vertex, and changes the peak vertex to be p<sub>i</sub>.
+
+<p>
+Some additional simplices are created: those corresponding to
+facets of conv(R<sub>i</sub>) incident to p<sub>i</sub>.  Suppose r is a ridge
+contained in a facet visible to p<sub>i</sub> and also contained in a facet
+not visible to p<sub>i</sub>.  Then conv(r union {p<sub>i</sub>}) is a facet of conv(R<sub>i</sub>);
+considered in the polar, r<sup>o</sup> is a line segment between two vertices,
+and p<sub>i</sub><sup>*</sup> has a bounding plane cutting r<sup>o</sup>, yielding a new vertex.
+
+<h3>Analysis of Update</h3>
+
+<p>
+Suppose the expected number of facets of conv(R<sub>i</sub>) is f<sub>i</sub>.
+We are interested in bounding the total number of base facets generated
+up to time i.
+
+<blockquote>
+<b>Theorem.</b>  The expected number of base facets of TR(R<sub>i</sub>) is
+no more than
+<blockquote>
+	sum<sub>j<=i</sub> df<sub>i</sub>/i.
+</blockquote>
+</blockquote>
+
+<p>
+<b>Proof</b>.
+We count the expected number of convex hulls facets created when p<sub>i</sub>
+is added:
+<blockquote>
+	= the expected number of facets of conv(R<sub>i</sub>)
+	incident to p<sub>i</sub><br>
+	= the expected number of facets of conv(R<sub>i</sub>) incident to a
+	random element of R<sub>i</sub><br>
+	= df<sub>i</sub>/i, since each facet is incident to d elements of R<sub>i</sub>
+</blockquote>
+
+<p>
+Summing up to i gives the theorem. <b>QED</b>
+
+
+<h3>Analysis of search</h3>
+
+<blockquote>
+<b>Theorem.</b>  If the expected number of facets of conv(R<sub>i</sub>) is f<sub>i</sub>,
+then the expected number of visible base facets for p<sub>i</sub>
+is no more than
+<blockquote>
+	sum<sub>j<=i</sub> d(d-1)f<sub>j</sub>/j(j-1).
+</blockquote>
+</blockquote>
+
+<p>
+<b>Proof</b>.
+Let M be the set of base facets  for the sequence p<sub>1</sub>...p<sub>i-1</sub>,
+and let M' be the set of base facets for the sequence p<sub>i</sub>, p<sub>1</sub>...p<sub>i-1</sub>;
+that is M' is the set of base facets in the "alternative" history where
+p<sub>i</sub> is added to the random subset first.
+
+<p>
+The set M\M' is the set
+of base facets visible to p<sub>i</sub> (hence not in M').
+
+<p>
+The set M'\M is
+the set of base facets incident to p<sub>i</sub> in the alternative history.
+
+<p>
+We have
+<blockquote>
+	|M| + |M'\M| = |M'| + |M\M'|,
+</blockquote>
+and we want to know E|M\M'|, which leads to the problem of bounding
+<blockquote>
+	E|M| - E|M'| + E|M'\M|.
+</blockquote>
+
+<p>
+From the analysis of updates, we have
+<blockquote>
+	E|M| - E|M'| = sum<sub>j < i</sub> df<sub>i</sub>/i - sum<sub>j<=i</sub> df<sub>i</sub>/i = -df<sub>i</sub>/i.
+</blockquote>
+
+<p>
+To bound the expected number of base facets in M'\M,
+we consider the expected number created when p<sub>j</sub> is added.
+Let R'<sub>j</sub> denote R<sub>j</sub> union {p<sub>i</sub>}.
+We want the expected number of facets of R'<sub>j</sub> incident to both p<sub>j</sub> and to
+p<sub>i</sub>.
+
+<p>
+Since p<sub>i</sub> and p<sub>j</sub> are random elements of R'<sub>j</sub>, this is
+<blockquote>
+	d(d-1)f<sub>i</sub>/i(i-1),
+</blockquote>
+since each facet is incident to {d choose 2} pairs of sites,
+and there are {i choose 2} equally likely pairs of sites,
+and we are averaging over all random subsets R'<sub>j</sub>.
+
+<p>
+Summing up to i gives the theorem.
+<b>QED</b>
+
+<p>
+From this analysis, the following results are easy:
+
+<blockquote>
+<b>Theorem.</b>
+A randomized incremental algorithm can be used to compute the convex
+hull of a set of n points
+in d dimensions in Theta(n<sup>floor(d/2)</sup>) expected time,
+and the Delaunay triangulation in Theta(n<sup>ceil(d/2)</sup>) expected time.
+If the point set is such that the expected size of the convex hull
+of a random subset is O(i) for i=1..n, then the expected time needed
+by the algorithm is O(n log n).
+</blockquote>
+
+</body>
+</html>

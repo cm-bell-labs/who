@@ -1,0 +1,1088 @@
+<html><head>
+<title>
+QED manual
+</title></head>
+<body BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+<center><H2>QED Text Editor
+</H2>
+<I>D. M. Ritchie<br>
+K. L. Thompson<br>
+</I></DL></center>
+<blockquote><i>
+This document is a rendering and redaction into HTML of an
+old Bell Labs
+Technical Memorandum.  It is dually named MM-70-1373-3
+and MM-70-1371-2 because Ken and I were in different
+departments; it was and still is customary to name
+such documents with year, department number of author,
+and yearly serial number.   It is dated 22 June, 1970.
+</i></blockquote>
+
+
+<center><DL><DD><H4>ABSTRACT</H4></center>
+QED is an interactive text editing program available
+under GE-TSS on the GE-635 computer. It is much more powerful
+than most previous editing systems.
+<br>&#32;<br>
+QED deals with both GE-TSS ASCII and card image
+files. It offers the ability to rearrange arbitrary blocks
+of text, to execute user-specified and pre-existing macro
+command sequences, and a very general text location and
+replacement capability.
+<br>&#32;<br>
+This memorandum provides a complete reference
+manual for QED.
+</DL>
+<H4>Introduction
+</H4>
+<br>&#32;<br>
+QED is an interactive text editor available under GE-TSS on
+the GE 635. QED has been characterized as hard to learn but
+easy to use. In any event, it is much more powerful than
+most editors; its text manipulation facilities approach
+those of SNOBOL.
+<br>&#32;<br>
+This memorandum is a reference manual for QED. It is a
+descendant of [1], and contains a complete description of
+the editor as well as an Appendix with a short reference
+guide and several examples.
+<br>&#32;<br>
+Since this document attempts to be as complete as possible,
+it is not easy to read. QED novices are advised to use B.
+W. Kernighan"s excellent "A Tutorial Introduction to the QED
+Text Editor" [2]. The subset of QED described therein is
+roughly equivalent in power to the GE-TSS EDIT subsystem,
+and will be enough to satisfy many users' editing needs.
+Most remaining features of QED are explained and exemplified
+in the same author's "A Guide to Advanced Use of the QED
+Text Editor" [3].
+<br>&#32;<br>
+The original QED was implemented at the University of
+California, Berkeley [4]. Substantially redesigned versions
+were written by the second author (KLT) for the CTSS system
+at MIT [1] and in BCPL for MULTICS. The latter version has
+also been available under GE-TSS using I/O routines supplied
+by A. W. Winikoff.
+<H4>This version of QED
+</H4>
+<br>&#32;<br>
+The present incarnation of QED was implemented in GMAP by
+the first author (DMR). It offers noticeable improvements
+in speed, program size, and text packing density over the
+BCPL version, of which it is a direct descendant. New
+facilities include a redesigned Global command and a
+numerical capability.
+<H4>Description of QED
+</H4>
+<br>&#32;<br>
+Unlike many editors, QED stores all the text it is working
+on in core. This gives rapid access to all the text, even
+if it is addressed randomly, but it also means that only a
+bounded amount of text can be edited at one time. This
+amount varies with several factors, but with the usual TSS
+core limit (32K) QED can process 45- or 50-block files.
+(This is equivalent to about 30 pages of text like those in
+this manual.) However, both cost and response time increase
+with core usage, so very large files should be avoided.
+<br>&#32;<br>
+QED is reasonably economical of computer time. For ordinary
+editing, connect charges always exceed those for CPU and
+I/O; complicated text processing, especially on large files,
+can become expensive.
+<br>&#32;<br>
+All text in QED is stored in buffers. At any time there is
+a current buffer to which most commands implicitly refer.
+In each buffer there is a current line which is changed by
+most editor commands. The current line is taken as a
+default address for several commands. The current buffer
+initially is buffer "0".
+Text enters a buffer only by explicit means:
+for example, it may be typed in or read from a
+file. Text is never filed away automatically; instead it
+must be written explicitly on a named file. QED does not
+use the "*SRC" file, although it may be read and written.
+<br>&#32;<br>
+The syntax of QED is concise and very regular. There are a
+number of commands each of which is one character long.
+Most commands have names intended to be reminiscent of their
+function. Each command is preceded by zero or more
+<I>addresses</I>
+specifying lines in the current buffer.
+Some commands are
+followed by parameters as well. In general any number of
+commands may be typed on a line; however, no command may
+follow the G, L, O, Q, R, V, or W commands on the same line.
+<br>&#32;<br>
+QED uses the ASCII character set internally. It can read
+and write both GE-TSS ASCII and GE-Hollerith card image
+files. 
+<H4>Syntax conventions in this manual
+</H4>
+<br>&#32;<br>
+Double and single quotes are used with their usual meaning
+except in obvious instances for example in the discussion
+of the '"' (quote) command. Angle brackets are used to enclose
+the names of QED syntactic categories: "&#60;regexp&#62;"
+stands for a regular expression: in the next paragraph and
+elsewhere, "&#60;nl&#62;" stands for the ASCII newline character.
+Angle brackets are totally without special meaning to QED
+itself.
+<H4>The character &#60;nl&#62;
+</H4>
+<br>&#32;<br>
+The ASCII &#60;nl&#62; character ("newline") separates lines. It
+may be typed by means of the "line space" key on the 37
+Teletype. However, the character &#60;cr&#62; (carriage return) is
+translated to &#60;nl&#62; when read from a file or the typewriter
+keyboard. Since the action character for GE-TSS is &#60;cr&#62;, it
+will be used most often. Users of &#60;nl&#62; should note, however,
+that at most 80 characters can be input between &#60;cr&#62;s and
+that the "line delete" (control X) sequence destroys
+everything up to the last &#60;cr&#62;, including intervening &#60;nl&#62;s.
+<H4>Regular expressions
+</H4>
+<br>&#32;<br>
+Regular expressions are a unique feature of QED. A regular
+expression is a pattern which specifies a set of strings of
+characters; it is said to
+<I>match</I>
+certain strings.
+Regular
+expressions are used in QED to specify text which is to be
+replaced by other text and in searching for lines satisfying
+some condition. Regular expressions are defined rigorously
+as follows.
+<DL COMPACT>
+<DT>a)<DD>
+An ordinary character is a regular expression which
+matches that character.
+<DT>b)<DD>
+"^" is a regular expression which matches the null
+character at the beginning of a line.
+<DT>c)<DD>
+"$" is a regular expression which matches the null
+character before the character &#60;nl&#62; (usually at the end
+of a line).
+<DT>d)<DD>
+"." is a regular expression which matches any character
+except &#60;nl&#62;.
+<DT>e)<DD>
+"[&#60;string&#62;]" is a regular expression which matches any of
+the characters in the &#60;string&#62; and no others.
+<DT>f)<DD>
+"[^&#60;string&#62;]" is a regular expression which matches any
+character but &#60;nl&#62; and the characters of the &#60;string&#62;.
+<DT>g)<DD>
+A regular expression followed by "*" is a regular expression
+which matches any number (including zero) of adjacent
+occurrences of the text matched by the regular expression.
+<DT>h)<DD>
+Two adjacent regular expressions form a regular expression which matches adjacent occurrences of the text
+matched by the regular expressions.
+<DT>i)<DD>
+Two regular expressions separated by "|" form a regular
+expression which matches the text matched by either of
+the regular expressions.
+<DT>j)<DD>
+A regular expression in parentheses is a regular expression which matches the same text as the original regular
+expression. Parentheses are used to alter the order of
+evaluation implied by g), h), and i) : "a(b|c)d" will
+match "abd" or "acd", while "ab|cd" matches "ab" or "cd".
+<DT>k)<DD>
+If "&#60;regexp&#62;" is a regular expression, "{&#60;regexp&#62;}x" is a
+regular expression, where
+<I>x</I>
+is any character. This
+regular expression matches the same things as &#60;regexp&#62;;
+it has certain side effects as explained under the Substitute command.
+<DT>l)<DD>
+If &#60;rexname&#62; is the name of a regular expression named by
+the E command (below) , then "\E&#60;rexname&#62;" is a regular
+expression which matches the same things as the regular
+expression specified in the E command. More discussion
+is presented under the E command.
+<DT>m)<DD>
+The null regular expression standing alone is equivalent
+to the last regular expression encountered. Initially
+the null regular expression is undefined; it also becomes
+undefined after an erroneous regular expression and after
+use of the E command.
+<DT>n)<DD>
+Nothing else is a regular expression.
+<DT>o)<DD>
+No regular expression will match text spread across more
+than one line.
+</dl>
+<br>&#32;<br>
+In subsequent discussion, "&#60;regexp&#62;" will denote a regular
+expression.
+<br>&#32;<br>
+Here are some examples of regular expressions. In each case
+the expression is bounded by "/".
+<P>
+/abcd/ matches "abcd" anywhere in a line.
+</P>
+<P>
+/ab|cd/ matches "ab" or "cd" anywhere in a line.
+</P>
+<P>
+/ab*c/ matches "ac", "abc", "abbc", "abbbc", ....
+</P>
+<P>
+/^begin/ matches "begin" at the beginning of a line.
+</P>
+<P>
+/end$/ matches "end" at the end of a line.
+</P>
+<P>
+/^begin.*end$/ matches any line beginning with "begin" and
+ending with "end".
+</P>
+<P>
+/^$/ matches an empty line.
+</P>
+<P>
+/abc[1234567890]/ matches "abc" followed by a digit.
+</P>
+<P>
+/abc[^1234567890]/ matches "abc" followed by a non-digit.
+</P>
+<H4>Buffer names
+</H4>
+<br>&#32;<br>
+Text may be stored in any of many buffers. Buffers are
+named by sequences of 14 or fewer characters not including
+the character &#60;nl&#62;. A buffer name is represented by "("
+followed by the characters comprising the name followed by
+")". If the name is exactly one character long, it need not
+be placed in parentheses. Some examples of buffer names
+are: "()", "(xyz)", "(x)" (which is the same as "x"), and
+"(a b c)". Inside buffer names the character "\B" has no
+special meaning (see "Editor Input" below).
+<br>&#32;<br>
+Subsequently, &#60;bufname&#62; will indicate a buffer name.
+<H4>Register names
+</H4>
+<br>&#32;<br>
+There are also many
+<I>number registers</I>
+whose names are constructed according to the same rules as buffer names.
+Number registers may be changed and set by the N command
+described below. There is no relation between a given
+number register and the buffer of the same name.
+In subsequent discussion, &#60;regname&#62; will indicate a register name.
+<H4>The condition register
+</H4>
+<br>&#32;<br>
+Finally, there is a
+<I>condition register</I>
+which contains either
+<I>true</I>
+or
+<I>false</I>.
+Several commands
+set this register, as
+discussed below; it can be tested and used to control the
+flow of QED programs. It should be noted that the condition
+register is seldom used for ordinary editing tasks.
+<H4>Text addressing
+</H4>
+<br>&#32;<br>
+Lines in the current buffer
+may be addressed. in the following ways.
+<DL COMPACT>
+<DT>1)<DD>
+By current line number.
+A decimal number addresses the line at the corresponding
+position of the current buffer. The first line is numbered 1.
+The number of a line may change during editing.
+<DT>2)<DD>
+By absolute line number.
+The character "'" followed by a decimal number is interpreted
+as an absolute line number. Absolute line numbers
+are assigned to a buffer after a successful read command,
+and never change otherwise. New lines created during
+editing have undefined absolute line numbers. The
+character "'" not followed by a digit causes a search for
+the first undefined absolute line number after the current line
+and cycling to the current line. If there is
+no line with the specified absolute line number, an error
+message is given.
+<DT>3)<DD>
+By "."
+The value of . is
+the current line. This value is
+changed by most QED commands.
+<DT>4)<DD>
+By "$".
+The value of "$" is the last line in the current buffer.
+Its line number may change during editing.
+<DT>5.<DD>
+By context.
+The structure "/&#60;regexp&#62;/" causes a search for a line
+containing text that matches the regular expression. The
+search begins at the line after the current line and
+cycles forward to the current line. If the search is
+successful, the value of "/&#60;regexp&#62;/" is the line found.
+The structure "?&#60;regexp&#62;? is just like "/&#60;regexp&#62;/" except that
+it searches backwards beginning with the line
+before the current line.
+<DT><DT>&#32;<DD>
+If commands are being taken from the console, context
+searches that fail will be noted as errors. A search
+that fails while commands are being taken from a buffer
+causes the buffer recursion level to be dropped by one.
+See also the text directive "\B" below.
+<DT>6)<DD>
+By additive combinations of 1-5.
+</dl>
+<br>&#32;<br>
+Two addresses separated by "+" or "-" also form an address.
+The value is obvious. Evaluation is done left to
+right. At no time during evaluation of an address may
+the address exceed the bounds of the buffer.
+In unambiguous cases, the "+" need not appear:
+".+1" and ".1"
+are identical in value.
+<H4>Editor Input
+</H4>
+<br>&#32;<br>
+The input to QED is a stream of characters. The following
+sequences are interpreted as directives to the stream and do
+not perform an editing function directly.
+<br>&#32;<br>
+The sequences are removed from the stream as they perform
+their function. It should be noted that each of these
+sequences is regarded by QED as a single
+character; internally, in fact, they are stored as otherwise unused ASCII
+control characters. Thus one cannot create a "\C" character
+from a "C" by substituting in a "\". These characters are
+effective if and only if they appear as part of
+the command stream (including the &#60;text&#62; which is part
+of some commands).
+<br>&#32;<br>
+Letters following "\" may be in either case.
+<DL COMPACT>
+<DT>B&#60;bufname&#62;<DD>
+This sequence causes the input stream to be diverted to
+the buffer &#60;bufname&#62;. At the end of this buffer input
+reverts back to its original source. The stream is also
+switched back if a context search fails. Upon occurrence
+of any error the input is switched back to the console
+after printing the remaining contents of the buffer currently
+being executed. (This is a useful debugging aid
+for QED programs.) "\B" may be used recursively to any
+level.
+<DT>R<DD>
+This character causes input to be switched to the console
+for one line of input. On this line, no stream directive
+characters are effective. The &#60;nl&#62; character ending the
+line is discarded.
+<DT>C<DD>
+This character causes the next character to be taken
+literally, ignoring any special meaning the character may
+have in the current context.
+<DT>N&#60;regname&#62;<DD>
+This sequence is replaced by the digits corresponding to
+the contents of number register &#60;regname&#62;. See the N
+command below.
+<DT>E<DD>
+This character is special only in regular expressions.
+See the E command and the discussion of regular expressions.
+</dl>
+<H4>Escape sequences
+</H4>
+<br>&#32;<br>
+Certain characters are impossible to generate on certain
+devices, and the commercial-at sign "@" cannot be input to
+TSS at all. The escape sequences on the left
+are accepted
+in lieu of the characters listed on the right.
+<DL><DT><DD><TT><PRE>
+\A	a
+\(	{
+\)	}
+\!	I
+\\	\
+\&#60;	[
+\&#62;	]
+\'	^
+\ddd	7-bit character represented by ddd
+</PRE></TT></DL>
+The "\\" escape is used because the character "\" followed
+by any character is taken as a single character. In "\ddd"
+the d's are octal digits. The characters \000 and \777 have
+internal meaning and are entered at one's risk.
+<H4>Text input
+</H4>
+<br>&#32;<br>
+There are a number of QED commands that expect literal text
+as argument. This text must be preceded by a space or a
+&#60;nl&#62; character, which is discarded. The text itself
+consists of an arbitrary string of characters terminating in
+"\F". The "\F" is not itself part of the text but only
+serves to delimit it. Subsequently, "&#60;text&#62;" will indicate
+literal text input.
+<H4>Editor commands
+</H4>
+<br>&#32;<br>
+Commands may require zero, one, or two addresses. Commands
+which require no addresses regard the presence of an address
+as an error: those which require one or two addresses use
+the last one or two addresses and ignore the extras.
+<br>&#32;<br>
+In the list of commands below,
+the zero-address commands are
+shown with no addresses.
+<br>&#32;<br>
+The commands which require one
+address all assume a default,
+which is shown in parentheses.
+The parentheses are not part
+of the address, but are used to show that the address given
+is the default.
+<br>&#32;<br>
+Likewise, the two-address commands all assume 
+default addresses given in parentheses. If a two-address command is
+typed with only one address, that address is used for both
+those required.
+<br>&#32;<br>
+Sequences of two or more addresses are separated either by
+"," or by ";". In the latter case "." is
+set to the
+preceding address before the succeeding address is
+evaluated. The semicolon is used mostly to control the
+starting line for context searches.
+<br>&#32;<br>
+The following is a list of QED'S command repertoire.
+Commands which are letters may appear in either case.
+<br>&#32;<br>
+A) ($)A&#60;text&#62; Append.
+<br>
+The text input is placed after the addressed line. "."
+is set to the last line input. If no text was input, "."
+is set to the addressed line.
+<br>&#32;<br>
+B) B&#60;bufname&#62; Buffer.
+<br>
+Buffer &#60;bufname&#62; becomes the current buffer. If the
+buffer already existed, its previous value of "." becomes
+the current value of ".". Initially the current buffer
+is "0".
+<br>&#32;<br>
+C (.,.)C&#60;text&#62; Change.
+<br>
+The addressed lines are deleted and replaced by the input text.
+"." is set to
+the last line input.
+If no lines
+were input, "." is set to the first line not deleted.
+The addressed lines cannot cross line 0 (circularly).
+<br>&#32;<br>
+D) (.,.)D Delete.
+<br>
+The addressed lines are deleted. "." is set to the first
+line not deleted. The addressed lines cannot cross line
+0 (circularly).
+<br>&#32;<br>
+E) E&#60;rexname&#62;/&#60; regexp&#62;/ Enter
+<br>
+The E command gives the regular expression &#60;regexp&#62; the
+name &#60;rexname&#62;. The syntax of &#60;rexname&#62;s is the same as
+that of &#60;bufname&#62;s and &#60;regname&#62;s. The regular
+expression &#60;rexname&#62; may be referred to in a regular expression
+by the construct
+\E&#60;rexname&#62; .
+"\E" has no special significance outside of regular expressions.
+<br>&#32;<br>
+The empty regular expression, which normally means the
+last regular expression encountered, cannot be used for
+the &#60;regexp&#62; in the E command; also, the empty regular
+expression becomes undefined after an E command.
+<br>&#32;<br>
+Regular expressions named by the E command may contain
+the "\E" construction. Recursive regular expressions are
+allowed, but left recursive expressions do not work.
+(They do not, however, loop.) Examples of the use of E
+and \E are given in the Appendix.
+<br>&#32;<br>
+F) F Facts
+<br>
+The F command causes QED to type out 1) the number of
+words on QED'S "free list", 2) the highest memory location
+used for text storage, and 3) the current core allocation.
+When the third number gets near 32K, take care
+not to exceed the core maximum.
+<br>&#32;<br>
+G) (1,$)G/&#60;regexp&#62;/&#60;commands&#62;&#60;nl&#62; Global.
+<br>
+The remainder of the line after "/&#60;regexp&#62;/" is placed
+into a hidden buffer. Each line addressed which matches
+the &#60;regexp&#62; is marked. Then for each marked line the
+commands in the hidden buffer are executed, with "." set
+at the marked line. The commands G, L, Q, R, V, and W
+may not be executed within a G command.
+At the conclusion of the command, "." is set at the point where it was
+left by the last command executed. Any character but
+space or &#60;nl&#62; may be used instead of "/" to bound the
+&#60;regexp&#62;.
+<br>&#32;<br>
+If it is desired that the &#60;commands&#62; contain a &#60;nl&#62;, \C
+should precede the &#60;nl&#62; in order to prevent it
+from terminating the Global command.
+<br>&#32;<br>
+I) (.)I&#60;text&#62; Insert.
+<br>
+Text input is inserted before the addressed line. "." is
+set to the addressed line. Note that "I" differs from
+"A" in its default address as well as in the placement of
+the &#60;text&#62;.
+<br>&#32;<br>
+J) JT&#60;commands&#62; Jump on true
+   JF&#60;commands&#62; Jump on false
+<br>
+This instruction tests the condition register and "jumps"
+according to its value. If the condition register is
+true, the JT command causes the rest of the line to be
+ignored; conversely, a false condition register causes J
+to skip. Otherwise the rest of the line is interpreted
+normally.
+<br>&#32;<br>
+The condition register is set by R, W, S, Y, and T commands.
+<br>
+K) (.,.)K&#60;nl&#62; Sort
+   (.,.) KB&#60;nl&#62;
+<br>
+In the first form of the K command the addressed lines
+are sorted in increasing ASCII collating sequence. In
+the second form descending sequence is used.
+<br>&#32;<br>
+L) L &#60;filestring&#62;&#60;nl&#62; List.
+   L6 &#60;filestring&#62;&#60;nl&#62;
+   L&#60;nl&#62;
+<br>
+The file is printed on the console. The value of "." is
+unchanged. In the first form, the file is ASCII; in the
+second, it consists of card images. If the "L" is followed
+directly by &#60;nl&#62;, the file of the name and type is listed. See
+also "File I/O" (below).
+<br>&#32;<br>
+M) (.,.) M&#60;bufname&#62; Move.
+<br>
+The addressed lines are removed from the current buffer.
+"." in the current buffer is set to the line following
+the last line moved. The entire contents of buffer &#60;bufname&#62;
+are deleted, and then replaced by the addressed
+lines. "." in the named buffer is set to its last line.
+The named buffer can be the current buffer.
+<br>&#32;<br>
+N) N&#60;regname&#62;&#60;character&#62;&#60;number&#62; Number.
+<br>
+This command modifies a
+<I>number register</I>
+named &#60;regname&#62;.
+The value of the number register can be retrieved by the
+sequence "\N&#60;regname&#62;" (See "Editor Input" above).
+The following &#60;character&#62;s may be used:
+<br>&#32;<br>
+: The &#60;number&#62; is assigned to &#60;regname&#62;.
+<br>
++ The &#60;number&#62; is added to &#60;regname&#62;.
+<br>
+- The &#60;number&#62; is subtracted from &#60;regname&#62;.
+<br>
+* &#60;regname&#62; is multiplied by &#60;number&#62;.
+<br>
+/ &#60;regname&#62; is divided by &#60;number&#62;.
+<br>
+% &#60;regname&#62; becomes &#60;regname&#62; modulo &#60;number&#62;.
+<br>
+p The contents of &#60;regname&#62; are printed on the console. &#60;number&#62; is ignored.
+<br>
+d Whenever &#60;regname&#62; is retrieved by a "\N", it will
+have at least &#60;number&#62; digits; leading zeros will
+be supplied to pad. (Initially this number of
+digits is one.)
+<br>&#32;<br>
+O) O&#60;optionlist&#62;&#60;nl&#62; Options
+<br>
+The O command sets various editing options.
+The following options may be used in the &#60;optionlist&#62;:
+<br>&#32;<br>
+V Verbose
+<br>
+Whenever QED is in text input mode (after A, C, or I
+commands) the prompt character "*" is supplied at the
+beginning of each line. This feature may be useful
+to those who forget their "\F"'s.
+<br>&#32;<br>
+S Silent
+<br>
+This option annuls the effect of option V.
+<br>&#32;<br>
+T&#60;number&#62;,&#60;number&#62;, . . . Tabs
+<br>
+QED turns tab characters into spaces when writing.
+Hollerith card image files, and tabs are inserted and
+deleted by the Z command (below). The tab settings
+8, 16, 24, 32, . . . are the default. The Tabs option
+changes the tab settings. As many tabs as desired
+may be set but no tab setting may go into a column
+beyond 73. Tab characters occurring in columns
+beyond the rightmost tab stop are treated as spaces.
+<br>&#32;<br>
+O special characters Out
+<br>
+After an option O, the following regular expression
+metacharacters are treated as ordinary characters:
+<DL><DT><DD><TT><PRE>
+        . * ( ) { } [ \E ^ $ |
+</PRE></TT></DL>
+The special effect of these characters in regular expressions may
+be restored locally by preceding them
+by "\C".
+<br>&#32;<br>
+I special characters In
+<br>
+This character annuls the effect of option O.
+<br>&#32;<br>
+P) (.,.)P Print
+   &#60;addr&#62;&#60;nl&#62;
+   &#60;nl&#62;
+<br>
+The addressed lines are printed on the console. "." is
+set to the last line printed. The addressed lines cannot
+cross line 0 (circularly). A completely empty line is
+equivalent to ".+1p".
+<br>&#32;<br>
+Q) Q&#60;nl&#62; Quit.
+<br>
+ QED returns to the "system?" level.
+<br>&#32;<br>
+R) ($)R &#60;filestring&#62;&#60;nl&#62; Read.
+   ($)R6 &#60;filestring&#62;&#60;nl&#62;
+   ($) R&#60;nl&#62;
+<br>
+The file is read and appended after the addressed line.
+"." is set to the last line read. The size of the file
+in blocks, the number of lines read, and the number of
+characters read are printed on the console provided the
+command is not executed from a buffer. In the first
+form, the file is ASCII; in the second, it is a card
+image file. If the "R" is followed directly by &#60;nl&#62;, the
+file of that name and type last mentioned in L, R, or W
+commands is read. If the command is executed from a
+buffer, the condition code is set to true to reflect a
+successful read, otherwise to false. In this case, no
+error is given, since it is assumed that a program will
+test the condition register if desired.
+<br>&#32;<br>
+S) (.,.) S/&#60;regexp&#62;/&#60;string&#62;/ Substitute.
+<br>
+Occurrences of &#60;regexp&#62; in the addressed lines are
+replaced by &#60;string&#62;.
+"." is set to the last line in
+which a substitution took place. The character "&amp;" in
+the &#60;string&#62; has a value equal to the text matched by the
+&#60;regexp&#62;. If a construct of the form "{&#60;regexp2&#62;}x" was
+used in the &#60;regexp&#62;, the character "x" has value equal
+to the text matched by &#60;regexp2&#62;.
+<br>&#32;<br>
+Any character but space or &#60;nl&#62; may be used instead of
+"/" to bound the &#60;regexp&#62;.
+<br>&#32;<br>
+If any substitutions took place, the condition register
+is set to true, otherwise to false. It is not an error
+for a substitution to fail.
+<br>&#32;<br>
+T) (.,.)T/&#60;regexp&#62;/ Test
+<br>
+The T command attempts to find an instance of the
+specified &#60;regexp&#62; among the specified lines: if successful,
+the condition register is set to true, otherwise to
+false. "." is left unchanged. The usually illegal address 
+"0" is legal for the T command, so
+<DL><DT><DD><TT><PRE>
+      0,$T/$/
+</PRE></TT></DL>
+tests whether there are any lines in the current buffer
+and never gives an error. ("1,$T/$/" would be erroneous
+if the current buffer were empty.)
+<br>&#32;<br>
+V) (1,$)V/&#60;regexp&#62;/&#60;commands&#62;&#60;nl&#62; Exclude.
+<br>
+This command is exactly like the "G" command, except that
+the commands are performed in lines
+<I>not</I>
+matching the
+&#60;regexp&#62;.
+<br>&#32;<br>
+W) (1,$)W &#60;filestring&#62;&#60;nl&#62; Write.
+   (1,$) W6 &#60;filestring&#62;&#60;nl&#62;
+   (1, $) W&#60;nl&#62;
+<br>
+The addressed lines are written into the file. The
+number of blocks, the number of lines, and the number of
+characters written will be printed. The value of "." is
+not changed. In the first form the file will be ASCII;
+in the second, 14-word Hollerith card images. If "W" is
+followed directly by &#60;nl&#62;, the file is written with the
+name and type of the last file mentioned in L, R, or W
+commands. If the file cannot be opened for writing, a
+temporary file of the given name is created and
+a diagnostic printed. When the W command is executed from a
+buffer, the condition register is set to indicate the
+success of the W command, and no error comment is given.
+<br>&#32;<br>
+X) X Status.
+<br>
+The name, value of ".", and value of "$" of the current
+buffer and all non-empty auxiliary buffers are printed on
+the console. The value of "." is unchanged.
+<br>&#32;<br>
+Y) (.,.)Y/&#60;string1&#62;/&#60;string2&#62;/ Transform.
+<br>
+Occurrences of the characters in &#60;string1&#62; within
+the addressed lines are replaced by the corresponding character
+of &#60;string2&#62;. &#60;string1&#62; and &#60;string2&#62; must be the same
+length, and no character may appear twice in &#60;string1&#62;.
+The value of "." is set to the last line in which any
+character was transformed. The condition register is set
+to true if any characters were transformed, otherwise to
+false. Any character but space or &#60;nl&#62;
+may be used instead of "/" to bound the strings.
+<br>&#32;<br>
+Z)  (1,$)ZI Tabs in
+    (1,$)ZO Tabs out
+<br>
+In the first form of the command, every sequence of one
+or more spaces that ends on a tab stop is converted to a
+tab character. In the second, each tab character is
+expanded to the right number of spaces according to the
+current tab stops. Tabs are set by the OT command (see
+above) . Neither ZI nor ZO treats backspace and other
+non-graphics as special characters, so even if logical
+tab settings correspond with physical settings visual
+appearance is not necessarily preserved. Furthermore, tab
+itself is not a special character during 21.
+<br>&#32;<br>
+"." is set to the last line altered.
+<br>&#32;<br>
+:) ($): Absolute line.
+<br>
+The absolute line number of the addressed line is
+printed. If the absolute line number is undefined, "?"
+is printed. "." is set to the addressed line.
+<br>&#32;<br>
+=) ($)= Current line.
+<br>
+The addressed line's number is printed. "." is set to
+the addressed line.
+<br>&#32;<br>
+!) ! &#60;TSS command&#62; Escape to TSS
+<br>
+When "!" is encountered the remainder of the line is sent
+to GE-TSS to be executed. The command
+<DL><DT><DD><TT><PRE>
+ !filsys . . .
+</PRE></TT></DL>
+is particularly useful.
+<br>&#32;<br>
+") (.) "&#60;anything but &#60;nl&#62;&#62;&#60;nl&#62; Comment.
+<br>
+The remainder of the line is ignored. "." is set to the
+addressed line.
+<H4>Usage
+</H4>
+<br>&#32;<br>
+At "system?" level type
+<DL><DT><DD><TT><PRE>
+ ./qed
+</PRE></TT></DL>
+or the equivalent using
+<I>lodx</I>.
+<br>&#32;<br>
+Whenever the break key on the teletypewriter is depressed or
+the ASCII character NULL is sent, QED will stop what it is
+doing, return to its command level and respond with "?11"
+(i. e., error number 11). This feature is particularly useful
+for interrupting long printouts. Caution should be exercised
+to avoid sending a second break before the first has
+taken effect; this is likely to return the user to the
+"system?" level of GE-TSS, with consequent loss of the work
+in progress.
+<H4>Core overflow
+</H4>
+<br>&#32;<br>
+During the day, GE-TSS limits the user to 32K of core of
+which about 3.3K is used by the QED program. The remainder
+can be used for text storage, and it amounts to about 50
+blocks ("llinks") worth. Unfortunately, TSS aborts a
+program which asks for more core than TSS is willing to
+give. Therefore, as a safety feature, QED will simulate an
+interrupt as its core size passes 31K.
+If an unexpected error 11 ("?11") occurs,
+use the F command to discover whether
+memory is about to overflow.
+<H4>Line 0
+</H4>
+<br>&#32;<br>
+The following description of the way buffers are stored is
+sometimes useful to know. The lines in each buffer are
+circularly linked, with a special, always empty, "line 0"
+between lines 1 and $. That is, near the end of the buffer,
+the order of lines is ... $-2, $-1, $, 0, 1, 2... . Line
+0 cannot be printed, deleted, or in any way changed; its
+presence becomes noticeable occasionally because "." may be
+left at line 0 by, for example, deleting line $. Certain
+searches can find this line, for example "/^/". (But not
+"^$", since the "$" requires a newline to be present.)
+Finally 0 can sometimes be used as an address: "0a" and "0r"
+place text at the beginning of the buffer. (Note that "0i"
+puts the text at the end!)
+<br>&#32;<br>
+File I/O
+<br>&#32;<br>
+QED accepts filenames in catalogs other than the user's
+master catalog provided no more than two "/"s are present.
+Passwords and alternate names are not accepted, and both
+file and catalog names must be 8 or fewer characters in
+length.
+<br>&#32;<br>
+In order to guard against an unfortunate bug in TSS, the
+following strategy is used when opening files. If the file
+was not open (in the AFT), and QED is able to access it with
+the proper permissions, all is well. If the file is being
+read, all is assumed to be well. Otherwise, if a file is in
+the AFT, QED will deaccess it and then attempt to reopen it.
+This is necessary because if a file is in the AFT with the
+wrong permissions, an I/O command to the file will cause QED
+to be aborted. There is no way to discover the permissions
+attached to a file in the AFT.
+<br>&#32;<br>
+As mentioned under the W command, if a file cannot be opened
+for writing (usually because it does not exist) QED will
+create a temporary file which the user must deal with outside of QED.
+<br>&#32;<br>
+QED will write TSS-format ASCII and 14-word (84 column) GE
+Hollerith card image files. It will read TSS ASCII and card
+image files the records of which may vary in length.
+<H4>Bootstrapping
+</H4>
+<br>&#32;<br>
+QED will automatically read in and execute files containing
+QED commands. This feature is useful in preparing QED
+programs for general use. If QED is invoked by the following command line
+<DL><DT><DD><TT><PRE>
+ ./qed filename argl arg2 ...
+</PRE></TT></DL>
+then "r filename" is placed in buffer "f", arg1, arg2, . . .
+are placed in separate lines in buffer "0": buffer "f" is
+executed to read
+<I>filename</I>
+into buffer "." and finally
+buffer "." is executed. This feature is implemented by
+executing the following commands from a hidden buffer:
+<DL><DT><DD><TT><PRE>
+	b0	"start in b0
+	a \R
+	\F	"read command line
+	1,$s/ */ \C
+	/	"split into separate lines
+	1d	"delete "./qed"
+	O;/./;.mf	"move filename (if there) to bf
+	bf	"edit filename
+	1s/^/r /	"make R command
+	b.	"move to buffer .
+	\Bf	"execute read
+	b0	"back to b0
+	\B.	"execute file read in
+</PRE></TT></DL>
+The use of the bootstrapping feature is illustrated in the
+last example in the Appendix.
+<H4>Comments
+</H4>
+<br>&#32;<br>
+Comments on the (syntax|semantics) of the (paper|program)
+are welcome.
+<br>&#32;<br>
+      [ signature lines here ]
+<H4>REFERENCES
+</H4>
+<br>&#32;<br>
+[1] Thompson, K. L., "QED Text Editor," Multics Repository
+Document B0080, February, 1967.
+<br>
+[2] Kernighan, B. W., "A Tutorial Introduction to the QED
+Text Editor, MM-70-1373-6 (June, 1970).
+<br>
+[3] --------, "A Guide to Advanced Use of the QED
+Text Editor," MM-70-1373-7 (July, 1970).
+<br>
+[4] Deutsch, L. P. and B. W. Lampson, "An Online Editor,"
+CACM 10, 12 (December, 1967) .
+<H4>APPENDIX
+</H4>
+<br>&#32;<br>
+This Appendix provides a quick-reference summary of QED and
+several examples of its use.
+<br>&#32;<br>
+       [ summary deleted-- Adobe OCR deeply misunderstood
+         the format --DMR]
+<H4>Examples
+</H4>
+<br>&#32;<br>
+        [ I tried to fix the examples to make them correct.
+          But again the OCR software isn't great on dealing
+          with {}[]|^ and neither am I in reconstructing the
+          point being made.... -- DMR ]
+<H4>1) Creating text.
+</H4>
+<br>&#32;<br>
+The following commands create a file of little import and
+write it out.
+<DL><DT><DD><TT><PRE>
+a
+Here are some commands
+which create a file of
+little import
+and write it out.
+\f
+w litimp
+</PRE></TT></DL>
+<H4>2) Moving text.
+</H4>
+<br>&#32;<br>
+The commands
+<DL><DT><DD><TT><PRE>
+/abcd/,$m1
+Oa \b1\f
+</PRE></TT></DL>
+first move several lines from the end of the current buffer
+to buffer 1. Then the lines are inserted at the beginning
+of the current buffer.
+<H4>3) Correcting mistakes.
+</H4>
+<br>&#32;<br>
+The command
+<DL><DT><DD><TT><PRE>
+ l,$s/speling/spelling/
+</PRE></TT></DL>
+changes every instance of "speling" to "spelling". Better,
+the command
+<DL><DT><DD><TT><PRE>
+ l,$s/{S|s}Xpeling/Xpelling/
+</PRE></TT></DL>
+works even if "speling" is sometimes capitalized.
+<H4>4) Deleting line numbers.
+</H4>
+<br>&#32;<br>
+The command
+<DL><DT><DD><TT><PRE>
+1,$s/^[0123456789 ]*//
+</PRE></TT></DL>
+will remove line numbers as defined in GE-TSS FORTRAN from a
+buffer.
+<H4>5) Adding line numbers.
+</H4>
+<br>&#32;<br>
+The command sequence
+<DL><DT><DD><TT><PRE>
+n(counter):1
+n(counter]d5
+g/^/s''\c\n(counter) #' n(counter)+10
+</PRE></TT></DL>
+will add line numbers (as defined by CARDIN) to a buffer
+beginning with 00001 and incrementing by 00010.
+<H4>6) Verification of substitution.
+</H4>
+<br>&#32;<br>
+The command
+<DL><DT><DD><TT><PRE>
+g/ABCD/p\c\rs//PQRS/
+</PRE></TT></DL>
+will print each line in which "ABCD" is found and pause. If
+`&#60;nl&#62;' is typed, "PQRS" will be substituted. If '"&#60;nl&#62;' is
+typed, the substitution will not take place. Note the
+of "\c" to postpone interpretation of "\r" until the G
+command is executed.
+<H4>7) Macro expansion.
+</H4>
+<br>&#32;<br>
+The command
+<DL><DT><DD><TT><PRE>
+1,$s/ADDMAC {[^,]*]1, {[^, ]*)2, {[^, ]*}3/LDA 1\
+        ADA 2\c
+        STA 3/
+</PRE></TT></DL>
+turns lines like
+<DL><DT><DD><TT><PRE>
+        ADDMAC	P1,SYMB,RES
+</PRE></TT></DL>
+into
+<DL><DT><DD><TT><PRE>
+        LDA	P1
+        ADA	SYMB
+        STA	RES
+</PRE></TT></DL>
+Note the use of "\c" to insert &#60;nl&#62; into the right-hand
+of the substitution.
+<H4>8) Global move.
+</H4>
+<br>&#32;<br>
+The command
+<DL><DT><DD><TT><PRE>
+ g/ab\c$cd/ m(temp) b1a \c\b(temp)\f
+</PRE></TT></DL>
+moves all lines containing "ab$cd" to buffer 1. The lines
+are appended to the buffer and do not replace it. "\c" is
+used to remove the special meaning of "$" in the left side
+of the substitution and to prevent the expansion of buffer
+"temp" during reading of the global command.
+<H4>9) Summing a table.
+</H4>
+<br>&#32;<br>
+Suppose buffer 0 is the current buffer and each line
+consists of a number: all of these numbers are to be added
+together. The following commands suffice:
+<DL><DT><DD><TT><PRE>
+n(sum) :0
+l,$s/^/n(sum)+/
+\B0
+</PRE></TT></DL>
+That is, each line in the current buffer becomes like
+"n(sum)+&#60;number&#62;"; then the buffer is executed to form the
+sum.
+<H4>10) The use of "\E"
+</H4>
+<br>&#32;<br>
+The command
+<DL><DT><DD><TT><PRE>
+e(alph)/[abcdefghijklmnopqrstuvwxyz]/
+</PRE></TT></DL>
+makes "\E(alph)" refer to the set of lower case letters. The
+regular expression
+<DL><DT><DD><TT><PRE>
+/\E(alph)/
+</PRE></TT></DL>
+will search for a lower case letter. The regular expression
+"\E(bal)" defined by
+<DL><DT><DD><TT><PRE>
+e(bal)/[^`']*(`\E(bal)')*[^`']*/
+</PRE></TT></DL>
+matches any string balanced with respect to single quotes
+"`" and "'".
+<br>&#32;<br>
+It should be noted that the ability to define regular expressions
+recursively makes the term "regular expression" a
+misnomer: it is not hard to see that expressions can be
+constructed to match exactly the members of any given context-free language.
+<H4>11) A useful program.
+</H4>
+<br>&#32;<br>
+        [ It's not useful any more, and too hard
+          to make correct -- DMR ]
+<br>&#32;<br>
+<A href=http://www.lucent.com/copyright.html>
+Copyright</A> &#169; 1996 Lucent Technologies Inc.  All rights reserved.
+</body></html>

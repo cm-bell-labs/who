@@ -1,0 +1,716 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+		"http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd">
+		
+<?xml-stylesheet href="xbl-shape-bindings.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:svg="http://www.w3.org/2000/svg" 
+      xmlns:math="http://www.w3.org/1998/Math/MathML" 
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+  <head>
+    <style>
+      [class~="circle"] 
+      {
+        stroke: red;
+        stroke-width: 2;
+        fill: red;
+        fill-opacity: 0.1;
+      }
+     <style>
+		[class~="circ_control"]:hover {stroke:black; stroke-width:2; fill-opacity:0.2;}
+		li:hover {color:blue}
+	</style>
+    </style>
+
+    <script>
+      <![CDATA[
+
+	var ca, cb, cc;
+	var NUM_POINTS = 200;
+
+	function distsqr(jx, jy, ix, iy)
+	{
+		return (ix-jx)*(ix-jx) + (iy-jy)*(iy-jy);
+
+	}
+
+	function distsqrC(ca, cb)
+	{
+		return distsqr(ca.cx.baseVal.value, ca.cy.baseVal.value,
+					   cb.cx.baseVal.value, cb.cy.baseVal.value);
+	}
+	
+	function update_center(T)
+	{
+	   var cent = document.getElementById("triangle_center");
+	   var circum = document.getElementById("triangle_circum");
+	   var inscrib = document.getElementById("triangle_inscrib");
+	   var x1 = T.getAttribute("x1")*1.0;
+	   var x2 = T.getAttribute("x2")*1.0;
+	   var x3 = T.getAttribute("x3")*1.0;
+  	   var y1 = T.getAttribute("y1")*1.0;
+	   var y2 = T.getAttribute("y2")*1.0;
+	   var y3 = T.getAttribute("y3")*1.0;
+	   
+	   var xa = x2 - x3;
+	   var ya = y2 - y3;
+	   var xb = x1 - x3;
+	   var yb = y1 - y3;
+	   var sa = xa*xa + ya*ya;
+	   var sb = xb*xb + yb*yb;
+	   var dot = xa*xb + ya*yb + sa*sb;
+	   var nb = xb*xb + yb*yb + sb*sb;
+	   xa = xa - xb*dot/nb;
+	   ya = ya - yb*dot/nb;
+	   sa = sa - sb*dot/nb;
+	   var na = xa*xa + ya*ya + sa*sa;
+	   
+	   var xc = 0;
+	   var yc = 0;
+	   var sc = 1;
+	   var dotca = xc*xa + yc*ya + sc*sa;
+	   var dotcb = xc*xb + yc*yb + sc*sb;
+	   xc = xc - xa*dotca/na - xb*dotcb/nb;
+	   yc = yc - ya*dotca/na - yb*dotcb/nb;
+	   sc = sc - sa*dotca/na - sb*dotcb/nb;
+	   
+	   xc = -0.5*xc/sc + x3;
+	   yc = -0.5*yc/sc + y3;
+	  
+	   inscrib.cx.baseVal.value = circum.cx.baseVal.value = cent.cx.baseVal.value = xc;
+	   inscrib.cy.baseVal.value = circum.cy.baseVal.value = cent.cy.baseVal.value = yc;
+
+	   var circum_dist = distsqr(cent.cx.baseVal.value, cent.cy.baseVal.value, x1, y1);
+	   circum.r.baseVal.value = Math.sqrt(circum_dist);
+	   
+	   	var max_dist = distsqr(x1, y1, x2, y2);
+	   	var dist = distsqr(x1, y1, x3, y3);
+	   	if (dist > max_dist)
+	   		max_dist = dist;
+	   	dist = distsqr(x3, y3, x2, y2);
+		if (dist > max_dist)
+	   		max_dist = dist;
+	    inscrib.r.baseVal.value = Math.sqrt(circum_dist - max_dist/4);
+	}
+	
+	
+	function farthest(jx, jy)
+	{
+		var max_dist = 0;
+		var max_i = -1;
+		for (var i=0; i < NUM_POINTS; i++) {
+			var ci = document.getElementById(circ_id(i));
+			var dist = distsqr(jx, jy, ci.cx.baseVal.value, ci.cy.baseVal.value);
+			if (dist > max_dist) {
+				max_dist = dist;
+				max_i = i;
+			}
+		}
+		var ci = document.getElementById(circ_id(max_i));
+        	ci.setAttribute( 'style', 'fill: blue');
+		return ci;
+      }
+
+	function circ_id(i) {return "circle_"+i ;}
+
+	function line_id(t) {return "line_"+t ;}
+
+	function selectRandom()
+	{
+		var cj = document.getElementById(circ_id(Math.floor(Math.random()*NUM_POINTS)));
+		cj.setAttribute( 'style', 'fill: blue');
+		return cj;
+	}
+
+	function dotLine(t)
+	{
+ 		var lin = document.getElementById(line_id(t));
+		lin.setAttribute('style', 'stroke-dasharray:30,10,5,10;');
+
+	}
+      
+	function resetLine(ca, cb, t, tcol)
+	{
+		var lin = document.getElementById(line_id(t));
+		lin.setAttribute('points', ca.cx.baseVal.value + ',' + ca.cy.baseVal.value
+			+ ',' + cb.cx.baseVal.value + ',' + cb.cy.baseVal.value);
+		lin.setAttribute('style', 'stroke: '+tcol+";");
+	}
+
+
+    function hideLine(t)
+    {
+		var lin = document.getElementById(line_id(t));
+		lin.setAttribute('points', '0,0,0,0');
+	}
+		
+	function makeLine(ca, cb, t)
+	{
+		var lin = document.createElementNS("http://www.w3.org/2000/svg", "polyline");
+		lin.setAttribute('points', ca.cx.baseVal.value + ',' + ca.cy.baseVal.value
+			+ ',' + cb.cx.baseVal.value + ',' + cb.cy.baseVal.value);
+		lin.setAttribute('style', 'stroke:black; fill:none; stroke-width:2');
+		lin.setAttribute('id', line_id(t));
+        var canvas = document.getElementById("canvas");
+		canvas.appendChild(lin);
+	}
+
+	function init()
+	{
+		var canvas = document.getElementById("canvas");
+		var group = document.createElementNS("http://www.w3.org/2000/svg", "group");
+		canvas.appendChild(group);
+
+		for (var i = 0; i < NUM_POINTS; ++i) {
+				var circ = createCircle(i);
+				group.appendChild(circ);
+		}
+		ca = selectRandom();
+		cb = selectRandom();
+		cc = ca;  //selectRandom();
+
+		makeLine(ca, cb, 'ab');
+		makeLine(cb, cc, 'bc');
+		makeLine(cc, ca, 'ca');
+		var c=document.getElementById("circ_go");
+		c.addEventListener("mousedown", go_mousedown, false);
+		c = document.getElementById("circ_step");	
+		c.addEventListener("mousedown", step_mousedown, false);
+		c = document.getElementById("circ_stop");	
+		c.addEventListener("mousedown", stop_mousedown, false);
+		
+		var T = document.getElementById("triangle_ex");
+		update_center(T);
+	}
+	
+	function go_mousedown(evt)
+	{
+		start_animation();
+	}
+	
+	function step_mousedown(evt)
+	{
+		one_step();
+	}
+	
+	function stop_mousedown(evt)
+	{
+		stop_animation();
+	}
+	
+	function re_init()
+	{
+		for (var i=0; i < NUM_POINTS; ++i) {
+			var circ = document.getElementById(circ_id(i));
+			circ.cx.baseVal.value = Math.random()*595;
+			circ.cy.baseVal.value = Math.random()*395;
+			circ.setAttribute('style', 'fill:black');
+		}
+		ca = selectRandom();
+		cb = selectRandom();
+		cc = ca;  //selectRandom();
+		resetLine(ca, cb, 'ab');
+		resetLine(cb, cc, 'bc');
+		resetLine(cc, ca, 'ca');
+		need_reset = 0;
+		adding_point = 1;
+	}
+
+      function createCircle(i)
+      {
+        var x = Math.random()*595;
+        var y = Math.random()*395;
+
+        var circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute( 'id', circ_id(i));
+        circle.setAttribute( 'cx', x );
+        circle.setAttribute( 'cy', y );
+        circle.setAttribute( 'r', 5 );
+//        circle.setAttribute( 'style', 'fill: black; opacity: 0.2;' );
+
+        return circle;
+      }
+
+      var anim_running = 0;
+      
+
+	var adding_point = 1;
+	var need_reset = 0;
+	var got_to_done = 0;
+
+      function start_animation()
+      {
+		if (need_reset) {
+			re_init();
+		}
+        animate();
+      }
+      
+      function stop_animation()
+      {
+        if (!anim_running)
+			return;
+        clearTimeout(anim_running);
+        anim_running = 0;
+        need_reset = 1;
+      }
+      
+      function animate()
+      {
+        if (!one_step())
+        	anim_running = setTimeout("animate()",30);
+        else
+			need_reset = 1;
+      }
+      
+      
+      function one_step()
+      {
+		var labval;
+		if (need_reset) {
+			re_init();
+			return 0;
+		}
+		if (adding_point) {
+			labval = "foo";
+			cc.setAttribute('style', 'fill: black');
+
+			cc = farthest((ca.cx.baseVal.value + cb.cx.baseVal.value)/2,
+						(ca.cy.baseVal.value + cb.cy.baseVal.value)/2
+						);
+			cc.setAttribute('style', 'fill: lightgreen');
+			resetLine(cc, ca, 'ca', 'red');
+			resetLine(cb, cc, 'bc', 'red');
+			adding_point = 0;
+			return 0;
+		} else {
+			labval = "bar";
+
+			var max_dist = distsqrC(ca, cb);
+			var t = 'ab';
+
+			var dist = distsqrC(cb, cc);
+			if (max_dist < dist) {
+				max_dist = dist;
+				t = 'bc';
+			}
+			if (max_dist < distsqrC(cc, ca)) {
+				t = 'ca';
+				var tmp = cb;
+				cb = cc;
+				cc = tmp;
+			} else if (t=='bc') {
+				var tmp = ca;
+				ca = cc;
+				cc = tmp;
+			}
+			
+			cc.setAttribute('style', 'fill: red');
+			ca.setAttribute('style', 'fill:blue');
+			cb.setAttribute('style', 'fill:blue');
+			resetLine(ca, cb, 'ab', 'black');
+			hideLine('bc');
+			hideLine('ca');
+			adding_point = 1;
+			if (t=='ab') {
+				stop_animation();
+				need_reset = 1;
+				alert("done!");
+				return 1;
+			}
+			return 0;
+		}
+		var al = document.getElementById('anim_label');
+		var rng = document.createRange();
+		rng.setStartBefore(al);
+		var htmlFrag = rng.createContextualFragment(labval);
+		while (al.hasChildNodes())
+			al.removeChild(al.lastChild);
+		al.appendChild(htmlFrag);
+      }
+
+      ]]>
+    </script>
+  </head>
+  <body onload="init();">
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+
+<a name="1" href="#2">
+	<h3 align="center">
+		Optimal Core-sets for Balls
+	</h3>
+</a>
+<br/>
+<h3 align="center"> Mihai Badoiu<br/>MIT</h3>
+<h3 align="center">Ken Clarkson<br/>Bell Labs</h3>
+</font></td></tr></table>
+
+
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt" resize="no">
+
+<a name="2" href="#3">
+<h3 align="center">The Problem</h3>
+</a>
+<ul>
+  <li> Given a set of points
+      <math:math><mi>S</mi></math:math> and 
+      <math:math><mi>&epsi;</mi><mi>&gt;</mi><mn>0</mn></math:math>,
+  </li> <li>find
+	<math:math>
+           <mi>P</mi><mo>&subset;</mo><mi>S</mi>
+        </math:math> so that the smallest ball containing <math:math><mi>P</mi></math:math>
+      is within <math:math><mi>&epsi;</mi></math:math> of containing <math:math><mi>S</mi></math:math>.
+  </li>
+</ul>
+Here, <math:math><mi>&epsi;</mi><mi>=</mi><mn>.36</mn></math:math>
+<center><svg:svg id="canvasa" width="555" height="505" ><svg:g transform="scale(0.7) translate(100, 0)">
+	<svg:circle r="7" cx="294.991" cy="214.3121" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="103.58126" cy="266.583" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="406.101" cy="219.966" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="129.2967" cy="168.3899" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="447.487" cy="184.2623" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="189.2686" cy="180.1368" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="363.673" cy="205.638" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="437.203" cy="242.699" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="332.125" cy="194.5665" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="328.648" cy="205.609" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="476.077" cy="295.822" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="324.577" cy="248.742" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="350.772" cy="263.568" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="223.6" cy="202.011" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="332.327" cy="122.8627" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="416.288" cy="271.313" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="243.755" cy="268.857" style="fill:black"></svg:circle>
+	<svg:circle r="7" cx="161.9072" cy="289.583" style="fill:black"></svg:circle>
+
+	<svg:circle r="7" cx="152.7131" cy="277.206" style="fill:red"></svg:circle>
+	<svg:circle r="7" cx="461.209" cy="282.535" style="fill:red"></svg:circle>
+
+	<svg:circle r="7" cx="306.96105" cy="279.8705" style="fill:blue;"></svg:circle>
+	<svg:circle r="154.270961751" cx="306.96105" cy="279.8705"
+			style="fill:none; stroke-width:1; stroke:black;"></svg:circle>
+	<svg:circle r="209.741151345" cx="306.96105" cy="279.8705"
+			style="fill:none; stroke-width:1; stroke:black;"></svg:circle>
+</svg:g></svg:svg> </center>
+
+</font></td></tr></table>
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+
+
+<a name="3" href="#4" >
+	<h3 align="center">The Theorem</h3>
+</a>
+
+Given <math:math><mi>S</mi></math:math>
+and <math:math><mi>&epsi;</mi><mi>&gt;</mi><mn>0</mn></math:math>,
+there is an <math:math><mi>&epsi;</mi></math:math>-core-set of size 
+of size
+<math:math><mo>&LeftCeiling;</mo>1/<mi>&epsi;</mi><mo>&RightCeiling;</mo></math:math>,
+and this is tight.
+
+<ul>
+<li>In contrast, the smallest ball
+(<math:math><mi>&epsi;</mi><mi>=</mi><mn>0</mn></math:math>) is determined by a subset of
+<math:math><mi>S</mi></math:math> of size at most
+<math:math><mi>d</mi><mo>+</mo><mn>1</mn></math:math>;
+</li>
+<ul><li>these results are mainly of interest for very large
+<math:math><mi>d</mi></math:math>.</li></ul>
+
+<li>It is tight because no better can be done with a regular simplex.</li>
+<li>The existence proof is an algorithm, shown below.
+</li>
+<li>Note that the smallest ball containing <math:math><mi>P</mi></math:math>
+	is no larger than the smallest ball containing <math:math><mi>S</mi></math:math>.
+</li>
+
+</ul>
+</font></td></tr></table>
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+<a name="4" href="#5">
+<h3 align="center">Why do we care?</h3>
+</a>
+
+<ul>
+	<li>
+	The core-set size appears in the exponent in the running times of several algorithms.
+	</li>
+	<li>
+	Previous bounds:
+	</li>
+	<ul>
+		<li>Roughly <math:math><mn>128</mn><mo>/</mo><msup><mi>&epsi;</mi> <mn>2</mn></msup></math:math>
+			 [BI]
+		</li>
+		<li><math:math><mi>O(</mi><mn>1</mn><mo>/</mo><mi>&epsi;</mi><mi>)</mi></math:math>   [KMY]
+		</li>
+		<li><math:math><mn>2</mn><mo>/</mo><mi>&epsi;</mi></math:math>   [BC]
+		</li>
+	</ul>
+</ul>
+</font></td></tr></table>
+
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+
+<a name="5" href="#6">
+    <h3 align="center">
+       <span id="anim_label" name="anim_label"> The algorithm in 2d, for <math:math><mi>&epsi;</mi><mi>=</mi><mn>1/2</mn></math:math></span>
+     </h3>
+</a>
+     
+<!--   <button onclick="start_animation();">Start</button>
+      <button onclick="one_step();">Step</button>
+      <button onclick="stop_animation();">Stop</button>
+     <button onclick="re_init();">Reset</button><br/>
+-->
+    <center>
+    <svg:svg width="600" height="42">
+		<svg:circle class="circ_control" tooltip="foo" id="circ_go" r="20" cx="220" cy="20" style="fill:lightgreen;"/>
+		<svg:circle class="circ_control" id="circ_step" r="20" cx="300" cy="20" style="fill:yellow;"/>
+		<svg:circle class="circ_control" id="circ_stop" r="20" cx="370" cy="20" style="fill:red;"/>
+	</svg:svg>
+   <svg:svg id="canvas" width="600" height="400">
+    </svg:svg>
+    </center>
+
+</font></td></tr></table>
+
+
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+
+<a name="6" href="#7">
+<h3 align="center">The Algorithm</h3>
+</a>
+
+Given <math:math><mi>S</mi></math:math>
+and <math:math><mi>&epsi;</mi><mi>&gt;</mi><mn>0</mn></math:math>,
+<br/>
+pick any <math:math><mi>P</mi><mo>&subset;</mo><mi>S</mi></math:math> 
+of size <math:math><mo>&LeftCeiling;</mo>1/<mi>&epsi;</mi><mo>&RightCeiling;</mo></math:math>,
+and repeat until done:
+<ul>
+  <li> Find the point <math:math><mi>a</mi><mo>&Element;</mo><mi>S</mi></math:math>
+       farthest from the center of the smallest ball containing 
+       <math:math><mi>P</mi></math:math>;
+  </li>
+  <li> If that distance is smaller than
+  <math:math><mi>R</mi><mo>(</mo><mn>1</mn><mo>+</mo><mi>&epsi;</mi><mo>)</mo></math:math>,
+  we're done; (<math:math><mi>R</mi></math:math> is the optimal ball radius.)
+  </li>
+<!--
+  <li> Let <math:math><msub ><mi>P</mi> <mi>a</mi></msub>
+       <mo>&equiv;</mo><mi>P</mi><mo>&cup;</mo><mo>{</mo><mi>a</mi><mo>}</mo>
+       </math:math>;
+   </li>
+-->
+   <li>Pick <math:math><mi>b</mi><mo>&Element;</mo><mi>P</mi><mo>&cup;</mo><mo>{</mo><mi>a</mi><mo>}</mo></math:math>,
+      so that the smallest ball containing
+      <math:math><mi>P</mi><mo>&cup;</mo><mo>{</mo><mi>a</mi><mo>}</mo><mo>&setminus;</mo><mo>{</mo><mi>b</mi><mo>}</mo></math:math>
+      is as large as possible;
+  </li>
+  <li>Set <math:math><mi>P</mi></math:math> to
+  <math:math><mi>P</mi><mo>&cup;</mo><mo>{</mo><mi>a</mi><mo>}</mo><mo>&setminus;</mo><mo>{</mo><mi>b</mi><mo>}</mo></math:math>.
+  </li>
+</ul>
+
+</font></td></tr></table>
+
+
+
+
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+<a name="7" href="#8">
+<h3 align="center">Why does it work?</h3>
+</a>
+
+<ul>
+	<li>Let <math:math><msub ><mi>P</mi> <mi>a</mi></msub>
+       <mo>&equiv;</mo><mi>P</mi><mo>&cup;</mo><mo>{</mo><mi>a</mi><mo>}</mo>
+       </math:math>;
+	</li>
+	<li> The circumradius of
+		<math:math><msub ><mi>P</mi> <mi>a</mi></msub></math:math>
+		must be substantially larger than the circumradius of
+		<math:math><mi>P</mi> </math:math>
+   </li>
+   <ul>
+	<li>because <math:math><mi>a</mi></math:math> was farthest
+	</li>
+   </ul>
+   <li> The circumradius of
+	<math:math>
+		<msub ><mi>P</mi> <mi>a</mi></msub><mo>&setminus;</mo><mo>{</mo><mi>b</mi><mo>}</mo>
+	</math:math>
+	must be not too much smaller than the circumradius of
+   <math:math><msub ><mi>P</mi> <mi>a</mi></msub></math:math>
+   </li>
+   <ul>
+	<li>because <math:math><mi>b</mi></math:math>
+	was not incident to the subset with largest circumradius;
+	</li>
+   </ul>
+   <li>Combined quantitatively: if not done, the radius of <math:math><mi>P</mi></math:math>
+   must increase.
+   </li>
+</ul>
+   
+
+</font></td></tr></table>
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+<a name="8" href="#9">
+<h3 align="center">Why does it work? (II)</h3>
+</a>
+
+<ul>
+  <li>Any simplex
+<math:math><mi>T</mi></math:math>
+has a facet
+<math:math><mi>F</mi></math:math>
+ such that
+<math:math display='block'>
+  <msubsup><mi>r</mi> <mrow><mi>B</mi>
+  <mo>(</mo><mi>F</mi><mo>)</mo></mrow> <mn>2</mn></msubsup>
+  <mo>&geq;</mo><mo>(</mo><mn>1</mn><mo>-</mo><mn>1</mn><mo>/</mo><msup><mi>d</mi> <mn>2</mn></msup><mo>)</mo><msubsup><mi>r</mi> <mrow><mi>B</mi>
+  <mo>(</mo><mi>T</mi><mo>)</mo></mrow> <mn>2</mn></msubsup>.
+</math:math>
+  </li>
+  <ul>
+  <li>Here <math:math><mi>T</mi></math:math> has
+           <math:math><mi>d</mi><mo>+</mo><mn>1</mn></math:math> vertices.
+  </li>
+	<li> The smallest ball is alway determined by a simplex;
+	</li>
+	<li> The regular (equilateral) simplex is the worst case.
+	</li>
+  </ul>
+  <li> So the circumradius of
+	<math:math><msub ><mi>P</mi> <mi>a</mi></msub><mo>&setminus;</mo><mo>{</mo><mi>b</mi><mo>}</mo></math:math>
+      is at least
+      <math:math>
+		<msqrt><mn>1</mn><mo>-</mo><mn>1</mn><mo>/</mo><mo>&LeftCeiling;</mo><mn>1</mn><mo>/</mo><mi>&epsi;</mi><mo>&RightCeiling;</mo></msqrt>
+	  </math:math> times the circumradius of
+	  <math:math><msub ><mi>P</mi> <mi>a</mi></msub></math:math>.
+  </li>
+
+</ul>
+
+
+</font></td></tr></table>
+
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+<a href="#10">
+<h3 align="center">Why does it work? (III)</h3>
+</a>
+
+<center>
+<svg:svg width="555" height="505" ><svg:g transform="scale(0.7) translate(100, 0)">
+  <svg:rect x="0" y="0" width="554" height="503"
+        style="fill:none;stroke:blue;stroke-width:2"/>
+
+ <svg:path points="0,0, 555,0, 555,505, 0,505" style="fill:none;stroke:blue;stroke-width:2"/>
+  <svg:shape name="triangle_ex" x1="100" y1="100" x2="300" y2="200" x3="200" y3="400">
+	<svg:cline x1var="x1" y1var="y1" 
+           x2var="x2" y2var="y2" style="stroke:black; fill:none; stroke-width:3;"/>
+	<svg:cline x1var="x1" y1var="y1" 
+           x2var="x3" y2var="y3" style="stroke:black; fill:none; stroke-width:3;"/>
+	<svg:cline x1var="x3" y1var="y3" 
+           x2var="x2" y2var="y2" style="stroke:black; fill:none; stroke-width:3;"/>
+	<svg:circle id="triangle_center" r="8" cx="370" cy="20" style="fill:red;"/>
+	<svg:circle id="triangle_circum" style="fill:none; stroke:red;"/>
+	<svg:circle id="triangle_inscrib" style="fill:none; stroke:red;"/>
+	<controlpoint xvar="x1" yvar="y1"/>
+	<controlpoint xvar="x2" yvar="y2"/>
+	<controlpoint xvar="x3" yvar="y3"/>
+  </svg:shape>
+</svg:g></svg:svg>
+</center>
+
+</font></td></tr></table>
+
+
+
+
+
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+<a name="9" href="#10">
+<h3 align="center">Why does it work? (III)</h3>
+</a>
+
+<ul><li>
+When farthest point <math:math><mi>a</mi></math:math> is added,
+the circumradius of <math:math><msub><mi>P</mi> <mi>a</mi></msub></math:math> is at least
+<math:math display='block'>
+	<mfrac>
+		<mrow>
+			<mover>
+				<mrow>
+					<mi>
+						R
+					</mi>
+				</mrow>
+					<mo>
+						&Hat;
+					</mo>
+			</mover>
+				<mo>
+					/
+				</mo>
+					<mi>r</mi><mo>+</mo><mi>r</mi><mo>/</mo><mover><mrow><mi>R</mi></mrow><mo>&Hat;</mo></mover></mrow><mrow><mn>2</mn></mrow></mfrac>
+</math:math>
+</li>
+<li>
+	Here <math:math><mover><mrow><mi>R</mi></mrow><mo>&Hat;</mo></mover><mo>&equiv;</mo><mi>R</mi><mo>(</mo><mn>1</mn><mo>+</mo><mi>&epsi;</mi><mo>)</mo></math:math>,
+	and <math:math><mi>r</mi></math:math> was the circumradius of
+	<math:math><mi>P</mi></math:math>.
+</li>
+<li>The basic argument [BI]: if the circumcenter of
+<math:math><msub><mi>P</mi> <mi>a</mi></msub></math:math> is
+	<ul>
+		<li><em>close</em> to the circumcenter of
+		<math:math><mi>P</mi></math:math>,
+		    then the new radius must be close to
+		    <math:math><mover><mrow><mi>R</mi></mrow><mo>&Hat;</mo></mover></math:math>;
+		</li>
+		<li><em>far</em> from the circumcenter of <math:math><mi>P</mi></math:math>,
+		    then some point of <math:math><mi>P</mi></math:math>
+		    must be far from that new circumcenter.
+		</li>
+    </ul>
+</li>
+</ul>
+
+</font></td></tr></table>
+
+
+<table border="0" align="center" height="780pt" width="750pt"><tr><td><font size="10pt">
+<a name="10" href="#1">
+<h3 align="center">Conclusion</h3>
+</a>
+
+<ul>
+	<li>Relation to quadratic programming duality?
+	</li>
+	<li>Experimental results?
+	</li>
+</ul>
+
+
+</font></td></tr></table>
+
+</body>
+
+
+</html>

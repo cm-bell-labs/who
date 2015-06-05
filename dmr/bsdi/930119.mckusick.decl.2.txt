@@ -1,0 +1,215 @@
+JAMES E. HOLST
+JOHN F. LUNDBERG
+MARY E. MacDONALD
+University of California
+300 Lakeside Drive, 7th Floor
+Oakland, California 94612-3565
+Telephone: (510) 987-9800
+
+JOEL LINZNER [JL 6426]
+CARLA J. SHAPREAU [CJS 2689]
+CROSBY, HEAFEY, ROACH & MAY
+Professional Corporation
+1999 Harrison Street
+Oakland, California 94612
+Telephone: (510) 763-2000
+
+FREDERICK B. POLAK [FBP 3095]
+POST, POLAK & GOODSELL
+280 Corporate Center
+65 Livingston Avenue
+Roseland, New Jersey 07068
+Telephone: (201) 994-1100
+
+Attorneys for Defendant
+The Regents of the University of California
+
+UNITED STATES DISTRICT COURT
+
+DISTRICT OF NEW JERSEY
+
+	UNIX SYSTEM LABORATORIES, INC.,
+	               Plaintiff,	(DRD)
+
+-against-	
+
+	BERKELEY SOFTWARE DESIGN, INC., and
+	the Following lndividuals in their Collective
+	Capacity as THE REGENTS OF THE 
+	UNIVERSITY OF CALIFORNIA: PETE	
+	WILSON, LEO T. MCCARTHY, WILLIE L.	
+	BROWN, JR., et al.,
+	     Defendants.
+
+		Civil Action No.92-1667
+
+SECOND DECLARATION OF DR. KIRK MCKUSICK IN SUPPORT OF
+THE REGENTS OF THE UNIVERSITY OF CALIFORNIA'S AMICUS
+BRIEF RE MOTION FOR PRELIMINARY INJUNCTION
+
+	Date:  1-22-93
+	Time: 10:00 a.m.
+	Court: Honorable Dickinson R. Debevoise
+
+
+1.	Introduction
+
+I, Dr. Marshall Kirk McKusick, am the Research Computer Scientist 
+for the University of California at Berkeley Computer Systems 
+Research Group("CSRG"), in charge of the development of the 
+Berkeley Software Distribution("BSD''). I submit this sur-reply 
+declaration on behalf of the Defendant, The Regents of the University 
+Of California (the "Regents'').
+	
+2.	Clarification of Deposition
+
+USL has taken a few pages of my deposition testimony and attempted 
+to mischaracterize that testimony.
+
+3.	32V Code in Net2 Kernel Files
+
+USL refers to my deposition for the proposition that AT&T's "actual 
+code" was included in the Net2 release and that University officials 
+were so advised. That istrue as far as it goes, but it does not reveal 
+the insignificant, indeed trivial, extent to which USL code appears in 
+Net2. Keith Bostic and I have reviewed Net2 in detail since this 
+lawsuit began (before the deposition was taken), spending hundreds 
+of hours comparing it to 32V. Based on this exhaustive search I have 
+found only 56 lines of code in five kernel files that appear to match 
+lines of code in 32V. These 56 lines are out of the total of 539 
+source files and 230,995 lines of source code in the Net2 kernel. The 
+files in which I have found matches are discussed below.
+
+2.1.1. 32V: sys/dsort.c, Net2: ufs/ufs_disksubr.c
+
+There are 358 lines of text in the Net2 ufs/disksubr.c file. 
+Conservatively, fourteen of these 358 lines of source code in 
+ufs/disksubr.c are the same as lines insys/dsort.c from 32V 
+(including one line that is composed solely of the C directive 2 
+"return"). The fourteen matching lines implement trivial list-
+insertion code that could be easily replaced with original code in 
+much less than an hour.
+
+2.1.2. 32V: sys/iget.c, Net2: ufs/ufs_ inode.c
+
+There are 697 lines of text in the Net2 ufs/ufs inode.c file. Being 
+conservative,nine of these 697 lines of source code in ufs/ufs 
+inode.c are the same as lines insys/iget.c from 32V. Of the nine 
+lines, most of them cannot be changed, as they are dependent on 
+header file constants and cannot be written any other way.
+
+2.1.3. 32V: sys/prf.c, Net2: kern/subr_prf.c
+
+There are 592 lines of text in the Net2 kern/subr_prf.c file. 
+Generously, four ofthe 592 lines of source code in kern/subr_prf.c 
+are the same as lines in sys/prf.c from32V. The four lines in 
+question are completely insignificant to the whole of the kernel, and 
+could be written another way in well under an hour.
+
+2.1.4. 32V: sys/sys1.c, Net2: kern/kern exit.c
+
+There are 403 lines of text in the Net2 kern/kern exit.c file. Only 
+three of the403 lines of source code in kern/kern exit.c are the same 
+as lines in sys/sys1.c. It is unlikely that these three lines could be 
+implemented in any other way.
+
+2.1.5. 32V: sys/rdwri.c and sys/sys4.c, Net2: ufs/ufs_vnops.c
+
+There are 1863 lines of text in the Net2 ufs/ufs_vnops.c file. Being 
+generous, 26 of these 1863 lines of text in ufs/ufs_vnops.c match 
+code in 32V. Net2 is clearly an enhanced implementation of the 32V 
+functionality. It would take less than two hours to reimplement 
+these lines of text with completely original code.
+
+2.2. 32V Code in Net2 Utility and Library Files
+
+I have found a total of 130 lines of text from 9 files in the utilities 
+and libraries that appear to match lines of text in 32V. This is out of 
+the total of 4,176 source files and 1,288,072 lines of source code in 
+the Net2 utilities and libraries. As with the matches in the kernel, 
+the matching lines were an insignificant number of lines not only 
+from the total Net2 distribution but also compared to the particular 
+file in which they appear; their importance to the utility as a whole 
+was similarly trivial. This does not include the cpio utility, as it is 
+a special case of source code which USL requested that we add to 
+the Berkeley distributions (see section 6.2 of our Second Joint 
+Declaration). The entire cpio utility (1,494 lines of text) is identical 
+to AT&Tproprietary source code.
+
+2.3. Significance of Pseudo-Code
+
+References in my deposition testimony to the use of pseudo code in 
+determining whether code could be released in Net2 did not concern 
+the release in Net2 ofcode identical to that in 32V. Instead it 
+addressed the determination of whether algorithms that appeared in 
+32V could be released in Net2.  All code in Net2 implementing an 
+algorithm is completely new and original work.  However, if the 
+original Net2 code implemented the same algorithm as one used in 
+32V, we did not release the corresponding Net2 code unless the 
+algorithm was described in the public literature, because it could 
+have potentially divulged an AT&T trade secret.
+
+As computer scientists, we believed that if an algorithm (such as 
+bread) was described in the public literature in enough detail 
+(through pseudo code or otherwise) that its implementation could 
+only be done with one reasonable coding and that coding happened to 
+match a few lines of 32V code, that we were free to include such 
+code in Net2.  However, the University chose to take a more 
+conservative approach, *so the bodies of such routines were deleted 
+from the Net2 distribution in all instances that we were aware of 
+them.* In my deposition, Mr. Graff also asked me about the buffer 
+cache routine in the vfs_bio.c file. This file is an example where the 
+routines had their body of code deleted despite the fact that they 
+were well defined by pseudo code in the literature.  *As far as I am 
+aware, Net2 source files do not contain any 32V source code because 
+32V code was described in published pseudo code.*
+
+2.4. The Footnote Hypothesis
+
+Regarding my comment at my deposition about copying code as one 
+might do in a footnote to a legal document, the transcript reveals I 
+was merely providing a hypothetical example about how one develops 
+software. In reviewing code for the Net2 release, we checked for 
+code from 32V that may have been introduced into Net2 in this way. 
+Where we found examples of 32V code, we either replaced it or 
+deleted the file from the Net2 distribution. As discussed above, a 
+few lines slipped through. However, the 186 lines of matching code 
+is remarkably small and totally insignificant when considering the 
+1.7 million lines code included in Net2.
+
+3.	The Reply Memorandum Accusation
+
+In footnote 5 of USL's Reply Memorandum, I am accused that I 
+"provided the body of that file [bio.c] to BSDI for use in BSD/386 
+while acting in [my] dual role asa director of BSDI and a research 
+assistant to the University." This claim is completely absurd. I did 
+not give the bio.c file from 32V to anyone at BSDI, indeed it would 
+have done them little good, as it works completely differently than 
+the code implementing that interface in Net2.  I did work 
+cooperatively with BSDI, as I do with many other companies to 
+improve their implementation of this interface using my knowledge 
+of Net2, new code within their product, and pseudo code available in 
+the public literature. In exchange for my help, they agreed to 
+contribute the resulting code (based on my input and their coding, 
+testing, and debugging) to the University for unrestricted 
+redistribution.
+
+4. 	Conclusion
+
+At the time that Net2 was released, I was not aware of the trivial 
+amount of matching code described above. I was aware of and 
+notified the University of the presence of the cpio utility on Net2. 
+Further, I was aware of the similarities between some of the header 
+files defining the interfaces on Net2 and 32V. The need to include 
+these functional interfaces is described at section 28.3 of the First 
+Joint Declaration that I prepared with Keith Bostic. I am not now 
+aware, nor was I aware during the discussions or preparation of the 
+release of Net2 of any other commonalities between 32V and Net2.
+
+
+I declare under penalty of perjury that the forgoing is true and 
+correct. Executed in Berkeley, California this 19th day of January 
+1993.
+
+Marshall Kirk McKusick
+

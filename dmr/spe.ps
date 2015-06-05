@@ -1,0 +1,1988 @@
+%!PS
+%%Version: 3.3
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+%
+% Version 3.3 prologue for troff files.
+%
+
+/#copies 1 store
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	/Symbol /S Sdefs cf
+	/Times-Roman /S1 S1defs cf
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put} {pop pop} ifelse} forall
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+%
+% Tries to round clipping path dimensions, as stored in array pagebbox, so they
+% match one of the known sizes in the papersizes array. Lower left coordinates
+% are always set to 0.
+%
+
+/roundpagebbox {
+    7 dict begin
+	/papersizes [8.5 inch 11 inch 14 inch 17 inch] def
+
+	/mappapersize {
+		/val exch def
+		/slop .5 inch def
+		/diff slop def
+		/j 0 def
+		0 1 papersizes length 1 sub {
+			/i exch def
+			papersizes i get val sub abs
+			dup diff le {/diff exch def /j i def} {pop} ifelse
+		} for
+		diff slop lt {papersizes j get} {val} ifelse
+	} def
+
+	pagebbox 0 0 put
+	pagebbox 1 0 put
+	pagebbox dup 2 get mappapersize 2 exch put
+	pagebbox dup 3 get mappapersize 3 exch put
+    end
+} bind def
+
+%%EndProlog
+%%BeginSetup
+mark
+/linewidth 0.5 def
+/xoffset 0 def
+/yoffset 0 def
+/#copies 1 store
+/magnification 1 def
+%%FormsPerPage: 1
+/formsperpage 1 def
+
+/landscape false def
+/resolution 720 def
+setup
+2 setdecoding
+%%EndSetup
+%%Page: 1 1
+/saveobj save def
+mark
+1 pagesetup
+7 R f
+(SOFTWARE\320PRACTICE AND EXPERIENCE, VOL. 9\(9\), 101-113 \(March 1990\))7 2439 1 720 382 t
+18 R f
+(Interprocess Communication)1 2092 1 1708 1104 t
+(in the Ninth Edition Unix System)5 2484 1 1512 1344 t
+8 R f
+(DAVID L. PRESOTTO)2 786 1 2361 1584 t
+(DENNIS M. RITCHIE)2 753 1 2377 1704 t
+9 I f
+(AT&T Bell Laboratories, Murray Hill, New Jersey 07974, U.S.A.)8 2413 1 1547 1824 t
+9 B f
+(SUMMARY)2514 2240 w
+( stream mechan-)2 671( The)1 218( they must \256rst establish communication.)5 1653(When processes wish to communicate,)4 1526 4 720 2402 t
+(isms introduced in the Eighth Edition Unix system,)7 2092 1 720 2502 t
+7 R f
+(1)2812 2474 w
+9 B f
+( become part of AT&T's Unix)5 1245(which have now)2 654 2 2889 2502 t
+(System V,)1 395 1 720 2602 t
+7 R f
+(2)1115 2574 w
+9 B f
+(provide a \257exible way for processes to conduct an already-begun conversation with devices)12 3606 1 1182 2602 t
+(and with each other: an existing stream connection is named by a \256le descriptor, and the usual read,)17 4068 1 720 2702 t
+( be inserted dynamically into a stream)6 1540( modules may)2 553( Processing)1 474(write, and I/O control requests apply.)5 1501 4 720 2802 t
+( However,)1 436(connection, so network protocols, terminal processing, and device drivers separate cleanly.)10 3632 2 720 2902 t
+(these mechanisms, by themselves, do not provide a general way to create channels between processes.)14 3984 1 720 3002 t
+9 B f
+( traditional)1 449( our system, the)3 652( In)1 153(Simple extensions provide new ways of establishing communication.)7 2714 4 820 3112 t
+(Unix IPC mechanism, the pipe, is a cross-connected stream.)8 2349 1 720 3212 t
+9 B f
+( the \256le is)3 427( When)1 304(A generalisation of \256le-system mounting associates a stream with a named \256le.)11 3237 3 820 3322 t
+(opened, operations on the \256le are operations on the stream.)9 2336 1 720 3422 t
+9 B f
+(Open \256les may be passed from one process to another over a pipe.)12 2618 1 820 3532 t
+9 B f
+( mechanisms allow construction of \257exible and general routines for connecting local)11 3367(These low-level)1 601 2 820 3642 t
+(and remote processes.)2 858 1 720 3742 t
+11 R f
+(INTRODUCTION)2340 4108 w
+11 R f
+(The Ninth Edition version of Unix)5 1605 1 820 4300 t
+11 S f
+(\322)2425 4300 w
+11 R f
+(operating system is used in the Information Sci-)7 2231 1 2557 4300 t
+( is)1 117( It)1 146( Bell Laboratories, and at a few sites elsewhere.)8 2217(ences Research Division of AT&T)4 1588 4 720 4420 t
+(named, by our custom, after its manual.)6 1793 1 720 4540 t
+11 R f
+( for programs to establish communi-)5 1669(The work reported here describes convenient ways)6 2299 2 820 4670 t
+( we)1 182( particular,)1 503( In)1 183(cation with unrelated processes, on the same or different machines.)9 3200 4 720 4790 t
+( interface that programs use to request remote and local services,)10 2973(study how to design the)4 1095 2 720 4910 t
+( the services, and how to make it easy to)9 1886(how the operating system can aid connection to)7 2182 2 720 5030 t
+( code has to be put)5 932( problems we hope to simplify are: what)7 1922( Typical)1 420(write the servers.)2 794 4 720 5150 t
+( to send mail to a user on another machine? How does a remote-)13 3056(into a mailer program)3 1012 2 720 5270 t
+( a remote \256le system)4 979( When)1 342( destination system?)2 927(login program establish contact with its)5 1820 4 720 5390 t
+( there a uniform way)4 946( Is)1 151( be performed to \256nd its server?)6 1451(is mounted, what operations must)4 1520 4 720 5510 t
+(of turning the name of a service into a connection to the service itself?)13 3194 1 720 5630 t
+11 R f
+( by ordinary read and write calls,)6 1532(The communication we are interested in is conducted)7 2436 2 820 5760 t
+( I/O control requests, so that it resembles\320and, where pos-)9 2718(occasionally supplemented by)2 1350 2 720 5880 t
+( we wish to commence communi-)5 1527( Moreover,)1 531(sible, is indistinguishable from\320I/O to \256les.)5 2010 3 720 6000 t
+11 R f
+(0038-0644/90/0909-0101$01.30)720 6151 w
+11 I f
+(Received 1 November 1989)3 1226 1 3562 6151 t
+14 S f
+(\323)720 6299 w
+11 R f
+(1990 by John Wiley & Sons, Ltd.)6 1532 1 867 6271 t
+11 I f
+(Revised 15 March 1990)3 1070 1 3718 6271 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 1 1
+%%Page: 2 2
+/saveobj save def
+mark
+2 pagesetup
+9 R f
+(2)720 362 w
+7 R f
+(D. L. PRESOTTO AND D. M. RITCHIE)6 1195 1 2156 362 t
+11 R f
+( our approach is, in net-)5 1094( Thus,)1 322(cation in ways that resemble the opening of ordinary \256les.)9 2652 3 720 624 t
+( string)1 288( is, it proposes routines that turn a client's)8 1909( That)1 273(work parlance, connection-oriented.)2 1598 4 720 744 t
+( our examples, the)3 854( In)1 171(naming a service into a \256le descriptor that connects to the server.)11 3043 3 720 864 t
+( a reliable, duplex channel over which data can be sent)10 2768(connection usually involves)2 1300 2 720 984 t
+( Although)1 495( channel may be moderately expensive.)5 1806(rapidly, while the establishment of the)5 1767 3 720 1104 t
+( for example, the)3 777(this approach implies a certain bias, it is not so limiting as it may seem;)14 3291 2 720 1224 t
+( be a program that broadcasts, or sends datagram packets on a particular net-)13 3501(`server' may)1 567 2 720 1344 t
+(work.)720 1464 w
+11 R f
+(RECAPITULATION)2281 1903 w
+11 R f
+( of communicating with terminal and)5 1705(The Eighth Edition system introduced a new way)7 2263 2 820 2116 t
+(network devices,)1 776 1 720 2236 t
+9 R f
+(1)1496 2200 w
+11 R f
+( generalisation of the internal interface to the \256le system.)9 2791(and a)1 267 2 1602 2236 t
+9 R f
+(3, 4)1 128 1 4660 2200 t
+11 R f
+( mechanisms build on these ideas, we review the nomenclature and)10 3270(Because the new)2 798 2 720 2356 t
+(mechanisms of our I/O and \256le systems.)6 1818 1 720 2476 t
+11 B f
+(Streams)720 2915 w
+11 R f
+(A)820 3128 w
+11 I f
+(stream)946 3128 w
+11 R f
+(is a full-duplex connection between a process and a device or another pro-)12 3487 1 1301 3128 t
+( consists of several linearly connected processing modules, and is analogous to a)12 3712(cess. It)1 356 2 720 3248 t
+( modules in a stream com-)5 1244( The)1 250( except that data \257ows in both directions.)7 1922(Shell pipeline,)1 652 4 720 3368 t
+( module provides only one entry)5 1537( A)1 166(municate by passing messages to their neighbours.)6 2365 3 720 3488 t
+(point to each neighbour, namely a routine that accepts messages.)9 2919 1 720 3608 t
+11 R f
+( closest to the process is a set of routines that provide the)12 2794(At the end of the stream)5 1174 2 820 3741 t
+( user's)1 297( A)1 151( the system.)2 540(interface to the rest of)4 998 4 720 3861 t
+11 I f
+(write)2742 3861 w
+11 R f
+(and I/O control requests are turned into)6 1774 1 3014 3861 t
+(messages sent along the stream, and)5 1657 1 720 3981 t
+11 I f
+(read)2420 3981 w
+11 R f
+(requests take data from the stream and pass it)8 2115 1 2673 3981 t
+( another)1 372( the other end of the stream is either a device driver module, or)13 2985( At)1 191(to the user.)2 520 4 720 4101 t
+( module is transmitted to the device,)6 1720( arriving from the stream at a driver)7 1703(process. Data)1 645 3 720 4221 t
+( and state transitions detected by the device are composed into messages and sent)13 3690(and data)1 378 2 720 4341 t
+( which are streams connecting processes,)5 1868( Pipes,)1 343(into the stream towards the user process.)6 1857 3 720 4461 t
+( up by)2 308(are bidirectional; a writer at either end generates stream messages that are picked)12 3760 2 720 4581 t
+(the reader at the other.)4 1015 1 720 4701 t
+11 R f
+( come in pairs, for han-)5 1090( They)1 302(Intermediate modules process messages in various ways.)6 2576 3 820 4834 t
+( two sides are)3 664(dling messages in each of the two directions, and their interfaces on the)12 3404 2 720 4954 t
+(identical.)720 5074 w
+11 R f
+( device stream become connected automatically when the process)8 2977(The end modules in a)4 991 2 820 5207 t
+( by a)2 268(opens the device; streams between processes are created)7 2662 2 720 5327 t
+11 I f
+(pipe)3705 5327 w
+11 R f
+(call. Intermediate)1 830 1 3958 5327 t
+( are addressed)2 651( They)1 305( user's program.)2 748(modules are attached dynamically by request of the)7 2364 4 720 5447 t
+( its top close to the process, so installing one is called `pushing' a new)14 3302(like a stack with)3 766 2 720 5567 t
+( modules are part of the operating system kernel, but because they)11 3300(module. Stream)1 768 2 720 5687 t
+( is plausible to transmit a stream)6 1492(transmit messages, and streams can connect processes, it)7 2576 2 720 5807 t
+(through a user program.)3 1079 1 720 5927 t
+11 R f
+( top-level)1 430( The)1 246( shows a stream device that has just been opened.)9 2281(For example, Figure 1)3 1011 4 820 6060 t
+( rectangles on the left, are invoked by users')8 2070(routines, drawn as a pair of half-open)6 1744 2 720 6180 t
+11 I f
+(read)4578 6180 w
+11 R f
+(and)720 6300 w
+11 I f
+(write)928 6300 w
+11 R f
+( writer routine sends messages to the device driver shown on the)11 3088(calls. The)1 486 2 1214 6300 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 2 2
+%%Page: 3 3
+/saveobj save def
+mark
+3 pagesetup
+7 R f
+(INTERPROCESS COMMUNICATION)1 1140 1 2184 362 t
+9 R f
+(3)4743 362 w
+11 R f
+(user)2033 706 w
+(write)2012 826 w
+cleartomark
+saveobj restore
+%%BeginGlobal
+%
+% Version 3.3 drawing procedures for dpost. Automatically pulled in, but only
+% when needed.
+%
+
+/inpath false def
+/savematrix matrix def
+
+/Dl {
+	inpath
+		{pop pop neg lineto}
+		{newpath neg moveto neg lineto stroke}
+	ifelse
+} bind def
+
+/De {
+	/y1 exch 2 div def
+	/x1 exch 2 div def
+	/savematrix savematrix currentmatrix def
+	neg exch x1 add exch translate
+	x1 y1 scale
+	0 0 1 0 360
+	inpath
+		{1 0 moveto arc savematrix setmatrix}
+		{newpath arc savematrix setmatrix stroke}
+	ifelse
+} bind def
+
+/Da {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arc}
+		{newpath arc stroke}
+	ifelse
+} bind def
+
+/DA {
+	/dy2 exch def
+	/dx2 exch def
+	/dy1 exch def
+	/dx1 exch def
+	dy1 add neg exch dx1 add exch
+	dx1 dx1 mul dy1 dy1 mul add sqrt
+	dy1 dx1 neg atan
+	dy2 neg dx2 atan
+	inpath
+		{arcn}
+		{newpath arcn stroke}
+	ifelse
+} bind def
+
+/Ds {
+	/y2 exch def
+	/x2 exch def
+	/y1 exch def
+	/x1 exch def
+	/y0 exch def
+	/x0 exch def
+	x0 5 x1 mul add 6 div
+	y0 5 y1 mul add -6 div
+	x2 5 x1 mul add 6 div
+	y2 5 y1 mul add -6 div
+	x1 x2 add 2 div
+	y1 y2 add -2 div
+	inpath
+		{curveto}
+		{newpath x0 x1 add 2 div y0 y1 add -2 div moveto curveto stroke}
+	ifelse
+} bind def
+%%EndGlobal
+/saveobj save def
+mark
+11 R f
+2304 744 1944 744 Dl
+2304 744 2232 762 Dl
+2304 744 2232 726 Dl
+2574 624 2304 624 Dl
+2574 863 2574 624 Dl
+2304 863 2574 863 Dl
+2934 744 2574 744 Dl
+2934 744 2862 762 Dl
+2934 744 2862 726 Dl
+2934 624 2934 744 Dl
+3204 624 2934 624 Dl
+2934 863 3204 863 Dl
+2934 743 2934 863 Dl
+(device)3242 706 w
+(out)3314 826 w
+3564 744 3204 744 Dl
+3564 744 3492 762 Dl
+3564 744 3492 726 Dl
+(device)3242 946 w
+(in)3341 1066 w
+3204 984 3564 984 Dl
+3204 984 3276 966 Dl
+3204 984 3276 1002 Dl
+2934 1104 3204 1104 Dl
+2934 865 2934 1104 Dl
+2574 984 2934 984 Dl
+2574 984 2646 966 Dl
+2574 984 2646 1002 Dl
+2574 1102 2574 863 Dl
+2304 1104 2574 1104 Dl
+(user)2033 946 w
+(read)2031 1066 w
+1944 984 2304 984 Dl
+1944 984 2016 966 Dl
+1944 984 2016 1002 Dl
+11 I f
+( after device open.)3 835( Con\256guration)1 691(Figure 1.)1 418 3 1777 1368 t
+11 R f
+(user)1133 1635 w
+(write)1112 1755 w
+1404 1673 1044 1673 Dl
+1404 1673 1332 1691 Dl
+1404 1673 1332 1655 Dl
+1674 1553 1404 1553 Dl
+1674 1792 1674 1553 Dl
+1404 1792 1674 1792 Dl
+2034 1673 1674 1673 Dl
+2034 1673 1962 1691 Dl
+2034 1673 1962 1655 Dl
+2034 1553 2034 1792 Dl
+2574 1553 2034 1553 Dl
+2574 1792 2574 1553 Dl
+2034 1792 2574 1792 Dl
+(tty out)1 294 1 2157 1695 t
+2934 1673 2574 1673 Dl
+2934 1673 2862 1691 Dl
+2934 1673 2862 1655 Dl
+2934 1553 2934 1792 Dl
+3474 1553 2934 1553 Dl
+3474 1792 3474 1553 Dl
+2934 1792 3474 1792 Dl
+(proto out)1 409 1 3000 1695 t
+3834 1673 3474 1673 Dl
+3834 1673 3762 1691 Dl
+3834 1673 3762 1655 Dl
+3834 1553 3834 1673 Dl
+4104 1553 3834 1553 Dl
+3834 1792 4104 1792 Dl
+3834 1672 3834 1792 Dl
+(device)4142 1635 w
+(out)4214 1755 w
+4464 1673 4104 1673 Dl
+4464 1673 4392 1691 Dl
+4464 1673 4392 1655 Dl
+(device)4142 1875 w
+(in)4241 1995 w
+4104 1913 4464 1913 Dl
+4104 1913 4176 1895 Dl
+4104 1913 4176 1931 Dl
+3834 2033 4104 2033 Dl
+3834 1794 3834 2033 Dl
+3474 1913 3834 1913 Dl
+3474 1913 3546 1895 Dl
+3474 1913 3546 1931 Dl
+2934 1794 2934 2033 Dl
+3474 1792 2934 1792 Dl
+3474 2031 3474 1792 Dl
+2934 2033 3474 2033 Dl
+(proto in)1 354 1 3027 1935 t
+2574 1913 2934 1913 Dl
+2574 1913 2646 1895 Dl
+2574 1913 2646 1931 Dl
+2034 1794 2034 2033 Dl
+2574 1792 2034 1792 Dl
+2574 2031 2574 1792 Dl
+2034 2033 2574 2033 Dl
+(tty in)1 239 1 2185 1935 t
+1674 1913 2034 1913 Dl
+1674 1913 1746 1895 Dl
+1674 1913 1746 1931 Dl
+1674 2031 1674 1792 Dl
+1404 2033 1674 2033 Dl
+(user)1133 1875 w
+(read)1131 1995 w
+1044 1913 1404 1913 Dl
+1044 1913 1116 1895 Dl
+1044 1913 1116 1931 Dl
+11 I f
+( for network terminals.)3 1035( Con\256guration)1 691(Figure 2.)1 418 3 1677 2297 t
+11 R f
+(user)1673 2564 w
+(write)1652 2684 w
+1944 2602 1584 2602 Dl
+1944 2602 1872 2620 Dl
+1944 2602 1872 2584 Dl
+2214 2482 1944 2482 Dl
+2214 2721 2214 2482 Dl
+1944 2721 2214 2721 Dl
+2214 2602 2214 2602 2574 2602 Ds
+2214 2602 2574 2602 2934 2841 Ds
+2574 2602 2934 2841 3294 2841 Ds
+2934 2841 3294 2841 3294 2841 Ds
+3294 2842 3222 2860 Dl
+3294 2842 3222 2824 Dl
+3294 2482 3294 2602 Dl
+3564 2482 3294 2482 Dl
+3294 2721 3564 2721 Dl
+3294 2601 3294 2721 Dl
+(user)3653 2564 w
+(write)3632 2684 w
+3564 2602 3636 2584 Dl
+3564 2602 3636 2620 Dl
+3924 2602 3564 2602 Dl
+(user)3653 2804 w
+(read)3651 2924 w
+3924 2842 3564 2842 Dl
+3924 2842 3852 2860 Dl
+3924 2842 3852 2824 Dl
+3294 2962 3564 2962 Dl
+3294 2723 3294 2962 Dl
+3294 2602 3294 2602 2934 2602 Ds
+3294 2602 2934 2602 2574 2841 Ds
+2934 2602 2574 2841 2214 2841 Ds
+2574 2841 2214 2841 2214 2841 Ds
+2214 2842 2286 2824 Dl
+2214 2842 2286 2860 Dl
+2214 2960 2214 2721 Dl
+1944 2962 2214 2962 Dl
+(user)1673 2804 w
+(read)1671 2924 w
+1584 2842 1944 2842 Dl
+1584 2842 1656 2824 Dl
+1584 2842 1656 2860 Dl
+11 I f
+( pipe.)1 253( A)1 139(Figure 3.)1 418 3 2344 3226 t
+11 R f
+( from the device becomes messages sent to the top-level reader rou-)11 3153( arriving)1 392(right. Data)1 523 3 720 3411 t
+(tine, which returns the data to the user process when it executes)11 2882 1 720 3531 t
+11 I f
+(read)3638 3531 w
+11 R f
+(.)3848 3531 w
+11 R f
+( arrangement might be used)4 1284( This)1 276( a stream with intermediate modules.)5 1705(Figure 2 shows)2 703 4 820 3662 t
+( leftmost inter-)2 702( The)1 258( network.)1 439(when a terminal is connected to the computer through a)9 2669 4 720 3782 t
+( carries out processing \(such as character-erase and line-kill\) needed for)10 3344(mediate module)1 724 2 720 3902 t
+( does the \257ow- and error-control proto-)6 1767(terminals, while the rightmost intermediate module)5 2301 2 720 4022 t
+(col needed to interface to the network.)6 1733 1 720 4142 t
+11 R f
+(Finally, Figure 3 shows the connections for a pipe.)8 2296 1 820 4273 t
+11 B f
+(File Systems)1 591 1 720 4653 t
+11 R f
+(Weinberger)820 4849 w
+9 R f
+(3)1335 4813 w
+11 R f
+(generalised the Unix \256le system by identifying a small set of primitive)11 3357 1 1431 4849 t
+(operations on \256les \(read, write, look up name, truncate, get status, etc.: a total of 11\) and)16 4068 1 720 4969 t
+(modifying the)1 629 1 720 5089 t
+11 I f
+(mount)1385 5089 w
+11 R f
+( \256le system type and, where appropriate,)6 1836(request so that it speci\256es a)5 1247 2 1705 5089 t
+( requested, the calls to the underlying primitives are)8 2433( \256le operations are)3 874( When)1 345(a stream.)1 416 4 720 5209 t
+( the standard \256le system type)5 1366( Where)1 371( type.)1 262(routed through a switch table indexed by the)7 2069 4 720 5329 t
+( a second type generates remote procedure calls)7 2251(performs operations directly on a disk,)5 1817 2 720 5449 t
+( end of the stream, which usually goes over a)9 2128( the other)2 445( At)1 189(across the associated stream.)3 1306 4 720 5569 t
+( read and write)3 702(network to another machine, is a server process that answers the calls to)12 3366 2 720 5689 t
+( scheme thus provides a remote \256le system;)7 2035( This)1 277(data and perform the other operations.)5 1756 3 720 5809 t
+( AT&T's RFS)2 648(its structure resembles that used by others, for example)8 2492 2 720 5929 t
+9 R f
+(5)3860 5893 w
+11 R f
+(and Sun Microsys-)2 847 1 3941 5929 t
+(tems' NFS.)1 511 1 720 6049 t
+9 R f
+(6)1231 6013 w
+11 R f
+(Killian)820 6180 w
+9 R f
+(4)1126 6144 w
+11 R f
+( be a directory containing the names)6 1712(added a \256le system type that appears to)7 1858 2 1218 6180 t
+( \256le is opened, its)4 844( a process)2 468( Once)1 312(\(process ID numbers\) of currently running processes.)6 2444 4 720 6300 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 3 3
+%%Page: 4 4
+/saveobj save def
+mark
+4 pagesetup
+9 R f
+(4)720 362 w
+7 R f
+(D. L. PRESOTTO AND D. M. RITCHIE)6 1195 1 2156 362 t
+11 R f
+( This)1 290( read or written, and control operations can start it or stop it.)12 3006(memory may be)2 772 3 720 624 t
+( debuggers, for example Cargill's process-)5 2040(simpli\256es the construction of sophisticated)4 2028 2 720 744 t
+(inspector)720 864 w
+11 I f
+(pi)1158 864 w
+11 R f
+(.)1253 864 w
+9 R f
+(7)1281 828 w
+11 R f
+(Generalised \256le systems can support interesting forms of interprocess communication,)9 3968 1 820 1002 t
+( see for example discussions)4 1283(whereby merely naming a \256le entails signi\256cant computation;)7 2785 2 720 1122 t
+( Server)1 333(of the Face)2 525 2 720 1242 t
+9 R f
+(8)1578 1206 w
+11 R f
+(or Sun Microsystems' Automounter.)3 1674 1 1671 1242 t
+9 R f
+(9)3345 1206 w
+11 R f
+(In this paper we will discuss)5 1350 1 3438 1242 t
+(less exotic uses of generalised mounting.)5 1842 1 720 1362 t
+11 R f
+(ESTABLISHING COMMUNICATION)1 1780 1 1864 1918 t
+11 R f
+( establish communication)2 1167(Traditional Unix systems provide few ways for a process to)9 2801 2 820 2165 t
+( oldest one, the pipe, has proved astonishingly valuable despite its limi-)11 3236( The)1 243(with another.)1 589 3 720 2285 t
+( pipe is a communi-)4 907( A)1 151(tations, and indeed remains central in the design we shall describe.)10 3010 3 720 2405 t
+( descen-)1 373(cation channel created in a particular process, an end of which may be passed to)14 3695 2 720 2525 t
+( for com-)2 450( it has no externally-visible name, it is useless)8 2182( Because)1 448(dants of that process.)3 988 4 720 2645 t
+(municating between unrelated processes.)3 1821 1 720 2765 t
+11 R f
+( AT&T's System V has offered a variety of communication mechanisms)10 3312(More recently,)1 656 2 820 2903 t
+( all useful in certain cir-)5 1127( are)1 176( They)1 305(including semaphores, messages, and shared memory.)5 2460 4 720 3023 t
+( that use them are all special-purpose; they know that they are)11 2894(cumstances, but programs)2 1174 2 720 3143 t
+( of channel, and must use special calls and techniques.)9 2489(communicating over a certain kind)4 1579 2 720 3263 t
+( the \256le system, and)4 923( names reside in)3 741( Their)1 311(System V also provides named pipes \(FIFOs\).)6 2093 4 720 3383 t
+( provide a convenient place for)5 1586( can)1 225( They)1 335(ordinary I/O operations apply to them.)5 1922 4 720 3503 t
+( intermingled, writers)2 968( because the messages of all writers are)7 1782( However,)1 500(processes to meet.)2 818 4 720 3623 t
+( a carefully designed, application-speci\256c protocol when)6 2580(on the same FIFO must observe)5 1488 2 720 3743 t
+( receive)1 352( traditional FIFOs supply only one-way communication; to)7 2660( Moreover,)1 532(using them.)1 524 4 720 3863 t
+( must be constructed)3 979(a reply from a process reached through a FIFO, a return channel)11 3089 2 720 3983 t
+(somehow.)720 4103 w
+11 R f
+(Berkeley's 4.2 BSD system)3 1298 1 820 4241 t
+9 R f
+(10)2118 4205 w
+11 R f
+(introduced)2263 4241 w
+11 I f
+(sockets)2788 4241 w
+11 R f
+(\(communication connection points\))2 1619 1 3169 4241 t
+( design is powerful enough to provide most of)8 2094( The)1 242(that exist in domains \(naming spaces\).)5 1732 3 720 4361 t
+( example, unless exten-)3 1091( For)1 236(the needed facilities, but is uncomfortable in various ways.)8 2741 3 720 4481 t
+( Consider)1 477( a new domain implies additions to the kernel.)8 2162(sive libraries are used, creating)4 1429 3 720 4601 t
+( telephone numbers.)2 920(the problem of adding a `phone' domain, in which the addresses are)11 3148 2 720 4721 t
+( dialers be added to the)5 1091(Should complicated negotiations with various kinds of automatic)7 2977 2 720 4841 t
+( invoked in user mode when a program calls)8 2027( not, how can the required code be)7 1575(kernel? If)1 466 3 720 4961 t
+(4.2 BSD's)1 482 1 720 5081 t
+11 I f
+(connect)1252 5081 w
+11 R f
+( to add dial-up Internet)4 1091( group, for example, wanted)4 1326(primitive? One)1 720 3 1651 5081 t
+(communication to the BSD system.)4 1629 1 720 5201 t
+9 R f
+(11)2349 5165 w
+11 R f
+( the kernel,)2 525(Their solution adds a pseudo-device to)5 1780 2 2483 5201 t
+( networking code detects attempts to send)6 1892(and generates messages on this device when the)7 2176 2 720 5321 t
+( user-level daemon process reading the pseudo-)6 2167( A)1 156(packets to an unconnected destination.)4 1745 3 720 5441 t
+( to use the serial)4 807(device dials the other system, then adjusts the kernel's routing tables)10 3261 2 720 5561 t
+(line.)720 5681 w
+11 R f
+( domain;)1 399(Another problem with the socket interface is that it exposes peculiarities of the)12 3569 2 820 5819 t
+( different kinds of name \(for example, 32-bit Internet)8 2644(various domains support very)3 1424 2 720 5939 t
+( alphabetic string\), and it is dif\256cult to deal with the names in a general)14 3413(address versus)1 655 2 720 6059 t
+( other aspects of each domain's pro-)6 1668( the details of option processing and)6 1673(way. Similarly,)1 727 3 720 6179 t
+(tocols complicate an interface that attempts generality.)6 2448 1 720 6299 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 4 4
+%%Page: 5 5
+/saveobj save def
+mark
+5 pagesetup
+7 R f
+(INTERPROCESS COMMUNICATION)1 1140 1 2184 362 t
+9 R f
+(5)4743 362 w
+11 R f
+(NEW SYSTEM MECHANISMS)2 1490 1 2009 624 t
+11 R f
+( additions to the operating system allowed us to build a variety of communi-)13 3491(Two small)1 477 2 820 817 t
+(cation mechanisms, which will be described below.)6 2313 1 720 937 t
+11 B f
+(Generalised Mounting)1 1064 1 720 1307 t
+11 R f
+(Traditionally, the)1 777 1 820 1500 t
+11 I f
+(mount)1638 1500 w
+11 R f
+( a new piece of the \256le sys-)7 1297(request attaches a disk containing)4 1528 2 1963 1500 t
+( the Ninth Edition, it takes the form)7 1624( In)1 163(tem tree at a leaf of the existing structure.)8 1891 3 720 1620 t
+11 CW f
+(mount\(type, fd, name, flag\);)3 1848 1 1355 1803 t
+11 R f
+(in which)1 399 1 720 1986 t
+11 I f
+(type)1164 1986 w
+11 R f
+(identi\256es the kind of \256le system,)5 1530 1 1401 1986 t
+11 I f
+(fd)2977 1986 w
+11 R f
+(is a \256le descriptor,)3 867 1 3118 1986 t
+11 I f
+(name)4031 1986 w
+11 R f
+(is a string)2 465 1 4323 1986 t
+(identifying a \256le, and)3 981 1 720 2106 t
+11 I f
+(\257ag)1742 2106 w
+11 R f
+( call)1 198( its original version, this)4 1122( Like)1 278(may specify a few options.)4 1233 4 1957 2106 t
+(attaches a new \256le system structure atop the \256le)8 2188 1 720 2226 t
+11 I f
+(name)2947 2226 w
+11 R f
+( The)1 246(in the existing \256le hierarchy.)4 1310 2 3232 2226 t
+( \256le tree by communicat-)4 1157(operating system gains access to the contents of newly-attached)8 2911 2 720 2346 t
+(ing over the descriptor)3 1060 1 720 2466 t
+11 I f
+(fd,)1831 2466 w
+11 R f
+( for the new \256le system)5 1150(according to a protocol appropriate)4 1633 2 2005 2466 t
+( example, ordinary disk volumes have type)6 1986(type. For)1 451 2 720 2586 t
+11 I f
+(ordinary,)3201 2586 w
+11 R f
+(and the \256le descriptor is)4 1121 1 3667 2586 t
+(the special \256le for the disk, while remote \256le systems use type)11 2843 1 720 2706 t
+11 I f
+(remote,)3601 2706 w
+11 R f
+(and the descriptor)2 808 1 3980 2706 t
+( understands the appropriate RPC messages.)5 2013(refers to a stream connection to a server that)8 2055 2 720 2826 t
+( are handled entirely internally; for example, the)7 2283(Some types)1 533 2 720 2946 t
+11 I f
+(proc)3587 2946 w
+11 R f
+(type ignores the \256le)3 940 1 3848 2946 t
+(descriptor.)720 3066 w
+11 R f
+( Its)1 188( system type.)2 607(We added a new, very simple, \256le)6 1573 3 820 3196 t
+11 I f
+(mount)3230 3196 w
+11 R f
+(request merely attaches the)3 1232 1 3556 3196 t
+( when processes)2 740( Subsequently,)1 699( to the \256le name.)4 794(\256le descriptor \(which must be a stream\))6 1835 4 720 3316 t
+( \256le, their requests refer to the stream mounted on the \256le.)11 2881(open and do I/O on that)5 1187 2 720 3436 t
+( one end of a pipe created by a server process, but it can equally well)15 3174(Often, the stream is)3 894 2 720 3556 t
+( to a process on another machine.)6 1587(be a connection to a device, or a network connection)9 2481 2 720 3676 t
+( but)1 184(The effect is similar to a System V FIFO that has already been opened by a server,)16 3884 2 720 3796 t
+( on another machine, and)4 1187(more general: communication is full-duplex, the server can be)8 2881 2 720 3916 t
+(\(because the connection is a stream\), intermediate processing modules may be installed.)11 3953 1 720 4036 t
+11 B f
+(Passing Files)1 612 1 720 4406 t
+11 R f
+( FIFO; several)2 723(By itself, a mounted stream shares an important dif\256culty of the)10 3245 2 820 4599 t
+( addition)1 398( Another)1 432( it simultaneously must somehow cooperate.)5 2002(processes attempting to use)3 1236 4 720 4719 t
+( to another across)3 798(facilitates this cooperation: an open \256le may be passed from one process)11 3270 2 720 4839 t
+( primitives may be written)4 1194( The)1 242(a pipe connection.)2 818 3 720 4959 t
+11 CW f
+(sendfile\(wpipefd, fd\);)1 1452 1 1355 5142 t
+11 R f
+(in the sender process, and)4 1163 1 720 5325 t
+11 CW f
+(\(fd1, info\) = recvfile\(rpipefd\);)3 2112 1 1355 5508 t
+11 R f
+( using)1 288( By)1 214(in the receiver.)2 696 3 720 5691 t
+11 I f
+(send\256le,)1967 5691 w
+11 R f
+( of its \256le descriptor)4 975(the sender transmits a copy)4 1280 2 2388 5691 t
+11 I f
+(fd)4693 5691 w
+11 R f
+(over the pipe to the receiver; when the receiver accepts it by)11 2750 1 720 5811 t
+11 I f
+(recv\256le,)3508 5811 w
+11 R f
+(it gains a new open)4 885 1 3903 5811 t
+(\256le denoted by)2 686 1 720 5931 t
+11 I f
+(fd1.)1450 5931 w
+11 R f
+( the user- and group-id of the sender, is)8 1860(\(Other information, such as)3 1256 2 1672 5931 t
+(also passed.\))1 569 1 720 6051 t
+11 R f
+( to extend)2 462(Descriptor-passing may be used only locally, over a pipe; we do not attempt)12 3506 2 820 6181 t
+( that we do not, in gen-)6 1091( main justi\256cation for this limitation is)6 1778( The)1 247(it to remote systems.)3 952 4 720 6301 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 5 5
+%%Page: 6 6
+/saveobj save def
+mark
+6 pagesetup
+11 R f
+(6)720 382 w
+7 R f
+(D. L. PRESOTTO AND D. M. RITCHIE)6 1195 1 2156 382 t
+11 R f
+( references)1 493( Passing)1 420( characteristics and protocols of the remote systems.)7 2427(eral, control the)2 728 4 720 624 t
+( a highly system-dependent notion, and we chose not to rely on it except)13 3379(to open \256les is)3 689 2 720 744 t
+(locally.)720 864 w
+11 R f
+( 4.3 BSD system,)3 858(Descriptor-passing is available in the)4 1741 2 820 994 t
+9 R f
+(12)3419 958 w
+11 R f
+(but is little-used, possibly)3 1222 1 3566 994 t
+( will also appear in)4 885( It)1 143( versions the related socket facilities were buggy.)7 2249(because in earlier)2 791 4 720 1114 t
+(modern versions of Unix System V.)5 1624 1 720 1234 t
+9 R f
+(13)2344 1198 w
+11 R f
+(SIMPLE EXAMPLES)1 1009 1 2249 1603 t
+11 R f
+(A graded set of examples will illustrate how these mechanisms can solve problems that)13 3968 1 820 1796 t
+(vex other systems.)2 832 1 720 1916 t
+11 B f
+(Talking to Users)2 794 1 720 2285 t
+11 R f
+(When a user logs in to traditional Unix systems, an entry is made in the)14 3301 1 820 2478 t
+11 I f
+(/etc/utmp)4161 2478 w
+11 R f
+(\256le,)4619 2478 w
+( this)1 199( Although)1 491(recording the login name and the terminal or network channel being used.)11 3378 3 720 2598 t
+( to establish communication)3 1266(\256le is often used merely to show who is where, it is also used)13 2802 2 720 2718 t
+( example, the)2 609( For)1 227(with the user.)2 618 3 720 2838 t
+11 I f
+(write)2212 2838 w
+11 R f
+(command and the mail-noti\256cation service look up)6 2302 1 2486 2838 t
+( simple scheme)2 718( This)1 280( send a message to the corresponding terminal.)7 2197(a user's name, and)3 873 4 720 2958 t
+( terminals, because the messages disturb the protocol)7 2416(does not work well with windowing)5 1652 2 720 3078 t
+( is no obvious way to relate the)7 1555(between the host and the terminal, and because there)8 2513 2 720 3198 t
+( systems often use somewhat)4 1353( Windowing)1 602(terminal's special \256le to a particular window.)6 2113 3 720 3318 t
+(messy ways around this problem, such as making additional entries in the)11 3438 1 720 3438 t
+11 I f
+(utmp)4205 3438 w
+11 R f
+(\256le, or)1 307 1 4481 3438 t
+( without windows, there are security problems)6 2120( Even)1 303(logging the user in more than once.)6 1645 3 720 3558 t
+(and other dif\256culties that follow from letting users write on each other's terminals.)12 3733 1 720 3678 t
+11 R f
+( special \256le and the)4 893(We use stream-mounting to interpose a program between a terminal)9 3075 2 820 3808 t
+( program, called)2 742( The)1 247(terminal itself.)1 655 3 720 3928 t
+11 I f
+(vismon)2405 3928 w
+11 R f
+(, mounts one end of a pipe on the user's ter-)10 2063 1 2725 3928 t
+( it occupies an inconspicuous window, displaying system activity and)9 3280(minal. Normally)1 788 2 720 4048 t
+( \256le)1 181( some other process opens and writes on the special)9 2384( When)1 338(announcing arriving mail.)2 1165 4 720 4168 t
+(for the terminal, the mounted stream receives the data;)8 2458 1 720 4288 t
+11 I f
+(vismon)3214 4288 w
+11 R f
+( window, and)2 614(creates a new)2 604 2 3570 4288 t
+( new window has a shell, so that if the message was from a)13 2830( The)1 252(copies this data to it.)4 986 3 720 4408 t
+11 I f
+(write)720 4528 w
+11 R f
+(command, the recipient can write back.)5 1768 1 992 4528 t
+11 R f
+( multiplexor on the host is not)6 1385(Communication between the terminal and the windowing)6 2583 2 820 4658 t
+( the terminal itself, not to)5 1220(disturbed; it continues to \257ow to)5 1541 2 720 4778 t
+11 I f
+(vismon,)3530 4778 w
+11 R f
+(because the)1 528 1 3927 4778 t
+11 I f
+(mount)4504 4778 w
+11 R f
+(operation affects only the interpretation of \256le names, not existing \256le descriptors.)11 3701 1 720 4898 t
+11 B f
+(Network Calling: Simple Form)3 1481 1 720 5267 t
+11 R f
+( is often name translation)4 1144( There)1 326(Making a network connection is a complicated activity.)7 2498 3 820 5460 t
+( the Datakit)2 557( With)1 306( with various entities.)3 1015(of various kinds, and sometimes negotiations)5 2103 4 720 5580 t
+11 S f
+(\322)4701 5580 w
+11 R f
+(VCS network,)1 661 1 720 5700 t
+9 R f
+(14)1381 5664 w
+11 R f
+( node controller.)2 787(for example, a call is placed by negotiating with a)9 2471 2 1530 5700 t
+(When dialing over the switched telephone system, one must talk to any of several kinds)14 4068 1 720 5820 t
+( pro-)1 223( up a connection on an Internet under any of the extant)11 2532( Setting)1 389(of automatic dialers.)2 924 4 720 5940 t
+(tocols, for example TCP/IP,)3 1260 1 720 6060 t
+9 R f
+(15, 16)1 218 1 1980 6024 t
+11 R f
+(requires translation of a symbolic name to a net address,)9 2553 1 2235 6060 t
+( setup protocols should cer-)4 1267( These)1 338( remote host.)2 598(and then special communication with the)5 1865 4 720 6180 t
+(tainly not be in kernel code, so most systems package them in user-callable libraries.)13 3826 1 720 6300 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 6 6
+%%Page: 7 7
+/saveobj save def
+mark
+7 pagesetup
+7 R f
+(INTERPROCESS COMMUNICATION)1 1140 1 2184 382 t
+11 R f
+(7)4733 382 w
+( it is straightforward to encapsulate a network-connection algorithm)8 3055(With our primitives,)2 913 2 820 624 t
+( desiring to make an outward connection)6 1908( application)1 537( A)1 164(in a single executable program.)4 1459 4 720 744 t
+( in the child process executes)5 1379(would call a simple routine that creates a pipe, forks, and)10 2689 2 720 864 t
+( dialer passes back either an error code, or a \256le descrip-)11 2571( The)1 243( program.)1 436(the network dialer)2 818 4 720 984 t
+( pseudo-code for this)3 1023( The)1 267( to an open connection to the other machine.)8 2215(tor referring)1 563 4 720 1104 t
+(library routine, neglecting error-checking and closing down the pipe, is:)9 3230 1 720 1224 t
+11 CW f
+(netcall\(address\))1355 1423 w
+( p[2];)1 396({ int)1 473 2 1355 1543 t
+(pipe\(p\);)1630 1693 w
+(if \(fork\(\)!=0\))1 924 1 1630 1813 t
+(execute\("/etc/netcaller", address, p[0]\);)2 2706 1 1905 1933 t
+(status = wait\(\);)2 1056 1 1630 2053 t
+(if \(bad\(status\)\))1 1056 1 1630 2173 t
+(return\(errcode\);)1905 2293 w
+(passedinfo = recvfile\(p[1]\);)2 1848 1 1630 2413 t
+(return\(passedinfo.fd\);)1630 2533 w
+(})1355 2653 w
+11 R f
+(Here,)720 2852 w
+11 CW f
+(execute)995 2852 w
+11 R f
+( interface to the kernel)4 1022(is an argument-marshalling)2 1218 2 1493 2852 t
+11 CW f
+(exec)3770 2852 w
+11 R f
+(call, which runs)2 717 1 4071 2852 t
+( This)1 270(the program named by its \256rst argument.)6 1854 2 720 2972 t
+11 CW f
+(/etc/netcaller)2882 2972 w
+11 R f
+( arbi-)1 243(program can be)2 701 2 3844 2972 t
+( the)1 173( Placing)1 405( occupy the same address space as its caller.)8 2023(trarily complicated, but does not)4 1467 4 720 3092 t
+( if)1 124( First,)1 324( has several advantages.)3 1140(connection-establishment code in a separate program)5 2480 4 720 3212 t
+( be \256xed and rein-)4 839(something in the network interface changes, only one program needs to)10 3229 2 720 3332 t
+( the call setup program may negotiate permissions and provide the)10 3299(stalled. Second,)1 769 2 720 3452 t
+(caller's identity reliably, because it can be a privileged \(set-UID\) program.)10 3358 1 720 3572 t
+11 R f
+(When connections are made by library routines, either the operating system must know)12 3968 1 820 3705 t
+( to the target system, or the)6 1244(enough about the call setup protocols to authenticate the caller)9 2824 2 720 3825 t
+(application itself must be privileged \(e.g.)5 1956 1 720 3945 t
+11 CW f
+(rlogin)2770 3945 w
+11 R f
+( the)1 192( In)1 185(in typical BSD systems\).)3 1187 3 3224 3945 t
+(method described above, authentication need not be done in the kernel, but the trusted)13 4068 1 720 4065 t
+(code is con\256ned to a single, separate executable program.)8 2594 1 720 4185 t
+11 R f
+( they reduce the bulk)4 981(Shared libraries provide some of the advantages of our approach:)9 2987 2 820 4318 t
+( program that makes network connections, and also simplify)8 2806(of code included with each)4 1262 2 720 4438 t
+( shared)1 355( However,)1 534( and otherwise maintaining the connection algorithms.)6 2644(\256xing bugs)1 535 4 720 4558 t
+( operating system, and in any event do not)8 1942(libraries are not available in all versions of the)8 2126 2 720 4678 t
+( exe-)1 229(help with authentication, because they run in the protection domain of the user who)13 3839 2 720 4798 t
+(cutes them.)1 509 1 720 4918 t
+11 R f
+(The)820 5051 w
+11 CW f
+(netcall)1031 5051 w
+11 R f
+(routine invokes a subprocess to create a connection, and returns its \256le)11 3254 1 1534 5051 t
+( is impor-)2 465( This)1 278(descriptor; the subprocess disappears once the connection is established.)8 3325 3 720 5171 t
+( is set up, the application program)6 1645( the call)2 396( Once)1 318(tant to the ef\256ciency of the scheme.)6 1709 4 720 5291 t
+( data need not)3 640( The)1 243( modules to do its I/O.)5 1033(communicates directly with the kernel transport)5 2152 4 720 5411 t
+(be diverted through another process.)4 1632 1 720 5531 t
+11 B f
+(Process Connections)1 969 1 720 5967 t
+11 R f
+( a multi-player game, in which several people interact with)9 2821(Suppose you are writing)3 1147 2 820 6179 t
+( that runs throughout)3 948( design uses a pair of programs: a controller process)9 2374( One)1 256(each other.)1 490 4 720 6299 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 7 7
+%%Page: 8 8
+/saveobj save def
+mark
+8 pagesetup
+11 R f
+(8)720 382 w
+7 R f
+(D. L. PRESOTTO AND D. M. RITCHIE)6 1195 1 2156 382 t
+11 R f
+( play, and a player program, with one instance for each)10 2684(the game and coordinates the)4 1384 2 720 624 t
+(player, that communicates with the controller.)5 2064 1 720 744 t
+11 R f
+(When the controller starts, it creates a conventionally-located \256le, stream-mounts one)10 3968 1 820 876 t
+( connection messages to arrive from players.)6 2122(end of a pipe on this \256le, and waits for)9 1946 2 720 996 t
+( opens the communication \256le, and creates its own)8 2413(When the player program is run, it)6 1655 2 720 1116 t
+( of this pipe to the game controller over)8 1805( starts communication by sending one end)6 1906(pipe. It)1 357 3 720 1236 t
+(the communication \256le.)2 1059 1 720 1356 t
+11 R f
+(As each passed pipe appears on the controller's connection stream, it accepts the con-)13 3968 1 820 1488 t
+(nection with)1 556 1 720 1608 t
+11 I f
+(recv\256le.)1313 1608 w
+11 R f
+( replies over its)3 699(Thereafter, each player transmits moves and receives)6 2381 2 1708 1608 t
+( over the end it)4 720(end of the pipe; the controller reads players' moves and transmits replies)11 3348 2 720 1728 t
+( maintains the global state of the game, and uses the)10 2429(received. It)1 542 2 720 1848 t
+11 I f
+(select)3733 1848 w
+11 R f
+(\(2\) mechanism to)2 797 1 3991 1848 t
+(multiplex connection requests and the communication with the player programs.)9 3608 1 720 1968 t
+11 R f
+(THE CONNECTION SERVER)2 1421 1 2043 2386 t
+11 R f
+( combines ideas used by)4 1157( It)1 153( example illustrates a general connection server.)6 2243(The \256nal)1 415 4 820 2593 t
+( to create a \257exi-)4 769(the initial network-calling scheme and the game design, described above,)9 3299 2 720 2713 t
+(ble switchboard through which programs can connect to remote or local services.)11 3655 1 720 2833 t
+11 R f
+( for handling server-client relationships: \256rst, some program)7 2797(Two things are necessary)3 1171 2 820 2965 t
+( server, and wait for requests for the service; and second, pro-)11 2917(must establish itself as a)4 1151 2 720 3085 t
+( external appearance of the scheme)5 1604( will \256rst describe the)4 1006( We)1 228(grams must make requests.)3 1230 4 720 3205 t
+(\(the library entry points\), then the addressing and naming, and then the implementation.)12 3961 1 720 3325 t
+11 R f
+( the routine)2 527(A program that desires to make a connection calls)8 2292 2 820 3457 t
+11 I f
+(ipcopen,)3680 3457 w
+11 R f
+(passing a char-)2 683 1 4105 3457 t
+(acter string that speci\256es the address and the desired service at that address.)12 3416 1 720 3577 t
+11 CW f
+(fd = ipcopen\(service\);)2 1452 1 1080 3771 t
+11 R f
+(The)720 3965 w
+11 I f
+(ipcopen)928 3965 w
+11 R f
+( it fails,)2 357( If)1 147( requested server.)2 791(routine returns a \256le descriptor connected to the)7 2171 4 1322 3965 t
+(a string describing the error is available.)6 1814 1 720 4085 t
+11 R f
+(In order to announce a service,)5 1401 1 820 4217 t
+11 I f
+(ipccreat)2259 4217 w
+11 R f
+( string that names the)4 986(is used; its argument is a)5 1137 2 2665 4217 t
+( return value is a \256le descriptor)6 1499(service. The)1 593 2 720 4337 t
+11 I f
+(fd)2862 4337 w
+11 R f
+( a channel on which connection)5 1492(that is)1 289 2 3007 4337 t
+(requests will be sent.)3 947 1 720 4457 t
+11 CW f
+(fd = ipccreat\(service\);)2 1518 1 1080 4651 t
+11 R f
+(To wait for requests, the server uses the)7 1877 1 720 4845 t
+11 I f
+(ipclisten)2644 4845 w
+11 R f
+( argument is the same)4 1039(routine. Its)1 533 2 3073 4845 t
+11 I f
+(fd)4693 4845 w
+11 R f
+(returned by)1 510 1 720 4965 t
+11 I f
+(ipccreat:)1266 4965 w
+11 CW f
+(ip = ipclisten\(fd\);)2 1254 1 1080 5159 t
+11 I f
+(Ipclisten)720 5353 w
+11 R f
+( calls)1 243(returns when another program)3 1363 2 1148 5353 t
+11 I f
+(ipcopen)2796 5353 w
+11 R f
+(with an argument corresponding to)4 1594 1 3194 5353 t
+( value is a structure containing informa-)6 1829( return)1 302( Its)1 187(the service, in a way discussed below.)6 1750 4 720 5473 t
+(tion about the caller, such as the user name, and, where relevant, the name of the machine)16 4068 1 720 5593 t
+( new connection may be rejected:)5 1511( This)1 268(from which the call was placed.)5 1436 3 720 5713 t
+11 CW f
+(ipcreject\(ip, errcode\);)1 1518 1 1080 5907 t
+11 R f
+(or it may be accepted:)4 1001 1 720 6101 t
+11 CW f
+(fd = ipcaccept\(ip, cfd\);)3 1584 1 1080 6295 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 8 8
+%%Page: 9 9
+/saveobj save def
+mark
+9 pagesetup
+7 R f
+(INTERPROCESS COMMUNICATION)1 1140 1 2184 382 t
+11 R f
+(9)4733 382 w
+( capable of handling all communication with its client, it hands)10 3074(If the server itself is)4 994 2 720 624 t
+11 I f
+(ipcaccept)720 744 w
+11 R f
+(a null \256le descriptor as)4 1062 1 1191 744 t
+11 I f
+(cfd,)2296 744 w
+11 R f
+(and uses the return value from)5 1402 1 2510 744 t
+11 I f
+(ipcaccept)3954 744 w
+11 R f
+(as a \256le)2 364 1 4424 744 t
+( and)1 203( on the locations of the server)6 1396( Depending)1 561(descriptor to communicate with its client.)5 1908 4 720 864 t
+(the client, this may be either a pipe, or a stream connection to a remote machine.)15 3661 1 720 984 t
+11 R f
+( server is not to communicate directly, but to set up)10 2590(Sometimes, the purpose of a)4 1378 2 820 1118 t
+( network dialing server, for example,)5 1820( A)1 182( its client.)2 511(another connection on behalf of)4 1555 4 720 1238 t
+(receives the desired address in the)5 1555 1 720 1358 t
+11 I f
+(ip)2315 1358 w
+11 R f
+(structure returned by)2 937 1 2450 1358 t
+11 I f
+(ipclisten,)3427 1358 w
+11 R f
+(and connects to this)3 910 1 3878 1358 t
+( the connection succeeds, the server sends the)7 2075( If)1 147(address with network-speci\256c primitives.)3 1846 3 720 1478 t
+( to the client in the)5 894(descriptor for the connection)3 1303 2 720 1598 t
+11 I f
+(cfd)2959 1598 w
+11 R f
+(argument of)1 547 1 3144 1598 t
+11 I f
+(ipcaccept.)3733 1598 w
+11 R f
+(The connec-)1 557 1 4231 1598 t
+( then complete, and it drops out of the conversation between the)11 3090(tion server's work is)3 978 2 720 1718 t
+(client and the real server it arranged to call.)8 1968 1 720 1838 t
+11 R f
+( calls all work properly with the)6 1477(The various \256le descriptors in these)5 1621 2 820 1972 t
+11 I f
+(select)3958 1972 w
+11 R f
+(system call,)1 532 1 4256 1972 t
+(so a single server may issue several)6 1615 1 720 2092 t
+11 I f
+(ipccreat)2372 2092 w
+11 R f
+(calls, and wait a connection to appear before)7 2011 1 2777 2092 t
+(committing itself to using)3 1246 1 720 2212 t
+11 I f
+(ipclisten)2030 2212 w
+11 R f
+( of the buffering)3 827( Because)1 464(on any one of them.)4 1021 3 2476 2212 t
+( to make connections, several requests may be outstanding at)9 2860(inherent in the pipes used)4 1208 2 720 2332 t
+(once on an)2 503 1 720 2452 t
+11 I f
+(ipclisten)1266 2452 w
+11 R f
+( the server is slow, callers of)6 1344(channel. If)1 519 2 1691 2452 t
+11 I f
+(ipcopen)3597 2452 w
+11 R f
+(may block await-)2 792 1 3996 2452 t
+(ing space to write their messages.)5 1517 1 720 2572 t
+11 B f
+(Addresses)720 3021 w
+11 R f
+( supplied to)2 557(The arguments)1 675 2 820 3237 t
+11 I f
+(ipcopen)2101 3237 w
+11 R f
+(and)2506 3237 w
+11 I f
+(ipccreat)2713 3237 w
+11 R f
+(are strings with several components)4 1658 1 3130 3237 t
+( part is interpreted as a \256le name.)7 1543( \256rst)1 213( The)1 247(separated by exclamation mark `!' characters.)5 2065 4 720 3357 t
+( as is; otherwise, it is taken to be a \256le in the directory)13 2640(If it is absolute, it is used)6 1221 2 720 3477 t
+11 I f
+(/cs,)4629 3477 w
+11 R f
+( example, a game con-)4 1070( For)1 237( use, conventionally, to collect rendezvous points.)6 2317(which we)1 444 4 720 3597 t
+(troller like that discussed in a previous section might announce itself with)11 3331 1 720 3717 t
+11 CW f
+(ipccreat\("mazewar"\);)1080 3919 w
+11 R f
+(The player program could then connect to the controller with)9 2753 1 720 4121 t
+11 CW f
+(ipcopen\("mazewar"\);)1080 4323 w
+11 R f
+( packaging of the)3 825(In this simple case, the IPC routines merely accomplish a convenient)10 3243 2 720 4525 t
+(scheme discussed above.)2 1110 1 720 4645 t
+11 R f
+( argument is given to)4 982(When a multi-component)2 1147 2 820 4779 t
+11 I f
+(ipcopen,)2990 4779 w
+11 R f
+(the server selected by the \256rst)5 1373 1 3415 4779 t
+(component receives the remaining components as part of the)8 2793 1 720 4899 t
+11 I f
+(ip)3557 4899 w
+11 R f
+( by its)2 301(structure returned)1 791 2 3696 4899 t
+11 I f
+(ipclisten,)720 5019 w
+11 R f
+( example, there is a)4 915( For)1 233( to its own conventions.)4 1115(and interprets them according)3 1352 4 1173 5019 t
+( the \256rst component of an)5 1193( If)1 149( kind of network.)3 797(dialing server for each)3 1024 4 720 5139 t
+11 I f
+(ipcopen)3924 5139 w
+11 R f
+(speci\256es a)1 467 1 4321 5139 t
+(network server, the remaining components conventionally supply an address within that)10 4068 1 720 5259 t
+( have three kinds of net-)5 1149( We)1 232(network, and possibly a service obtainable at that address.)8 2687 3 720 5379 t
+(works:)720 5499 w
+11 I f
+(tcp)1061 5499 w
+11 R f
+(\(TCP/IP connection\),)1 955 1 1246 5499 t
+11 I f
+(dk)2243 5499 w
+11 R f
+(\(Datakit connection\), and)2 1148 1 2397 5499 t
+11 I f
+(phone)3588 5499 w
+11 R f
+(\(dial-up telephone\).)1 880 1 3908 5499 t
+( missing service name means a connec-)6 1809(Each network server adopts the convention that a)7 2259 2 720 5619 t
+( calling)1 344( Therefore,)1 538( log in by hand.)4 758(tion to an end-point that allows one to)7 1786 4 720 5739 t
+11 I f
+(ipcopen)4191 5739 w
+11 R f
+(with)4592 5739 w
+(the strings)1 464 1 720 5859 t
+11 CW f
+(tcp!research.att.com)1355 6061 w
+(dk!nj/astro/research)1355 6181 w
+(phone!201-582-5940)1355 6301 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 9 9
+%%Page: 10 10
+/saveobj save def
+mark
+10 pagesetup
+11 R f
+(10)720 382 w
+7 R f
+(D. L. PRESOTTO AND D. M. RITCHIE)6 1195 1 2156 382 t
+11 R f
+( over a different)3 777(gets connections over which one will receive a `login:' greeting, each)10 3291 2 720 624 t
+( name translation, perform-)3 1228( servers are responsible for the details of)7 1846( The)1 244(kind of network.)2 750 4 720 744 t
+( examples of named services)4 1313( Some)1 328( so forth.)2 421(ing the appropriate connection protocol, and)5 2006 4 720 864 t
+(at particular locations are)3 1135 1 720 984 t
+11 CW f
+(tcp!dutoit.att.com!whoami)1355 1171 w
+(dk!research!smtp)1355 1291 w
+11 R f
+(The \256rst is a debugging service that echoes facts about the connection and the user ID of)16 4068 1 720 1478 t
+( second illustrates how remote mail is sent: by connecting)9 2618( The)1 242(the person who requests it.)4 1208 3 720 1598 t
+(to the)1 256 1 720 1718 t
+11 I f
+(smtp)1012 1718 w
+11 R f
+(server \(mail receiver\) on the appropriate machine.)6 2241 1 1265 1718 t
+11 B f
+(IPC Implementation)1 976 1 720 2108 t
+11 R f
+(For a simple service, the)4 1158 1 820 2307 t
+11 I f
+(ipccreat)2026 2307 w
+11 R f
+(routine works just like the game-manager program)6 2346 1 2442 2307 t
+( it \256rst creates a \256le in the)7 1197(described above;)1 748 2 720 2427 t
+11 I f
+(/cs)2701 2427 w
+11 R f
+(directory corresponding to the name of the)6 1920 1 2868 2427 t
+( com-)1 265( For)1 229( the pipe on this \256le.)5 962(service, then makes a pipe and stream-mounts one end of)9 2612 4 720 2547 t
+( the simple service named to the left of the)9 1962(plex services, which have a `!' in their names,)8 2106 2 720 2667 t
+(`!' must be created \256rst; when)5 1410 1 720 2787 t
+11 I f
+(ipccreat)2176 2787 w
+11 R f
+( a)1 95(is handed the name of such a service, it uses)9 2103 2 2590 2787 t
+(version of)1 455 1 720 2907 t
+11 I f
+(ipcopen)1216 2907 w
+11 R f
+( and passes it the remainder)5 1277(referring to the simple, underlying server,)5 1898 2 1613 2907 t
+( either case,)2 564( In)1 177(of the name.)2 590 3 720 3027 t
+11 I f
+(ipccreat)2101 3027 w
+11 R f
+( own end of its pipe, ready to receive)8 1810(returns its)1 459 2 2519 3027 t
+(requests.)720 3147 w
+11 R f
+(The)820 3278 w
+11 I f
+(ipcopen)1036 3278 w
+11 R f
+( by the simple network)4 1085(routine uses a technique that resembles that used)7 2265 2 1438 3278 t
+( opens the \256le in)4 785( It)1 145( in detail.)2 442(calling routine described above, but differs)5 1959 4 720 3398 t
+11 I f
+(/cs)4093 3398 w
+11 R f
+(correspond-)4266 3398 w
+( It)1 145( hands one end of the pipe to the server.)9 1878(ing to the desired service, makes a pipe, and)8 2045 3 720 3518 t
+(then sends the actual contents of the request \(the full address\) to its end of the pipe, and)17 4068 1 720 3638 t
+(waits for an acceptance or rejection message to appear on this pipe.)11 3043 1 720 3758 t
+11 R f
+(The server)1 472 1 820 3889 t
+11 I f
+(ipclisten)1328 3889 w
+11 R f
+(call waits for a stream \(passed by someone's)7 2016 1 1746 3889 t
+11 I f
+(ipcopen)3799 3889 w
+11 R f
+(\) to appear on)3 633 1 4155 3889 t
+(the \256le descriptor mounted on its)5 1563 1 720 4009 t
+11 I f
+(/cs)2332 4009 w
+11 R f
+(communication \256le; as each appears, it reads the)7 2276 1 2512 4009 t
+(request block from the passed stream, and returns it to the server.)11 2953 1 720 4129 t
+11 R f
+(After analysing the request, the server calls either)7 2245 1 820 4260 t
+11 I f
+(ipcaccept)3103 4260 w
+11 R f
+(or)3569 4260 w
+11 I f
+(ipcreject;)3698 4260 w
+11 R f
+(each sends an)2 624 1 4164 4260 t
+( to the client over the passed stream.)7 1698(appropriate message back)2 1161 2 720 4380 t
+11 I f
+(Ipcaccept)3657 4380 w
+11 R f
+(has two cases:)2 656 1 4132 4380 t
+(when its)1 380 1 720 4500 t
+11 I f
+(cfd)1138 4500 w
+11 R f
+( server by the client is used for)7 1429(argument is empty, the same pipe sent to the)8 2040 2 1319 4500 t
+(communication; when)1 1006 1 720 4620 t
+11 I f
+(cfd)1780 4620 w
+11 R f
+(is non-empty, that \256le descriptor is sent back to the client.)10 2811 1 1977 4620 t
+11 I f
+(Ipcopen)720 4740 w
+11 R f
+(returns the appropriate descriptor.)3 1510 1 1117 4740 t
+11 B f
+(Network Managers)1 912 1 820 5130 t
+11 R f
+( are local to a)4 683(The IPC routines discussed above handle both clients and servers that)10 3285 2 820 5329 t
+( One)1 262( suf\256cient to accomplish outgoing network connections.)6 2562(single system, and are also)4 1244 3 720 5449 t
+( to write the programs that accept connections from a network, and)11 3105(missing piece is how)3 963 2 720 5569 t
+( call such programs)3 881( We)1 223(arrange to invoke the appropriate local services.)6 2152 3 720 5689 t
+11 I f
+(managers.)4012 5689 w
+11 R f
+(The networking part of a manager is speci\256c to its network, and usually must conduct)14 3968 1 820 5820 t
+( example, the)2 631( For)1 238( its remote client.)3 828(dialogues both with the operating system and with)7 2371 4 720 5940 t
+( to certain port numbers, and)5 1329(manager for TCP/IP must arrange to receive IP packets sent)9 2739 2 720 6060 t
+( packets to determine what service is being requested; then it must select a)13 3555(analyse the)1 513 2 720 6180 t
+( conversation, communicate it to the peer, and arrange to collect pack-)11 3187(port number for the)3 881 2 720 6300 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 10 10
+%%Page: 11 11
+/saveobj save def
+mark
+11 pagesetup
+7 R f
+(INTERPROCESS COMMUNICATION)1 1140 1 2184 382 t
+11 R f
+(11)4678 382 w
+( of the)2 307( example, this is the role)5 1147( For)1 231(ets on this port number.)4 1100 4 720 624 t
+11 I f
+(inetd)3546 624 w
+11 R f
+(program in BSD sys-)3 972 1 3816 624 t
+( net-)1 214( Each)1 298( selected local service.)3 1034( the manager must arrange to supply the)7 1866(tems. Finally,)1 656 5 720 744 t
+(work manager could have)3 1216 1 720 864 t
+11 I f
+(ad hoc)1 323 1 1991 864 t
+11 R f
+( case;)1 272(code for this part of the job, as is the usual)10 2138 2 2378 864 t
+(instead, they depend on a more general program called the)9 2638 1 720 984 t
+11 I f
+(service manager.)1 763 1 3394 984 t
+11 B f
+(The Service Manager)2 1022 1 720 1364 t
+11 R f
+(By using)1 429 1 820 1560 t
+11 I f
+(ipccreat,)1310 1560 w
+11 R f
+( as a server and prepares to receive)7 1766(a process establishes itself)3 1255 2 1767 1560 t
+( some servers, like the)4 1076( For)1 241( serving, it must remain in existence.)6 1765( it is)2 242(requests. While)1 744 5 720 1680 t
+( the)1 177(multi-player game controller that continues to run as users enter and leave the game,)13 3891 2 720 1800 t
+( most, useful services do)4 1141( many, or even)3 698( However,)1 507(longevity of the server is appropriate.)5 1722 4 720 1920 t
+( the service merely involves)4 1336(not necessarily need individual long-lived servers, because)6 2732 2 720 2040 t
+( example, services like)3 1069( For)1 241(execution of a particular program.)4 1591 3 720 2160 t
+11 I f
+(rlogin, telnet, smtp)2 898 1 3672 2160 t
+11 R f
+(and)4630 2160 w
+11 I f
+(ftp,)720 2280 w
+11 R f
+( or send a \256le to a line printer,)8 1444(as well as simpler ones that merely provide the date,)9 2428 2 916 2280 t
+( and output)2 512(can all be accomplished merely by running the appropriate program with input)11 3556 2 720 2400 t
+( when the characteristics of such services differ in)8 2408( Even)1 315(connected to the right place.)4 1345 3 720 2520 t
+( for example, require no authentication, some)6 2157( Some,)1 370( patterns.)1 430(detail, there are general)3 1111 4 720 2640 t
+( an automatic scheme, and others always)6 1904(require checking of authentication according to)5 2164 2 720 2760 t
+(insist on a password.)3 942 1 720 2880 t
+11 R f
+( services share a common structure suggested a common)8 2712(The observation that many)3 1256 2 820 3011 t
+( operating system is booted, and is)6 1611( is started when the)4 913( It)1 147(solution: the Service Manager.)3 1397 4 720 3131 t
+( a)1 85(driven by a speci\256cation \256le; each entry in the \256le contains the name of the service, and)16 3983 2 720 3251 t
+( service manager)2 801( The)1 264( requested.)1 505(list of actions to be performed when that service is)9 2498 4 720 3371 t
+(issues)720 3491 w
+11 I f
+(ipccreat)1028 3491 w
+11 R f
+(for the name given in each entry; when another process uses)10 2815 1 1441 3491 t
+11 I f
+(ipcopen)4301 3491 w
+11 R f
+(to)4702 3491 w
+(request the service, the service manager carries out each encoded action.)10 3256 1 720 3611 t
+11 R f
+(The most important action speci\256es a command to be executed; for example, the line)13 3841 1 820 3742 t
+11 CW f
+(date cmd\(date\))1 1144 1 1355 3927 t
+11 R f
+(means that connecting to the service)5 1665 1 720 4112 t
+11 I f
+(date)2427 4112 w
+11 R f
+( actions)1 354( Other)1 328( command.)1 504(would run the `date')3 935 4 2667 4112 t
+(may specify the user ID under which the program is run:)10 2569 1 720 4232 t
+11 CW f
+(uucp user\(uucp\)+cmd\(/usr/lib/uucp/uucico\))1 2926 1 1355 4417 t
+11 R f
+(This service speci\256es a passwordless connection to the)7 2638 1 720 4602 t
+11 I f
+(uucp)3420 4602 w
+11 R f
+(\256le-transfer program; a)2 1084 1 3704 4602 t
+( correspond-)1 561(locally-conventional TCP/IP port number is used for such connections, and a)10 3507 2 720 4722 t
+( are other built-in actions:)4 1168( There)1 326(ing convention is used on our Datakit network.)7 2122 3 720 4842 t
+11 CW f
+(login ttyld+password+login)1 2145 1 1355 5027 t
+11 R f
+(means that the)2 665 1 720 5212 t
+11 I f
+(login)1428 5212 w
+11 R f
+( discipline module for terminal pro-)5 1653(service needs to install the line)5 1428 2 1707 5212 t
+(cessing, and also to execute the)5 1419 1 720 5332 t
+11 I f
+(login)2175 5332 w
+11 R f
+(command;)2447 5332 w
+11 CW f
+(oklogin ttyld+auth+login)1 1881 1 1355 5517 t
+11 R f
+( is checked by the)4 995( Authorisation)1 721( passwordless login.)2 994(is similar, but allows)3 1073 4 720 5702 t
+11 I f
+(auth)4583 5702 w
+11 R f
+( a trusted)2 447(speci\256cation, which determines whether the call came from a trusted host on)11 3621 2 720 5822 t
+(network, so that the passed user ID can be believed, while the)11 2976 1 720 5942 t
+11 I f
+(password)3748 5942 w
+11 R f
+(speci\256cation)4233 5942 w
+( both cases, the regular)4 1065( In)1 169(means that authentication must be supplied by the user.)8 2556 3 720 6062 t
+11 I f
+(login)4552 6062 w
+11 R f
+( \257ags that indicate whether the user's identity)7 2098(command is called, with or without special)6 1970 2 720 6182 t
+(has been checked.)2 809 1 720 6302 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 11 11
+%%Page: 12 12
+/saveobj save def
+mark
+12 pagesetup
+11 R f
+(12)720 382 w
+7 R f
+(D. L. PRESOTTO AND D. M. RITCHIE)6 1195 1 2156 382 t
+11 R f
+(USES)2619 624 w
+11 R f
+( to network and local)4 988(The techniques described in this paper permit a general approach)9 2980 2 820 834 t
+( an)1 154( As)1 209( user-mode programs.)2 1006(connections in which most of the work is done in a few)11 2699 4 720 954 t
+(example of the bene\256ts of the scheme, we have uni\256ed various commands that do remote)14 4068 1 720 1074 t
+( single command,)2 818( A)1 162( of networks \(TCP/IP and Datakit\).)5 1641(login over two kinds)3 969 4 720 1194 t
+11 I f
+(con,)4357 1194 w
+11 R f
+(tries)4599 1194 w
+( traditional)1 490( The)1 244( be made.)2 444(various networks and uses the \256rst over which a connection can)10 2890 4 720 1314 t
+(names \(like)1 520 1 720 1434 t
+11 I f
+(rlogin)1279 1434 w
+11 R f
+(\) are retained as links, but the only effect of using them is to in\257uence)14 3230 1 1558 1434 t
+( stream implementation makes the transport)5 2037( The)1 256(the order in which networks are tried.)6 1775 3 720 1554 t
+(layers of the networks suf\256ciently similar that the same code can be used once the con-)15 4068 1 720 1674 t
+( the techniques described here make even the connection interface)9 3062(nection is established;)2 1006 2 720 1794 t
+(uniform.)720 1914 w
+11 R f
+( example, most)2 710( For)1 237( to inter-network connectivity.)3 1397(These same techniques extend well)4 1624 4 820 2047 t
+( Ethernet connections.)2 1005(of our own machines have a Datakit interface, but only some have)11 3063 2 720 2167 t
+( is easy to connect to another machine that)8 1988(Nevertheless, from a Datakit-only machine, it)5 2080 2 720 2287 t
+( are two)2 387( There)1 335( that does not run the Ninth Edition system.)8 2057(has only Ethernet, even one)4 1289 4 720 2407 t
+( the TCP/IP protocol code, and)5 1439( the \256rst, the local operating system contains)7 2061(schemes. In)1 568 3 720 2527 t
+( TCP/IP level, the `device' interface is actually a Datakit connection to another)12 3624(below the)1 444 2 720 2647 t
+( the network layer)3 924( Datakit channels and)3 1074( Because)1 470(local machine on both networks.)4 1600 4 720 2767 t
+( they are easily connected; on the gateway)7 2023(expected by TCP/IP have stream interfaces,)5 2045 2 720 2887 t
+( approach transparently handles)3 1472( This)1 287( routed appropriately.)2 1002(machine, the IP packets are)4 1307 4 720 3007 t
+(other services, like UDP,)3 1126 1 720 3127 t
+9 R f
+(16, 17)1 218 1 1846 3091 t
+11 R f
+(that use the IP protocol suite.)5 1325 1 2100 3127 t
+11 R f
+( Datakit-only)1 626( a)1 118( On)1 240(The other scheme uses the methods described in this paper.)9 2984 4 820 3260 t
+( dialout program does not use TCP/IP at all, and indeed)10 2784(machine, the TCP network)3 1284 2 720 3380 t
+( be con\256gured into the operating system; instead, it creates a)10 3000(TCP/IP code need not)3 1068 2 720 3500 t
+( server on a gateway machine.)5 1392(Datakit transport-level connection to a protocol conversion)6 2676 2 720 3620 t
+( server on the gateway accepts connections on behalf of Datakit)10 3236(A complementary)1 832 2 720 3740 t
+( difference between the two)4 1320( The)1 260( network.)1 441(machine, and forwards them to the TCP/IP)6 2047 4 720 3860 t
+( to users of connection-oriented protocols, although it does not sup-)10 3153(schemes is invisible)2 915 2 720 3980 t
+(port connectionless protocols like UDP.)4 1789 1 720 4100 t
+11 R f
+(CONCLUSION)2400 4530 w
+11 R f
+( instance)1 400( \256rst involves small additions to an)6 1617( The)1 246(This paper reports two developments.)4 1705 4 820 4740 t
+( In)1 185( rendezvous between unrelated processes.)4 1948(of the Unix operating system to support)6 1935 3 720 4860 t
+( scheme suggests passing capabilities \(open \256les referring to stream connec-)10 3528(essence, the)1 540 2 720 4980 t
+( idea)1 223( The)1 248(tions\) between processes, using the \256le system to name the rendezvous points.)11 3597 3 720 5100 t
+( systems as disparate as)4 1122(of capability-passing is by no means new, having been used in)10 2946 2 720 5220 t
+(DEMOS)720 5340 w
+9 R f
+(18)1105 5304 w
+11 R f
+(and Mach.)1 491 1 1251 5340 t
+9 R f
+(19, 20)1 218 1 1742 5304 t
+11 R f
+(as well as many others.)4 1135 1 2016 5340 t
+9 R f
+(21)3151 5304 w
+11 R f
+( including)1 471(Unlike some systems,)2 1020 2 3297 5340 t
+(Mach, or the S/Net Linda kernel,)5 1580 1 720 5460 t
+9 R f
+(22)2300 5424 w
+11 R f
+( the connected, byte-stream)3 1287(our approach clings to)3 1057 2 2444 5460 t
+( traditional Unix systems, instead of assigning types to mes-)9 2803(model already prevailing in)3 1265 2 720 5580 t
+( connectionless datagrams in which each IPC message is sent to a desig-)12 3385(sages, or using)2 683 2 720 5700 t
+( general destination \(Linda, for example\).)5 1941(nated port \(Mach, for example\) or to a more)8 2127 2 720 5820 t
+( although we admit to bias that may)7 1639(We believe that this model retains considerable value,)7 2429 2 720 5940 t
+( streams are readily con-)4 1161( Byte)1 293( company.)1 479(stem ultimately from working for a telephone)6 2135 4 720 6060 t
+(nected both locally, and to remote machines of different kinds, running different operating)12 4068 1 720 6180 t
+(systems; all that is needed is a common transport-layer protocol.)9 2907 1 720 6300 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 12 12
+%%Page: 13 13
+/saveobj save def
+mark
+13 pagesetup
+7 R f
+(INTERPROCESS COMMUNICATION)1 1140 1 2184 382 t
+11 R f
+(13)4678 382 w
+( higher-level interface to the basic IPC mechan-)7 2183(The second development we report is a)6 1785 2 820 624 t
+( the connection-establishment protocols within a few executable)7 2933(isms, which concentrates)2 1135 2 720 744 t
+( scheme resembles the)3 1011( this)1 196( Fundamentally,)1 760(programs that run as privileged user programs.)6 2101 4 720 864 t
+( Internet Domain name server)4 1353(`name servers' used in many contexts, for example the)8 2495 2 720 984 t
+9 R f
+(23)4568 948 w
+11 R f
+(or)4697 984 w
+(Clearinghouse,)720 1104 w
+9 R f
+(24)1382 1068 w
+11 R f
+( somewhat more general, since it is intended to cover a variety of)12 3021(but is)1 255 2 1512 1104 t
+( spirit to the Heterogeneous Name)5 1599( this it is more similar in)6 1201( In)1 175(networks and protocols.)2 1093 4 720 1224 t
+(Service facility;)1 711 1 720 1344 t
+9 R f
+(25)1431 1308 w
+11 R f
+( maps strings to services in a heterogeneous)7 2024(in particular, our approach)3 1202 2 1562 1344 t
+( string to direct interpretation of the)6 1624(setting, and uses as context the \256rst component of the)9 2444 2 720 1464 t
+(latter part.)1 459 1 720 1584 t
+11 R f
+( rendezvous mechanisms described here are achievable in the)8 2890(The underlying process)2 1078 2 820 1716 t
+( the other hand, earlier versions of our)7 1873( On)1 226(BSD system, using Unix domain sockets.)5 1969 3 720 1836 t
+( into Unix System V, which in Release 4 permits stream-)10 2731(work have been incorporated)3 1337 2 720 1956 t
+( it should be possible to adapt higher-level)7 2043( Thus)1 309(mounting and \256le-descriptor passing.)3 1716 3 720 2076 t
+(interfaces such as the Service Manager to both of these systems.)10 2901 1 720 2196 t
+11 R f
+( always had a rich \256le system structure, both in its naming scheme \(hierarchi-)13 3563(Unix has)1 405 2 820 2328 t
+( Eighth)1 333( The)1 245( \256les, devices, pipes\).)3 981(cal directories\) and in the properties of open \256les \(disk)9 2509 4 720 2448 t
+( or contem-)2 546(Edition exploited the \256le system even more insistently than its predecessors)10 3522 2 720 2568 t
+( \256le systems, process \256les, and more exotic \256le sys-)9 2396( Remote)1 419( genus.)1 325(poraries of the same)3 928 4 720 2688 t
+(tem types)1 433 1 720 2808 t
+9 R f
+(8)1153 2772 w
+11 R f
+( to an existing tool)4 858(all create objects with names that can be handed as usefully)10 2696 2 1234 2808 t
+( Similarly,)1 516( special properties.)2 852(as to a new one designed to take advantage of the object's)11 2700 3 720 2928 t
+( the stan-)2 441(the stream I/O system provides a framework for making \256le descriptors act in)12 3627 2 720 3048 t
+( a richer underlying behaviour,)4 1428(dard way most programs already expect, while providing)7 2640 2 720 3168 t
+(for handling network protocols, or processing appropriate for terminals.)8 3218 1 720 3288 t
+11 R f
+( same path; they encourage use of the \256le)8 1946(The developments described here follow the)5 2022 2 820 3420 t
+( the best of cases, merely)5 1184( In)1 171( between processes.)2 899(name space to establish communication)4 1814 4 720 3540 t
+( complicated situations require more involved)5 2178( More)1 333( is enough.)2 545(opening a named \256le)3 1012 4 720 3660 t
+( the neces-)2 496( Moreover,)1 537( system still supplies the point of contact.)7 1924(negotiations, but the \256le)3 1111 4 720 3780 t
+(sary negotiations may be encapsulated in a common form that hides the differences)12 4068 1 720 3900 t
+(between local and any of a variety of remote connections.)9 2607 1 720 4020 t
+9 R f
+(REFERENCES)2471 4423 w
+9 R f
+( System,'')1 397( M. Ritchie, ``A Stream Input-Output)5 1476(1. D.)1 231 3 720 4606 t
+9 I f
+(AT&T Bell Laboratories Technical Journal)4 1671 1 2873 4606 t
+9 B f
+(63)4593 4606 w
+9 R f
+(\(8\))4683 4606 w
+(\(October 1984\).)1 583 1 863 4706 t
+9 R f
+(2. AT&T,)1 411 1 720 4818 t
+9 I f
+(UNIX System V Release 3 STREAMS Programmer's Guide)7 2180 1 1161 4818 t
+9 R f
+(, 1986.)1 256 1 3341 4818 t
+9 R f
+( J. Weinberger, ``The Version 8 Network File System,'')8 2183(3. P.)1 216 2 720 4930 t
+9 I f
+(USENIX Summer Conference Proceedings)3 1602 1 3163 4930 t
+9 R f
+(,)4765 4930 w
+(Salt Lake City, UT \(June 1984\).)5 1196 1 863 5030 t
+9 R f
+( as Files,'')2 399( J. Killian, ``Processes)3 837(4. T.)1 221 3 720 5142 t
+9 I f
+(USENIX Summer Conference Proceedings)3 1569 1 2210 5142 t
+9 R f
+(, Salt Lake City, UT, USA)5 1009 1 3779 5142 t
+(\(June 1984\).)1 458 1 863 5242 t
+9 R f
+( P. Rifkin, Michael P. Forbes, Richard L. Hamilton, Michail Sabrio, Suryakanta Shah, and Kang)14 3635(5. Andrew)1 433 2 720 5354 t
+(Yueh, ``RFS Architechtural Overview,'')3 1486 1 863 5454 t
+9 I f
+(USENIX Conference Proceedings)2 1235 1 2379 5454 t
+9 R f
+(, Atlanta, GA \(June, 1986\).)4 1012 1 3614 5454 t
+9 R f
+( and Implementa-)2 654( Sandberg, David Goldberg, Steve Kleiman, Dan Walsh, and Bob Lyon, ``Design)11 3031(6. Russel)1 383 3 720 5566 t
+(tion of the Sun Network Filesystem,'')5 1403 1 863 5666 t
+9 I f
+(USENIX Conference Proceedings)2 1235 1 2296 5666 t
+9 R f
+(, Portland, OR \(June, 1985\).)4 1047 1 3531 5666 t
+9 R f
+( Cargill, ``The Blit Debugger,'')4 1226( A.)1 132(7. T.)1 221 3 720 5778 t
+9 I f
+(Journal of Systems and Software)4 1270 1 2344 5778 t
+9 B f
+(3)3659 5778 w
+9 R f
+( \(December,)1 468( 277-284)1 330(\(4\), pp.)1 286 3 3704 5778 t
+(1983\).)863 5878 w
+9 R f
+( L. Presotto, ``Face the Nation,'')5 1219( Pike and D.)3 468(8. R.)1 226 3 720 5990 t
+9 I f
+(USENIX Summer Conference Proceedings)3 1563 1 2664 5990 t
+9 R f
+(, Portland, OR,)2 561 1 4227 5990 t
+(USA \(June 1985\).)2 668 1 863 6090 t
+9 R f
+( and Tom Lyon, ``The Automounter,'')5 1436( Callaghan)1 396(9. Brent)1 343 3 720 6202 t
+9 I f
+(USENIX Conference Proceedings)2 1239 1 2927 6202 t
+9 R f
+(, San Diego, CA)3 622 1 4166 6202 t
+(\(January, 1989\).)1 596 1 863 6302 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 13 13
+%%Page: 14 14
+/saveobj save def
+mark
+14 pagesetup
+11 R f
+(14)720 382 w
+7 R f
+(D. L. PRESOTTO AND D. M. RITCHIE)6 1195 1 2156 382 t
+9 R f
+( Division, U.C. Berkeley,)3 945( Science)1 310(10. Computer)1 548 3 675 604 t
+9 I f
+(Unix Programmer's Manual: 4.2 Berkeley Software Distribu-)6 2279 1 2509 604 t
+(tion)863 704 w
+9 R f
+(, August, 1983.)2 569 1 1003 704 t
+9 R f
+( Partridge, ``Implementation of Dial-up IP for UNIX Systems,'')8 2398( Lanzillo and Craig)3 729(11. Leo)1 328 3 675 814 t
+9 I f
+(USENIX Confer-)1 624 1 4164 814 t
+(ence Proceedings)1 645 1 863 914 t
+9 R f
+(, San Diego, CA \(January, 1989\).)5 1242 1 1508 914 t
+9 R f
+( U.C. Berkeley,)2 585( Systems Research Group,)3 979(12. Computer)1 548 3 675 1024 t
+9 I f
+(Unix Programmer's Reference Manual: 4.3 Berkeley)5 1968 1 2820 1024 t
+(Software Distribution)1 790 1 863 1124 t
+9 R f
+(, April, 1986.)2 499 1 1653 1124 t
+9 R f
+(13. AT&T,)1 456 1 675 1234 t
+9 I f
+(System V Interface De\256nition, Third Edition)5 1628 1 1161 1234 t
+9 R f
+(, 1989.)1 256 1 2789 1234 t
+9 R f
+( Modular Network for Synchronous and Asynchronous Traf\256c,'')7 2500( A)1 79( G. Fraser, ``Datakit\261)3 844(14. A.)1 276 4 675 1344 t
+9 I f
+(Proc. Int.)1 368 1 4420 1344 t
+(Conf. on Commun.)2 696 1 863 1444 t
+9 R f
+(, Boston, MA \(June 1980\).)4 994 1 1559 1444 t
+9 R f
+( Postel, ``Transmission Control Protocol,'')4 1643(15. J.)1 246 2 675 1554 t
+9 I f
+(RFC793)2612 1554 w
+9 R f
+(, Network Information Center, SRI International)5 1871 1 2917 1554 t
+(\(September, 1981\).)1 701 1 863 1654 t
+9 R f
+( Layers,'')1 364( Communication)1 594( Braden, ``Requirements for Internet Hosts\261)5 1658(16. R.)1 271 4 675 1764 t
+9 I f
+(RFC1122)3598 1764 w
+9 R f
+(, Network Information)2 840 1 3948 1764 t
+(Center, SRI International \(October, 1989\).)4 1559 1 863 1864 t
+9 R f
+( Postel, ``User Datagram Protocol,'')4 1360(17. J.)1 246 2 675 1974 t
+9 I f
+(RFC768)2317 1974 w
+9 R f
+(, Network Information Center, SRI International \(August,)6 2166 1 2622 1974 t
+(1980\).)863 2074 w
+9 R f
+( DEMOS,'')1 435( Baskett, John H. Howard $A John T. Montague, ``Task Communication in)11 2868(18. Forrest)1 443 3 675 2184 t
+9 I f
+(Proceed-)4458 2184 w
+(ings Sixth Symposium on Operating Systems Principles)6 2035 1 863 2284 t
+9 R f
+(, West Lafayette, IN \(November, 1877\).)5 1482 1 2898 2284 t
+9 R f
+( Golub, Richard Rashid, Avadis Tevanian, and)6 1825( J. Accetta, Robert Baron, William Bolosky, David)7 1997(19. M.)1 291 3 675 2394 t
+(Michael Young, ``Mach: A New Kernel Foundation for UNIX Development,'')9 3100 1 863 2494 t
+9 I f
+(USENIX Conference)1 775 1 4013 2494 t
+(Proceedings)863 2594 w
+9 R f
+(, Atlanta, GA \(July, 1986\).)4 997 1 1313 2594 t
+9 R f
+( Golub, Jeffrey Eppinger, Jonathan Chew, Wil-)6 1773( Young, Avadis Tevanian, Richard Rashid, David)6 1857(20. Michael)1 483 3 675 2704 t
+( and Communication in the)4 1066(liam Bolosky, David Black, and Robert Baron, ``The Duality of Memory)10 2859 2 863 2804 t
+(Implementation of a Multiprocessor Operating System,'')5 2113 1 863 2904 t
+9 I f
+( on Operating)2 532(Proceedings Eleventh Symposium)2 1245 2 3011 2904 t
+(Systems Principles)1 685 1 863 3004 t
+9 R f
+(, Austin, TX \(November, 1987\).)4 1192 1 1548 3004 t
+9 R f
+( E. `Doc' Smith,)3 616(21. E.)1 266 2 675 3114 t
+9 I f
+(Spacehounds of IPC,)2 773 1 1587 3114 t
+9 R f
+(Radio-science Publications, New York \(1931\).)4 1716 1 2390 3114 t
+9 R f
+( Linda Kernel,'')2 618( Carriero and David Gelernter, ``The S/Net's)6 1717(22. Nicholas)1 508 3 675 3224 t
+9 I f
+(ACM Transactions on Computer)3 1230 1 3558 3224 t
+(Systems)863 3324 w
+9 B f
+(4)1178 3324 w
+9 R f
+(\(2\), pp. 110-129 \(May, 1986\).)4 1112 1 1223 3324 t
+9 R f
+( Mockapetris, ``Domain Names\320Concepts and Facilities,'')5 2231(23. Paul)1 348 2 675 3434 t
+9 I f
+(RFC1034)3292 3434 w
+9 R f
+( Center,)1 302(, Network Information)2 844 2 3642 3434 t
+(SRI International \(November, 1987\).)3 1356 1 863 3534 t
+9 R f
+( Named)1 296( C. Oppen and Yogen K. Dalal, ``The Clearinghouse: A Decentralized Agent for Locating)13 3409(24. Derek)1 408 3 675 3644 t
+( Distributed Environment,'')2 1032(Objects in a)2 461 2 863 3744 t
+9 I f
+(ACM Transactions on O\256ce Information Systems)5 1840 1 2393 3744 t
+9 B f
+(1)4270 3744 w
+9 R f
+( 230-)1 195(\(3\), pp.)1 278 2 4315 3744 t
+(253 \(July, 1983\).)2 631 1 863 3844 t
+9 R f
+( David Notkin, ``A Name Service for Evolving, Heterogeneous)8 2381( F. Schwartz, John Zahorjan, and)5 1249(25. Michael)1 483 3 675 3954 t
+(Systems,'')863 4054 w
+9 I f
+( on Operating Systems Principles)4 1279(Proceedings Eleventh Symposium)2 1259 2 1288 4054 t
+9 R f
+(, Austin, TX \(November,)3 962 1 3826 4054 t
+(1987\).)863 4154 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 14 14
+%%Trailer
+done
+%%Pages: 14
+%%DocumentFonts: Courier Times-Bold Times-Italic Times-Roman Symbol

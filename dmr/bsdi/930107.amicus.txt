@@ -1,0 +1,1713 @@
+JAMES E. HOLST
+JOHN F. LUNDBERG
+MARY E. MacDONALD
+University of California
+300 Lakeside Drive, 7th Floor
+Oakland, California 94612-3565
+Telephone: (510) 987-9800
+
+JOEL LINZNER [JL 6426]
+CARLA J. SHAPREAU [CJS 2689]
+CROSBY, HEAFEY, ROACH & MAY
+Professional Corporation
+1999 Harrison Street
+Oakland, California 94612
+Telephone: (510) 763-2000
+
+FREDERICK B. POLAK [FBP 3095]
+POST, POLAK & GOODSELL
+280 Corporate Center
+65 Livingston Avenue
+Roseland, New Jersey 07068
+Telephone: (201) 994-1100
+
+Attorneys for Defendant
+The Regents of the University of California
+
+UNITED STATES DISTRICT COURT
+
+DISTRICT OF NEW JERSEY
+
+	UNIX SYSTEM LABORATORIES, INC.,
+	               Plaintiff,	(DRD)
+
+-against-	
+
+	BERKELEY SOFTWARE DESIGN, INC., and
+	the Following lndividuals in their Collective
+	Capacity as THE REGENTS OF THE 
+	UNIVERSITY OF CALIFORNIA: PETE	
+	WILSON, LEO T. MCCARTHY, WILLIE L.	
+	BROWN, JR., et al.,
+	     Defendants.
+
+		Civil Action No.92-1667
+
+AMICUS BRIEF BY DEFENDANTS THE REGENTS OF
+THE UNIVERSITY OF CALIFORNIA RE PLAINTIFF'S MOTION FOR
+PRELIMINARY INJUNCTION
+
+	Date:  1-22-93
+	Time: 10:00 a.m.
+	Court: Honorable Dickinson R. Debevoise
+
+
+
+AMICUS BRIEF BY DEFENDANT THE REGENTS
+
+TABLE OF CONTENTS
+Page
+I.	INTRODUCTION
+
+II.	STATEMENT OF FACTS	4
+	A. 	INTRODUCTION TO UNIX AND UNIX-COMPATIBLE SYSTEMS. 
+	B.	THE UNIVERSITY'S LICENSE AGREEMENTS WITH AT&T
+	C. 	THE UNIVERSITY'S NET2 RELEASE	13
+
+III.	ARGUMENT	14
+	A. 	USL CONTRACTUALLY AUTHORIZED THE UNIVERSITY TO
+		DEVELOP AND DISTRIBUTE DERIVATIVE WORKS AND IS
+		ESTOPPED FROM ASSERTING COPYRIGHT PROTECTION IN
+		UNIVERSITY DEVELOPED DERIVATIVE WORKS	14
+	B.	NET2 IS NOT AN INFRINGING WORK	18
+		1. 	THE ANCESTRY OF NET2 IN 32V IS NOT
+			GROUNDS FOR FINDING INFRINGEMENT	19
+		2. 	NET2 IS NOT SUBSTANTIALLY SIMILAR TO
+     			32V		20
+	C.	USL FORFEITED ITS COPYRIGHT PROTECTION IN 32V WHEN
+		IT PUBLICLY DISTRIBUTED 32V WITHOUT A COPYRIGHT 
+		NOTICE 25
+		1. 	THE PUBLICATION OF 32V HAS NOT BEEN
+     			LIMITED	26
+
+
+     			a.	USL HAS FAILED TO MEET THE
+				SELECTED GROUP REQUIREMENT	28
+     			a.	USL MADE 32V AVAILABLE TO THE
+				PUBLIC IN OBJECT CODE	29
+     			b.	USL DID NOT DISTRIBUTE 32V FOR
+				A LIMITED PURPOSE	30
+	D. 	THE UNIVERSITY HAS NOT MISAPPROPRIATED USL'S TRADE
+		SECRETS		32
+		1. 	USL'S MISAPPROPRIATION OF TRADE SECRET
+			CLAIM IS PREEMPTED BY THE COPYRIGHT
+			ACT		3 2
+		2.	USL'S TRADE SECRETS HAVE BEEN
+			EXTINGUISHED BY PUBLICATION	33
+
+TABLE OF AUTHORITIES
+
+
+Academy of Motion Picture Arts And Sciences v.
+Creative House Promotions,
+  944 F.2d 1446 (9th Cir. 1991)	27,28
+
+Apple Computer, Inc. v. Franklin Computer Corp.,
+  714 F.2d 1240 (3rd Cir. 1983)	23
+
+Apple Computer, Inc. v. Microsoft Corp.,
+  717 F. Supp. 1428 (N.D. Cal. 1989)	15,21,23,24
+
+Aqua Bay Concepts, Inc. v. Grosse Point Bd. of
+Realtors,
+  24 U.S.P.Q.2d 1372 (S.D. Mich. 1992)	33
+
+Ashworth v. Glover,
+  156 U.S.P.Q. 219 (Utah 1967)	30
+
+Atari Games Corp. v. Nintendo of America, Inc.,
+    F.2d , 1992 WL 217828 (Fed. Cir. 1992)	20
+
+Avco Corporation v. Precision Air Parts, Inc., 210
+  U.S.P.Q. 895 (N.D. Ala 1980). Under	33
+
+Bartsch v. Metro-Goldwyn-Mayer, Inc.,
+  391 F.2d 150 (2nd Cir. 1968)	15
+
+Brignoli v. Balch Hardy And Scheinman, Inc.,
+  645 F.Supp. 1201 (S.D.N.Y. 1986)	33
+
+Brown Bag Software v. Symantec,
+  960 F.2d 1465 (9th Cir. 1992)	20
+
+Brown v. Tabb,
+  714 F.2d 1088 (11th Cir. 1983)	29
+
+Bull Publishing Co. v. Sandoz Nutrition,
+  13 U.S.P.Q.2d 1678 (N.D. Ca. 1989)	27,30,32
+
+Burke v. National Broadcasting Co.,
+  598 F.2d 688 (1st Cir. 1979)	30
+
+Computer Assoc. Int., Inc. v. Altai, Inc.,
+___F.2d___, 23 U.S.P.Q.2d 1241 (2nd Cir. 1992)	21
+
+Computer Associates International, Inc. v. Altai,
+Inc.,
+  777 F.Supp. 455 (E.D.N.Y. 1991) aff'd,___F.2d
+  ___(2nd Cir. 1992)		19,21
+
+Continental Cas. Co. v. Beardsley,
+  253 F.2d 702 (2d Cir. 1958)		28,30
+
+Data General Corp. v. Digital Computer Controls,
+Inc.,
+  188 U.S.P.Q. 276 (Del. Ch. 1975)		30
+
+Data General Corp. v. Grumman Systems Support Corp .,
+F.Supp. , 61 U.S.L.W. 2315, 1992 WL 297641
+  (D. Mass. Oct. 9, 1992)		31
+
+Del Madera Properties v. Rhodes and Gardner, Inc.,
+  830 F.2d 973 (9th Cir. 1987)		32
+
+Durang,
+  711 F.2d 141 (9th Cir. 1983)		20
+
+Eden Toys, Inc. v. Marshall Field & Co.,
+  675 F.2d 498 (2nd Cir. 1982)		20
+
+Effects Associates, Inc. v. Cohen,
+  908 F.2d 555 (9th Cir. 1990)		15
+
+Feist Publications, Inc. v. Rural Tel. Service Co.,
+  __U.S.__ , 111 S.Ct. 1282 (1991)		21
+
+Foreign Car Parts, Inc. of New England v. Auto
+World, Inc.,
+  366 F.Supp. 977 (M.D. Pa. 1973)		30
+
+GCA Corp. v. Chance,
+  217 U.S.P.Q. 718 (N.D. Cal. 1982)		29
+
+H.W. Wilson Co. v. National Library Serv. Co.,
+  402 F.Supp. 456 (S.D.N.Y. 1975)		28,29,30
+
+Hadady Corp. v. Dean Witter Reynolds, Inc.,
+  739 F.Supp. 1392 (C.D. Cal. 1990)		16
+
+Hub Floral Corp. v. Royal Brass Corp.,
+  454 F.2d 1126 (2d Cir. 1972)		30
+
+Hubco Data Products Corp. v. Management Assistance
+Inc.,
+  219 U.S.P.Q. 450 (D. Idaho 1983)		27
+
+
+Jerome v. Twentieth Century Fox Film Corp.,
+  67 F.Supp. 736 (S.D.N.Y. 1946)	31
+
+Jewelers' Mercantile Agency, Ltd. v. Jewelers'
+Weekly Publishing Co.,
+  155 N.Y. 241, 49 N.E. 872 (1898)	28
+
+Key West Hand Print Fabric s, Inc. v. Serbin, Inc.,
+  244 F.Supp. 287 (S.D. Fla. 1965)	30
+
+Merton Co. v. Tony Trading of Hong Kong, Ltd.,
+  6 U.S.P.Q.2d 1156 (S.D.N.Y. 1987)	20
+
+NEC Corp. v. Intel Corp.,
+  10 U.S.P.Q.2d 1177 (N.D. Cal. 1989)	19,25
+
+Nucor Corp. v. Tennessee Forging Steel Serv., Inc.,
+  476 F.2d 386 (8th Cir. 1973)	30
+
+Patterson v. Century Productions, Inc.,
+  93 F.2d 489 (2d Cir. 1937) cert denied, 303 U.S.
+  655 (1938)	31
+
+Platinum Records Co. v. Lucasfilm, Ltd.,
+  566 F.Supp. 226 (D.N.J. 1983)	15,16
+
+Public Affairs Associates, Inc. v. Rickover,
+  284 F.2d 262 (D.C. Cir. 1960), vacated on other
+  grounds, 369 U.S. 111 (1962)	31
+
+Relational Design & Technology, Inc.,
+  23 U.S.P.Q.2d 1074 (D. Kan. 1992)	33
+
+Ruskin v. Sunrise Management, Inc.,
+  506 F.Supp. 1284 (D. Colo 1981)	30
+
+Sega Enterprises Ltd. v. Accolade,
+   F.2d (9th Cir. 1992)	30
+
+Videotronics, Inc. v. Bend Electronics,
+  564 F.Supp. 1471 (D. Nev. 1983)	33
+
+Warner Bros. v. American Broadcast Companies,
+  654 F.2d 204 (2nd Cir. 1981)	19
+
+Whelan Assoc., Inc. v. Jaslow Dental Laboratory,
+Inc.,
+  797 F.2d 1222 (3rd Cir. 1986)	20
+
+White v. Kimmell,
+  193 F.2d 744 (9th Cir.	1952)	31
+
+Williams & Wilkins Company v. United States,
+  487 F.2d 1345 (Ct. Claims 1973), aff'd, 420 U.S.
+  376(19 )	29
+
+Statutes
+
+17 U.S.C. Section 101	27
+
+17 U.S.C. 106	28,35
+
+17 U.S.C. 301	32,35
+
+17 U.S.C. 405	7,26
+
+
+                          INTRODUCTION
+
+Plaintiff Unix System Laboratories ("USL") has brought a motion for 
+apreliminary injunction against defendant Berkeley Software Design, 
+Inc. ("BSDI")[fn 1] to halt BSDl's distribution of its 386/BSD 
+software which is based primarily upon defendant The Regents of 
+the University of California's ("the University") Networking Release 
+2 ("Net2") software. Although the motion is not directed against the 
+University, the Court nonetheless will have to decide whether USL is 
+likely to prevail on its claims that the University, by releasing Net2, 
+infringed USL's alleged copyright in UNIX version 32V, or 
+misappropriated trade secrets allegedly contained in UNIX 32V.  
+Accordingly, the University files this amicus brief and supporting 
+declarations to provide the Court with the history and facts relevant 
+to the development of Net2.
+
+   [fn1]  BSDI is in no way affiliated with the University.
+
+UNIX 32V was released by AT&T in 1978 (thirteen years before 
+theUniversity released Net2) for a now-obsolete computer (Digital 
+Equipment Company'sVAX).  AT&T granted the University the right to 
+enhance, modify, and improve 32V and granted the University all 
+ownership rights to such enhancements, modifications, and 
+improvements provided the University made those which did not 
+contain AT&T code available to the public. At the time AT&T granted 
+the foregoing rights to the University, it was a regulated public 
+utility and it charged a nominal fee ofapproximately $1,500 for a 
+32V license.
+
+As USL states, UNIX has indeed become "one of the most highly 
+regarded computer systems in the world." This is largely the result 
+of software developed by the University and its contributors which 
+has been incorporated into UNIX. The University, not USL or its 
+predecessor, AT&T, developed the networking 2 and file system 
+capabilities that have been critical to the success of UNIX.  Since 
+approximately 1979, the University has made modifications, 
+enhancements, and improvements to UNIX which were licensed by the 
+University to AT&T and then included by AT&T in successive 
+versions of UNIX.  Version 32V is now completely outdated. The 
+current version of UNIX, System V Release 4 ("SVR4"), is comprised 
+substantially of code developed by the University and is licensed by 
+USL for a $200,000 plus fee.  This high fee is now allowed as a 
+result of the deregulation of USL's predecessor, AT&T.  Despite the 
+large amount of University code in SVR4, the University receives no 
+royalties from USL.
+
+
+Contrary to USL's allegations, the University has not infringed 
+USL'salleged copyright in 32V, or misappropriated trade secrets 
+from 32V by releasingNet2. Net2 does not contain any USL trade 
+secrets - the concepts contained thereinare in the public domain, in 
+some instances put there by AT&T itself. The Universityincluded in 
+Net2 modifications to 32V which, by the terms of its contracts 
+withAT&T, were owned by the University. Further, USL does not have 
+a valid copyrightto UNIX 32V as discussed more fully below; 
+consequently, there can be no copyright infringement. [fn2]
+
+  [fn2] 32V was published without the requisite copyright notice and 
+was not registered with the U.S. Copyright Office within the 
+required five-year time period.  USL asserts that 32V is an 
+"unpublished" work and, as such, was excused from these 
+requirements.  To qualify as an unpublished work, however, USL 
+would have to show that its distribution of UNIX was to a limited 
+group for a limited purpose, neither of which it can do.
+
+Even if USL had a valid copyright in 32V, those similarities between 
+Net2and 32V cited by USL are quantitatively minuscule and 
+qualitatively legitimate and, consequently, provide no basis for 
+finding that Net2 is an infringing work. USL claims similarities to 
+32V in only 30 of the almost 10,000 files in Net2; those 30 
+filescontain less than 1% of the 1.7 million lines of code in Net2. To 
+the extent similarities exist, they are either well-established 
+mnemonic devices for file names or interface standards. 
+Significantly. USL's moving papers do not establish that any code 
+contained in Net2 is substantially similar to any code in 32V. 
+Instead, USL merely points to similarities in file names, functions, 
+or values as alleged evidence of copying. In fact, those similarities 
+are publicly documented, widely used by programmers, and largely 
+dictated by interface specifications adopted by independent 
+standard-setting organizations (or mandated by USL's own standard 
+interface specifications) to ensure compatibility with applications 
+programs written for USL's UNIX or any Unix-compatible system. As 
+such, they cannot support a claim of copyright infringement.
+
+Rather than being a "classic case of unfair competition" as USL 
+asserts, this case is one where the plaintiff seeks to stifle 
+competition. The industry deregulation of AT&T led to the marketing 
+of UNIX as a for-profit product and eventually led to the 
+establishment in Spring 1991 of a subsidiary, plaintiff USL,whose 
+primary product was UNIX.  USL and Novell Computer formed a joint 
+venture [fn3] to create and license a version of UNIX that, for the 
+first time, could be used in personal computers (as opposed to 
+mainframes and other types of computer configurations). The 
+University's Net2 software can be used by others, including for-
+profit companies, as a basis for an effective operating system for 
+personal computers. By seeking a preliminary injunction against 
+BSDI, USL in essence is seeking an injunction against anyone's using 
+the University's Net2 software. If granted, such an injunction would 
+eliminate USL's potential competitors. In its attempt to obtain an 
+injunction, USL is attempting to rewrite history to meet current 
+goals that could not have been foreseen by its predecessor-in-
+interest in 1978.
+
+  [fn3]  Recent press releases indicate Novell will soon acquire all 
+USL's shares, thereby buying out USL s current majority shareholder, 
+AT&T.
+
+STATEMENT OF FACTS
+
+A. INTRODUCTION TO UNIX AND UNIX-COMPATIBLE SYSTEMS
+
+Although "UNIX" is a trademark originally adopted by AT&T, there 
+are-- in fact -- several Unix-like operating systems that are 
+compatible with USL's "UNIX." These Unix-like operating systems 
+include Xenix (by Microsoft), SunOS (by Sun Microsystems), Ultrix (by 
+Digital Equipment Corporation), OSF/1 (by IBM and other computer 
+vendors), Minix (by Andrew Tanenbaum), Coherent (by Mark Williams) 
+and Xinu (by Douglas Comer). [fn4]  The University began to develop 
+its own variation of Unix -- named the Berkeley Software 
+Distribution ("BSD") -- in the 1970s. The University's BSD software 
+was the basis for SunOS and Ultrix and is generally recognized as 
+one of the most important variants of Unix.
+
+  [fn4] See, Joint Declaration of Dr. Kirk McKusick and Keith Bostic 
+("Joint Decl.") at 1 28.3. There is substantial question whether 
+"UNIX" has become a generic term to describe any of the operating 
+systems described herein.  The University takes no position on that 
+dispute but presents this information to apprise the Court that there 
+are numerous Unix-compatible systems available from various 
+vendors.
+
+As Unix System V Release 4: An Introduction ("Unix Introduction") 
+[fn5] states at p. 14 "Many important innovations to the Unix system 
+have been made at the University of California, Berkeley." The 
+University's involvement began in 1974 and its development of the 
+Unix-like BSD system was aided by an AT&T scientist who spent his 
+sabbatical at Berkeley in 1975. Id. at 15.  During this period, AT&T 
+was not in the computer business and made its primitive UNIX 
+Operating System available to universities, the government and 
+commercial entities at virtually no cost.  Id. at 13.  Pursuant to that 
+program, AT&T licensed, inter alia, an early version of UNIX for the 
+Digital Equipment VAX Computer ("32V") to the University in 1979 
+and it relicensed 32V to the University in 1981 with a broader grant 
+of rights to the University. The University used the early UNIX code 
+for computer research which led to "valuable innovations." Id. at 15. 
+The University's BSD releases (described in more detail in the 
+Declaration of Dr. McKusick) contained numerous performance 
+enhancements which AT&T has incorporated into its version of Unix.  
+Id. at 14-15.
+
+    [fn5]  This text, published in 1990, was authored by K. Rosen, R. 
+Rosinski, and J. Farber, three AT&T employees at the time. See p. 
+XXXV.  The book is copyrighted by AT&T.   Since AT&T is the 
+predecessor-in-interest of USL and the text was written before 
+AT&T created USL, the Court should have little hesitation accepting 
+this text as support for factual assertions.  For the Court's 
+convenience, Chapter 1 of "Unix Introduction" is attached to the 
+Declaration of Joel Linzner.
+
+The parallel developments of AT&T's UNIX, the University's BSD, 
+Sun's SunOS, Microsoft's Xenix, etc., created problems for 
+applications programmers who wished to build programs that could 
+run on any computer using a Unix-like operating system.
+
+	"To solve these problems, *various standards have been 
+	developed.*  These standards define the characteristics a 
+	system should have so that applications can be built to work 
+	on any system conforming to the standard."
+
+Unix Introduction at 16-17. AT&T itself led the crusade to 
+standardize interfaces when it published the System V Interface 
+Definition ("SVID") in 1983.  Id. at 17.  These standard interfaces 
+were published by AT&T so that "[d]evelopers can build programs 
+that are *guaranteed to work on any machine running a SVID-
+compIiant version of the Unix System* [e.g., BSD or Xenix]." Id.   
+Moreover, an independent effort by users and the Institute for 
+Electrical and Electronic Engineers has resulted in POSIX, "a family 
+of standards that define the way applications interact with an 
+operating system." Id.  See also, Joint Decl., at Para. 28.3.  POSIX has 
+been endorsed in the United States by the National Institute of 
+Standards and Technology and it declares standards for the operating 
+system interface, system calls, libraries, etc.  Id.  *As a result of 
+SVID. POSIX and related international standards. all variants of Unix 
+have certain similarities which USL incorrectly has seized upon as 
+"proof" of copyright infringement.*
+
+USL's current version of UNIX, SVR4, melds the most popular 
+variations of Unix into a single operating system "that meets the 
+needs described by various standards committees and vendor 
+organizations." Unix Introduction, at 18.  As aresult, approximately 
+50% of USL's current SVR4 is comprised of BSD code.  Id. at18-19, 
+Fig. 1-2.  See also, Id. at 19 (BSD's commands), 20 (BSD's C Shell), 
+32(BSD's system calls for applications doing real-time processing), 
+22 (BSD's networking capabilities), 23-4 (BSD's file switch and file 
+systems); See also, McKusick Decl., at Para. 14.  USL pays no 
+royalties for its use of the University's original code and concepts.  
+McKusick Decl., at Para. 4.  This litigation will determine whether 
+USL may enjoin others also from freely using the University's 
+original code and concepts.
+
+B. THE UNIVERSITY'S LICENSE AGREEMENTS WITH AT&T
+
+The mutual intent of the University and AT&T remained unchanged 
+throughout a series of license agreements the parties entered with 
+respect to AT&T's UNIX Operating System Software (Karels Decl., at 
+Para. 6; Wilson Depo., at 41:7-24; 43:1-17; 75:11-76:4); AT&T 
+authorized the University to develop enhancements, modifications 
+and derivative software for the public benefit.  Towers Decl., at 
+Para. 4; Karels Decl., at Para. 5 . The contracts, letters and 
+communications between the University and AT&T, when read 
+together, prove the University's ownership over its enhancements 
+and modifications of AT&T code and illuminate what limitations 
+actually were imposed on the University's public software 
+distributions. Those limitations are much narrower than what USL 
+now claims.
+
+As early as 1978, the University informed Western Electric 
+(AT&T'ssubsidiary) that it was receiving requests by non-Western 
+Electric licensees for software the University had derived from 
+early versions of AT&T's UNIX.  Exhibit A, attached to the Shapreau 
+Decl.  Western Electric's response to the University's inquiry 
+regarding its distribution of derivative software to non-licensees 
+set the precedent for the future:
+
+[W]e take no position with regard to your use or distribution of 
+software developed by you which does *not contain* any of our 
+proprietary information such as, without limitation, the computer 
+programs and documentation, or any portion thereof, related to the 
+UNIX Operating System, including methods and concepts utilized 
+therein. (Emphasis added.) Exhibit B, attached to the Shapreau Decl.
+
+Mr. Edwin Baldwin, then Director of Licensing at Western Electric 
+who signed Exhibit B, admitted that any University enhancements 
+which did not "include our computer programs or documentation or 
+the methods and concepts ... would appear not to be governed by the 
+Software License Agreement." Baldwin Depo., at 125:8-128:11.  In 
+other words, as long as programs developed by the University from 
+UNIX did notcontain UNIX code, documentation or trade secrets, AT&T 
+had no objection to public dissemination. [fn6]
+
+  [fn6]  To the extent that the methods and concepts at issue in Net2 
+can also be found in the Sixth Version of the UNIX Operating System, 
+USL can make no claim to these methods and concepts because 
+Western Electric permitted the University to use and disclose its 
+methods and concepts when it amended the license agreement for 
+the Sixth Edition of the UNIX Operating System as follows:
+
+This is to advise you that the parenthetical clause "... including 
+methods and concepts utilized therein)..." in Section 4.05 of the 
+Agreement may be considered deleted from such section. Exhibit D, 
+attached to the Shapreau Decl.
+
+Moreover, to the extent USL would point to any "methods or 
+concepts" in 32V, they were well documented before Net2 was 
+released. See Joint Decl. Paras. 27, 28.1.1-28.6, 31,33, 36, 37, 39. 
+40, 45, 47, 50, 53 and 56. [end fn6]
+
+The April 1, 1979 license for 32V attached to USL's first amended 
+complaint is for a central processing unit (CPU) in the Chemistry 
+Department and not in the Computer Sciences Department. However, 
+in August 1981, an educational license for 32V was entered into 
+between the parties for a CPU in the Computer Sciences Department. 
+The 1981 agreement provides a much broader grant to use than the 
+1979 agreement relied upon by USL. The 1981 license agreement 
+provides in relevant part as follows:
+
+Uses for "academic and educational purposes" means uses directly 
+related to teaching and degree-granting programs *and uses in 
+research by students and faculty, provided that the results of such 
+research are not intended primarily for the benefit of a third party 
+and that such results are published and are available to the public 
+for no more than reproduction and shipping charges.* Exhibit C, 
+attached to the Shapreau Decl.
+|
+The underlined language did not appear in the 1979 32V license.
+
+Once AT&T divested, effective January 1, 1984, AT&T's orientation 
+shifted to a more commercial vein (Wilson Depo., at 129:16-130:15; 
+Frasure Depo., at 195:3-10) which is evidenced by AT&T's attempts 
+to impose new restrictions on the University to generate additional 
+profits. Towers Decl., at 11 5-6.  One such attempt by AT&T was the 
+redefinition of the defined term "Licensed Software" in the System 
+V license agreement signed by the University on July 27, 1984. 
+Shapreau Decl., Exhibit E; Towers Decl., at 1 5; Karels Decl., at 1 5. 
+With its new definition of "Licensed Software," AT&T apparently 
+was attempting to obtain control over any "modification" or 
+"derivative work" which was "based on" AT&T source code or 
+documentation, whereas previously AT&T only had claimed rights 
+with respect to software that "contained" or "included" its source 
+code.[fn7]  However, paragraph 1.01 (a) of Appendix A to the System 
+V license agreement created ambiguity (in light of the new 
+definition of "Licensed Software" in the granting clause) by stating 
+the historic understanding between the parties:
+
+Uses for 'academic and educational purposes' means...uses made in
+     
+connection with the development of enhancements or modifications 
+to LICENSED SOFTWARE provided that...(ii) such results. 
+enhancements and modifications (all to the extent that they do not 
+include any portion of LICENSED SOFTWARE) are made available to 
+anyone (including AT&T and its associated companies) without 
+restriction on use, copying, or further distribution notwithstanding 
+any proprietary right (such as a copyright or patent right) that could 
+be asserted by [the University]...(Emphasis added.) Exhibit E, attached 
+to the Shapreau Decl.[fn8]	
+
+Concerned by AT&T's apparent attempt to restrict the University's 
+rights in its BSD software (which had an ancestry in 32V, not 
+System V), the University requested a meeting in which the 
+definition of "Licensed Software" could be clarified.  Karels Dec., at 
+Para. 6.  This was important to the University because it was about 
+to license 4.2BSD and 4.3BSD to AT&T and other licensees.  Towers 
+Decl., at Para. 5; Karels Decl., at Paras. 4, 9.  A meeting was held in 
+California on March 6, 1985 between the University and 
+representatives of AT&T to discuss this vital issue (Karels Decl., at 
+Paras 6-7) and AT&T's effort to increase the fee BSD licensees 
+would pay if they used computers other than the DEC VAX. Towers 
+Decl., at Para. 6.
+
+  [fn7]  The applicable language in the granting clause of the System 
+V license agreement prior to its modification by the parties stated 
+as follows:	          
+LICENSED SOFTWARE means all or any portion of the computer 
+programs, other information and documentation...(iii) prepared by 
+LICENSEE as a modification of or a derivative work based on any of 
+the materials so listed or furnished. Exhibit E, attached to the 
+Shapreau Decl.
+
+   [fn8]  Three weeks after the University signed the System V 
+license agreement, AT&T amended the agreement by stating in an 
+August 15, 1984 letter that:  By way of clarification, while we do 
+not require that results, enhancements, and modifications be made 
+public, we do require that if the material is to be released at all,
+ 
+it must be made available to anyone. Exhibit F, attached to the 
+Shapreau Decl.
+
+At the March 6, 1985 meeting the University expressed its concern 
+to AT&T representatives that under the new definition of "Licensed 
+Software," AT&T arguably would control the distribution of the 
+original code in the University's enhancements to 32V even if they 
+did not contain AT&T's source code, which was a clear departure 
+from the parties' prior understanding of the University's rights with 
+respect to the enhancements it developed from 32V. Towers Decl., at 
+Paras 4-5; Karels Decl., at Paras. 5-7. AT&T responded to the 
+University's concerns by indicating that it had not intended to 
+change the meaning of the definition of "Licensed Software" and that 
+it would confirm the parties' understanding with a letter.  Karels 
+Decl., at Para. 7.[fn9]
+
+  [fn9] Previously, "Licensed Software" had been defined to include 
+only "the COMPUTER PROGRAMS and the documentation, or any 
+portions thereof, generally identified below and specifically listed 
+in the attached Schedule: Unix/32V' Time-Sharing System, Version 
+1.0." Exhibit C, attached to the Shapreau Decl.  USL's witnesses 
+testified that "Licensed Software" as that definition was used in the 
+32V agreement was comprised of source and/or object code 
+(identified in the software schedule attached to the license 
+agreement), documentation, and methods and concepts. USL's 
+witnesses did not identify modifications, enhancements or additions 
+developed by the licensee as a component of the "Licensed Software." 
+Wilson Depo., at 103:20-104:21; Baldwin Depo., at 121:5-125:5.
+
+The May 15, 1985 letter of clarification -- signed by both parties -- 
+provides the University with a complete defense to USL's 
+infringement charge:
+
+This is to clarify our understandings regarding certain provisions in 
+the referenced agreement and to amend the definition of LICENSED 
+SOFTWARE therein.
+
+Regarding the definition of LICENSED SOFTWARE in the granting 
+clause, *AT&T does not assert any ownership interest in any 
+modification or derivative work made by LICENSEE* [the University] 
+and does not consider that such definition claims such an interest. 
+(Emphasis added.)
+
+However, for clarification, AT&T proposes to amend such
+definition by substituting the following therefor:
+
+--... LICENSEE agrees that *any modification or derivative work 
+prepared by it that contains any LICENSED SOFTWARE shall be 
+treated as LICENSED SOFTWARE* hereunder (emphasis added)
+
+Regarding Section 1.01 (a) in Appendix A, the phrase "provided 
+that...neither the results of such research nor any enhancement or 
+modification so developed is intended primarily for the benefit of a 
+third party..." *permits LICENSEE to use LICENSED SOFTWARE for 
+sponsored research. provided the fruits of such research are not 
+restricted by the sponsor and are published or otherwise made 
+available to the public.*  Exhibit A, attached to the Karels 
+Decl.[fn10]
+
+  [fn10]  Although the "re" line of this letter suggests that the 
+clarification and amendment pertained to the System V license 
+agreement, the clarification pertained to future distributions of 
+University BSD software, which had a heritage in 32V,  System V. 
+Karels Decl. Para. 9.
+
+In other words, AT&T agreed not to claim ownership in any 
+derivative works developed by the University; however, the 
+University agreed that any derivative works which "contains" AT&T 
+code (i.e., "Licensed Software") would be treated as if it were AT&T 
+code and distributed only to AT&T licensees. See Frasure Depo., at 
+154:15-155:13.
+
+
+Shortly thereafter, AT&T further memorialized the parties' 
+understanding regarding ownership and distribution of Unix 
+enhancements by drafting the Educational Software Agreement No. 
+E-SOFT-00089 (SOFT-00089). Wilson Depo.,at 139:10 -140:1 (the 
+SOFT-00089 agreement was a "clearer representation of our
+intent")[fn11].  This supplemental agreement executed in November 
+1985 expressly provides that AT&T claims no ownership interest in 
+the University's software as long as it does not contain AT&T's 
+source code or disclose its methods and concepts.[fn12]  Consistent 
+with the May 15, 1985 letter-amendment (Exh. A to Karels Decl.) 
+SOFT00089 provides in its "Grant of Rights:"
+
+Para. 2.01 (a) ...[the] right to use includes the right to modify such 
+SOFTWARE PRODUCT and to prepare derivative works based on such 
+SOFTWARE PRODUCT, provided that any such modification or 
+derivative work that contains any part of a [AT&T] SOFTWARE 
+PRODUCT subject to this Agreement is treated hereunder the same 
+as such [AT&T] SOFTWARE PRODUCT.  *AT&T-IS claims no ownership 
+interest in any portion of such a modification or derivative work 
+that is not part of a [AT&T] SOFTWARE PRODUCT.* (Emphasis added.)
+
+Para. 2.01(b)(ii) ...results enhancements and modifications (all to the 
+extent that they do not include any portion of [AT&T] SOFTWARE 
+PRODUCTS) are made available to anyone (including AT&T-IS and its 
+corporate affiliates) without restriction on use, copying or further 
+distribution.... Exhibit G, attached to the Shapreau Decl.
+
+
+Thus, again, AT&T agreed in writing that the University owned all 
+derivative code and that such derivative enhancements and 
+modifications should be made "available to anyone" to the extent 
+"they do not include" AT&T code.[fn13]
+
+
+
+  [fn11]   The SOFT-00089 license agreement was intended to 
+"clarify" the prior intent of the parties.Wilson Depo., at 139:10-
+140:1. AT&T's Director of Licensing, Otis Wilson, testified that the 
+language used prior to that contained in the SOFT-00089 license 
+agreement was "somewhat confusing to some people in that they 
+thought we were trying to assert ownership to anything they 
+created, even though it contained nothing of ours. So this is to 
+clarify that what's yours is yours and what's ours is ours"(emphasis 
+added). Wilson Depo., at 75:24-76:4. USL's Mitzi Bond admitted that 
+she understood 2.01(b)ii) meant that "enhancements and 
+modifications made by the licensee were to be made available to 
+anyone so long as they did not include any portion of the software 
+products licensed under the agreement" emphasis added). Bond Depo., 
+at 137:19-138:19. However, Ms. Bond also has espoused a mental 
+"contamination" theory by which any university student exposed to 
+AT&T code would be beholden to AT&T for any software product 
+he/she might subsequently develop. Bond Depo,at 220:2-13, 237:24-
+238:8.
+   [fn12]  USL's witness,Mitzi Bond,testified that the SOFT-00089 
+superseded AT&T's earlier agreements.Bond Depo., at 132:10-134:2. 
+Ms. Bond testified that a licensee's use of 32V on a CPU licensed 
+under SOFT-00089, would be subject to the terms and conditions of 
+SOFT-00089. Bond Depo., at 39:7-43:5 referring to Exhibit J, 
+attached to the Shapreau Decl..
+  [fn13] It appears that AT&T similarly tried to restrict other 
+licensees' rights with respect to code they derived from AT&T's 
+UNIX, because AT&T sent out a clarification to all its licensees in 
+August, 1985 which stated: "Section 2.01. The last sentence was 
+added to assure licensees that AT&T will claim ownership in the 
+software that they developed -- only the portion of the software 
+developed by AT&T." Exhibit H, attached to the Shapreau Decl. The  
+2.01 referred to in Exhibit H is the same 2.01 contained in the SOFT-
+00089 agreement. Frasure Depo., at 1 08:21 -1 1 0; 1 1 2:7-21. USL's 
+Mitzi Bond participated in the preparation of Exhibit H. She testified 
+that the clarification to  2.01 "indicates that all we did was add a 
+sentence to the existing one so that licensees would clearly 
+understand that we were not claiming the ownership in code that 
+they developed that didn't contain ours" (emphasis added). Bond 
+Depo., at 189:14-191:21.
+                                                    
+
+Finally, AT&T acknowledged the University's ownership rights in the 
+University's derivative BSD code in June 1986, when AT&T signed 
+license agreements with the University for 4.2BSD and 4.3BSD 
+(which originated with 32V). Towers Decl., at Para. 3 and Exhibit A, 
+attached. The agreement for 4.2/4.3BSD states in relevant part:
+
+WHEREAS, *The Regents of the University of California (the 
+University) is the proprietor and owner of enhancements and 
+additions to 32V,* which together with parts of 32V comprise 
+computer programs and documentation entitled "Fourth Berkeley 
+Software Distribution ("4BSD)....(Emphasis added.)
+* * *
+
+Title: AT&T agrees that 4.2 and 4.3 contain proprietary software 
+belonging to the University.  *AT&T shall have no right, title or 
+interest in or to such proprietary software* except as expressly set 
+forth in this Agreement. (Emphasis added.) Exhibit A, attached to the 
+Towers Decl.
+
+AT&T's admission that the University 'owned'' the enhancements I;d 
+additions to 32V included the University's right to distribute its 
+software to the public, as evidenced in the testimony of AT&T's 
+former Director of Licensing, Otis Wilson:
+
+Q: And you weren't trying to assert restrictions on the part [of the
+software] that did not belong to AT&T?
+
+A: That's correct. In other words, if you follow that through, it's 
+yours.  I have no jurisdiction whatsoever. Wilson Depo., at 77:19-23.
+
+Q:... 'when the university owns it,' do you mean that they are free and
+clear of any restrictions by AT&T?
+
+A: Right... Wilson Depo., at 122:5-10.
+
+Indeed, the mere fact that AT&T needed a license to use the 
+University's BSD software constitutes an additional admission that 
+enhancements contained in 4.2BSD and 4.3BSD that were derived 
+from 32V were not the property of AT&T.[fn14]
+
+However, because 4.2BSD and 4.3BSD also contained some AT&T 
+source code, the University never licensed these products to non-
+AT&T licensees. Towers Decl., at 13.  Net2, on the other hand, did not 
+contain proprietary AT&T source code and, therefore, could be 
+distributed to persons not holding an AT&T license
+
+  [fn14]  In 1988, the University registered its copyrights in 4.2BSD 
+and 4.3BSD.  DeFazio Exhibits G and H. These registrations indicate 
+that the University was the author of various additions, 
+enhancements and modifications to 32V. The registration for 4.2BSD 
+indicates that 50% of the commands were derived from 32V and 80% 
+of the files and 50% of the commands had been added to 32V by the 
+University. The registration for 4.3BSD indicates that 45% of the 
+commands were derived from 32V and that 85% of the files and 55% 
+of the commands had been added to 32V by the University.
+
+
+THE HISTORY OF THE UNIVERSITY'S NET2 RELEASE
+
+The University released the first Berkeley Software Distribution 
+(1BSD) in 1978.  McKusick Decl., at Para. 2. That first release was 
+comprised of applications programs for PDP-11 computers running 
+AT&T's Version 6 UNIX.   Over the next ten years, the University 
+released improved BSD software for various computers, including 
+the DEC VAX, Computer Consoles' 6/32, and Hewlett-Packard's 
+9000/300 series. Beginning with 3BSD, released in 1980, each BSD 
+release has been a complete system, including the operating system. 
+Id.
+
+Since the BSD releases contained some AT&T code, they were 
+distributed only to AT&T licensees. However, in 1987, the University 
+began to distribute portions of the system that contained no AT&T 
+code to non-AT&T licensees. Id., at Para. 2.8 and Para. 2.9. Moreover, 
+large portions of 4.3BSD-Tahoe and 4.3BSD-Reno were marked as 
+freely redistributable without an AT&T license; those files 
+contained no AT&T code and, therefore, under the parties' 
+agreements were owned by the University and were to be available 
+to the public. Id., at Para. 2.10 and Para. 2.12.
+
+The University released Net1 in November 1988. Net1 was largely 
+the AT&T-free files from 4.3BSD-Tahoe and it was clearly marked 
+as requiring no AT&T license. At least three copies of Net1 were 
+shipped to AT&T. At no time did AT&T complain that Net1 was an 
+infringing work released in violation of any license agreement even 
+though -- like the subsequent Net2 release -- it could be traced back 
+to 32V. Id., at Para. 2.11.
+          
+Net2 was released in June 1991. Unlike USL's SVR4, Net2 is not a 
+complete system; in its present state, Net2 will not compile and 
+function. Id., at Para. 2.13.  Net2 consists of the redistributable files 
+from 4.3BSD-Reno which contained no AT&T code, new features that 
+contain no AT&T software and utility programs that have analogs in 
+32V but which were completely rewritten with new, original code 
+that implemented standard POSIX interfaces. Id., at Para. 2.13. The 
+University made every attempt to ensure that none of the files 
+released in Net2 contained AT&T code. Id., at Para. 2.13 and Para. 3 
+[fn15]  Accordingly, USL does not claim in its pending motion that 
+any of the 4,193 source files in Net2 are comprised of 32V code.
+
+  [fn15]  Indeed, several of the Net2 files specifically deleted all 
+source code. See e.q.. Joint Decl. Paras. 31, 45. If any Net2 file 
+mistakenly included a significant volume of 32V code, the University 
+stands ready to remedy the error.
+
+
+                            ARGUMENT
+
+A.	     USL CONTRACTUALLY AUTHORIZED THE UNlVERSlTY' TO 
+DEVELOP AND DISTRIBUTE DERIVATIVE WORKS AND IS ESTOPPED 
+FROM ASSERTING A COPYRIGHT AGAINST UNIVERSITY DEVELOPED 
+DERIVATIVE WORKS
+
+USL and its predecessor entities contractually authorized the 
+University to develop and non-commercially distribute to the public 
+the University's modifications, enhancements and derivative works 
+as long as the University's software did not contain USL's code or 
+disclose its trade secrets. See, Section II, B, supra. This contractual 
+grant of rights provides a complete defense to USL's claim that Net2 
+is an infringing work. Compare, Platinum Records Co. v. Lucasfilm, 
+Ltd., 566 F.Supp. 226, 227 (D.N.J. 1983) (rights granted by license 
+agreement provide complete defense to copyright infringement 
+claims).
+
+The law is clear that the authority to copy, distribute or display a 
+copyrighted work granted by a license agreement is an absolute 
+defense to a claim of copyright infringement. See, Effects 
+Associates, Inc. v. Cohen, 908 F.2d 555,558 (9th Cir. 1990) (company 
+which created and delivered footage at request of movie maker 
+impliedly granted movie maker non-exclusive license to incorporate 
+footage into movie, and thus movie maker did not infringe on maker's 
+copyright);Apple Computer. Inc. v. Microsoft Corp., 717 F. Supp. 1428, 
+1432 (N.D. Cal. 1989)(to the extent license agreement authorizes the 
+use of visual displays, it provides a defense to infringement claims 
+based on the use of such visual displays).
+
+A copyright license is a contract like any other contract and the 
+starting point of the analysis concerning the license must be the 
+terms of the license. Apple Computer. Inc. v. Microsoft Corp., supra, 
+717 F. Supp. at 1432. The licensee may properly pursue any uses 
+which may reasonably be said to fall within the license. "If the 
+words are broad enough to cover the new use, it seems fairer that 
+the burden of framing and negotiating an exception should fall on the 
+grantor." Bartsch v. Metro-Goldwyn-Mayer. Inc., 391 F.2d 150, 155 
+(2nd Cir. 1968). In Bartsch, Judge Friendly held that a license 
+agreement that authorized a motion picture company to"copyright, 
+vend, license and exhibit such motion picture photoplay throughout 
+the world" included the right to televise the motion picture version 
+of the musical play,although television technology was not known at 
+the time the contract was entered	into. Placing the burden of 
+expressly excluding a particular use on the grantor, Judge Friendly 
+wrote: "If Bartsch or his assignors had desired to limit 'exhibition' 
+of the motion picture to the conventional method where light is 
+carried from a projector to a screen directly beheld by the viewer, 
+they could have said so." Bartsch, supra at 155. See also, Platinum 
+Record Company. Inc. v. Lucasfilm. Ltd., 566 F. Supp. 226,227 (1983) 
+(where license agreement granted right to perform motion picture 
+"by any means or methods now or hereafter known," it was 
+immaterial whether the copyright owner anticipated new 
+development of video tapes and video tape recorders; Rooney v. 
+Columbia Pictures Industries, 538 F. Supp. 211 (S.D.N.Y. 1982).
+	          
+The University's right to develop and non-commercially distribute to 
+the public the University's modifications, enhancements and 
+derivative works cannot be repudiated by USL at this late date. 
+Moreover, the parties' actions throughout the licensing history 
+demonstrates the intent of the licenses and estops USL from 
+asserting its copyright infringement claim for the entire period in 
+dispute.
+
+Four elements are necessary to establish an equitable estoppel 
+defense to a copyright infringement claim: (1) the plaintiff must 
+know the facts of the defendant's infringing conduct; (2) the 
+plaintiff must intend that his conduct be acted on or must so act 
+that the defendant has a right to believe that it is so	intended; 
+(3) the defendant must be ignorant of the true facts; and (4) the 
+defendant must detrimentally rely on plaintiff's conduct. Hadady 
+Corp. v. Dean Witter Reynolds. Inc., 739 F.Supp. 1392, 1399 (C.D. Cal. 
+1990). In this case, all four elements are satisfied with respect to 
+USL's copyright infringement claim.
+
+First, the evidence is undisputed that USL knew that the University 
+developed and distributed enhancements to the UNIX software. In 
+fact, the license agreements specifically provided for these 
+developments:
+
+--in 1981, in the 32V license for the University's Computer Sciences 
+Department, AT&T granted the right to use 32V for research 
+"provided the results of such research ... are published and are 
+available to the public ...." [Exhibit C, attached to the Shapreau Decl.;
+
+--the May 15, 1985, the letter-amendment signed by both parties 
+following a meeting called specifically to discuss the University's 
+rights to the code it developed stated, "AT&T does not assert any 
+ownership interest in any modification or derivative work made by 
+[the University]" [Exhibit A, attached to the Karels Decl.];[fn16]
+
+  [fn16]  AT&T made similar assurances to other licensees.  See 
+Exhibit H, attached to the Shapreau Decl.
+
+--in November 1985, the new software boiler plate which AT&T 
+claims superseded prior licenses acknowledged that AT&T "claims 
+no ownership interest in any portion of such a modification or 
+derivative work" that does not include AT&T code Exhibit G, attached 
+to the Shapreau Decl.];
+
+--in June 1986, AT&T signed the University's 4.2/4.3BSD License
+Agreement, acknowledging the University "is the proprietor and
+owner of enhancements and additions to 32V ...." [Exhibit A,
+attached to the Towers Decl.].
+
+Second, the University has exercised the rights granted to it by 
+AT&T as follows:
+
+-	the TCP/IP files (originally part of 4.2BSD) were distributed 
+to non-AT&T licensees in April 1988;
+
+-	over 1300 files from 4.3BSD-Tahoe were released in June 
+1988 and marked as freely redistributable to non-AT&T licensees;
+
+-	Net 1 - 687 source code files - was released in November 1988
+to non-AT&T licensees;
+
+- 	2200 source code files from 4.3BSD-Reno were released as 
+freely redistributable in July 1990.
+
+McKusick Decl., at Paras. 2.9-2.12. Third, there is no evidence that 
+the University had reason to believe that USL was asserting 
+copyright protection over the University's enhancements until USL 
+initiated the present lawsuit. At no time did AT&T complain
+that the University was in breach of any license agreement or in 
+violation of the Copyright Act. Id.  Finally, the University 
+detrimentally relied on USL's actions demonstrating that USL was 
+not asserting its copyright in 32V against the University's 
+enhancements by expending time and effort in continuing to develop 
+such enhancements and distributing those enhancements to the 
+public (and to AT&T).
+
+Only one reasonable conclusion can be drawn from these facts. USL 
+either granted the University a license to develop and release 
+enhanced software or USL is equitably estopped to assert a 
+copyright infringement claim based on the University's development 
+and release of any enhancement to UNIX software. Any other 
+conclusion would render the parties' agreements illusory.
+
+B. NET2 IS NOT AN INFRINGING WORK
+
+USL argues at pps. 28-38 of its memorandum that "substantial 
+portions of Net2 were copied from UNIX 32V." USL is wrong both as a 
+matter of fact and as a matter of law
+
+First, Net2 is not copied from 32V. USL cites no portion of the Net2 
+program source code which is copied from 32V source code. Instead, 
+USL misleadingly directs the Court's attention to some file names or 
+function names that are common to both programs; those file and 
+function names are mnemonics dictated by programming conventions 
+or interface requirements which are not protectible elements of 
+32V; more importantly, the files and functions cited by USL are 
+implemented in Net2 by wholly original source code bearing no 
+similarity to 32V.
+
+Second, USL is wrong when it argues that Net2 is an infringing 
+derivative work merely because the "starting point" of Net2 was 
+32V. Even if the University did not have the contractual right to 
+develop and distribute enhancements or improvements to 32V, Net2 
+still could not be considered an infringing work because it is not 
+"substantially similar" to protected elements of 32V.
+
+1.	THE ANCESTRY OF NET2 IN 32V IS NOT GROUNDS FOR FINDING
+INFRINGEMENT
+
+USL would have this Court label Net2 an infringing derivative work 
+simply because the University's development efforts originated in 
+the late 1970s with 32V. The nation's leading treatise on copyright 
+law should give the Court pause before it accepts USL's invitation to 
+commit error in this manner: "[A] defendant may legitimately avoid 
+infringement by intentionally making sufficient changes in a work 
+which would otherwise be regarded as substantially similar to that 
+of plaintiff's." 3 Nimmer on Copyright  13.03 [B] at 13-37 (1980), 
+quoted with approval in Eden Toys, Inc. v. Marshall Field & Co., 675 
+F.2d 498, 501 (2nd Cir. 1982) and Warner Bros. v. American 
+Broadcast Companies, 654 F.2d 204, 211 (2nd Cir. 1981).
+
+"Defendants are correct that if one starts with an infringing copy          
+and makes enough changes eliminating the copied expression, the 
+object eventually will cease to infringe. This may occur even          
+before the last copied vestige have disappeared if the copied 
+elements has been reduced to de minimis proportions."
+Merton Co. v. Tony Trading of Hong Kong. Ltd., 6 U.S.P.Q.2d 1156, 1157 
+(S.D.N.Y.1987). See also, See v. Durang, 711 F.2d 141, 142 (9th Cir. 
+1983) ("copying deleted or so disguised as to be unrecognizable is 
+not copying.").[fn17]
+
+   [fn17]  These precedents have been applied to copyrighted 
+computer programs such as the one at issue here. In NEC Corp. v. 
+Intel Con)., 10 U.S.P.Q.2d 1177, 1187 (N.D. Cal. 1989), NEC had 
+changed Intel's micro-code to such a degree that "there remain[ed] no 
+basis for a claim of copying or even substantial similarity. In 
+Computer Associates International. Inc. v. Altai. Inc., 775 F.Supp. 
+544(E.D.N.Y. 1991 ) aff'd F.2d (2nd Cir. 1992), defendant recalled an 
+infringing program and wrote new code for 30% of it to certain 
+defined parameters (Id. at 554); the revised program was held not to 
+be infringing notwithstanding its tainted pedigree. Id. at 561-62.
+
+Net2 is light years beyond 32V in terms of its functionality, 
+efficiency and implementation. The source code which makes Net2 
+far more powerful than 32V is original code developed by the 
+University. Joint Decl., at 12. USL does not claim otherwise. Instead, 
+USL points to an insignificant number of "artifacts" which"prove" a 
+common starting point in 32V: the similarity in a mere 30 file 
+names(0.2% of the Net2 files, Joint Decl., at 1 28 and 1 13); 16 
+kernel functions with similar parameters (out of 3,230 Net2 kernel 
+functions or 0.4%, Id., at 1 39) and 66 matching symbols (0.5% of 
+Net2's 12,529 symbols, Id., at 147). The Copyright Act does not 
+recognize the doctrine of "fruit of the poisonous tree" [3 N. Nimmer 
+and D. Nimmer, Copyright  14.06 [C] (1991)]; therefore, USL must 
+demonstrate far more than Net2's ancestry in 32V -- an ancestry 
+which has all but been erased -- to establish that Net2 is an 
+infringing work.
+
+2. NET2 IS NOT SUBSTANTIALLY SIMILAR TO 32V
+
+To prove that Net infringes 32V, USL must show that Net2 is 
+substantially similar to 32V. Whelan Assoc.. Inc. v. Jaslow Dental 
+Laboratory, Inc.,797 F.2d 1222, 1232 (3rd Cir. 1986). In conducting 
+the "substantial similarity comparison, the Court must disregard 
+unprotected elements of 32V. Brown Bag 15 Software v. Symantec, 
+960 F.2d 1465, 1475-6 (9th Cir. 1992).  Cf. Feist 16 Publications. 
+Inc. v. Rural Tel. Service Co.,   U.S. , 111 S.Ct. 1282, 1290 (1991) 17 
+("The mere fact that a work is copyrighted does not mean that every 
+element of the 8 work may be protected.") USL's copyright in 32V 
+(assuming it is valid) cannot prevent others from using the 
+unprotected elements of the program. Brown Bag Software, 960 F.2d 
+at 1476.
+
+The unprotectible elements of a computer program were explicated 
+bythe Federal Circuit in Atari Games Corp. v. Nintendo of America. 
+Inc., F.2d 24 U.S.P.Q.2d 1015, 1020 (Fed. Cir. 1992):
+
+"After separating the program into manageable components, the 
+court must next filter the unprotectible components of the program
+from the protectible expression. The court must filter out as
+unprotectible the ideas, ... expression already in the public domain,
+expression dictated by external factors (like the computer's
+mechanical specifications, compatibility with other programs. and
+demands of the industry served by the program) "
+
+Accord, Computer Assoc. Int'l., Inc. v. Altai, Inc.,   F.2d  , 1992, 23 
+U.S.P.(.2d 1241, 1252-3 (2nd Cir. 1992); Apple Computer v. Microsoft 
+Corp., 799 F.Supp. 1006, 1020-21 (N.D. Cal. 1992). Every one of the 
+"similarities" between 32V and Net2 cited by USL's expert, Dr. 
+Carson, falls within the Federal Circuit's description of the 
+unprotected elements of a computer program.
+
+Although page 31 of USL's brief states "Dr. Carson has found 
+numerous instances of identity or substantial similarity between 
+source code within the Net2	and Unix/32V kernels", nothing could be 
+farther from the truth. As the Court may read for itself, Dr. Carson's 
+affidavit makes no mention of any source code similarity between 
+Net2 and 32V. Instead, he points to file names, function names and 
+defined constants. See, Carson Affid., at Paras. 28, 32, 47. These 
+alleged similarities are de minimis in number but, more importantly, 
+they are not protected by any copyright USL may have in 32V because 
+they are "dictated by external factors." Atari Games,supra; Computer 
+Associates, supra; Brown Bag Software, supra.
+
+Dr. Carson points to similarities in the names of nine source code 
+files in Net2 (1..7% of the total 539 Net2 kernel source code files 
+and 0.2% of the total Net2 source files, Joint Decl., at 128.1). Carson 
+Affid., at Para. 28. In one of the nine, the Net2 file contained no 
+source code at all; the code in the other eight source code files is all 
+original material, Joint Decl., at Para. 28.1. The eight file names are 
+similar because the file names are mnemonics which -- for 
+technical reasons -- are limited to 10 characters and which -- by 
+convention -- describe the contents of the file. Id., at Para. 26. With 
+such a limited range of possible "expression," one would expect to 
+find some duplication. Thus "acct" is an obvious mnemonic for 
+"accounting" and the"clock" file describes the "clock" function. All of 
+the "similarities" cited by Dr.Carson are explainable as standard 
+industry mnemonics or programming conventions.  Id. at Paras. 
+28.1.2-28.2. Those mnemonics are not protectible even if they were 
+probative. [fn18]
+
+Dr. Carson also points to 20 header file names. Carson Affid., at 
+Para. 28. The "header files define how utilities obtain services from 
+the operating system." Joint Decl., at Para. 28.3. Similarity in header 
+file names is dictated by standards and functionality requirements 
+so that applications programs written for all variants of Unix will 
+work with Net2:
+
+"If the names of the header files or their contents are changed, or 
+the function names are changed or take different parameters, then 
+utility programs and device drivers that were those header files or 
+use those functions will no longer work."
+* * *
+
+"Any operating system wishing to offer kernel services in a 
+compatible fashion with the Unix interface specifications has no 
+choice but to have the exact same header file names and contents, 
+and functional interfaces.... The header files have to exist, with the 
+name used by the standard, and with the specific contents listed by 
+the standard, for an operating system to be certified as complying 
+with the standard."
+ 
+Joint Decl., at Para. 28.3. Four of the header file names cited by Dr. 
+Carson are "nonsensical;" the remainder are required interfaces. Id., 
+at Para. 28.6. Accordingly, the header file names fall squarely within 
+the Federal Circuits' holding in Atari Games that "expression 
+dictated by external factors (like the computer's mechanical 
+specifications, *compatibility with other programs. and demands of 
+the industry* ...)"  are not protectible elements of a computer 
+program and, therefore, provide no grounds for a finding that Net2 is 
+an infringing work. See also, Apple Computer, supra, 799 F.Supp. at 
+1021 ("The functionality of a feature may deprive it of protection 
+under the copyright laws.")[fn19]
+2 4
+
+  [fn18]  The Copyright Office's Regulation 325.02(c) states that 
+mnemonics are not copyrightable elements of a work.
+
+  [fn19]  Analysis of the function names cited by Dr. Carson is the 
+same. Joint Decl. Para. 32. The statement by Dr. Carson in Para. 33 of 
+his affidavit that the functions with the same names do "precisely 
+the same task in both the UNIX/32V and Net2 code" is misleading. 
+Joint Decl. Para. 33. Moreover, "The Net2 distribution did not contain 
+actual source code that implemented any of these functions listed in 
+1 36], therefore the only possible commonality between 32V and 
+Net2 was the names and parameters of the functions." Joint Decl. 
+Para. 36. The names and parameters of these functions are widely 
+documented mnemonics. Id. Paras. 36, 37, 39. Finally, the Court 
+should note that only 16 of Net2's 3230 kernel functions (0.5%) are 
+claimed to have the same parameters; those parameters are well-
+documented and widely used. Id. Para. 39. See also, Id. Para. 40-42.
+
+
+Net2 contains 12,529 symbols similar to those described in Para. 47 
+of Dr.Carson's affidavit. Joint Decl., at Para. 47. From that large 
+universe, Dr. Carson has found 116 matches; he admits that 50 of 
+those 116 matches are required by the POSIX standards, leaving only 
+66 "unexplained" matches (0.5% of the 12,529 symbols in Net2) 
+which he claims indicate copyright infringement. Carson Affid., at 
+Para. 47. But the "remaining 66 matches are also dictated by 
+industry standards,compatibility, or common usage." Joint Decl., at 
+Para. 47
+
+"The similarity of such functional elements in products of like kind 
+does not suggest unlawful copying, but standardization across 
+competing products for functional considerations."
+
+Apple Computer, supra, 799 F.Supp at 1023. As documented over 
+three pages in Table 7 of the Joint Declaration, the symbols cited by 
+Dr. Carson are widely documented and "every single one of them is 
+part of the interface specification of UNIX or a Unix-compatible 
+system. Joint Decl., at Para 47. "Application, operating system and 
+device-driver programmers use these symbols constantly, and to 
+change them would mean that 20 years of software development 
+would be useless on the modified system [Net2]." Id. Hence, as with 
+the header file names, the symbols cited by Dr. Carson are not 
+protectible; they are mandated by "compatibility with other 
+programs and demands of the industry served by the program." Atari 
+Games,supra.
+ 
+The Third Circuit -- unlike the Federal Circuit, Second Circuit and 
+Ninth Circuit -- has not recently addressed the scope of a copyright 
+in computer programs,but its older decisions in Whelan and Apple 
+Computer. Inc. v. Franklin Computer Corp., 714 F.2d 1240 (3rd Cir. 
+1983) are not inconsistent with the more recent authorities *as 
+they apply to this action.* This case does not concern screen 
+interfaces; this case implicates the protectibility of technical 
+interfaces, i.e., elements of a program that are required for it to 
+work with other programs.
+	
+Apple Computer, one of the seminal computer code copyright 
+cases,recognized that a program is not a copyrightable expression of 
+an "idea" if other programs cannot be written to perform the same 
+function. 714 F.2d at 1253. The Apple Computer Court cited with 
+approval page 20 of the CONTU Report (Id.)[fn20] which states the 
+applicable rule:
+
+"The 'idea-expression identity' exception provides that *copyrighted 
+language may be copied without infringing when there is but a 
+limited number of ways to express a given idea.*  This rule is the 
+logical extension of the fundamental principle that copyright cannot 
+protect ideas.  *In the computer context this means that when 
+specific instructions. even though previously copyrighted. are the 
+only and essential means of accomplishing a given task. their later 
+use by another will not amount to infringement....* [C]opyright 
+protection for programs does not threaten to block the use of ideas 
+or of program language previously developed by others *when that 
+use is necessary to achieve a certain result."* (Emphasis added)
+
+CONTU Final Report (1979) at 20.  
+
+[fn20]  In Apple Computer, the Third Circuit stated, "[W]e can 
+consider the CONTU Report as accepted by Congress ...." 714 F.2d 
+1252. See also, Apple Computer. Inc. v. Formula Int'l.. Inc., 725 F.2d 
+521, 525 (9th Cir. 1984)
+
+Whelan likewise recognized there are limits upon copyright 
+protection for computer programs:
+
+"It is true that for certain tasks there are only a very limited 
+number of file structures available, and in such cases the structures 
+might not be copyrightable and similarity of file structures might 
+not be strongly probative of similarity of the program as a whole."
+
+797 F.2d at 1243 n.43. Applying the "scenes a faire" doctrine 
+developed for traditional literary works, the Court also recognized 
+"that anything necessary to effecting [a] function is also, 
+necessarily, part of the idea, too" and, therefore,unprotected by 
+copyright. 797 F.2d at 1236. Although the proof necessary to invoke 
+the limitations on plaintiff's copyright described by the Court was 
+lacking in Whelan (797 F.2d at 1243 n.43), the Joint Declaration 
+certainly establishes sufficient facts to support the University's 
+defense in this case: the similarity in mnemonic filenames and 
+symbols are neither protected nor probative of similarity between 
+the programs "as a whole." Id.
+
+After 400 hours of research, the only similarities between 32V and 
+Net2 found by Dr. Carson which are described in his affidavit are 
+unprotected elements of the program. If this Court sifts out the 
+elements of 32V which are found in Net2 because of external factors 
+(e.g., compatibility with other programs) or in the public domain 
+(e.g., standardized, technical interface specifications), it has 
+nothing left with which to conduct the "substantial similarity" 
+analysis. See Atari Games, supra; Computer Associates, supra; 
+Brown Bag Software, supra. Accordingly, this Court cannot find Net2 
+to be an infringement of USL's alleged copyright in 32V.
+
+C.	USL FORFEITED ITS COPYRIGHT PROTECTION IN 32V WHEN IT 
+PUBLICLY DISTRIBUTED 32V WITHOUT A COPYRIGHT NOTICE
+
+USL's 32V code was created in 1978. DeFazio Decl., Exh. F.  USL 
+forfeited its copyright protection for 32V when its predecessors, 
+Western Electric and AT&T, distributed 32V to the public without a 
+copyright notice (McKusick Decl, at Para. 4 and Joint Decl., at Para. 
+28.4) and failed to register 32V until 1992, fourteen years after 
+32V was first published. [fn21]
+
+  [fn21] Unlike USL's 32V, post-Berne Convention Implementation Act 
+works, created after March 1, 1989, are not required to have a 
+copyright notice. 17 U.S.C. Section 405.
+
+Under the 1976 Copyright Act, omission of a copyright notice from 
+copies publicly distributed by the copyright owner invalidates the 
+copyright in the work unless (1) notice has been omitted from a 
+small number of copies[fn22], (2)registration is made within five 
+years after publication without notice, or (3) notice was omitted in 
+violation of an express requirement in writing. 17 U.S.C.  Section 
+405(a).Here, USL can find no refuge in any of the three exceptions 
+under  405(a) because thousands of copies of 32V were publicly 
+distributed without copyright notices and registration followed 
+publication by fourteen years. To the University's knowledge, no 
+express requirement by Western Electric that notice be included in 
+32V was violated. In fact, Western Electric intentionally removed 
+copyright notices from every file contained in 32V prior to 
+publication. McKusick Decl., at Para. 4.
+
+   [fn22]  NEC Corp. v. Intel Cor., 10 U.S.P.Q.2d 1177 (N.D. Cal. 1989) 
+(copyright forfeited when Intel allowed a relatively large number of 
+copies of its microcode to be publicly distributed without a 
+copyright notice).
+
+     1. THE PUBLICATION OF 32V HAS NOT BEEN LIMITED
+
+
+USL contends that its distribution of 32V to thousands of licensees 
+constituted a "limited publication" which purportedly precludes 
+"publication" of 32V.  See USL's Memorandum, at 27 fn 14. What USL 
+does not tell the Court is that the distribution of 32V in source and 
+object code[fn23] was widely distributed to virtually anyone willing 
+to pay for it (see Greene Depo., at 86:21-90:21; Bond Depo., at 17:13-
+20:18; Baldwin Depo., at 71:25-73:5), provided that the United States 
+government did not prohibit the distribution, and that the licensees 
+were willing to comply with the licensing restrictions (Greene 
+Depo., at 80:13-17). USL's licensees for 32V included thousands of 
+governmental, educational, and commercial licensees [fn24] around 
+the world. [fn25] USL's limited publication argument is an attempt to 
+escape the statutory requirements of the Copyright Act while 
+simultaneously enjoying its exclusive rights under Section 106.
+
+  [fn23] The very header files about which USL complains were 
+published in object code distributions.  Joint Decl., at Para. 28.4.
+
+  [fn24]  USL produced a 1986 data base of its source code licensees, 
+bates nos. P8832-9312) which is too large to attach in total. 
+However, the data base contains approximately 5,760 licensees for 
+AT&T's various software products. A large number of these licensees 
+could obtain 32V though AT&T's source code exchange program. 
+Frasure Depo., at 54:25-57:8. The voluminous data base does not even 
+list every source licensee for 32V, as evidenced by the absence of 
+any 32V entries for the University of California. Exh. I, attached to 
+the Shapreau Decl.; see Bond Depo., at 199:1-201:19; Greene Depo., at 
+124:19-129:9. In addition, AT&T required that each central 
+processing unit be individually licensed for the use of 32V. Bond 
+Depo., at 202:15-19. Therefore, the number of licenses for 32V (and 
+the individuals exposed to 32V) far exceeded the number of entity 
+licensees.USL's predecessors also distributed 32V in source code 
+through its "source code exchange program"which enabled an AT&T 
+licensee for any Unix operating system subsequent to 32V to obtain 
+32V from another AT&T licensee. Frasure Depo., at 54:25-57:8; 
+Wilson Depo. at 92:23-93:9.
+
+  [fn25] In fact, AT&T divided its international licensing group in the 
+mid-1980s into three groups: (1) London and Europe; (2) Tokyo and 
+the Pacific Rim; and 3) "The Rest of the World." Greene Depo., at 
+82:20; 83:7-9; see also. Exhibit P, attached to the Shapreau Decl.
+
+
+Under the common law, a publication is "limited" only if it 
+communicates the contents of a work to:
+(1) a definitely selected group; 
+(2) for a limited purpose; and
+(3) without the right of diffusion, reproduction, distribution or sale.
+White v. Kimmell, 193 F.2d 744 746-747 (9th Cir. 1952); accord 
+Academy of Motion Picture Arts And Sciences v. Creative House 
+Promotions, 944 F.2d 1446, 1452-53 (9th Cir. 1991); Bull Publishing 
+Co. v. Sandoz Nutrition, 13 U.S.P.Q.2d 1678, 1682 (N.D. Ca. 1989). 
+
+Although the text of the 1976 Copyright Act does not make any 
+reference to the doctrine of limited publication and Section 101 
+defines "publication," courts have continued to apply the common 
+law doctrine of limited publication to works published after January 
+1, 1978, the effective date of the 1976 Copyright Act. Nimmer, The 
+Law of Copyright,  4.13 [B], at 4-72-73 (1992), citing Hubco Data 
+Products Corp. v. Management Assistance Inc., 219 U.S.P.Q. 450 (D. 
+Ida. 1983). Examples of limited publications typically arise where an 
+author distributes copies of her work to a small group for the 
+limited purpose of review, criticism, education or performance 2 
+and with an express or implied understanding that no reproduction or 
+distribution will take place. See, White v. Kimmell, supra 193 F.2d at 
+746-47.
+
+a. USL HAS FAILED TO MEET THE DEFINITELY SELECTED GROUP
+REQUIREMENT
+
+A publication will not be "limited" if the distribution of copies of a 
+work is available to all comers, even if there is a limited purpose 
+for the publication or if restrictions are placed upon the use of the 
+work.[fn26]  For example, in Brown v. Tabb,714 F.2d 1088 (11th Cir. 
+1983) the Eleventh Circuit held that a musical jingle had been 
+"published." The customized jingle at issue was not distributed to a 
+"selected group" because it was "available to any automobile dealer 
+doing business in a market not yet exposed to the jingle who would 
+pay the price." 714 F.2d 1092. Accord, Continental Casualty Company 
+v. Beardsley, 253 F.2d 702, 706-07 (2nd Cir. 1958)(distribution of a 
+work to prospective customers was not a "definitely selected group" 
+because the only limitation was that attributable to a lack of 
+general interest in the highly specialized subject matter of the 
+work).[fn27] "In cases where general publication has been found, the 
+creator had made his work available in a manner that suggested that 
+*any interested person could have a copy.*" (Emphasis added) Burke 
+v. National Broadcasting Co., 598 F.2d 688, 692 (1st Cir. 1979).
+
+
+
+   [fn26]  See e.g., American Visuals v. Holland, 239 F.2d 740, 744 (2d 
+Cir. 19561 ("while the 'purpose' of the distribution was limited, the 
+'persons' to whom it might be given was unlimited); Brown v.Tabb, 
+714 F.2d 1088, 1091 (11th Cir. 1983) ("the requirement that there 
+be no right of sale or distribution is separate from and in addition to 
+the requirement that there be a limited purpose."); H.W.Wilson Co. v. 
+National Library Serv. Co., 402 F.Supp. 456, 457-58 (S.D.N.Y. 1975) 
+(legend in a book restricting transfer insufficient to constitute 
+limited publication because the publication was not limited to a 
+selected group or for a limited purpose; Continental Cas. Co. v. 
+Beardsley, 253 F.2d 702, 706|07 (2d Cir. 1958); Jewelers' Mercantile 
+Agency. Ltd. v. Jewelers' Weekly Publishing Co., 155 N.Y., 251, 49 N.E. 
+872 (1 898) ("The fact that the publisher of the book undertook to 
+place restrictions on the use which individual purchasers could make 
+of it. . .does not constitute such a limitation as takes away from the 
+act of the plaintiff its real character, which is that of publication"); 
+compare American Vitagraph, Inc. v. Levy, 659 F.2d 1023, 1028 (9th 
+Cir. 1981) (one week screening of motion picture in one location to 
+gauge audience reaction to the film during the editing process and 
+with no commercial exploitation was held to be a limited 
+publication under the 1909 Act.); Academy of Motion Picture Arts v. 
+Creative House, 944 F.2d 1449, 1452 (9th Cir. 1991).
+
+  [fn27]  Although USL has indicated that it did not license 32V in 
+source code to individuals or 27 partnerships, 32V was first 
+published in an era that predated personal computer proliferation. As 
+such, there was a lack of general interest in 32V by individuals or 
+partnerships who, by virtue of the size of their businesses and the 
+technology of the day, would not be using the large computer 
+systems on which 32V was generally utilized. Therefore, the lack of 
+general interest in 32V on the part of individuals and partnerships 
+does not aid USL in its "selected group" argument.
+
+
+Similarly, in H.W. Wilson Co. v. National Library Service Co., 402 
+F.Supp. 456 (S.D.N.Y. 1975), from 1900 to 1970, plaintiff 
+disseminated its Reader's Guide without a copyright notice. Plaintiff 
+claimed it did not intend to dedicate the material to the public and 
+pointed to a *restrictive legend* on many of the volumes which read 
+"This volume has been supplied on a contract which provides that it 
+is not to be sold or given away without the permission of the 
+publisher." Id. at 457-458,fn 1. However, the work was otherwise 
+unrestricted to either persons or purpose.Therefore, the court found 
+that a general publication had taken place Id. at 458.
+
+Here, just as in Tabb, Continental and Wilson, the work at issue was 
+widely available those interested in the product.[fn28] The fact that 
+USL placed restrictions on the distribution of 32V does not alter the 
+fact that 32V was distributed to a non-selected group.    
+
+  [fn28] USL's licensing of 32V to thousands of licensees further 
+undermines its ability to meet the"selected group" requirement.  e.g., 
+Williams & Wilkins Company v. United States, 487 F.2d 1345, (Ct. 
+Claims 1973), aff'd 420 U.S. 376 1975) (publication is a "concept 
+which invokes general distribution, or at least a *supplying of the 
+material to a fairly large group"* (emphasis added).
+
+i. USL MADE 32V AVAILABLE TO THE PUBLIC IN OBJECT CODE
+
+In USL's Memorandum, it admits that 32V was "published" in object 
+code. (USL's Moving Papers, at 11,[fn29] and 27) In GCA Corp. v. 
+Chance, 217 U.S.P.Q. 718, 720 (N.D. Cal. 1982), the court stated that 
+"[a]ny prior distribution of its object code by plaintiff, if public, 
+would have placed it in the public domain,beyond copyright 
+protection." It is clear that the source and binary code for 32V are 
+but one work. As Judge Patel pointed out in GCA Corp. v. Chance, 217 
+U.S.P.Q.(N.D. Cal. 1982):
+
+Because the object code is the encryption of the copyrighted source
+
+code, the two are to be treated as one work; therefore, copyright of 
+the source code protects the object code as well. Id. 217 U.S.P.Q. at 
+720.
+
+Accord, Data General Corp. v. Grumman Systems Support Corp., 
+F.Supp. , 612315, 1992 WL 297641, at page 3-4 (D. Mass. Oct. 9, 
+1992) (the source code and object code are two representations of 
+the same computer program).Similarly, in Sega Enterprises Ltd. v. 
+Accolade, F.2d , 24 U.S.P.Q.2d 1561,n.8 (9th Cir. 1992), the Ninth 
+Circuit rejected plaintiff's argument that its source code was an 
+unpublished work because plaintiff had published its software in 
+object code. Therefore, because USL's predecessors published 32V in 
+object code(which also contained the 32V header files in source 
+code), *the source code version of 32V also has been published.*
+
+  [fn29]  Contrary to USL's contention, the object code distributions 
+of 32V contained no copyright notices. Joint Decl., at Para. 28.4.
+
+
+b.  USL DID NOT DISTRIBUTE 32V FOR A LIMITED PURPOSE
+
+A "limited purpose" has traditionally meant distribution of copies of 
+a work for limited purposes such as review or criticism[fn30], 
+promotion,[fn31] education[fn32] or performance,[fn33] not for mere 
+commercial gain.[fn34] In White v. Kimmell, 193 F.2d 744 (9th Cir. 
+1952), the Ninth Circuit stated that "[o]ne must...look to what [the 
+publisher] intended to do rather than at what he intended to be the 
+legal consequence of his acts." Id. at 747. "However, an author's 
+intent as to publication should not be given controlling weight 
+against the effect of his acts." Public Affairs Associates. Inc. v. 
+Rickover, 284 F.2d 262, 270 (D.C. Cir. 1960), vacated on other 
+grounds, 369 U.S. 111 (1962) (Admiral Rickover's distribution of 
+almost all of his addresses constituted dedication to public use 
+because the addresses were available to anyone who was 
+interested). What USL intended, and what it did, was to publish 32V 
+for commercial profit.
+
+Here, USL's purpose in distributing 32V has not been limited. 
+Instead,USL's principal purpose for licensing 32V to governmental 
+entities, educational institutions, and commercial entities around 
+the world has been primarily for commercial gain. As USL notes in 
+its Moving Papers, it currently sells its Unix operating system 
+licenses for $200,000 each. Accordingly, because USL did not 
+distribute 32V for a limited purpose, such as review, criticism, 
+education or promotion, it cannot seek refuge under the limited 
+publication doctrine.
+
+   [fn30] See Key West Hand Print Fabrics. Inc. v. Serbin. Inc., 244 
+F.Supp. 287,291 (S.D. Fla. 1965)(exhibition of fabric renderings to 
+get opinion or reaction); Nucor Corp. v. Tennessee Forging SteelServ.. 
+Inc.. 476 F.2d 386 (8th Cir. 1973) (distribution of architectural plan 
+to contractors for bidding purposes); Ashworth v. Glover. 156 U.S.P.Q. 
+219, 221 (Utah 1967) (requiring $25 deposit for bidder's review of 
+architectural plans and filing plans with city pursuant to permit 
+requirement); Hub Floral Corp.v. Royal Brass Corp., 454 F.2d 1226 (2d 
+Cir. 1972) (distribution of samples and photographs to dealers for 
+purpose of obtaining orders held limited publication);
+
+   [fn31] Ruskin v. Sunrise Management, Inc., 506 F.Supp. 1284, 1287-
+88 (D. Colo 1981 ) (distribution of sound recording to radio stations 
+without copyright notice for promotional purpose only, and not for 
+sale or other commercial purpose, constitutes limited publication); 
+Foreign Car Parts. Inc. of New England v. Auto World, Inc., 366 F.Supp. 
+977, 979-880 (M.D. Pa. 1973) (distribution of promotional material 
+to dealers held a limited publication).
+
+   [fn32] Bull Publishing Co. v. Sandoz Nutrition. 13 U.S.P.Q.2d 1678, 
+1682 (N.D. Ca. 1989).
+
+  [fn33]  See Jerome v. Twentieth Century Fox Film Corp., 67 F.Supp. 
+736, 739 (S.D.N.Y. 1946) (performance of musical composition and 
+distribution of copies to professional entertainers); American
+Vitagraph, Inc. v. Levy. 659 F.2d 1023, 1027 (9th Cir. 1981) (one 
+week film screening followed by additional editing).
+
+  [fn34] See e.g. American Vitagraph. Inc. v. Levy, 659 F.2d 1023, 
+1028 (9th Cir. 1981); compare Academy of Motion Picture Arts And 
+Sciences v. Creative House Promotions, 944 F.2d 1446, 1453(9th Cir. 
+1991 )("indirect commercial benefits do not necessarily transform a 
+limited distribution into a general publication where no direct sales 
+of the work are involved); Patterson v. Century Productions.Inc., 93 
+F.2d 489, 491 (2d Cir. 1937) cert denied, 303 U.S. 655 (1938) 
+(limited and non-commercial display and distribution of film 
+constituted a limited publication);Nimmer, The Law of Copyright,  
+4.11[A], at 4-54 (1992).
+
+D. THE UNIVERSITY HAS NOT MISAPPROPRIATED USL'S TRADE SECRETS
+
+Although USL defines a trade secret as "[a]ny formula, pattern, 
+device or compilation of information" (USL's Moving Papers, at 39), 
+it has failed to identify which specific trade secrets have 
+purportedly been misappropriated by the University in Net2. Instead, 
+USL claims its entire "source code" constitutes its trade 
+secrets.(USL's Moving Papers, at 40.) To the extent the University 
+can guess what USL contends to be its trade secrets, its 
+misappropriation claim must fail for two distinct reasons: (1) it is 
+preempted by the Copyright Act and (2) USL's purported trade 
+secrets are not secrets at all because they were injected into the 
+public domain prior to the distribution of Net2.
+
+1.	USL'S MISAPPROPRIATION OF TRADE SECRET CLAIM IS 
+PREEMPTED BY THE COPYRIGHT ACT
+
+
+USL's claim that the University misappropriated its trade secrets 
+when it allegedly reproduced and distributed software "based upon 
+or derived from" 32V is preempted by the Copyright Act. The 
+Copyright Act preempts state common law claims that assert rights 
+equivalent to-those protected by federal copyright law. 17 U.S.C.  
+301(a). A finding of preemption requires the satisfaction of a two-
+prong test: (1) the common law state claim must protect legal or 
+equitable rights that are equivalent to the exclusive rights under  
+106 of the Copyright Act and (2) the work must fall within the 
+subject matter of the Copyright Act as defined in 17 U.S.C.Sections 
+102 and 103. Del Madera Properties v. Rhodes and Gardner. Inc., 820 
+F.2d 973, 976 (9th Cir. 1987), citing Harper & Row Publisher. Inc. v. 
+Nation Enterprises,
+501 F. Supp. 848, 850 (S.D.N.Y. 1980), aff'd 723 F 2d 197 (2nd Cir. 
+1983), rev'd on other grounds, 471 U.S. 539 (1985).
+
+An "equivalent" right is infringed by simply engaging in the 
+prohibited reproduction, modification or distribution of a work 
+which are acts within the exclusive right of the copyright holder. 
+See 17 U.S.C.  106., 1 Nimmer, Nimmer on Copyright  1.01[B]. See e.g., 
+Aqua Bay Concepts. Inc. v. Grosse Point Bd. of Realtors, 24 U.S.P.Q.2d 
+1372 (S.D. Mich. 1992); Relational Design & Technology.g	Inc., 23 
+U.S.P.Q.2d 1074 (D. Kan. 1992); Avco Corporation v. Precision Air 
+Parts.Inc., 210 U.S.P.Q. 895 (N.D. Ala 1980). Under the 1980 
+amendments to the Copyright Act, Congress intended to extend 
+copyright protection to computer programs. Videotronics. Inc. v. Bend 
+Electronics, 564 F.Supp. 1471 (D. Nev. 1983)."The fact that portions 
+of the computer programs may be uncopyrightable as "ideas"rather 
+than "expressions," (citation omitted) does not take the work as a 
+whole outside the subject matter protected by the Act." Brignoli v. 
+Balch Hardy And Scheinman. Inc., 645 F.Supp. 1201, 1204 (S.D.N.Y. 
+1986).
+
+Here, USL's trade secret claim is defective because it is based on 
+the University's alleged reproduction, modification and distribution 
+of the purported trade secrets embodied in USL's UNIX 32V program. 
+Without more, USL's trade secret claim is not qualitatively different 
+from its copyright infringement claim. Accordingly,Section 301 bars 
+the trade secret claim.
+
+2. USL'S TRADE SECRETS HAVE BEEN EXTINGUISHED BY PUBLICATION
+
+USL's trade secrets -- at least all of those mentioned in Dr. Carson's
+affidavit -- were injected into the public domain before Net2 was 
+distributed. Joint Decl., at Paras. 27, 28, 31, 33, 36, 37, 39, 40, 45, 
+47, 50, 53 and 56.[fn35] "Public disclosure of a trade secret 
+destroys any confidential relationship upon which a trade secret is 
+based." Videotronics. Inc. v. Bend Electronics, 564 F.Supp. 1471, 1475 
+D. Nev. 1983), 1 Servo Corporation of America v. General Electric 
+Company, 393 F.2d 551 (4th Cir. 1968). Since USL has not identified 
+any specific trade secret that is not widely documented, it cannot 
+obtain any relief for misappropriation.
+
+
+  [fn35]  The 32V agreement at issue provides that disclosure of a 
+trade secret or "technical data" which is publicly available or which 
+later becomes publicly available will not form the basis for a breach 
+of contract claim. The relevant portion of 32V license agreement 
+provides as follows:
+
+4.07 The obligations of the LICENSEE and of its employees and 
+students under Section 4.06 shall not extend to any information or 
+technical data relating to the LICENSED SOFTWARE which is now 
+available to the general public or which later becomes available to 
+the general public by acts not attributable to LICENSEE, its          
+employees or students.
+
+The public availability of USL's "information or technical data" prior 
+to the release of Net2 (see Joint Declaration relieved the University 
+of any contractual obligation to hold USL's trade secrets in 
+confidence. As such, USL's breach of contract claim must fail with 
+respect to the "information or technical data" which already entered 
+the public domain before the release of Net2.
+
+	                          CONCLUSION
+
+For all of the foregoing reasons, the University respectfully submits 
+the Court should not find Net2 to be an infringement of USL's alleged 
+copyright in 32V or a misappropriation of its claimed trade secrets.
+
+DATED: January , 1993
+
+
+FEDERAL CERTIFICATE OF SERVICE BY MAIL
+
+Re: Unix System Laboratories v. Berkeley Software Design U.S. 
+District Court - New Jersev No. 92-1667 (DRD)
+
+	 Michael D. Loprete, Esq.	(VIA FEDERAL EXPRESS)
+	 CRUMMY, DEL DEO, DOLAN,
+	  GRIFFINGER & VECCHIONE, P.C.
+	 One Riverfront Plaza
+	 Newark, NJ 07102
+
+	 George L. Graff, Esq.	(VIA FEDERAL EXPRESS
+	 James W. Kennedy, Esq.
+	 Charles B. Ortner, Esq.
+PAUL, HASTINGS, JANOFSKY & WALKER
+399 Park Avenue
+New York. NY 10022-4697
+
+Sanford Tannebaum, Esq.	(VIA FEDERAL EXPRESS)
+	 Executive Vice President
+	and General Counsel
+	 UNIX SYSTEM LABORATORIES, INC.
+	190 River Road
+	 Summit, NJ 07901-1444
+
+
+	 James H. Forte, Esq.	(VIA U.S. MAIL)
+SAIBER SCHLESINGER SATZ & GOLDSTEIN
+One Gateway Center, 13th Floor
+Newark. NJ 071 02-5311
+
+	 Robert T. Haslam, Esq.	(VIA U.S. MAIL)
+	 Vanessa Wells, Esq.
+Leslie A. Fithian, Esq.
+Michael A. Bucci, Esq.
+HELLER, EHRMAN, WHITE & MCAULIFFE
+525 University Avenue, 9th Floor
+Palo Alto, CA 94301
+
+James. E. Holst, Esq.	(VIA U.S. MAIL)
+John L. Lundberg, Esq.
+UNIVERSITY OF CALIFORNIA
+300 Lakeside Drive, 7th Floor
+Oakland, CA 94612-3565
+
+
+Frederick B. Polak, Esq.	(VIA FEDERAL EXPRESS)
+ POST, POLAK & GOODSELL
+ 280 Corporate Center
+65 Livingston Avenue
+Roseland, NJ 07068
+
+FEDERAL CERTIFICATE OF SERVICE BY MAIL
+
+

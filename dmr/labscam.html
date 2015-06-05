@@ -1,0 +1,333 @@
+<HTML>
+<head>
+<!-- BELL-LABS
+username        Ritchie, Dennis
+category        user
+contact         dmr@bell-labs.com
+-->
+<title>Labscam</title>
+</head>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+
+<center>
+<h3>
+Labscam
+</h3>
+</center>
+<p>
+<i>
+I wrote this account of an encounter with
+<A HREF="http://www.pennandteller.com/sincity">Penn and Teller</A> fairly
+soon after it occurred in 1989, and haven't edited it
+except to add HTML markup.  So words like "recently" have to be understood
+relative to late 1989 or early 1990.
+
+<p>
+
+Although it's barely mentioned in the account, the whole thing
+was recorded on multiple videotapes with an elaborate though
+amateur setup.  Later Teller came back to the Labs once
+or twice to tape the intro and voice-over of the story by me,
+in order to create a coherent video.  I was not a
+good narrator or TV actor, and (to my relief) Teller decided
+to enlist Penn to do it, with a script from P&amp;T's perspective
+instead of mine.  This worked much better.
+The material was rather nicely edited, given its sub-broadcast quality.
+The tape was shown at Usenix conventions, and
+clips were shown during Arno Penzias's retirement observances.
+
+<p>
+<IMG SRC="new.gif">This video was digitized (2002) by Gerard
+Holzmann, and is available as a big (88MB: caution!) MPEG
+<A href="http://www.cs.bell-labs.com/who/rob/movies/labscam.mpg">
+here</A>.
+<p>
+
+The reference to a treatment "by a better author"
+had to do with an article that Penn thought of writing, but
+didn't, so far as I know.
+Accounts of the story did appear in the Wall Street Journal,
+but by the paper's own reporter, and also in
+<A href="http://www.wired.com/wired/archive/2.09/penn.html">Wired</A>.
+<p>
+Rob remains pretty close to Penn Jillette; in turn Penn
+now and then
+<A HREF="http://pennandteller.com/03/coolstuff/penniphile/roadpenncursed.html">drops Rob's name</A>.
+<p>
+Amongst the unmentioned bennies I got out of the experience is a gift book from
+Penn: </i>Darwin's Thumb Tip Miracles<i>, forward by Siegfried and Roy.
+Penn was kind enough to inscribe it "Dennis-- on to magic trips of
+many nations. .... the Roy of Penn and Teller.  -- Penn."
+Oh yes, and also a lifetime supply of thumbtips, which my relatives
+are now more than hip to.
+
+</i>
+<p>
+<hr>
+<center>
+<h4>
+Labscam--A Preliminary Report
+<br>
+Dennis Ritchie
+</h4>
+</center
+
+<p>
+This is a brief account of an interesting practical joke we
+perpetrated recently.  A better treatment by another author will be
+forthcoming, as will a video.  I will tell the story in linear fashion
+as a straight history, instead of striving for dramatic effect.
+
+<p>
+In the fall of 1989, Rob Pike met Penn Jillette, of the comedy/magic
+team of Penn and Teller.  The introduction and initial conversations
+were through e-mail, and the mutual acquaintance who started things off
+was Mike Hawley, now enmeshed at the Media Lab at MIT. After a series
+of electronic letters, Rob attended one of Penn's Friday movie nights,
+which was just as described by Calvin Trillin in his recent New Yorker
+profile of P&amp;T. (Meet in the Times Square HoJo's.  Rob wondered, `How
+will I know you?'  and Penn said, `I have samurai hair and I'll be at
+the back.')
+
+<p>
+Penn's interest in visiting Bell Labs had already been piqued not only
+by Hawley, but also by Ron Graham (BTL mathematician/juggler), another
+mutual acquaintance.  By the time Rob met Penn, thoughts of something
+more than a mere see-the-sights visit began to stir:  there was the
+possibility of pulling off a great trick.
+
+<p>
+Who should be tricked, and what should happen?  There was only one
+possible target--Arno Penzias.  He satisfied simultaneously all the
+desirable criteria:  stature (Nobel prize laureate and Vice President of
+the Bell Labs Research area); ability to be tricked (he trusted us and liked
+technology); challenge (he's smart); and, we hoped, appreciation of the
+effect.  It was known through Graham that Arno was a great Penn and
+Teller fan, and it was worth gambling that he would feel flattered
+rather than anguished at being fooled.
+
+<p>
+Rob's meetings with Penn and then with Teller (at the Tarrytown HoJo;
+Teller is less urban, though more urbane, than Penn) soon produced the bare
+outlines of the scam:  Arno would be shown a demo of new work that Rob
+had supposedly done, probably involving communication with a computer
+program that somehow impersonated Penn and Teller.  Rob arranged to
+visit their office in New York to work out the details.
+
+<p>
+Initial ideas depended on explicit stage magic.  For example, Arno
+might be induced somehow to put his badge or his driver's license in
+an envelope; through a slit in the envelope, the document would find
+its way into the next room.  At the climax (`reveal' is the technical
+term), P&amp;T would bounce in, bearing the document.
+
+<p>
+At this point, I had an evil thought.  Why not work out a double-cross?
+Suppose the trick depended on sneaking Arno's driver's license to P&amp;T;
+what would happen if we prepared a shoddy, manifestly fake Arno license, and sent
+that into the back room instead?  Or what if Penn and Teller came
+bounding in to confront Arno, but there was no Arno there, just a
+computer?  Rob was sufficiently taken by this scheming that he invited
+me to the New York meeting.
+
+<p>
+During the meeting, the Tuesday before Thanksgiving, the first thing
+to become obvious was that no explicit magic trick could be plausible;
+instead the presentation would have to appear strictly technological.
+As we worked out the details of the final plan, it also became evident
+to Rob and me that all thoughts of a double-cross were inappropriate.
+The scheme was so strong that it couldn't be turned around without
+ruining it.  We returned home in high excitement.
+
+On the Sunday after the holiday, Penn and Teller came out to Bell Labs
+to run through some rehearsals and finish the script.  They also got a
+tour of the facilities, and saw at least some of the real stuff here.
+That evening, we set up the technical aspects of the demo, and also
+placed hidden video and sound equipment to record the event.
+
+<p>
+I decided to pique Arno's interest, and so sent him some mail:
+<p>
+<indent>
+<pre>
+<tt>
+	From dmr Mon Nov 27 02:37:04 EST 1989
+	Subject: voice stuff
+
+	I think Rob is almost ready to invite you to
+	look at his latest effort, which is (pretty much)
+	voice recognition.  He's able to show surprisingly
+	good results from a fundamentally simple-minded
+	scheme; it's worth seeing.  Besides, he appears
+	to have spent the long weekend putting some pizazz
+	into his demo; he claims it is like Eliza (esp. the
+	"Doctor" program) for the multimedia age.
+
+			Dennis
+</tt>
+</pre>
+</indent>
+<p>
+I sent a copy to Rob, and he replied, `Uhhh, I guess I'm committed now.'
+
+<p>
+The next day was the demo itself, which was scheduled for 2:30.  Penn
+and Teller arrived in the morning, and we rehearsed a couple of times,
+using an Arno substitute.  Unfortunately, Rob had not made a firm
+appointment for fear of tipping his hand too soon, and Arno managed to
+become involved in business.  So we had to wait throughout the
+afternoon; by this time, 6 or 7 people were directly involved in the
+production, and even more were in the audience.  Penn and Teller
+repaired to Ron Graham's office to talk magic while the rest of us
+waited nervously; P&amp;T came back; Penn told us the blood-curdling
+tale of his attempt to jump over five Volkswagens on a rocket-powered
+unicycle, and the ensuing attack by a riotous mob; Teller taught
+sleight-of-hand.  Finally at 5:30, Arno was successfully fetched, and
+the show began.
+
+<p>
+It took place in our Graphics lab, a large room partitioned by
+a soundproof screen.  Rob ushered Arno into the smaller half, and sat
+him in front of two terminals.  A bright light shone in Arno's eyes,
+a microphone and TV camera were inches from his mouth.  On one
+terminal, a real-time, processed image of his lips appeared.  On the
+other were printed several words.
+
+<p>
+Rob explained that he had been trying work in speech recognition, and
+had achieved some interesting results.  The camera was watching Arno's
+lips to help determine when he was speaking, and the computer would
+analyze his utterances.  It would first be necessary to say each word
+in sequence, so as to train the recognizer to Arno's voice.
+
+<p>
+So, Arno said the first word, "Hello."  Rob typed stuff on a third
+terminal.  On the terminal Arno was facing, things flickered, and a
+graph and some numbers (`autocorrelation coefficients') appeared.
+Arno said, `Sanskrit.'  More flickering, graphs, numbers.  Arno said,
+`Hohokus.'  Initial training was complete, and all participants
+but Arno grinned secretly.  Penn had predicted, `If we can
+just get Arno to say ``Hohokus'' into a microphone, we have won
+already!'
+
+<p>
+The words disappeared, and several sentences came up on the terminal.
+Arno had to pick one of the sentences, and speak it.  Rob readjusted
+Arno's head to make sure his lips were centered on the TV. Arno said,
+`It's a pleasure having you with us,' and a synthesized voice said
+`Please repeat.'  During this phase, the machine was supposedly
+deciding which of the sentences was spoken.  Finally, it got this
+right, and Arno moved on to `Kenneth, what is the frequency?'
+After two tries, the machine repeated this too.
+
+<p>
+Now, Rob said, we can have some fun.  No doubt Arno remembered
+Weizenbaum's famous Eliza program?  It did simplistic processing on
+what was typed to it, and could pretend to be Rogerian psychiatrist.
+To bring the idea up to date, Rob had taken a videotape of the David
+Letterman talk-show, and digitized the guests' answers and the host's
+questions.  Arno would play Letterman, and ask the questions; the
+machine would match each question to one actually asked, and then play
+back the appropriate answer.  First, Arno had to select which guests he
+would like.  His choices were:  Mike Wills, author of `Dance, Dance,
+Dance, She Said,' or Penn and Teller, or Janet Kirker, from `Dynasty.'
+
+<p>
+Arno chose Penn and Teller.
+
+<p>
+First, he got a menu of preset questions.  He spoke one of them (`Which
+is Penn and which is Teller?').  On his screen, after the graphs and
+numbers, a video image shuffled through several stills of Penn and
+Teller; finally an animated (though low-quality) image of P&amp;T
+appeared, and a scratchy but recognizable Penn voice said, `Don't you
+learn anything?  I'm Penn Jillette, and this is my partner Teller.
+Longer name, bigger person.'  Arno asked several questions from this
+menu, and got responsive answers.  `Does Teller ever talk?'  `No, not to
+you.'  Each time, the answer was accompanied by the corresponding
+sleazy video clip.
+
+<p>
+Finally, Rob invited Arno to ask questions of his own.  This could work
+because the computer would search for spoken words and phrases among
+the stored clips.  This time too, each question elicited a response,
+though some of them were peculiar.
+
+<p>
+`How long has it been since you became partners?'
+
+<p>
+`I think it was in San Francisco, about 1981...  That's when Lou Reed
+came to the show...'
+
+<p>
+Rob suggested that Arno rephrase the question.
+
+<p>
+`How long have you been partners?'
+
+<p>
+`It's been 15 years of complete hell.'
+
+<p>
+`Have you won many awards?'
+
+<p>
+`Well Teller took the Obie, and he's going to win an Academy Award.
+Me, I'm holding out for a Nobel Prize!'
+
+<p>
+`What do you do with rats and cockroaches?'
+
+<p>
+`That's the way we have sex.'
+
+<p>
+Rob seemed embarrassed, and asked Arno to speak more clearly, keeping
+his mouth in the right position.  `Do you use rats and cockroaches?'
+
+<p>
+`Oh, I like that on pizza, and Teller uses it on a hot dog roll, or a
+hamburger bun.'
+
+<p>
+At this point, Rob looked flustered, and suggested that Arno ask Penn
+and Teller to show him a trick, because they did a good one on this
+show, and the computer would show it.
+
+<p>
+After one peculiar reply, the Penn image announced, `Well, we hung
+upside down on Saturday Night Live, and we dumped cockroaches right
+here on your show.  But come with us, we have something special for
+you.  Could the camera go hand-held?'
+
+<p>
+P&amp;T got up, and the camera followed them into a strangely familiar corridor.
+Penn continued, `Let's go down this hall here.  We've done a lot of
+stuff on television, and TV is not the most conducive medium to magic.
+We wanted something where things would seem to go from TV into
+reality.'
+
+<p>
+They opened a door, and Arno saw a man sitting in front of several
+terminals, with a light shining into his eyes....
+`So we worked out this little thing where a person was watching a
+video screen, and we could actually come in and interact with the
+person....'
+
+<p>
+Then Arno turned around, and was confronted by Penn and Teller!
+
+<p>
+The effect was lovely.  An amazing thing about it is that not only Arno
+himself at the time, but nearly everyone else who hears about the
+story, finds it hard to accept that it was ALL a scam!  While Arno was
+saying words and sentences, I was in the back room controlling what he
+saw and heard.  The `video clips' were live pictures of Penn and
+Teller, turned on at appropriate times.
+
+<p>
+And fortunately, just as we had prayed, Arno did feel flattered,
+though at first he was quite jangled by the experience.  After he took
+Penn and Teller to his office to chat, he uncharacteristically forgot
+to give them 3K T-shirts, and someone had to dash back to pick them up!

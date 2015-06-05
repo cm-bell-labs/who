@@ -1,0 +1,41 @@
+(* 
+   Basic Slowscan Model
+*)
+
+const V = {0,1}		(* command and status values *)
+
+label cmdIn(V),cmdOut(V),statIn(V),statOut(V)
+label c1(V),c2(V),s1(V),s2(V)
+label rd(V),wt(V)
+label tks,tkt
+label stat
+
+agent CLink = c1(c).'c2(c).CLink
+agent SLink = s1(s).'s2(s).SLink
+
+agent LGL = CLink|SLink
+
+agent Clock = 'tks.'tkt.Clock + 'tkt.'tks.Clock
+
+agent SCmd(c:V) = 
+    tks.cmdIn(c').rd(s).'statOut(s).if c <> c' then 'c1(c').SCmd(c')
+                                               else SCmd(c)
+agent SStat = s2(s).'wt(s).SStat
+agent Store(x:V) = 'rd(x).Store(x) + wt(x').Store(x')
+agent SPC = (SCmd(0)|SStat|Store(0))\{rd,wt}
+
+agent TStat(s:V) =
+    tkt.rd(c).'cmdOut(c).statIn(s').if s <> s' then 's1(s').TStat(s')
+                                               else TStat(s)
+agent TCmd = c2(c).'wt(c).TCmd
+agent TPC = (TStat(0)|TCmd|Store(0))\{rd,wt}
+
+agent SS = (SPC|LGL|TPC|Clock)\{c1,c2,s1,s2,tks,tkt}
+
+(* relabel status actions *)
+
+agent SPC1 = SPC[stat/statIn,stat/'statOut]
+agent TPC1 = TPC[stat/statIn,stat/'statOut]
+
+
+

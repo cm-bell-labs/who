@@ -1,0 +1,86 @@
+<html>
+<header>
+<title>Convex Hulls and Interpolation</title>
+</header>
+<BODY>
+<H1>Convex Hulls: Some Algorithms and Applications <img src="3dn30.gif"> </H1>
+
+<h3> Abstract and preliminary pictures for a talk at the
+<em>Fifth MSI-Stony Brook Workshop on Computational Geometry</em>.</h3>
+
+<address>
+<BLOCKQUOTE>
+Ken Clarkson<br>
+<a href="http://www.att.com/">AT&amp;T Bell Laboratories</a><br>
+<A HREF="mailto:clarkson@bell-labs.com">
+clarkson@bell-labs.com</a><br>
+<a href="/cm/cs/who/clarkson/"> homepage </a>
+</BLOCKQUOTE>
+</address>
+<p>
+
+I'll talk about computing:
+<lu>
+<li> convex hulls;
+<li> Delaunay triangulations;
+<li> alpha shapes;
+<li> volumes of Voronoi regions;
+<li> natural neighbor interpolants.
+</ul>
+<p>
+
+A version of Gram-Schmidt orthogonalization can be used for the
+evaluation of various "numerical primitives" needed for these
+computations, assuming the input points have integer coordinates less
+than about 2<sup>40</sup>.  With this assumption, the input data can be in
+general (but small!) dimension, and be degenerate, and the code
+relatively simple.  I'll talk about the specifics of the numerical
+primitives, and the applications.
+<p>
+
+Alpha shapes are useful for finding a surface corresponding to
+the "shape" of a set of points; they can be computed using the
+Delaunay triangulation.
+<p>
+
+<img src="ashape.gif"> <h3> Alpha shape of a set of atoms in a crystal </h3>
+
+
+Delaunay triangulations have long been used for scattered data interpolation:
+given a set of sites (points), and function values at those sites,
+find estimates of the function value elsewhere.  Here's a piece-wise
+linear interpolant for four sites with function values > 0,
+and 5 sites with function value = 0:
+<p>
+
+<img src="3dn9.pl.gif"> <h3> Piecewise-linear interpolant </h3>
+
+
+Natural neighbor interpolation, sometimes called the "area stealing"
+approach, is a useful way of interpolating scattered
+data that is not as widely available as it might be.  I have a code
+for NN interpolation for general dimension.
+<p>
+
+The basic NN interpolant has a discontinuous gradient at the data sites;
+shown here is the interpolant of four sites at the corners of a square with
+<em>z>0</em>, plus a site at the center of the square and sites at the boundary of
+the domain with <em>z=0</em>.
+<p>
+
+<img src="3dn9.gif"> <h3> Basic natural neighbor interpolant </h3>
+
+There are many ways to make NN interpolants smoother; what is essentially
+required is an estimate of the gradient at the data sites.  I have
+a variant that seems natural, and produces a reasonable interpolant:
+<p>
+
+<img src="3d.n9.s.gif"> <h3> A smoother NN interpolant </h3>
+
+The program is <a href="/netlib/voronoi/hull.html"> available </a>,
+except for the natural neighbor interpolation.
+<p>
+
+
+</body>
+</html>

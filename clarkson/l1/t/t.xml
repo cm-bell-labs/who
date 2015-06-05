@@ -1,0 +1,536 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<?xml-stylesheet href="xbl-shape-bindings.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML"
+	xmlns:svg="http://www.w3.org/2000/svg" 
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+>
+
+<head>
+	<title>Subgradient and Sampling Algorithms for `l_1` Regression</title>
+	<meta name="version" content="S5 1.0" />
+	<link rel="stylesheet" href="ui/slides.css" type="text/css" media="projection,print" id="slideProj" />
+	<link rel="stylesheet" href="ui/opera.css" type="text/css" media="projection" id="operaFix" />
+	<link rel="stylesheet" href="ui/print.css" type="text/css" media="print" id="slidePrint" />
+	<script type="text/javascript" src="ui/ASCIIMathML.js"></script>
+	<script src="impl.js" type="text/javascript"></script>
+	<script src="ui/slides.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+	AMsymbols = AMsymbols.concat([
+	{input:">>", tag:"mo", output:"\u226B", tex:"gg"},
+	{input:"sgn",  tag:"mo", output:"sgn", tex:null, ttype:SPACER},
+	{input:"Prob",  tag:"mo", output:"Prob", tex:null, ttype:SPACER},
+	{input:"argmin",  tag:"mo", output:"argmin", tex:null, ttype:CONST},
+	]);
+	mathcolor = "black";
+	</script>
+</head>
+
+
+
+<body onload="startup(); translate(); regression1_init(); regression2_init(); regression3_init(); pic_init();" >
+
+<div class="layout">
+
+<div id="currentSlide">   </div>
+<div id="header"></div>
+<div id="footer">
+  <h1>Ken Clarkson March 7, 2005</h1>
+  <h2>Algorithms for `l_1` Regression</h2>
+  <div id="controls">
+    <form action="#" id="controlForm">
+      <div>
+        <a accesskey="t" id="toggle" href="javascript:toggle();">&#216;</a>
+        <a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;</a>
+        <a accesskey="x" id="next" href="javascript:go(1);">&raquo;</a>
+      </div>
+      <div onmouseover="showHide('s');" onmouseout="showHide('h');"><select id="jumplist" onchange="go('j');"></select></div>
+    </form>
+  </div>
+</div>
+
+</div>
+
+
+<div class="presentation">
+
+<div class="slide" >
+<h1>Subgradient and Sampling Algorithms for `l_1` Regression</h1>
+<h3>Ken Clarkson</h3>
+<h3>Bell Labs</h3>
+</div>
+
+
+<div class="slide">
+<h1>`l_1` Regression: Points and Lines</h1>
+
+<ul>
+	<li>Given a set `S` of `n` points</li>
+	<li>Find a line fitting the points</li>
+	<li>Minimize the sum of absolute values of vertical distances
+	</li>
+</ul>
+
+<div align="center">
+	<svg:svg id="canvas_regression" width="4in" height="4in" align="center">
+		<svg:shape name="fit_line_shape" x1="100" y1="100" x2="200" y2="200">
+			<svg:line id="fit_line" fill="black" stroke="black" stroke-width="2" x1="0in" y1="0in" x2="4in" y2="3in"/>
+			<controlpoint xvar="x1" yvar="y1"/>
+			<controlpoint xvar="x2" yvar="y2"/>
+		</svg:shape>
+		<svg:text id="total_dist_label" x="0in" y="320">sum= 0 rms= 0</svg:text>
+	</svg:svg>
+</div>
+
+</div>
+
+
+<div class="slide">
+<h1>`l_1` Regression: Matrices and Vectors</h1>
+<ul>
+	<li>Also of interest in higher dimensions</li>
+	<li>Given `n\times d` matrix `A` and `n`-vector `b`, <br/>find `d`-vector `x` minimizing
+	<blockquote>`{:|\|Ax-b\|\| _1:} = \sum_i {:|a_{i\cdot} x - b_i|:}` </blockquote></li>
+	<li>Corresponding points are `[a_{i\cdot} b_i]` </li>
+		<ul><li>vertical coordinate `b_i`</li></ul>
+	<li>Put still another way, find the linear combination of the <em>columns</em> of `A`
+	closest to `b` in `l_1` distance</li>
+	<li>Least-squares, or `l_2` regression, minimizes `|\|Ax-b\|\| _2`</li>
+	<li>`l_\infty` regression (a.k.a. Chebyshev, min-max) minimizes `|\|Ax-b\|\| _\infty`</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Who cares?</h1>
+<ul>
+	<li>Statistically, more "robust" than least squares</li>
+	<ul><li>That is, less affected by "outliers"</li></ul>
+	<li>Close to `l_0` norm, which counts number of non-zero entries</li>
+</ul>
+<div align="center">
+	<svg:svg id="canvas_regression2" width="4in" height="4in" align="center">
+		<svg:shape name="fit_control_point" id="fit_control_point_id" x1="150" y1="200">
+			<controlpoint xvar="x1" yvar="y1"/>
+		</svg:shape>
+		<svg:line id="l2_fit_line" fill="red" stroke="red" stroke-width="2" x1="0in" y1="0in" x2="4in" y2="3in"/>
+		<svg:line id="l1_fit_line" fill="light green" stroke="green" stroke-width="2" x1="0in" y1="0in" x2="4in" y2="3in"/>
+		<svg:text  x="230" y="320">l_1 green, l_2 red</svg:text>
+		<svg:text id="total_dist_label2"  x="0in" y="320">sum= 0 rms= 0</svg:text>
+	</svg:svg>
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="slide">
+<h1>Previous Results</h1>
+
+<ul>
+	<li>Generally, considering `n gg d`, and `d` not tiny: need `d^{O(1)}` dependence.</li>
+	<li>`l_2` computable in `O(nd^2)` time [G01][L11]</li>
+	<ul>
+		<li>...and so is popular</li>
+		<li>Orthogonalize `A`, find `b` component orthogonal to columns of `A`</li>
+	</ul>
+	<li>`l_\infty` computable in `O(nd^2) + O(log n)LP(d^2, d)` [C88]</li>
+	<ul>
+		<li>`LP(m,d) =` time for LP with `m` constraints, `d` variables</li>
+		<li>that is, `O(n)` in fixed dimension</li>
+	</ul>
+	<li>`l_1` is computable in `LP(2n, n+d)` time</li>
+	<ul>
+		<li>or `O({:n3^{d^2}:})` time, possibly `O({:n3^{O(d)}:})` time [MT]</li>
+		<li>or `LP(2n, n+d, B)` time, where `B` is the bit complexity</li>
+	</ul>
+</ul>
+</div>
+
+<div class="slide">
+<h1>New Results</h1>
+
+<ul>
+	<li>`l_1` algorithm needing `n (log n) d^{O(1)}` to get within twice optimal</li>
+	<li>Get within `1+epsilon` of optimal, by <em>either</em></li>
+	<ul>
+		<li>Additional `n(d//epsilon)^{O(1)}`</li>
+		<li><em>Or</em>, Additional `(d//epsilon)^{O(1)}log(1//gamma) ` time, error prob. `gamma`</li>
+		<ul>
+			<li>Implies existence of a small weighted subset which behaves like the whole set</li>
+			<li>Roughly, a <em>core-set</em> [AHV04]</li>
+		</ul>
+	</ul>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Overview of Algorithms</h1>
+
+<ul>
+	<li>Condition `A`, that is, make `{:|\|Ax\|\|:} _1 approx {:|\|x|\|:} _1` for all `x`
+	</li>
+	<ul>
+		<li>Using elementary column operations (change of variable)</li>
+	</ul>
+	<li>Find `l_2` fit, subtract from `b` (change of variable)</li>
+	<li>Apply modified subgradient algorithm, find `x_c` so that
+		`{:|\|Ax_c - b\|\|:} _1` no more than twice opt
+	</li>
+	<li><em>Either</em></li>
+	<ul>
+		<li>Apply subgradient algorithm more</li>
+		<li><em>Or</em> take weighted random sample of points, solve</li>
+	</ul>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Elementary Column Operations</h1>
+
+<ul>
+	<li>Adding a multiple of column `a_{cdot k}` to column `a_{cdot k'}` amounts to a change of variable</li>
+	<li>That is, we can consider `ABx`, for `d times d` matrix `B`, either as</li>
+	<ul>
+		<li>Changed matrix `AB`, or</li>
+		<li>Changed variable `Bx`</li>
+	</ul>
+	<li>Usually talk about changed matrix `AB`, renamed to `A`, but implicitly, tracking changes</li>
+	<li>Similarly, subtracting multiples of columns of `A` from `b` doesn't change problem</li>
+	<li>Such operations are enough to make columns of `A`, and `b`, orthogonal</li>
+	</ul>
+</div>
+
+
+<div class="slide">
+<h1>Conditioning `A`</h1>
+
+<ul>
+	<li>Make `{:|\|Ax\|\|:} _1 approx {:|\|x|\|:} _1` for all `x`</li>
+	<ul>
+		<li>More precisely: operate on columns of `A` so that</li> 
+			<blockquote>`{:|\|x|\|:} _1 >= {:|\|Ax\|\|:} _1 >= {:|\|x|\|:} _1/{:d sqrt d:}`</blockquote>
+			<img src="f/nest.png" align="right"/>	
+		<li>Reduce "`l_1` condition"  </li>
+			<blockquote>`{:max_{:{:|\|x|\|:} _1 = 1:}{:|\|Ax\|\|:} _1 :} / {:min_{:{:|\|x|\|:} _1 = 1:}{:|\|Ax\|\|:} _1 :} `</blockquote>
+	</ul>
+	<li>Equivalently, make the `d`-polytope `P(A) := \{ x : {:|\|Ax\|\|:} _1 \le 1 \}` <em>round</em> or <em>fat</em>
+	
+</li>
+</ul>
+
+</div>
+
+<div class="slide">
+<h1>Conditioning `A`, Motivation</h1>
+
+<ul>
+	<li>The conditioning here is an analog of orthogonalization, but for the `l_1` norm</li>
+	<ul>
+		<li>After orthogonalizing, have `|\|Ax\|\| _2 = |\|x|\| _2` for all `x`</li>
+		<li>Conditioning relation is similar, but weaker</li>
+	</ul>
+
+	<li>Makes a "well-shaped" objective function for subgradient method</li>
+	<ul>
+		<li>As in Newton's method</li>
+	</ul>
+	<li>Helpful also in sampling algorithm</li>
+	<ul>
+		<li>If `||x|| _1` is small, variance of sampled version of `||Ax-b|| _1`
+		must be also</li>
+		<li>This step, plus `l_2` fit step, reduce effect of outliers</li>
+	</ul>
+</ul>
+
+</div>
+
+
+
+<div class="slide">
+<h1>Conditioning `A`, in more detail</h1>
+
+<ul>
+	<li>Make columns of `A` orthogonal, scale so that `l_1` norm is one</li>
+	<ul>
+		<li>"Condition" is now `sqrt n`, will reduce to `d sqrt d`</li>
+	</ul>
+	<li>Apply ellipsoid method to "condition" `A` further</li>
+	<ul>
+		<li>Find Loewner-John ellipsoid pair</li>
+		<li>Or, transform `P(A)` so that it is nested between concentric balls</li>
+		<li>Faster because of first step</li>
+		<li>Fast enough in `n gg d` regime</li>
+	</ul>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Overview of Algorithms, again</h1>
+
+<ul>
+	<li>Condition `A`, that is, make `{:|\|Ax\|\|:} _1 approx {:|\|x|\|:} _1` for all `x`
+	</li>
+	<li>Find `l_2` fit, subtract from `b` (change of variable)</li>
+	<li style="color:red">Apply modified subgradient algorithm, find `x_c` so that
+		`{:|\|Ax_c - b\|\|:} _1` no more than twice opt
+	</li>
+	<li><em>Either</em></li>
+	<ul>
+		<li>Apply subgradient algorithm more</li>
+		<li><em>Or</em> take weighted random sample of points, solve</li>
+	</ul>
+</ul>
+</div>
+
+
+
+
+<div class="slide">
+<h1>Subgradients</h1>
+
+<ul>
+<li>The function `F(x) equiv |\|Ax - b\|\| _1` is piecewise-linear,
+     so it has a gradient "almost everywhere"</li><img src="f/subgrad.png" align="right"/>
+<li>That gradient is `A^T sgn(Ax-b)`</li>
+<ul><li>That is, a signed combination of the rows of `A`</li></ul>
+<li>At breakpoints of `F(x)`, gradient is undefined, but for any `x` and `y`,</li>
+	
+	<blockquote>`F(y) \ge F(x) + (y-x)^T A^T sgn(Ax-b)` </blockquote>
+<li>That is, `A^T sgn(Ax-b)` is a <em>subgradient</em>, a member of the set `\del F(x)`</li>
+<li>Gradient for least squares is `A^T(Ax-b)`; setting this to zero gives "normal equations"</li>
+</ul>
+
+</div>
+
+
+
+<div class="slide">
+<h1>Subgradient <s>Descent</s> Method</h1>
+
+<ul>
+	<li>In particular, if `hat x equiv argmin _x F(x)`, then
+	<blockquote>`0 \le F(x) - F(hat x) \le (x - hat x)^T A^T sgn(Ax-b) = (hat x - x)^T(-A^T sgn(Ax-b))`</blockquote></li>
+	<li>So `G(x) equiv -A^T sgn(Ax-b)` points from `x` to `hat x`</li>
+	<li>This subgradient property has been used for optimization</li>
+	<li>Take `x_0 := 0`, and `x_{i+1} := x_i + sigma G(x_i)</li>
+	<ul>
+		<li>Here `sigma` is a multiplier to avoid overstepping</li>
+		<li>Improvement in `F(x)` not guaranteed, that is, not a descent method</li>
+	</ul>
+</ul>
+</div>
+
+
+<div class="slide">
+<h1>Subgradient Method: Stepsize</h1>
+
+<ul>
+	<li>Often `sigma` is taken as fixed, or slowly decreasing in some simple way</li>
+	<li>Here, a careful program of `sigma` values allows provable convergence</li>
+	<ul>
+		<li>Can't just check for improvement: closer in `l_2`, but maybe not in function value</li>
+		<li>Best stepsize depends on unknown ratio `{:F(x):}//{:F(hat x):}`</li>
+	</ul>
+</ul>
+</div>
+
+
+
+<div class="slide">
+<h1>Subgradients Animation</h1>
+
+<br/>
+
+<div align="center">
+	<svg:svg width="600" height="42">
+		<svg:rect class="circ_control"   id="circ_go" width="40" height="40" y="0" x="420" style="fill:lightgreen;"/>
+		<svg:rect class="circ_control" id="circ_step" width="40" height="40" y="0" x="460" style="fill:yellow;"/>
+		<svg:rect class="circ_control" id="circ_stop" width="40" height="40" y="0" x="500" style="fill:red;"/>
+	</svg:svg>
+	<svg:svg id="canvas_regression3" width="4in" height="4in" align="center">
+		<svg:line id="l1_fit_line2" fill="light green" stroke="green" stroke-width="2" x1="0in" y1="0in" x2="4in" y2="3in"/>
+		<svg:text id="total_dist_label3"  x="0in" y="320">sum= 0 rms= 0</svg:text>
+	</svg:svg>
+</div>
+
+</div>
+
+
+<div class="slide">
+<h1>How good is the subgradient?</h1>
+
+<ul>
+	<li>Let `theta` be the angle between `hat x - x` and `G(x)`
+		<img src="f/angle.png" align="right"/></li>
+	<li>How big is `cos theta`? </li>
+	<li>We have
+		<blockquote>`{:|\|hat x - x|\|:} _2  {:|\|  G(x)|\|:} _ 2 cos theta  > F(x) - F(hat x)`</blockquote>
+	</li>
+	<li>How small are `|\| hat x - x |\| _2` and `|\| G(x)|\| _ 2`?</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Subgradient Method: Using conditioning</h1>
+
+<ul>
+	<li>`{:|\| G(x)|\|:} _ 2 = {:|\| A^T sgn (Ax-b)|\|:} _ 2 le sqrt d`</li>
+	<ul><li>`{:|\|x|\|:} _ 1 >  {:|\|Ax|\|:} _ 1` implies column sums of `A` are `le 1`.</li></ul>
+	<li>`{:|\|hat x - x|\|:} _2 \le d sqrt{d} (F(x) + F(hat x))`</li>
+	<ul><li> `{:|\|x-hat x|\|:} _2 \le {:|\|x-hat x|\|:} _1 \le d sqrt{d) {:|\|Ax-A hat x|\|:} _1 \le d sqrt{d)(F(x) + F(hat x))`  </li></ul>
+	<li>So if `alpha equiv {:F(x):}//{:F(hat x):}`, then
+	<blockquote>`cos theta > (F(x) - F(hat x))/((sqrt(d))d sqrt{d)(F(x) + F(hat x))) > {:1/(d^2):}(alpha-1)/(alpha+1)`</blockquote></li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Using the Subgradient</h1>
+
+<ul>
+	<li>`cos theta > (alpha-1)// {:d^2 (alpha+1):}`</li>
+	<li>When `F(x) \gg F(hat x)`, `cos theta approx 1`, or `theta approx 0`, good</li>
+	<li>When `F(x) approx F(hat x)`, not so good</li>
+	<ul><li>Leading to running time dependence `1//{:epsilon^2:}`</li></ul>
+	<li>Step length `{:|\|x-hat x|\|:} _2 cos theta \ge F(x)(1-{:1//alpha:})//sqrt(d)`</li>
+	<ul><li>Depends on `F(x)`, and on `alpha`, or an estimate of it</li>
+	<li>Enough to use estimate smaller than `alpha`</li>
+	<ul>
+		<li>If estimate is below `alpha`, provable improvement in `F(x)`</li>
+		<li>If above `alpha`, know that `alpha` can be reduced</li></ul>
+	</ul>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Sampling Algorithm: Preprocessing</h1>
+
+<ul>
+	<li>Condition `A` using the ellipsoid method</li>
+	<ul><li>For applying subgradient algorithm, and useful for sampling</li></ul>
+	<li>Use subgradient algorithm to find `x'` with `{:|\|Ax'-b|\|:} _1 \le 2 {:|\|A hat x - b|\|:} _1`</li>
+	<ul>
+		<li>Replace `b` by `b-Ax'` (change of variable)</li>
+		<li>Result is no "outliers"</li>
+	</ul>
+</ul>
+
+</div>
+
+<div class="slide">
+<h1>Sampling and Solving</h1>
+
+<ul>
+	<li>Construct a diagonal `n times n` matrix `Z` to sample about rows of `A` and `b_i`</li>
+	<li>Matrix `Z` will choose about `r` rows</li>
+	<li>With choose `i`, and make `Z_{ii} gt 0`, with probability prop. to length of `a_{i cdot}`</li>
+	<ul>
+		<li>`f_i equiv {:|b_i|:} + {:|\|a_{i cdot}|\|:} _1` </li>
+		<li>`W equiv sum_i f_i`</li>
+		<li>`p_i equiv min \{ 1, r f_i//W \}</li>
+		<li>Choose `y_i = 1` with probability `p_i`, `0` otherwise</li>
+		<li>`Z_{ii} = y_i/p_i`</li>
+	</ul>
+	<li>Having sampled, solve: minimize `{:|\| Z(Ax-b)|\|:} _1`</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Sampling Algorithm: Why it works</h1>
+
+<ul>
+	<li>`EZ = I`, and `E {:|\| Z(Ax-b)|\|:} _1 = {:|\| Ax-b|\|:} _1` for any given `x`</li>
+	<li>Expected number of nonzero `Z_{ii}` is `r`</li>
+	<li>Apply tail estimates, `X_i = Z_{ii}{:|b_i - a_{i cdot} x|:}` </li>
+	<li>`sum_i E[(Z_{ii}{:|b_i - a_{i cdot} x|:})^2] approx {:|\| Ax -b |\|:} _1 ^2` </li>
+	<ul>
+		<li>That is, sum of squares within a constant factor of square of expectation</li>
+		<li>Conditioning of `A` implies `f_i = {:|b_i|:} + {:|\|a_{i cdot}|\|:} _1`
+			is a good estimator of `|b_i - a_{i cdot} x| |\|x|\| _\infty`, on average
+		</li>
+	</ul>
+	<li>Result is that, with high probability, `{:|\| Z(Ax-b)|\|:} _1 approx {:|\| Ax-b|\|:} _1`</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Bernstein Bounds</h1>
+
+<ul>
+	<li>Use tail estimates of Maurer03, MO3:</li>
+	<li>Given `X_i ge 0`, `i=1...n`, independent random variables</li>
+	<li>Let `S = sum_i X_i`, then for any `t ge 0`,
+		<blockquote>`log Prob\{S le ES -t\} \le {:{:-t^2:}//{:2 sum_i EX_i^2:}:}`</blockquote>
+	</li>
+	<li>Tail estimate of Bernstein46:</li>
+	<li>if also for some `M`, `X_i le EX_i + M`, then
+		<blockquote>`log Prob\{S ge ES + t\} \le {:{:-t^2:}//2(tM//3 + sum_i EX_i^2):}`</blockquote>
+	</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Coresets (motivation)</h1>
+
+<ul>
+	<li>One motivation here: are there coresets for `l_1` regression?</li>
+	<li>Coreset for smallest ball problem:</li>
+	<ul>
+		<li>Given set of points `S` and `epsilon>0`</li>
+		<li>there is `C subset S` of size ` lceiling 1//epsilon rceiling`, such that</li>
+		<li>the smallest ball containing `C`, expanded by `1+epsilon`, contains `S`</li>
+		<li>Independent of `|S|`, and even the dimension (!)</li>
+	</ul>
+	<div align="center">
+		<svg:svg id="coreset" width="4.5in" height="4in">
+			<svg:circle r="5" cx="2in" cy="0.8in" style="fill:red; fill-opacity:1; stroke:red;"/>
+			<svg:circle r="5" cx="2in" cy="2.2in" style="fill:red; fill-opacity:1; stroke:red;"/>
+			<svg:circle id="coreset_big_circ"   r="2in" cx="2in" cy="1.5in" style="fill:red; fill-opacity:0; stroke:red;"/>
+			<svg:circle    r="1in" cx="2in" cy="1.5in" style="fill:blue; fill-opacity:0; stroke:blue;"/>
+		</svg:svg>
+	</div>
+</ul>
+</div>
+
+
+
+<div class="slide">
+<h1>Coresets: uses</h1>
+
+<ul>
+	<li>Useful for `k`-center problem and others</li>
+	<li>Similar results for approximating many geometric problems (but coresets may be larger)</li>
+	<li>Here: sample taken by sampling algorithm is a kind of coreset</li>
+	<li>Size `d^{O(1)}/epsilon^2`</li>
+</ul>
+
+</div>
+
+<div class="slide">
+<h1>Conclusion</h1>
+
+<ul>
+	<li>Provable results, plausible algorithms</li>
+	<li>Can the ellipsoid method be avoided?</li>
+	<ul>
+		<li>Repeatedly apply subgradient algorithm to columns of `A`</li>
+		<li>Remove linear combinations to make `l_1` residual small</li>
+	</ul>
+	<li>Apply to other regression schemes?</li>
+	<li>Remove `log n` term?</li>
+</ul>
+
+</div>
+
+
+
+</div>
+</body>
+</html>

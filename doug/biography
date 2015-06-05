@@ -1,0 +1,65 @@
+M. Douglas McIlroy
+Bell Laboratories, Room 2C-526
+Murray Hill, NJ 07974
+(908)582-6050
+doug@research.bell-labs.com
+http://cm.bell-labs.com/cm/cs/who/doug
+
+Currently Distinguished Member of Technical Staff in the Computing
+Sciences Research Center at Bell Laboratories (formerly AT&T, now
+Lucent Technologies), M. Douglas McIlroy was head of the Computing
+Techniques Research Department from 1965 to 1986, at which time he
+returned at his own request to full-time research.  Best known as the
+birthplace of the UNIX operating system, that department has done wide
+ranging theoretical and applied research in programming languages and
+compilers, operating systems, design verification, algorithms and
+computational complexity, text processing, graphics and image
+processing, and computer security.
+
+In the area of computer languages, Dr. McIlroy participated in the
+design of PL/I, contributed to C++, and has written unusual compilers
+for Lisp, ALTRAN (an algebraic manipulation system), PL/I, and TMG (a
+compiler-compiler).  Long interested in stream processing, he
+conceived "pipes" as realized in the UNIX operating system and
+invented the classic coroutine prime-number sieve.  Other research
+topics include text and string processing, computer cartography,
+theorem proving, and dynamic storage allocation.  The notions of
+"language extension" arose from his early work in macroprocessors, and
+"software components" from a 1968 NATO paper.  In a lighter vein, he
+coauthored Darwin, the first game of survival among self-reproducing
+programs.  His recent research has addressed multilevel security for
+UNIX and ultimately accurate bitmap graphics.
+
+He participated in the design and construction of the Multics
+operating system.  To Unix he contributed many utilities and
+subroutines, ranging from the lowly "echo", through "diff" for file
+comparison, "spell" for checking spelling, and "join" for database
+manipulation, to "speak", the first real-time text-to-speech program.
+
+Dr. McIlroy joined Bell Laboratories in 1958 after earning a
+bachelor's degree in engineering physics from Cornell University and a
+PhD in applied mathematics from the Massachusetts Institute of
+Technology.  He taught at MIT from 1954 to 1958, and was a visiting
+lecturer at Oxford University from 1967 to 1968.
+
+He has served the Association for Computing Machinery as national
+lecturer, Turing award chairman, member of the publications planning
+committee, and associate editor for Communications, Journal, and
+Transactions.  He has served on the executive committee of CSNET (an
+evolutionary stage between the exclusive ARPANET and the public
+Internet), on various advisory panels to Department of Energy,
+Department of Defense, New Jersey Board of Higher Education, and
+National Science Foundation.  He was an author of influential National
+Research Council reports on computer security ("Computers at Risk",
+1991) and directions for academic computer science ("Computing the
+Future", 1992).  He is Vice president of the New York Map Society, a
+founding member of WG2.3, the International Federation of Information
+Processing Societies working group on programming methodology, and a
+fellow of the American Association for the Advancement of Science.
+
+In his home town of Bernardsville, New Jersey, Mr. McIlroy has been
+chairman of the shade tree commission, chairman of the environmental
+commission and member of the planning board.  He is now a trustee of
+the public library.
+
+12/31/96

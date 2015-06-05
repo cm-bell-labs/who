@@ -1,0 +1,1105 @@
+
+                   UNITED STATES DISTRICT COURT
+                  FOR THE DISTRICT OF NEW JERSEY
+
+
+___________________________________
+                                   )
+UNIX SYSTEM LABORATORIES, INC.     )
+                                   )
+               Plaintiff,          )
+                                   )    Civ. No. 92-1667
+vs.                                )      O P I N I O N
+                                   )
+BERKELEY SOFTWARE DESIGN, INC.,    )
+and certain named individuals in   )
+their collective capacity as The   )
+Regents of the University of       )
+California,                        )
+                                   )
+               Defendants.         )
+___________________________________)
+
+
+Attorneys for Plaintiff
+
+Crummy, Del Deo, Dolan, Griffinger & Vecchione, P.C.
+One Riverfront Plaza
+Newark, NJ  07102
+By:  Gary F. Werner, Esq.
+
+Paul, Hastings, Janofsky & Walker
+399 Park Avenue
+NY, NY  10022
+By:  George L. Graff, Esq.
+     James W. Kennedy, Esq.
+
+
+Attorneys for Defendant Regents of the University of California
+
+Crosby, Heafey, Roach & May
+1999 Harrison Street
+Oakland, CA  94612
+By:  Joel Linzner, Esq.
+
+Post, Polak & Goodsel
+280 Corporate Center
+65 Livingston Avenue
+Roseland, New Jersey  07068
+By:  Frederick B. Polak, Esq.
+
+Attorneys for Defendant Berkeley Software Design, Inc.
+
+Saiber Schlesinger Satz & Goldstein
+One Gateway Center
+Newark, NJ 07102-5311
+By: James H. Forte, Esq.
+
+
+Debevoise, District Judge.
+          Plaintiff UNIX System Laboratories, Inc. instituted this
+action to seek relief from Defendants' ongoing distribution of
+computer software in alleged violation of USL's proprietary rights
+in the UNIX operating system.  Plaintiff pleads eleven claims for
+relief, including federal copyright and trademark claims, and state
+contract, tort, and trademark dilution claims.  Defendants now move
+(i) to dismiss, for lack of personal jurisdiction because Defendant
+Regents lack capacity to be sued and because of improper venue;
+(ii) to transfer because of improper venue and inconvenience; and
+(iii) to strike parts of the pleadings.  Plaintiff cross-moves to
+amend its complaint and for a preliminary injunction.  This court
+has subject matter jurisdiction pursuant to 15 U.S.C.  1121(a)
+(jurisdiction over actions under Chapter 22 (Trademarks) of Title
+15); 28 U.S.C.  1331 (federal question), 1332 (diversity), and
+1338 (copyrights and trademarks); and supplemental jurisdiction
+over Plaintiff's state law claims, 28 U.S.C.  1367(a).
+                      I.  STATEMENT OF FACTS
+          Plaintiff UNIX System Laboratories ("USL") is a Delaware
+corporation and majority-owned subsidiary of American Telephone and
+Telegraph Company ("AT&T"), with its principal place of business in
+Summit, New Jersey.   Plaintiff develops, manufactures, licenses,
+and sells computer operating systems and related products and
+services.  Plaintiff is also the present assignee of AT&T's rights
+to UNIX, the computer software at the heart of this dispute. 
+Defendant Berkeley Software Designs, Inc. ("BSDI") is a
+recently-formed Delaware corporation with its principal place of
+business in Richmond Falls, Virginia.  BSDI someday plans to
+develop, manufacture, and sell computer operating systems like
+Plaintiff.  Defendant individuals are members of the Board of
+Regents (the "Regents") of the University of California
+("Berkeley").  The Regents are a non-profit public corporation
+organized to administer the University of California pursuant to
+the California constitution, art. 9  9, and California state law.
+          The central issue here is whether Defendants BSDI and
+Regents appropriated parts of Plaintiff's allegedly proprietary
+program "UNIX," and then used and distributed these parts without
+authorization in violation of Plaintiff's copyrights and trade
+secrets.  UNIX is a computer operating system; that is, it is a
+software program that oversees a computer's internal and external
+activities, including processing, resource allocation,
+communications, and applications use.  AT&T's Bell Laboratories
+developed UNIX in the 1970s, and registered the name UNIX as
+Trademark No. 1,392,203 on May 6, 1986.  (1st Am. Compl. Ex. B.)  
+In addition, AT&T has received copyright certificates of
+registration on UNIX software and documentation for the Fifth
+through Seventh Editions and for version 32V. (Id., Exs. C-F.)
+          Before exploring the details of Plaintiff's allegations,
+it is important to step back and appreciate the importance of UNIX
+in the world of computing.  All parties agree that UNIX is one of
+the most highly-regarded operating systems in the world.  Numerous
+treatises, courses, graduate student theses, and research projects
+have investigated, expounded, and improved upon UNIX.  In addition,
+programmers at Microsoft, Sun Microsystems, Digital, IBM, and
+elsewhere have all developed their own UNIX-like, UNIX-compatible
+operating systems (some under license by Plaintiff). (Carson Reply
+Aff. at  11-12.)
+          After developing UNIX in late 1960s and early 1970s, AT&T
+quickly began licensing UNIX to educational, government, and
+commercial users, including Berkeley.  Berkeley and AT&T apparently
+collaborated on UNIX's development at least in the early years,
+with AT&T personnel often visiting Berkeley for consultations.  The
+parties executed their first UNIX licensing agreement in 1973, and
+by 1979 the parties had executed their first agreement covering the
+software that Plaintiff now seeks to protect, UNIX version 32V. 
+The parties' most recent 32V agreement is the Educational Software
+License Agreement, or E-SOFT-00089, executed in 1985 ("the 00089
+agreement"). (Forte Aff., Ex. F.)  The 00089 agreement permits
+the Regents to create derivatives of UNIX and, to the extent that
+the derivatives are free of proprietary information, to distribute
+them without restriction. 
+          In addition to its source code, AT&T also prepared and
+distributed copies of 32V object code beginning in 1984.  Object
+code is simply the source code translated into the form recognized
+by computer hardware, a binary sequence of Os and 1s.  Although
+readable by computers, sequences of Os and 1s are generally
+inscrutable to humans.  Relying on this inscrutability for
+protection from disclosure, AT&T has distributed 32v object code
+publicly subject to notice of copyright but without redistribution
+restrictions (Pferrer Reply Decl. at  4).
+          Berkeley, a recipient of 32V source code, exercised its
+contractual right to derivative 32V to the hilt.  It began to
+create its own embellishments and additions, which it called
+Berkeley Software Distributions ("BSD") releases, and distributed
+them via the Regents' Computer Sciences Research Group ("CSRG"). 
+In the early 1980s, Berkeley only distributed the releases to other
+licensees (which now number in the thousands) because the releases
+contained proprietary code governed by Berkeley's license with
+AT&T.  But demand for the releases from unlicensed users grew, so
+Berkeley began distributing reacted releases with the proprietary
+material allegedly removed.  These releases included the operating
+system at the heart of the present dispute, Net2, which Plaintiff
+has alleged violates its proprietary rights in 32V.
+          Net2 apparently began as a project to develop a UNIX-like
+product devoid of AT&T proprietary code.  This product contained
+both non-proprietary software from the BSD releases and software
+written specifically for Net2, sometimes by volunteers. (Kennedy
+Aff., Ex. 6.)  To guarantee that no proprietary code remained, CSRG
+screened and eliminated overlapping code sections in accordance
+with criteria developed together with Berkeley's legal counsel.  In
+addition, Berkeley "repeatedly contacted the USL licensing office,
+in an attempt to have them review software we intended to
+distribute." (McKusick Decl. at 8.)  Plaintiff allegedly refused to
+cooperate, although it had performed similar services for others.
+          Berkeley's decision to excise AT&T's code was motivated
+by several related concerns.  First, the University of California
+received substantial benefits by being the center of UNIX software
+development, benefits that would increase if it could expand the
+family of UNIX users by extending UNIX to non-licensees (Ibid.);
+second, the cost of an AT&T UNIX license had increased to around
+$200,000, excluding all but the largest users (Ibid.); third, the
+Net2 version of UNIX would offer new and improved services (Keith
+Bostic, Marshall K. McKusick, & Michael J. Karels, Berkeley UNIX
+Yesterday, Today and Tomorrow, in Kennedy Aff. Ex. 8); and finally,
+the CSRG programmers, at least those who founded BSDI (Karels,
+McKusick, and Bostic), presumably saw in Net2 an opportunity to
+profit from the widespread interest in UNIX-like systems.
+          The end result of Berkeley's efforts was a product that,
+by all accounts, contains a very small proportion of 32V code.  But
+this is not to say that Net2 fails to display its 32V roots. 
+Plaintiff hired Professor John Carson to unearth these roots and,
+after over 400 hours of digging, Professor Carson has now
+identified a number of instances where 32V code is embedded in the
+Net2 system.  (Carson Aff. at  13.) The legal significance of this
+code is, of course, a matter of dispute. 
+          To begin with, it is important to compare Net2
+side-by-side with 32V.  Net2 has far outgrown 32V and now weighs in
+at nearly ten times the size of its parent.  The alleged overlaps
+between parent and child probably amount to less than a percent of
+the total.  (Joint Decl. at  12, 13.) Indeed, ignoring header
+files and comments (see below), the overlap in the critical
+"kernel" region is but 56 lines out of 230,9995, and the overlap
+elsewhere is 130 lines out of 1.3 million.  However, as both sides
+argue (but to different effect), the nature of the overlap is more
+significant than its size.
+          According to Professor Carson, eighty of the 8,000 Net2
+files are "littered with textual references which are or (sic)
+identical or substantially similar to corresponding textual matter
+in the UNIX/32V source code." (Ibid.)  These textual overlaps
+include variable and parameter names, function names, the text of
+noncoding comments, and the actual sequence of the instruction code
+itself. (Id. at  23.) Most of these textual references are
+concentrated in files in the "kernel" of Net2, "which forms the
+central core of the operating system-" (Id. at  14.)
+          To understand the functional importance of this overlap,
+it is necessary to understand its nature.  Overlap in items such as
+variable, file, and function names is functionally irrelevant to
+the program insofar as the program is wholly self-referential.
+          That is, is a programmer could name a variable or
+function anything at all without disabling the program, as long as
+the program did not interface with other programs.  But once a
+program interfaces with another program, the file, function, or
+variable names can become significant.  The two programs may have
+certain files, functions, or variables in common, and these must
+have the same names in order for the programs to interface. 
+Programs written to run with a UNIX-like operating system have now
+became so common that industry standards govern the requirements of
+UNIX interfaces.
+          For example, the UNIX operating systems contain files
+called "header" files.  Header files are repositories of common
+definitions and declarations.  If a programmer knows that an
+operating system contains a certain header file, then the
+programmer can simply refer to the header file and avoid
+reproducing all of the definitions and declarations.  Of course,
+such a program can only run with an operating system having the
+proper header files.  Therefore, Defendants have included 32V's
+header files in Net2 as a matter of necessity, to insure that the
+many programs written for UNIX-like systems will be compatible with
+Net2.
+          Another type of overlap identified by Professor Carson is
+overlap in code instructions.  Code instructions embody and
+implement the programmer's solution to a programming problem ~ a
+solution that directly determines how well or how poorly the
+program runs.  Professor Carson has found several sections of
+instructions that BSDI appears to have copied from 32V.  Again,
+BSDI argues that these instructions are widespread and
+well-documented, and that their structure is substantially dictated
+by the need to preserve compatibility with other programs (Joint
+Decl. at  53-61.)
+          The final type of overlap identified by Professor Carson
+is "comment" overlap.  All computer programs contain short
+explanatory comments annotating the code in which they are
+embedded.  The function of these comments is simply to inform
+programmers of the purpose and operation of particular sections of
+code.  Comments have no role whatsoever in software performance.
+          In summary, Professor Carson has examined the traits
+shared by Net2, BSD/386, and 32V, and detected a common lineage. 
+Defendants argue that virtually all of these traits reflect
+publicly available code, copied comments, or overlap dictated by
+compatibility with industry standards.  Professor Carson disagrees,
+and has allegedly identified at least some overlapping files that
+are irrelevant to program interfacing.  (Carson Reply Aff. at 
+6(d), 8-15.)
+          Berkeley began licensing and distributing Net2 in June
+1991.  Plaintiff has alleged that the "highest levels," meaning
+persons reporting directly to the Regents, approved Net2's release.
+(E.g. Proposed 2d Am. Compl. at  2, 9, 38, 64, 72, 89, 103.) 
+Indeed, Plaintiff has alleged that the University Chancellor
+himself approved Net2's release.  (Kennedy Aff.  16.)
+          In soliciting new licensees, Berkeley distributed
+promotional materials stating that Net2 "may be freely
+redistributed.  It is available to anyone and requires no previous
+license, either from AT&T or The Regents of the University of
+California." (Bostic Dep. at 76, Kennedy Aff. Ex. 3K.)  According
+to Mr. Bostic, a member of CSRG, promotional materials were mailed
+to firms in New Jersey, although no New Jersey firms were among the
+approximately 120 firms that signed a licensing agreement to use
+Net2.
+          An early Net2 licensee was UUNET, an electronic
+information exchange for people interested in UNIX.  (Adams Dep. at
+149, Kennedy Aff. Ex. 12.  UUNET added Net2 to its standard
+archives, enabling any subscriber to UUNET to freely and
+anonymously copy Net2 to their own computer system.  When asked the
+number of people who had copied Net2 from UUNET, Mr. Bostic replied
+that "I've been told it's in the tens of thousands."  (Bostic Dep.
+at 81, Id.).  UUNET is available to hundreds of thousands of users
+worldwide, including users in New Jersey.  (Rorke Aff.  1-4.)
+          One organization that obtained Net2 from UUNET was BSDI. 
+(Adams Dep. at 149, Kennedy Aff. Ex. 12.)  BSDI, which is not
+licensed by AT&T to use UNIX, used Net2 to create its sole product,
+the operating system BSD/386 Source.  (Ans. & Countercl. at
+ 5-6.) BSDI is now close to bringing BSD/386 to market, having
+distributed preliminary "alpha," "beta," and "gamma" versions of
+BSD/386 as well as promotional literature.  This literature states
+that BSD/386 Source "contains no AT&T licensed code" and "does not
+require a license from AT&T."  (1st Am. Compl. Ex. I.)
+                      II.  PROCEDURAL HISTORY
+          Plaintiff filed its complaint in this action on April 20,
+1992.  On April 29, the parties agreed to a court-ordered
+stipulation that BSDI would cease using the phone number
+"1-800-ITS-UNIX".  Plaintiff filed its First Amended Complaint on
+July 24, and on the same date Defendants' motion to dismiss Counts
+Ten and Eleven were denied.  Defendants answered on September 3 and
+counterclaimed for declarations of noninfringement,
+unenforceability, and invalidity of Plaintiff's trademark and
+copyrights in the UNIX name and materials.  Plaintiff replied on
+September 25, and subsequently moved for a preliminary injunction. 
+The motion for an injunction was adjourned and consolidated with
+the present motions.
+                         III.  DISCUSSION
+          Defendants move for relief on three separate grounds: 
+this complaint should be dismissed against the individual Regents
+pursuant to Rules 12(b) and 12(f) of the Federal Rules of Civil
+Procedure, because the individual Regents lack the capacity to be
+sued; Plaintiff has no personal jurisdiction over the University of
+California; and venue in New Jersey is improper under 28 U.S.C.
+ 1391.  Plaintiff cross-moves to amend its complaint, in part to
+correct some of the defects asserted by Defendants, and for a
+preliminary injunction.
+                  A.  Plaintiff's Motion To Amend
+          Plaintiff cross-moves to amend its complaint pursuant to
+Rule 15(a) of the Federal Rules of Civil Procedure.  Rule 15(a)
+states that, in cases where the adverse party has served a
+responsive pleading, "a party may amend the party's pleading only
+by leave of court or by written consent of the adverse party; and
+leave shall be freely given when justice so requires."
+          The Supreme Court has held that:
+          [i]n the absence of any apparent or declared reason ~
+          such as undue delay, bad faith or dilatory motive on the
+          part of the movant, repeated failure to cure deficiencies
+          by amendments previously allowed, undue prejudice to the
+          opposing party by virtue of allowance of the amendment,
+          futility of amendment, etc. ~ the leave sought should, as
+          the rules require, be "freely given."
+
+Foman v. Davis, 371 U.S. 178, 182 (1962).
+
+          Plaintiff seeks to amend its complaint to add allegations
+of wrongdoing on the part of the individual Plaintiffs (e.g.
+Proposed 2d Am. Compl. at  2, 9, 38, 64, 72, 89, 103); factual
+allegations concerning the University's distribution of its Net2
+code to persons in New Jersey (e.g. Id., at  41, 43, 44); and
+allegations of willfulness on the part of the University and BSDI
+(e.g. Id. at  50, 63-66).  In addition, Plaintiff wishes to
+change the named Defendants from "the Following Individuals in
+their Collective Capacity as The Regents etc." to "The Regents of
+the University of California and the Following Persons in their
+Individual and Official Capacity etc."
+          There is no evidence that Plaintiff is seeking a second
+amendment of its complaint for reasons of bad faith and delay. 
+Plaintiff is simply trying to meet Defendant's objections to the
+present complaint, to insert new factual matters learned through
+discovery, and to clarify the nature of its claims.  Moreover, the
+proposed amendments cause no prejudice to Defendants.  The
+amendments do not eliminate claims which the Defendants have
+expended time and resources to rebut, nor do the amendments
+drastically alter the expected costs of defense, length of the
+action, or nature of the complaint.  Consequently, I grant
+Plaintiff's motion for leave to amend.
+        B.  Defendant Regents Lack The Capacity To Be Sued
+          Defendants argue that Plaintiff "has chosen to
+incorrectly name individual Regents of the University of
+California, 'in their collective capacity,' rather than the legal
+entity known as the [sic] 'The Regents of the University of
+California' as required by federal and state law."  (Defs.'s Supp'g
+Br. at 5.)  In addition, Defendants argue that "Plaintiff has not
+stated any facts which would support a claim against individual
+Regents," and that "claims against individuals acting in their
+official governmental capacities may be barred by qualified
+immunities."  (Defs.'s Supp'g Br. at 6-8.)  Defendants base these
+arguments in the Federal Rules of Civil Procedure and the
+California constitution.
+          Plaintiff's Second Amended Complaint answers Defendants,
+"collective capacity, objection by expressly naming the Regents of
+the University of California as Defendants.  Defendants' other
+objection, that Plaintiff has improperly named the individual
+Regents, needs no answer.  Defendants have not elaborated on their
+one-sentence suggestion that Plaintiff has failed to state a claim
+against these Defendants.
+          Accordingly, I must deny Defendants' motions to dismiss
+all claims against the individual Regents and to strike the related
+matters from the pleadings.
+            C.  Personal Jurisdiction Over The Regents
+          Defendants also allege that this action must be dismissed
+for lack of jurisdiction over "the University."  The Second Amended
+Complaint no longer names "the university" per se, instead naming
+the Regents in their corporate, official, and individual
+capacities.  Consequently, this motion will be treated as a motion
+to dismiss for lack of jurisdiction over the Regents as named in
+the Second Amended Complaint.
+          This court has personal jurisdiction over a defendant if
+the exercise of personal jurisdiction complies with the laws of New
+Jersey, Fed. R. Civ. P. 4(e), and does not violate due process.
+International Shoe Co. v. Washington, 326 U.S. 310 (1945) (the
+fourteenth amendment limits state long-arm statutes); Provident
+National Bank v. California Federal Savings & Loan Ass'n, 819 F.2d
+434, 436 (3d Cir. 1987) (citing Rule 4(e) and International Shoe). 
+The due process clause permits a court to exercise jurisdiction
+over a party whenever the party has "certain minimum contacts with
+[the forum] such that the maintenance of the suit does not offend
+'traditional notions of fair play and substantial justice.'"
+International Shoe, 326 U.S. at 316.
+          The dual considerations of state law and Constitutional
+limits coincide in New Jersey because New Jersey's long-arm statute
+reaches as far as the due process clause of the Fourteenth
+Amendment permits.  Carteret Savings Bank, FA v. Shushan, 954 F.2d
+141 (3d Cir.), cert. denied, ___ U.S. ___, 113 S.Ct. 61 (1992)
+(citing New Jersey Court Rule 4:4-4, which permits service
+"consistent with due process of law"); Charles Gendler & Co., Inc.
+v. Telecom Equip. Corp., 102 N.J. 460, 469 (1986) (Rule 4:4-4
+allows "'out-of-state service to the uttermost limits permitted by
+the United States Constitution'", citing Avdel Corp. v. Mecure, 58
+N.J. 264, 268 (1971)); Giangola v. Walt Disney World Co., 753
+F. Supp. 148, 154 (D.N.J. 1990) (New Jersey's long-arm statute
+extends to the limits of the U.S. Constitution).
+          If a defendant raises the issue of personal jurisdiction,
+the plaintiff bears the burden of establishing that the defendant's
+contacts with the forum state comport with the requirements of due
+process.  "To carry this burden, plaintiff must show `with
+reasonable particularity' that the forum, and thus the court, has
+either:  (1) specific jurisdiction (where the cause of action arose
+from the defendant's activities within the forum state), or
+(2) general jurisdiction (derived from defendant's continuous and
+systematic conduct in the forum state)."  Giangola, 753 F.Supp. at
+154 (citing Provident National Bank, 819 F.2d at 437).
+          Once a court has found that a defendant's contacts with
+the forum state are significant enough to confer jurisdiction on
+the forum, "in appropriate cases" the court may evaluate other
+factors.  Burger King, 471 U.S. at 476-77.  These include the
+"`burden on defendant,' `the forum State's interest in adjudicating
+the dispute,' 'the plaintiff's interest in obtaining convenient and
+effective relief,' `the interstate judicial system's interest in
+obtaining the most efficient resolution of controversies,' and the
+`shared interest of the several States in furthering fundamental
+substantive social policies.'"  Id. at 477, citing World-Wide
+Volkswagen Corp. v. Woodson, 444 U.S. 286, 292 (1980).
+          To apply these principles in the present case, it is
+first necessary to briefly review the connections between the
+various defendants and the alleged wrongdoing.  Plaintiff's
+allegations against the Regents, in their various capacities, stem
+from the release of Net2 by the CSRG, a group affiliated with the
+University of California.  The Regents, in their corporate
+capacity, are apparently liable under a theory of respondent
+superior for the activities of CSRG.  In their official and
+individual capacities, the Regents are apparently liable in so far
+as they authorized, knew of, or reasonably should have known of
+Net2's release.  Thus Plaintiff can satisfy the burden of providing
+jurisdiction by showing with "reasonable particularity" that CSRG's
+acts bring it within this court's jurisdictional ambit, and that
+the Regents approved those acts.
+          Plaintiff points to several different activities by the
+University of California that give this court specific jurisdiction
+over the Regents' alleged misdeeds.  The first of these activities
+was the negotiation and execution of licensing agreements between
+Plaintiff and the University:  "the University `reached out beyond'
+California and knowingly contracted to obtain and use . . .
+software developed in New Jersey" (Pl.'s Opp'g Br. at 19, citing
+Burger Kinq v. Rudzewicz, 471 U.S. 462, 476 (1985).)
+          The Supreme Court analyzed a similar issue of personal
+jurisdiction in the seminal case Burger King v. Rudzewicz.  In
+Burger King, the Michigan defendant Rudzewicz had contracted with
+the Florida corporation Burger King for a restaurant franchise near
+Detroit.  Business lagged at the restaurant, and when Rudzewicz was
+unable to meet the lease payments, Burger King brought an action
+for eviction in the Southern District of Florida.  Although
+Rudzewicz's manager had trained at Burger King headquarters in
+Florida, Rudzewicz himself had apparently never even visited there. 
+None the less, the Court found that the Southern District of
+Florida had personal jurisdiction over Rudzewicz because the
+contract had substantial connections with Florida and because
+Rudzewicz had purposefully reached out and availed himself of the
+benefits of a continuing relationship with a citizen of Florida.
+          The Third Circuit has also found personal jurisdiction in
+cases where a contract provided the defendant's only contacts with
+the forum state.  In Associated Business Telephone Systems v.
+Greater Capital Corp., 861 F.2d 793 (3d Cir. 1988), the court found
+jurisdiction in New Jersey over a California company that had
+contracted with a New Jersey company for telephone services for an
+Illinois hotel.  Following the methodology prescribed in Burger
+King, the court examined the connections between the contract and
+New Jersey; (1) the defendant had created long-term (ten-year)
+obligations between itself and the New Jersey plaintiff; (2) the
+plaintiff would be the exclusive contractor and manager of the
+phone system, with 24-hour access to it; (3) all communications
+with the plaintiff were with its New Jersey office; (4) the
+plaintiff continually monitored phone usage in New Jersey; (5) the
+plaintiff had the power to unilaterally disconnect the defendant;
+(6) the plaintiff sent its personnel to the defendant's offices;
+and (7) the defendant knew that its acts would cause injury in New
+Jersey.
+          The contractual contacts here arise out of Count One, a
+count that names the Regents in all their capacities.  The contacts
+are less substantial than those in Burger King and Associated
+Business, but a side-by-side comparison between the contacts here
+and those in Associated Business listed above shows that the
+contacts here are not insignificant. (1) Defendants knowingly
+entered into a relationship with a New Jersey facility that has now
+lasted nineteen years, compared to a ten-year contract in
+Associated Business.  It is true that Defendants signed the initial
+contract with AT&T in New York, but they maintained their
+operational relationships with Plaintiff in New Jersey at all
+times. (2), (4), (5) The New Jersey facility continued to develop,
+distribute, and service the software licensed to Defendants.  In
+addition, Defendants also participated in the development and
+distribution of UNIX to Plaintiff's licensees, to such an extent
+that Defendants' development efforts now apparently outstrip those
+of Plaintiff. (3) Most communications concerning UNIX were
+presumably with Plaintiff's New Jersey office. (6) Plaintiff sent
+technical people to meet with Defendants in California "on quite a
+large number of occasions." (McKusick Dep. at 318, Kennedy Aff. 
+Ex. 5.)  (7) Defendants knew its acts would cause injury in New
+Jersey.  
+          In sum, Defendants and Plaintiff have worked together for
+nearly two decades to develop, expand, and distribute UNIX software
+to Plaintiff's licensees.  Defendants and Plaintiff are not two
+organizations whose only contact is an agreement cemented by fax
+and phone to engage in a single transaction.  See Colmen Financial
+Services v. Charter Equip, Leasing, 708 F. Supp. 664 (E.D. Pa.
+1989) (no jurisdiction arising out of Plaintiff's contract with
+out-of-state Defendant to give financial advise in sale of
+business).  Plaintiff and Defendants are long-term business
+associates, and Defendants should reasonably have expected to be
+subject to suit in New Jersey.  
+          Plaintiff asserts a second ground for jurisdiction in
+that it has alleged that Defendants committed unlawful that
+inflicted foreseeable harm on New Jersey residents.  Again, this
+jurisdiction involves the Regents in both their collective and
+individual capacities because it arises out of counts alleging
+unlawful acts in these capacities. (2d Am. Compl., Counts 3, 4, 6,
+8).  The U.S. Supreme Court has upheld such jurisdiction in several
+cases.  In Calder v. Jones, 465 U.S. 783 (1984), the Supreme Court
+held that parties who intentionally aim their tortious acts at
+victims in other states must expect to be haled into court in those
+states.  Id. at 790 (California had jurisdiction over Florida
+defendants who allegedly libeled a California plaintiff in a
+magazine whose primary market is in California).  In Rustler v.
+Keeton, 465 U.S. 770 (1984), the Court held that New Hampshire had
+jurisdiction in a libel action against Hustler magazine even though
+only a fraction of Hustler's sales occurred in New Hampshire.
+          Plaintiff relies especially on the case Horne v. Adolph
+Coors Co., 684 F.2d 255 (3d Cir. 1982).  In Horne, the plaintiff
+alleged that defendant Coors, a Colorado corporation, manufactured
+its beer using a device that infringed one of the plaintiff's
+patents.  Even though Coors had made every effort to prevent the
+sales of its beer in New Jersey, the beer remained available in the
+bootleg market.  Coors also knew that selling its beer anywhere
+would injure the plaintiff regardless of whether he resided in a
+state selling the beer.  Moreover, Coors had allegedly devalued
+intellectual property, which has a fictional situs at the residence
+of the owner.  Considering all of these factors, the court found
+that Coors was subject to jurisdiction in New Jersey.  See also
+Paolino v. Channel Home Centers, 668 F.2d 721 (3d Cir. 1981)
+(out-of-state manufacturer produced device in violation of
+agreement with plaintiff to protect plaintiff's trade secrets, and
+sold the device to defendant who resold it in-state).
+          Plaintiff argues "unlawful act" jurisdiction, as
+explained in Calder, Hustler, and Horne, is proper for several of
+Defendants' acts.  First, jurisdiction is proper because Defendants
+mailed an offer to prospective Net2 licensees in June 1991,
+allegedly in violation of the Lanham Act.  Unlike Coors in Horne,
+Defendants here targeted UNIX users in New Jersey, offered them the
+allegedly proprietary Net2, and encouraged them to distribute it
+freely to other parties.
+          Defendants contend that this single offer, which
+apparently no New Jersey residents accepted, cannot create personal
+jurisdiction, especially since Defendants lacked an "express
+intention to injure" Plaintiff. (Defs.'s Reply Br. at 18.) 
+Defendant might be correct if the offers were innocuous absent an
+acceptance.  But Plaintiff has alleged that the offers themselves
+create a violation of the Lanham Act by the Regents in both their
+individual and corporate capacities.  See, e.g, Calder, 465 U.S.
+783 (parties who intentionally aim their tortious acts at victims
+in other states must expect to be hauled into court in those
+states).  In addition, Defendants had an "express intention to
+injure" in the sense that they must have known that their acts
+could injure Plaintiff.
+          Second, Plaintiff argues that "unlawful act" jurisdiction
+is proper because Defendants have misappropriated trade secrets and
+infringed Plaintiff's copyright by licensing Net2 to UUNET.  This
+act inevitably and foreseeably led to the downloading of Net2 by
+tens of thousands of users, whose use of Net2 foreseeably eroded
+the value of Plaintiff's trade secrets.  Plaintiff has not
+submitted an estimate of the number of Net2 programs actually
+downloaded in New Jersey, but with tens of thousands of copies
+distributed, the odds are that at least several hundred reside on
+disks and tape within this state (in addition to the copy
+downloaded by Plaintiff's personnel).
+          These acts are analogous to acts that gave rise to
+jurisdiction in Paolino v. Channel Rome Centers, 668 F.2d 721
+(3d Cir. 1991).  In Paolino, a Pennsylvania plaintiff confided
+trade secrets to a Tennessee defendant, who abused plaintiff's
+confidences and used the secrets to manufacture its products.  The
+defendant then sold these products to a third party in New Jersey,
+who in turn distributed the goods to customers at its Pennsylvania
+stores.  The court found jurisdiction even though the defendant was
+not the party selling the goods in Pennsylvania.  "[The Defendant],
+knowing that Paolino had an interest in intellectual property
+recognized by the law of Pennsylvania where he resided, obtained
+his property in confidence and set out on a course of action which
+would destroy it."  This behavior sufficed to create jurisdiction
+in Paolino, and it suffices to create jurisdiction here as well.
+          In summary, Plaintiff has pleaded a number of grounds
+sufficient to create jurisdiction over Defendant Regents and
+University.  None the less, the Regents argue that "the presence of
+some other considerations would render jurisdiction unreasonable." 
+Burger King, 471 U.S. at 477.  Such considerations are usually
+handled by means other than denying jurisdiction, such as choice of
+law rules, transfer, and change of venue.  Ibid.  In this case, as
+discussed below, the Regents' contentions of improper and
+inconvenient venue are insufficient to "render jurisdiction
+unreasonable."  Consequently, I deny the Regents' motion to dismiss
+the second Amended Complaint for lack of personal jurisdiction.
+           D.  Dismissal For Improper Venue Or Transfer
+          Defendants also move to dismiss for improper venue.  This
+motion must be denied as well.  Venue is proper under 28 U.S.C. 
+1391(b)(2), which applies to suits where subject matter
+jurisdiction is based on a federal cause of action.  Section
+1391(b)(2) states that venue is proper in "a judicial district in
+which a substantial part of the events or omissions giving rise to
+the claim occurred, or a substantial part of the property that is
+the subject of the action is situated. . . ."
+          In the present case, Plaintiff's claims are based at
+least in part on alleged misrepresentations and trademark
+violations made in New Jersey, and on alleged unlawful
+distributions to individuals in New Jersey.  At this early stage of
+discovery, it is impossible to know exactly how large a part of the
+alleged actions occurred elsewhere, but the record offers no
+evidence that any state received substantially more solicitations
+or distributions than New Jersey.  Furthermore, Plaintiff's trade
+secrets and, presumably, UNIX trademark are located at its home in
+New Jersey.  Consequently, Plaintiff's claim involves both property
+and acts in New Jersey.  See Cottman Transmission v. Metro
+Distributing, 796 F. Supp. 338 (E.D. Pa. 1992) (franchisees'
+unlawful use of trademarks out-of-state created venue in-state).
+          Even if venue is proper in New Jersey, Defendants argue
+that this case must be transferred to a California district court
+under 28 U.S.C  1404(a), "[f)or the convenience of parties and
+witnesses, in the interest of justice".  Defendants bear the burden
+of persuasion on this issue.  Shutte v. Armco Steel Corp., 431 F.2d
+22, 25 (3d Cir. 1970), cert. denied, 401 U.S. 910 (1971).  Section
+1404(a) leaves transfer decisions to the discretion of the court,
+but a court should not lightly disturb Plaintiff's choice of forum. 
+"`[U]nless the balance of convenience of the parties is strongly in
+favor of defendant, the plaintiff's choice of forum should
+prevail.'" Ibid. (citing Owatonna Manufacturing Co. v. Melroe Co.,
+301 F. Supp. 1296, 1307 (D.   Minn. 1969)) (emphasis added in
+Shutte).
+          Defendants assert that "virtually all the witnesses and
+all the defendants reside a considerable distance from New Jersey's
+state borders," and that California has a considerable interest in
+the litigation. (Def.'s Supp'g Br. at 15.)  Defendants are surely
+correct with regard to the issue of whether the Regents
+individually committed unlawful acts.
+          However, as shown by the briefs arguing Plaintiff's
+motion for a preliminary injunction against BSDI, the threshold
+issues here are not issues of who did what, but rather issues of
+similarity among source codes, of contract interpretation, and of
+law.  How closely does Net2 or BSD/386 resemble 32V?  Was 32V
+published without notice of copyright?  What sorts of publications
+do Berkeley's licenses permit?  Can any part of 32V possibly be
+considered a trade secret, given that much of it is industry
+standard and known to a generation of users and programmers?  These
+are all issues without a particular geographical situs.
+          Consequently, I will not disturb Plaintiff's decision to
+bring this action in New Jersey.  Considering the various issues
+that must be tried in this case, a New Jersey forum is not so
+burdensome for Defendants as to require transfer or dismissal in
+the interests of convenience and justice.
+                    E.  Preliminary Injunction
+          Plaintiff moves for a preliminary injunction against
+further distribution of the source code by BSDI (the Regents have
+voluntarily ceased distributing the source code at issue here). 
+Federal district courts have the power to grant preliminary
+injunctions pursuant to Rule 65(a) of the Federal Rules of Civil
+Procedure.  Preliminary injunctions allow a court to "prevent the
+judicial process from being rendered futile by defendant's action
+or refusal to act." Charles A. Wright and Arthur R. Miller, Federal
+Practice and Procedure  2947 (1973).  In other words, a
+preliminary injunction allows a court to maintain the status quo
+until trial.  To obtain a preliminary injunction, the movant must
+establish:
+          (1)  the reasonable probability of eventual success in
+          the litigation and (2) that the movment will be
+          irreparably injured pendente lite if relief is not
+          grunted.  Moreover, while the burden rests upon the
+          moving party to make these two requisite showing[s], the
+          district court should take into account, when they are
+          relevant, (3) the possibility of harm to other interested
+          persons from the grant or denial of the injunction, and
+          (4) the public interest."
+
+Instant Air Freight Co. v. C.F. Air Freight, Inc., 882 F.2d 797 (3d
+Cir. 1989)
+                    1.  Copyright Infringement
+          Plaintiff claims that BSDI has violated Plaintiff's
+copyright in the UNIX source code and, unless I enjoin further
+violations, BSDI's continuing violations will irreparably harm
+Plaintiff.  The first factor to be considered is whether Plaintiff
+has a reasonable probability of prevailing on the merits of this
+claim.
+          In order to prevail, Plaintiff must prove that it has a
+valid copyright in the UNIX code.  Plaintiff's chief difficulty
+here is the "Publication doctrine."  The publication doctrine
+denies copyright protection to works which the copyright owner
+"publishes," unless the owner has properly affixed a notice of
+copyright to the published work.  This doctrine has suffered steady
+erosion over the years, and it now applies in full force only for
+works published prior to January 1, 1978.  For works such as 32V
+(published in 1978), which were published after that date but
+before March 1, 1989, the doctrine is subject to the escape
+provisions of 17 U.S.C.  405(a) and the common-law "limited
+publication rule."  For works published after March 1, 1989, the
+publication doctrine has been eliminated by the Berne Convention
+Implementation Act, 102 Stat. 2857 (1988).
+          Because Plaintiff copyrighted 32V in 1992, Plaintiff
+benefits from a statutory presumption of validity and BSDI has the
+burden of proving otherwise.  Williams Electronics, Inc. v. Arctic
+International, Inc., 685 F.2d 870, 873 (3rd Cir. 1982).  BSDI seeks
+to carry this burden by proving that AT&T and Plaintiff have widely
+published 32V without proper notice.
+Publication is defined as:
+          the distribution of copies or phono records of a work
+          to the public by sale or other transfer of
+          ownership, or by rental lease or lending.  The
+          offering to distribute copies or phonorecords to a
+          group of persons for purposes of further
+          distribution, public performance, or public display,
+          constitutes publication.  A public performance or
+          display of a work does not of itself constitute
+          publication.
+
+17 U.S.C.  101.  Version 32V source code has now been distributed,
+without notice, to literally thousands of licensees. 
+Consequently, Plaintiff can have no valid copyright on 32V unless
+it can fit within one of the statutory or common law escape
+provisions.  
+          The three statutory escape provisions are listed in
+section 405(a).  These provisions relieve a copyright owner from
+the harsh consequences of noticeless publication if the owner
+(i) omitted the notice from a "relatively small number of copies;"
+(ii) registers the work within five years of publication, and then
+makes a "reasonable effort" to add notices to the noticeless copies
+already distributed; or (iii) proves that a third party omitted,
+notice in violation of an express agreement in writing 17 U.S.C 
+405(a)(1)-(3).
+          Plaintiff cannot avail itself of any of these provisions. 
+Notice was omitted from thousands of copies of 32V; no contractual
+agreements require the licensees to affix notice;
+Plaintiff failed to copyright 32V until 1992, well over five years
+after 32V was published; and Plaintiff has not yet made reasonable
+efforts to add notices to the many noticeless publications of 32V. 
+Consequently, Plaintiff must try to fit within the common-law
+doctrine of limited publication.
+          Under the common-law doctrine of limited publication, a
+publication will not divest an author of copyright protection if
+the author "`communicates the contents of a manuscript to a
+definitely selected group and for a limited purpose, and without
+the right of diffusion, reproduction, distribution or sale. . ."
+Rexnord, Inc. v. Modern Handling Systems, Inc., 379 F. Supp. 1190,
+1197 (D. Del. 1974) (quoting White v. Kimmell, 193 F.2d 744, 746-47
+(9th Cir. 1952), cert. denied, 343 U.S. 957 (1952); see also
+American Visuals Corq. v. Holland, 239 F.2d 740, 744 (2d Cir. 1956)
+(quoting White v. Kimmell).  There is some question as to whether
+the doctrine of limited publication survived the 1976 amendments to
+federal copyright law, but the weight of authority holds that its
+has.  See Nimmer on Copyrights,  4.13[B](1992), and the cases
+cited therein ("the doctrine of limited publication continues under
+the current Act").
+          For the present dispute, the key criterion is that the
+alleged copyright owner must only have distributed the works to a
+"Selected group."  To qualify as a selected group," those receiving
+the work must he more than just customers self-selected by their
+desire to purchase the work.  Otherwise, "all the purchasers of the
+work" would qualify as a "selected group," and all publications
+would be limited publications.  For example, if a programmer sells
+software to anyone willing to meet the asking price, then the
+programmer can hardly be said to have communicated the work to a
+selected group.  See Brown v. Tabb, 714 F.2d 1088, 1092 (11th Cir.
+1983) (the group containing all of the potential purchasers of a
+jingle was not a "selected group"); Academy of Motion Picture Arts
+v. Creative House Promotions, 944 F.2d 1446 (9th Cir. 1991) (Oscar
+winners are not a selected group because Plaintiff did not
+distribute its Oscars generally to the public).  Situations where
+courts have found selected groups include distribution of
+manuscripts by authors to a small collection of friends; of floor
+plans to contractors so they can prepare bids; of advance copies of
+works to colleagues for criticism or review; of samples to
+potential customers; and of promotional material to dealers. 
+Himmer an copyright,  4.13[A] (1992).
+          As the above examples suggest, the traditional scope of
+the limited publication doctrine is narrow.  But courts have shown
+a tendency to expand the scope of this doctrine when applying it to
+computer products.  See Nimmer on copyright,  4.13[A][1], [2). 
+For example, several courts have declined to find a publication
+where a copyright owner has communicated support materials to
+customers buying computers.  One such case is Hubco Data Products
+Corp. v. Management Assistance Inc., 219 U.S.P.Q. 450 (D. Idaho
+1983), where the court faced the issue of whether the plaintiff
+computer manufacturer had published the operating system
+distributed with its computers.  The computers (complete with
+operating systems) apparently were available to anyone willing to
+pay their price, but the court none the less found only a limited
+publication of the operating system.  The court reasoned that the
+"operating systems were only offered to owners of [plaintiffs)
+computers." Id. at 455.  See also Data General Corp. v. Digital
+Computer Controls, Inc., 188 U.S.P.Q. 276 (Del. Ch. 1975)
+(schematic drawings were the subject of a limited publication
+because they were only distributed to those who bought computers).
+          The limited-publication variations endorsed in Hubco and
+Data General, even it valid, are of no help to Plaintiff here. 
+Version 32V was not distributed as an ancillary communication
+supporting the sale of a computer ~ 32V was the actual product
+itself.  Consequently, the only question is whether AT&T and
+Plaintiff limited 32V's distribution or offered it to whomever
+could pay.
+          Plaintiff argues that it has only distributed 32V to
+three select groups of licensees: educational organizations, U.S.
+government agencies, and carefully-screened corporate entities. 
+Although the former two groups could conceivably qualify as
+"selected," the latter can qualify only if the screening process is
+suitably restrictive.  According to depositions of Plaintiff's
+personnel, the screening includes investigating the kind of code a
+potential customer seeks (source or binary); detailed information
+about the nature of the customer's business; the customer's
+financial ability to pay; and whether the customer is in a country
+that protects trade secrets.  Plaintiff needs all of this
+information to assess three features of its prospective customers:
+which product is best for the customer, whether the customer can
+pay, and whether the customer will take good care of Plaintiff's
+intellectual property, (Kennedy Decl., Ex. C at 1622, Ex. D at
+111-12; Pl.'s Reply Br. at 10.)
+          Even accepting this description of Plaintiff's screening
+process as true, it is hard to see how the screening would yield a
+selected group of corporations within the meaning of the doctrine
+of limited publication.  Plaintiff essentially seeks what any
+lessor of property seeks:  someone who will take good care of the
+property and pay the bills as they fall due.  If this were enough
+to create a selected group, then practically anyone who leased
+property would belong to a selected group.
+          The copyright laws in effect prior to 1989 do not allow
+such expansive protection against the consequences of noticeless
+publication.  As quoted above, publication includes distributing
+copies by "renting, leasing, or lending." 17 U.S.C.  101.  Under
+Plaintiff's construction of the doctrine of limited publication,
+"renting, leasing, or lending" would not constitute publication
+whenever the owner of the copyright screened out irresponsible
+customers.  It seems unlikely that Congress drafted this section
+with this purpose in mind.
+          Consequently, I find that Plaintiff has failed to
+demonstrate a likelihood that it can successfully defend its
+copyright in 32V.  Plaintiff's claims of copyright violations are
+not a basis for injunctive relief.
+                 2. Trade Secret Misappropriation
+          Plaintiff also claims that BSDI misappropriated trade
+secrets when, via Net2, BSDI incorporated parts of 32V into
+BSD/356.  This claim raises two key issue.  First, is Plaintiff's
+claim preempted by federal copyright law? And second, after a
+generation of scrutiny and imitation as a highly-regarded computer
+operating system, does any part of 32V remain secret?  Section 301
+of Title 17 expressly preempts state laws protecting "legal or
+equitable rights that are equivalent to any of the exclusive rights
+within the general scope of copyright as specified by section 106." 
+Section 301 explains the scope of this preemption by listing the
+exceptions:
+          (1)  subject matter that does not come within the subject
+               matter of copyright as specified by sections 102 and
+               103, including works of authorship not fixed in any
+               tangible medium of expression; or
+
+          (2)  any cause of action arising from undertakings
+               commenced between January 1, 1978; or
+
+          (3)  activities violating legal or equitable rights that
+               are not equivalent to any of the exclusive rights
+               within the general scope of copyright as specified
+               by section 106.
+
+Section 106 lists the rights protected by copyright law, including
+the right to "reproduce the copyrighted work . . . ; to prepare
+derivative works . . . ; [and) to distribute copies."
+          Net2 fails to meet the first preemption exception,
+because computer programs fall "within the subject matter of
+copyright."  Accordingly, the key issue is whether state
+misappropriation laws protect activities that are equivalent to
+those protected by the copyright laws.
+          To test whether a particular state law is preempted,
+courts have generally adopted an "extra element" test;
+          If, under state law, the act or reproduction,
+          performance, distribution or display . . . will
+          in itself infringe the state created right,
+          then such right is preempted.  But if other
+          elements are required, in addition to or
+          instead of, the acts of reproduction,
+          performance, distribution or display, in order
+          to constitute a state created cause of action,
+          then the right does not lie "within the general
+          scope of copyright," and there is no
+          preemption.
+
+SBK Catalogue Partnership v. Orion Pictures, 723  F. Supp. 1053,
+1066 (D.N.J. 1989) (quoting Nimmer on Copyright,  1.01[B]{l}); see
+also Harper & Row Publs., Inc. v. Nation Enter., 723 F.2d 195,
+199-200 (2d Cir. 1983) (if the elements of a state-law cause of
+action also state a claim under the copyright laws, the state law
+cause of action is preempted).
+          In the present case, the state law in question is either
+that of New York or New Jersey.  Plaintiff assumes that New Jersey
+law should apply, and Defendants note that the licenses require the
+application of New York law.  I need not decide this issue now,
+however, because both New York and New Jersey have adopted laws
+substantially similar to section 757 of the Restatement of Torts. 
+See Enlicky Enterprises, Inc. v. Spotlight Presents, Tnc., 213
+U.S.P.Q. 855 (S.D.N.Y. 1981); Rohm and Haas Co.v. Adco Chemical
+Co., 689 F.2d 424 (3d Cir. 1982).
+          According to section 757, "[a] trade secret may  consist
+of any formula, pattern, device or compilation of information which
+is used in one's business, and which gives him an opportunity to
+obtain an advantage over competitors who do not know or use it." 
+Restatement of Torts  757 cmt. b (1939).  Thus, by definition, a
+trade secret claim requires Plaintiff to prove an element not
+present in a copyright claim:  the existence of a trade secret. 
+Because of this extra element, section 757 does not protect rights
+equivalent to those protected by the copyright laws, and hence is
+not preempted.  See Brignoli v. Balch Hardy and Scheinman, Inc.,
+645 F. Supp. 1201, 1205 (S.D.N.Y. 1986) (allegations that computes
+programs are trade secrets protects them from preemption); Nimmer
+on Copyright,  1.01[B][1][h)(1992) ("[a]ctions for disclosure and
+exploitation of trade secrets require a status of secrecy, not
+required for copyright, and hence are not preempted.")
+          Given that Plaintiff's trade secret claims are not
+preempted, the next question is whether Plaintiff still has any
+trade secrets to protect.  Plaintiff argues that these programs
+contain a variety of materials that Defendants could have obtained
+only from proprietary sources, sources subject to contractual
+guarantees against redistribution.  If so, then Plaintiff has not
+lost its secrets.  Trade secrets need not actually be secret, as
+long as the owner of the secrets controls their dissemination.  For
+example, the owner may disclose it to employees or to others
+pledged to secrecy.  In addition, the components of the secrets may
+all lie in the public domain as long as their combination does not. 
+"[T]he fact that every ingredient is known to the industry is not
+controlling for the secret may consist of the method of combining
+them which produces a product superior to that of competitors." Sun
+Dial Corp. v. Hideout, 16 N.J. 252, 257 (1954).
+          Plaintiff's first argument is that Defendants have copied
+the filenames and header files from 32V.  Defendants insist that
+filenames and the contents of header files can be readily printed
+from Plaintiff's binary code (Joint Decl. at  28.1.1.), which
+Plaintiff has apparently distributed without restriction on
+redistribution.  In addition, some of this code is available in
+reference manuals distributed by Plaintiff. (Carson Reply Aff. at
+ 9.)
+          Plaintiff also argues that Defendants have copied 
+certain non-operational aspects of the code, such as allocation of
+functions to files and the exact wording of comments.  Even though
+these matters might be "secret," they have only small significance
+to Net2's value as an operating system.  As such, Defendants would
+not seem to have obtained an "advantage over competitors" by their
+use.
+          Finally, Plaintiff argues that Defendants have copied 32V
+in writing the instructions and organizing the logical structure of
+Net2.  Defendants counter that even if Plaintiff does retain trade
+secrets in Unix, Defendants carefully plucked these secrets out of
+Net2 and BSD/386.  This argument is an argument over facts, and
+Plaintiff and Defendants have joined it with their experts.   At
+the present state of the record, it seems that the side who gets in
+the last word wins.  In an affidavit accompanying Plaintiff's
+supporting brief, Professor Carson identified two sets of
+instructions as examples of copying:  the functions "bread" and
+"biodone." In an affidavit accompanying the opposing brief,
+Defendants' experts rebutted these arguments by explaining how they
+could have replicated "bread" and "biodone" from publicly-available
+information. (Joint Decl. at  53-56.)  In an affidavit
+accompanying the reply brief, Professor Carson identified further
+examples of copying. (Carson Reply Aff.) Defendants have now
+submitted a surreply and rebutted these examples. (2nd Joint
+Decl.)
+          After reviewing the affidavits of Plaintiff's and
+Defendants, experts, a great deal of uncertainty remains as to what
+trade secrets Net2 might contain.  One fact does seem clear: the
+header files, filenames, and function names used by Defendants are
+not trade secrets.  Defendants could have printed these off of any
+of the thousands of unrestricted copies of Plaintiff's binary
+object code. (Kashtan Aff. at  9-11.) Moreover, the nonfunctional
+elements of the code, such as comments, cannot be trade secrets
+because these elements are minimal and confer no competitive
+advantage on Defendants.  The copied elements that contain
+instructions, such as BREAD and CPIO, might perhaps be trade
+secrets, but Defendants' experts have argued persuasively that
+these instructions are either in the public domain or otherwise
+exempt.  As Defendants have repeatedly emphasized, much of 32V
+seems to be publicly available.
+          On the other hand, even it Defendants are correct, it is
+not clear whether 32V is publicly available in a form suitable to
+BSDI's purposes.  There is an enormous difference between an expert
+programmer sitting down with a pile of textbooks and disjointed
+segments of code to write out an operating system from scratch, and
+that same programmer downloading the operating system intact from a
+public network.  In the first case, the programmer could expend
+large amounts of time writing, testing, and debugging the
+newly-created system, with an uncertain prospect of immediate
+success.  But in the second case, immediate success would be
+virtually assured.  Thus, even if all of the pieces of the 32V code
+had been thoroughly revealed in publicly available literature, the
+overall organization of the code might remain a trade secret unless
+it too had been disclosed.
+          On the present record, however, it is impossible to
+determine whether the overall organization of Net2 has been
+disclosed.  The record itself contains little information directly
+pertinent to this issue.  Moreover, the parties' submissions hint
+that some of 32V's organization may already be publicly available. 
+Berkeley has apparently released nonproprietary programs such as
+Net1 since 1987 (Regents Am.  Opp'g Br. at 13), programs that
+presumably have divulged at least some information about 32V's
+organization.
+          A further consideration is that 32V's overall
+organization may not even be protectable in the first place. 
+Berkeley's license to use 32V protects 32V derivatives only to the
+extent that they contain certain proprietary information.  If
+Berkeley excises the proprietary information (as it attempted to do
+with Net2), Berkeley is free to distribute derivatives without 
+restriction.  Berkeley has utilized this freedom in the past to
+distribute a number of non-proprietary systems and portions of
+systems, all apparently without objections from AT&T.  These
+distributions, to some degree, must have disclosed the overall
+organization of 32V.  Thus, Berkeley's activities under the
+licensing agreement, and AT&T's acceptance of those activities, are
+evidence that Berkeley and AT&T interpreted the agreement to allow
+the disclosure of at least some of 32V's organization.
+          In summary, I find that I am unable to ascertain whether
+any aspect of Net2 or BSD/386, be it an individual line of code or
+the overall system organization, deserves protection as Plaintiff's
+trade secret.  Since Plaintiff has failed to provide enough
+evidence to establish a "reasonable probability" that Net2 or
+BSD/386 contain trade secrets, I find that Plaintiff has failed to
+demonstrate a likelihood of success on the merits of its claim for
+misappropriation of trade secrets.  No preliminary injunction will
+issue.
+                          IV. CONCLUSIONS
+          I grant Plaintiff's motion to amend, and deny Plaintiff's
+motion for a preliminary injunction.  I deny Defendants' motion to
+dismiss for lack of jurisdiction and venue, and I deny Defendants'
+motion to transfer.
+
+Dated:  March____, 1993       _______________________________
+                              Dickinson R. Debevoise U.S.D.J.
+                   UNITED STATES DISTRICT COURT
+                  FOR THE DISTRICT OF NEW JERSEY
+
+
+UNIX SYSTEMS LABORATORIES, INC., 
+
+               Plaintiff,
+
+
+     v.
+
+BERKELEY SOFTWARE DESIGN, INC.,
+and certain named individuals in
+their collective capacity as The
+Regents of the University of
+California, 
+
+               Defendants.)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)Civ. No. 92-1667
+
+ORDER                                     )
+
+
+          This matter having been opened to the court upon
+application of Paul Hastings Janofsky & Walker, counsel for
+Plaintiff, to amend their complaint and for a preliminary
+injunction against Defendant Berkeley Software Design, Inc.; and
+upon application of Post Polak & Goodsell, counsel for Defendant
+Regents of the University of California, to strike pleadings, to
+dismiss for lack of capacity to be sued and lack of personal
+jurisdiction and improper venue, and, in the alternative, to
+transfer; and the court having considered all papers submitted in
+support of and in opposition to said motions; and in accordance
+with the opinion of even date;
+     IT IS on this  ___ day of March, 1993
+     ORDERED as follows:
+     1.   Plaintiff's motion to amend its complaint is granted;
+
+     2.   Plaintiff shall serve its amended complaint upon all
+          parties within ten days of the filing of this order;
+     3.   Plaintiff's motion for a preliminary injunction is
+          denied;
+     4.   Defendant Regents of the University of California's
+          motion to strike pleadings is denied; 
+     5.   Defendant Regents of the University of California's
+          motion to dismiss for lack of capacity to be sued is
+          denied; 
+     6.   Defendant Regents of the University of California's
+          motion to dismiss for improper venue is denied; 
+     7.   Defendant Regents of the University of California's
+          motion to dismiss for lack of personal jurisdiction is
+          denied;
+     8.   Defendant Regents of the University of California's
+          motion to transfer venue is denied.
+
+                              ________________________________
+                              Dickinson R. Debevoise, U.S.D.J.
+

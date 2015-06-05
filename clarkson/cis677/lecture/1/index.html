@@ -1,0 +1,511 @@
+<HTML>
+<HEADER>
+<TITLE> CIS677: Outline for lecture 1
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center> CIS677: Outline for lecture 1<br>
+
+</center></H1>
+<BR>
+
+(These are mainly just some notes for me, as I think about what to say;
+you may find them useful adjuncts to your own notes.  I'd be happy to
+hear of areas that particularly need clarification.)
+
+<h3>Computational geometry</h3>
+
+The study of algorithmic problems in a geometric setting.
+<p>
+
+As a field, a product of its history.  Generally:
+<ul>
+<li>	low dimensional
+<li>	"flat": not curves and surfaces.
+<li>	concerned with worst-case asymptotic complexity.
+</ul>
+
+These limitations get weaker all the time.
+<p>
+
+I want to cover:
+<ul>
+<li>	fundamental problems: both of theoretical and engineering interest
+<li>	interesting algorithms:
+<ul>
+<li>		provably good algorithms with conceivable engineering interest, or
+<li>		algorithms that are pretty good in practice, or
+<li>		both!
+</ul>
+</ul>
+
+Why would "engineers" study this?
+<ul>
+<li>	build conceptual vocabulary
+<li>	add to cost measures, algorithmic approaches, intuition.
+</ul>
+
+<h3>Convex hulls</h3>
+
+Roughly:<br>
+<ul>
+<li>	given some points in the plane,<br>
+<li>	put some nails down at them.<br>
+<li>	Surround the nails by a big rubber band, and let it shrink.<br>
+<li>	The polygon enclosed by the rubber band is the <em>convex hull</em>
+		of the points.
+</ul>
+<img src="f1.gif">
+
+
+<h3>What 2d convex hulls are good for:</h3>
+
+<ul>
+
+<li>	inside/outside, bounding shapes
+<li>	filtering: important points for these problems are vertices
+<ul>
+<li>		diameter of point set
+<li>		width
+<li>		smallest enclosing circle
+</ul>
+<li>	feasibility sets for linear programming
+<ul>
+<li>		Example: "livability"
+</ul>
+<li>	"convex hull property" for some spline representations
+<li>	fun fact:
+<ul>
+<li>		the hull of the complex zeros of the polynomial p[x]
+		contains the hull of the zeros of its derivative.
+</ul>
+</ul>
+
+
+
+<h3>Convex hulls, more formally</h3>
+
+<ul>
+
+<li><dl><dt><em>convex combinations</em></dt>
+	<dd>for points a,b, the point q is one if:
+		q is on the line segment between a and b, that is<br>
+	q = za + (1-z)b for some z with 0<=z<=1
+	</dd>
+</dl>
+
+<li><dl><dt><em>convex set</em> P:</dt>
+<dd>
+	closed under convex combination<br>
+	if a,b in P, so is their convex combination
+</dd>
+</dl>
+
+<li>convex: the whole plane, the empty set, disks, halfplanes, points, line segments
+<li>not convex: {draw picture}
+
+<li>the intersection of two convex sets is convex.
+
+<li><dl><dt><em>convex hull</em> or <em>convex closure</em> of a set S:</dt>
+<dd>
+	the "smallest" convex set containing S, that is<br>
+	the intersection of all convex sets containing S.
+</dd>
+</dl>
+</ul>
+
+Let conv(S) denote the convex hull of S.
+
+<h3>Parts of the boundary of the convex hull (in the plane)</h3>
+
+<dl><dt><em>vertices</em></dt>
+<dd>
+	points in P that are <em>not</em> convex combinations of other points in P<br>
+	that is, v is a vertex if v is <em>not</em> in the convex hull of S-{p}
+</dd></dl>
+
+Suppose there's one site with smallest x coordinate.
+Is it a vertex?
+
+<p>
+<dl><dt><em>edges</em></dt>
+<dd>
+	an edge is a line segment between two vertices,<br>
+	with all of P on one side of the line through the edge.
+</dd></dl>
+
+<h3> Computing convex hulls: Jarvis march </h3>
+
+<b>Given:</b> point set S<br>
+<b>Find:</b> vertices and edges of hull
+
+<p>
+Call the points of S <em>sites</em>
+
+<p>
+Pick a horizontal line L below all points of S<br>
+translate L until it contains at least one point p==p<sub>0</sub> of S<br>
+<pre>
+<b>repeat:</b>
+	rotate counterclockwise about p from L until a point p' is hit;
+	output edge (p,p');
+	set L to the line through p and p';
+	p <- p';
+<b>until</b> p==p<sub>0</sub>;
+</pre>
+
+<img src="f2.gif">
+
+
+<h3>Does Jarvis march work?</h3>
+
+<dl><dt><b>Facts</b>:</dt>
+<dd>
+each position of L has an associated halfplane containing conv(S);<br>
+each output edge on is the boundary of the hull;<br>
+no part of the boundary is missing;
+</dd>
+</dl>
+
+<h3> Rotating about p from L</h3>
+
+How do you do this, exactly?
+
+<p>
+One way: use polar angle about p from line to each site:<br>
+for unit vector v parallel to L,<br>
+find the max of
+<blockquote>
+	v dot (q-p)/||q-p||
+</blockquote>
+among the sites q.
+<p>
+<img src="f6.gif">
+
+<h3> How long does Jarvis march take?</h3>
+
+Suppose the number of output edges is A, the Answer size.
+
+<p>
+<dl><dt><b>Fact</b>:</dt> <dd> A<=n, where S has n sites</dd></dl>
+
+<p>
+Each time an edge is output, O(n) work is done.
+
+<p>
+So the total work is O(nA), or O(n<sup>2</sup>) in the worst case.
+
+<p>
+For some distributions of sites, A is expected O(log n),<br>
+so this algorithm is not so bad.
+
+
+<h3>Computing convex hulls: incremental algorithms</h3>
+
+The basic idea:<br>
+Add sites one by one, maintaining the hull.<br>
+
+That is, number the sites
+	p<sub>1</sub> up to p<sub>n</sub>,<br>
+and maintain a set
+S<sub>i</sub>=={p<sub>1</sub>, p<sub>2</sub>,...,p<sub>i</sub>},
+and the convex hull of S<sub>i</sub>.
+
+<p>
+What happens when a site is added? Either
+<ul>
+<li> the site p<sub>i</sub> is inside conv(S<sub>i-1</sub>), or
+<li> the site p<sub>i</sub> is a vertex of conv(S<sub>i</sub>),<br>
+     	edges of the old hull are eliminated,<br>
+	and new edges, incident to p<sub>i</sub>, appear
+</ul>
+
+<img src="f3.gif">
+
+
+
+<p>
+How can we tell which is true?
+
+<h3>Testing if a site is a vertex</h3>
+
+Suppose p is a site, and T is a set of sites.  How is conv(T) related
+to conv(p union T)?
+
+<p>
+<b>Fact:</b>
+If p is not in conv(T), there is a line L that separates p and T.
+<p>
+
+<b>Proof</b>: use the fact that halfplanes are convex.
+<p>
+
+(Finding such a separating line is a <em>linear programming</em> problem.)
+<p>
+
+<b>Fact:</b> 
+If p is not in conv(T), there is a
+	line L <em>through a hull edge</em> that separates p and T.
+
+<p>
+Say that such an edge e is <em>seen</em> by p.
+
+<p>
+
+<b>Facts</b>
+<ul> 
+<li> an edge is deleted (not bounding conv(p union T))
+	if and only if it is seen by p
+<li> (p, p') is a new edge if and only if p' is incident to an
+	unseen edge and a seen edge.
+</ul>
+
+
+<h3>An incremental algorithm</h3>
+
+Maintain a doubly, circularly linked list of vertices:<br>
+pairs of consecutive vertices give the edges.
+
+<p>
+Initialize with the triangle p<sub>1</sub>p<sub>2</sub>p<sub>3</sub>.
+
+<pre>
+<b>for</b> i=4 to n,
+	find all edges of conv(S<sub>i-1</sub>) seen by p<sub>i</sub>;
+	delete these edges;
+	add new edges with p<sub>i</sub> as endpoint;
+</pre>
+
+Two costs:
+<ul>
+<li><em>Search:</em> finding edges seen by p
+<li><em>Update:</em> deleting visible (seen) edges and adding new ones.
+</ul>
+
+<h3> Update Cost</h3>
+
+How much does it cost to delete edges and add new ones,<br>
+over the whole algorithm for computing conv(S)?
+
+<p>
+A given vertex may cause many edges to be deleted, however<br>
+at most 2 edges are created at each step,<br>
+and so: the total work for updating is O(n).
+
+(A small-scale instance of <em>amortized analysis</em>
+
+<h3> Search cost </h3>
+
+One approach to search:<br>
+examine each edge for visibility
+
+<p>
+The search cost at step i is O(i), giving O(n<sup>2</sup>) work overall.
+
+<p>
+The expected work may not be so bad.
+
+<h3> Speeding up search </h3>
+
+It's possible to avoid looking at all the edges at each step.
+
+<p>
+<b>Remark.</b>
+If one edge seen by p is known,<br>
+the rest are easily found, because:
+
+<p>
+<b>Fact</b>
+The edges seen by p<sub>i</sub> are connected.
+
+
+<p>
+<b>Fact:</b>
+Given a finite set T,<br>
+and point p in T that has the largest x-coordinate.<br>
+Suppose p' has larger x-coordinate than p.<br>
+<b>Then</b>
+an edge incident to p is visible to p'.
+
+<img src="f4.gif">
+
+<p>
+<h3>An O(n log n) algorithm</h3>
+
+Sort the sites by x-coordinate,<br>
+so p<sub>i</sub> <= p<sub>j</sub> if i < j.<br>
+do the incremental algorithm.<br>
+When adding p<sub>i</sub>, check edges starting with<br>
+those incident to p<sub>i-1</sub>.<br>
+Walk edges, checking visibility.
+
+<p>
+The work is dominated by the sorting time.
+
+<p>
+The algorithm need not maintain a doubly-linked list:<br>
+the <em>upper</em> and <em>lower</em> hulls can be maintained separately
+as stacks.
+
+<h3>Another approach to speeding up search</h3>
+
+Pick a point o inside the convex hull;<br>
+As the incremental algorithm proceeds:<br>
+for each site p, keep track of the edge of the current hull crossed by the
+line segment from o to p.<br>
+
+<p>
+Call this edge <em>crossed</em> by p.
+
+<p>
+<img src="f5.gif">
+
+<p>
+Here edge (a,b) is crossed by p.
+
+<p>
+This requires a pointer, for each site, and a list of sites,
+for each edge.
+
+<p>
+<b>Fact</b>
+The edge crossed by p is seen by p.
+
+<p>
+This solves the problem of finding an edge seen by p,<br>
+but makes another problem: what if the edge crossed by p is deleted?
+
+<h3>Updating the crossed edges</h3>
+
+If an edge crossed by p is deleted when p<sub>i</sub> is added,
+one of the two new edges is crossed by p.
+
+<p>
+We need to know: how many different edges will be crossed by p,
+in the course of the algorithm?
+
+
+<h3>Randomization</h3>
+
+Suppose the points p<sub>i</sub> are added in <b>random</b> order.
+
+<p>
+<b>Lemma</b><br>
+For given site p and number i,<br>
+the probability that an edge crossed by p is incident
+to p<sub>i</sub> is at most 2/i.
+
+<p>
+That is, the probability that an edge crossed by p is created
+at step i is at most 2/i.
+
+<p>
+Or: the expected number of edges crossed by
+p that are created at step i is at most 2/i.
+
+<p>
+<b>Fact</b><br>
+The polygon conv(S<sub>i</sub>) is the same, no matter the ordering
+of p<sub>1</sub>, p<sub>2</sub>,...,p<sub>i</sub>.
+
+<p>
+<b>Proof of Lemma.</b>
+Suppose the edge crossed by p for conv(S<sub>i</sub>) is (a,b),<br>
+where a and b are two sites in S<sub>i</sub>.<br>
+The site a is equally likely to have been added at step 4,5,...i,<br>
+so the chance that a is p<sub>i</sub> is 1/i.  The same is true for
+b, and so<br>
+the probability that a or b is p<sub>i</sub> is 2/i.
+
+
+<h3> Adding up the work for searching </h3>
+
+<b>Fact</b><br>
+The expected number of edges crossed by p, over the course of the
+algorithm, is at most O(1)(1+1/2+1/3+1/4+...+1/n), or O(log n).
+
+<p> This uses the <em>linearity of expectation</em>, the fact
+that the expected value of the sum of random variables is
+the sum of the expected values.
+
+<p>
+That is, the expected work for searching, for a given site, is O(log n),
+and the total expected work is O(n log n).
+
+<h3> Remarks for the randomized incremental algorithm </h3>
+
+Many other geometric problems are amenable to this approach.
+
+<p>
+This algorithm can be tweaked to be <em> online</em>, so
+that a site does not need to be known before it is added.
+
+<p>
+If the sites are all vertices, then the algorithm is very close
+to building a random binary search tree.
+
+<p>
+The expected running time is O(n) when the expected number of
+vertices of a random subset of size i is O(i/log i).
+
+<h3>Algorithms Galore</h3>
+
+This does not exhaust the techniques that have been applied to
+planar convex hulls.  Some other approaches:
+
+<ul>
+<li> Graham scan, which involves sorting by sites by their angle
+about an interior point.  The sorting based algorithm is roughly like this.
+<li> divide-and-conquer: split the sites into equal-sized sets by a line,
+compute the hulls of each set, and merge the results.
+<li> algorithms that require O(n log A) in the worst case.
+<li> algorithms that require n+o(n) expected work for random points.
+<li> dynamic algorithms, that maintain the hull of a set from which
+	sites can be added and removed.
+</ul>
+
+<h3>Degeneracy</h3>
+
+Suppose, in the incremental algorithm,<br>
+a site lies on the line through an edge.
+
+<br> Should the site see the edge or not?
+
+<p> If always yes, some output edges may be collinear.
+
+<p> If always no, some output edges may be collinear.
+
+<p>
+Most algorithms have a special-purpose fix, that allows
+degeneracies to be handled.
+
+<p>
+What if all sites lie on a line?  Then there is no point in
+the interior of the hull.
+
+
+<h3>Primitives and robustness</h3>
+
+Sometimes a reasonable implementation of the primitive test for
+visibility can yield wildly wrong answers,
+even for planar convex hulls.
+
+<p>
+The following is potentially part of the output for the
+sorting-based algorithm:
+
+<p>
+<img src="f7.gif">
+
+<p>
+This interacts with solutions for handling degeneracy.
+
+<p>
+The moral is, that handling these issues is difficult, challenging,
+and not necessarily boring.
+
+
+</body>
+</html>

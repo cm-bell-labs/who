@@ -1,0 +1,71 @@
+.ffam NS
+.ps 12
+.vs 14
+.sp 12
+.ta 4.5i
+.nf
+July 14, 1992	Press Contact:
+	Donnalyn Frey (703) 764 9342
+.sp 2
+
+.vs 20
+.fi
+In a move with chilling overtones for the computer software
+industry, AT&T, through its subsidiary UNIX System Laboratories
+(USL), has filed suit in federal court in New Jersey against a
+small software developer, Berkeley Software Design, Inc. (BSDI).
+
+The principal issue in the case is USL's contention that the
+University of California, Berkeley is distributing software in
+violation of its license with AT&T.  However, USL has not sued
+the University, nor have they stopped the University from
+distributing the software in question.  Instead, the suit was
+filed against BSDI, a distributor of the University's software
+and a potential competitor.
+
+At issue in USL's lawsuit is the University's Networking 2
+Release software.  That software has been licensed to third
+parties, including BSDI, as "AT&T-free" and with the statement
+that no source code license from AT&T is required.  USL has sued
+BSDI for falsely advertising that its own licensees need no
+source code license from AT&T, a contention that merely mirrors
+the University's statements to BSDI.
+
+The basis for the false advertising claim appears to be that
+distribution of the University's software without a license from
+AT&T violates USL's proprietary rights.  However, USL has refused
+to state what proprietary rights it thinks are violated or to sue
+directly for copyright, patent or trade secret infringement.
+.bp
+.sp 4
+Because USL's complaint is so vague and inconsistent, it fails to
+provide even the minimum notice required to properly inform BSDI
+of the legal basis for the suit.  BSDI has therefore requested
+that the court dismiss the suit under Section 12(b)6 of the
+Federal Rules of Civil Procedure.  Section 12(b)6 states that a
+complaint must be adequately formed so that the defendant
+understands what it has allegedly done.
+
+Although USL has not sued the University of California, we expect that
+USL (or its parent, ATT) will threaten to review or withdraw research
+grants made to any university or research institution using or
+distributing software based on NET2, even though no violation has yet
+been proven.
+
+The nature of the suit against BSDI shows that AT&T's real
+motivation is to harass and to attempt to intimidate a potential
+competitor.  It does not involve any legitimate dispute.  AT&T
+has now signaled their intent to maintain a monopoly on the Unix
+System market by suing anyone who refuses to tithe to them.  The
+result could be a significant chilling effect on the efforts of
+many companies to develop Unix-compatible software products.
+
+While we are flattered that AT&T considers BSDI's product to be
+such a significant competitive threat that they feel the need to
+file harassing and frivolous suits, we feel obligated to disclose
+their actions to the general public.  We are therefore providing
+a copy of the actual complaint filed, the first set of
+interrogatories from USL and BSDI's motion to dismiss. 
+.sp 2
+.ce
+# # #

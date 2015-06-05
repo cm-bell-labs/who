@@ -1,0 +1,12 @@
+body {
+        font-family: sans-serif;
+	background-color: #ffffee;
+	text: black;
+	link: #0000ff;
+	vlink: #339999;
+	alink: #ff0000;
+}
+
+h1   {
+	text-align: center;
+}

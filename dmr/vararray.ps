@@ -1,0 +1,2033 @@
+%!PS-Adobe-2.0
+%%Version: 0.1
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+%
+% Version 3.3.2 prologue for troff files.
+%
+
+/#copies 1 store
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/show {{//show} 0 get exec} bind def	% so later references don't bind
+/widthshow {{//widthshow} 0 get exec} bind def
+/stringwidth {{//stringwidth} 0 get exec} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+%
+% Tries to round clipping path dimensions, as stored in array pagebbox, so they
+% match one of the known sizes in the papersizes array. Lower left coordinates
+% are always set to 0.
+%
+
+/roundpagebbox {
+    7 dict begin
+	/papersizes [8.5 inch 11 inch 14 inch 17 inch] def
+
+	/mappapersize {
+		/val exch def
+		/slop .5 inch def
+		/diff slop def
+		/j 0 def
+		0 1 papersizes length 1 sub {
+			/i exch def
+			papersizes i get val sub abs
+			dup diff le {/diff exch def /j i def} {pop} ifelse
+		} for
+		diff slop lt {papersizes j get} {val} ifelse
+	} def
+
+	pagebbox 0 0 put
+	pagebbox 1 0 put
+	pagebbox dup 2 get mappapersize 2 exch put
+	pagebbox dup 3 get mappapersize 3 exch put
+    end
+} bind def
+
+%%EndProlog
+%%BeginSetup
+mark
+%
+% Encoding vector and redefinition of findfont for the ISO Latin1 standard.
+% The 18 characters missing from ROM based fonts on older printers are noted
+% below.
+%
+
+/ISOLatin1Encoding [
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/space
+	/exclam
+	/quotedbl
+	/numbersign
+	/dollar
+	/percent
+	/ampersand
+	/quoteright
+	/parenleft
+	/parenright
+	/asterisk
+	/plus
+	/comma
+	/minus
+	/period
+	/slash
+	/zero
+	/one
+	/two
+	/three
+	/four
+	/five
+	/six
+	/seven
+	/eight
+	/nine
+	/colon
+	/semicolon
+	/less
+	/equal
+	/greater
+	/question
+	/at
+	/A
+	/B
+	/C
+	/D
+	/E
+	/F
+	/G
+	/H
+	/I
+	/J
+	/K
+	/L
+	/M
+	/N
+	/O
+	/P
+	/Q
+	/R
+	/S
+	/T
+	/U
+	/V
+	/W
+	/X
+	/Y
+	/Z
+	/bracketleft
+	/backslash
+	/bracketright
+	/asciicircum
+	/underscore
+	/quoteleft
+	/a
+	/b
+	/c
+	/d
+	/e
+	/f
+	/g
+	/h
+	/i
+	/j
+	/k
+	/l
+	/m
+	/n
+	/o
+	/p
+	/q
+	/r
+	/s
+	/t
+	/u
+	/v
+	/w
+	/x
+	/y
+	/z
+	/braceleft
+	/bar
+	/braceright
+	/asciitilde
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/dotlessi
+	/grave
+	/acute
+	/circumflex
+	/tilde
+	/macron
+	/breve
+	/dotaccent
+	/dieresis
+	/.notdef
+	/ring
+	/cedilla
+	/.notdef
+	/hungarumlaut
+	/ogonek
+	/caron
+	/space
+	/exclamdown
+	/cent
+	/sterling
+	/currency
+	/yen
+	/brokenbar		% missing
+	/section
+	/dieresis
+	/copyright
+	/ordfeminine
+	/guillemotleft
+	/logicalnot
+	/hyphen
+	/registered
+	/macron
+	/degree			% missing
+	/plusminus		% missing
+	/twosuperior		% missing
+	/threesuperior		% missing
+	/acute
+	/mu			% missing
+	/paragraph
+	/periodcentered
+	/cedilla
+	/onesuperior		% missing
+	/ordmasculine
+	/guillemotright
+	/onequarter		% missing
+	/onehalf		% missing
+	/threequarters		% missing
+	/questiondown
+	/Agrave
+	/Aacute
+	/Acircumflex
+	/Atilde
+	/Adieresis
+	/Aring
+	/AE
+	/Ccedilla
+	/Egrave
+	/Eacute
+	/Ecircumflex
+	/Edieresis
+	/Igrave
+	/Iacute
+	/Icircumflex
+	/Idieresis
+	/Eth			% missing
+	/Ntilde
+	/Ograve
+	/Oacute
+	/Ocircumflex
+	/Otilde
+	/Odieresis
+	/multiply		% missing
+	/Oslash
+	/Ugrave
+	/Uacute
+	/Ucircumflex
+	/Udieresis
+	/Yacute			% missing
+	/Thorn			% missing
+	/germandbls
+	/agrave
+	/aacute
+	/acircumflex
+	/atilde
+	/adieresis
+	/aring
+	/ae
+	/ccedilla
+	/egrave
+	/eacute
+	/ecircumflex
+	/edieresis
+	/igrave
+	/iacute
+	/icircumflex
+	/idieresis
+	/eth			% missing
+	/ntilde
+	/ograve
+	/oacute
+	/ocircumflex
+	/otilde
+	/odieresis
+	/divide			% missing
+	/oslash
+	/ugrave
+	/uacute
+	/ucircumflex
+	/udieresis
+	/yacute			% missing
+	/thorn			% missing
+	/ydieresis
+] def
+
+/NewFontDirectory FontDirectory maxlength dict def
+
+%
+% Apparently no guarantee findfont is defined in systemdict so the obvious
+%
+%	systemdict /findfont get exec
+%
+% can generate an error. So far the only exception is a VT600 (version 48.0).
+%
+
+userdict /@RealFindfont known not {
+	userdict begin
+		/@RealFindfont systemdict begin /findfont load end def
+	end
+} if
+
+/findfont {
+	dup NewFontDirectory exch known not {
+		dup
+		%dup systemdict /findfont get exec	% not always in systemdict
+		dup userdict /@RealFindfont get exec
+		dup /Encoding get StandardEncoding eq {
+			dup length dict begin
+				{1 index /FID ne {def}{pop pop} ifelse} forall
+				/Encoding ISOLatin1Encoding def
+				currentdict
+			end
+			/DummyFontName exch definefont
+		} if
+		NewFontDirectory 3 1 roll put
+	} if
+	NewFontDirectory exch get
+} bind def
+
+%%Patch from lp
+%%EndPatch from lp
+
+setup
+%%EndSetup
+%%Page: 1 1
+/saveobj save def
+mark
+1 pagesetup
+12 /Times-Bold f
+(Variable\255Size) 2215 1220 w
+(Arrays) 2939 1220 w
+(in C) 3328 1220 w
+10 /Times-Italic f
+(Dennis M. Ritchie) 2518 1480 w
+10 /Times-Roman f
+(Bell Laboratories) 2532 1680 w
+(Murray Hill, NJ, USA) 2434 1820 w
+8 /Times-Roman f
+([This is a version of a paper published in Journal of C) 970 2336 w
+(Language Translation, vol 2 number 2, September 1990.]) 2703 2336 w
+10 /Times-Roman f
+(Both) 970 2492 w
+(the) 1197 2492 w
+(original) 1351 2492 w
+(C) 1694 2492 w
+(language) 1793 2492 w
+(and) 2185 2492 w
+(ANSI) 2362 2492 w
+(C) 2628 2492 w
+(handle) 2728 2492 w
+(vectors) 3027 2492 w
+(of) 3348 2492 w
+(indefinite) 3464 2492 w
+(length,) 3880 2492 w
+(but) 4188 2492 w
+(neither) 4349 2492 w
+(caters) 4659 2492 w
+(for) 4924 2492 w
+(multidimensional) 720 2612 w
+(arrays whose bounds are determined during execution.) 1447 2612 w
+(Such a facility is especially useful) 3678 2612 w
+(for) 720 2732 w
+(numerical) 863 2732 w
+(library) 1289 2732 w
+(routines,) 1582 2732 w
+(but) 1956 2732 w
+(is) 2111 2732 w
+(currently) 2205 2732 w
+(painful) 2592 2732 w
+(to) 2902 2732 w
+(program.) 3007 2732 w
+(Many) 3422 2732 w
+(of) 3682 2732 w
+(the) 3793 2732 w
+(issues,) 3943 2732 w
+(and) 4235 2732 w
+(some) 4407 2732 w
+(suggested) 4646 2732 w
+(language) 720 2852 w
+(changes,) 1107 2852 w
+(were) 1480 2852 w
+(discussed) 1700 2852 w
+(by) 2110 2852 w
+(Tom) 2237 2852 w
+(MacDonald) 2453 2852 w
+(in) 2951 2852 w
+10 /Times-Italic f
+(J.) 3055 2852 w
+(C) 3150 2852 w
+(Language) 3243 2852 w
+(Translation) 3669 2852 w
+10 /Times-Bold f
+(1:3) 4163 2852 w
+10 /Times-Roman f
+(\(December,) 4322 2852 w
+(1989,) 4815 2852 w
+(pp.) 720 2972 w
+(215\255233\).) 871 2972 w
+(Some) 1313 2972 w
+(compilers,) 1567 2972 w
+(for) 2012 2972 w
+(example) 2154 2972 w
+(the) 2518 2972 w
+(GCC) 2666 2972 w
+(compiler) 2898 2972 w
+(from) 3279 2972 w
+(the) 3499 2972 w
+(Free) 3648 2972 w
+(Software) 3852 2972 w
+(Foundation,) 4239 2972 w
+(already) 4747 2972 w
+(have) 720 3092 w
+(extensions) 939 3092 w
+(in) 1392 3092 w
+(this) 1501 3092 w
+(area.) 1677 3092 w
+(This) 1923 3092 w
+(note) 2132 3092 w
+(discusses) 2335 3092 w
+(problems) 2737 3092 w
+(in) 3139 3092 w
+(these) 3247 3092 w
+(approaches,) 3482 3092 w
+(and) 3985 3092 w
+(offers) 4159 3092 w
+(a) 4421 3092 w
+(differing) 4495 3092 w
+(pro\255) 4874 3092 w
+(posal for an extension.) 720 3212 w
+(Previous) 970 3368 w
+(thoughts) 1354 3368 w
+(\(including) 1734 3368 w
+(my) 2180 3368 w
+(own\)) 2343 3368 w
+(have) 2583 3368 w
+(fixed) 2806 3368 w
+(on) 3046 3368 w
+(the) 3181 3368 w
+(idea) 3338 3368 w
+(of) 3539 3368 w
+(allowing) 3657 3368 w
+(general) 4042 3368 w
+(expressions,) 4370 3368 w
+(and) 4896 3368 w
+(not) 720 3488 w
+(merely) 886 3488 w
+(constants,) 1201 3488 w
+(as) 1636 3488 w
+(bounds) 1757 3488 w
+(for) 2084 3488 w
+(automatic) 2238 3488 w
+(arrays.) 2670 3488 w
+(Although) 3001 3488 w
+(this) 3416 3488 w
+(extension,) 3598 3488 w
+(with) 4043 3488 w
+(careful) 4258 3488 w
+(restrictions,) 4571 3488 w
+(seems) 720 3608 w
+(to) 998 3608 w
+(fit) 1110 3608 w
+(into) 1233 3608 w
+(the) 1423 3608 w
+(structure) 1579 3608 w
+(of) 1962 3608 w
+(the) 2079 3608 w
+(existing) 2235 3608 w
+(language,) 2586 3608 w
+(and) 3005 3608 w
+(is) 3183 3608 w
+(useful) 3285 3608 w
+(by) 3564 3608 w
+(itself,) 3699 3608 w
+(it) 3959 3608 w
+(presents) 4050 3608 w
+(implementation) 4412 3608 w
+(difficulties) 720 3728 w
+(in) 1182 3728 w
+(some) 1289 3728 w
+(run\255time) 1529 3728 w
+(systems.) 1901 3728 w
+(Moreover,) 2296 3728 w
+(I) 2742 3728 w
+(argue) 2803 3728 w
+(that) 3052 3728 w
+(this) 3230 3728 w
+(proposal) 3403 3728 w
+(alone) 3775 3728 w
+(does) 4019 3728 w
+(not) 4230 3728 w
+(properly) 4386 3728 w
+(resolve) 4752 3728 w
+(the) 720 3848 w
+(question) 870 3848 w
+(of) 1237 3848 w
+(function) 1348 3848 w
+(parameters) 1710 3848 w
+(that) 2176 3848 w
+(involve) 2355 3848 w
+(varying) 2684 3848 w
+(arrays.) 3018 3848 w
+(The) 3340 3848 w
+(rules) 3524 3848 w
+(for) 3747 3848 w
+(both) 3892 3848 w
+(the) 4099 3848 w
+(GCC) 4250 3848 w
+(and) 4485 3848 w
+(MacDon\255) 4658 3848 w
+(ald) 720 3968 w
+(schemes) 871 3968 w
+(are) 1238 3968 w
+(difficult) 1388 3968 w
+(to) 1739 3968 w
+(use) 1846 3968 w
+(and) 2008 3968 w
+(comprehend,) 2181 3968 w
+(and) 2728 3968 w
+(are) 2901 3968 w
+(difficult) 3051 3968 w
+(to) 3402 3968 w
+(formalize) 3509 3968 w
+(even) 3920 3968 w
+(to) 4137 3968 w
+(the) 4244 3968 w
+(level) 4395 3968 w
+(of) 4618 3968 w
+(the) 4730 3968 w
+(cur\255) 4880 3968 w
+(rent) 720 4088 w
+(ANSI) 901 4088 w
+(standard;) 1160 4088 w
+(in) 1552 4088 w
+(particular,) 1656 4088 w
+(the) 2089 4088 w
+(type) 2237 4088 w
+(calculus) 2435 4088 w
+(for) 2788 4088 w
+(variable\255sized) 2930 4088 w
+(arrays) 3515 4088 w
+(is) 3784 4088 w
+(murky) 3877 4088 w
+(for) 4164 4088 w
+(both.) 4306 4088 w
+(In) 4560 4088 w
+(the) 4669 4088 w
+(exist\255) 4818 4088 w
+(ing) 720 4208 w
+(ANSI) 879 4208 w
+(C) 1143 4208 w
+(language,) 1241 4208 w
+(the) 1657 4208 w
+(type) 1810 4208 w
+(and) 2013 4208 w
+(value) 2188 4208 w
+(of) 2435 4208 w
+(an) 2549 4208 w
+(object) 2674 4208 w
+10 /Courier f
+(p) 2984 4208 w
+10 /Times-Roman f
+(suffice) 3075 4208 w
+(to) 3376 4208 w
+(determine) 3484 4208 w
+(the) 3913 4208 w
+(evaluation) 4065 4208 w
+(of) 4511 4208 w
+(operations) 4624 4208 w
+(on it.) 720 4328 w
+(In particular, if) 976 4328 w
+10 /Courier f
+(p) 1637 4328 w
+10 /Times-Roman f
+(is a pointer, the code) 1722 4328 w
+(generated) 2577 4328 w
+(for) 2990 4328 w
+(expressions) 3132 4328 w
+(like) 3624 4328 w
+10 /Courier f
+(p[i]) 3835 4328 w
+10 /Times-Roman f
+(and) 4101 4328 w
+10 /Courier f
+(p[i][j]) 4306 4328 w
+10 /Times-Roman f
+(depend) 4752 4328 w
+(only) 720 4448 w
+(on) 924 4448 w
+(its) 1050 4448 w
+(type,) 1171 4448 w
+(because any necessary array bounds are part of the type of) 1394 4448 w
+10 /Courier f
+(p) 3779 4448 w
+10 /Times-Roman f
+(.) 3839 4448 w
+(In the MacDonald and GCC) 3914 4448 w
+(extensions, the values of non\255constant array bounds are not tied firmly to its type.) 720 4568 w
+(My) 970 4724 w
+(proposal,) 1142 4724 w
+(by) 1544 4724 w
+(contrast,) 1677 4724 w
+(is) 2051 4724 w
+(to) 2151 4724 w
+(avoid) 2262 4724 w
+(allowing) 2517 4724 w
+(variable\255sized) 2900 4724 w
+(arrays) 3493 4724 w
+(as) 3770 4724 w
+(declared) 3887 4724 w
+(objects,) 4258 4724 w
+(but) 4600 4724 w
+(to) 4762 4724 w
+(pro\255) 4874 4724 w
+(vide) 720 4844 w
+(pointers) 922 4844 w
+(to) 1274 4844 w
+(such) 1382 4844 w
+(arrays;) 1595 4844 w
+(the) 1921 4844 w
+(pointers) 2073 4844 w
+(carry) 2425 4844 w
+(the) 2659 4844 w
+(array) 2811 4844 w
+(bounds) 3045 4844 w
+(inside) 3364 4844 w
+(themselves.) 3633 4844 w
+(This) 4157 4844 w
+(will) 4365 4844 w
+(preserve) 4551 4844 w
+(the) 4918 4844 w
+(property) 720 4964 w
+(that) 1088 4964 w
+(pointer) 1268 4964 w
+(arithmetic) 1581 4964 w
+(and) 2016 4964 w
+(dereferencing) 2190 4964 w
+(depend) 2767 4964 w
+(only) 3085 4964 w
+(on) 3293 4964 w
+(the) 3423 4964 w
+(type) 3575 4964 w
+(and) 3777 4964 w
+(value) 3951 4964 w
+(of) 4198 4964 w
+(the) 4312 4964 w
+(pointer.) 4465 4964 w
+(Allo\255) 4829 4964 w
+(cation of varying\255size arrays can be done by already existing facilities.) 720 5084 w
+(I) 970 5240 w
+(intend) 1032 5240 w
+(that) 1311 5240 w
+(the) 1490 5240 w
+(proposed) 1641 5240 w
+(amendments) 2036 5240 w
+(to) 2570 5240 w
+(the) 2677 5240 w
+(Standard) 2829 5240 w
+(do) 3214 5240 w
+(not) 3344 5240 w
+(change) 3502 5240 w
+(any) 3814 5240 w
+(currently) 3988 5240 w
+(conforming) 4378 5240 w
+(pro\255) 4874 5240 w
+(grams.) 720 5360 w
+10 /Times-Bold f
+(New Rules) 720 5600 w
+10 /Times-Roman f
+(To) 970 5756 w
+(simplify) 1107 5756 w
+(the) 1467 5756 w
+(description,) 1615 5756 w
+(let) 2110 5756 w
+(us) 2236 5756 w
+(call) 2351 5756 w
+(the) 2521 5756 w
+(types) 2669 5756 w
+(`array) 2906 5756 w
+(of) 3169 5756 w
+10 /Times-Italic f
+(T) 3278 5756 w
+10 /Times-Roman f
+(,') 3334 5756 w
+(`array) 3418 5756 w
+(of) 3681 5756 w
+(array) 3790 5756 w
+(of) 4020 5756 w
+10 /Times-Italic f
+(T) 4130 5756 w
+10 /Times-Roman f
+(,') 4186 5756 w
+(and) 4271 5756 w
+(so) 4442 5756 w
+(forth) 4558 5756 w
+10 /Times-Italic f
+(matrix) 4779 5756 w
+(types) 720 5876 w
+10 /Times-Roman f
+(.) 925 5876 w
+(The first extension permits array declarators to be written) 970 6032 w
+10 /Courier f
+(D [ ? ]) 970 6212 w
+10 /Times-Roman f
+(which) 720 6392 w
+(imputes) 994 6392 w
+(to) 1341 6392 w
+(the) 1449 6392 w
+(declarator) 1601 6392 w
+10 /Courier f
+(D) 2064 6392 w
+10 /Times-Roman f
+(the) 2154 6392 w
+(type) 2306 6392 w
+(`adjustable) 2508 6392 w
+(array.') 2977 6392 w
+(Adjustable) 3295 6392 w
+(arrays) 3759 6392 w
+(are) 4033 6392 w
+(heavily) 4185 6392 w
+(restricted:) 4510 6392 w
+(no) 4940 6392 w
+(object,) 720 6512 w
+(or) 1019 6512 w
+(structure) 1132 6512 w
+(or) 1511 6512 w
+(union) 1624 6512 w
+(member,) 1882 6512 w
+(may) 2264 6512 w
+(be) 2466 6512 w
+(a) 2590 6512 w
+(matrix) 2664 6512 w
+(type) 2955 6512 w
+(with) 3156 6512 w
+(any) 3363 6512 w
+(adjustable) 3536 6512 w
+(bound.) 3970 6512 w
+(However,) 4299 6512 w
+(pointers) 4718 6512 w
+(to matrices, some of whose bounds are adjustable, are permitted.) 720 6632 w
+(The) 970 6788 w
+(second) 1152 6788 w
+(extension) 1456 6788 w
+(permits) 1866 6788 w
+(any) 2193 6788 w
+(integral) 2364 6788 w
+(expression) 2696 6788 w
+(to) 3150 6788 w
+(appear) 3255 6788 w
+(as) 3547 6788 w
+(a) 3657 6788 w
+(bound) 3728 6788 w
+(in) 4005 6788 w
+(an) 4110 6788 w
+(array) 4232 6788 w
+(declarator) 4464 6788 w
+(that) 4890 6788 w
+(occurs) 720 6908 w
+(in) 1007 6908 w
+(a) 1112 6908 w
+(cast) 1183 6908 w
+(\(but) 1365 6908 w
+(nowhere) 1553 6908 w
+(else\).) 1923 6908 w
+(Such) 2188 6908 w
+(a) 2415 6908 w
+(cast) 2486 6908 w
+(may) 2668 6908 w
+(appear) 2867 6908 w
+(only) 3159 6908 w
+(in) 3364 6908 w
+(a) 3469 6908 w
+(function,) 3540 6908 w
+(and) 3925 6908 w
+(the) 4096 6908 w
+(expression) 4245 6908 w
+(is) 4698 6908 w
+(evalu\255) 4791 6908 w
+(ated) 720 7028 w
+(in) 914 7028 w
+(the) 1020 7028 w
+(scope) 1170 7028 w
+(in) 1425 7028 w
+(which) 1532 7028 w
+(the) 1805 7028 w
+(cast) 1956 7028 w
+(appears.) 2140 7028 w
+(The) 2523 7028 w
+(type) 2707 7028 w
+(of) 2908 7028 w
+(the) 3020 7028 w
+(resulting) 3171 7028 w
+(array) 3550 7028 w
+(is) 3783 7028 w
+(the) 3879 7028 w
+(same) 4030 7028 w
+(as) 4264 7028 w
+(if) 4376 7028 w
+(the) 4466 7028 w
+(bound) 4617 7028 w
+(had) 4896 7028 w
+(been the constant expression of equal value.) 720 7148 w
+(\(The implied constraints here are not statically checkable.\)) 2530 7148 w
+(The) 970 7304 w
+(final) 1156 7304 w
+(extension) 1370 7304 w
+(specifies) 1784 7304 w
+(that) 2164 7304 w
+(the) 2345 7304 w
+10 /Courier f
+(sizeof) 2533 7304 w
+10 /Times-Roman f
+(operator,) 2924 7304 w
+(when) 3312 7304 w
+(applied) 3559 7304 w
+(to) 3885 7304 w
+(an) 3995 7304 w
+(expression) 4121 7304 w
+(involving) 4580 7304 w
+(a) 4996 7304 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 1 1
+%%Page: 2 2
+/saveobj save def
+mark
+2 pagesetup
+10 /Times-Roman f
+(\255 2 \255) 2797 480 w
+(pointer) 720 840 w
+(to) 1032 840 w
+(an) 1139 840 w
+(adjustable) 1262 840 w
+(matrix,) 1696 840 w
+(need) 2011 840 w
+(not) 2228 840 w
+(yield) 2385 840 w
+(a) 2614 840 w
+(constant;) 2687 840 w
+(there) 3077 840 w
+(is) 3305 840 w
+(a) 3401 840 w
+(corresponding) 3474 840 w
+(constraint) 4074 840 w
+(that) 4496 840 w
+(the) 4674 840 w
+(value) 4824 840 w
+(of such a) 720 960 w
+10 /Courier f
+(sizeof) 1140 960 w
+10 /Times-Roman f
+(expression is undefined unless the value of the pointer is defined.) 1525 960 w
+(\(This implies) 4185 960 w
+(that) 4742 960 w
+(the) 4918 960 w
+(argument of) 720 1080 w
+10 /Courier f
+(sizeof) 1265 1080 w
+10 /Times-Roman f
+(must be evaluated when its type involves an adjustable array.\)) 1650 1080 w
+(Pointers) 970 1236 w
+(to) 1333 1236 w
+(adjustable) 1446 1236 w
+(matrices) 1886 1236 w
+(\(that) 2259 1236 w
+(is,) 2477 1236 w
+(matrices) 2604 1236 w
+(at) 2977 1236 w
+(least) 3084 1236 w
+(one) 3303 1236 w
+(bound) 3483 1236 w
+(of) 3769 1236 w
+(which) 3888 1236 w
+(is) 4168 1236 w
+(adjustable\)) 4271 1236 w
+(are) 4745 1236 w
+(`fat) 4902 1236 w
+(pointers') 720 1356 w
+(whose) 1107 1356 w
+(representation) 1394 1356 w
+(will) 1991 1356 w
+(include) 2179 1356 w
+(the) 2505 1356 w
+(space) 2659 1356 w
+(to) 2912 1356 w
+(store) 3022 1356 w
+(the) 3248 1356 w
+(adjustable) 3402 1356 w
+(bounds) 3839 1356 w
+(at) 4160 1356 w
+(run\255time.) 4264 1356 w
+(It) 4690 1356 w
+(is) 4782 1356 w
+(cru\255) 4880 1356 w
+(cial) 720 1476 w
+(to) 901 1476 w
+(arrange) 1016 1476 w
+(the) 1351 1476 w
+(rules) 1510 1476 w
+(so) 1741 1476 w
+(that) 1867 1476 w
+(these) 2054 1476 w
+(bounds) 2296 1476 w
+(can) 2622 1476 w
+(always) 2798 1476 w
+(be) 3113 1476 w
+(filled) 3245 1476 w
+(in) 3494 1476 w
+(properly.) 3610 1476 w
+(Therefore,) 4036 1476 w
+(the) 4491 1476 w
+(following) 4651 1476 w
+(restrictions are necessary.) 720 1596 w
+(The) 970 1752 w
+(type) 1155 1752 w
+(of) 1357 1752 w
+(an) 1470 1752 w
+(adjustable) 1594 1752 w
+(array) 2030 1752 w
+(of) 2265 1752 w
+(an) 2379 1752 w
+(element) 2504 1752 w
+(type) 2851 1752 w
+(is) 3054 1752 w
+(compatible) 3152 1752 w
+(only) 3627 1752 w
+(with) 3836 1752 w
+(another) 4045 1752 w
+(adjustable) 4375 1752 w
+(array,) 4811 1752 w
+(and) 720 1872 w
+(only) 898 1872 w
+(if) 1110 1872 w
+(the) 1205 1872 w
+(element) 1361 1872 w
+(types) 1711 1872 w
+(are) 1956 1872 w
+(compatible.) 2111 1872 w
+(In) 2639 1872 w
+(particular,) 2755 1872 w
+(an) 3195 1872 w
+(adjustable) 3322 1872 w
+(array) 3760 1872 w
+(is) 3997 1872 w
+(not) 4097 1872 w
+(compatible) 4258 1872 w
+(with) 4735 1872 w
+(an) 4946 1872 w
+(ordinary array or an incomplete array.) 720 1992 w
+(Pointers) 970 2148 w
+(to) 1335 2148 w
+(adjustable) 1450 2148 w
+(matrices) 1892 2148 w
+(may) 2267 2148 w
+(be) 2476 2148 w
+(assigned) 2607 2148 w
+(\(or) 2988 2148 w
+(initialized) 3141 2148 w
+(or) 3578 2148 w
+(passed) 3698 2148 w
+(as) 4001 2148 w
+(arguments\).) 4121 2148 w
+(If) 4657 2148 w
+10 /Courier f
+(p) 4795 2148 w
+10 /Times-Roman f
+(is) 4892 2148 w
+(a) 4996 2148 w
+(pointer) 720 2268 w
+(to) 1037 2268 w
+(an) 1149 2268 w
+(adjustable) 1277 2268 w
+(matrix,) 1716 2268 w
+(then) 2036 2268 w
+10 /Courier f
+(p) 2277 2268 w
+(=) 2406 2268 w
+(q) 2534 2268 w
+10 /Times-Roman f
+(is) 2627 2268 w
+(permitted) 2727 2268 w
+(if) 3143 2268 w
+(the) 3237 2268 w
+(types) 3392 2268 w
+(are) 3636 2268 w
+(compatible,) 3790 2268 w
+(or) 4292 2268 w
+(if) 4408 2268 w
+10 /Courier f
+(q) 4537 2268 w
+10 /Times-Roman f
+(fails) 4630 2268 w
+(to) 4835 2268 w
+(be) 4946 2268 w
+(compatible) 720 2388 w
+(with) 1199 2388 w
+10 /Courier f
+(p) 1447 2388 w
+10 /Times-Roman f
+(only) 1542 2388 w
+(because) 1755 2388 w
+(one) 2105 2388 w
+(matrix) 2284 2388 w
+(has) 2580 2388 w
+(a) 2748 2388 w
+(known) 2827 2388 w
+(array) 3134 2388 w
+(bound) 3373 2388 w
+(where) 3658 2388 w
+(the) 3937 2388 w
+(other) 4095 2388 w
+(has) 4336 2388 w
+(an) 4505 2388 w
+(adjustable) 4635 2388 w
+(bound.) 720 2508 w
+(If) 1048 2508 w
+(the) 1142 2508 w
+(LHS) 1292 2508 w
+10 /Courier f
+(p) 1544 2508 w
+10 /Times-Roman f
+(has) 1632 2508 w
+(a) 1793 2508 w
+(known) 1865 2508 w
+(bound) 2165 2508 w
+(at) 2443 2508 w
+(a) 2543 2508 w
+(particular) 2615 2508 w
+(position) 3025 2508 w
+(and) 3376 2508 w
+10 /Courier f
+(q) 3583 2508 w
+10 /Times-Roman f
+(has) 3671 2508 w
+(an) 3832 2508 w
+(adjustable) 3954 2508 w
+(bound,) 4387 2508 w
+(it) 4690 2508 w
+(is) 4774 2508 w
+(nec\255) 4869 2508 w
+(essary) 720 2628 w
+(\(though) 1007 2628 w
+(not) 1356 2628 w
+(statically) 1522 2628 w
+(checkable\)) 1921 2628 w
+(that) 2390 2628 w
+(the) 2578 2628 w
+(actual) 2738 2628 w
+(bound) 3014 2628 w
+(for) 3302 2628 w
+10 /Courier f
+(q) 3491 2628 w
+10 /Times-Roman f
+(at) 3590 2628 w
+(that) 3701 2628 w
+(position) 3890 2628 w
+(be) 4252 2628 w
+(the) 4385 2628 w
+(equal) 4546 2628 w
+(to) 4801 2628 w
+(the) 4918 2628 w
+(known bound of) 720 2748 w
+10 /Courier f
+(p) 1435 2748 w
+10 /Times-Roman f
+(.) 1495 2748 w
+(Although) 970 2904 w
+(the) 1394 2904 w
+(ANSI) 1562 2904 w
+(standard) 1841 2904 w
+(made) 2226 2904 w
+10 /Courier f
+(void) 2524 2904 w
+(*) 2846 2904 w
+10 /Times-Roman f
+(pointers) 2953 2904 w
+(a) 3322 2904 w
+(generic) 3413 2904 w
+(type) 3753 2904 w
+(for) 3972 2904 w
+(pointers) 4135 2904 w
+(to) 4504 2904 w
+(objects,) 4629 2904 w
+(it) 4984 2904 w
+(exempted) 720 3024 w
+(function) 1144 3024 w
+(pointers) 1513 3024 w
+(from) 1871 3024 w
+(this) 2101 3024 w
+(universality.) 2282 3024 w
+(Similarly,) 2840 3024 w
+(this) 3273 3024 w
+(proposal) 3453 3024 w
+(forbids) 3832 3024 w
+(automatic) 4150 3024 w
+(coercion) 4579 3024 w
+(of) 4957 3024 w
+10 /Courier f
+(void *) 720 3144 w
+10 /Times-Roman f
+(pointers to pointers to adjustable matrices; a cast specifying the bounds must be used.) 1105 3144 w
+(These rules for casts and assignments are not) 970 3300 w
+(simple) 2795 3300 w
+(generalizations) 3088 3300 w
+(of) 3718 3300 w
+(existing) 3827 3300 w
+(rules;) 4170 3300 w
+(they) 4418 3300 w
+(are) 4616 3300 w
+(formu\255) 4763 3300 w
+(lated) 720 3420 w
+(so) 954 3420 w
+(that) 1083 3420 w
+(no) 1273 3420 w
+(pointer) 1413 3420 w
+(to) 1736 3420 w
+(an) 1854 3420 w
+(adjustable) 1988 3420 w
+(matrix) 2433 3420 w
+(can) 2734 3420 w
+(be) 2912 3420 w
+(constructed) 3046 3420 w
+(unless) 3546 3420 w
+(there) 3836 3420 w
+(is) 4074 3420 w
+(a) 4180 3420 w
+(way) 4263 3420 w
+(of) 4468 3420 w
+(finding) 4590 3420 w
+(the) 4918 3420 w
+(appropriate bounds at run time.) 720 3540 w
+10 /Times-Bold f
+(Examples) 720 3780 w
+10 /Times-Roman f
+(A function with a general two\255dimensional array as a parameter might be declared) 970 3936 w
+10 /Courier f
+(void f1\(int \(*a\)[?][?]\);) 970 4116 w
+10 /Times-Roman f
+(and defined as) 720 4296 w
+10 /Courier f
+(void f1\(int \(*a\)[?][?]\) {) 970 4476 w
+(int i, j;) 1220 4596 w
+(... \(*a\)[i][j] ...) 1220 4716 w
+(}) 970 4836 w
+10 /Times-Roman f
+(The) 720 5016 w
+(type) 903 5016 w
+(of) 1103 5016 w
+(the) 1214 5016 w
+(argument) 1364 5016 w
+(is) 1769 5016 w
+(`pointer) 1864 5016 w
+(to) 2208 5016 w
+(adjustable) 2314 5016 w
+(array) 2748 5016 w
+(of) 2981 5016 w
+(adjustable) 3093 5016 w
+(array) 3527 5016 w
+(of) 3760 5016 w
+10 /Courier f
+(int) 3907 5016 w
+10 /Times-Roman f
+(.') 4087 5016 w
+(This) 4199 5016 w
+(formulation) 4406 5016 w
+(has) 4907 5016 w
+(the) 720 5136 w
+(advantage) 888 5136 w
+(that) 1338 5136 w
+(both) 1534 5136 w
+(array) 1758 5136 w
+(bounds) 2008 5136 w
+(are) 2343 5136 w
+(automatically) 2510 5136 w
+(available) 3100 5136 w
+(to) 3505 5136 w
+(the) 3628 5136 w
+(function;) 3795 5136 w
+(the) 4201 5136 w
+(first) 4368 5136 w
+(and) 4574 5136 w
+(second) 4763 5136 w
+(bounds are respectively) 720 5256 w
+10 /Courier f
+(sizeof\(*a\) / sizeof\(\(*a\)[0]\)) 970 5436 w
+(sizeof\(\(*a\)[0]\) / sizeof\(\(*a\)[0][0]\)) 970 5556 w
+10 /Times-Roman f
+(This suggests that macros be provided:) 720 5736 w
+10 /Courier f
+(#define) 720 5916 w
+(UPB1\(x\)) 1220 5916 w
+(\(sizeof\(*x\) / sizeof\(\(*x\)[0]\)\)) 1720 5916 w
+(#define UPB2\(x\) \(sizeof\(\(*x\)[0]\) / sizeof\(\(*x\)[0][0]\)\)) 720 6036 w
+10 /Times-Roman f
+(If) 720 6216 w
+(the) 812 6216 w
+(function) 960 6216 w
+(needs) 1319 6216 w
+(a) 1572 6216 w
+(temporary) 1642 6216 w
+(array) 2078 6216 w
+(of) 2308 6216 w
+(the) 2417 6216 w
+(same) 2565 6216 w
+(size) 2796 6216 w
+(and) 2977 6216 w
+(shape) 3147 6216 w
+(as) 3400 6216 w
+(the) 3509 6216 w
+(argument) 3657 6216 w
+(is) 4060 6216 w
+(needed,) 4154 6216 w
+(it) 4488 6216 w
+(can) 4571 6216 w
+(be) 4736 6216 w
+(allo\255) 4857 6216 w
+(cated:) 720 6336 w
+10 /Courier f
+(int \(*b\)[?][?] = \(int \(*\)[UPB1\(a\)][UPB2\(a\)]\)malloc\(sizeof\(*a\)\);) 970 6516 w
+10 /Times-Roman f
+(In order to call the function) 720 6696 w
+10 /Courier f
+(f) 1875 6696 w
+10 /Times-Roman f
+(, an ordinary array can be used:) 1935 6696 w
+10 /Courier f
+(int aa[100][100];) 970 6876 w
+(f1\(&aa\);) 970 7116 w
+10 /Times-Roman f
+(because the pointer to the constant\255bound, complete array) 720 7296 w
+10 /Courier f
+(aa) 3086 7296 w
+10 /Times-Roman f
+(is converted to the argument's type.) 3231 7296 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 2 2
+%%Page: 3 3
+/saveobj save def
+mark
+3 pagesetup
+10 /Times-Roman f
+(\255 3 \255) 2797 480 w
+(The) 970 840 w
+(ugliest) 1153 840 w
+(aspect) 1448 840 w
+(of) 1725 840 w
+(this) 1836 840 w
+(formulation) 2009 840 w
+(is) 2509 840 w
+(that) 2604 840 w
+(uses) 2782 840 w
+(of) 2982 840 w
+(the) 3093 840 w
+(argument) 3243 840 w
+(need) 3648 840 w
+(to) 3864 840 w
+(be) 3970 840 w
+(explicitly) 4092 840 w
+(dereferenced;) 4499 840 w
+(we) 720 960 w
+(must) 864 960 w
+(write) 1087 960 w
+10 /Courier f
+(\(*a\)[i][j]) 1355 960 w
+10 /Times-Roman f
+(inside) 1983 960 w
+(of) 2250 960 w
+10 /Courier f
+(f1) 2396 960 w
+10 /Times-Roman f
+(.) 2516 960 w
+(One) 2594 960 w
+(way) 2788 960 w
+(of) 2982 960 w
+(ameliorating) 3092 960 w
+(the) 3624 960 w
+(effect,) 3773 960 w
+(within) 4051 960 w
+(the) 4334 960 w
+(function,) 4483 960 w
+(is) 4868 960 w
+(to) 4962 960 w
+(generate a pointer to the first row of the array:) 720 1080 w
+10 /Courier f
+(void f1\(int \(*a\)[?][?]\) {) 970 1260 w
+(int \(*ap\)[?] = *a;) 1220 1380 w
+(... ap[i][j] ...) 1220 1500 w
+(}) 970 1620 w
+10 /Times-Roman f
+(This) 720 1800 w
+(example) 930 1800 w
+(was) 1300 1800 w
+(explicit) 1487 1800 w
+(in) 1819 1800 w
+(passing) 1929 1800 w
+(a) 2261 1800 w
+(pointer) 2337 1800 w
+(to) 2652 1800 w
+(the) 2762 1800 w
+(two\255dimensional) 2916 1800 w
+(array.) 3620 1800 w
+(It) 3906 1800 w
+(can) 3999 1800 w
+(also) 4170 1800 w
+(be) 4364 1800 w
+(written) 4491 1800 w
+(in) 4807 1800 w
+(the) 4918 1800 w
+(more) 720 1920 w
+(usual) 953 1920 w
+(style,) 1192 1920 w
+(in) 1434 1920 w
+(which) 1540 1920 w
+(the) 1812 1920 w
+(pointer's) 1962 1920 w
+(explicitness) 2345 1920 w
+(is) 2844 1920 w
+(somewhat) 2938 1920 w
+(suppressed;) 3370 1920 w
+(this) 3863 1920 w
+(gives) 4035 1920 w
+(an) 4273 1920 w
+(alternate) 4394 1920 w
+(way) 4764 1920 w
+(of) 4957 1920 w
+(simplifying the references.) 720 2040 w
+10 /Courier f
+(void f2\(int a[][?]\) { ... a[i][j] ... }) 970 2220 w
+10 /Times-Roman f
+(or equivalently,) 720 2400 w
+10 /Courier f
+(void f2\(int \(*a\)[?]\) { ... a[i][j] ... }) 970 2580 w
+10 /Times-Roman f
+(Here) 720 2760 w
+(the) 939 2760 w
+(type) 1087 2760 w
+(of) 1285 2760 w
+(the) 1394 2760 w
+(argument) 1542 2760 w
+(is) 1945 2760 w
+(`pointer) 2038 2760 w
+(to) 2381 2760 w
+(adjustable) 2486 2760 w
+(array) 2918 2760 w
+(of) 3149 2760 w
+10 /Courier f
+(int) 3294 2760 w
+10 /Times-Roman f
+(,') 3474 2760 w
+(and) 3559 2760 w
+(what) 3730 2760 w
+(is) 3951 2760 w
+(passed) 4045 2760 w
+(is) 4338 2760 w
+(a) 4432 2760 w
+(pointer) 4503 2760 w
+(to) 4813 2760 w
+(the) 4918 2760 w
+(first row of the two\255dimensional array, instead of a pointer to the entire array.) 720 2880 w
+(This function could be called) 3866 2880 w
+10 /Courier f
+(int aa[100][100];) 970 3060 w
+(f2\(aa\);) 970 3300 w
+10 /Times-Roman f
+(This) 720 3480 w
+(formulation) 924 3480 w
+(is) 1422 3480 w
+(in) 1515 3480 w
+(some) 1619 3480 w
+(ways) 1856 3480 w
+(more) 2087 3480 w
+(natural,) 2318 3480 w
+(but) 2646 3480 w
+(just) 2800 3480 w
+(as) 2971 3480 w
+(in) 3080 3480 w
+(ANSI) 3184 3480 w
+(C,) 3443 3480 w
+(the) 3562 3480 w
+(function) 3711 3480 w
+(loses) 4071 3480 w
+(the) 4298 3480 w
+(ability) 4447 3480 w
+(to) 4730 3480 w
+(com\255) 4835 3480 w
+(pute the first bound of the array.) 720 3600 w
+10 /Times-Bold f
+(Discussion) 720 3840 w
+10 /Times-Roman f
+(Previous) 970 3996 w
+(attempts) 1364 3996 w
+(to) 1748 3996 w
+(generalize) 1871 3996 w
+(C) 2325 3996 w
+(to) 2437 3996 w
+(adjustable) 2560 3996 w
+(arrays) 3010 3996 w
+(have) 3298 3996 w
+(taken) 3531 3996 w
+(the) 3792 3996 w
+(apparently) 3959 3996 w
+(straightforward) 4425 3996 w
+(approach) 720 4116 w
+(of) 1116 4116 w
+(allowing) 1230 4116 w
+(array) 1611 4116 w
+(bounds) 1846 4116 w
+(\(in) 2166 4116 w
+(carefully) 2308 4116 w
+(chosen) 2693 4116 w
+(circumstances\)) 3001 4116 w
+(to) 3630 4116 w
+(be) 3739 4116 w
+(arbitrary) 3863 4116 w
+(expressions,) 4236 4116 w
+(instead) 4757 4116 w
+(of) 720 4236 w
+(constants.) 830 4236 w
+(I) 1279 4236 w
+(suggest) 1339 4236 w
+(that) 1666 4236 w
+(the) 1843 4236 w
+(straightforwardness) 1992 4236 w
+(is) 2806 4236 w
+(only) 2900 4236 w
+(apparent,) 3105 4236 w
+(and) 3500 4236 w
+(that) 3671 4236 w
+(the) 3849 4236 w
+(necessary) 3999 4236 w
+(rules) 4414 4236 w
+(are) 4636 4236 w
+(in) 4785 4236 w
+(fact) 4891 4236 w
+(quite) 720 4356 w
+(complicated;) 951 4356 w
+(neither) 1498 4356 w
+(the) 1805 4356 w
+(FSF) 1957 4356 w
+(nor) 2155 4356 w
+(MacDonald) 2318 4356 w
+(have) 2819 4356 w
+(really) 3037 4356 w
+(worked) 3294 4356 w
+(out) 3623 4356 w
+(their) 3781 4356 w
+(consequences.) 3994 4356 w
+(For) 4622 4356 w
+(exam\255) 4791 4356 w
+(ple, the GCC language extension envisions function definitions like) 720 4476 w
+10 /Courier f
+(int f\(int n, int m, int \(*a\)[n][m]\) { ... }) 1200 4656 w
+10 /Times-Roman f
+(in) 720 4836 w
+(which) 827 4836 w
+(the) 1100 4836 w
+(bounds) 1251 4836 w
+(are) 1569 4836 w
+(passed) 1719 4836 w
+(explicitly) 2014 4836 w
+(to) 2421 4836 w
+(the) 2528 4836 w
+(function) 2679 4836 w
+(\(somewhat) 3041 4836 w
+(in) 3508 4836 w
+(the) 3615 4836 w
+(style) 3766 4836 w
+(of) 3985 4836 w
+(Fortran\).) 4098 4836 w
+(Such) 4505 4836 w
+(propos\255) 4735 4836 w
+(als can possibly be made to work, but manifest unpleasant difficulties.) 720 4956 w
+(For example, what is the type of this function) 970 5112 w
+10 /Courier f
+(f) 2848 5112 w
+10 /Times-Roman f
+(, and how does one write a prototype for it?) 2908 5112 w
+(In) 4700 5112 w
+(GCC,) 4809 5112 w
+(one says) 720 5232 w
+10 /Courier f
+(void f\(int, int, int \(*\)[][]\);) 970 5412 w
+10 /Times-Roman f
+(while MacDonald makes the adjustability indicator more syntactic:) 720 5592 w
+10 /Courier f
+(void f\(int, int, int [*][*]\);) 970 5772 w
+10 /Times-Roman f
+(The) 720 5952 w
+(type) 905 5952 w
+10 /Courier f
+(int) 1143 5952 w
+(\(*\)[][]) 1389 5952 w
+10 /Times-Roman f
+(here,) 1840 5952 w
+(if) 2067 5952 w
+(one) 2159 5952 w
+(has) 2334 5952 w
+(only) 2498 5952 w
+(non\255constant) 2707 5952 w
+(arrays,) 3254 5952 w
+(is) 3553 5952 w
+(strange;) 3651 5952 w
+(it) 3998 5952 w
+(is) 4085 5952 w
+(a) 4183 5952 w
+(notation) 4258 5952 w
+(that) 4617 5952 w
+(has) 4798 5952 w
+(to) 4962 5952 w
+(be) 720 6072 w
+(introduced) 842 6072 w
+(only) 1297 6072 w
+(for) 1503 6072 w
+(function) 1647 6072 w
+(declarations,) 2008 6072 w
+(and) 2543 6072 w
+(is) 2715 6072 w
+(of) 2810 6072 w
+(no) 2921 6072 w
+(use) 3049 6072 w
+(elsewhere.) 3210 6072 w
+(More) 3686 6072 w
+(seriously,) 3930 6072 w
+(one) 4344 6072 w
+(cannot) 4515 6072 w
+(deter\255) 4808 6072 w
+(mine,) 720 6192 w
+(simply) 981 6192 w
+(by) 1290 6192 w
+(looking) 1426 6192 w
+(at) 1768 6192 w
+(the) 1876 6192 w
+(declaration) 2034 6192 w
+(and) 2513 6192 w
+(at) 2693 6192 w
+(a) 2801 6192 w
+(call) 2882 6192 w
+(to) 3063 6192 w
+(the) 3178 6192 w
+(function,) 3337 6192 w
+(whether) 3732 6192 w
+(the) 4090 6192 w
+(call) 4249 6192 w
+(is) 4430 6192 w
+(type\255correct,) 4534 6192 w
+(because there is no language\255visible way to determine where the array bounds come from.) 720 6312 w
+(Other problems occur because of the way the function definition is written.) 970 6468 w
+(In the example,) 4020 6468 w
+10 /Courier f
+(void f\(int n, int m, int \(*a\)[n][m]\) { ... }) 970 6648 w
+10 /Times-Roman f
+(the) 720 6828 w
+(bounds) 877 6828 w
+(come) 1201 6828 w
+(lexically) 1452 6828 w
+(first,) 1831 6828 w
+(before) 2052 6828 w
+(the) 2341 6828 w
+(array) 2498 6828 w
+(that) 2737 6828 w
+(depends) 2922 6828 w
+(on) 3284 6828 w
+(them.) 3419 6828 w
+(The) 3704 6828 w
+(arguments) 3894 6828 w
+(really) 4345 6828 w
+(have) 4608 6828 w
+(to) 4832 6828 w
+(be) 4946 6828 w
+(processed) 720 6948 w
+(by) 1146 6948 w
+(the) 1278 6948 w
+(compiler) 1432 6948 w
+(left\255to\255right,) 1819 6948 w
+(in) 2342 6948 w
+(order) 2452 6948 w
+(that) 2694 6948 w
+10 /Courier f
+(n) 2911 6948 w
+10 /Times-Roman f
+(and) 3003 6948 w
+10 /Courier f
+(m) 3214 6948 w
+10 /Times-Roman f
+(be) 3306 6948 w
+(defined) 3432 6948 w
+(before) 3763 6948 w
+(the) 4049 6948 w
+(appearance) 4203 6948 w
+(of) 4682 6948 w
+10 /Courier f
+(a) 4832 6948 w
+10 /Times-Roman f
+(.) 4892 6948 w
+(If) 4974 6948 w
+(the user wrote) 720 7068 w
+10 /Courier f
+(void f\(int \(*a\)[n][m], int n, int m\) { ... }) 970 7248 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 3 3
+%%Page: 4 4
+/saveobj save def
+mark
+4 pagesetup
+10 /Times-Roman f
+(\255 4 \255) 2797 480 w
+(then,) 720 840 w
+(in) 943 840 w
+(GCC,) 1047 840 w
+10 /Courier f
+(n) 1339 840 w
+10 /Times-Roman f
+(or) 1425 840 w
+10 /Courier f
+(m) 1569 840 w
+10 /Times-Roman f
+(would) 1655 840 w
+(either) 1931 840 w
+(be) 2184 840 w
+(undefined,) 2304 840 w
+(or) 2754 840 w
+(would) 2863 840 w
+(be) 3139 840 w
+(captured) 3259 840 w
+(by) 3628 840 w
+(an) 3754 840 w
+(outside) 3874 840 w
+(declaration.) 4190 840 w
+(\(This) 4710 840 w
+(is,) 4948 840 w
+(in) 720 960 w
+(part,) 828 960 w
+(an) 1038 960 w
+(unfortunate) 1162 960 w
+(aspect) 1652 960 w
+(of) 1931 960 w
+(the) 2044 960 w
+(ANSI) 2196 960 w
+(function) 2459 960 w
+(prototype) 2822 960 w
+(syntax;) 3235 960 w
+(the) 3554 960 w
+(problem) 3706 960 w
+(wouldn't) 4069 960 w
+(occur) 4460 960 w
+(with) 4711 960 w
+(the) 4918 960 w
+(old syntax.\)) 720 1080 w
+(MacDonald) 970 1236 w
+(suggests) 1489 1236 w
+(rules) 1876 1236 w
+(that) 2118 1236 w
+(cause) 2316 1236 w
+(all) 2585 1236 w
+(the) 2733 1236 w
+(arguments) 2903 1236 w
+(be) 3367 1236 w
+(processed) 3509 1236 w
+(simultaneously,) 3951 1236 w
+(or) 4631 1236 w
+(in) 4763 1236 w
+(two) 4890 1236 w
+(passes,) 720 1356 w
+(but) 1028 1356 w
+(the) 1184 1356 w
+(rules) 1334 1356 w
+(would) 1556 1356 w
+(be) 1834 1356 w
+(messy,) 1956 1356 w
+(and) 2259 1356 w
+(dissimilar) 2431 1356 w
+(to) 2854 1356 w
+(the) 2960 1356 w
+(approach) 3110 1356 w
+(taken) 3503 1356 w
+(in) 3747 1356 w
+(the) 3853 1356 w
+(rest) 4003 1356 w
+(of) 4175 1356 w
+(the) 4286 1356 w
+(language.) 4436 1356 w
+(One) 4874 1356 w
+(example of the problems is arguments that depend on each other:) 720 1476 w
+10 /Courier f
+(void g\(\(*p\)[sizeof\(*q\)],) 970 1656 w
+(\(*q\)[sizeof\(*p\)]\) { ... }) 2530 1656 w
+10 /Times-Roman f
+(Thus) 720 1836 w
+(this) 950 1836 w
+(approach) 1126 1836 w
+(seems) 1522 1836 w
+(fraught) 1797 1836 w
+(with) 2116 1836 w
+(difficulties.) 2325 1836 w
+(Either) 2839 1836 w
+(there) 3114 1836 w
+(are) 3344 1836 w
+(strange) 3496 1836 w
+(rules) 3815 1836 w
+(about) 4040 1836 w
+(the) 4293 1836 w
+(order) 4446 1836 w
+(in) 4687 1836 w
+(which) 4796 1836 w
+(parameters are mentioned, or there are strange rules about how parameter lists are parsed.) 720 1956 w
+10 /Times-Bold f
+(Conclusion) 720 2196 w
+10 /Times-Roman f
+(This) 970 2352 w
+(paper) 1188 2352 w
+(proposes) 1449 2352 w
+(to) 1844 2352 w
+(extend) 1962 2352 w
+(C) 2268 2352 w
+(by) 2375 2352 w
+(allowing) 2516 2352 w
+(pointers) 2907 2352 w
+(to) 3270 2352 w
+(adjustable) 3389 2352 w
+(arrays) 3835 2352 w
+(and) 4119 2352 w
+(arranging) 4304 2352 w
+(that) 4727 2352 w
+(the) 4918 2352 w
+(pointers) 720 2472 w
+(contain) 1068 2472 w
+(the) 1388 2472 w
+(array) 1536 2472 w
+(bounds) 1766 2472 w
+(necessary) 2081 2472 w
+(to) 2494 2472 w
+(do) 2598 2472 w
+(subscript) 2724 2472 w
+(calculations) 3111 2472 w
+(and) 3614 2472 w
+(compute) 3784 2472 w
+(sizes.) 4154 2472 w
+(In this way, the) 4424 2472 w
+(problem) 720 2592 w
+(of) 1083 2592 w
+(handling) 1196 2592 w
+(variable\255size) 1576 2592 w
+(array) 2115 2592 w
+(references) 2349 2592 w
+(is) 2787 2592 w
+(solved) 2884 2592 w
+(in) 3175 2592 w
+(a) 3284 2592 w
+(way) 3359 2592 w
+(that) 3556 2592 w
+(can) 3737 2592 w
+(be) 3906 2592 w
+(made) 4031 2592 w
+(consistent) 4278 2592 w
+(with) 4709 2592 w
+(the) 4918 2592 w
+(rest) 720 2712 w
+(of) 900 2712 w
+(the) 1019 2712 w
+(language.) 1177 2712 w
+(By) 1623 2712 w
+(contrast,) 1776 2712 w
+(the) 2153 2712 w
+(apparently) 2311 2712 w
+(most) 2768 2712 w
+(obvious) 2998 2712 w
+(language) 3350 2712 w
+(generalization) 3745 2712 w
+(\(that) 4345 2712 w
+(is,) 4563 2712 w
+(allowing) 4690 2712 w
+(general) 720 2832 w
+(expressions) 1049 2832 w
+(instead) 1551 2832 w
+(of) 1870 2832 w
+(constants) 1989 2832 w
+(in) 2397 2832 w
+(array) 2511 2832 w
+(bounds\)) 2751 2832 w
+(complicates) 3109 2832 w
+(the) 3622 2832 w
+(type) 3781 2832 w
+(structure) 3990 2832 w
+(of) 4376 2832 w
+(the) 4496 2832 w
+(language,) 4655 2832 w
+(causes) 720 2952 w
+(difficulties) 1023 2952 w
+(with) 1499 2952 w
+(the) 1719 2952 w
+(calculus) 1883 2952 w
+(of) 2252 2952 w
+(datatypes,) 2377 2952 w
+(and) 2821 2952 w
+(causes) 3007 2952 w
+(nonuniformity) 3309 2952 w
+(in) 3929 2952 w
+(discovering) 4049 2952 w
+(the) 4557 2952 w
+(sizes) 4721 2952 w
+(of) 4957 2952 w
+(arrays.) 720 3072 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 4 4
+%%Trailer
+done
+%%DocumentFonts: Times-Roman Times-Italic Times-Bold Courier
+%%Pages: 4

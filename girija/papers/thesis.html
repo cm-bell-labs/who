@@ -1,0 +1,103 @@
+<html>
+<head>
+<title>Girija's PhD Dissertation</title>
+</head>
+
+<body>
+<h1>Space-Efficient Scheduling for Parallel, Multithreaded Computations</h1>
+Girija J. Narlikar<br>
+<p>
+
+Ph.D. thesis, Computer Science Department, Carnegie Mellon University, 
+May 1999. Also available as Technical Report CMU-CS-99-119.
+<p>
+
+<a href="thesis.ps.gz">
+929k compressed postscript</a> / 
+<a href="thesis.pdf"> 
+1235k PDF</a>
+<p>
+
+<strong>Abstract:</strong> <p>
+
+
+The goal of high-level parallel programming models or languages is to 
+facilitate the writing of well-structured, simple and portable code.
+However, the performance of a program written using a high-level language may
+vary significantly, depending on the implementation of the underlying system.
+
+<p>
+This dissertation presents two asynchronous scheduling algorithms that
+provide worst-case upper bounds on the space and time requirements of 
+high-level,  nested-parallel programs on shared memory machines. 
+In particular,  for a program with <i>D</i> depth and a serial space 
+requirement of <i>S<sub>1</sub></i>, 
+both algorithms guarantee a space bound of 
+<i>S<sub>1</sub> + O(K . p . D)</i> on <i>p</i> processors. 
+Here, <i>K</i> is a user-controllable runtime parameter, which
+specifies the amount of memory a thread may allocate before being preempted
+by the scheduler. 
+Typically, in practice, <i>K</i> is fixed to be a few thousand bytes.
+Most parallel programs have a small depth <i>D</i>. 
+For such programs,
+the above space bound
+is lower than the space bound provided by any previously implemented system.
+
+<p>
+The first of the two scheduling algorithms presented in this dissertation,
+algorithm <i>AsyncDF</i>, prioritizes threads at runtime 
+by their serial, depth-first execution order, and preempts threads 
+before they allocate too much memory.  This ensures that the parallel
+execution does not require too much more memory than the serial execution.
+The second scheduling algorithm, <i>DFDeques</i>, enhances algorithm <i>AsyncDF</i> 
+by adding ideas from work stealing.  
+It replaces the single, flat priority queue of <i>AsyncDF</i> with
+ordered,  per-processor queues of ready threads, and allows some deviation
+from the depth-first priorities while scheduling threads. 
+Consequently, it results in lower scheduling overheads 
+and better locality than <i>AsyncDF</i> for finer-grained threads, at the
+cost of a slight increase in memory requirement.
+To ensure scalability with the number of processors, I also describe 
+and analyze fully parallelized versions of the schedulers for both the
+algorithms.
+
+<p>
+To verify that the theoretically-efficient scheduling algorithms are
+also practical, 
+I have implemented them in the context of two multithreaded runtime systems,
+including a commercial Pthreads package.
+Parallel benchmarks used to evaluate the schedulers
+include numerical codes, physical simulations and a data classifier.
+Experimental results indicate that my algorithms effectively reduce 
+memory usage compared to previous techniques, without
+compromising time performance. 
+In particular, my schedulers allow simple, high-level, fine-grained
+benchmarks to run as efficiently as their more complex, 
+hand-partitioned, coarse-grained counterparts. 
+As expected,  <i>DFDeques</i> achieves better  speedups than <i>AsyncDF</i> for finer-grained
+threads. It requires more memory than <i>AsyncDF</i>, but
+less memory compared to previous schedulers.
+The scheduling algorithms were extended to support the full Pthreads interface,
+making them available to a large class of applications with irregular and 
+dynamic parallelism.
+Both the <i>AsyncDF</i> and <i>DFDeques</i>  algorithms provide a user-adjustable 
+trade-off between running time and memory requirement, which I
+analyze and experimentally demonstrate.
+<p>
+
+<PRE>
+@phdthesis	{Narlikar99,
+author		= "Girija J. Narlikar",
+title		= "Space-Efficient Scheduling for Parallel, Multithreaded 
+		   Computations",
+howpublished    = "Carnegie Mellon University",
+year            = 1999,
+month           = "May"
+note            = "Available as CMU-CS-99-119"
+}
+
+</PRE>
+<hr>
+<address><a href="http://www.cs.cmu.edu/~girija">Girija Narlikar</a></address>
+</body>
+</html>

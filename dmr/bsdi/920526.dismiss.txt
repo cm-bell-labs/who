@@ -1,0 +1,315 @@
+JAMES H. FORTE (JF 2248)
+SAIBER, SCHLESINGER, SATZ & GOLDSTEIN
+1 Gateway Center
+Newark, New Jersey 07102-5311
+(201) 622-3333
+
+ROBERT T. HASLAM
+VANESSA WELLS
+LESLIE A. FITHIAN
+MICHAEL A. BUCCI
+HELLER, EHRMAN, WHITE & McAULIFFE
+525 University Avenue, 9th Floor
+Palo Alto, California   94301
+Telephone: (415) 326-7600
+
+
+Attorneys for Defendant
+Berkeley Software Design, Inc.
+
+
+
+                   UNITED STATES DISTRICT COURT
+
+                      DISTRICT OF NEW JERSEY
+
+                                )  Civil Action No. 92-1667 (DRD)
+                                )  
+UNIX SYSTEM LABORATORIES, INC., )  DEFENDANT'S MEMORANDUM OF LAW
+                                )  IN SUPPORT OF ITS MOTION TO
+               Plaintiff,       )  DISMISS PLAINTIFF'S SECOND
+                                )  THROUGH FOURTH CLAIMS UNDER
+        v.                      )  RULE 12(b)(6)                
+                                )  
+BERKELEY SOFTWARE DESIGN, INC., )  Date:  July 13, 1992
+                                )  Time:  10 a.m.
+               Defendant.       )  Hon. Dickinson R. Debevoise
+________________________________)
+
+
+                         I.  INTRODUCTION
+          In its Complaint, plaintiff UNIX System Laboratories,
+Inc. ("USL") has asserted four claims, three of which purport to
+set out claims for false advertising, dilution and unfair
+competition against Berkeley Software Design, Inc. ("BSDI").  All
+of these claims are based upon BSDI's advertising that certain of
+its software -- which is copyrighted by the Regents of the
+University of California (the "Regents") -- is free of AT&T code
+and does not require a license from USL.
+          Notably absent from USL's complaint is any allegation
+that USL's proprietary rights have been violated by BSDI, or any
+allegation describing or defining USL's claimed proprietary rights,
+issues at the very heart of USL's false advertising claim. 
+Apparently, USL believes it can avoid these core issues by dressing
+its claim for copyright or trade secret infringement in Lanham Act
+clothing.  However, USL's failure to allege such a violation makes
+it impossible for its second claim for relief -- for false
+advertising under Section 43(a) of the Lanham Act -- to withstand a
+motion to dismiss.
+          Moreover, USL's conclusory allegations based upon
+dilution, and upon unidentified "unfair competition" and "deceptive
+trade practices," fail to state any claim upon which relief could
+be granted.  Instead of alleging any facts that could support its
+claim, or citing any particular statute or body of law under which
+it claims rights, USL recites mere legal conclusions, making it
+impossible for BSDI to adequately respond.  Accordingly, BSDI
+moves, under Rule 12(b)(6) of the Federal Rules of Civil Procedure,
+to dismiss USL's second through fourth claims for relief.
+
+
+                          II.  BACKGROUND
+          In mid-1991, BSDI obtained the Regents' copyrighted
+software -- the BSD Networking Release 2 -- from UUNET
+Technologies, Inc. -- a well-known public archives site.  UUNET
+Technologies licensed the software from the Regents.  After
+obtaining the software, BSDI devoted considerable time and effort
+developing and improving the Networking Release 2 program.  These
+efforts culminated last year in the completion of the BSD/386
+operating system.
+          As part of its marketing of the BSD/386 system, BSDI
+produced and distributed promotional brochures describing its
+BSD/386 system.  One brochure states:
+          BSD/386 is a "Berkeley UNIX" compatible
+          operating system for the 386 and 486 PC
+          architectures.  It is based on the most recent
+          release from the Computer Systems Research
+          Group of the University of California, Berkeley
+          -- the Networking Release 2.  The NET2 tape
+          contained no AT&T licensed code, but was not a
+          complete system.  BSDI has completed the system
+          and added additional drivers.  The resulting
+          system does not require a license from AT&T,
+          and so is available in source form at a
+          fraction of AT&T's price.
+Complaint at  24.
+          As stated in the advertisement, BSDI's improvements to
+the Networking Release 2 system have provided consumers with a
+lower-cost alternative to the system marketed by AT&T.  Now,
+without any legal or factual support, USL claims that the software
+licensed from the Regents does contain AT&T code and that BSDI's
+advertising violates not only federal law, but also unidentified
+and unknown state statutory and/or common law.  However, USL fails
+to assert any action alleging infringement of its proprietary
+rights.
+                          III.  ARGUMENT
+     A.   USL'S Second Through Fourth Claims For Relief
+          Must Be Dismissed Under Rule 12(b)(6).       
+          In order to avoid a motion to dismiss under Rule 12(b)(6)
+of the Federal Rules of Civil Procedure, USL must set forth "`a
+short and plain statement of the claim' that will give the
+defendant fair notice of what the plaintiff's claim is and the
+grounds upon which it rests."  Conley v. Gibson, 355 U.S. 41, 47
+(1957).  At a minimum, "the pleader is required `to disclose
+adequate information as to the basis of his claim for relief.'" 
+Universe Tankships, Inc v. United States, 528 F.2d 73, 75 (3d Cir.
+1975) (citation omitted).  Because USL's second through fourth
+claims fail to satisfy even this liberal pleading standard, these
+claims must be dismissed.  See Conley, 355 U.S. at 48.
+     B.   USL's Second Claim -- For False Advertising
+          Under Section 43(a) Of The Lanham Act -- Fails
+          To Adequately Allege Falsity.                 
+
+          USL's claim under Section 43(a) of the Lanham Act fails
+to adequately allege the most essential element of a false
+advertising claim -- falsity.  See Skil Corp. v. Rockwell Int'l
+Corp., 375 F. Supp. 777, 782-83 (N.D. Ill. 1974) (plaintiff must
+allege that defendant made false statements of fact in order to
+state a claim under Section 43(a)).  USL does cite the published
+materials upon which it bases its claim.  Complaint at  24, 26. 
+Beyond this, however, USL offers only the conclusory assertion that
+BSDI's published statements are 
+          materially false and misleading in that, among
+          other things, the `Networking Release 2'
+          referred to therein contains software code that
+          was copied from, based upon, or derived from,
+          code licensed to the Regents by AT&T, such that
+          any operating system derived from `Networking
+          Release 2' requires a license from AT&T or its
+          successor, USL.
+
+Complaint at  25; see also, Complaint at  27 (setting forth
+similar allegations regarding a statement in BSDI's License
+Agreement).
+          In so alleging, USL merely lumps legal conclusion upon
+legal conclusion, conveniently ignoring an essential component of
+its false advertising claim -- unlawful copying.  See Xerox Corp.
+v. Apple Computer, Inc., 734 F. Supp. 1542, 1543 (N.D. Cal 1990)
+(where plaintiff failed to assert copyright infringement, it could
+not adequately state a Lanham Act claim which itself depended upon
+unlawful copying).
+          USL's omission cannot be permitted.  To maintain its
+falsity claim, USL must allege and eventually prove that the
+BSD/386 operating system infringes USL's proprietary rights.  If
+BSDI's operating system does not infringe USL's proprietary rights,
+then the BSD/386 requires no license from AT&T, and there can be
+nothing false about BSDI's statements.
+          Astoundingly, though, USL has not even asserted a claim
+alleging infringement of its proprietary rights.  Rather, USL has
+"reserved its right" to later bring a claim for infringement of
+proprietary rights, apparently conceding that it does not have a
+good faith basis for such a claim at this time.  Complaint at  14. 
+However, if plaintiff's false advertising claim is based, as it
+appears, on copyright infringement, it necessarily must include
+allegations of copyright infringement on the part of BSDI.  See
+Klinger v. Weekly World News, Inc., 747 F. Supp. 1477 (S.D. Fla.
+1990); Gee v. CBS, Inc., 471 F. Supp. 600, 643 (1979), aff'd,
+612 F.2d 572 (3rd Cir. 1979).  Because a Lanham Act false
+advertising claim requires the plaintiff to plead and prove
+falsity, USL cannot evade the requirements of a copyright
+infringement claim by couching it as a claim under Section 43(a).
+          At least one other court has rejected a similar attempt
+to use the Lanham Act as a way of circumventing the Copyright Act. 
+In Xerox Corp. v. Apple Computer, Inc., 734 F. Supp. at 1543, Xerox
+sought damages for claimed violations of Section 43(a), premised on
+an assertion that Apple unlawfully copied portions of Xerox'
+copyrighted work.  Id. at 1551-53.  Similar to USL's claim in this
+case, Xerox' Lanham Act claim was based on the contention that
+Apple's copyright notice and claim were a "false designation of
+origin" because Apple's work allegedly was based on Xerox'
+proprietary technology, and thus violated Section 43(a).  Id. at
+1551-52.  However, Xerox did not even assert a claim for copyright
+infringement.  Id. at 1545.
+          The court granted judgment on the pleadings as to the
+Section 43(a) claim.  As the court stated, Xerox failed to allege
+that Apple's Lisa or Macintosh Finder copyright registrations were
+false, or that Apple engaged in false advertising:  Id. at 1552:
+          At most, by reading between the lines of the
+          complaint, it appears that Xerox' position is
+          that because Apple's copyrights ought to be
+          invalidated, any use by Apple of such
+          copyrights constitutes a violation of  43(a)
+          of the Lanham Act. . . . Xerox is putting the
+          cart before the horse.  The invalidity of
+          Apple's copyrights needs to be proven before
+          their use can be deemed false and misleading. 
+          What Xerox would like, to paraphrase the Red
+          Queen, is its `Verdict first, proof
+          afterward!.'
+
+Id. at 1552. 
+           In making its ruling, the court specifically noted
+Xerox's failure to assert a claim for copyright infringement.  Id.
+at 1545, 1552-53.  Indeed, it acknowledged that
+          [i]f Apple were found to infringe Xerox'
+          copyright, there might be some basis for Xerox
+          to claim that advertising statements by Apple
+          to the effect that Apple was the originator of
+          the infringed ideas are actionable under the
+          Lanham Act.
+Xerox, 734 F. Supp. at 1552 n.18.  However, without alleging
+copyright infringement, Xerox was in no position to raise a false
+advertising claim that itself required a showing of unlawful
+copying.  Id. at 1552-53.  As the court concluded, "[i]f Apple
+copied material that Xerox created, Xerox should bring a copyright
+infringement action."  Id. at 1553 (emphasis added); see also,
+Hartman v. Hallmark Cards, Inc., 639 F. Supp. 816, 824 (W.D. Mo.
+1986), aff'd, 833 F.2d 117 (8th Cir. 1987) (defendant who
+advertised that it was "`sole and exclusive'" owner of allegedly
+infringing property could not be found liable where plaintiff
+failed to prove infringement).
+          Likewise, if BSDI copied material for which USL owns a
+copyright, USL should bring a copyright infringement action.  What
+it should not -- and cannot -- do is to attempt to evade its burden
+of proving infringement by disguising its infringement claim in
+Lanham Act clothing.  Because USL has failed to allege copyright
+infringement -- or any other violation of its proprietary rights --
+it has not adequately alleged falsity and cannot state a claim for
+false advertising.
+     C.   USL'S Third and Fourth Claims For Relief Are
+          Hopelessly Vague, And Therefore Fail To State A
+          Claim Upon Which Relief Could be Granted.      
+          In its third and fourth claims for relief, USL has thrown
+in a series of conclusory and cryptic allegations asserting a
+violation of completely unidentified statutes.  Complaint at  32-
+35.  Even under the liberal pleading requirements of Rule 8 of the
+Federal Rules of Civil Procedure, a complaint must set forth "a
+short and plain statement of the claim showing that the pleader is
+entitled to relief."  Fed. R. Civ. P. 8(a)(2).  As one court has
+stated:
+          The purpose of the Rule 8(a) requirement of a
+          plain and simple statement of the claim is to
+          give the defendant fair notice of the charges
+          so that a meaningful response to the pleading
+          may be filed.
+
+U.S. ex. rel. Dattola v. National Treasury Employees Union, 86
+F.R.D. 496, 499 (W.D. Pa. 1980); see also, U.S. E.E.O.C. v. City
+Colleges of Chicago, 740 F. Supp. 508 (N.D. Ill. 1990), aff'd, 944
+F.2d 339 (7th Cir. 1991) (plaintiff "must allege sufficient facts
+to outline the cause of action").  However, in its Complaint, USL
+speaks in such broad-based and vague language that BSDI could not
+possibly file a meaningful response.
+          USL's fourth claim for relief is especially puzzling.  In
+that claim, USL alleges that "BSDI's conduct constitutes unfair
+competition and deceptive trade practices in violation of
+applicable statutory and common law."  Complaint at  35.  Beyond
+these bald legal conclusions, USL alleges nothing that would
+indicate any actual claim for relief.  USL does not even tell us
+what statute or statutes and what state's law it believes is
+"applicable."  Nor does USL supply the particular facts upon which
+it purports to base its claim.  This is significant because under
+New Jersey law, "unfair competition" is not a cause of action.  It
+is merely a general term encompassing a wide range of possible
+causes of action.  C.R. Bard, Inc. v. Wordtronics Corp., 235 N.J.
+Super. 168, 172, 561 A.2d 694, 696 (1989).
+          Consequently, BSDI cannot even begin to evaluate -- never
+mind respond to -- these vague assertions.  Instead of providing
+"fair notice,"  see Conley, 355 U.S. at 41, USL's fourth claim for
+relief merely hints at some unidentified unfair competition claim
+based upon statutory or common law from one or more of the 50
+states.  Plainly, these conclusory allegations fail to state any
+claim upon which relief could be granted.  Therefore, the fourth
+claim must be dismissed under Rule 12(b)(6).  See Duncan v. AT&T
+Communications, Inc., 668 F. Supp. 232, 234 (S.D.N.Y. 1987)
+(conclusory allegations which fail to give notice of the basic
+events and circumstances of which plaintiff claims injury fail to
+state a claim under Rule 8).
+          USL's third claim for relief at least asserts a
+distinguishable cause of action -- for dilution.  Yet, it too fails
+to state any specific facts indicating that USL is entitled to
+relief.  Nor does it declare what state's law it claims applies to
+this case.  Not all states recognize a claim for dilution.  Indeed,
+New Jersey has no anti-dilution statute, and no New Jersey cases
+have expressly recognized the cause of action.  Without knowing
+what law USL claims applies, it is impossible to evaluate whether a
+dilution claim even exists, or if it does, what the elements of the
+claim are and whether they are met.
+          Thus, USL's conclusory allegations that "BSDI's conduct
+threatens to and does impair the distinctive significance of the
+UNIX mark, in violation of USL's statutory and common law rights"
+is insufficient notice of USL's claim.  Complaint at  33.  Because
+it would not be possible to respond to this claim, USL's third
+claim for relief must be dismissed.
+                          IV.  CONCLUSION
+          For all of the foregoing reasons, BSDI respectfully
+requests that this Court grant its motion dismissing USL's second
+through fourth claims for relief pursuant to Rule 12(b)(6) of the
+Federal Rules of Civil Procedure.
+
+Dated:  May 26, 1992        
+
+                              SAIBER, SCHLESINGER, SATZ & GOLDSTEIN
+                              
+                              
+                              
+                              By: ________________________________
+                                  James H. Forte (2248)
+                              1 Gateway Center
+                              Newark, New Jersey  07102-5311
+                              (201) 622-3333
+
+                              Attorneys for Defendant
+                              Berkeley Software Design, Inc.
+
+
+

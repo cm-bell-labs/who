@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>  <!-- encoding must be UTF-8 -->
+<!--
+Configuration for external linking to articles in a library.  This file
+usually lives on a library's website.  It says how to link to the library
+and who should see these links.
+
+The name of the library and the labels for the links can be displayed in
+multiple languages, provided that the appropriate translations are
+specified in this file.  Languages are identified by their ISO 639-1 codes
+and, optionally, ISO 3166 country names.  For example:
+
+  lang attribute     description
+  _________________________________________________________________________
+  en                 English (default value when language is not specified)
+  da                 Danish
+  no                 Norwegian
+  pt-BR              Portuguese (Brazil)
+  zh-CN              Chinese (Simplified)
+  zh-TW              Chinese (Traditional)
+  _________________________________________________________________________
+
+Complete lists of ISO language and country codes can be found here:
+
+  http://www.w3.org/WAI/ER/IG/ert/iso639.htm
+  http://www.iso.org/iso/en/prods-services/iso3166ma/02iso-3166-code-lists/list-en1.html
+
+The list of interface languages supported in Google Scholar can be found on
+the preferences page:
+
+  http://scholar.google.com/scholar_preferences
+
+-->
+<!DOCTYPE institutional_links PUBLIC "-//GOOGLE//Institutional Links 1.0//EN" "http://scholar.google.com/scholar/institutional_links.dtd">
+<institutional_links>
+
+  <!-- The full name of your library, for display in preferences. -->
+    <institution>Alcatel Lucent Integrated Information Solutions (IIS)</institution>
+  <!-- Optional translations of the library's name into other languages. -->
+  <!-- (REPEATED; no more than 10 translations, 60 characters each) -->
+  <!-- <institution lang="pt-BR">Faculdade do Bugs da Ciência Agricultural e da Tecnologia</institution> -->
+
+  <!-- Keywords to help people find your library in preferences. -->
+  <!-- All words from the <institution> field are included automatically. -->
+  <!-- Chinese libraries, please include pinyin transcriptions here. -->
+    <keywords>IIS</keywords>
+
+  <!-- Contact emails for technical issues, etc. -->
+  <!-- This is for administrative purposes; users won't see it. -->
+  <!-- (REQUIRED; at most 5 emails, no more than 60 characters each) -->
+  <contact>Mason,Dorothy L&lt;Dorothy.Mason@alcatel-lucent.com&gt;</contact>
+  <contact>Waldstein,Robert K&lt;Robert.Waldstein@alcatel-lucent.com&gt;</contact>
+
+  <!-- The label for the links to your electronic full text. -->
+  <!-- It should be short and should include the name of your library. -->
+  <!-- (REQUIRED; no more than 25 characters) -->
+  <electronic_link_label>Alcatel Lucent IIS Etext</electronic_link_label>
+  <!-- Optional translations of <electronic_link_label> into other languages. -->
+  <!-- (REPEATED; no more than 10 translations, 25 characters each) -->
+  <!-- <electronic_link_label lang="pt-BR">FBB eTexto</electronic_link_label> -->
+
+  <!-- The label for the links to your print and other resources. -->
+  <!-- It should be short and should include the name of your library. -->
+  <!-- (REQUIRED; no more than 25 characters) -->
+  <!-- <other_link_label>BBC Links</other_link_label>   -->
+
+  <!-- Optional translations of <other_link_label> into other languages. -->
+  <!-- (REPEATED; no more than 10 translations, 25 characters each) -->
+  <!-- <other_link_label lang="pt-BR">FBB Ligações</other_link_label>  -->
+
+  <!-- The base URL for your OpenURL-compatible link resolver. -->
+  <!-- (REQUIRED; no more than 1024 characters) -->
+  <!--
+    Examples:
+
+    Base URL: http://lib.bbc.ac.lt/bbc_link
+        Link: http://lib.bbc.ac.lt/bbc_link?sid=google&title=The+Journal
+
+    Base URL: http://customcat.bbc.ac.lt/link?fmt=full&
+        Link: http://customcat.bbc.ac.lt/link?fmt=full&sid=google&title=The+Journal
+
+    Base URL: http://ezproxy.ac.lt/login?url=http://lib.bbc.ac.lt/bbc_link
+        Link: http://ezproxy.ac.lt/login?url=http://lib.bbc.ac.lt/bbc_link?sid=google&title=The+Journal
+
+    Base URL: http://difproxy.ac.lt/proxy?url=http://lib.bbc.ac.lt/bbc_link%3F
+        Link: http://difproxy.ac.lt/proxy?url=http://lib.bbc.ac.lt/bbc_link%3Fsid%3Dgoogle%26title%3DThe%2BJournal
+
+    Base URL: http://frame.ac.lt/frame?top=logo&url=http://lib.bbc.ac.lt/bbc_link%3Ffmt%3Dfull%26
+        Link: http://frame.ac.lt/frame?top=logo&url=http://lib.bbc.ac.lt/bbc_link%3Ffmt%3Dfull%26sid%3Dgoogle%26title%3DThe%2BJournal
+   -->
+  <openurl_base>http://infoview.all.alcatel-lucent.com/cgi-bin/linkServer</openurl_base>
+
+  <!-- Linking options supported in your link resolver. -->
+  <!-- (at least one is REQUIRED; please check that they actually work) -->
+  <!-- http://lib.bbc.ac.lt/bbc_link?sid=google&id=pmid:11130711 -->
+  <openurl_option>pmid</openurl_option>
+  <!-- http://lib.bbc.ac.lt/bbc_link?sid=google&id=doi:10.1111/1468-0270.00266 -->
+  <openurl_option>doi</openurl_option>
+  <!-- http://lib.bbc.ac.lt/bbc_link?sid=google&title=Modern+Operating+Systems&genre=book -->
+  <openurl_option>book-title</openurl_option>
+  <!-- http://lib.bbc.ac.lt/bbc_link?sid=google&title=Nature&volume=227&issue=5259&spage=680 -->
+  <openurl_option>journal-title</openurl_option>
+  <openurl_option>doi</openurl_option>
+  <openurl_option>issn</openurl_option>
+
+  <!-- The IP address ranges for your patrons, e.g., on-campus students. -->
+  <!-- These people will see your links by default.  People who don't -->
+  <!-- come from these IP addresses can see your links if they select -->
+  <!-- your library in their preferences (very few people do that). -->
+  <!-- (OPTIONAL; no more than 256 ranges) -->
+    <patron_ip_range>116.246.26.12-13</patron_ip_range>
+    <patron_ip_range>116.246.26.28-29</patron_ip_range>
+    <patron_ip_range>12.134.62.58</patron_ip_range>
+    <patron_ip_range>12.51.74.202</patron_ip_range>
+    <patron_ip_range>12.52.177.222</patron_ip_range>
+    <patron_ip_range>125.255.131.45</patron_ip_range>
+    <patron_ip_range>125.255.64.210</patron_ip_range>
+    <patron_ip_range>125.53.124.163</patron_ip_range>
+    <patron_ip_range>128.251.0-223.*</patron_ip_range>
+    <patron_ip_range>128.251.224.1-24</patron_ip_range>
+    <patron_ip_range>128.251.224.26-254</patron_ip_range>
+    <patron_ip_range>128.251.225-255.*</patron_ip_range>
+    <patron_ip_range>134.159.99.19-20</patron_ip_range>
+    <patron_ip_range>135.104.20.13-15</patron_ip_range>
+    <patron_ip_range>135.245.10.1-6</patron_ip_range>
+    <patron_ip_range>135.245.104.33</patron_ip_range>
+    <patron_ip_range>135.245.115.228</patron_ip_range>
+    <patron_ip_range>135.245.115.244</patron_ip_range>
+    <patron_ip_range>135.245.120.33-36</patron_ip_range>
+    <patron_ip_range>135.245.133.33</patron_ip_range>
+    <patron_ip_range>135.245.154.33</patron_ip_range>
+    <patron_ip_range>135.245.168.33-37</patron_ip_range>
+    <patron_ip_range>135.245.168.51-52</patron_ip_range>
+    <patron_ip_range>135.245.192.4</patron_ip_range>
+    <patron_ip_range>135.245.224.4</patron_ip_range>
+    <patron_ip_range>135.245.48.12-14</patron_ip_range>
+    <patron_ip_range>135.245.49.12-14</patron_ip_range>
+    <patron_ip_range>135.245.72.33-36</patron_ip_range>
+    <patron_ip_range>135.245.8.1-6</patron_ip_range>
+    <patron_ip_range>135.245.88.33</patron_ip_range>
+    <patron_ip_range>138.203.23.*</patron_ip_range>
+    <patron_ip_range>143.209.*.*</patron_ip_range>
+    <patron_ip_range>151.9.14.*</patron_ip_range>
+    <patron_ip_range>164.109.49.208-209</patron_ip_range>
+    <patron_ip_range>192.109.76.*</patron_ip_range>
+    <patron_ip_range>192.11.175.219</patron_ip_range>
+    <patron_ip_range>192.11.186.124</patron_ip_range>
+    <patron_ip_range>192.11.224.124</patron_ip_range>
+    <patron_ip_range>192.11.225.110-112</patron_ip_range>
+    <patron_ip_range>192.11.225.114-115</patron_ip_range>
+    <patron_ip_range>192.11.236.118-120</patron_ip_range>
+    <patron_ip_range>192.146.187.1-126</patron_ip_range>
+    <patron_ip_range>192.75.23.*</patron_ip_range>
+    <patron_ip_range>193.57.6.*</patron_ip_range>
+    <patron_ip_range>194.113.59.*</patron_ip_range>
+    <patron_ip_range>194.186.172.*</patron_ip_range>
+    <patron_ip_range>194.224.48.*</patron_ip_range>
+    <patron_ip_range>194.243.74.*</patron_ip_range>
+    <patron_ip_range>194.65.17.65-126</patron_ip_range>
+    <patron_ip_range>195.137.197.250</patron_ip_range>
+    <patron_ip_range>195.200.76.11-12</patron_ip_range>
+    <patron_ip_range>195.200.76.252</patron_ip_range>
+    <patron_ip_range>195.207.101.*</patron_ip_range>
+    <patron_ip_range>195.207.5.*</patron_ip_range>
+    <patron_ip_range>195.218.154.110</patron_ip_range>
+    <patron_ip_range>195.86.252.185-190</patron_ip_range>
+    <patron_ip_range>196.34.27.100</patron_ip_range>
+    <patron_ip_range>198.164.227.134</patron_ip_range>
+    <patron_ip_range>198.205.32.*</patron_ip_range>
+    <patron_ip_range>198.205.55.139</patron_ip_range>
+    <patron_ip_range>198.206.181.*</patron_ip_range>
+    <patron_ip_range>198.206.184.245</patron_ip_range>
+    <patron_ip_range>198.206.186.*</patron_ip_range>
+    <patron_ip_range>198.206.187.*</patron_ip_range>
+    <patron_ip_range>198.49.180.222</patron_ip_range>
+    <patron_ip_range>198.49.180.254</patron_ip_range>
+    <patron_ip_range>198.49.180.40-41</patron_ip_range>
+    <patron_ip_range>200.182.221.1-126</patron_ip_range>
+    <patron_ip_range>203.143.236.1</patron_ip_range>
+    <patron_ip_range>205.150.90.242</patron_ip_range>
+    <patron_ip_range>209.202.115.129-190</patron_ip_range>
+    <patron_ip_range>209.233.177.252</patron_ip_range>
+    <patron_ip_range>209.233.177.254</patron_ip_range>
+    <patron_ip_range>210.13.116.129-190</patron_ip_range>
+    <patron_ip_range>211.144.214.226</patron_ip_range>
+    <patron_ip_range>211.144.222.76-77</patron_ip_range>
+    <patron_ip_range>211.144.222.92</patron_ip_range>
+    <patron_ip_range>212.174.194.1-30</patron_ip_range>
+    <patron_ip_range>212.183.9.*</patron_ip_range>
+    <patron_ip_range>212.208.51.122</patron_ip_range>
+    <patron_ip_range>212.29.41.115</patron_ip_range>
+    <patron_ip_range>217.89.99.217</patron_ip_range>
+    <patron_ip_range>220.248.12.216-222</patron_ip_range>
+    <patron_ip_range>59.163.202.84</patron_ip_range>
+    <patron_ip_range>62.219.162.219</patron_ip_range>
+    <patron_ip_range>62.23.212.*</patron_ip_range>
+    <patron_ip_range>63.233.76.*</patron_ip_range>
+    <patron_ip_range>64.105.146.10</patron_ip_range>
+    <patron_ip_range>64.186.184.100</patron_ip_range>
+    <patron_ip_range>64.208.49.*</patron_ip_range>
+    <patron_ip_range>81.208.6.1-126</patron_ip_range>
+    <patron_ip_range>88.102.2.230</patron_ip_range>
+
+  <!-- Don't show links to users unless they come from your IPs. -->
+  <!-- They won't be able to select your library in preferences. -->
+  <!-- Use this only if our _links_ reveal sensitive information, -->
+  <!-- e.g., via highlighting links to your electronic subscriptions. -->
+  <!-- Otherwise, we recommend that you set this to "no" and implement -->
+  <!-- an appropriate authentication policy in your link resolver. -->
+  <!-- (OPTIONAL; yes or no; default is no - strongly recommended) -->
+  <patron_ip_required>no</patron_ip_required>
+
+  <!-- The URLs for your electronic holdings. -->
+  <!-- See institutional_holdings.xml for the format specification. -->
+  <!-- (REQUIRED; at most 1000 URLs, each at most 1024 bytes long and -->
+  <!-- each carrying at most 1MB of content) -->
+  <electronic_holdings>
+        <url>http://cm.bell-labs.com/cm/ms/who/wald/institutional_holdings.xml</url>
+  </electronic_holdings>
+
+</institutional_links>

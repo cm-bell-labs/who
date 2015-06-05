@@ -1,0 +1,68 @@
+(* Model of Ben-Ari's Algorithm with simplifications *)
+(* Simplifications use observations that:
+   - nil always points to nil
+   - roots can always be left black
+*)
+
+const n     = 4             (* number of nodes *)
+const N     = range(1,n)      (* node indexes *)
+const N1    = range(1,n+1)    (* node indexes plus 1 *)
+const NC    = range(0,n)      (* node counts *)
+const r     = 2               (* number of roots *)
+const R     = range(1,r)    (* root indexes *)
+const R1    = range(1,r+1)    (* root indexes plus 1 *)
+const nil   = 1             (* index of nil node *)
+const fl    = 2             (* index of free list *)
+const black = 0
+const white = 1
+const C     = {black,white}
+const SonsTup    = prod({nil},N,N,N)
+const ColorTup   = prod({black},{black},C,C)
+const InitColors = <<black,black,white,white>>
+const InitSons   = <<nil,3,4,nil>>
+
+label setcolor_N(C),color_N(C)
+label son_N(N)
+label free(N),coll(N),acc(N)
+label mutate_(prod(N,N))
+label cl
+   
+agent Mem(Colors:ColorTup,Sons:SonsTup) =
+    sum(i:N,setcolor_i(c).(if i > r then Mem(update(Colors,i,c),Sons) 
+                                    else Mem(Colors,Sons)))
+  + sum(i:N,'color_i(Colors#i).Mem(Colors,Sons))
+  + sum(i:N,'son_i(Sons#i).Mem(Colors,Sons))
+  + sum(ij:prod(diff(iter(R,fn S => union(S,{Sons#i|i:S})),{nil}),
+                diff(iter(R,fn S => union(S,{Sons#i|i:S})),{fl})),
+        mutate_ij.Mem(Colors,update(Sons,ij#1,ij#2)))
+  + free(i).(if i > r then Mem(Colors,update(update(Sons,i,Sons#fl),fl,i)) 
+                     else Mem(Colors,Sons))
+  + sum(i:iter(R,fn S => union(S,{Sons#i|i:S})),'acc(i).Mem(Colors,Sons))
+    
+agent Mutator =
+    sum(ij:prod(N,N),
+        'mutate_ij.'setcolor_(ij#2)(black).Mutator)
+
+agent Collector = cl.Propagate(0,1)
+
+agent Propagate(old:NC,i:N1) =
+    if i > n then Count(old,0,1)
+             else color_i(c).(if c = black 
+                              then son_i(j).
+                                   'setcolor_j(black).Propagate(old,i+1)
+                              else Propagate(old,i+1))
+agent Count(old:NC,new:NC,i:N1) =
+    if i > n then (if old = new then Collect(1)
+                                else Propagate(new,1))
+             else color_i(c).(if c = black then Count(old,new+1,i+1)
+                                           else Count(old,new  ,i+1))
+
+agent Collect(i:N1) =
+    if i > n then Collector
+             else color_i(c).(if c = black 
+                              then 'setcolor_i(white).Collect(i+1)
+                              else 'coll(i).'free(i).Collect(i+1))
+
+agent GC = (Mem(InitColors,InitSons)|Mutator|Collector)
+              \{setcolor,color,son,mutate,free}
+

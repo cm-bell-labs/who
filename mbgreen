@@ -1,0 +1,647 @@
+<title>Michael Greenwald - Biography</title>
+<BASE HREF="/who/mbgreen/webpage/">
+
+<TABLE ALIGN=TOP BORDER=0 CELLPADDING=5>
+
+<TR>
+<TD>
+<a href="mbg-formal98.jpg"> <img WIDTH=194 HEIGHT=297 src="mbg-bw98-2.5x4.jpg" align=top>
+</a>
+</TD>
+
+<TD>
+<h1>
+<br>Michael B. Greenwald</h1>
+
+<dl>
+<dt>
+<dd>Research Computer Scientist
+<dd><a href="http://www.bell-labs.com">Bell Laboratories</a>
+<dd><a href="http://cm.bell-labs.com/cm/cs">Computer Sciences Research Center</a>
+</td>
+
+</TR>
+
+<TR>
+<TD>
+<pre><address>Michael B. Greenwald
+<a href="www.bell-labs.com">Bell Laboratories</a>
+600-700 Mountain Avenue, Room 2c-424
+Murray Hill, NJ 07974
+USA
+
+Phone: 908-582-5872
+Fax:   908-582-5857
+
+&lt;&lt;lastname&gt;@research.bell-labs.com&gt;
+</address></pre></a>
+
+
+</TD>
+<TD>
+<dl>
+<dd>
+<i>Old:</i><br>
+My <a HREF="http://www.cis.upenn.edu/~mbgreen">webpage</a> at the
+<a HREF="http://www.upenn.edu">University of Pennsylvania</a>, 
+<br>
+where I was in the 
+<a HREF="http://www.cis.upenn.edu/~dsl/dsl.html">Distributed Systems Laboratory</a> 
+<br>
+as a faculty member in the Department of
+<a HREF="http://www.cis.upenn.edu">Computer and Information Science</a>.
+</dd>
+<br><i>Even older:</i><br>
+<dd> my <a HREF="http://www.dsg.stanford.edu/MichaelGreenwald.html">
+home page</a> as a member of the <br>
+<a Href="http://www.dsg.stanford.edu">Distributed Systems Group</a>, 
+in the <a href="http://www.cs.stanford.edu">CS Dept.</a> 
+at Stanford University. 
+</dl>
+</TD>
+
+</TR>
+</Table>
+<hr>
+
+Some connections to projects outside of the Labs that I am
+affiliated with:
+DOS Prevention (<a href="http://seclab.uiuc.edu/contessans/">ContessaNS</a>),
+<a href="http://www.cis.upenn.edu/~bcpierce/harmony">Harmony</a>,
+<a href="http://www.cis.upenn.edu/~anagnost/cing/">cing</a> (Network Tomography/Measurement),
+GK (Summarizing large sets of streaming data),
+AHBHA (pronounced "Abba") (Adaptive Hop-by-hop Aggregate congestion control),
+<br>
+(This list is almost always incomplete).<br>
+Some tabled projects:<br>
+Canon (consistent security in heterogeneous distributed systems),
+<a href="http://www.cis.upenn.edu/~dsl/POSSE/"> POSSE</a>,
+TRANSMIT,
+<a href="http://www.cis.upenn.edu/~dsl/STRONGMAN/"> Strongman</a>,
+ABIDE<br>
+<hr>
+<!--
+-->
+
+<A Name=pubs>
+<h2>Recent Publications</h2>
+<dl>
+
+<!--
+ <p> submitted COVERAGE to IEEE Transactions on information
+ forensics and security 
+ <p> Bell Labs Technical Journal: submitted oilskin abstract
+ <p> RED long vs. short-lived flows
+ <p> Stochastic Fair Queuing under overload
+ <p> NS-2 behavior under overload
+ <p>  <li> DISC 06 + TR
+
+ --->
+<p> <li> M. Greenwald, S. Khanna, K. Kunal, B.C. Pierce, and
+A. Schmitt, "Agreeing to Agree: Conflict Resolution for
+Optimistically Replicated Data", in <i>Proceedings
+of 20th Int'l Symposium on Distributed Computing (DISC
+'06)</i>, Stockholm, Sweden, September 18--20, 2006.<a
+ href="http:papers/nway-disc06.pdf"> PDF </a>
+(Longer version available as Technical Report MS-CIS-06-10,
+University of Pennsylvania, August 2006.).  
+
+<p> <li> N. Foster, M. Greenwald, Christian Kirkegaard,
+B.C. Pierce, and A. Schmitt, "Exploiting Schemas in Data
+Synchronization", to appear in <i> Journal of Computer and
+System Sciences</i> 2006
+<a
+href="http://www.cis.upenn.edu/~bcpierce/papers/sync-jcss.pdf">
+PDF </a> 
+
+<p> <li> J.N. Foster, M. Greenwald, J.T. Moore, 
+B.C. Pierce, and A. Schmitt, "Combinators for Bi-Directional
+Tree Transformations: A Linguistic Approach to the View Update
+Problem",
+to appear in the <i>ACM Transactions on Programming Languages
+and Systems (TOPLAS)</i>, 2006
+<a
+href="http://www.cis.upenn.edu/~bcpierce/papers/newlenses-full-toplas.pdf">
+PDF </a> 
+
+
+ <p> <li> K. Anagnostakis, M. Greenwald, S.Ioannidis, and A.Keromytis, 
+"Robust Reactions to Potential Day-Zero Worms through
+ Cooperation and Validation",  in
+ Proceedings of <i> ISC 2006: The 
+	    9th Information Security Conference</i>,
+	    August 30 -- September 2, 2006 Samos, Greece, LNCS
+ 4176 (Springer), pp. 427--442 
+  <a href="http:papers/ISC06.pdf">PDF</a>
+
+<p> <li> Micah Sherr, M. Greenwald, C. Gunter, S. Khanna, and
+S.Venkatesh, "Mitigating DoS Attack through Selective Bin
+Verification", in <i>Proceedings of 1st IEEE ICNP
+Workshop on Secure Network Protocols (NPSec '05)</i>, pp. 7-12, Boston, MA,
+November 6,
+2005.<a href="http:papers/binNPSec05.pdf">PDF </a> 
+
+<p> <li> N. Foster, M. Greenwald, Christian Kirkegaard,
+B.C. Pierce, A. Schmitt, "Exploiting Schemas in Data
+Synchronization", in <i> Proceedings of 10th Intl Symposium on
+Database Programming Languages (DBPL 2005)</i>, pp. 42-57, Springer, LNCS
+3774, ISSN 0302-9743, Trondheim, Norway, August 28-29, 2005
+<a
+href="http://www.cis.upenn.edu/~bcpierce/papers/sync-dbpl.pdf">
+PDF </a> 
+
+
+ <p> <li> G. Agha,
+C. Gunter, M.B. Greenwald, S. Khanna, J. Meseguer, K. Sen, and
+P. Thati. "Formal Modeling and Analysis of DoS Using 
+Probabilistic Rewrite Theories,"  in <i>Workshop on Foundations of
+Computer Security (FCS'05) (LICS'05 Affiliated)</i>
+pp. 91-102, Chicago, IL,
+June 30-July 1, 2005
+
+<p><li> J. N. Foster, M.B. Greenwald, C. Kirkegaard, B.C. Pierce, and
+A. Schmitt. "Schema-Directed Data Synchronization". Technical Report
+MS-CIS-05-02, University of Pennsylvania, March 2005. (Supersedes
+MS-CIS-03-42.)<a
+href="http://www.cis.upenn.edu/~bcpierce/papers/sync-tr.pdf">
+PDF </a> 
+
+
+  <p><li> K. G. Anagnostakis, M. B. Greenwald, S. Ioannidis, D. Li, and
+J. M. Smith, ``Flexible Network Monitoring with FLAME'',
+ <i> Computer Networks</i> Vol. 50, No. 14, 5 October 2006,
+ pages 2548-2563 (Elsevier Science) 
+
+
+<p>
+  <li> N. Foster, M. B. Greenwald, J. T. Moore, B. C. Pierce, and
+         A. Schmitt, ``Combinators for Bi-directional Tree Transformations: A linguistic approach to the View Update Problem'',
+       <i> Proceedings of POPL 2005</i>, pp. 233-246,
+       Long Beach, CA, January 12-14, 2005.  This 
+<!--       <a
+         href="http://www.cis.upenn.edu/~mbgreen/papers/popl05.pdf"> 
+--->
+
+<a
+         href="http:papers/popl05.pdf">
+
+       paper (PDF)</a>
+       is based on a tech report,  
+<i>University of Pennsylvania CIS
+Dept. Technical Report</i>, MS-CIS-04-15, July, 2004.
+       The full version of the report is 75 pages:
+       <a href="http://www.cis.upenn.edu/~mbgreen/papers/upenn-cis-04-15-tr.pdf">PDF</a>,
+       but some readers may prefer a quick overview, presented in a short version of the tech report: 
+       <a href="http://www.cis.upenn.edu/~mbgreen/papers/upenn-cis-04-15-tr-short.pdf">PDF</a>.
+       
+
+<!--
+  <p>
+  <li> S. Ioannidis, M. B. Greenwald, and J.M. Smith, ``Consistent Security Enforcement in Decentralized Systems'',
+       submitted to <i>OSDI 2004</i>, August 2002.
+
+ --->
+       <p>
+       <li> M. B. Greenwald and S. Khanna, ``Power-Conserving Computation of Order-Statistics over Sensor Networks'', in
+the <i> 23rd ACM Symposium on Principles of Database Systems
+(PODS 2004)</i>, pp. 275-285, Paris, France, June 13--18, 2004.
+  <a href="http:papers/pods04.ps">Postscript</a>,
+  <a href="http://www.cis.upenn.edu/~mbgreen/papers/pods04.pdf">PDF</a>,
+  <a href="http://www.cis.upenn.edu/~mbgreen/papers/pods04.ppt">Slides</a>
+
+       <p>
+       <li>	K. Anagnostakis and  M.B. Greenwald, "A Hybrid Direct-Indirect Estimator of Network Internal Delays", 
+	    Short paper, 
+	    in <i> Proceedings of SIGMETRICS 2004</i>, pp. 426-427, 
+	    New York, NY, June 12-16, 2004
+
+       <p>
+       <li>	K. Anagnostakis and  M.B. Greenwald, "Exchange-based
+	    Incentive Mechanisms for Peer-to-Peer File Sharing",
+	    in <i> The 24th IEEE  International Conference on
+Distributed Computing  
+(ICDCS 2004)</i>, 
+pp. 524-533,
+Tokyo, Japan,
+March  23-26, 2004
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/icdcs04.ps.gz">gzip'd Postscript</a>,
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/icdcs04.pdf.gz">gzip'd PDF</a>
+
+       <p><li>
+	    K. G. Anagnostakis and M. B. Greenwald, 
+       ``A Hybrid Approach to Estimating per-link Network Queuing Delays'',
+<i>University of
+Pennsylvania CIS Dept. Technical Report</i>, CIS TR MS-CIS-02-31, December, 2003,  (supersedes earlier version of October, 2002).
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/hybridcing-tr.pdf">PDF</a>,
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/hybridcing-tr.ps">Postscript</a>
+
+    <p>
+    <li> A. Keromytis, K. G. Anagnostakis, S. Ioannidis,
+	 M. Greenwald, and J. M. Smith,
+	 "Managing Access Control in Large Scale Heterogeneous Networks", 
+         in <i>Proceedings of the NATO Consultation, Command and
+	 Control (C3) Interoperable Networks for Secure 
+	 Communication (INSC '03) Symposium</i>, The Hague, Netherlands,
+	 November 4-6, 2003,   <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/insc03.pdf">PDF</a>,
+
+       <p>
+       <li>	K. Anagnostakis, M.B. Greenwald, S. Ioannidis,
+	A.D. Keromytis, and D. Li, "A Cooperative Immunization System for
+	    an Untrusting Internet", in Proceedings of <i> ICON 2003: The
+	    11th IEEE International Conference on Networks</i>,
+	    September 28 - October 1, 2003 Sydney, NSW, Australia
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/icon03.ps.gz">gzip'd Postscript</a>,
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/icon03.pdf.gz">gzip'd PDF</a>
+
+  <p>
+  <li> M. B. Greenwald, J. T. Moore, B. C. Pierce, and
+         A. Schmitt, ``A Language for Bi-Directional Tree Transformations'', 
+<i>University of Pennsylvania CIS
+Dept. Technical Report</i>, MS-CIS-03-08, August, 2003.
+       Full version: <a href="http://www.cis.upenn.edu/~mbgreen/papers/upenn-cis-03-08-tr.pdf.gz">gzipped PDF</a>,
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/upenn-cis-03-08-tr.ps.gz">gzip'd Postscript</a>.
+     Short version (workshop): <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/lenses-short.pdf">PDF</a>. 
+
+<p>
+<li> A. D. Keromytis, S. Ioannidis, M. Greenwald, and J. M. Smith,       
+``The STRONGMAN Architecture'', 
+in <i>The Third DARPA Information Survivability 
+Conference and Exposition (DISCEX III)</i>, pp. 178-188, IEEE Press. 
+Washington, D.C.
+April 22-24, 2003 (<a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/discex03.ps.gz">gzip'd Postscript</a>)
+
+  <p>
+  <li> K.G. Anagnostakis, M. B. Greenwald, and R.S. Ryger, ``cing:
+  Measuring Network-Internal Delays using only Existing Infrastructure'',
+       in <i>Proceedings of the 22nd Annual Joint
+  Conference of IEEE Computer and Communication Societies (Infocom
+  2003)</i>, 
+  San Francisco, CA, April 1-3, 2003.   
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/infocom03.ps.gz">gzip'd Postscript</a>,
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/infocom03.pdf.gz">gzip'd PDF</a>.
+       (Long version (CIS-TR-02-21): 
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/cingfeas-tr.ps.gz">gzip'd Postscript</a>,
+  <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/cingfeas-tr.pdf">PDF</a>.)
+
+<p> <li> M.B. Greenwald,  C. A. Gunter,  B. Knutsson, A. Scedrov, J. M. Smith, and S. Zdancewic,
+	    "Computer Security is Not a Science (but it should be)",
+	    in the <i>Large-Scale Network Security Workshop</i>,
+	    Landsdowne, VA, March 13-14, 2003.    <a href="http://www.cis.upenn.edu/~mbgreen/papers/lns03-security-science-whitepaper.pdf">PDF</a>. </li></p>
+
+	<p>
+  <li> K. Anagnostakis,  M. Greenwald, S. Ioannidis, and S. Miltchev,
+``Open Packet Monitoring on FLAME: Safety, Performance,and Applications'',
+        in Proceedings of IFIP <i>(IWAN 2002) Fourth Annual International
+       Working Conference on Active Networks</i>, Springer Lecture
+       Notes in Computer Science, Vol. 2546, pp. 120-131,
+       Zurich, Switzerland, December 4-6,  2002.
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/shame-iwan02.ps.gz">gzip'd Postscript</a>,
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/shame-iwan02.pdf.gz">gzip'd PDF</a>
+
+
+
+  <p><li>K.G.Anagnostakis, M. B. Greenwald, and R. S. Ryger, 
+       ``On the Sensitivity of Network Simulation to Topology'',
+        <i>Proceedings of the Tenth IEEE/ACM Symposium on Modeling,
+       Analysis, and Simulation of Computer and Telecommunications
+       Systems (MASCOTS 2002)</i>, pp. 117-126, Fort Worth, Texas,
+       October 12-16, 2002.
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/mascots02.ps.gz">gzip'd Postscript</a>,
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/mascots02.pdf">PDF</a>,
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/mascots02.ppt">Powerpoint slides</a>.  An earlier draft is   
+       available as
+       <i>University of Pennsylvania CIS Dept. Technical Report</i>,
+       MS-CIS-02-15, May 2002 (<a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/mascots02-tr.ps.gz">gzip'd Postscript</a>).
+
+  <p>
+  <li>K.G. Anagnostakis and M.B. Greenwald,
+       ``Direct Measurement Versus Indirect Inference for Determining Network-Internal Delays'', (Best Student Paper Award <i>Performance 2002</i>), Rome, Italy.  <i>Performance Evaluation</i>, Elsevier Science, vol. 49/1-4, September, 2002, pp. 165-176, <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/performance02.pdf.gz">gzip'd PDF file</a>, <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/cingperf.ps.gz">gzip'd Postscript</a> of final draft.
+
+  <p>
+  <li> M. Greenwald,
+       ``Two-Handed Emulation: How to build Non-Blocking implementations of Complex Data-Structures using DCAS'',
+       <i> Proceedings of the 21st ACM Symposium on
+       Principles of Distributed Computing,</i>, pp. 260--269,
+       Monterey, CA,
+       July 21-24, 2002.<a
+       href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/podc02.ps.gz">gzip'd
+       Postscript</a>, .
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/podc02.pdf">PDF</a>.
+       
+  <p>
+  <li> M. Greenwald, ``Brief Announcement: How to wait when you are not going to block'',
+       <i> Proceedings of the 21st ACM Symposium on Principles of
+       Distributed Computing,</i>, pp. 256, 
+       Monterey, CA, July 21--24, 2002,  <a
+       href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/podc02-announce.ps.gz">gzip'd
+       Postscript</a>.  </p>
+
+       <!--
+
+  <p><li>S.Ioannidis, T. Langan, M.B. Greenwald, ``The PEPL Specification''
+<i>University of Pennsylvania CIS Dept. Technical Report</i>,
+MS-CIS-02-13, May 2002.</p>
+       -->
+       
+  <p>
+  <li>M. Greenwald, ``Quantitative Modeling of Contention in Distributed Algorithms'', <i>University of Pennsylvania CIS
+Dept. Technical Report</i>, MS-CIS-02-10, April 2002.
+
+<p>
+<li> K. Anagnostakis, S. Ioannidis, S. Miltchev, J. Ioannidis, M. Greenwald,
+and J.M. Smith, ``Safety and Performance in an Open Packet Monitoring Architecture'', <i>University of Pennsylvania CIS Dept. Technical Report</i>,
+MS-CIS-02-07, April 2002.<a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/shame-tr.ps.gz">gzip'd Postscript</a>.
+
+<p>
+<li>K. G. Anagnostakis, S. Ioannidis, S. Miltchev, J. Ioannidis, M. Greenwald, and J. M. Smith, ``Efficient Packet Monitoring for Network Management'',   in <i> Proceedings of the 8th IFIP/IEEE Network Operations and Management Symposium (NOMS 2002)</i>, pp. 423-436, April, 2002.
+     <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/noms02.ps.gz">gzip'd Postscript</a>,
+     <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/noms02.pdf.gz">gzip'd PDF</a>. 
+
+  <p>
+  <li> K.G. Anagnostakis and M. B. Greenwald, ``On the Feasibility of Network Delay Tomography without Infrastructure Support'', <i>University of Pennsylvania CIS
+Dept. Technical Report</i>, MS-CIS-01-35, December 2001.<a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/cingdoc-tr.ps.gz">gzip'd Postscript</a>.
+  <p>
+   <li> R. Alur, M. Greenwald. ``Coherency of Shared Memory in Ad-hoc Networks'', <i>University of Pennsylvania CIS Dept. Technical Report</i>,
+MS-CIS-01-29, September 2001.<a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/g-coherency-tr.ps.gz">gzip'd Postscript</a>.
+   <p>
+   <li> M. Greenwald, S. Khanna.  ``Space-Efficient Online Computation of Quantile Summaries'',
+	<i> Proceedings of the 2001 ACM SIGMOD Intl. Conference on
+Management of Data</i>, pp. 58--66, Santa Barbara, CA, May 21--24, 2001. <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/sigmod01.pdf.gz">Compressed PDF</a>, <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/sigmod01.ps.gz">Compressed Postscript</a>, <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/sigmod01.ppt">Slides</a>.
+
+	<p>
+   <li> A. D. Keromytis, S. Ioannidis, M. Greenwald, and J. M. Smith, ``Scalable Security Mechanisms for the Internet", <i>University of Pennsylvania CIS Dept. Technical Report</i>, 
+MS-CIS-01-05, January 2001.<a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/strongman-tr.ps.gz">gzip'd Postscript</a>.
+
+	<p>
+   <li> J. Shi, N. Badler, M. Greenwald.
+``Joining a Real-Time Simulation: Parallel Finite-State Machines and
+	Hierarchical Action Level Methods for Mitigating Lag Time'',
+	<i>Proceedings of the 9th Conference on Computer Generated Forces and  
+	Behavioral Representation</i>, Orlando, FL, May 16-18, 2000.
+       <a href="http://www.sisostds.org/cgf-br/9th/scripts/download.cfm/9TH-CGF-006.doc?Paper=True&FileName=9TH%2DCGF%2D006%2Edoc">
+       Word format</a>
+   <p>
+   <li> M. Greenwald.  
+        Non-blocking Synchronization and System Design.
+	Ph.D. <a HREF="thesis/thesis.ps.gz">Thesis  (postscript)</A>,
+<A HREF="ftp://db.stanford.edu/pub/cstr/reports/cs/tr/99/1624/CS-TR-99-1624.pdf"> (or pdf)</a>,
+        July 1999.
+	Also available as <A
+HREF="http://library.stanford.edu/depts/mathcs/research_help/guides/techreports.html">
+<i> Stanford University Technical
+Report </i>STAN-CS-TR-99-1624</A> by <A
+HREF="http://elib.stanford.edu/TR/STAN:CS-TR-99-1624">http</a> or <A
+HREF="ftp://db.stanford.edu/pub/cstr/reports/cs/tr/99/1624/">ftp</a>).
+
+   <p>
+   <li> J. Stone, M. Greenwald, C. Partridge, and J. Hughes.
+	Performance of Checksums and CRCs over Real Data.  
+        <i>IEEE/ACM Transactions on Networking</i>, Oct. 1998, vol 6, no. 3,
+	pp. 529-543,
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/ton98.ps.gz">
+       compressed PostScript</a>,
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/ton98.pdf">
+       PDF</a>.
+   <p>
+   <li>M. Greenwald and D.R. Cheriton.  
+	The Synergy Between Non-blocking Synchronization and Operating 
+        System Structure,
+       <i>Proceedings of the Second Symposium on
+       Operating System Design and Implementation.</i> USENIX, Seattle, 
+       October, 1996, pp 123-136.
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/osdi96.ps.gz">
+       compressed PostScript</a>, 
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/osdi96.pdf.gz">
+       compressed PDF</a>, 
+       <a href="http://www.dsg.stanford.edu/papers/non-blocking-osdi/index.html">Hypertext</a>,
+       <a href="http://www.dsg.stanford.edu/papers/non-blocking-osdi/slides/index.htm">slides</a>,
+        or <a href="ftp://ftp.dsg.stanford.edu/pub/papers/non-blocking-osdi.abstract">
+       abstract</a>.  
+
+   <p>
+   <li>M. Greenwald.
+       Practical Algorithms for Self Scaling Histograms or 
+       Better than Average Data Collection,
+       <i>Proceedings of Performance '96</i> IFIP, Lausanne, 
+       October, 1996, and in <I>Performance Evaluation</I> Volumes 27&28, October 1996, North-Holland, pp 19-40.
+       <a href="http://www.dsg.stanford.edu/papers/histograms/slides/index.htm">slides</a> or
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/histograms.abstract">
+       abstract</a>.  (Copyright is held by 
+       <a href="http://www.elsevier.nl">Elsevier Science B.V. </a>; copies 
+       may be obtained by ordering publication number 0166-5316(96)00043-0).<br>
+	A slightly earlier, and slightly more extended, draft is available
+	as a  
+	<a href="http:papers/histogram-tr.ps">
+	Postscript file</a>.
+
+
+
+
+   <p>
+   <li>M.B. Greenwald, S.K. Singhal, J.R. Stone, and D.R. Cheriton.  
+      Designing an Academic Firewall.  In <i>OnTheInternet</I>, Vol. 2, No 3,
+      May/June 1996, pp 24-33. 
+
+   <p>
+   <li>M.B. Greenwald, S.K. Singhal, J.R. Stone, and D.R. Cheriton.  
+      Designing an Academic Firewall: Policy, Practice, and Experience 
+      With SURF.  In <em><A
+	HREF="http://info.isoc.org:80/conferences/ndss96/">Proceedings of
+	the 1996 Internet Society Symposium on Network and Distributed
+	System Security</A></em>, San
+      Diego, CA, February 1996.  pp 79-92. 
+      <a href="http://www.isoc.org">Internet Society</a> / <a
+	href="http://www.ieee.org">IEEE Computer Society</a>.  
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/firewall.ps.gz">
+       compressed PostScript</a>, 
+       <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/firewall.pdf">
+       PDF</a>,
+       <a href="http://www.dsg.stanford.edu/papers/firewall/">Hypertext</a>,
+       or <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/papers/firewall.abstract">
+       abstract</a>.  Also available as
+    <A HREF="ftp://db.stanford.edu/pub/cstr/reports/cs/tr/95/1558/">
+	<!-- "TR/STAN:CS-TR-95-1558" --> 
+    Technical Report STAN-CS-TR-95-1558.  Department of
+    Computer Science, Stanford University (December 1995).</A>
+
+  <p>
+
+<a href="selected-pubs.html"><h3>Selected past publications and talks</h3></a>
+<hr>
+<h2>Teaching</h2>
+See my UPenn <a href="http://www.cis.upenn.edu/~mbgreen">webpage</a>.
+<!--
+<h4>University of Pennsylvania</h4>
+<a href="http://www.cis.upenn.edu/~mbgreen/courses/tcom512">TCOM512, Application and Transport Protocols, Fall 2001, Fall 2002 </a> <br>
+<a href="http://www.seas.upenn.edu/~tcom500b">TCOM500, Networking: Technology, Protocols & Practice, Fall 2000 </a> <br> 
+<a href="http://www.cis.upenn.edu/~mbgreen/courses/cse480">CSE 480, Distributed Systems, Spring 2000, Spring 2001, Spring 2003</a> <br> 
+<a href="http://www.cis.upenn.edu/~cis501">CIS 501, Computer Architecture, Spring 1999, Fall 1999,</a> <br> 
+CIS 700, Fall 1998, Special Topics in Distributed Systems and Concurrent
+	Programming: Non-blocking Synchronization
+
+<h4>Stanford University</h4>
+
+CS244a, Spring 94, Summer 93, Computer Networking <br>
+CS340 & 341 (TA'd), Spring 90, Distributed Systems (and Lab)
+
+
+<A Name=Hours>
+<h4> Office Hours</h4>
+	
+Spring Semester, 2004: Wed 11am-12noon, or by appointment.
+-->
+
+<A Name=Theses> <h4>Theses supervised</h4>
+<br>
+
+Thomas Langan, ``Enforcement of Cooperative Security Policies on
+a Heterogeneous Distributed Environment'', Masters thesis, August
+2002.<br>
+
+Marcus Haebler,
+``Implementing Secure Connections between Security Domains
+with Varying Degrees of Trust'', Masters thesis,  December, 2001.  <br>
+ 
+<a href="http://www.cis.upenn.edu/~jshi/home.html">Jianping Shi</a>,
+     <a href="ftp://ftp.cis.upenn.edu/pub/mbgreen/theses/jshi.thesis.ps">``Techniques for Mitigating Lag-time when  
+Joining Interest Groups in Real-Time Simulations''</a>, Ph.D. Thesis, December
+2000. (co-supervised with N. Badler).
+
+<a href="http://www.cis.upenn.edu/~anagnost">Kostas Anagnostakis</a>
+ "Exchange mechanisms and cooperative distributed system design", Ph.D. Thesis, 2005,
+<a href="http://www.cis.upenn.edu/~anagnost/kostas-thesis.ps">Postscript</a>,
+<a href="http://www.cis.upenn.edu/~anagnost/kostas-thesis.pdf">PDF</a>.
+
+<A Name=Students>
+<h4>Current Ph.D. students</h4>
+
+<a href="http://www.cis.upenn.edu/~peifang">Peifang Zheng</a><br>
+<a href="http://www.cis.upenn.edu/~anagnost">Kostas Anagnostakis</a><br>
+<a href="http://www.cis.upenn.edu/~lipeng/homepage">Peng Li</a><br>
+	
+	
+<hr>
+<a HREF="ftp://ftp.cis.upenn.edu/pub/mbgreen/code/hist-lib.tar.gz">Class library</a> of histograms from Performance paper.
+
+<p> Samoil Samak and I worked on a 
+<!--
+<a HREF="http://www.uk.research.att.com/vnc/">
+-->
+<a HREF="http://www.realvnc.com">VNC</a> Viewer for
+Windows CE, while experimenting with
+using a palmtop as an alternative to a tablet,
+for input.
+An old, unsupported, beta version of Samoil's <a  
+HREF="ftp://ftp.cis.upenn.edu/pub/mbgreen/code/vnc-wince.rar">implementation
+is still 
+available</a> for historical purposes.
+
+<p> <a HREF="ftp://ftp.cis.upenn.edu/pub/mbgreen/code/mbg-ttcp.c">Here</a>
+is my version of
+<a href="http://www.netcordia.com/network-services.html#Tools">ttcp</a>
+(The <a href="http://ftp.arl.mil/~mike/ttcp.html">original ttcp</a>
+is described by Mike Muus, one of its authors). My
+version includes timestamps and sequence numbers per udp
+packet for measuring individual packet latencies and patterns of loss, upper
+bounds on the transmission rates,  independent control of transmission and
+reception to allow testing across firewalls. 
+
+<p>
+<a HREF="thesis/nbs.bib"> Bibliography</a> of references on
+non-blocking synchronization.  This is incomplete and not always formatted
+correctly.  Please view it as "in progress".  I'm updating 
+it and correcting problems incrementally.
+<p>
+An older <a HREF="ftp://ftp.cs.rpi.edu/pub/valoisj/bib.bib.gz">
+bibliography</a>
+maintained by John Valois contains bibtex
+references on concurrent objects, lock-free data structures,  
+mutual exclusion, wait-free synchronization, efficient spinlocks,
+and other related topics.  It might also be of interest.
+<p>
+My <a HREF="thesis/thesis.ps.gz">thesis</A> on "Non-Blocking
+Synchronization and System Design" may be of interest if you are really
+interested in details.  (Also available as a <A
+HREF="http://db.stanford.edu/pub/cstr/reports/cs/tr/99/1624/"> Stanford Technical
+Report STAN-CS-TR-99-1624</A> by <A
+HREF="http://db.stanford.edu/pub/cstr/reports/cs/tr/99/1624/">http</a> or <A
+HREF="ftp://db.stanford.edu/pub/cstr/reports/cs/tr/99/1624/">ftp</a>).  
+
+<hr>
+
+<dl>
+<dt><h4>Education</h4><dd><ul>
+<li>Ph.D., Computer Science, <a HREF="http://www.stanford.edu">Stanford University</a>, 1999.
+<li>S.B. Mathematics
+<a HREF="http://web.mit.edu">Massachusetts Institute of Technology</a>, 1980.
+</ul>
+
+<dt><h4><a HREF="cv.ps">C.V.</a> (usually out of date!) </h4>
+</dl>
+
+<hr>
+<Table>
+<tr>
+<td>
+<a href="school-picts-98-99.jpg">
+<img WIDTH=440 src="school-picts-98-99.jpg"></a>
+</td>
+<td>
+Alona Rivka Bach (b. 4/93) <br> and <br> Yaron Bryce Greenwald (b. 12/94), in 
+November 1998.
+<br>
+<br>
+Click <a href="whistlestop.html"> here </a> for older 
+pictures of Alona and Yaron and Meka.
+<br>
+Click <a href="family.html"> here </a> for pictures of the extended family (the Bach cousins when there were only 11 of them).
+</td>
+</tr>
+</table>
+<Table>
+<tr>
+<td>
+<img WIDTH=396 HEIGHT=397 src="mtg-siblings-birth.jpg">
+</td>
+<td>
+Meka Tamir Greenwald at 2 weeks old (b. 2/15/98) with his siblings.
+("Meka" is pronounced "Mee-kuh") His
+Hebrew name is Tamir Avraham Greenwald.  
+</td>
+</tr>
+</table>
+<hr>
+
+<A Name=Contacts>
+<pre><address>Michael B. Greenwald
+<a href="www.bell-labs.com">Bell Laboratories</a>
+600-700 Mountain Avenue, Room 2c-424
+Murray Hill, NJ 07974
+USA
+
+Phone: 908-582-5872
+Fax:   908-582-5857
+
+&lt;&lt;lastname&gt;@research.bell-labs.com&gt;
+</address></pre></a>
+
+<pre>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+<p>
+</pre>
+

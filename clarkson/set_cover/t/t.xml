@@ -1,0 +1,423 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl"  href="http://www1.chapman.edu/~jipsen/mathml/pmathml.xsl"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML">
+  <head>
+    <title>Improved Approximation Algorithms for Geometric Set Cover</title>
+    <meta name="version" content="S5 1.0" />
+	<link rel="stylesheet" href="ui/asciimath.css" type="text/css"/>
+    <link rel="stylesheet" href="ui/slides.css" type="text/css" media="projection,print" id="slideProj" />
+    <link rel="stylesheet" href="ui/opera.css" type="text/css" media="projection" id="operaFix" />
+    <link rel="stylesheet" href="ui/print.css" type="text/css" media="print" id="slidePrint" />
+    <script type="text/javascript" src="ui/ASCIIMathML.js"></script>
+    <script src="ui/slides.js" type="text/javascript"></script>
+    <script type="text/javascript">
+  AMsymbols = AMsymbols.concat([
+  {input:"ni", tag:"mo", output:"\u220B", tex:"ni"},
+  {input:"Prob",  tag:"mo", output:"Prob", tex:null, ttype:CONST},
+  ]);
+  mathcolor = "black";
+  </script>
+  </head>
+  <body onload="startup(); translate();">
+    <div class="layout">
+      <div id="currentSlide"></div>
+      <div id="header"></div>
+      <div id="footer">
+        <h2>Clarkson/Varadarajan</h2>
+        <h2>Improved Approximation Algorithms for Geometric Set Cover</h2>
+        <div id="controls">
+          <form action="#" id="controlForm">
+            <div>
+              <a accesskey="t" id="toggle" href="javascript:toggle();">&#216;</a>
+              <a accesskey="z" id="prev" href="javascript:go(-1);">&laquo;</a>
+              <a accesskey="x" id="next" href="javascript:go(1);">&raquo;</a>
+            </div>
+            <div onmouseover="showHide('s');" onmouseout="showHide('h');">
+              <select id="jumplist" onchange="go('j');"></select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+    <div class="presentation">
+    
+    
+      <div class="slide">
+        <h1>Improved Approximation Algorithms for Geometric Set Cover</h1>
+        <table align="center" width="75%">
+          <tr>
+            <td><h2>Ken Clarkson</h2></td>
+            <td><h2>Kasturi Varadarajan</h2></td>
+          </tr>
+          <tr>
+            <td><h2>Bell Labs</h2></td>
+            <td><h2>Univ. Iowa</h2></td>
+          </tr>
+        </table>
+      </div>
+      
+      <div class="slide">
+        <h1>The set cover problem</h1>
+        <ul>
+          <li>Given `bb(U)`, a set; here, a set of points</li>
+          <li>Given collection `bb(S)` of subsets of `bb(U)`, here called "objects"</li>
+          <li>Given `bb(M) subset bb(U)`, find the smallest subset `C` of `bb(S)` that covers `bb(M)`</li>
+          <center><img valign = "center" src="f/fat_tris.png"/></center>
+        </ul>
+      </div>
+      
+
+
+
+      <div class="slide">
+        <h1>For example: siting of basestations</h1>
+        <ul>
+          <li>Objects are footprints of basestations, `bb(M)` is market area</li>
+          <ul><li>Footprint is area visible to basestation</li></ul>
+          <li>Choose from among discrete set of such footprints</li>
+          <li>Often modeled as circular disks in the plane</li>
+          <ul><li>An idealization, esp. for directional antennas
+	<center><img align = "center" src="f/cells.png"/></center></li></ul>
+         </ul>
+       </div>
+
+
+       <div class = "slide">
+          <h1>Simplified cases of basestation siting</h1>
+          <ul>
+            <li>Results here apply to a few simplifications:</li>
+            <ul>
+              <li>Fat triangles</li>
+              <li>Visibility regions at points in a 1.5d terrain `approx` "guarding"</li>
+              <center><img src="f/terrain.png"/></center>
+            </ul>
+        </ul>
+      </div>
+      
+      
+      <div class="slide">
+        <h1>(A few) old set cover results</h1>
+        <p>If `c := |bb(C)^{:**:} |`, `n := |bb(S)|`, can get within factor:</p>
+        <ul>
+          <li>`O(log n)`, with the greedy algorithm;</li>
+          <li>`O(log c)`, for polytope approximation in `RR^m` [C94] ([L87][W88])</li>
+          <li>`O(log c)`, when the <em>VC dimension</em> is bounded [BG]</li>
+          <li> `O(1)`, polytope approximation in 3d [BG]
+            <ul>
+              <li>Or `bb(M) subset RR^3`, `bb(S)` is a collection of halfspaces</li>
+              <li>Or `bb(M) subset RR^2`, `bb(S)` is a collection of disks</li>
+              <li>Use connection with `epsilon`-nets</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      
+      
+      <div class="slide">
+        <h1>New results: hypothesis</h1>
+        <ul>
+          <li>If complement of `cup(R)` has roughly linear combinatorial complexity</li>
+            <ul>
+              <li>Random `R subset bb(S)`</li>
+              <li>Decomposable into expected `f(r) = o(r log r)` simple regions,
+                  `r:=|R|`<img src="f/union_fat_tris.png" align="right"/></li>
+              <li>For example, trapezoidization of complement of linear-complexity union</li>
+            </ul>
+        </ul>
+      
+      </div>
+
+    
+      <div class="slide">
+        <h1>New results: conclusion</h1>
+        <ul>
+          <li>Then approximation ratio is `f(c)//c = o(log c)`:</li>
+            <ul>
+              <li>Fat triangles `f(r) = O(r log log r)` [MPSSW], yields `O(log log c)` approx. </li>
+              <li>Similar-sized fat objects with `t` boundary crossings `f(r) = lambda_(t+2)(r)` [Efrat]</li>
+               <li>Regions bounded by Jordan arcs with `le 3` intersections `(alpha (n))` approx.[EGHPPSSS] </li>
+           </ul>
+          <li>In some cases `f(r)=O(r)` and ratio is `O(1)`:</li>
+            <ul>
+              <li>Similar-sized fat triangles [MPSSW], fat wedges [ERS] </li>
+              <li>Arrangements of pseudo-disks [KLPS]</li>
+               <li>1.5d terrain guarding (matching [BMKM05]) *</li>
+             <li>Unit cubes in `RR^3` [BSTY] *</li> 
+            </ul>
+        </ul>
+        
+        *(a little bit of actual new combinatorial geometry)
+      </div>
+
+    
+      <div class="slide">
+        <h1>Outline</h1>
+        <ul>
+          <li>`epsilon`-nets
+          <ul>
+            <li>An easy set cover problem</li>
+          </ul>
+          </li>
+          <li>Small `epsilon`-nets `=>` small covers</li>
+          <ul>
+            <li>Size of cover is within a constant factor of size of net</li>
+            <li>As in [BG], [ERS]</li>
+          </ul>
+          <li>Small complement decompositions `=>` small `epsilon`-nets</li>
+          <ul><li>(Generalizing "shallow cuttings" [M])</li><li>Particular case of [CF]</li></ul>
+          <li>1.5d terrain guarding `=>` small complement decomposition</li>
+          <li>Unit cubes: use fatness to create clusters, need only decompose boundary</li>
+        </ul>
+      </div>
+      
+      <div class="slide">
+        <h1>`epsilon`-nets</h1>
+        <ul>
+          <li>`epsilon>0` a given parameter</li>
+          <li>Cover for easy-to-cover points `x in bb(M)_epsilon`</li>
+          <ul>
+            <li>`x in bb(M)_epsilon` if more than `epsilon {:| bb(S) |:}` objects contain x</li>
+            <li>To construct: pick `r` objects from `bb(S)` at random</li>
+          </ul>
+          <li>Probability that:</li>
+          <ul>
+		<li><em>Given</em> `x in bb(M)_epsilon`  not covered is ` le (1-epsilon)^r`</li>
+		<li><em>Some</em> `x` not covered is `le |bb(M)_epsilon|(1-epsilon)^r`</li>
+		<li><em>All</em> `x`  covered `ge 1 - |bb(M)_epsilon| e^(-r epsilon)`</li>
+          </ul>
+          <li>`r = O(log |bb(M)_epsilon|)//epsilon` is big enough</li>
+          <li>[HW86]</li>
+        </ul>
+      </div>
+      
+      <div class="slide">
+        <h1>`epsilon`-nets: equivalent points</h1>
+        <ul>
+          <li>`log |bb(M)_epsilon|` could be large</li>
+          <li>Maybe not in geometric settings</li>
+            <ul>
+              <li>Say that `x approx y` for `x,y in {: bbb()_epsilon :}` if `x in S iff y in S`, for all `S in 
+                bb(S)`</li>
+              <li>Need only consider equivalence classes `bb(M)_epsilon/approx`</li>
+              <li>For example, if VC dimension is `d'`, have `O(r^{d'})` classes for `R`</li>
+              <li>Implies sample of size `O(d' \log (1//\epsilon))//epsilon` is a cover of `bb(M)_epsilon`</li>
+              <center><img src="f/equiv.gif"/></center>
+            </ul>
+        </ul>
+      </div>
+      
+      <div class="slide">
+        <h1>`epsilon`-nets: a different approach</h1>
+        <ul>
+          <li>Sometimes `bb(U) setminus cup(R)` is "simple"<img src="f/traps.png" align="right"/></li>
+          <li>For triangles, can make trapezoidal decomposition</li>
+          <li>A trapezoid T is in decomposition iff:
+            <ul>
+              <li>`d=O(1)` triangles "defining" `T` are in `R`</li>
+              <li>None of the `|T|` triangles meeting `T` are in `R`</li>   
+            </ul>
+          </li>
+          <li>`R` induces a collection of trapezoids `F_0(R)`, 
+              <blockquote> `cup(F_0(R)) = bb(U) setminus cup(R)`</blockquote></li>
+          
+        </ul>
+      </div>
+      
+      <div class="slide">
+        <h1>`epsilon`-nets using `F_0(R)`</h1>
+        <ul>
+          <li>If `x in bb(M)_epsilon` and `x` in trapezoid `T`,<img src="f/enet.png" align="right"/></li>
+          <li>Then `|T| ge epsilon |bb(S)|`</li>
+          <ul><li>(`|T|=` number of sets meeting `T`)</li></ul>
+          <li>There are `O(r^d)` such `T` possible, since `d` triangles define `T`</li>
+          <li>For random subset of size `r`,</li>
+            <ul>
+              <li>Probability that some such `T` is not met by `R` is `O(r^d)(1-epsilon)^r`</li>
+              <li>Similar to before, `r=(d \log(1//\epsilon))//epsilon` is big enough</li>
+            </ul>
+          <li>[C86]</li>
+        </ul>
+      </div>
+
+      <div class = "slide">
+         <h1>Small `epsilon`-nets `=>` small covers</h1>
+         <ul>
+           <li>Two approaches:</li>
+           <ul>
+             <li>Using "doubling" of objects [L87][W88][C92][BG94]</li>
+             <li>Using LP relaxation [ERS], also observed by Kasturi</li>
+           </ul>
+           <li>Size bounds give `O(log c)` approximation</li>
+           <li>Sometimes, can make `epsilon`-net smaller, even `O(1//epsilon)`</li>
+           <li>Implies constant-factor approximations</li>
+         </ul>
+      </div>
+      
+      
+      <div class="slide">
+        <h1>Small `epsilon`-nets `=>` small covers: LP</h1>
+        <ul>
+          <li>From [ERS]</li>
+          <li>Tweak set system until every point is in `bb(M)_(1//2c)`</li>
+          <li>Existence of solution of size `c` implies weights `w_S in [0..1]` with
+            <blockquote align="left">
+            `{:(sum_S w_S le c), (sum_{S ni x} w_S  ge 1 text(for all) x in bb(M)):}`
+            </blockquote>
+          </li>
+          <li>Make `bb(S)'`, a multiset, with `|~ w_S n//c ~|` copies of object `S`</li>
+          <li>At least `n//c` sets contain each point, `2n` sets total</li>
+        </ul>
+      </div>
+      
+      <div class="slide">
+        <h1>Small `epsilon`-nets `=>` small covers: doubling</h1>
+        <ul>
+          <li>[L87][W88][C92][BG94]</li>
+          <li>Tweak set system until all points in `bb(M)` covered:</li>
+          <li>Find `(1//2c)`-net `E` of current `bb(S)'`; initially `bb(S)' := bb(S)`;</li>
+          <li>For any `T in F_0(E)`, some `S in bb(C)` meets it;</li>
+          <li>Double the multiplicity of all `S in bb(S')` that meet `T`;</li>
+          <ul>
+            <li>After `c` rounds:</li>
+            <ul>
+              <li>Factor increase of total multiplicity of `bb(S) le (1+1/{:2c:})^c approx sqrt{e}`; </li>
+              <li>Increase of total mult. of `C ge 2`; </li>
+            </ul>
+          </ul>
+          <li>Eventually `E` must be a cover</li>
+        </ul>
+      </div>
+
+      
+       
+      <div class="slide">
+        <h1>Small `F_0(R)` `=>` small `epsilon`-nets: alteration</h1>
+        <ul>
+          <li>Use the alteration/mutation/repair method</li>
+          <li>As in [CF], specialized to small `F_0(R)`</li>
+          <li>Take random sample `R` of size `r:=1//epsilon`;</li><img src="f/alteration.png" align="right"/>
+          <li>Will find `epsilon`-net of size `O(f(r))`, `f(r)=E|F_0(R)|`</li>
+          <li>Compute `F_0(R)`;</li>
+          <li>"Patch up" regions in `F_0(R)`: 
+              find `epsilon_T`-nets for region `T`</li>
+          <ul>
+            <li>`epsilon`-net is union of `R` and `epsilon_T`-nets for each `T in F_0(R)`</li>
+          </ul>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Small `F_0(R)` `=>` small `epsilon`-nets: analysis</h1>
+        <ul>
+          <li>How much patching up to do?</li>
+          <li>Start from: with high prob., `R` is an `O((log r)//r)`-net;</li>
+          <li>Need `epsilon_T` with `epsilon_T |T| = n//r`, or `epsilon_T= n//rj`, where `j={:|T|:}`</li>
+          <li>To repair `T`, need `(jr//n) log (jr//n)` sample size, no more than `(jr//n)^2`</li>
+        </ul>
+      </div>
+
+      <div class="slide">
+        <h1>Small `F_0(R)` `=>` small `epsilon`-nets:</h1><h1>final analysis</h1>
+        <ul>
+          <li>From [CS88],
+            <center>
+              `E sum_{T in F_0(R)} {:|T|:}^k = O(f(r)n^k//r^k)`
+            </center>
+          </li>
+          <ul>
+            <li>Or: expected proportion of `T` with `|T| ge i n//r` is `le e^{-i}`</li>
+          </ul>
+          <li>Take `k=2`, expected `sum_{T in F_0(R)} ({:|T|r:}//n)^2  = O(f(r))`</li>
+        </ul>
+      </div>
+      
+        
+      <div class="slide">
+        <h1>Terrain guarding: visibility</h1>
+        <ul>
+          <li>Have terrain `P`, an `x`-monotone polygonal path</li>
+          <li>Set `G` of point <em>guards</em> on `P`</li>
+          <li>`g in G` <em>sees</em> a point `p` if:</li>
+             <ul>
+                <li>line segment `bar(gp)` does not meet region below terrain</li>
+             </ul>
+        </ul>
+        <center><img src="f/vis.png" align="center"/></center>
+      </div>
+
+      <div class="slide">
+        <h1>More visibility</h1>
+        If also:
+        <ul>
+		  <li>`x(g) lt x(p)`, then `g` sees `p` <em>from the left</em></li>
+		  <li>`g` is the leftmost guard that sees `p` from the left, then `g` <em>owns</em> `p`</li>
+		  <li>No lower point at `x(p)` is seen by any guard, then `g` <em>owns</em> `x(p)` at `p`</li>
+        </ul>
+        <center><img src="f/vis.png" align="center"/></center>
+      </div>
+
+      <div class="slide">
+        <h1>Why ownership?</h1>
+        <ul>
+          <li>Any guarded point is also owned</li>
+          <ul><li>A set owns every point iff it sees every point</li></ul>
+          <li>Ownership is combinatorially simpler </li>
+        </ul>
+        <br/>
+        <center><img src="f/owner_regions.png"/></center>
+      </div>
+
+
+      <div class="slide">
+        <h1>Order claim</h1>
+        <ul>
+          <li>Generalizing [BMKM] slightly: for</li>
+            <ul>
+              <li>Guards `a`, `b`, points `p`, `p'`</li>
+              <li>`x(a) lt x(b) le x(p) le x(p')`</li>
+              <li>`a` owns `x(p)` at `p`, `b` sees `p'`<center><img src="f/ownership.png"/></center></li>
+           </ul>
+          <li>Have:</li>
+           <ul>
+              <li>`a` also sees `p'`</li>
+              <ul><li>`b` must be below `bar(ap)`, `p` must be below `bar(bp')`</li></ul>
+              <li>So `b` cannot own `p'`</li>
+              <li>No ownership pattern `a cdots b cdots a cdots b`</li>
+           </ul>
+        </ul>
+      </div>
+
+
+      <div class="slide">
+        <h1>Davenport-Schinzel-orama</h1>
+        <ul>
+          <li>Order claim implies ownership is `DS(m,2)` for `m` guards</li>
+          <li>At most `2m-1` (left) ownership intervals</li>
+          <li>Shows `|F_0(R)| lt 2r-1` for appropriate configuration system</li>
+          <li>Implies small `epsilon`-nets for left visibility</li>
+          <li>Combine with small `epsilon`-net for right visibility</li>
+          <li>From small `epsilon`-nets, small covers</li>
+        </ul>
+      </div>
+
+
+      
+       <div class="slide">
+        <h1>Concluding remarks</h1>
+        <ul>
+          <li>Some other geometric set cover problems have `O(1)` approx.; any relation?</li>
+          <li>Balls covering points in 3d?</li>
+          <li>Thanks!</li>
+        </ul>
+      </div>
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,5507 @@
+%!PS-Adobe-3.0
+%%Title: Microsoft Word - man13.doc
+%%Creator: PSCRIPT.DRV Version 4.0
+%%CreationDate: 05/02/98 09:13:41
+%%BoundingBox: 19 9 593 784 
+%%Pages: (atend)
+%%PageOrder: Special
+%%Requirements: 
+%%DocumentNeededFonts: (atend)
+%%DocumentSuppliedFonts: (atend)
+%%DocumentData: Clean7Bit
+%%LanguageLevel: 1
+%%EndComments
+
+[{
+%%BeginFeature: *JobPatchFile 1
+
+save 
+/version23-manualfeedpatch where { pop false } { true }ifelse
+ % we don't do an explicit 'get' since product and version MAY
+ % be in systemdict or statusdict - this technique gets the lookup
+ % without failure
+statusdict begin
+  product (LaserWriter) eq        % true if LaserWriter
+  version cvr 23.0 eq             % true if version 23
+end
+
+and  % only install this patch if both are true
+and  % true only if patch is not installed and is for this printer
+     % save object and boolean on stack
+dup { exch restore }if
+% either true OR saveobject false
+dup
+{
+  /version23-manualfeedpatch true def
+  /oldversion23-showpage /showpage load def
+  /showpage       % this showpage will wait extra time if manualfeed is true
+  {%
+     statusdict /manualfeed known
+     {% manualfeed known in statusdict
+        statusdict /manualfeed get
+        {% if true then we loop for 5 seconds
+           usertime 5000 add       % target usertime
+           { % loop
+             dup usertime sub 0 lt
+             { exit }if
+           }loop
+           pop             % pop the usertime off the stac
+        }if
+     }if
+     oldversion23-showpage
+  }bind def
+}if
+not{ restore }if
+
+%%EndFeature
+} stopped cleartomark
+%%BeginProlog 
+%%BeginProcSet: Pscript_Win_ErrorHandler 1.0 1
+/currentpacking where{pop/oldpack currentpacking def/setpacking where{pop
+false setpacking}if}if/$brkpage 64 dict def $brkpage begin/prnt{dup type
+/stringtype ne{=string cvs}if dup length 6 mul/tx exch def/ty 10 def
+currentpoint/toy exch def/tox exch def 1 setgray newpath tox toy 2 sub moveto
+0 ty rlineto tx 0 rlineto 0 ty neg rlineto closepath fill tox toy moveto 0
+setgray show}bind def/nl{currentpoint exch pop lmargin exch moveto 0 -10
+rmoveto}def/=={/cp 0 def typeprint nl}def/typeprint{dup type exec}readonly def
+/lmargin 72 def/rmargin 72 def/tprint{dup length cp add rmargin gt{nl/cp 0 def
+}if dup length cp add/cp exch def prnt}readonly def/cvsprint{=string cvs
+tprint( )tprint}readonly def/integertype{cvsprint}readonly def/realtype{
+cvsprint}readonly def/booleantype{cvsprint}readonly def/operatortype{(--)
+tprint =string cvs tprint(-- )tprint}readonly def/marktype{pop(-mark- )tprint}
+readonly def/dicttype{pop(-dictionary- )tprint}readonly def/nulltype{pop
+(-null- )tprint}readonly def/filetype{pop(-filestream- )tprint}readonly def
+/savetype{pop(-savelevel- )tprint}readonly def/fonttype{pop(-fontid- )tprint}
+readonly def/nametype{dup xcheck not{(/)tprint}if cvsprint}readonly def
+/stringtype{dup rcheck{(\()tprint tprint(\))tprint}{pop(-string- )tprint}
+ifelse}readonly def/arraytype{dup rcheck{dup xcheck{({)tprint{typeprint}forall
+(})tprint}{([)tprint{typeprint}forall(])tprint}ifelse}{pop(-array- )tprint}
+ifelse}readonly def/packedarraytype{dup rcheck{dup xcheck{({)tprint{typeprint}
+forall(})tprint}{([)tprint{typeprint}forall(])tprint}ifelse}{pop
+(-packedarray- )tprint}ifelse}readonly def/courier/Courier findfont 10
+scalefont def end errordict/handleerror{systemdict begin $error begin $brkpage
+begin newerror{/newerror false store vmstatus pop pop 0 ne{grestoreall}if
+showpage initgraphics courier setfont lmargin 720 moveto(ERROR: )prnt
+errorname prnt nl(OFFENDING COMMAND: )prnt/command load prnt $error/ostack
+known{nl nl(STACK:)prnt nl nl $error/ostack get aload length{==}repeat}if
+systemdict/showpage get exec(%%[ Error: )print errorname =print
+(; OffendingCommand: )print/command load =print( ]%%)= flush}if end end end}
+dup 0 systemdict put dup 4 $brkpage put bind readonly put/currentpacking where
+{pop/setpacking where{pop oldpack setpacking}if}if
+%%EndProcSet
+userdict /Pscript_Win_Driver_Incr 200 dict dup begin put
+%%BeginResource: file Pscript_FatalError 2.0 0
+/FatalErrorIf{{initgraphics findfont exch scalefont setfont counttomark 3 div
+cvi{moveto show}repeat showpage quit}{cleartomark}ifelse}bind def
+%%EndResource
+/VM? {vmstatus exch sub exch pop gt { [
+(This job requires more memory than is available in this printer.) 100 500
+(Try one or more of the following, and then print again:) 100 485
+(In the PostScript dialog box, click Optimize For Portability.) 115 470
+(In the Device Options dialog box, make sure the Available Printer Memory is accurate.) 115 455
+(Reduce the number of fonts in the document.) 115 440
+(Print the document in parts.) 115 425
+12 /Times-Roman showpage
+(%%[ PrinterError: Low Printer VM ]%%) =
+true FatalErrorIf}if} bind def
+30000  VM?
+%%BeginResource: file Pscript_Win_Utils 2.0 0
+/|/def load def/,/load load |/~/exch , |/?/ifelse , |/!/pop , |/`/begin , |/^
+/index , |/@/dup , |/+/translate , |/$/roll , |/U/userdict , |/M/moveto , |/-
+/rlineto , |/&/currentdict , |/:/gsave , |/;/grestore , |/F/false , |/T/true ,
+|/N/newpath , |/E/end , |/Ac/arc , |/An/arcn , |/A/ashow , |/D/awidthshow , |
+/C/closepath , |/V/div , |/O/eofill , |/L/fill , |/I/lineto , |/-C/rcurveto ,
+|/-M/rmoveto , |/+S/scale , |/Ji/setfont , |/Lc/setlinecap , |/Lj/setlinejoin
+, |/Lw/setlinewidth , |/S/show , |/LH/showpage , |/K/stroke , |/W/widthshow ,
+|/R/rotate , |/b{bind |}bind |/bd{bind |}bind |/xd{~ |}bd/ld{, |}bd/lw/Lw ld
+/lc/Lc ld/lj/Lj ld/sg/setgray ld/L2? F/languagelevel where{! languagelevel 2
+ge{! T}if}if |/g{@ not{U/DefIf_save save put}if U/DefIf_bool 2 ^ put}b
+/DefIf_El{if U/DefIf_bool get not @{U/DefIf_save get restore}if}b/e{DefIf_El !
+}b/self & |/reinitialize{[/TextInit/GraphInit/UtilsInit counttomark{@ where{
+self eq}{F}?{cvx exec}{!}?}repeat cleartomark}b/initialize{`{/ADO_mxRot ~ |
+/TextInitialised? F | reinitialize E}{U/Pscript_Win_Data 200 dict @ ` put
+/ADO_mxRot ~ |/TextInitialised? F | reinitialize}?}b/terminate{!{& self eq{
+exit}{E}?}loop E}b/suspend/terminate , |/resume{` Pscript_Win_Data `}b/snap{
+transform 0.25 sub round 0.25 add ~ 0.25 sub round 0.25 add ~ itransform}b
+/dsnap{dtransform round ~ round ~ idtransform}b<04>cvn{}|/setjn{{statusdict
+/jobname known{statusdict/jobname 3 -1 $ put}if}stopped cleartomark}b/solid{[]
+0 setdash}b/setdsh{0 setdash}b/colspRefresh{}b/rp{4 2 $ M 1 ^ 0 - 0 ~ - neg 0
+-}b/rr{1 ^ 0 - 0 ~ - neg 0 - C}b
+%%EndResource
+%%BeginResource: file Pscript_Win_Utils_L1 2.0 0
+L2? not g{/rf{N rp L}b/fx{1 1 dtransform @ 0 ge{1 sub 1}{1 add -0.25}? 3 -1 $
+@ 0 ge{1 sub 1}{1 add -0.25}? 3 1 $ 4 1 $ idtransform 4 -2 $ idtransform}b/BZ{
+4 -2 $ snap + +S fx rf}b/rs{N rp C K}b/rc{N rp clip N}b/sg{setgray}b/sco{
+setrgbcolor}b/sgco{{sg}{sco}?}b}e
+%%EndResource
+%%BeginResource: file Pscript_Win_Utils_L2 2.0 0
+L2? g{/colspA/DeviceGray |/colspABC/DeviceRGB |/setAorABC{{colspA}{colspABC}?
+setcolorspace}b/rf/rectfill , |/fx{1 1 dtransform @ 0 ge{1 sub 0.5}{1 add -0.5
+}? 3 -1 $ @ 0 ge{1 sub 0.5}{1 add -0.5}? 3 1 $ 4 1 $ idtransform 4 -2 $
+idtransform}b/BZ{4 -2 $ snap + +S fx rf}b/rs/rectstroke , |/rc/rectclip , |/sg
+{@ @ setcolor}b/sco{setcolor}b/colspRefresh{colspABC setcolorspace}b/sgco{{sg
+}{sco}?}b/UtilsInit{F setglobal}b/definecolorrendering{/ColorRendering
+defineresource !}b/findcolorrendering{@/ColorRendering resourcestatus{! !
+/ColorRendering findresource T}{! F}?}b/selectcolorrendering{@/ColorRendering
+resourcestatus{! !/ColorRendering}{!/DefaultColorRendering/ColorRendering}?
+findresource setcolorrendering}b}e
+%%EndResource
+end
+%%EndProlog
+
+%%BeginSetup 
+[ 1.000 0 0 1.000 0 0 ] false Pscript_Win_Driver_Incr dup /initialize get exec
+
+[{0 
+/languagelevel where{pop languagelevel}{1}ifelse 2 ge{1 dict dup/JobTimeout  4 -1 roll put setuserparams}{statusdict/setjobtimeout get exec}ifelse 
+} stopped cleartomark
+[{240 
+/languagelevel where{pop languagelevel}{1}ifelse 2 ge{1 dict dup/WaitTimeout 4 -1 roll put setuserparams}{statusdict/waittimeout 3 -1 roll put}ifelse 
+} stopped cleartomark
+[{
+statusdict /manualfeed false put
+} stopped cleartomark
+[{
+%%BeginFeature: *InputSlot AutoSelect Tray
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *PageSize US Letter
+letter
+%%EndFeature
+} stopped cleartomark
+1 setlinecap 1 setlinejoin 
+/mysetup [ 0.240 0 0 -0.240 19.000 784.000 ] | 
+%%EndSetup
+
+userdict begin /savelevel0 save def end
+%%Page: 1 1
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc pagesave restore
+Pscript_Win_Driver_Incr begin
+%%BeginResource: file Pscript_Win_Encoding 2.0 0
+/bullets{{/bullet}repeat}b/ANSIEncoding[/grave/acute/circumflex/tilde/macron
+/breve/dotaccent/dieresis/ring/cedilla/hungarumlaut/ogonek/caron/dotlessi 18
+bullets StandardEncoding 32 95 getinterval aload ! 3 bullets/quotesinglbase
+/florin/quotedblbase/ellipsis/dagger/daggerdbl/circumflex/perthousand/Scaron
+/guilsinglleft/OE 4 bullets/quoteleft/quoteright/quotedblleft/quotedblright
+/bullet/endash/emdash/tilde/trademark/scaron/guilsinglright/oe 2 bullets
+/Ydieresis/space/exclamdown/cent/sterling/currency/yen/brokenbar/section
+/dieresis/copyright/ordfeminine/guillemotleft/logicalnot/hyphen/registered
+/macron/degree/plusminus/twosuperior/threesuperior/acute/mu/paragraph
+/periodcentered/cedilla/onesuperior/ordmasculine/guillemotright/onequarter
+/onehalf/threequarters/questiondown/Agrave/Aacute/Acircumflex/Atilde/Adieresis
+/Aring/AE/Ccedilla/Egrave/Eacute/Ecircumflex/Edieresis/Igrave/Iacute
+/Icircumflex/Idieresis/Eth/Ntilde/Ograve/Oacute/Ocircumflex/Otilde/Odieresis
+/multiply/Oslash/Ugrave/Uacute/Ucircumflex/Udieresis/Yacute/Thorn/germandbls
+/agrave/aacute/acircumflex/atilde/adieresis/aring/ae/ccedilla/egrave/eacute
+/ecircumflex/edieresis/igrave/iacute/icircumflex/idieresis/eth/ntilde/ograve
+/oacute/ocircumflex/otilde/odieresis/divide/oslash/ugrave/uacute/ucircumflex
+/udieresis/yacute/thorn/ydieresis]| ANSIEncoding @ 39/quotesingle put 96/grave
+put/ANSIEncodingOld ANSIEncoding 256 array copy | ANSIEncodingOld @[138 153
+154 169 172 174 177 178 179 181 185 188 189 190 208 215 221 222 240 247 253
+254]{/bullet put @}forall 166/bar put 176/ring put
+%%EndResource
+
+%%BeginResource: file Pscript_Win_Text 2.0 0
+/TextInit{TextInitialised? not{/Pscript_Windows_Font & |/TextInitialised? T |
+/fM[1 0 0 -1 0 0]|/mFM matrix |/iMat[1 0 0.212557 neg 1 0 0]|}if}b/xUP null |
+/yUP null |/uW null |/xSP null |/ySP null |/sW null |/copyfont{1 ^ length add
+dict `{1 ^/FID ne{|}{! !}?}forall & E}b/rF{3 copyfont @ `/Encoding
+ANSIEncoding &/CharStrings known{CharStrings/Eth known not{! ANSIEncodingOld}
+if}if | E}b/mF{findfont ~{@/Encoding get @ StandardEncoding eq{! T}{{
+ISOLatin1Encoding}stopped{! F}{eq}?{T}{@ ` T 32 1 127{Encoding 1 ^ get
+StandardEncoding 3 -1 $ get eq and}for E}?}?}{F}?{rF}{3 copyfont}? `
+/OrigFontType ~ |/OrigFontName ~ | & E 2 ^ ~ definefont fM 5 4 -1 $ put fM 4 0
+put fM makefont Pscript_Windows_Font 3 1 $ put}b/xF{scalefont
+Pscript_Windows_Font 3 1 $ put}b/xMF{mFM astore makefont Pscript_Windows_Font
+3 1 $ put}b/xF2/scalefont , |/xMF2{mFM astore makefont}b/sLT{: Lw -M
+currentpoint snap M 0 - 0 Lc K ;}b/sSU{N/uW ~ |/yUP ~ |/xUP ~ |}b/sU{xUP yUP
+uW sLT}b/sST{N/sW ~ |/ySP ~ |/xSP ~ |}b/sT{xSP ySP sW sLT}b/sR{: + R 0 0 M}b
+/sRxy{: matrix astore concat 0 0 M}b/eR/; , |
+%%EndResource
+
+end reinitialize
+userdict begin /pagesave save def end mysetup concat colspRefresh 
+: 0 0 0 sco 1 Lc 1 Lj solid 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 149 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2003 149 M 
+-0.200 0 (NM \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 197 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 197 M 
+-0.200 0 (nm )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+763 194 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+838 197 M 
+-0.200 0 (get name list)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 288 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 288 M 
+-0.200 0 (nm [ name ])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 378 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 378 M 
+-0.200 0 (nm prints the symbol table from the output file of an)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 423 M 
+-0.200 0 (assembler or loader run. Only )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1439 423 M 
+-0.200 0 (relocatable, global, and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 468 M 
+-0.200 0 (undefined symbols-- not absolute-- are given. Each defined)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 513 M 
+-0.200 0 (symbol is preceded by its value; each undefined symbol by)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 558 M 
+-0.200 0 (blanks. Global symbols have their first character)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 603 M 
+-0.200 0 (underlined. The output is sorted alphabetically.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 693 M 
+-0.200 0 (If no file is given, the symbols in )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1589 693 M 
+-0.200 0 (a.out)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1714 693 M 
+-0.200 0 ( are listed.)A 
+; pagesave restore
+Pscript_Win_Driver_Incr begin
+%%BeginResource: file Pscript_Win_Graphics 2.0 0
+/SavedCTM null |/CTMsave{/SavedCTM SavedCTM currentmatrix |}b/CTMrestore{
+SavedCTM setmatrix}b/mp null |/ADO_mxRot null |/GDIHMatrix null |
+/GDIHPatternDict 22 dict | GDIHPatternDict `/PatternType 1 |/PaintType 2 |
+/Reps L2?{1}{5}? |/XStep 8 Reps mul |/YStep XStep |/BBox[0 0 XStep YStep]|
+/TilingType 1 |/PaintProc{` 1 Lw[]0 setdash PaintData , exec E}b/FGnd null |
+/BGnd null |/HS_Horizontal{horiz}b/HS_Vertical{vert}b/HS_FDiagonal{fdiag}b
+/HS_BDiagonal{biag}b/HS_Cross{horiz vert}b/HS_DiagCross{fdiag biag}b/MaxXYStep
+XStep YStep gt{XStep}{YStep}? |/horiz{Reps{0 4 M XStep 0 - 0 8 +}repeat 0 -8
+Reps mul + K}b/vert{Reps{4 0 M 0 YStep - 8 0 +}repeat 0 -8 Reps mul + K}b/biag
+{Reps{0 0 M MaxXYStep @ - 0 YStep neg M MaxXYStep @ - 0 8 +}repeat 0 -8 Reps
+mul + 0 YStep M 8 8 - K}b/fdiag{Reps{0 0 M MaxXYStep @ neg - 0 YStep M
+MaxXYStep @ neg - 0 8 +}repeat 0 -8 Reps mul + MaxXYStep @ M 8 -8 - K}b E
+/makehatch{GDIHPatternDict/PaintData 3 -1 $ put CTMsave GDIHMatrix setmatrix
+GDIHPatternDict matrix mp CTMrestore ~ U ~ 2 ^ put}b/h0{/h0/HS_Horizontal
+makehatch}b/h1{/h1/HS_Vertical makehatch}b/h2{/h2/HS_FDiagonal makehatch}b/h3{
+/h3/HS_BDiagonal makehatch}b/h4{/h4/HS_Cross makehatch}b/h5{/h5/HS_DiagCross
+makehatch}b/GDIBWPatternDict 17 dict @ `/PatternType 1 |/PaintType L2?{1}{2}?
+|/RepsV L2?{1}{6}? |/RepsH L2?{1}{5}? |/BBox[0 0 RepsH 1]|/TilingType 1 |
+/XStep 1 |/YStep 1 |/Height 8 RepsV mul |/Width 8 |/mx[Width 0 0 Height neg 0
+Height]|/FGnd null |/BGnd null |/SetBGndFGnd L2?{{BGnd null ne{BGnd aload !
+sgco BBox aload ! 2 ^ sub ~ 3 ^ sub ~ rf}if FGnd null ne{FGnd aload ! sgco}if}
+}{{}}? b/PaintProc{` SetBGndFGnd RepsH{Width Height F mx PaintData imagemask
+Width 0 +}repeat E}b E |/GDIBWPatternMx null |/pfprep{save 4 1 $
+/PatternOfTheDay 4 1 $ GDIBWPatternDict `/PaintData ~ |/BGnd ~ |/FGnd ~ | E
+CTMsave GDIBWPatternMx setmatrix GDIBWPatternDict matrix mp CTMrestore ~ !}b
+/hrf null |/prf{pfprep ~ 6 1 $ 5 hrf restore}b/GraphInit{GDIHMatrix null eq{
+/SavedCTM matrix | : ADO_mxRot concat 0 0 snap + : 0.48 @ GDIHPatternDict `
+YStep mul ~ XStep mul ~ dsnap YStep V ~ XStep V ~ E +S/GDIHMatrix matrix
+currentmatrix readonly | ; : 0.24 -0.24 +S GDIBWPatternDict ` Width Height E
+dsnap +S/GDIBWPatternMx matrix currentmatrix readonly | ; ;}if}b/cirp{360 0 An
+C}b/ellp{CTMsave + +S 0.5 0 M 0 0 0.5 360 0 An C CTMrestore}b/rrp{/rad ~ |/y2
+~ |/x2 ~ |/y1 ~ |/x1 ~ | x2 x1 add 2 V y1 M x1 y1 x1 y2 rad arct x1 y2 x2 y2
+rad arct x2 y2 x2 y1 rad arct x2 y1 x1 y1 rad arct C}b/RRp{CTMsave + +S/dyS ~
+|/dxS ~ | dxS 2 V 0 M 0 0 0 dyS 0.5 arct 0 dyS dxS dyS 0.5 arct dxS dyS dxS 0
+0.5 arct dxS 0 0 0 0.5 arct C CTMrestore}b
+%%EndResource
+
+%%BeginResource: file Pscript_Win_Graphics_L1 2.0 0
+L2? not g{/arct{arcto ! ! ! !}b/GDIpattfill{@ ` BGnd null ne PaintType 2 eq
+and{: BGnd aload ! sgco fEOFill{O}{L}? ; FGnd aload ! U/fGray 2 ^ put{2}{4}?
+-1 $}if E @ patterncalc : 4 ^/PaintType get 2 eq{fGray{6 -1 $ sg}{8 -3 $ sco}?
+}if fEOFill{eoclip}{clip}? N patternfill ; N}b/hrf{/fGray 1 ^ 6 eq | -4 $ N rp
+C/fEOFill F | GDIpattfill}b/hfMain{/fEOFill ~ |/fGray ~ | GDIpattfill}b/hf{T
+hfMain}b/hfW{F hfMain}b/hs{currentpoint strokepath M hfW}b/pfMain{/fEOFill ~ |
+pfprep GDIpattfill restore N}b/pf{T pfMain}b/pfW{F pfMain}b/ps{currentpoint
+strokepath M pfW}b/mpstr 1 string |/mp{~ @ length 12 add dict copy `
+/PatternCTM matrix currentmatrix |/PatternMatrix ~ |/PatWidth XStep mpstr
+length mul |/PatHeight YStep |/FontType 3 |/Encoding 256 array | 3 string 0 1
+255{Encoding ~ @ 3 ^ cvs cvn put}for !/FontMatrix matrix |/FontBBox BBox |
+/BuildChar{! @ ` XStep 0 FontBBox aload ! setcachedevice/PaintProc , E : exec
+;}b & E ~ @ 3 -1 $ definefont}b/patterncalc{` : PatternCTM setmatrix
+PatternMatrix concat BBox aload ! ! ! + pathbbox ; PatHeight V ceiling 4 1 $
+PatWidth V ceiling 4 1 $ PatHeight V floor 4 1 $ PatWidth V floor 4 1 $ 2 ^
+sub cvi abs ~ 3 ^ sub cvi abs ~ 4 2 $ PatHeight mul ~ PatWidth mul ~ E}b
+/patternfill{5 -1 $ @ ` Ji PatternCTM setmatrix PatternMatrix concat 0 2 ^ 2 ^
+M 0 1 mpstr length 1 sub{1 ^ mpstr 3 1 $ put}for ! 2 ^{currentpoint 5 ^{mpstr
+S}repeat YStep add M}repeat ! ! ! ! E}b}e
+%%EndResource
+
+%%BeginResource: file Pscript_Win_Graphics_L2 2.0 0
+L2? g{/mp/makepattern , |/hrf{6 eq setAorABC setpattern rectfill}b/hf{
+setAorABC setpattern O}b/hfW{setAorABC setpattern L}b/hs{setAorABC setpattern
+K}b/pf{pfprep setpattern O restore N}b/pfW{pfprep setpattern L restore N}b/ps{
+pfprep setpattern K restore N}b}e
+%%EndResource
+
+end reinitialize
+userdict begin /pagesave save def end mysetup concat colspRefresh 
+
+1589 736 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+209 738 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 738 M 
+-0.200 0 (a.out)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 828 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 828 M 
+-0.200 0 (as, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 828 M 
+-0.200 0 (ld)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 918 M 
+-0.200 0 (DIAGNOSTICS`)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+659 918 M 
+-0.200 0 ("?")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1008 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1053 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1053 M 
+-0.200 0 (dmr, ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 1 ]%%)  =
+%%PageTrailer
+
+%%Page: 2 2
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+357 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2002 194 M 
+-0.200 0 (OD \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 332 M 
+-0.200 0 (od )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+763 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+838 332 M 
+-0.200 0 (octal dump)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 423 M 
+-0.200 0 (od)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+738 423 M 
+-0.200 0 ( name [ origin ])A 
+; 
+688 466 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (od)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 513 M 
+-0.200 0 ( dumps a file in octal, eight words per line with the)A 
+; 
+691 556 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (origin of the line on the left. If an octal origin is given)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 603 M 
+-0.200 0 (it is truncated to 0 mod 16 and dumping starts from there,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 648 M 
+-0.200 0 (otherwise from 0. Printing continues until halted by)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 693 M 
+-0.200 0 (sending an interrupt signal.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 783 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 873 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 873 M 
+-0.200 0 (db)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 963 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1053 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1053 M 
+-0.200 0 (Dumping does not cease at the end of the file; instead the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1098 M 
+-0.200 0 (file appears to be padded with garbage to a length of 511)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1143 M 
+-0.200 0 (mod 512 bytes.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1233 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1233 M 
+-0.200 0 (ken, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 1233 M 
+-0.200 0 (dxnr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 2 ]%%)  =
+%%PageTrailer
+
+%%Page: 3 3
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+357 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2003 194 M 
+-0.200 0 (PR \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 332 M 
+-0.200 0 (pr )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+766 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+841 332 M 
+-0.200 0 (print file)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 423 M 
+-0.200 0 (pr [ \2271cm ] name1 ...)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (produces a printed listing of one or more files. The output)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (is separated into pages headed by the name of the file, a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 603 M 
+-0.200 0 (date, and the page number.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 693 M 
+-0.200 0 (The optional flag \227)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1164 693 M 
+-0.200 0 (l)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1189 693 M 
+-0.200 0 ( causes each page to contain 78 lines)A 
+; 
+1164 736 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 738 M 
+-0.200 0 (instead of the standard 66 to accommodate legal size paper.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 828 M 
+-0.200 0 (The optional flags \227)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1189 828 M 
+-0.200 0 (c)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1214 828 M 
+-0.200 0 ( \(current date\) and \227)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1739 828 M 
+-0.200 0 (m)A 
+; 
+1189 871 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1764 828 M 
+-0.200 0 ( \(modified date\))A 
+; 
+1739 871 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 873 M 
+-0.200 0 (specify which date will head all subsequent files. \227m is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 918 M 
+-0.200 0 (default.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1008 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1008 M 
+-0.200 0 (/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+715 1008 M 
+-0.200 0 (dev/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+815 1008 M 
+-0.200 0 (ttyn to suspend messages.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1098 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1098 M 
+-0.200 0 (cat, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+815 1098 M 
+-0.200 0 (cp, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+915 1098 M 
+-0.200 0 (mesg)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1191 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1188 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+765 1191 M 
+-0.200 0 (\(files not found are ignored\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1282 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1282 M 
+-0.200 0 (none)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1372 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1372 M 
+-0.200 0 (ken, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+815 1372 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 3 ]%%)  =
+%%PageTrailer
+
+%%Page: 4 4
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+357 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1978 194 M 
+-0.200 0 (REW \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 332 M 
+-0.200 0 (rew )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+793 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+868 332 M 
+-0.200 0 (rewind tape)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 423 M 
+-0.200 0 (rew)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+768 423 M 
+-0.200 0 ( [ digit ])A 
+; 
+693 466 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (rew)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+766 513 M 
+-0.200 0 ( rewinds )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+991 513 M 
+-0.200 0 (DECtape drives. The digit is the)A 
+; 
+691 556 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (lo)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 558 M 
+-0.200 0 (gical tape number, and should range from 0 to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 603 M 
+-0.200 0 (7.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+805 603 M 
+-0.200 0 (A missing digit indicates drive 0.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 693 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 693 M 
+-0.200 0 (/dev/tap0, ..., /dev/tap7)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 783 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 873 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 873 M 
+-0.200 0 ("?" if there is no tape mounted on the indicated drive or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 918 M 
+-0.200 0 (if the file cannot be opened.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1008 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1098 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1098 M 
+-0.200 0 (ken, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+815 1098 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 4 ]%%)  =
+%%PageTrailer
+
+%%Page: 5 5
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1978 194 M 
+-0.200 0 (RKD \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 377 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 377 M 
+-0.200 0 (rkd )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 374 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+865 377 M 
+-0.200 0 (dump RK disk to tape)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 468 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 468 M 
+-0.200 0 (/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+715 468 M 
+-0.200 0 (etc/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+815 468 M 
+-0.200 0 (rkd)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 558 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 558 M 
+-0.200 0 (rkd)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+763 558 M 
+-0.200 0 ( copies an RK03/RK05 disk pack onto nine )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1788 558 M 
+-0.200 0 (DECtapes.)A 
+; 
+688 601 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 648 M 
+-0.200 0 (Physical I/O is done and interrupts are disabled, so time\227)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 693 M 
+-0.200 0 (sharing is suspended during operation of the command.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 783 M 
+-0.200 0 (The sequence of tape drives is: 0, 1, 0, 1, ....)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 873 M 
+-0.200 0 (rkd)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+764 873 M 
+-0.200 0 ( exits if 0 appears in the console switches.)A 
+; 
+689 916 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 963 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 963 M 
+-0.200 0 (--)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1053 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1053 M 
+-0.200 0 (rkl)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1143 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 1143 M 
+-0.200 0 (none; errors are retried forever)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1233 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1323 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+659 1323 M 
+-0.200 0 (ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 5 ]%%)  =
+%%PageTrailer
+
+%%Page: 6 6
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+357 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1978 194 M 
+-0.200 0 (RKF \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 377 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 377 M 
+-0.200 0 (rkf )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 374 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+865 377 M 
+-0.200 0 (format RKO3 disk pack)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 468 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 468 M 
+-0.200 0 (rkf)A 
+; 
+690 511 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 558 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 558 M 
+-0.200 0 (rkf formats a virgin disk pack. Because it destroys all)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 603 M 
+-0.200 0 (information on that pack, and because it is not interlocked)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 648 M 
+-0.200 0 (against file system activity on the pack, the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1839 648 M 
+-0.200 0 (rkf)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1914 648 M 
+-0.200 0 ( program)A 
+; 
+1839 691 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 693 M 
+-0.200 0 (is not maintained in executable form. Instead the source)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 738 M 
+-0.200 0 (must be located and assembled.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 828 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 828 M 
+-0.200 0 (none \(uses physical I/O on drive 0\).)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 918 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1008 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1008 M 
+-0.200 0 (\223error\224 is printed and a core image is produced if a write)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1053 M 
+-0.200 0 (error occurs. A copy of the RK status register is in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1098 M 
+-0.200 0 (register 5.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1188 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1188 M 
+-0.200 0 (As mentioned, is not interlocked against system I/O; if I/O)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1233 M 
+-0.200 0 (is already occurring, it will be badly disrupted. In any)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1278 M 
+-0.200 0 (event, all information on the pack is destroyed.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1368 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1368 M 
+-0.200 0 (ken, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1368 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 6 ]%%)  =
+%%PageTrailer
+
+%%Page: 7 7
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1978 194 M 
+-0.200 0 (RKL \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 332 M 
+-0.200 0 (rkl )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+790 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+865 332 M 
+-0.200 0 (reload RK disk from tape)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 423 M 
+-0.200 0 (/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+715 423 M 
+-0.200 0 (etc/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+815 423 M 
+-0.200 0 (rkl)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 513 M 
+-0.200 0 (rkl)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+763 513 M 
+-0.200 0 ( loads an RK03/RK05 disk pack from nine )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1763 513 M 
+-0.200 0 (DECtapes.)A 
+; 
+688 556 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 603 M 
+-0.200 0 (The program uses physical I/O with interrupts disabled;)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 648 M 
+-0.200 0 (therefore time\227sharing is suspended.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 738 M 
+-0.200 0 (Only the super\227user may invoke this command.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 828 M 
+-0.200 0 (The sequence of drives is: 0, 1, 0, 1, .... )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1789 828 M 
+-0.200 0 (rkl)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1864 828 M 
+-0.200 0 ( will cease)A 
+; 
+1789 871 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 873 M 
+-0.200 0 (if 0 appears in the console switches.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 963 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1053 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1053 M 
+-0.200 0 (rkd)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1143 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1143 M 
+-0.200 0 (none; errors are retried forever)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1236 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1233 M 
+-0.200 0 (--)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1331 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1331 M 
+-0.200 0 (ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 7 ]%%)  =
+%%PageTrailer
+
+%%Page: 8 8
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2003 194 M 
+-0.200 0 (RM \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 332 M 
+-0.200 0 (rm )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+768 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+843 332 M 
+-0.200 0 (remove \(unlink\) files)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS\222)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 423 M 
+-0.200 0 (rm)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+743 423 M 
+-0.200 0 ( name1 ...)A 
+; 
+693 466 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (rm)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 513 M 
+-0.200 0 ( removes the entries for one or more files from a)A 
+; 
+691 556 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (directory. If an entry was the last link to the file, the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 603 M 
+-0.200 0 (file is destroyed. Removal of a file requires write)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 648 M 
+-0.200 0 (permission in its directory, but neither read nor write)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 693 M 
+-0.200 0 (permission on the file itself.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 783 M 
+-0.200 0 (Directories cannot be removed by )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1516 783 M 
+-0.200 0 (rm; cf. )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1716 783 M 
+-0.200 0 (rmdir)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1841 783 M 
+-0.200 0 (.)A 
+; 
+1716 826 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 873 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 873 M 
+-0.200 0 (none.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1008 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1008 M 
+-0.200 0 (rmdir, for removing directories.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1098 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1098 M 
+-0.200 0 (If the file cannot be removed or does not exist, the name)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1143 M 
+-0.200 0 (of the file followed by a question mark is typed.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1233 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1233 M 
+-0.200 0 (rm probably should ask whether a read\227only file is really)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1278 M 
+-0.200 0 (to be removed.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1368 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1368 M 
+-0.200 0 (ken, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1368 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 8 ]%%)  =
+%%PageTrailer
+
+%%Page: 9 9
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1928 194 M 
+-0.200 0 (RMDIR \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 332 M 
+-0.200 0 (rmdir )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+843 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+918 332 M 
+-0.200 0 (remove directory)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 423 M 
+-0.200 0 (rmdir dir1 ...)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (rmdir removes \(deletes\) directories. The directory must)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 558 M 
+-0.200 0 (empty \(except for the standard entries "." and "..",)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 603 M 
+-0.200 0 (which )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1009 603 M 
+-0.200 0 (rmdir itself removes\). Write permission is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 648 M 
+-0.200 0 (required in the directory in which the directory)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 693 M 
+-0.200 0 (appears.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 783 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 783 M 
+-0.200 0 (none)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 873 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 963 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 963 M 
+-0.200 0 (\223)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+716 963 M 
+-0.200 0 (dir?\224 is printed if directory )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1466 963 M 
+-0.200 0 (dir)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1541 963 M 
+-0.200 0 ( cannot be found, is not)A 
+; 
+1466 1006 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1008 M 
+-0.200 0 (a directory, or is not removable.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1098 M 
+-0.200 0 (\223)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+714 1098 M 
+-0.200 0 (dir -- directory not empty" is printed if )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1764 1098 M 
+-0.200 0 (dir)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1839 1098 M 
+-0.200 0 ( has entries)A 
+; 
+1764 1141 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1143 M 
+-0.200 0 (other than "." or "..".)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1233 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1278 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1278 M 
+-0.200 0 (ken)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+762 1278 M 
+-0.200 0 (, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 1278 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 9 ]%%)  =
+%%PageTrailer
+
+%%Page: 10 10
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+357 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1953 194 M 
+-0.200 0 (ROFF \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 332 M 
+-0.200 0 (roff )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+815 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+890 332 M 
+-0.200 0 (format text)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 423 M 
+-0.200 0 (roff [ +number ] [ \227number ] name1 ...)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 513 M 
+-0.200 0 (roff formats text according to control lines embedded in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 558 M 
+-0.200 0 (the text. The optional argument \223+number\224 causes printing)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 603 M 
+-0.200 0 (to begin at the first)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1222 600 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1247 603 M 
+-0.200 0 (page with the appropriate number; \227)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 648 M 
+-0.200 0 (number causes printing to cease at the first page with a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 693 M 
+-0.200 0 (higher number.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 783 M 
+-0.200 0 (roff)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+789 783 M 
+-0.200 0 ( is fully described in a separate publication)A 
+; 
+689 826 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 828 M 
+-0.200 0 ([reference].)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 918 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 918 M 
+-0.200 0 (/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+713 918 M 
+-0.200 0 (etc/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 918 M 
+-0.200 0 (suftab)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+963 918 M 
+-0.200 0 ( contains a list of suffixes used to guide)A 
+; 
+713 961 N M 250 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 963 M 
+-0.200 0 (hyphenation. /)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1039 963 M 
+-0.200 0 (tmp/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1139 963 M 
+-0.200 0 (rtma, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1289 963 M 
+-0.200 0 (rtmb, ... temporary /)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1814 963 M 
+-0.200 0 (dev/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1914 963 M 
+-0.200 0 (ttyn to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1008 M 
+-0.200 0 (suspend messages.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1098 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1098 M 
+-0.200 0 ([reference], )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1016 1098 M 
+-0.200 0 (mesg)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1191 M 
+-0.200 0 (DIAGNOSTICS:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+659 1191 M 
+-0.200 0 (none )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+784 1188 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1191 M 
+-0.200 0 (files not found are ignored)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1282 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1282 M 
+-0.200 0 (roff does not check for various kinds of buffer overflow.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1327 M 
+-0.200 0 (If a fault occurs, check the input in the region where the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1372 M 
+-0.200 0 (error occurred.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1462 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1462 M 
+-0.200 0 (jfo, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1462 M 
+-0.200 0 (dmr, ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 10 ]%%)  =
+%%PageTrailer
+
+%%Page: 11 11
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1928 194 M 
+-0.200 0 (SDATE \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 332 M 
+-0.200 0 (sdate )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+843 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+918 332 M 
+-0.200 0 (set date and time)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 423 M 
+-0.200 0 (sdate )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+840 423 M 
+-0.200 0 (mmddhhmm)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (sdate adjusts the system\222s idea of the date and time. )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2041 513 M 
+-0.200 0 (mm)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2091 513 M 
+-0.200 0 ( is)A 
+; 
+2041 556 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (the month number; )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1141 558 M 
+-0.200 0 (dd)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1191 558 M 
+-0.200 0 ( is the day number in the month; )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2016 558 M 
+-0.200 0 (hh is)A 
+; 
+1141 601 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 603 M 
+-0.200 0 (the hour number \(24\227hour system\); )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1541 603 M 
+-0.200 0 (mm)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1591 603 M 
+-0.200 0 ( is the minute number.)A 
+; 
+1541 646 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 648 M 
+-0.200 0 (For example,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1020 738 M 
+-0.200 0 (sdate 10080045)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 828 M 
+-0.200 0 (sets the date to Oct. 8, 12:45 AM.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 918 M 
+-0.200 0 (FILES none)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1008 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1008 M 
+-0.200 0 (date)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1098 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1098 M 
+-0.200 0 ("?" if the date is syntactically incorrect.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1188 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+707 1188 M 
+-0.200 0 (none)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1278 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1278 M 
+-0.200 0 (ken, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 1278 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 11 ]%%)  =
+%%PageTrailer
+
+%%Page: 12 12
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+357 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2002 194 M 
+-0.200 0 (SH \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 332 M 
+-0.200 0 (sh)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+808 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+883 332 M 
+-0.200 0 (shell \(command interpreter\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 423 M 
+-0.200 0 (sh [ name [ arg1 ... [ arg9 ] ] ])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (sh)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 513 M 
+-0.200 0 ( is the standard command interpreter. It is the program)A 
+; 
+691 556 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (which reads and arranges the execution of the command lines)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 603 M 
+-0.200 0 (typed by most users. It may itself be called as a command)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 648 M 
+-0.200 0 (to interpret files of command lines. Before discussing the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 693 M 
+-0.200 0 (arguments to the shell used as a command, the structure of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 738 M 
+-0.200 0 (command lines themselves will be given.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 828 M 
+-0.200 0 (Command lines are sequences of commands separated by)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 873 M 
+-0.200 0 (command delimiters. Each command is a sequence of non\227blank)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 918 M 
+-0.200 0 (command arguments separated by blanks. The first argument)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 963 M 
+-0.200 0 (specifies the name of a command to be executed. Except for)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1008 M 
+-0.200 0 (certain types of special arguments discussed below, the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1053 M 
+-0.200 0 (arguments other than the command name are simply passed to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1098 M 
+-0.200 0 (the invoked command.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1188 M 
+-0.200 0 (If the first argument represents the path name of an)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1233 M 
+-0.200 0 (executable file, it is invoked; otherwise the string)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1278 M 
+-0.200 0 (\223/bin/\224 is )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+964 1278 M 
+-0.200 0 (prepended to the argument. \(In this way the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1323 M 
+-0.200 0 (standard commands, which reside in "/bin," are found.\) If)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1368 M 
+-0.200 0 (this search too fails a diagnostic is printed.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1458 M 
+-0.200 0 (The remaining non\227special arguments are simply passed to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1503 M 
+-0.200 0 (the command without further interpretation by the shell.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1593 M 
+-0.200 0 (There are three command delimiters: the new line, ";" , and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1638 M 
+-0.200 0 ("&". The semicolon ";" specifies sequential execution of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1683 M 
+-0.200 0 (the commands so separated; that is,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+922 1773 M 
+-0.200 0 (coma; comb)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1863 M 
+-0.200 0 (causes the execution first of command coma, then of comb.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1908 M 
+-0.200 0 (The ampersand \223&\223 causes simultaneous execution:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+922 1998 M 
+-0.200 0 (coma & comb)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2088 M 
+-0.200 0 (causes coma to be called, followed immediately by comb)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2133 M 
+-0.200 0 (without waiting for coma to finish. Thus coma and comb)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2178 M 
+-0.200 0 (execute simultaneously. As a special case,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+922 2268 M 
+-0.200 0 (coma &)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2358 M 
+-0.200 0 (causes coma to be executed and the shell immediately to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2403 M 
+-0.200 0 (request another command without waiting for coma.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 12 ]%%)  =
+%%PageTrailer
+
+%%Page: 13 13
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2003 194 M 
+-0.200 0 (SH \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 284 M 
+-0.200 0 (Two characters cause the immediately following string to be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 329 M 
+-0.200 0 (interpreted as a special argument to the shell itself, not)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 374 M 
+-0.200 0 (passed to the command. An argument of the form <)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1897 374 M 
+-0.200 0 (arg causes)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 419 M 
+-0.200 0 (the file )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+922 419 M 
+-0.200 0 (arg)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+997 419 M 
+-0.200 0 ( to be used as the standard input file of the)A 
+; 
+922 462 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 464 M 
+-0.200 0 (given command; an argument of the form \223>)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1722 464 M 
+-0.200 0 (arg\224 causes file)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 509 M 
+-0.200 0 (\223)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+722 509 M 
+-0.200 0 (arg\224 to be used as the standard output file for the given)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 554 M 
+-0.200 0 (command.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 644 M 
+-0.200 0 (If any argument contains either of the characters "?" or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 689 M 
+-0.200 0 ("*" )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+797 692 M 
+-0.200 0 (, it is treated specially as follows. The current)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 738 M 
+-0.200 0 (directory is searched for files which match the given)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 783 M 
+-0.200 0 (argument. The character "*" in an argument matches any)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 828 M 
+-0.200 0 (string of characters in a file name \(including the null)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 873 M 
+-0.200 0 (string\); ? matches any single character in a file name.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 918 M 
+-0.200 0 (Other argument characters match only the same character in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 963 M 
+-0.200 0 (the file name. For example, "*" matches all file names; "?")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1008 M 
+-0.200 0 (matches all one\227character file names; ")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1672 1008 M 
+-0.200 0 (ab*.s" matches all)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1053 M 
+-0.200 0 (file names beginning with ")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1372 1053 M 
+-0.200 0 (ab" and ending with ".s".)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1143 M 
+-0.200 0 (If the argument with "*" or "?" also contains a "/", a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1188 M 
+-0.200 0 (slightly different procedure is used: instead of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1233 M 
+-0.200 0 (current directory, the directory used is the one obtained)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1278 M 
+-0.200 0 (by taking the argument up to the last "/" before a \223*\223 or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1323 M 
+-0.200 0 ("?". The matching process matches the remainder of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1368 M 
+-0.200 0 (argument after this "/" against the files in the derived)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1413 M 
+-0.200 0 (directory. For example:, \223/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1372 1413 M 
+-0.200 0 (usr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1472 1413 M 
+-0.200 0 (dmr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1572 1413 M 
+-0.200 0 (a*.s\224 matches all files)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1458 M 
+-0.200 0 (in directory /)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1047 1458 M 
+-0.200 0 (usr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1147 1458 M 
+-0.200 0 (dmr which begin with "a\224 and end with)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1503 M 
+-0.200 0 (".s")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1593 M 
+-0.200 0 (In any event, a list of names is obtained which match the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1638 M 
+-0.200 0 (argument. This list is sorted into alphabetical order, and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1683 M 
+-0.200 0 (the resulting sequence of arguments replaces the single)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1728 M 
+-0.200 0 (argument containing the "*" or "?". The same process is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1773 M 
+-0.200 0 (carried out for each argument with a * or ?\223 \(the resulting)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1818 M 
+-0.200 0 (lists are )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+947 1818 M 
+-0.200 0 (not)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1022 1818 M 
+-0.200 0 ( merged\) and finally the command is called)A 
+; 
+947 1861 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1863 M 
+-0.200 0 (with the resulting list of arguments..)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 1962 M 
+-0.200 0 (For example: directory /)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1297 1962 M 
+-0.200 0 (usr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1397 1962 M 
+-0.200 0 (dmr contains the files al )A 
+; : 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Symbol
+(F2) cvn
+1.000 
+ (Symbol) cvn /Type1 
+F 
+(Symbol) cvn
+mF 
+(F2_42) cvn
+F2
+42 
+xF 
+F2_42
+Ji 
+2047 1953 M 
+-0.320 0 (\267)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2066 1962 M 
+-0.200 0 ( s,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2007 M 
+-0.200 0 (a2.s, ..., a9.s. From any directory, the command)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2097 M 
+-0.200 0 (as /)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+797 2097 M 
+-0.200 0 (usr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+897 2097 M 
+-0.200 0 (dmr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+997 2097 M 
+-0.200 0 (a?.s)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2187 M 
+-0.200 0 (calls )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+847 2187 M 
+-0.200 0 (as)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+897 2187 M 
+-0.200 0 ( with arguments /)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1322 2187 M 
+-0.200 0 (usr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1422 2187 M 
+-0.200 0 (dmr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1522 2187 M 
+-0.200 0 (al.s, /usr/dmr/a2.s, ...)A 
+; 
+847 2230 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2232 M 
+-0.200 0 (/usr/dmr/a9.s in that order.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2322 M 
+-0.200 0 (The character \223\\\223 causes the immediately following)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2367 M 
+-0.200 0 (character to lose any special meaning it may have to the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2412 M 
+-0.200 0 (shell; in this way < , , and other characters meaningful to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2457 M 
+-0.200 0 (the shell may be passed as part of arguments. A special)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2502 M 
+-0.200 0 (case of)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 13 ]%%)  =
+%%PageTrailer
+
+%%Page: 14 14
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2003 194 M 
+-0.200 0 (SH \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 329 M 
+-0.200 0 (this feature allows the continuation of commands onto more)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 377 M 
+-0.200 0 (than one line: a new\227line preceded by )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1639 374 M 
+-0.200 0 (\223\\\223 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1739 377 M 
+-0.200 0 (is translated)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 423 M 
+-0.200 0 (into a blank.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 517 M 
+-0.200 0 (Sequences of characters enclosed in double \("\) or single)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 562 M 
+-0.200 0 (\('\) quotes are also taken literally.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 652 M 
+-0.200 0 (When the shell is invoked as a command, it has additional)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 697 M 
+-0.200 0 (string processing capabilities. Recall that the form in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 742 M 
+-0.200 0 (which the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+939 742 M 
+-0.200 0 (whell is invoked is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 832 M 
+-0.200 0 (sh [ name [ arg1 )A 
+; : 0 0 2391 3229 rc 0 0 0 sco (F0_27) cvn
+F0
+27 
+xF 
+F0_27
+Ji 
+1288 848 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1304 832 M 
+-0.200 0 (... [ arg9 ] ] ])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 922 M 
+-0.200 0 (The name is the name of a file which will be read and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 967 M 
+-0.200 0 (interpreted. If not given, this )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1489 967 M 
+-0.200 0 (subinstance of the shell)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1012 M 
+-0.200 0 (will continue to read the standard input file.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1102 M 
+-0.200 0 (In the file, character sequences of the form)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1789 1099 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1814 1102 M 
+-0.200 0 ("$n",)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1939 1099 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1964 1102 M 
+-0.200 0 (where )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2114 1102 M 
+-0.200 0 (n)A 
+; 
+2114 1145 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1147 M 
+-0.200 0 (is a digit 0, ..., 9, are replaced by the nth argument to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1192 M 
+-0.200 0 (the invocation of the shell \()A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1414 1192 M 
+-0.200 0 (arg \). $0\224 is replaced by)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1237 M 
+-0.200 0 (name)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+789 1237 M 
+-0.200 0 (.)A 
+; 
+689 1280 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1327 M 
+-0.200 0 (An end\227of\227file in the shell's input causes it to exit. A)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1372 M 
+-0.200 0 (side effect of this fact means that the way to log out from)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1417 M 
+-0.200 0 (UNIX is to type an end of file.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1507 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1507 M 
+-0.200 0 (/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+716 1507 M 
+-0.200 0 (etc/glob)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1597 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1597 M 
+-0.200 0 ([reference], which gives the theory of operation of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1642 M 
+-0.200 0 (shell.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1732 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1732 M 
+-0.200 0 (\223?", in case of any difficulty. The most common problem is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1777 M 
+-0.200 0 (inability to find the given command. Others: input file)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1822 M 
+-0.200 0 (\(\223<\223\) cannot be found; no more processes can be created)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1867 M 
+-0.200 0 (\(this will alleviate itself with the passage of time\). Note)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1912 M 
+-0.200 0 (that no diagnostic is given for inability to create an)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1957 M 
+-0.200 0 (output \(">"\) file; the standard output file has already)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2002 M 
+-0.200 0 (been closed when the condition is discovered and there is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2047 M 
+-0.200 0 (no place to write the diagnostic.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2137 M 
+-0.200 0 (If a "*" or \223?\223 is used, the "glob" routine is invoked; it)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2182 M 
+-0.200 0 (types "No command" if it cannot find the given command, and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2227 M 
+-0.200 0 (\223No match\224 if there were no files which matched an argument)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2272 M 
+-0.200 0 (with "?" or "*".)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2362 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 2362 M 
+-0.200 0 (Better diagnostics should be provided. If a )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1793 2362 M 
+-0.200 0 ("*" or \223?\223 is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2407 M 
+-0.200 0 (used, the command must be in /)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1447 2407 M 
+-0.200 0 (bin)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1522 2407 M 
+-0.200 0 ( \(Not, for example, in the)A 
+; 
+1447 2450 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 2452 M 
+-0.200 0 (user\222s directory.\) This is actually a )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1647 2452 M 
+-0.200 0 (glob)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1747 2452 M 
+-0.200 0 ( bug.)A 
+; 
+1647 2495 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2542 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 2542 M 
+-0.200 0 (dmr, ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 14 ]%%)  =
+%%PageTrailer
+
+%%Page: 15 15
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1953 194 M 
+-0.200 0 (STAT \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 332 M 
+-0.200 0 (stat )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+818 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+893 332 M 
+-0.200 0 (get file status)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 423 M 
+-0.200 0 (stat name1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (stat gives several kinds of information about one or more)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (files:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 648 M 
+-0.200 0 (i\227number)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 693 M 
+-0.200 0 (access mode)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 738 M 
+-0.200 0 (number of links)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 783 M 
+-0.200 0 (owner)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 828 M 
+-0.200 0 (size in bytes)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 873 M 
+-0.200 0 (date and time of last modification)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 918 M 
+-0.200 0 (name \(useful when several files are named\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1008 M 
+-0.200 0 (All information is self\227explanatory except the mode. The)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1053 M 
+-0.200 0 (mode is a six\227character string whose characters mean the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1098 M 
+-0.200 0 (following:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 1191 M 
+-0.200 0 (1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1191 M 
+-0.200 0 (s)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+888 1188 M 
+-0.200 0 (: )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+938 1191 M 
+-0.200 0 (file is small \(smaller than 4096 bytes\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1237 M 
+-0.200 0 (l: file is large)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+787 1327 M 
+-0.200 0 (2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1327 M 
+-0.200 0 (d: file is a directory)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1372 M 
+-0.200 0 (x: file is executable)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1417 M 
+-0.200 0 (u: set user ID on execution)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+848 1462 M 
+-0.200 0 (\227: none of the above)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 1552 M 
+-0.200 0 (3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1552 M 
+-0.200 0 (r: owner can read)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+848 1597 M 
+-0.200 0 (\227: owner cannot read)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+782 1687 M 
+-0.200 0 (4 w: owner can write)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+848 1732 M 
+-0.200 0 (\227: owner cannot write)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+787 1822 M 
+-0.200 0 (5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1822 M 
+-0.200 0 (r: non\227owner can read)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+849 1867 M 
+-0.200 0 (\227: non\227owner cannot read)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+787 1957 M 
+-0.200 0 (6)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1957 M 
+-0.200 0 (w: non\227owner can write)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+849 2002 M 
+-0.200 0 (\227: non\227owner cannot write)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2092 M 
+-0.200 0 (The owner is almost always given in symbolic form; however)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2137 M 
+-0.200 0 (if he cannot be found in "/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1366 2137 M 
+-0.200 0 (etc/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1466 2137 M 
+-0.200 0 (uids" a number is given.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2227 M 
+-0.200 0 (If the number of arguments to )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1441 2227 M 
+-0.200 0 (stat is not exactly 1 a)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2272 M 
+-0.200 0 (header is generated identifying the fields of the status)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2317 M 
+-0.200 0 (information.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2407 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 2407 M 
+-0.200 0 (/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+718 2407 M 
+-0.200 0 (etc/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+818 2407 M 
+-0.200 0 (uids)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2497 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2497 M 
+-0.200 0 (ls)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 2497 M 
+-0.200 0 ( with the \2271 option gives the same information as )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1991 2497 M 
+-0.200 0 (stat.)A 
+; 
+691 2540 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2587 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 2587 M 
+-0.200 0 ("name?" for any error.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2677 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+693 2677 M 
+-0.200 0 (none)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 15 ]%%)  =
+%%PageTrailer
+
+%%Page: 16 16
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+357 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1928 194 M 
+-0.200 0 (STRIP \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 332 M 
+-0.200 0 (strip )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+841 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+916 332 M 
+-0.200 0 (remove symbols and relocation bits)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 423 M 
+-0.200 0 (strip)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 423 M 
+-0.200 0 ( name1)A 
+; 
+688 466 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (strip)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 513 M 
+-0.200 0 ( removes the symbol table and relocation bits)A 
+; 
+691 556 N M 125 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (ordinarily attached to the output of the assembler and)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 603 M 
+-0.200 0 (loader. This is useful to save space after a program has)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 648 M 
+-0.200 0 (been debugged.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 738 M 
+-0.200 0 (The effect of strip is the same as use of the \227)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1866 738 M 
+-0.200 0 (s)A 
+; 
+1866 781 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 783 M 
+-0.200 0 (option of )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+938 783 M 
+-0.200 0 (ld.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 873 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 873 M 
+-0.200 0 (/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+713 873 M 
+-0.200 0 (tmp/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 873 M 
+-0.200 0 (stma, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+963 873 M 
+-0.200 0 (stmb ... temporary file)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 963 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+659 963 M 
+-0.200 0 (ld, as)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1053 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1053 M 
+-0.200 0 (Diagnostics are given for: non\227existent argument; inability)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1098 M 
+-0.200 0 (to create temporary file; improper format \(not an object)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1143 M 
+-0.200 0 (file\); inability to re\227read temporary file.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1233 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1323 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1323 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 16 ]%%)  =
+%%PageTrailer
+
+%%Page: 17 17
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2003 194 M 
+-0.200 0 (SU \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 332 M 
+-0.200 0 (su )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+766 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+841 332 M 
+-0.200 0 (become privileged user)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 423 M 
+-0.200 0 (su password)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (su allows one to become the super\227user, who has all sorts)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (of marvelous powers. In order for )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1541 558 M 
+-0.200 0 (su to do its magic, the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 603 M 
+-0.200 0 (user must pass as an argument a password. If the password)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 648 M 
+-0.200 0 (is correct, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+991 648 M 
+-0.200 0 (su will execute the shell with the UID set to)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 693 M 
+-0.200 0 (that of the super\227user. To restore normal UID privileges,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 738 M 
+-0.200 0 (type an end\227of\227file to the super\227user shell)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 828 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 918 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 918 M 
+-0.200 0 (shell)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1008 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1008 M 
+-0.200 0 (")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+712 1008 M 
+-0.200 0 (Sorry" if password is wrong)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1098 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1188 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1188 M 
+-0.200 0 (dmr, ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 17 ]%%)  =
+%%PageTrailer
+
+%%Page: 18 18
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1978 194 M 
+-0.200 0 (SUM \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 332 M 
+-0.200 0 (sum )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+787 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+862 332 M 
+-0.200 0 (sum file)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 423 M 
+-0.200 0 (sum name)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 513 M 
+-0.200 0 (sum)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+766 513 M 
+-0.200 0 ( sums the contents of a file. In practice, it is most)A 
+; 
+691 556 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 558 M 
+-0.200 0 (often used to verify that all of a )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1566 558 M 
+-0.200 0 (DECtape can be read)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 603 M 
+-0.200 0 (without error.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 693 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 693 M 
+-0.200 0 (none)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 783 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 873 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 873 M 
+-0.200 0 (")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+716 873 M 
+-0.200 0 (?" if the file cannot be read at all or if an error is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 918 M 
+-0.200 0 (discovered during the read.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1008 M 
+-0.200 0 (BUGS none)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1053 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1053 M 
+-0.200 0 (ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 18 ]%%)  =
+%%PageTrailer
+
+%%Page: 19 19
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1978 194 M 
+-0.200 0 (TAP \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 332 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 332 M 
+-0.200 0 (tap )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+786 329 M 
+-0.200 0 (-- )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+861 332 M 
+-0.200 0 (manipulate )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1136 332 M 
+-0.200 0 (DECtape)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 423 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+686 423 M 
+-0.200 0 (tap )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+786 423 M 
+-0.200 0 ([ key ] [ name ... ])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 513 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 513 M 
+-0.200 0 (tap)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+763 513 M 
+-0.200 0 ( saves and restores selected portions of the file system)A 
+; 
+688 556 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 558 M 
+-0.200 0 (hierarchy on )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1014 558 M 
+-0.200 0 (DECtape. Its actions are controlled by the key)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 603 M 
+-0.200 0 (argument. The key is a string of characters containing at)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 648 M 
+-0.200 0 (most one function letter and possibly one or more function)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 693 M 
+-0.200 0 (modifiers. Other arguments to the command are file or)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 738 M 
+-0.200 0 (directory names specifying which files are to be dumped,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 783 M 
+-0.200 0 (restored, or tabled.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 873 M 
+-0.200 0 (The function portion of the key is specified by one of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 918 M 
+-0.200 0 (following letters:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+772 1008 M 
+-0.200 0 (r)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1008 M 
+-0.200 0 (The indicated files and directories, togeth)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1938 1008 M 
+-0.200 0 (er with)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1053 M 
+-0.200 0 (all )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+963 1053 M 
+-0.200 0 (subdirectories, are dumped onto the tape. If)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1098 M 
+-0.200 0 (files with the same names already exists, they are)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1143 M 
+-0.200 0 (replaced \(hence the r \). "Same" is determined by)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1188 M 
+-0.200 0 (string comparison, so \223./)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1488 1188 M 
+-0.200 0 (abc\224 can never be the same)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1233 M 
+-0.200 0 (as \223/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+988 1233 M 
+-0.200 0 (usr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1088 1233 M 
+-0.200 0 (dmr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1188 1233 M 
+-0.200 0 (abc even if \223/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1538 1233 M 
+-0.200 0 (usr/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1638 1233 M 
+-0.200 0 (dmr\224 is the current)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1281 M 
+-0.200 0 (directory. If no file argument is given, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1888 1278 M 
+-0.200 0 ("/" )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1988 1281 M 
+-0.200 0 (is the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1327 M 
+-0.200 0 (default.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+772 1417 M 
+-0.200 0 (u)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1417 M 
+-0.200 0 (updates the tape. )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1313 1417 M 
+-0.200 0 (u)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1338 1417 M 
+-0.200 0 ( is the same as r, but a file is)A 
+; 
+1313 1460 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1462 M 
+-0.200 0 (replaced only if its modification date is later than)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1507 M 
+-0.200 0 (the date stored on the tape; that is to say, if it)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1552 M 
+-0.200 0 (has changed since it was dumped. )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1688 1552 M 
+-0.200 0 (u)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1713 1552 M 
+-0.200 0 ( is the default)A 
+; 
+1688 1595 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1597 M 
+-0.200 0 (command if none is given.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+772 1687 M 
+-0.200 0 (d deletes the named files and directories)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+848 1732 M 
+-0.200 0 (from the tape. At least one file argument must be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+848 1777 M 
+-0.200 0 (given.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+772 1867 M 
+-0.200 0 (x)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1867 M 
+-0.200 0 (extracts the named files from the tape to the file)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1912 M 
+-0.200 0 (system. The owner, mode, and date\227modified are)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1957 M 
+-0.200 0 (restored to what they were when the file was dumped.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 2002 M 
+-0.200 0 (If no file argument is given, the entire contents of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 2047 M 
+-0.200 0 (the tape are extracted.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+772 2137 M 
+-0.200 0 (t)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 2137 M 
+-0.200 0 (lists the names of all files stored on the tape)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 2182 M 
+-0.200 0 (which are the same as or are hierarchically below)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 2227 M 
+-0.200 0 (the file arguments. If no file argument is given,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 2272 M 
+-0.200 0 (the entire contents of the tape are tabled.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+772 2362 M 
+-0.200 0 (1 is the same as )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1197 2362 M 
+-0.200 0 (t)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1222 2362 M 
+-0.200 0 ( except that an expanded listing is)A 
+; 
+1197 2405 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+865 2407 M 
+-0.200 0 (produced giving all the available information about)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+865 2452 M 
+-0.200 0 (the listed files.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2542 M 
+-0.200 0 (The following characters may be used in addition to the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2587 M 
+-0.200 0 (letter which selects the function desired.)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 19 ]%%)  =
+%%PageTrailer
+
+%%Page: 20 20
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1978 194 M 
+-0.200 0 (TAP \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+782 329 M 
+-0.200 0 (0, ..., 7 This modifier selects the drive on which the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+849 374 M 
+-0.200 0 (tape is mounted. \2230\224 is the default.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 464 M 
+-0.200 0 (v)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 464 M 
+-0.200 0 (Normally )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1088 464 M 
+-0.200 0 (tap)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1163 464 M 
+-0.200 0 ( does its work silently. The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1888 464 M 
+-0.200 0 (v)A 
+; 
+1088 507 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1913 464 M 
+-0.200 0 ( \(verbose\))A 
+; 
+1888 507 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 509 M 
+-0.200 0 (option causes it to type the name of each file it)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 554 M 
+-0.200 0 (treats preceded by a letter to indicate what is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 599 M 
+-0.200 0 (happening.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+959 689 M 
+-0.200 0 (r file is being replaced)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+959 734 M 
+-0.200 0 (a file is being added \(not there before\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+959 779 M 
+-0.200 0 (x)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1050 779 M 
+-0.200 0 (file is being extracted)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+959 824 M 
+-0.200 0 (d file is being deleted)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 917 M 
+-0.200 0 (The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+963 917 M 
+-0.200 0 (v)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+988 917 M 
+-0.200 0 ( option can be used with r, u)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1713 914 M 
+-0.200 0 (, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1763 917 M 
+-0.200 0 (d, and )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1938 917 M 
+-0.200 0 (x)A 
+; 
+963 960 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2009 917 M 
+-0.200 0 (only.)A 
+; 
+1938 960 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+772 1008 M 
+-0.200 0 (c means a fresh dump is being created; the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1053 M 
+-0.200 0 (tape directory will be zeroed before beginning.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1098 M 
+-0.200 0 (Usable only with )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1284 1098 M 
+-0.200 0 (r)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1309 1098 M 
+-0.200 0 ( and u.)A 
+; 
+1284 1141 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 1188 M 
+-0.200 0 (f)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1188 M 
+-0.200 0 (causes new entries copied on tape to be \221fake\222 in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1233 M 
+-0.200 0 (that only the entries, not the data associated with)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1278 M 
+-0.200 0 (the entries are updated. Such fake entries cannot be)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1323 M 
+-0.200 0 (extracted. Usable only with )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1563 1323 M 
+-0.200 0 (r)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1588 1323 M 
+-0.200 0 (\222 and u.)A 
+; 
+1563 1366 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 1413 M 
+-0.200 0 (w causes )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1008 1413 M 
+-0.200 0 (tap)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1083 1413 M 
+-0.200 0 ( to pause before treating each)A 
+; 
+1008 1456 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1458 M 
+-0.200 0 (file, type the indicative letter and the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1503 M 
+-0.200 0 (file name \(as with v\) await the user\222s response.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1548 M 
+-0.200 0 (Response "y" means "yes", so the file is treated.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1593 M 
+-0.200 0 (Null response means "no" , and the file does not)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1638 M 
+-0.200 0 (take part in whatever is being done. Response "x")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1683 M 
+-0.200 0 (means exit ; the tap command terminates immediately.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1728 M 
+-0.200 0 (In the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1034 1728 M 
+-0.200 0 (x)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1059 1728 M 
+-0.200 0 ( function, files previously asked about have)A 
+; 
+1034 1771 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1773 M 
+-0.200 0 (been extracted already. With r, u)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1684 1770 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1709 1773 M 
+-0.200 0 (and )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1809 1773 M 
+-0.200 0 (d)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1834 1773 M 
+-0.200 0 ( no change)A 
+; 
+1809 1816 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+859 1818 M 
+-0.200 0 (has been made to the tape.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+774 1908 M 
+-0.200 0 (m make \(create\) directories during an )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1724 1908 M 
+-0.200 0 (x)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1749 1908 M 
+-0.200 0 ( if necessary.)A 
+; 
+1724 1951 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+783 1998 M 
+-0.200 0 (i)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 1998 M 
+-0.200 0 (ignore tape errors. It is suggested that this option)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+863 2043 M 
+-0.200 0 (be used with caution to read)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+868 2088 M 
+-0.200 0 (damaged tapes.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2178 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 2178 M 
+-0.200 0 (/dev/tap0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+913 2178 M 
+-0.200 0 ( ... /dev/tap7)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2268 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 2268 M 
+-0.200 0 (rk)A 
+; 
+688 2311 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2358 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2358 M 
+-0.200 0 (RK open error)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2403 M 
+-0.200 0 (RK read error)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2448 M 
+-0.200 0 (RK write error)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2493 M 
+-0.200 0 (Directory checksum)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 2538 M 
+-0.200 0 (Directory overflow)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 20 ]%%)  =
+%%PageTrailer
+
+%%Page: 21 21
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+354 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1976 194 M 
+-0.200 0 (TAP \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 329 M 
+-0.200 0 (RK overflow)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 419 M 
+-0.200 0 (Phase error \(a file has changed after it was selected for)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 464 M 
+-0.200 0 (dumping but before it was dumped\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 554 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 554 M 
+-0.200 0 (All references to ")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1163 554 M 
+-0.200 0 (RK" should read \223tape.\224 The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1863 554 M 
+-0.200 0 (m)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1888 554 M 
+-0.200 0 ( option)A 
+; 
+1863 597 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 599 M 
+-0.200 0 (does not work correctly in all cases. The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1739 599 M 
+-0.200 0 (i option is not)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 644 M 
+-0.200 0 (yet implemented.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 734 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 734 M 
+-0.200 0 (ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 21 ]%%)  =
+%%PageTrailer
+
+%%Page: 22 22
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2028 194 M 
+-0.200 0 (TM\(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 374 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 374 M 
+-0.200 0 (tm -- provide time information)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 464 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 464 M 
+-0.200 0 (tm)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+747 464 M 
+-0.200 0 ( [ command arg1 .... ])A 
+; 
+697 507 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 554 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 554 M 
+-0.200 0 (tm)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+738 554 M 
+-0.200 0 ( is used to provide timing information. When used without)A 
+; 
+688 597 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 599 M 
+-0.200 0 (an argument, output like the following is given:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+865 689 M 
+-0.200 0 (tim)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1476 689 M 
+-0.200 0 (77:43:20)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1709 689 M 
+-0.200 0 (29.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 734 M 
+-0.200 0 (ovh)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1207 734 M 
+-0.200 0 (13:59:42)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1501 734 M 
+-0.200 0 (1.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 779 M 
+-0.200 0 (dsk)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1207 779 M 
+-0.200 0 (12:06:30)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1501 779 M 
+-0.200 0 (4.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 824 M 
+-0.200 0 (idl)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1182 824 M 
+-0.200 0 (352:31:37)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1476 824 M 
+-0.200 0 (23.7)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 869 M 
+-0.200 0 (usr)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1232 869 M 
+-0.200 0 (3:32:15)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1501 869 M 
+-0.200 0 (0.1)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+869 914 M 
+-0.200 0 (der)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1207 914 M 
+-0.200 0 (5, 171)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1413 914 M 
+-0.200 0 (0,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1501 914 M 
+-0.200 0 (0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1004 M 
+-0.200 0 (The first column of numbers gives totals in the named)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1049 M 
+-0.200 0 (categories since the last time the system was cold\227booted;)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1094 M 
+-0.200 0 (the second column gives the changes since the last time )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2089 1094 M 
+-0.200 0 (tm)A 
+; 
+2089 1137 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1139 M 
+-0.200 0 (was invoked. The )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1114 1139 M 
+-0.200 0 (tim)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1189 1139 M 
+-0.200 0 ( row is total real time)A 
+; 
+1114 1182 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1184 M 
+-0.200 0 (\()A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+714 1184 M 
+-0.200 0 (hours:minutes:seconds\); unlike the other times, its origin)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1229 M 
+-0.200 0 (is the creation date of )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1289 1229 M 
+-0.200 0 (tm's temporary file. )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1814 1229 M 
+-0.200 0 (ovh)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1889 1229 M 
+-0.200 0 ( is time)A 
+; 
+1814 1272 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1274 M 
+-0.200 0 (spent executing in the system; )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1464 1274 M 
+-0.200 0 (dsk is time spent waiting)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1319 M 
+-0.200 0 (for both kinds of disk I/O; )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1389 1319 M 
+-0.200 0 (idl is idle time; )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1839 1319 M 
+-0.200 0 (usr is user)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1364 M 
+-0.200 0 (execution time; )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1089 1364 M 
+-0.200 0 (der)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1164 1364 M 
+-0.200 0 ( is RF disk error count \(left number\))A 
+; 
+1089 1407 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1409 M 
+-0.200 0 (and RK disk error count \(right number\).)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1499 M 
+-0.200 0 (tm)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+739 1499 M 
+-0.200 0 ( can be invoked with arguments which are assumed to)A 
+; 
+689 1542 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1544 M 
+-0.200 0 (constitute a command to be timed. In this case the output)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1589 M 
+-0.200 0 (is as follows:)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+866 1634 M 
+-0.200 0 (tim)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1197 1634 M 
+-0.200 0 (2.2)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+866 1679 M 
+-0.200 0 (ovh)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1197 1679 M 
+-0.200 0 (0.3)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+866 1724 M 
+-0.200 0 (dsk)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1197 1724 M 
+-0.200 0 (1.8)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+866 1769 M 
+-0.200 0 (idl)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1197 1769 M 
+-0.200 0 (0.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+866 1814 M 
+-0.200 0 (usr)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1197 1814 M 
+-0.200 0 (0.0)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1904 M 
+-0.200 0 (The given times represent the number of seconds spent in)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1949 M 
+-0.200 0 (each category during execution of the command.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2039 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 2039 M 
+-0.200 0 (/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+713 2039 M 
+-0.200 0 (tmp/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 2039 M 
+-0.200 0 (ttmp, /dev/rf0 \(for absolute times\) contains the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2084 M 
+-0.200 0 (information used to calculate the differential times.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2174 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 2174 M 
+-0.200 0 (format of file system \(which tells where the times come)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2219 M 
+-0.200 0 (from\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1991 2264 M 
+-0.200 0 (')A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2362 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 2362 M 
+-0.200 0 (")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+713 2362 M 
+-0.200 0 (?" if the command cannot be executed; "can't )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1838 2362 M 
+-0.200 0 (creat temp)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2407 M 
+-0.200 0 (file\224 if trouble with /)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1264 2407 M 
+-0.200 0 (tmp)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1339 2407 M 
+-0.200 0 (; "cant read super\227block" if)A 
+; 
+1264 2450 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2452 M 
+-0.200 0 (times cannot be read from system.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 2542 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 2542 M 
+-0.200 0 (\(1\) when invoked w)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1138 2542 M 
+-0.200 0 (ith a command argument, everything going)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2587 M 
+-0.200 0 (on at the moment is counted, not just the command itself.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 2632 M 
+-0.200 0 (\(2\) Two users doing )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1189 2632 M 
+-0.200 0 (tm)A 
+; 
+1189 2675 N M 50 2 rr : 0 0 0 sco O ; 
+LH 
+pagesave restore
+
+(%%[ Page: 22 ]%%)  =
+%%PageTrailer
+
+%%Page: 23 23
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2003 194 M 
+-0.200 0 (TM \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 329 M 
+-0.200 0 (simultaneously interfere with each other\222s use of the)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 374 M 
+-0.200 0 (temporary file.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 464 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 464 M 
+-0.200 0 (ken, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+812 464 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 23 ]%%)  =
+%%PageTrailer
+
+%%Page: 24 24
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1978 194 M 
+-0.200 0 (TTY \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 329 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 329 M 
+-0.200 0 (tty -- get )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+962 329 M 
+-0.200 0 (tty name)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 419 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+690 419 M 
+-0.200 0 (tty)A 
+; 
+690 462 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 509 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 509 M 
+-0.200 0 (tty)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+766 509 M 
+-0.200 0 ( gives the name of the user\222s typewriter in the form)A 
+; 
+691 552 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 554 M 
+-0.200 0 (")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+722 554 M 
+-0.200 0 (ttyn\224 for )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+972 554 M 
+-0.200 0 (n)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+997 554 M 
+-0.200 0 ( )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1022 554 M 
+-0.200 0 (a_digit. The actual path name is then)A 
+; 
+972 597 N M 25 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+697 599 M 
+-0.200 0 ("/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+747 599 M 
+-0.200 0 (dev/)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+847 599 M 
+-0.200 0 (ttyn".)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 689 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 779 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 873 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 873 M 
+-0.200 0 ("not a )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+866 873 M 
+-0.200 0 (tty" if the standard input file is not a typewriter.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 963 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1053 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1053 M 
+-0.200 0 (dmr, ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 24 ]%%)  =
+%%PageTrailer
+
+%%Page: 25 25
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1953 194 M 
+-0.200 0 (TYPE \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 329 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 329 M 
+-0.200 0 (type )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+816 329 M 
+-0.200 0 (-- type on 2741)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 419 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 419 M 
+-0.200 0 (type)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+787 419 M 
+-0.200 0 ( name1)A 
+; 
+687 462 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 509 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 509 M 
+-0.200 0 (type)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+791 509 M 
+-0.200 0 ( produces output on an IBM 2741 terminal with a)A 
+; 
+691 552 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 554 M 
+-0.200 0 (Correspondence type ball.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 644 M 
+-0.200 0 (type)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+789 644 M 
+-0.200 0 ( uses typewriter tty5, which, because of the lack of)A 
+; 
+689 687 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 689 M 
+-0.200 0 (access ports, is also used as a standard communication)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 734 M 
+-0.200 0 (channel. Therefore, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1189 734 M 
+-0.200 0 (who)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1264 734 M 
+-0.200 0 ( should be used to verify the)A 
+; 
+1189 777 N M 75 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 779 M 
+-0.200 0 (absence of a user on tty5.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 869 M 
+-0.200 0 (The method is as follows: type the )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1566 869 M 
+-0.200 0 (type)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1666 869 M 
+-0.200 0 ( command. It will)A 
+; 
+1566 912 N M 100 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 914 M 
+-0.200 0 (wait until tty5 is )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1166 914 M 
+-0.200 0 (dialled up. When the phone answers,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 959 M 
+-0.200 0 (depress the interrupt button after paper has been loaded,)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1004 M 
+-0.200 0 (and the first file will be typed. spaces out to the end of)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1049 M 
+-0.200 0 (a sheet of paper and waits until the interrupt button is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1094 M 
+-0.200 0 (depressed before beginning each new file.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1184 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1184 M 
+-0.200 0 (/dev/tty5)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1274 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1274 M 
+-0.200 0 (who)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1364 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1454 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1454 M 
+-0.200 0 (obviously some scheme is needed to prevent interference)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1499 M 
+-0.200 0 (between normal users and The best thing would be to support)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+689 1544 M 
+-0.200 0 (2741\222s as a standard terminal.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1634 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+687 1634 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 25 ]%%)  =
+%%PageTrailer
+
+%%Page: 26 26
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1903 194 M 
+-0.200 0 (UMOUNT \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 329 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 329 M 
+-0.200 0 (umount -- dismount file system)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 419 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 419 M 
+-0.200 0 (umount)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+838 419 M 
+-0.200 0 ( special)A 
+; 
+688 462 N M 150 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 509 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 509 M 
+-0.200 0 (announces to the system that the removable file )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1891 509 M 
+-0.200 0 (system)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 554 M 
+-0.200 0 (previously mounted on special file )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1566 554 M 
+-0.200 0 (special)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+1741 554 M 
+-0.200 0 ( is to be)A 
+; 
+1566 597 N M 175 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 599 M 
+-0.200 0 (removed.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 689 M 
+-0.200 0 (Only the super\227user may issue this command.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 734 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 824 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 824 M 
+-0.200 0 (mount)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 914 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1004 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 1004 M 
+-0.200 0 (This command should be restricted to the super\227)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1049 M 
+-0.200 0 (user.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1139 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1139 M 
+-0.200 0 (ken, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+813 1139 M 
+-0.200 0 (dmr)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 26 ]%%)  =
+%%PageTrailer
+
+%%Page: 27 27
+%%BeginPageSetup
+[{
+%%BeginFeature: *Resolution 300dpi
+
+%%EndFeature
+} stopped cleartomark
+[{
+%%BeginFeature: *Duplex 
+
+%%EndFeature
+} stopped cleartomark
+userdict begin /pagesave save def end mysetup concat colspRefresh : 1.000 1.000 1.000 sco 0 0 2550 3300 rf ; 
+%%EndPageSetup
+
+: 0 0 2391 3229 rc 0 0 0 sco %%IncludeFont: Courier-Bold
+(F0) cvn
+0.786 
+ (Courier-Bold) cvn /Type1 
+T 
+(Courier-Bold) cvn
+mF 
+(F0_42) cvn
+F0
+42 
+xF 
+F0_42
+Ji 
+359 194 M 
+-0.200 0 (11/3/71)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+2005 194 M 
+-0.200 0 (UN \(I\))A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 329 M 
+-0.200 0 (NAME)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 329 M 
+-0.200 0 (un -- undefined symbols)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 419 M 
+-0.200 0 (SYNOPSIS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 419 M 
+-0.200 0 (un [ name ])A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 509 M 
+-0.200 0 (DESCRIPTION)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 509 M 
+-0.200 0 (un)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+741 509 M 
+-0.200 0 ( prints a list of undefined symbols from an assembly or)A 
+; 
+691 552 N M 50 2 rr : 0 0 0 sco O ; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 554 M 
+-0.200 0 (loader run. If the file argument is not specified, a out is)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 599 M 
+-0.200 0 (the default. Names are listed alphabetically except that)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 644 M 
+-0.200 0 (non\227global symbols come first. Undefined global symbols)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 689 M 
+-0.200 0 (\(unresolved external references\) have their first character)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+691 734 M 
+-0.200 0 (underlined.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 824 M 
+-0.200 0 (FILES)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 824 M 
+-0.200 0 (a.out)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 914 M 
+-0.200 0 (SEE ALSO)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 914 M 
+-0.200 0 (as, )A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+788 914 M 
+-0.200 0 (ld)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1004 M 
+-0.200 0 (DIAGNOSTICS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1004 M 
+-0.200 0 ("?")A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+763 1004 M 
+-0.200 0 ( if the file cannot be found.)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1049 M 
+-0.200 0 (BUGS)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+209 1094 M 
+-0.200 0 (OWNER)A 
+; : 0 0 2391 3229 rc 0 0 0 sco F0_42
+Ji 
+688 1094 M 
+-0.200 0 (dmr, ken)A 
+; 
+LH 
+pagesave restore
+
+(%%[ Page: 27 ]%%)  =
+%%PageTrailer
+
+%%Trailer
+%%DocumentNeededFonts: Courier-Bold
+%%+ Symbol
+%%DocumentSuppliedFonts: 
+Pscript_Win_Driver_Incr dup /terminate get exec
+savelevel0 restore 
+%%Pages: 27
+(%%[ LastPage ]%%)  =
+%%EOF
+

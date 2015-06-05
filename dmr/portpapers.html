@@ -1,0 +1,119 @@
+<html><head>
+<title>
+C and Unix Portability Papers
+</title></head>
+<body BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+<H1>Papers about Unix Portability
+</H1>
+<br>&#32;<br>
+In 1976-1977 the Unix system was rendered portable, thus
+starting a continuing industry.  The account by Steve Johnson
+and me,
+`Portability of C Programs and the UNIX System,'
+was published in the Bell System Technical Journal;
+it is now on-line as <A href="portpap.pdf">PDF</A>,
+<A href="portpap.ps">Postscript</A>, or
+<A href="portpap.html">HTML</A> formats.
+
+<p>
+This is rendered via OCR from BSTJ v57 #6 part 2
+(Jul-Aug. 1978; pp. 2021-2048).
+Johnson and I seem to have misplaced
+the original source.
+
+<p>
+The work it describes was important, both for
+the development of the Unix system and for the
+changes in C that were made for the portability work.
+The OS changes went into the Seventh Edition distribution;
+some of the C changes made it into general AT&T compiler
+distributions, but some had to await the first ANSI
+standard.
+
+<p>
+Although we didn't know it at the time we started,
+Richard Miller, then at University of Wollongong, NSW, Australia,
+was doing essentially the same thing, amazingly enough
+on nearly the same machine: the Interdata 7/32 for him,
+the 8/32 for us.
+Our paper takes account of his work, but our contemporary references
+to it are mostly in the form of "Personal Communication;"
+there is a reference to a talk presented to AUUG, later
+published as
+"UNIX -- A Portable
+Operating System?" in ACM Operating Systems Review 12(3),
+July 1978, pp. 32-37, (eerily enough, the same month
+as our BSTJ paper), but an on-line copy of this does not
+seem to exist.
+
+<p>
+More recently, Miller has made available an account of his work,
+as presented at the Usenix 1998 Annual Technical
+Conference: this is available
+<A href="http://www.usenix.org/publications/library/proceedings/usenix98/invited_talks/miller.ps">in Postscript</A> from Usenix.
+At the same event, Johnson presented his
+<A href="http://www.usenix.org/publications/library/proceedings/usenix98/invited_talks/johnson.ps">
+latter-day recollection</A> (Postscript) of our work, and Juris Reinfelds
+presented his own
+<A href="http://www.usenix.org/publications/library/proceedings/usenix98/invited_talks/reinfelds.ps">
+perspective</A> (also Postscript) as Miller's mentor.
+
+<p>
+<img src="new.gif" alt="new">The portability work blossomed quite soon.
+Tom London and John Reiser, working from the
+7th Edition and the Interdata 8/32 system,
+generated a VAX 11/780 version of the system, which,
+in its distribution format, would be called 32V.
+This was the basis for the VAX versions of the
+BSD systems.
+Early on (July 7, 1978), London and Reiser wrote an
+internal memo on their work, which is here
+reproduced (following OCR) in
+<A href="otherports/32v.pdf">PDF</A>,
+<A href="otherports/32v.ps">Postscript</A>,
+or in browsable
+<A href="otherports/32v.html">HTML</A>.
+<p>
+Naoki Hamada kindly produced this HTML version,
+in the process restoring some of the markup
+I left out of even the PS and PDF version.
+<p>
+The big (1.3MB)
+<A href="otherports/32vscan.pdf">PDF scan</A> of the original is
+also available.
+<P>
+After the 32V port to the VAX, the system was moved to quite a variety
+of machines by others in Bell Labs, including
+some that stretched the state of the art,
+such as the Univac 1100 series (a 36-bit,
+one's complement machine).  Several of these
+systems are discussed in a paper by Bodenstab
+et al., again from AT&T Bell Laboratories Technical
+Journal, Vol. 63, No. 8, part 2, October 1984 (pp. 1769-1790).
+This paper is available in
+<A href="otherports/newp.html">HTML</A>,
+<A href="otherports/newp.ps">PostScript</A>, or
+<A href="otherports/newp.pdf">PDF</A> formats.
+
+<p>
+Another effort was more important internally,
+since it came to be used as the main software development
+system for AT&T's #5ESS telephone switch; the paper describes
+an adaptation of Unix running on IBM S/370 hardware
+using the kernel of IBM's TSS system.
+By Felton et al., it is likewise reproduced from
+AT&T Bell Laboratories Technical
+Journal, Vol. 63, No. 8, part 2, October 1984 (pp. 1751-1767).
+Available as
+<A href="otherports/ibm.html">HTML</A>,
+<A href="otherports/ibm.ps">PostScript</A>, or
+<A href="otherports/ibm.pdf">PDF</A> formats.
+
+<p>
+These renditions are the edited result of OCR;
+errors may have been introduced by me.
+
+<p>
+<A href=http://www.lucent.com/copyright.html>
+Copyright</A> &#169; 2003 Lucent Technologies Inc.  All rights reserved.
+</body></html>

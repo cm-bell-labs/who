@@ -1,0 +1,189 @@
+    800 MHz Pentium 3  output digits = 15
+    mpsolve  eigensolve  ratio    polynomial
+
+      0.01      0.01      1.00	chebyshev20.pol
+      0.06      0.04      1.50	chebyshev40.pol
+      0.97      0.42      2.31	chebyshev80.pol
+     11.62      3.27      3.55	chebyshev160.pol
+    143.16     37.64      3.80	chebyshev320.pol
+
+      0.00      0.01      0.00	chrmc_d11.pol
+      0.02      0.01      2.00	chrma_d20.pol
+      0.02      0.01      2.00	chrma22.pol
+      0.05      0.06      0.83	chrmc23.pol
+      0.30      0.07      4.29	chrmc_d43.pol
+      2.03      0.53      3.83	chrma86.pol
+      3.03      0.43      7.05	chrma_d84.pol
+     37.51      3.33     11.26	chrmc_d171.pol
+    367.78     25.81     14.25	chrma342.pol
+    598.29     28.80     20.77	chrma_d340.pol
+    638.61     48.75     13.10	chrmc343.pol
+   skipped    237.18          	chrmc_d683.pol
+
+      0.01      0.01      1.00	curz20.pol
+      0.05      0.06      0.83	curz40.pol
+      0.78      0.32      2.44	curz80.pol
+      8.03      2.34      3.43	curz160.pol
+
+      0.24      0.29      0.83	easy100.pol
+      1.14      1.54      0.74	easy200.pol
+      5.05     10.43      0.48	easy400.pol
+     19.71     82.72      0.24	easy800.pol
+     90.01    629.40      0.14  easy1600.pol
+   skipped   skipped          	easy3200.pol
+   skipped   skipped          	easy6400.pol
+
+      0.07      0.12      0.58	exp50.pol
+      1.26      0.75      1.68	exp100.pol
+     12.40      6.19      2.00	exp200.pol
+    156.90     58.58      2.68	exp400.pol
+
+      0.00      0.03      0.00	geom1_10.pol
+      0.00      0.08      0.00	geom1_15.pol
+      0.01      0.20      0.05	geom1_20.pol
+      0.08      2.84      0.03	geom1_40.pol
+      0.02      0.02      1.00	geom2_10.pol
+      0.01      0.09      0.11	geom2_15.pol
+      0.01      0.21      0.05	geom2_20.pol
+      0.11      2.72      0.04	geom2_40.pol
+      0.00      0.01      0.00	geom3_10.pol
+      0.01      0.08      0.12	geom3_20.pol
+      0.04      0.91      0.04	geom3_40.pol
+      0.27     13.03      0.02	geom3_80.pol
+      0.01      0.01      1.00	geom4_10.pol
+      0.01      0.09      0.11	geom4_20.pol
+      0.04      0.85      0.05	geom4_40.pol
+      0.27     14.19      0.02	geom4_80.pol
+
+      0.01      0.01      1.00	hermite20.pol
+      0.05      0.04      1.25	hermite40.pol
+      0.51      0.31      1.65	hermite80.pol
+      5.87      2.68      2.19	hermite160.pol
+     72.05     33.18      2.17	hermite320.pol
+
+      0.00      0.01      0.00	kam1_1.pol
+      0.00      0.02      0.00	kam1_2.pol
+      0.00      0.06      0.00	kam1_3.pol
+      0.01      0.02      0.50	kam2_1.pol
+      0.01      0.02      0.50	kam2_2.pol
+      0.00      0.02      0.00	kam2_3.pol
+      0.00      0.01      0.00	kam3_1.pol
+      0.00      0.01      0.00	kam3_2.pol
+      0.00      0.01      0.00	kam3_3.pol
+      0.02      0.04      0.50	kam4.pol
+
+    628.17     15.27     41.14	kats8.pol
+
+      1.70      0.63      2.70	kir1_10.pol
+      0.48      0.22      2.18	kir1_10_mod.pol
+     10.22      2.09      4.89	kir1_20.pol
+      1.78      0.71      2.51	kir1_20_mod.pol
+    139.63     11.33     12.32	kir1_40.pol
+     15.23      5.06      3.01	kir1_40_mod.pol
+      0.01      0.01      1.00	kir1_symb.pol
+
+      0.01      0.01      1.00	laguerre20.pol
+      0.14      0.06      2.33	laguerre40.pol
+      1.49      0.40      3.72	laguerre80.pol
+     17.89      3.46      5.17	laguerre160.pol
+    255.92     35.48      7.21	laguerre320.pol
+
+   skipped   skipped          	lar1.pol
+   skipped   skipped          	lar1_200.pol
+   skipped   skipped          	lar2.pol
+   skipped   skipped          	lar3.pol
+   skipped   skipped          	lar4.pol
+   skipped   skipped          	lar5.pol
+
+      0.02      0.02      1.00	legendre20.pol
+      0.06      0.04      1.50	legendre40.pol
+      0.98      0.41      2.39	legendre80.pol
+     11.83      3.27      3.62	legendre160.pol
+    137.93     38.39      3.59	legendre320.pol
+
+      4.52    114.62      0.04	lsr1.pol
+      2.02     69.35      0.03	lsr2.pol
+      0.56   skipped          	lsr3.pol
+
+      0.03      0.03      1.00	mand31.pol
+      0.26      0.16      1.62	mand63.pol
+      3.25      1.11      2.93	mand127.pol
+     40.02     11.39      3.51	mand255.pol
+    605.74    116.35      5.21	mand511.pol
+   skipped   1170.76          	mand1023.pol
+
+      0.01      0.02      0.50	mig1_20.pol
+      0.52      0.23      2.26	mig1_50_1.pol
+      0.06      0.52      0.12	mig1_100.pol
+      0.99      1.14      0.87	mig1_100_1.pol
+      0.18      3.88      0.05	mig1_200.pol
+      3.46      8.13      0.43	mig1_200_1.pol
+      1.87     50.61      0.04	mig1_500.pol
+      9.33    144.45      0.06	mig1_500_1.pol
+
+      0.01      0.01      1.00	mult1.pol
+      0.19      0.28      0.68	mult2.pol
+      0.03      0.02      1.50	mult3.pol
+      0.02      0.03      0.67	mult4.pol
+
+   skipped   skipped          	nektarios.pol
+
+      0.02      0.07      0.29	nrooti50.pol
+      0.04      0.38      0.11	nrooti100.pol
+      0.38      2.77      0.14	nrooti200.pol
+      0.61     21.85      0.03	nrooti400.pol
+      2.01    233.44      0.01	nrooti800.pol
+      7.50   2113.22      0.00	nrooti1600.pol
+     39.68   skipped          	nrooti3200.pol
+    176.21   skipped          	nrooti6400.pol
+
+      0.02      0.06      0.33	nroots50.pol
+      0.05      0.26      0.19	nroots100.pol
+      0.23      1.44      0.16	nroots200.pol
+      0.64      8.56      0.07	nroots400.pol
+      2.09     66.19      0.03	nroots800.pol
+      9.86    473.27      0.02	nroots1600.pol
+     50.32   skipped          	nroots3200.pol
+    163.19   skipped          	nroots6400.pol
+
+      0.04      0.02      2.00	sendra20.pol
+      0.46      0.07      6.57	sendra40.pol
+      6.08      0.46     13.22	sendra80.pol
+     93.71      3.33     28.14	sendra160.pol
+   1758.33     29.92     58.77	sendra320.pol
+
+      0.06      0.27      0.22	sparse100.pol
+      0.19      1.41      0.13	sparse200.pol
+      0.65      8.86      0.07	sparse400.pol
+      2.62     65.76      0.04 	sparse800.pol
+     10.12    457.80      0.02  sparse1600.pol
+     43.62   skipped          	sparse3200.pol
+    213.85   skipped          	sparse6400.pol
+
+      0.12      0.03      4.00	spiral10.pol
+      0.50      0.08      6.25	spiral15.pol
+      2.36      0.17     13.88	spiral20.pol
+      5.44      0.30     18.13	spiral25.pol
+      9.59      0.49     19.57	spiral30.pol
+
+      1.72      1.82      0.95	toep1_128.pol
+     18.02     19.33      0.93	toep1_256.pol
+      4.71      2.67      1.76	toep2_128.pol
+     59.87     27.79      2.15	toep2_256.pol
+
+      0.03      0.02      1.50	trv_m.pol
+
+      0.03   skipped          	umand31.pol
+      0.15   skipped          	umand63.pol
+      0.76   skipped          	umand127.pol
+      4.91   skipped          	umand255.pol
+     33.58   skipped          	umand511.pol
+    244.11   skipped          	umand1023.pol
+   1846.03   skipped          	umand2047.pol
+
+      0.06      0.04      1.50	wilk_mod.pol
+      0.08      0.04      2.00	wilk20.pol
+      0.32      0.04      8.00	wilk40.pol
+      3.62      0.44      8.23	wilk80.pol
+     48.68      3.90     12.48	wilk160.pol
+    758.93     42.70     17.77	wilk320.pol

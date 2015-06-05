@@ -1,0 +1,295 @@
+<HTML>
+<HEADER>
+<TITLE> CIS 677: Lectures
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center> CIS 677: Lectures<br>
+</center></H1>
+<BR>
+
+
+<h3> <a href="1/index.html">Lecture 1: an introduction via planar convex hulls </a>
+</h3>
+
+Related reading: Chapter 1 of the text.
+
+<ul>
+<li>	basic facts about convexity
+<li>	Jarvis march
+<li>	a sorting-based algorithm
+<li>	a randomized incremental algorithm and its analysis
+<li>	problems of degeneracy and robustness
+</ul>
+
+
+<h3> <a href="2/index.html">Lecture 2: orthogonal range search and its relatives </a>
+</h3>
+
+<a href="../homework/1/"> Homework 1, due Sep. 29.</a>
+
+<p>
+<a href="../homework/1/comments.html"> Comments on Homework 1.</a>
+
+
+<p>
+<ul>
+<li>	coordinate-wise dominance
+<li>	orthogonal range queries
+<li>	interval trees
+<li>	priority search trees
+<li>	segment trees
+<li>	filtering search
+</ul>
+<p>
+These topics, except filtering search, are covered in Chapters 5 and 10 of the text.
+
+<p>
+See also Mulmuley, section 8.1, for a discussion using skip lists instead
+of balanced trees and tries.
+
+<p>
+<a href="http://www.cs.umd.edu/users/brabec/quadtree/PriorityTrees/priority.html
+"> On-line priority search tree demo</a><br>
+<a href="http://www.cs.umd.edu/users/brabec/quadtree/RANGEtrees/range.html"> On-line 2D range tree demo</a><br>
+<a href="http://www.cs.kuleuven.ac.be/~rudim/spatial/spatial.html"> A collection of spatial
+data structures</a><br>
+
+
+<p>
+Filtering search is from:
+<ul>
+<li>Chazelle, B. Filtering search: a new approach to query-answering.
+<em>SIAM J. Computing</em>, pp. 703-724, Vol. 15, 1986.
+</ul>
+
+
+<h3> <a href="3/index.html">Lecture 3: line segment intersections </a>
+</h3>
+
+<ul>
+<li>	line segment intersection<br>
+<li>	some approaches<br>
+<li>	sweep algorithm<br>
+<li>	planar graph facts<br>
+<li>	a randomized incremental algorithm<br>
+<ul>
+<li>		probability facts
+<li>		analysis
+</ul>
+</ul>
+
+These topics are covered in Chapters 2 and 6 of the text.
+
+
+<p>
+<a href="http://www.cs.unc.edu/~dm/CODE/GEM/chapter.html">
+A randomized incremental program for trapezoidal diagrams</a>
+
+<h3> <a href="4/index.html">Lecture 4: Simple polygons and planar point location </a>
+</h3>
+
+<a href="../homework/2/"> Homework 2, due about October 13.</a>
+
+<p>
+<a href="../homework/2/comment.ps"> Comments on Homework 2.</a>
+
+<ul>
+<li>	analysis of randomized incremental algorithm for trapezoidal diagrams, completed
+<li>	simple polygons
+<ul>
+<li>		using connectivity to speed up search
+<li>		converting trapezoidal diagrams to triangulations
+</ul>
+<li>	planar point location
+<ul>
+<li>		a tail estimate
+<li>		Kirkpatrick's algorithm
+</ul>
+</ul>
+
+These topics are covered, in part, in Chapters 3 and 6 of the text.
+
+
+<h3> <a href="5/index.html">Lecture 5: Planar point location, Voronoi diagrams, Delaunay triangulations </a>
+</h3>
+
+<ul>
+<li>	finishing up on planar point location
+<ul>
+<li>		Kirkpatrick's algorithm
+<li>		separator trees
+<li>		bucketing, subdivision traversal
+</ul>
+<li>	Voronoi diagrams and Delaunay triangulations
+<ul>
+<li>		basic facts
+<li>		edge flipping and angle optimality
+<li>		divide and conquer algorithm
+<li>		sweep algorithm
+</ul>
+</ul>
+
+<p>
+These topics are covered, in part, in Chapters 7 and 9 of the text.
+The "separator tree" data structure for planar point location is
+discussed in Edelsbrunner's book.
+
+<p>
+There are many Java applets that for visualizing Voronoi diagrams and
+Delauanay triangulations;
+<a href="http://www.cs.cornell.edu/Info/People/chew/Delaunay.html"> this one </a> or 
+<a href="http://www3.pair.com/ericco/applet/TriangulationViewer.html"> that one </a> 
+seem good.
+
+<h3> <a href="6/index.html">
+Lecture 6: Delaunay triangulations, Convexity </a>
+</h3>
+
+<a href="../homework/3/"> Homework 3, due about November 3.</a>
+<a href="../homework/3/comment.ps"> Comments on Homework 3.</a>
+
+
+<ul>
+<li>	Voronoi diagrams and Delaunay triangulations
+<ul>
+<li>		edge flipping and angle optimality
+<li>		uses: interpolation, geometric graphs
+<li>		divide and conquer algorithm
+<li>		sweep algorithm
+</ul>
+<li>	beginning Convexity
+<ul>
+<li>		convex, affine, linear, conical combinations
+</ul>
+</ul>
+
+<p>
+These topics are covered, in part, in Chapters 7, 9, and 11 of the text.
+
+Convexity is a very large topic by itself, covered well in:
+
+<p>
+Bronsted, A. <i>An introduction to convex polytopes.</i>
+
+<p>
+Ziegler, G. M. <i>Lectures on Polytopes</i>.
+
+<h3> <a href="7/index.html">
+Lecture 7: Convexity</a>
+</h3>
+
+<ul>
+<li>	Caratheodory's theorem
+<li>	polarity and duality
+<li>	the Farkas Lemma
+<li>	convex hulls and intersections of halfspaces
+<li>	faces and the face lattice
+<li>	faces and polarity
+</ul>
+
+
+
+<H3> <a href="8/index.html">Notes for lecture 8: Convexity and Algorithms </a></H3>
+
+<ul>
+<li>	convex hulls and intersections of halfspaces
+<li>	faces and the face lattice
+<li>	faces and polarity
+<li>	convex hulls, Delaunay triangulations, halfspace intersections, and Voronoi diagrams
+<li>	algorithms for convex hulls
+<ul>
+<li>	a randomized incremental algorithm
+</ul>
+</ul>
+
+This <a href="http://www.cs.dartmouth.edu/~gessel/Java/CGApp.html">applet</a>
+may help to clarify the relationship between convex hulls and Delaunay triangulations.
+
+<H3> <a href="9/l.ps">Notes for lecture 9: Geometric optimization </a></H3>
+
+<a href="../homework/4/"> Homework 4, due about November 24.</a>
+
+<p>
+<a href="../homework/2/comment.ps"> Comments on Homework 2.</a>
+
+<ul>
+<li>	Convex hulls
+<ul>
+<li>	finishing up analysis of randomized incremental algorithm
+<li>	handling degeneracy
+</ul>
+<li>	geometric optimization
+<ul>
+<li>	The minimum-ball problem
+<li>	algorithms
+<ul>
+<li>	recursive
+<li>	iterative reweighting
+<li>	incremental
+</ul>
+<li>	Linear programming
+<ul>
+<li>	a pivoting algorithm
+</ul>	
+</ul>
+</ul>
+
+<H3> <a href="10/l.ps">Notes for lecture 10: Geometric optimization, spatial subdivisions </a></H3>
+
+<ul>
+<li>	geometric optimization
+<ul>
+<li>		The minimum-ball problem
+<li>		algorithms:
+
+<ul>
+<li> 			incremental
+</ul>
+<li> 		linear programming
+<ul>
+<li>			a pivoting algorithm
+</ul>
+<li>	distance to polytopes
+</ul>
+<li>	spatial subdivision trees
+<ul>
+<li>		quadtrees, k-d trees, BSP trees
+<li>		uses and construction
+</ul>
+</ul>
+
+Discussions of R-trees and their database applications can be found
+<a href="http://www.dbnet.ece.ntua.gr/VLDB97/program.html#talk10"> via this link. </a>
+
+
+<p>
+<a href="../homework/3/comment.ps"> Comments on Homework 3.</a>
+
+<H3> <a href="11/l.ps">Notes for lecture 11: Quadtree applications, Arrangements, and k-sets </a></H3>
+
+<ul>
+<li>  More quadtree applications
+<li>	Arrangements
+<ul>
+<li>		and duality
+<li>		complexity
+</ul>
+<li>	Levels and $k$-sets
+<li>	high order Voronoi diagrams
+<li>	Zones
+<ul>
+<li>	complexity
+<li>	zones and BSP's
+</ul>
+</ul>
+
+<BR>
+<P><ADDRESS>
+<I> Ken Clarkson <BR>
+December 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

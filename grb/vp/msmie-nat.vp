@@ -1,0 +1,72 @@
+(* Natural version of the MSMIE protocol *)
+
+const I = "idle"				(* buffer status values *)
+const S = "slave"
+const N = "newest"
+const M = "master"
+const Bufstat = {I,S,N,M} 			
+const Bid = {1,2,3}				(* buffer ids *)
+const Btup = prod(Bufstat,Bufstat,Bufstat)      
+const ReaderCounts = {0,1,2} 			(* counter values *)
+
+label zero, inc, dec
+label take, give
+label ma, mr, slave
+label ma1, ma2, mr1, mr2
+label rd(Bufstat), wt(Bufstat)
+label read_Bid(Bufstat), write_Bid(Bufstat)
+
+(* status buffers *)
+agent Buf(s:Bufstat) = 'rd(s).Buf(s) + wt(s').Buf(s')
+agent Buf(i:Bid,s:Bufstat) = Buf(s)[read_i/rd,write_i/wt]
+
+agent Buffers = Buf(1,S) | Buf(2,I) | Buf(3,I)
+
+(* # of readers counter *)
+agent Counter(n:ReaderCounts) = (if n = 0 then zero.Counter(n)) +
+ 				(if n < 2 then inc.Counter(n + 1)) +
+            			(if n > 0 then dec.Counter(n - 1)) 
+
+(* semaphore *)
+agent Semaphore = take.give.Semaphore
+
+agent MemImage = Buffers | Counter(0) | Semaphore
+
+(* slave operation *)
+agent Slave       = slave.Sl1
+
+agent Sl1         = 'take.read_1(v1).read_2(v2).read_3(v3).Sl2(<<v1,v2,v3>>)
+agent Sl2(B:Btup) = sum(i:Bid, if B#i = N then Sl3(update(B,i,I)))
+                  + if not member(N,{B#1,B#2,B#3}) then Sl3(B)
+agent Sl3(B:Btup) = sum(i:Bid, if B#i = S then Sl4(update(B,i,N)))
+agent Sl4(B:Btup) = sum(i:Bid, if B#i = I then Sl5(update(B,i,S)))
+agent Sl5(B:Btup) = 'write_1(B#1).'write_2(B#2).'write_3(B#3).'give.Slave
+
+(* master operations *)
+agent Master      = MA1
+agent MA1         = 'take.read_1(v1).read_2(v2).read_3(v3).MA2(<<v1,v2,v3>>)
+agent MA2(B:Btup) = if member(N,{B#1,B#2,B#3}) and not member(M,{B#1,B#2,B#3})
+                    then sum(i:Bid, if B#i = N then MA3(update(B,i,M)))
+                    else MA3(B)
+agent MA3(B:Btup) = (if member(M,{B#1,B#2,B#3}) then (ma.'inc.MA4(B)))
+                  + 'give.Master
+agent MA4(B:Btup) = 'write_1(B#1).'write_2(B#2).'write_3(B#3).'give.MR1
+
+agent MR1         = mr.'take.read_1(v1).read_2(v2).read_3(v3).MR2(<<v1,v2,v3>>)
+agent MR2(B:Btup) = 'dec.MR3(B)
+agent MR3(B:Btup) = 'zero.(sum(i:Bid, if B#i = M
+                                      then (if member(N,{B#1,B#2,B#3}) 
+                                            then MR4(update(B,i,I))
+	  			            else MR4(update(B,i,N)))))
+                  + 'dec.'inc.MR4(B)
+agent MR4(B:Btup) = 'write_1(B#1).'write_2(B#2).'write_3(B#3).'give.Master
+
+agent Master1 = Master[ma1/ma,mr1/mr]
+agent Master2 = Master[ma2/ma,mr2/mr]
+
+agent Msmie   = (MemImage|Slave|Master1|Master2)\{take,give,zero,inc,dec,read,write}
+
+
+
+
+

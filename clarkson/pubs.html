@@ -1,0 +1,1537 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+          "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		
+		<title></title>
+
+		<link rel="stylesheet" href="pubs.css" type="text/css">
+		<script type="text/javascript" src="ASCIIMathML.js"></script>
+		<script type="text/javascript" src="abstract_vis.js"></script>
+	</head>
+<BODY>
+		<h2>Papers and Talks by Kenneth L. Clarkson</h2>
+<div span style="font-style: italic; color:red; font-size:large;">I left Lucent in January 2007, so this page is no longer maintained.</div>
+		<div style="position: absolute; right: 0.5em; top: 0.5em;">
+			<a id="toggle_link" href="javascript:toggle_all()">Show all abstracts</a>
+		</div>
+		<comment>
+		<div style="position: absolute; right: 1.8em; top: 1.8em;">
+			<a id="toggle_link_demo" href="javascript:toggle_all_demo()">Hide all demos</a>
+		</div></comment><!--[if IE]>
+<BLOCKQUOTE><EM><FONT color=#ff0000>This document is more effectively viewed 
+  in Mozilla Firefox, where some "demos" are included; also, the math is best 
+  rendered by installing the MathPlayer plugin</FONT></EM></BLOCKQUOTE><![endif]-->
+		<p></p>
+<p>
+
+<div class="title"><a name="loss_model">Ocelot's knapsack calculations for
+  modeling power amplifier and walsh code limits</a>.
+</div><div class="bibcite">
+<div class="authored_with">with John D. Hobby.
+</div>2006.</div>
+<div class="ancillary"><a  href="loss_model/p.pdf" title="adobe pdf">pdf</a>
+<a  href="loss_model/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#loss_model" title="bibtex entry">bib</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('loss_model')">abstract</a>
+</div>
+<div id="a_loss_model" class="abstract">We give a model for the performance
+  impact on wireless systems of the limitations of certain resources, namely,
+  the base-station power amplifier and the available OVSF codes. These
+  limitations are readily modeled in the <em>loss model</em> formulation as a
+  <em>stochastic knapsack</em>. A simple and well-known recurrence of Kaufman
+  and Roberts allows the predictions of the model to be efficiently calculated.
+  We discuss the assumptions and approximations we have made that allow the use
+  of the model. We have included the model in Ocelot, a Lucent tool for
+  modeling and optimizing cellular phone systems. The model is fast to compute,
+  differentiable with respect to the relevant parameters, and able to model
+  broad ranges of capacity and resource use. These conditions are critical to
+  our application of optimization.</div>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="enets">Metric space `\epsilon`-nets and their
+  applications</a>.
+</div>Survey talk related to two papers below, 2005.</div>
+<div class="ancillary">
+&nbsp;
+<a  href="enet_tris/t/t.xml" title="slides for talk">talk</a>
+ <a title="note" href="#firefox"> <b>*</b> </a>
+ <a title="another note" href="#firefox2"> <b>**</b> </a>
+&nbsp;
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('enets')">abstract</a>
+ <comment><a title="show/hide demo"
+  href="javascript:toggle_vis_d('enets')">demo</a></comment>
+</div>
+<div id="a_enets" class="abstract">Metric spaces are very simple geometric
+  structures: they comprise a set and a distance measure that obeys the
+  triangle inequality. `epsilon`-nets, also called "low-dispersion sets" or
+  "farthest-point samples", are subsets of metric spaces that are
+  "well-distributed" in a certain sense. They can be found efficiently using a
+  greedy algorithm. This talk will review that algorithm, and briefly survey
+  applications of `epsilon`-nets in motion planning, nearest neighbor
+  searching, building meshes to approximate curves and surfaces, and building
+  triangulations to approximate functions.</div> <comment><div title="show/hide
+  demo" id="d_enets" class="demo" style="height:3in; width:95%;"><iframe
+  src="sobolev_cover/t3/demo.xml" name="ifrm" id="ifrm" scrolling="no"
+  frameborder="0" style="height:100%;width:100%">Sorry, you must use a browser
+  that supports iframes</iframe> </div> </comment>
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="enet_tris">Building triangulations using
+  `\epsilon`-nets</a>.
+</div>In <cite>STOC 2006: Proceedings of the Thirty-eighth Annual SIGACT
+  Symposium</cite>, 2006.</div>
+<div class="ancillary"><a  href="enet_tris/p.pdf" title="adobe pdf">pdf</a>
+<a  href="enet_tris/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#enet_tris" title="bibtex entry">bib</a>
+<a  href="enet_tris/p.dvi" title="tex output format">dvi</a>
+&nbsp;
+<a  href="enet_tris/t2/t.xml" title="slides for talk">talk</a>
+ <a title="note" href="#firefox"> <b>*</b> </a>
+
+&nbsp;
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('enet_tris')">abstract</a>
+ <comment><a title="show/hide demo"
+  href="javascript:toggle_vis_d('enet_tris')">demo</a></comment>
+</div>
+<div id="a_enet_tris" class="abstract">This work addresses the problem of
+  approximating a manifold by a simplicial mesh, and the related problem of
+  building triangulations for the purpose of piecewise-linear approximation of
+  functions. It has long been understood that the vertices of such meshes or
+  triangulations should be "well-distributed," or satisfy certain "sampling
+  conditions." This work clarifies and extends some algorithms for finding such
+  well-distributed vertices, by showing that they can be regarded as finding
+  <em>`\epsilon`-nets</em> or <em>Delone sets</em> in appropriate metric
+  spaces. In some cases where such Delone properties were already understood,
+  such as for meshes to approximate smooth manifolds that bound convex bodies,
+  the upper and lower bound results are extended to more general manifolds; in
+  particular, under some natural conditions, the minimum Hausdorff distance for
+  a mesh with `n` simplices to a `d`-manifold `M` is <blockquote>
+  `\Theta((\int_M\sqrt{|\kappa(x)|}/n)^{2/d})` </blockquote> as
+  `n\rightarrow\infty`, where `\kappa(x)` is the Gaussian curvature at point
+  `x\in M`. We also relate these constructions to Dudley's approximation scheme
+  for convex bodies, which can be interpreted as involving an `\epsilon`-net in
+  a metric space whose distance function depends on surface normals. Finally, a
+  novel scheme is given, based on the Steinhaus transform, for scaling a metric
+  space by a Lipschitz function to obtain a new metric. This scheme is applied
+  to show that some algorithms for building finite element meshes and for
+  surface reconstruction can be also be interpreted in the framework of metric
+  space `\epsilon`-nets.</div> <div id="n_enet_tris" class="annote"><b>Notes:
+  </b> <ul> <li>Revised from 20/2/06: patches to upper bound proof, lower bound
+  proof, many typos etc.</li> <li>Revised from version of 11/19/05: better
+  upper bound proof, typos in Dudley example, cites peyre/cohen.</li>
+  </ul></div> <comment><div title="show/hide demo" id="d_enet_tris"
+  class="demo" style="height:3in; width:95%;"><iframe
+  src="sobolev_cover/tstoc/demo.xml" name="ifrm" id="ifrm" scrolling="no"
+  frameborder="0" style="height:100%;width:100%">Sorry, you must use a browser
+  that supports iframes</iframe> </div> </comment>
+<p>
+
+<div class="title"><a name="nn_survey">Nearest-neighbor searching and metric
+  space dimensions</a>.
+</div>
+<div class="bibcite">
+<div class="category"> (Survey).
+</div>In G. Shakhnarovich, T. Darrell, and P. Indyk, editors,
+  <cite>Nearest-Neighbor Methods for Learning and Vision: Theory and
+  Practice</cite>, pages 15--59.
+MIT Press, 2006.</div>
+<div class="ancillary"><a  href="nn_survey/p.pdf" title="adobe pdf">pdf</a>
+<a  href="nn_survey/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#nn_survey" title="bibtex entry">bib</a>
+<a  href="nn_survey/p.dvi" title="tex output format">dvi</a>
+&nbsp;
+<a  href="nn_survey/t/t.xml" title="slides for talk">talk</a>
+ <a title="note" href="#firefox"> <b>*</b> </a>
+
+&nbsp;
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('nn_survey')">abstract</a>
+</div>
+<div id="a_nn_survey" class="abstract">Given a set `S` of points in a metric
+  space with distance function `D`, the <em>nearest-neighbor searching</em>
+  problem is to build a data structure for `S` so that for an input query point
+  `q`, the point `s\in S` that minimizes `D(s,q)` can be found quickly. We
+  survey approaches to this problem, and its relation to concepts of metric
+  space dimension. Several measures of dimension can be estimated using
+  nearest-neighbor searching, while others can be used to estimate the cost of
+  that searching. In recent years, several data structures have been proposed
+  that are provably good for low-dimensional spaces, for some particular
+  measures of dimension. These and other data structures for nearest-neighbor
+  searching are surveyed.</div> <div id="n_nn_survey" class="annote"><b>Notes:
+  </b> Some dimensions discussed: box, packing, Hausdorff, Assouad, pointwise,
+  information, correlation, quantization, energy, Renyi.</div>
+<p>
+
+<div class="title"><a name="set_cover">Improved approximation algorithms for
+  geometric set cover</a>.
+</div><div class="bibcite">
+<div class="authored_with">with Kasturi Varadarajan.
+</div><cite>Discrete & Computational Geometry</cite>, to appear.
+</div>Preliminary version in <cite>SOCG '05: Proceedings of the Twenty-first
+  Symposium on Computational Geometry</cite>, 2005.</div>
+<div class="ancillary"><a  href="set_cover/p.pdf" title="adobe pdf">pdf</a>
+<a  href="set_cover/p.ps" title="gzipped postscript">ps</a>
+<a  href="bib.html#set_cover" title="bibtex entry">bib</a>
+&nbsp;
+<a  href="set_cover/t/t.xml" title="slides for talk">talk</a>
+ <a title="note" href="#firefox"> <b>*</b> </a>
+
+&nbsp;
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('set_cover')">abstract</a>
+</div>
+<div id="a_set_cover" class="abstract">Given a collection `S` of subsets of
+  some set `U`, and `M \subset U`, the <em>set cover</em> problem is to find
+  the smallest subcollection `C\subset S` such that `M` is a subset of the
+  union of the sets in `C`. While the general problem is NP-hard to solve, even
+  approximately, here we consider some geometric special cases, where usually
+  `U = \RR^d`. Combining previously known techniques [BG,CF], we show that
+  polynomial time approximation algorithms with provable performance exist,
+  under a certain general condition: that for a random subset `R\subset S` and
+  function `f()`, there is a decomposition of the complement
+  `U\setminus\cup_{Y\in R} Y` into an expected `f(|R|)` regions, each region of
+  a particular simple form. Under this condition, a cover of size `O(f(|C|))`
+  can be found in polynomial time. Using this result, and combinatorial
+  geometry results implying bounding functions `f(c)` that are nearly linear,
+  we obtain `o(\log c)` approximation algorithms for covering by fat triangles,
+  by pseudodisks, by a family of fat objects, and others. Similarly,
+  constant-factor approximations follow for similar-sized fat triangles and fat
+  objects, and for fat wedges. With more work, we obtain constant-factor
+  approximation algorithms for covering by unit cubes in `\RR^3`, and for
+  guarding an `x`-monotone polygonal chain.</div>
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="l1">Subgradient and sampling algorithms for `l_1`
+  regression</a>.
+</div>In <cite>SODA '05 : Proceedings of the Sixteenth Annual ACM-SIAM
+  Symposium on Discrete Algorithms</cite>, 2005.</div>
+<div class="ancillary"><a  href="l1/p.pdf" title="adobe pdf">pdf</a>
+<a  href="l1/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#l1" title="bibtex entry">bib</a>
+<a  href="l1/p.dvi" title="tex output format">dvi</a>
+&nbsp;
+<a  href="l1/t/t.xml" title="slides for talk">talk</a>
+ <a title="note" href="#firefox"> <b>*</b> </a>
+ <a title="another note" href="#firefox2"> <b>**</b> </a>
+&nbsp;
+<a title="show/hide abstract" href="javascript:toggle_vis('l1')">abstract</a>
+ <comment><a title="show/hide demo"
+  href="javascript:toggle_vis_d('l1')">demo</a></comment>
+</div>
+<div id="a_l1" class="abstract">Given an `n\times d` matrix `A` and an
+  `n`-vector `b`, the <em>`L_1` regression</em> problem is to find the vector
+  `x` minimizing the objective function `||Ax-b||_1`, where `||y||_1 \equiv
+  \sum_i |y_i|` for vector `y`. This paper gives an algorithm needing `O(n\log
+  n)d^{O(1)}` time in the worst case to obtain an approximate solution, with
+  objective function value within a fixed ratio of optimum. Given `\epsilon>0`,
+  a solution whose value is within `1+\epsilon` of optimum can be obtained
+  either by a deterministic algorithm using an additional
+  `O(n)(d/\epsilon)^{O(1)}` time, or by a Monte Carlo algorithm using an
+  additional `O((d/\epsilon)^{O(1)})` time. The analysis of the randomized
+  algorithm shows that weighted coresets exist for `L_1` regression. The
+  algorithms use the ellipsoid method, gradient descent, and random
+  sampling.</div> <comment><div title="show/hide demo" id="d_l1" class="demo"
+  style="height:3in; width:95%;"><iframe  src="l1/t/demo.xml" name="ifrm"
+  id="ifrm" scrolling="no" frameborder="0"
+  style="height:100%;width:100%">Sorry, you must use a browser that supports
+  iframes</iframe> </div> </comment>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="cwi_ksets">On the expected number of `k`-sets of
+  coordinate-wise independent points</a>.
+</div>2004.</div>
+<div class="ancillary"><a  href="cwi_ksets/p.pdf" title="adobe pdf">pdf</a>
+<a  href="cwi_ksets/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#cwi_ksets" title="bibtex entry">bib</a>
+<a  href="cwi_ksets/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('cwi_ksets')">abstract</a>
+</div>
+<div id="a_cwi_ksets" class="abstract">Let `S` be a set of `n` points in `d`
+  dimensions. A `k`-set of `S` is a subset of size `k` that is the intersection
+  of `S` with some open halfspace. This note shows that if the points of `S`
+  are random, with a coordinate-wise independent distribution, then the
+  expected number of `k`-sets of `S` is `O((k\log(en/k))^{d-1})2^d/(d-1)!`, as
+  `k\log n->oo`, with a constant independent of the dimension.</div>
+<p>
+
+<div class="title"><a name="dynamics">A model of soft handoff under dynamic
+  shadow fading</a>.
+</div>
+<div class="bibcite">
+<div class="authored_with">with John D. Hobby.
+</div>In <cite>VTC-2004-Spring: IEEE Vehicular Technology Conference</cite>,
+  volume 3, pages 1534--1538, 2004.</div>
+<div class="ancillary"><a  href="dynamics/p.pdf" title="adobe pdf">pdf</a>
+<a  href="dynamics/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#dynamics" title="bibtex entry">bib</a>
+&nbsp;
+<a  href="dynamics/t.xml" title="slides for talk">talk</a>
+
+ <a title="another note" href="#firefox2"> <b>**</b> </a>
+&nbsp;
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('dynamics')">abstract</a>
+ <comment><a title="show/hide demo"
+  href="javascript:toggle_vis_d('dynamics')">demo</a></comment>
+</div>
+<div id="a_dynamics" class="abstract">We introduce a simple model of the effect
+  of temporal variation in signal strength on active-set membership, for
+  cellular phone systems that use the soft-handoff algorithm of IS-95a. This
+  model is based on a steady-state calculation, and its applicability is
+  confirmed by Monte Carlo studies.</div> <comment><div title="show/hide demo"
+  id="d_dynamics" class="demo" style="height:3in; width:95%;"><iframe
+  src="dynamics/demo.xml" name="ifrm" id="ifrm" scrolling="no" frameborder="0"
+  style="height:100%;width:100%">Sorry, you must use a browser that supports
+  iframes</iframe> </div> </comment>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="SB">Nearest neighbor searching in metric spaces:
+  Experimental results for `sb(s)`</a>.
+</div>2003.</div>
+<div class="ancillary">
+ <a  href="Msb/readme.html"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#SB" title="bibtex entry">bib</a>
+&nbsp;
+<a  href="sb/t/vv.xml" title="slides for talk">talk</a>
+
+ <a title="another note" href="#firefox2"> <b>**</b> </a>
+&nbsp;
+<a title="show/hide abstract" href="javascript:toggle_vis('SB')">abstract</a>
+ <comment><a title="show/hide demo"
+  href="javascript:toggle_vis_d('SB')">demo</a></comment>
+</div>
+<div id="a_SB" class="abstract">Given a set `S` of `n` <em>sites</em> (points),
+  and a distance measure `d`, the <em>nearest neighbor searching</em> problem
+  is to build a data structure so that given a query point `q`, the site
+  nearest to `q` can be found quickly. This paper gives a data structure for
+  this problem; the data structure is built using the distance function as a
+  "black box". The structure is able to speed up nearest neighbor searching in
+  a variety of settings, for example: points in low-dimensional or structured
+  Euclidean space, strings under Hamming and edit distance, and bit vector data
+  from an OCR application. The data structures are observed to need linear
+  space, with a modest constant factor. The preprocessing time needed per site
+  is observed to match the query time. The data structure can be viewed as an
+  application of a "kd-tree" approach in the metric space setting, using
+  Voronoi regions of a subset in place of axis-aligned boxes.</div>
+  <comment><div title="show/hide demo" id="d_SB" class="demo"
+  style="height:3in; width:95%;"><iframe  src="sb/t/demo.xml" name="ifrm"
+  id="ifrm" scrolling="no" frameborder="0"
+  style="height:100%;width:100%">Sorry, you must use a browser that supports
+  iframes</iframe> </div> </comment>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="MV">Solution of linear systems using randomized
+  rounding</a>.
+</div>2003.</div>
+<div class="ancillary"><a  href="mv.pdf" title="adobe pdf">pdf</a>
+<a  href="bib.html#MV" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('MV')">abstract</a>
+</div>
+<div id="a_MV" class="abstract">This paper gives an algorithm for solving
+  linear systems, using a randomized version of incomplete `LU` factorization
+  together with iterative improvement. The factorization uses Gaussian
+  elimination with partial pivoting, and preserves sparsity during
+  factorization by randomized rounding of the entries. The resulting
+  approximate factorization is then applied to estimate the solution. This
+  simple technique, combined with iterative improvement, is demonstrated to be
+  effective for a range of linear systems. When applied to medium-sized sample
+  matrices for PDEs, the algorithm is qualitatively like multigrid: the work
+  per iteration is typically linear in the order of the matrix, and the number
+  of iterations to achieve a small residual is typically on the order of
+  fifteen to twenty. The technique is also tested for a sample of asymmetric
+  matrices from the <em>Matrix Market</em>, and is found to have similar
+  behavior for many of them.</div>
+<p>
+
+<div class="title"><a name="BCGVW">User-level QoS and traffic engineering for
+  3G wireless 1xEV-DO systems</a>.
+</div><div class="bibcite">
+<div class="authored_with">with Simon C. Borst, John Graybeal, Harish
+  Viswanathan, and Phillip Whiting.
+</div><cite>Bell Labs Technical Journal</cite>, 8(2):33--47, 2003.</div>
+<div class="ancillary"><a  href="BCGVW.pdf" title="adobe pdf">pdf</a>
+<a  href="bib.html#BCGVW" title="bibtex entry">bib</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('BCGVW')">abstract</a>
+</div>
+<div id="a_BCGVW" class="abstract">3G wireless systems such as 3G-1X, 1xEV-DO
+  and 1xEV-DV provide support for a variety of high-speed data applications.
+  The success of these services critically relies on the capability to ensure
+  an adequate QoS experience to users at an affordable price. With wireless
+  bandwidth at a premium, traffic engineering and network planning play a vital
+  role in addressing these challenges. We present models and techniques that we
+  have developed for quantifying the QoS perception of 1xEV-DO users generating
+  FTP or Web browsing sessions. We show how user-level QoS measures may be
+  evaluated by means of a Processor-Sharing model which explicitly accounts for
+  the throughput gains from multi-user scheduling. The model provides simple
+  analytical formulas for key performance metrics such as response times,
+  blocking probabilities and throughput. Analytical models are especially
+  useful for network deployment and in-service tuning purposes due to the
+  intrinsic difficulties associated with simulation-based optimization
+  approaches. We discuss the application of our results in the context of
+  Ocelot, which is a Lucent tool for wireless network planning and
+  optimization.</div>
+<p>
+
+<div class="title"><a name="HCHP">The tradeoff between coverage and capacity in
+  dynamic optimization of 3G cellular networks</a>.
+</div>
+<div class="bibcite">
+<div class="authored_with">with K. Georg Hampel, John D. Hobby, and Paul A.
+  Polakos.
+</div>In <cite>VTC-2003-Fall: IEEE Vehicular Technology Conference</cite>,
+  pages 927--932, 2003.</div>
+<div class="ancillary"><a  href="vtc2003.pdf" title="adobe pdf">pdf</a>
+<a  href="bib.html#HCHP" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('HCHP')">abstract</a>
+</div>
+<div id="a_HCHP" class="abstract">For 3G cellular networks, capacity is an
+  important objective, along with coverage, when characterizing the performance
+  of high-data-rate services. In live networks, the effective network capacity
+  heavily depends on the degree that the traffic load is balanced over all
+  cells, so changing traffic patterns demand dynamic network reconfiguration to
+  maintain good performance. Using a four-cell sample network, and antenna
+  tilt, cell power level and pilot fraction as adjustment variables, we study
+  the competitive character of network coverage and capacity in such a network
+  optimization process, and how it compares to the CDMA-intrinsic
+  coverage-capacity tradeoff driven by interference. We find that each set of
+  variables provides its distinct coverage-capacity tradeoff behavior with
+  widely varying and application-dependent performance gains. The study shows
+  that the impact of dynamic load balancing highly depends on the choice of the
+  tuning variable as well as the particular tradeoff range of operation.</div>
+<p>
+
+<div class="title"><a name="CH2">A model of coverage probability under shadow
+  fading</a>.
+</div><div class="bibcite">
+<div class="authored_with">with John D. Hobby.
+</div>2003.</div>
+<div class="ancillary"><a  href="covprob/p.pdf" title="adobe pdf">pdf</a>
+<a  href="covprob/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#CH2" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('CH2')">abstract</a>
+</div>
+<div id="a_CH2" class="abstract">We give a simple analytic model of coverage
+  probability for CDMA cellular phone systems under lognormally distributed
+  shadow fading. Prior analyses have generally considered the coverage
+  probability of a single antenna; here we consider the probability of coverage
+  by an ensemble of antennas, using some independence assumptions, but also
+  modeling a limited form of dependency among the antenna fades. We use the
+  Fenton-Wilkinson approach of approximating the external interference `I_0` as
+  lognormally distributed. We show that our model gives a coverage probability
+  that is generally within a few percent of Monte Carlo estimates, over a wide
+  regime of antenna strengths and other relevant parameters.</div>
+<p>
+
+<div class="title"><a name="coresets2">Smaller core-sets for balls</a>.
+</div>
+<div class="bibcite">
+<div class="authored_with">with Mihai B\u{a}doiu.
+</div>In <cite>SODA '03: Proceedings of the Fourteenth Annual ACM-SIAM
+  Symposium on Discrete Algorithms</cite>, 2003.</div>
+<div class="ancillary"><a  href="coresets2.pdf" title="adobe pdf">pdf</a>
+<a  href="bib.html#coresets2" title="bibtex entry">bib</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('coresets2')">abstract</a>
+</div>
+<div id="a_coresets2" class="abstract">Given a set of points `P\subset R^d` and
+  value `\epsilon>0`, an <em>`\epsilon`-core-set</em> `S \subset P` has the
+  property that the smallest ball containing `S` is within `\epsilon` of the
+  smallest ball containing `P`. This paper shows that any point set has an
+  `\epsilon`-core-set of size `|~1/\epsilon~|`, and this bound is tight in the
+  worst case. A faster algorithm given here finds an `\epsilon`-core-set of
+  size at most `2/\epsilon`. These results imply the existence of small
+  core-sets for solving approximate `k`-center clustering and related problems.
+  The sizes of these core-sets are considerably smaller than the previously
+  known bounds, and imply faster algorithms; one such algorithm needs `O(d
+  n/\epsilon+(1/\epsilon)^{5})` time to compute an `\epsilon`-approximate
+  minimum enclosing ball (1-center) of `n` points in `d` dimensions. A simple
+  gradient-descent algorithm is also given, for computing the minimum enclosing
+  ball in `O(d n / \epsilon^{2})` time. This algorithm also implies slightly
+  faster algorithms for computing approximately the smallest radius `k`-flat
+  fitting a set of points.</div> <div id="n_coresets2" class="annote"><b>Notes:
+  </b> The ideas and algorithm have seen application in <a
+  href="annotes.html#Nielsen_Nock">machine learning</a>, including <a
+  href="annotes.html#TKL">support vector regression</a>, and <a
+  href="annotes.html#genes">computational biology</a> (mentioned in the
+  "supplementary notes" of the latter).</div>
+<p>
+
+<div class="title"><a name="coresets1">Optimal core-sets for balls</a>.
+</div><div class="bibcite">
+<div class="authored_with">with Mihai B\u{a}doiu.
+</div>Manuscript, 2002.</div>
+<div class="ancillary"><a  href="coresets1.pdf" title="adobe pdf">pdf</a>
+<a  href="bib.html#coresets1" title="bibtex entry">bib</a>
+&nbsp;
+<a  href="core_sets/t/t.xml" title="slides for talk">talk</a>
+
+ <a title="another note" href="#firefox2"> <b>**</b> </a>
+&nbsp;
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('coresets1')">abstract</a>
+ <comment><a title="show/hide demo"
+  href="javascript:toggle_vis_d('coresets1')">demo</a></comment>
+</div>
+<div id="a_coresets1" class="abstract">Given a set of points `P\subset \RR^d`
+  and value `\epsilon>0`, an <em>$\epsilon$-core-set</em> `S \subset P` has the
+  property that the smallest ball containing `S` is within `\epsilon` of the
+  smallest ball containing `P`. This paper shows that any point set has an
+  `\epsilon`-core-set of size `|~1/\epsilon~|`, and this bound is tight in the
+  worst case. Some experimental results are also given, comparing this
+  algorithm with a previous one, and with a more powerful, but slower
+  one.</div> <div id="n_coresets1" class="annote"><b>Notes: </b> <ul>
+  <li>Revised May 2006: Removed dependence on size of smallest ball, consider
+  variant, etc.</li> </ul></div> <comment><div title="show/hide demo"
+  id="d_coresets1" class="demo" style="height:3in; width:95%;"><iframe
+  src="core_sets/t/demo.xml" name="ifrm" id="ifrm" scrolling="no"
+  frameborder="0" style="height:100%;width:100%">Sorry, you must use a browser
+  that supports iframes</iframe> </div> </comment>
+<p>
+
+<div class="title"><a name="CSW">Fast multiple antenna differential
+  decoding</a>.
+</div><div class="bibcite">
+<div class="authored_with">with Wim Sweldens and Alice Zheng.
+</div><cite>IEEE Trans. Commun.</cite>, 49(2):253--261, 2001.</div>
+<div class="ancillary">
+ <a  href="http://cm.bell-labs.com/who/wim/papers/fast/"><img  src="ht.gif"
+  align="top"border = 0 /> </a>
+<a  href="bib.html#CSW" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('CSW')">abstract</a>
+</div>
+<div id="a_CSW" class="abstract">We present an algorithm based on lattice
+  reduction for the fast decoding of diagonal differential modulation across
+  multiple antenna. While the complexity of the maximum likelihood algorithm is
+  exponential both in the number of antenna and the rate, the complexity of our
+  approximate lattice algorithm is polynomial in the number of antennas and the
+  rate. We show that the error performance of our lattice algorithm is very
+  close to the maximum likelihood algorithm.</div>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="nnms">Nearest neighbor queries in metric
+  spaces</a>.
+</div><cite>Discrete & Computational Geometry</cite>, 22:63--93, 1999.
+</div>Preliminary version in <cite>STOC '97: Proceedings of the Twenty-ninth
+  SIGACT Symposium</cite>, 1997.</div>
+<div class="ancillary"><a  href="nnms/p.pdf" title="adobe pdf">pdf</a>
+<a  href="nnms/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#nnms" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('nnms')">abstract</a>
+</div>
+<div id="a_nnms" class="abstract">Given a set `S` of `n` sites (points), and a
+  distance measure `d`, the <em>nearest neighbor searching</em> problem is to
+  build a data structure so that given a query point `q`, the site nearest to
+  `q` can be found quickly. This paper gives data structures for this problem
+  when the sites and queries are in a metric space. One data structure, `D(S)`,
+  uses a divide-and-conquer recursion. The other data structure, `M(S,Q)`, is
+  somewhat like a skiplist. Both are simple and implementable. The data
+  structures are analyzed when the metric space obeys a certain sphere-packing
+  bound, and when the sites and query points are random and have distributions
+  with an exchangeability property. This property implies, for example, that
+  query point `q` is a random element of `S\cup\{q\}`. Under these conditions,
+  the preprocessing and space bounds for the algorithms are close to linear in
+  `n`. They depend also on the sphere-packing bound, and on the logarithm of
+  the <em>distance ratio</em> `\upsilon(S)` of `S`, the ratio of the distance
+  between the farthest pair of points in `S` to the distance between the
+  closest pair. The data structure `M(S,Q)` requires as input data an
+  additional set `Q`, taken to be representative of the query points. The
+  resource bounds of `M(S,Q)` have a dependence on the distance ratio of `S\cup
+  Q`. While `M(S,Q)` can return wrong answers, its failure probability can be
+  bounded, and is decreasing in a parameter `K`. Here `K\leq |Q|/n` is chosen
+  when building `M(S,Q)`. The expected query time for `M(S,Q)` is `O(K\log
+  n)\log\upsilon(S\cup Q)`, and the resource bounds increase linearly in `K`.
+  The data structure `D(S)` has expected `O(\log n)^{O(1)}` query time, for
+  fixed distance ratio. The preprocessing algorithm for `M(S,Q)` can be used to
+  solve the all-nearest-neighbor problem for `S` in `O(n(\log
+  n)^2(\log\upsilon(S))^2)` expected time.</div> <div id="n_nnms"
+  class="annote"><b>Notes: </b> The assumption of a sphere-packing bound is
+  equivalent to a bounded <em>doubling constant</em>, as discussed by <a
+  href="annotes.html#KL">Krauthgamer and Lee</a>, which is more general than
+  the <em>growth-restricted</em> or <em>doubling measure</em> assumption of <a
+  href="annotes.html#KR">Karger and Ruhl</a>. See also <a
+  href="annotes.html#HM">Har-Peled and Mendel</a>, and a <a
+  href="#nn_survey">survey</a>.</div>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="CIS677">A graduate course in computational
+  geometry</a>.
+</div>Lecture notes, 1997.</div>
+<div class="ancillary">
+ <a  href="cis677"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#CIS677" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="recon">A general randomized incremental
+  reconstruction procedure</a>.
+</div>1997.</div>
+<div class="ancillary"><a  href="recon/p.pdf" title="adobe pdf">pdf</a>
+<a  href="recon/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#recon" title="bibtex entry">bib</a>
+<a  href="recon/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('recon')">abstract</a>
+</div>
+<div id="a_recon" class="abstract">The technique of randomized incremental
+  construction allows a variety of geometric structures to be built quickly.
+  This note shows that once such a structure is built, it is possible to store
+  the geometric input data for it so that the structure can be built again by a
+  randomized algorithm even more quickly. Except for the randomization, this
+  generalizes the technique of Snoeyink and van Kreveld that applies to planar
+  problems.</div>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="moving_diam">Algorithms for the minimum diameter of
+  moving points and for the discrete 1-center problem</a>.
+</div>1997.</div>
+<div class="ancillary"><a  href="moving_diam/p.pdf" title="adobe pdf">pdf</a>
+<a  href="moving_diam/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#moving_diam" title="bibtex entry">bib</a>
+<a  href="moving_diam/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('moving_diam')">abstract</a>
+</div>
+<div id="a_moving_diam" class="abstract">Given points moving with constant, but
+  possibly different, velocities, the minimum moving diameter problem is to
+  find the minimum, over all time, of the maximum distance between a pair of
+  points at each moment. This note gives a randomized algorithm requiring `O(n
+  \log n )` expected time for this problem, in two and three dimensions. Also
+  briefly noted is a randomized `O(n\log n\log\log n)` expected-time algorithm
+  for the discrete 1-center problem in three dimensions; in this problem, a
+  member `p` of a set `S` of points is desired, whose maximum distance to `S`
+  is minimum over all points of `S`.</div> <div id="n_moving_diam"
+  class="annote"><b>Notes: </b> Slight foreshadowing of sublinear geometric
+  algorithms.</div>
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="os">More output-sensitive geometric algorithms</a>.
+</div>In <cite>FOCS '94: Proceedings of the Thirty-fifth Annual IEEE Symposium
+  on Foundations of Computer Science</cite>, pages 695--702, 1994.</div>
+<div class="ancillary"><a  href="os/p.pdf" title="adobe pdf">pdf</a>
+<a  href="os/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#os" title="bibtex entry">bib</a>
+<a  href="os/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('os')">abstract</a>
+</div>
+<div id="a_os" class="abstract">A simple idea for speeding up the computation
+  of extrema of a partially ordered set turns out to have a number of
+  interesting applications in geometric algorithms; the resulting algorithms
+  generally replace an appearance of the input size `n` in the running time by
+  an output size `A\leq n`. In particular, the `A` coordinate-wise minima of a
+  set of `n` points in `R^d` can be found by an algorithm needing `O(nA)` time.
+  Given `n` points uniformly distributed in the unit square, the algorithm
+  needs `n+O(n^{5/8})` point comparisons on average. Given a set of `n` points
+  in `R^d`, another algorithm can find its `A` extreme points in `O(nA)` time.
+  Thinning for nearest-neighbor classification can be done in time `O(n\log
+  n)\sum_i A_i n_i`, finding the `A_i` irredundant points among `n_i` points
+  for each class `i`, where `n=\sum_i n_i` is the total number of input points.
+  This sharpens a more obvious `O(n^3)` algorithm, which is also given here.
+  Another algorithm is given that needs `O(n)` space to compute the convex hull
+  of `n` points in `O(nA)` time. Finally, a new randomized algorithm finds the
+  convex hull of `n` points in `O(n\log A)` expected time, under the condition
+  that a random subset of the points of size `r` has expected hull complexity
+  `O(r)`. All but the last of these algorithms has polynomial dependence on the
+  dimension `d`, except possibly for linear programming.</div> <div id="n_os"
+  class="annote"><b>Notes: </b> There is some overlap with the work of <a
+  href="annotes.html#Chan_os">Chan</a> and <a href="annotes.html#OSS">Ottman et
+  al</a>, in particular, for finding extreme points.</div>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="pcover">Algorithms for polytope covering and
+  approximation, and for approximate closest-point queries</a>.
+</div>1994.</div>
+<div class="ancillary"><a  href="pcover/p.pdf" title="adobe pdf">pdf</a>
+<a  href="pcover/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#pcover" title="bibtex entry">bib</a>
+<a  href="pcover/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('pcover')">abstract</a>
+</div>
+<div id="a_pcover" class="abstract">This paper gives an algorithm for
+  <em>polytope covering:</em> let `L` and `U` be sets of points in `R^d`,
+  comprising `n` points altogether. A <em>cover</em> for `L` from `U` is a set
+  `C\subset U` with `L` a subset of the convex hull of `C`. Suppose `c` is the
+  size of a smallest such cover, if it exists. The randomized algorithm given
+  here finds a cover of size no more than `c(\rboundp)`, for `c` large enough.
+  The algorithm requires `O(c^2n^{1+\delta})` expected time. (In this paper,
+  `\delta` will denote any fixed value greater than zero.) More exactly, the
+  time bound is <blockquote>`O(cn^{1+\delta}+c(nc)^{
+  1/(1+\gamma/(1+\delta))}),`</blockquote> where `\gamma\equiv 1/|__d/2__|`.
+  The previous best bounds were `c O(\log n)` cover size in `O(n^d)` time
+  [MiS]. A variant algorithm is applied to the problem of approximating the
+  boundary of a polytope with the boundary of a simpler polytope. For an
+  appropriate measure, an approximation with error `\epsilon` requires
+  `c=O(1/\epsilon)^{(d-1)/2}` vertices, and the algorithm gives an
+  approximation with `c(\apboundp)` vertices. The algorithms apply ideas
+  previously used for small-dimensional linear programming. The final result
+  here applies polytope approximation to the the <em>post office problem</em>:
+  given `n` points (called sites) in `d` dimensions, build a data structure so
+  that given a query point `q`, the closest site to `q` can be found quickly.
+  The algorithm given here is given also a relative error bound `\epsilon`, and
+  depends on a ratio `\rho`, which is no more than the ratio of the distance
+  between the farthest pair of sites to the distance between the closest pair
+  of sites. The algorithm builds a data structure of size
+  `O(n(\log\rho)/\epsilon^{d/2}` in time `O(n^2(\log\rho))/\epsilon^d`. With
+  this data structure, closest-point queries can be answered in `O(\log
+  n)/\epsilon^{d/2}` time.</div> <div id="n_pcover" class="annote"><b>Notes:
+  </b> <a href="annotes.html#BG">Br&#246;nnimann and Goodrich</a> show that the
+  same iterative randomized algorithm applies in the general setting of range
+  spaces of bounded VC-dimension, and that a linear-sized `epsilon`-net implies
+  a constant-factor approximation algorithm. Their results are extended by this
+  <a href="#set_cover">later paper</a>.</div>
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="Clarkson94">An algorithm for approximate
+  closest-point queries</a>.
+</div>In <cite>SOCG '94: Proceedings of the Tenth Symposium on Computational
+  Geometry</cite>, pages 160--164, 1994.</div>
+<div class="ancillary">
+ <a  href="#pcover"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#Clarkson94" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="Clarkson93b">Algorithms for polytope covering and
+  approximation</a>.
+</div>In <cite>WADS '93: Proceedings of the Third Workshop on Algorithms and
+  Data Structures</cite>, pages 246--252, 1993.</div>
+<div class="ancillary">
+ <a  href="#pcover"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#Clarkson93b" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+<div class="title"><a name="center">Approximating center points with iterated
+  Radon points</a>.
+</div><div class="bibcite">
+<div class="authored_with">with David Eppstein, Gary L. Miller, Carl
+  Sturtivant, and Shang-Hua Teng.
+</div><cite>International Journal of Computational Geometry and
+  Applications</cite>, 6(3):357--377, 1996.
+</div>Preliminary version in <cite>SOCG '93: Proceedings of the Ninth Symposium
+  on Computational Geometry</cite>, 1993.</div>
+<div class="ancillary"><a  href="center/p.pdf" title="adobe pdf">pdf</a>
+<a  href="center/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#center" title="bibtex entry">bib</a>
+<a  href="center/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('center')">abstract</a>
+ <comment><a title="show/hide demo"
+  href="javascript:toggle_vis_d('center')">demo</a></comment>
+</div>
+<div id="a_center" class="abstract">We give a practical and provably good Monte
+  Carlo algorithm for approximating center points. Let `P` be a set of `n`
+  points in `\R^d`. A point `c \in \R^d` is a `\beta`-center point of `P` if
+  every closed halfspace containing `c` contains at least `\beta n` points of
+  `P`. Every point set has a `1/(d+1)`-center point; our algorithm finds an
+  `\Omega(1/d^2)`-center point with high probability. Our algorithm has a small
+  constant factor and is the first approximate center point algorithm whose
+  complexity is subexponential in `d`. Moreover, it can be optimally
+  parallelized to require `O(\log^2d\log\log n)` time. Our algorithm has been
+  used in mesh partitioning methods and can be used in constructing high
+  breakdown estimators for multivariate datasets in statistics. It has the
+  potential to improve results in practice for constructing weak
+  `\epsilon`-nets. We derive a variant of our algorithm whose time bound is
+  fully polynomial in `d` and linear in `n`, and show how to combine our
+  approach with previous techniques to compute high quality center points more
+  quickly.</div> <comment><div title="show/hide demo" id="d_center"
+  class="demo" style="height:3in; width:95%;"><iframe  src="center/demo.html"
+  name="ifrm" id="ifrm" scrolling="auto" frameborder="0"
+  style="height:100%;width:100%">Sorry, you must use a browser that supports
+  iframes</iframe> </div> </comment>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="hulltalk">Convex hulls: Some algorithms and
+  applications</a>.
+</div>Presentation at Fifth MSI-Stony Brook Workshop on Computational Geometry,
+  1996.</div>
+<div class="ancillary">
+<a  href="hulltalk.ps.gz" title="gzipped postscript">ps</a>
+ <a  href="hulltalk.html"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('hulltalk')">abstract</a>
+</div>
+<div id="a_hulltalk" class="abstract">This talk sketches: a convenient method
+  for computing the volumes of Voronoi regions; a proof that "area-stealing"
+  natural neighbor interpolation works; a scheme for smoother natural neighbor
+  interpolation alternative to Sibson's method; the interpolation scheme used
+  in the "finite volume element" method; and the observation that the minimax
+  piecewise-linear interpolant of a convex function is the (lower) convex
+  hull.</div>
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="dets">Safe and effective determinant
+  evaluation</a>.
+</div>In <cite>FOCS '92: Proceedings of the Thirty-first IEEE Symposium on
+  Foundations of Computer Science</cite>, pages 387--395, Pittsburgh, PA,
+  October 1992.</div>
+<div class="ancillary"><a  href="dets/p.pdf" title="adobe pdf">pdf</a>
+<a  href="dets/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#dets" title="bibtex entry">bib</a>
+<a  href="dets/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('dets')">abstract</a>
+</div>
+<div id="a_dets" class="abstract">The problem of evaluating the sign of the
+  determinant of a small matrix arises in many geometric algorithms. Given an
+  `n\times n` matrix `A` with integer entries, whose columns are all smaller
+  than `M` in Euclidean norm, the algorithm given here evaluates the sign of
+  the determinant `\det A` exactly. The algorithm requires an arithmetic
+  precision of less than `1.5n+2\lg M` bits. The number of arithmetic
+  operations needed is `O(n^3)+O(n^2)\log\OD(A)/\beta`, where `\OD(A)|\det A|`
+  is the product of the lengths of the columns of `A`, and `\beta` is the
+  number of "extra" bits of precision, <blockquote> `\min\{\lg(1/bb
+  u)-1.1n-2\lg n-2,\lg N - \lg M - 1.5n - 1\},` </blockquote> where `bb u` is
+  the roundoff error in approximate arithmetic, and `N` is the largest
+  representable integer. Since `\OD(A)\leq M^n`, the algorithm requires
+  `O(n^3\lg M)` time, and `O(n^3)` time when `\beta=\Omega(\log M)`.</div>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="kmins">A bound on local minima of arrangements that
+  implies the upper bound theorem</a>.
+</div><cite>Discrete & Computational Geometry</cite>, 10:227--233, 1993.</div>
+<div class="ancillary"><a  href="kmins/p.pdf" title="adobe pdf">pdf</a>
+<a  href="kmins/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#kmins" title="bibtex entry">bib</a>
+<a  href="kmins/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('kmins')">abstract</a>
+</div>
+<div id="a_kmins" class="abstract">This paper shows that the `i`-level of an
+  arrangement of hyperplanes in `E^d` has at most `((i+d-1), (d-1))` local
+  minima. This bound follows from ideas previously used to prove bounds on
+  `(\le k)`-sets. Using linear programming duality, the Upper Bound Theorem is
+  obtained as a corollary, giving yet another proof of this celebrated bound on
+  the number of vertices of a simple polytope in `E^d` with `n` facets.</div>
+  <div id="n_kmins" class="annote"><b>Notes: </b> This <a
+  href="annotes.html#mulmul_ds">paper</a> by Mulmuley seems closely related,
+  and probably should have been cited.</div>
+<p>
+
+<div class="title"><a name="rga">Randomized geometric algorithms</a>.
+</div>
+<div class="bibcite">
+<div class="category"> (Survey).
+</div>In F.~K. Hwang and D.~Z. Hu, editors, <cite>Computers and Euclidean
+  Geometry</cite>.
+World Scientific Publishing, 1992.</div>
+<div class="ancillary"><a  href="rga/p.pdf" title="adobe pdf">pdf</a>
+<a  href="rga/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#rga" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('rga')">abstract</a>
+</div>
+<div id="a_rga" class="abstract">This paper surveys some of the applications of
+  randomization to computational and combinatorial geometry. Randomization
+  provides a general way to divide-and-conquer geometric problems, and gives a
+  simple incremental approach to building geometric structures. The paper
+  discusses closest-point problems, convex hulls, Voronoi diagrams, trapezoidal
+  diagrams of line segments, linear programming in small dimension, range
+  queries, and bounds for point-line incidences and for `(\le k)`-sets.
+  Relations to the Vapnik-Chervonenkis dimension, PAC-learnability of geometric
+  concepts, and the Hough transform are briefly noted.</div>
+<p>
+
+<div class="title"><a name="cms">Four results on randomized incremental
+  constructions</a>.
+</div><div class="bibcite">
+<div class="authored_with">with Kurt Mehlhorn and Raimund Seidel.
+</div><cite>Comp. Geom.: Theory and Applications</cite>, pages 185--121, 1993.
+</div>Preliminary version in <cite>Proc. Symp. Theor. Aspects of Comp.
+  Sci.</cite>, 1992.</div>
+<div class="ancillary"><a  href="cms/p.pdf" title="adobe pdf">pdf</a>
+<a  href="cms/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#cms" title="bibtex entry">bib</a>
+<a  href="cms/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('cms')">abstract</a>
+</div>
+<div id="a_cms" class="abstract">We prove four results on randomized
+  incremental constructions (RICs): <ul> <li>an analysis of the expected
+  behavior under insertion and deletions,</li> <li>a fully dynamic data
+  structure for convex hull maintenance in arbitrary dimensions,</li> <li>a
+  tail estimate for the space complexity of RICs,</li> <li>a lower bound on the
+  complexity of a game related to RICs.</li> </ul></div> <div id="n_cms"
+  class="annote"><b>Notes: </b> Among other things, this paper extends Seidel's
+  "backwards analysis" approach (not far from the "leave one out" technique of
+  learning theory) to a general version of RIC; this involves a kind of
+  "searching in history" and exploitation of the <em>exchangeability</em> of
+  members of a random sample.</div>
+<p>
+
+<div class="title"><a name="tri">Randomized parallel algorithms for trapezoidal
+  diagrams</a>.
+</div><div class="bibcite">
+<div class="authored_with">with Richard Cole and Robert E. Tarjan.
+</div><cite>Int. J. Comp. Geom. and Applications</cite>, pages 117--133, 1992.
+</div>Preliminary version in <cite>Proceedings of the Seventh Annual Symposium
+  on Computational Geometry</cite>, 1991.</div>
+<div class="ancillary"><a  href="tri/p.pdf" title="adobe pdf">pdf</a>
+<a  href="tri/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#tri" title="bibtex entry">bib</a>
+<a  href="tri/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('tri')">abstract</a>
+</div>
+<div id="a_tri" class="abstract">We describe randomized parallel algorithms for
+  building trapezoidal diagrams of line segments in the plane. The algorithms
+  are designed for a CRCW PRAM. For general segments, we give an algorithm
+  requiring optimal `O(A+n\log n)` expected work and optimal `O(\log n)` time,
+  where `A` is the number of intersecting pairs of segments. If the segments
+  form a simple chain, we give an algorithm requiring optimal `O(n)` expected
+  work and `O(\log n\log\log n\log^**n)` expected time, and a simpler algorithm
+  requiring `O(n\log^**n)` expected work. The serial algorithm corresponding to
+  the latter is among the simplest known algorithms requiring `O(n\log^**n)`
+  expected operations. For a set of segments forming `K` chains, we give an
+  algorithm requiring `O(A+n\log^**n+K\log n)` expected work and `O(\log
+  n\log\log n\log^** n)` expected time. The parallel time bounds require the
+  assumption that enough processors are available, with processor allocations
+  every `\log n` steps.</div> <div id="n_tri" class="annote"><b>Notes: </b> The
+  serial version of our basic algorithm, as applied to non-intersecting
+  segments, is a bit simpler than the divide-and-conquer scheme of the earlier
+  <a href="#Clarkson89b">paper</a>, and not very far from Seidel's <a
+  href="annotes.html#SeidelTD">algorithm</a>, independently discovered at the
+  same time as this one. (His algorithm uses planar point location for a key
+  task, while we use a sweepline algorithm.)</div>
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="tsp">Approximation algorithms for planar traveling
+  salesman tours and minimum-length triangulations</a>.
+</div>In <cite>SODA '91: Proceedings of the Second Annual ACM-SIAM Symposium on
+  Discrete Algorithms</cite>, January 1991.</div>
+<div class="ancillary"><a  href="tsp/p.pdf" title="adobe pdf">pdf</a>
+<a  href="tsp/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#tsp" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('tsp')">abstract</a>
+</div>
+<div id="a_tsp" class="abstract">This paper gives a partitioning scheme for the
+  geometric, planar traveling salesman problem, under the Euclidean metric:
+  given a set `S` of `n` points in the plane, find a shortest closed tour
+  (path) visiting all the points. The scheme employs randomization, and gives a
+  tour that can be expected to be short, if `S` satisfies the condition that a
+  random subset `R\subset S` has on average a tour much shorter than an optimal
+  tour of `S`. This condition holds for points independently, identically
+  distributed in the plane, for example, for which a tour within `1+\epsilon`
+  of shortest can be found in expected time `nk^2 2^k`, where `k=O(\log\log
+  n)^3/\epsilon^2`. One algorithm employed in the scheme is of interest in its
+  own right: when given a simple polygon `P`, it finds a Steiner triangulation
+  of the interior of `P`. If `P` has `n` sides and perimeter `L_P`, the edges
+  of the triangulation have total length `L_PO(\log n)`. If this algorithm is
+  applied to a simple polygon induced by a minimum spanning tree of a point
+  set, the result is a Steiner triangulation of the set with total length
+  within a factor of `O(\log n)` of the minimum possible.</div> <div id="n_tsp"
+  class="annote"><b>Notes: </b> A better partitioning scheme was given by
+  Eppstein, using quadtrees, and of course Arora's algorithm makes the whole
+  approach moot. There is a certain foreshadowing here of
+  "pseudo-triangulations", however.</div>
+<p>
+
+<div class="title"><a name="Clarkson90">Combinatorial complexity bounds for
+  arrangements of curves and surfaces</a>.
+</div><div class="bibcite">
+<div class="authored_with">with Herbert Edelsbrunner, Leonidas J. Guibas, Micha
+  Sharir, and Emo Welzl.
+</div><cite>Discrete & Computational Geometry</cite>, 5(2):99--160, 1990.
+</div>Preliminary version in <cite>FOCS '88: Proceedings of the Twenth-ninth
+  Annual IEEE Symposium on Foundations of Computer Science</cite>, 1988.</div>
+<div class="ancillary">
+<a  href="bib.html#Clarkson90" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+<div class="title"><a name="BCL">Fast linear expected-time algorithms for
+  computing maxima and convex hulls</a>.
+</div><div class="bibcite">
+<div class="authored_with">with Jon L. Bentley and David B. Levine.
+</div><cite>Algorithmica</cite>, pages 168--183, 1993.
+</div>Preliminary version in <cite>SODA '90: Proceedings of the First Annual
+  ACM-SIAM Symposium on Discrete Algorithms</cite>, 1990.</div>
+<div class="ancillary">
+<a  href="bib.html#BCL" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('BCL')">abstract</a>
+</div>
+<div id="n_BCL" class="annote"><b>Notes: </b> Related to <a href="#os">this</a>
+  paper.</div>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="lp2">Las Vegas algorithms for linear and integer
+  programming when the dimension is small</a>.
+</div><cite>Journal of the ACM</cite>, 42(2):488--499, 1995.
+</div>Preliminary version in <cite>FOCS '88: Proceedings of the Twenty-ninth
+  Annual IEEE Symposium on Foundations of Computer Science</cite>, 1988.</div>
+<div class="ancillary"><a  href="lp/p.pdf" title="adobe pdf">pdf</a>
+<a  href="lp/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#lp2" title="bibtex entry">bib</a>
+<a  href="lp/p.dvi" title="tex output format">dvi</a>
+&nbsp;
+<a  href="lp/talk.pdf" title="slides for talk">talk</a>
+
+
+&nbsp;
+<a title="show/hide abstract" href="javascript:toggle_vis('lp2')">abstract</a>
+</div>
+<div id="a_lp2" class="abstract">This paper gives an algorithm for solving
+  linear programming problems. For a problem with `n` constraints and `d`
+  variables, the algorithm requires an expected <blockquote>`O(d^2n)+(\log
+  n)O(d)^{d/2+O(1)} +O(d^4\sqrt{n}\log n)`</blockquote> arithmetic operations,
+  as `n\rightarrow\infty`. The constant factors do not depend on `d`. Also, an
+  algorithm is given for integer linear programming. Let `\varphi` bound the
+  number of bits required to specify the rational numbers defining an input
+  constraint or the objective function vector. Let `n` and `d` be as before.
+  Then the algorithm requires expected <blockquote>`O(2^ddn+8^dd\sqrt{n\ln
+  n}\ln n) +d^{O(d)}\varphi\ln n`</blockquote> operations on numbers with
+  `d^{O(1)}\varphi` bits, as `n->oo`, where the constant factors do not depend
+  on `d` or `\varphi`. The expectations are with respect to the random choices
+  made by the algorithms, and the bounds hold for any given input. The
+  technique can be extended to other convex programming problems. For example,
+  an algorithm for finding the smallest sphere enclosing a set of `n` points in
+  `E^d` has the same time bound.</div> <div id="n_lp2" class="annote"><b>Notes:
+  </b> The bound given for integer programming is not quite right, as corrected
+  by F. Eisenbrand, <a
+  href="http://www.mpi-sb.mpg.de/%7Eeisen/papers/ip.ps.gz">here.</a> <p> (The
+  accompanying talk is the one given at FOCS in 1988; note that it gives the
+  results of the paper in terms of the Smallest Enclosing Sphere (or Minimum
+  Enclosing Ball) problem.)<p> The delay between conference and journal
+  publication is not the fault of the journal.<p> Developments between 1988 and
+  1995, roughly as discussed at the conclusion of the journal version of the
+  paper: <blockquote>Several developments have occurred since the conference
+  version of this paper appeared. <a href="annotes.html#AS">Adler and
+  Shamir</a> have shown that these ideas can be applied to general convex
+  programming. <a href="annotes.html#CM">Chazelle and Matou{\v s}ek</a> have
+  derandomized the recursive algorithm, obtaining a deterministic algorithm
+  requiring `d^{O(d)}n` time. <a href="annotes.html#AM">Alon and Megiddo</a>
+  have applied and extended the ideas of this paper to a parallel setting. <a
+  href="annotes.html#Seidel_CHME">Seidel</a> gave a different randomized
+  algorithm, requiring `O(d!n)` expected time, with a somewhat simpler
+  analysis; Matousek, Sharir and Welzl found a variant of Seidel's algorithm
+  requiring time subexponential in `d`. <a href="annotes.html#MSW">Their
+  algorithm</a> is a randomized instance of the simplex algorithm. <a
+  href="annotes.html#kalai">Kalai</a> was the first to find a subexponential
+  simplex algorithm. Problem instances have long been known for which versions
+  of the simplex algorithm require at least `2^d` operations.<a
+  href="annotes.html#KM">[KM]</a> These results cast new light on the
+  complexity of the simplex algorithm, and on the possibility that linear
+  programming problems can be solved in "strongly polynomial" time; such an
+  algorithm would need `(nd)^{O(1)}` operations, with the number of operations
+  independent of the size of the numbers specifying a problem
+  instance.</blockquote> Some more recent related results: <a
+  href="annotes.html#V">Vapnik's</a> leave-one-out error estimate for support
+  vector machines is a version of Lemma 3.2, generalized to quadratic
+  programming. (Such <em>deleted</em> error estimates were found in the <a
+  href="annotes.html#DGL">sixties</a>.) <p> <a href="annotes.html#CLM">Chazelle
+  <em>et al.</em></a> observe that one of these algorithms can be the basis for
+  <em>sublinear</em> geometric algorithms; another <a
+  href="annotes.html#Chan_multipass">paper</em></a> observes that the approach
+  works well from the standpoint of <em>multi-pass</em> algorithms. Lemma 3.2
+  (or its generalization to <a href="annotes.html#AS">convex programming</a>),
+  was rediscovered recently: <a href="annotes.html#CC">Calafiore and Campi</a>,
+  Theorem 1. Their proof rediscovers "backwards analysis".</div>
+<p>
+
+<div class="title"><a name="Clarkson89b">A fast Las Vegas algorithm for
+  triangulating a simple polygon</a>.
+</div><div class="bibcite">
+<div class="authored_with">with Robert E. Tarjan and C. J. Van Wyk.
+</div><cite>Discrete & Computational Geometry</cite>, 4(1):423--432, 1989.
+</div>Preliminary version in <cite>Proceedings of the Fourth Annual Symposium
+  on Computational Geometry</cite>, 1988.</div>
+<div class="ancillary">
+<a  href="bib.html#Clarkson89b" title="bibtex entry">bib</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('Clarkson89b')">abstract</a>
+</div>
+<div id="a_Clarkson89b" class="abstract">We present an algorithm that
+  triangulates a simple polygon on `n` vertices in `O(n log ^** n)` expected
+  time. The algorithm uses random sampling on the input, and its running time
+  does not depend on any assumptions about a probability distribution from
+  which the polygon is drawn.</div> <div id="n_Clarkson89b"
+  class="annote"><b>Notes: </b> The first algorithm to apply randomization to
+  the problem, and obtain essentially linear time. See <a href="#tri">here</a>
+  also. <a href="annotes.html#chaztri">Chazelle</a> got rid of the
+  "essentially" and the randomization, at the cost of some complexity; <a
+  href="annotes.html#AGR">Amato et al.</a> took out some of that complexity, at
+  the cost of putting the randomization back in.</div>
+<p>
+
+<div class="title"><a name="rs2m">Applications of random sampling in
+  computational geometry, II.</a>.
+</div><div class="bibcite">
+<div class="authored_with">with P. W. Shor.
+</div><cite>Discrete & Computational Geometry</cite>, 4(1):387--421, 1989.
+</div>Merges two papers below.</div>
+<div class="ancillary"><a  href="rs2m/p.pdf" title="adobe pdf">pdf</a>
+<a  href="rs2m/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#rs2m" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('rs2m')">abstract</a>
+</div>
+<div id="a_rs2m" class="abstract">We use random sampling for several new
+  geometric algorithms. The algorithms are "Las Vegas," and their expected
+  bounds are with respect to the random behavior of the algorithms. These
+  algorithms follow from new general results giving sharp bounds for the use of
+  random subsets in geometric algorithms. These bounds show that random subsets
+  can be used optimally for divide-and-conquer, and also give bounds for a
+  simple, general technique for building geometric structures incrementally.
+  One new algorithm reports all the intersecting pairs of a set of line
+  segments in the plane, and requires `O(A+n\log n)` expected time, where `A`
+  is the number of intersecting pairs reported. The algorithm requires `O(n)`
+  space in the worst case. Another algorithm computes the convex hull of `n`
+  points in `E^d` in `O(n\log n)` expected time for `d=3`, and
+  `O(n^{|__d/2__|})` expected time for `d>3`. The algorithm also gives fast
+  expected times for random input points. Another algorithm computes the
+  diameter of a set of `n` points in `E^3` in `O(n\log n)` expected time, and
+  on the way computes the intersection of `n` unit balls in `E^3`. We show that
+  `O(n\log A)` expected time suffices to compute the convex hull of `n` points
+  in `E^3`, where `A` is the number of input points on the surface of the hull.
+  Algorithms for halfspace range reporting are also given. In addition, we give
+  asymptotically tight bounds for `(\le k)`-sets, which are certain halfspace
+  partitions of point sets, and give a simple proof of Lee's bounds for high
+  order Voronoi diagrams.</div>
+<p>
+
+<div class="title"><a name="Clarkson88a">Algorithms for diametral pairs and
+  convex hulls that are optimal, randomized, and incremental.</a>.
+</div>
+<div class="bibcite">
+<div class="authored_with">with P. W. Shor.
+</div>In <cite>SOCG '88: Proceedings of the Fourth Annual Symposium on
+  Computational Geometry</cite>, Urbana, Illinois, June 1988.</div>
+<div class="ancillary">
+ <a  href="#rs2m"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#Clarkson88a" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="Clarkson88">Applications of random sampling in
+  computational geometry, II.</a>.
+</div>In <cite>SOCG '88: Proceedings of the Fourth Annual Symposium on
+  Computational Geometry</cite>, Urbana, Illinois, June 1988.</div>
+<div class="ancillary">
+ <a  href="#rs2m"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#Clarkson88" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="Clarkson89">An algorithm for geometric minimum
+  spanning trees requiring nearly linear expected time</a>.
+</div><cite>Algorithmica</cite>, 4:461--469, 1989.
+</div>Included in PhD Thesis.</div>
+<div class="ancillary">
+ <a  href="thesis_abs.html"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#Clarkson89" title="bibtex entry">bib</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('Clarkson89')">abstract</a>
+</div>
+<div id="a_Clarkson89" class="abstract">We describe an algorithm for finding a
+  minimum spanning tree of the weighted complete graph induced by a set of `n`
+  points in Euclidean `d`-space. The algorithm requires nearly linear expected
+  time for points that are independently uniformly distributed in the unit
+  `d`-cube. The first step of the algorithm is the spiral search procedure
+  described by Bentley, Weide, and Yao [BWY] for finding a supergraph of the
+  MST that has `O(n)` edges. (The constant factor in the bound depends on `d`.)
+  The next step is that of sorting the edges of the supergraph by weight using
+  a radix distribution, or "bucket," sort. These steps require linear expected
+  time. Finally, Kruskal's algorithm is used with the sorted edges, requiring
+  `O(n\alpha(cn,n))` time in the worst case, with `c>6`. Since the function
+  `\alpha(cn,n)` grows very slowly, this step requires linear time for all
+  practical purposes. This result improves the previous best
+  `O(n\log\log^**n)`, and employs a much simpler algorithm. Also, this result
+  demonstrates the robustness of bucket sorting, which requires `O(n)` expected
+  time in this case despite the probability dependency between the edge
+  weights.</div>
+<p>
+
+<div class="title"><a name="l1mp">Rectilinear shortest paths through polygonal
+  obstacles in `{:O:}(n \log^2 n)` time</a>.
+</div>
+<div class="bibcite">
+<div class="authored_with">with S. Kapoor and P. Vaidya.
+</div>In <cite>SOCG '87: Proceedings of the Third Annual Symposium on
+  Computational Geometry</cite>, Waterloo, Ontario, June 1987.</div>
+<div class="ancillary">
+<a  href="l1mp/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#l1mp" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('l1mp')">abstract</a>
+</div>
+<div id="a_l1mp" class="abstract">The problem of finding a rectilinear shortest
+  path amongst obstacles may be stated as follows: Given a set of obstacles in
+  the plane find a shortest rectilinear (`L_1`) path from a point `s` to a
+  point `t` which avoids all obstacles. The path may touch an obstacle but may
+  not cross an obstacle. We study the rectilinear shortest path problem for the
+  case where the obstacles are non-intersecting simple polygons, and present an
+  `O( n log^2 n )` algorithm for finding such a path, where `n` is the number
+  of vertices of the obstacles. This algorithm requires `O(n log n )` space.
+  Another algorithm is given that requires `O(n ( log n ) ^{ 3/2} )` time and
+  space. We also study the case of rectilinear obstacles in three dimensions,
+  and show that `L_1` shortest paths can be found in `O( n^2 log^ 3 n )`
+  time.</div>
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="mp">Approximation algorithms for shortest path
+  motion planning</a>.
+</div>In <cite>STOC '87: Proceedings of the Nineteenth Annual SIGACT
+  Symposium</cite>, New York, New York, May 1987.</div>
+<div class="ancillary"><a  href="mp/p.pdf" title="adobe pdf">pdf</a>
+<a  href="mp/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#mp" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('mp')">abstract</a>
+</div>
+<div id="a_mp" class="abstract">This paper gives approximation algorithms for
+  solving the following motion planning problem: Given a set of polyhedral
+  obstacles and points `s` and `t`, find a shortest path from `s` to `t` that
+  avoids the obstacles. The paths found by the algorithms are piecewise linear,
+  and the length of a path is the sum of the lengths of the line segments
+  making up the path. Approximation algorithms will be given for versions of
+  this problem in the plane and in three-dimensional space. The algorithms
+  return an `\epsilon`-short path, that is, a path with length within
+  `(1+\epsilon)` of shortest. Let `n` be the total number of faces of the
+  polyhedral obstacles, and `\epsilon` a given value satisfying
+  `0<\epsilon\leq\pi`. The algorithm for the planar case requires `O(n\log
+  n)/\epsilon` time to build a data structure of size `O(n/\epsilon)`. Given
+  points `s` and `t`, an `\epsilon`-short path from `s` to `t` can be found
+  with the use of the data structure in time `O(n/\epsilon+n\log n)`. The data
+  structure is associated with a new variety of Voronoi diagram. Given
+  obstacles `S\subset E^3` and points `s,t\in E^3`, an `\epsilon`-short path
+  between `s` and `t` can be found in
+  <blockquote>`O(n^2\lambda(n)\log(n/\epsilon)/\epsilon^4 +n^2\log
+  n\rho\log(n\log \rho))`</blockquote> time, where `\rho` is the ratio of the
+  length of the longest obstacle edge to the distance between `s` and `t`. The
+  function `\lambda(n)=\alpha(n)^{O(\alpha(n)^{O(1)})}`, where the `\alpha(n)`
+  is a form of inverse of Ackermann's function. For `\log(1/\epsilon)` and
+  `\log\rho` that are `O(\log n)`, this bound is
+  `O(n^2(\log^2n)\lambda(n)/\epsilon^4)`.</div> <div id="n_mp"
+  class="annote"><b>Notes: </b> This paper introduces the observation that
+  Yao's fan of cones can be used to build a spanner. This observation was
+  independently made by <a href="annotes.html#KG">Keil and Gutwin</a>, and by
+  <a href="annotes.html#RS">Ruppert and Seidel</a>. The resulting spanners have
+  seen recent (circa 2005) application in the wireless literature, where they
+  are called <em>Yao graphs</em>.</div>
+<p>
+
+<div class="title"><a name="Guibas87">Solving related two and three dimensional
+  linear programming problems in logarithmic time</a>.
+</div><div class="bibcite">
+<div class="authored_with">with L. J. Guibas, Jorge Stolfi.
+</div><cite>Theoretical Computer Science</cite>, 49:81--84, 1987.</div>
+<div class="ancillary">
+<a  href="bib.html#Guibas87" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="rs">New applications of random sampling to
+  computational geometry</a>.
+</div><cite>Discrete & Computational Geometry</cite>, 2:195--222, 1987.
+</div>Preliminary version: Further applications of random sampling to
+  computational geometry, <cite>STOC '86: Proceedings of the Eighteenth Annual
+  SIGACT Symposium</cite>, 1986.</div>
+<div class="ancillary"><a  href="rs/p.pdf" title="adobe pdf">pdf</a>
+<a  href="rs/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#rs" title="bibtex entry">bib</a>
+<a  href="rs/p.dvi" title="tex output format">dvi</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('rs')">abstract</a>
+</div>
+<div id="a_rs" class="abstract">This paper gives several new demonstrations of
+  the usefulness of random sampling techniques in computational geometry. One
+  new algorithm creates a search structure for arrangements of hyperplanes by
+  sampling the hyperplanes and using information from the resulting arrangement
+  to divide and conquer. This algorithm requires `O(s ^ {d + \epsilon})`
+  expected preprocessing time to build a search structure for an arrangement of
+  `s` hyperplanes in `d` dimensions. The expectation, as with all expected
+  times reported here, is with respect to the random behavior of the algorithm,
+  and holds for any input. Given the data structure, and a query point `p`, the
+  cell of the arrangement containing `p` can be found in `O( \log s)`
+  worst-case time. (The bound holds for any fixed `\epsilon >0`, with the
+  constant factors dependent on `d` and `\epsilon`.) Using point-plane duality,
+  the algorithm may be used for answering halfspace range queries. Another
+  algorithm finds random samples of simplices to determine the separation
+  distance of two polytopes. The algorithm uses expected `O(n ^{|__d/2__|} )`
+  time, where `n` is the total number of vertices of the two polytopes. This
+  matches previous results [DoK] for the case `d=3` and extends them. Another
+  algorithm samples points in the plane to determine their order `k` Voronoi
+  diagram, and requires expected `O(s^{1+\epsilon}k)` time for `s` points. (It
+  is assumed that no four of the points are cocircular.) This sharpens the
+  bound `O(sk ^ 2 \log s)` for Lee's algorithm [Lee], and `O(s ^ 2 \log s +
+  k(s-k) \log ^ 2 s)` for Chazelle and Edelsbrunner's algorithm [ChE]. Finally,
+  random sampling is used to show that any set of `s` points in `E^3` has
+  `O(sk^2\log ^ 8 s / ( \log \log s) ^ 6 )` distinct `j`-sets with `j\leq k`.
+  (For `S \subset E^d`, a set `S'\subset S` with `|S'|=j` is a `j`-set of `S`
+  if there is a halfspace `h^+` with `S'=S \cap h^+`.) This sharpens with
+  respect to `k` the previous bound `O(s k ^ 5 )` [ChP]. The proof of the bound
+  given here is an instance of a "probabilistic method" [ErS].</div> <div
+  id="n_rs" class="annote"><b>Notes: </b> This paper extends the ideas of an
+  earlier <a href="#rpo">one</a> to a much more general setting; This framework
+  is slightly less general than that of range spaces of finite VC-dimension,
+  which were introduced to geometric algorithms at the same time by <a
+  href="annotes.html#HW">Haussler and Welzl</a> (in the same issue of the
+  journal). The scheme here is very close to the <a
+  href="annotes.html#FW"><em>sample compression</em></a> framework in the
+  learning theory literature. It is not clear that there are any natural
+  applications of the VC-dimension for which this framework is not also
+  applicable. (Examples of such a thing would be of interest, at least to me.)
+  The framework is much the same as this <a href="#rs2m">later</a> one, which
+  gives bounds that hold on average; here the bounds hold with high
+  probability, but with an extra factor of `log r`. The arrangement search
+  structure uses a construction that sharpens an idea of Megiddo, and in turn
+  was later sharpened (removing the `epsilon`) and called <em>cuttings</em>.
+  The polytope separation distance algorithm was made obsolete by Gaertner, who
+  gave an `O(n)`-time algorithm by application and extension of <a
+  href="#lp2">these</a> ideas, and later improvements. The `k`-set bounds are
+  sharpened <a href="#rs2m">here</a>, with a much cleaner argument.</div>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="Clarkson86">Linear programming in `0(n3^{d^2})`
+  time</a>.
+</div><cite>Information Processing Letters</cite>, 22:21--24, January
+  1986.</div>
+<div class="ancillary">
+<a  href="bib.html#Clarkson86" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="rpo">A randomized algorithm for closest-point
+  queries</a>.
+</div><cite>SIAM Journal on Computing</cite>, pages 830--847, 1988.
+</div>Preliminary version: A probabilistic algorithm for the post office
+  problem, <cite>STOC '85: Proceedings of the Seventeenth Annual SIGACT
+  Symposium</cite>, 1985.</div>
+<div class="ancillary"><a  href="rpo/p.pdf" title="adobe pdf">pdf</a>
+<a  href="rpo/p.ps.gz" title="gzipped postscript">ps</a>
+<a  href="bib.html#rpo" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('rpo')">abstract</a>
+</div>
+<div id="a_rpo" class="abstract">An algorithm for closest-point queries is
+  given. The problem is this: given a set `S` of `n` points in `d`-dimensional
+  space, build a data structure so that given an arbitrary query point `p`, a
+  closest point in `S` to `p` can be found quickly. The measure of distance is
+  the Euclidean norm. This is sometimes called the <em>post-office problem</em>
+  [Kn]. The new data structure will be termed an <em>RPO tree</em>, from
+  Randomized Post Office. The expected time required to build an RPO tree is
+  `O(n^{|~d/2~| (1+ \epsilon )} )`, for any fixed `\epsilon > 0`, and a query
+  can be answered in `O(\log n )` worst-case time. An RPO tree requires
+  `O(n^{|~d/2~| (1+ \epsilon )} )` space in the worst case. The constant
+  factors in these bounds depend on `d` and `\epsilon`. The bounds are
+  average-case due to the randomization employed by the algorithm, and hold for
+  any set of input points. This result approaches the `\Omega(n^{|~d/2~|} )`
+  worst-case time required for any algorithm that constructs the Voronoi
+  diagram of the input points, and is a considerable improvement over previous
+  bounds for `d>3`. The main step of the construction algorithm is the
+  determination of the Voronoi diagram of a random sample of the sites, and the
+  triangulation of that diagram.</div> <div id="n_rpo" class="annote"><b>Notes:
+  </b> The first appearance of the kind of analyis done in more generality <a
+  href="#rs">here</a>, the analysis essentially reduces to the observation that
+  there are `r^{O(1)}` balls associated with a sample of size `r`, that might
+  be Delaunay, and an exponentially small probability that a given such ball
+  with many points in it would be Delaunay in the sample, and finally, the
+  union bound.</div>
+<p>
+
+<div class="bibcite">
+<a name="Clarkson85"><div class="title">Algorithms for closest-point
+  problems</a>.
+</div>PhD thesis, Stanford University, January 1985.</div>
+<div class="ancillary">
+ <a  href="thesis_abs.html"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#Clarkson85" title="bibtex entry">bib</a>
+<a title="show/hide abstract"
+  href="javascript:toggle_vis('Clarkson85')">abstract</a>
+</div>
+<div id="a_Clarkson85" class="abstract">This dissertation reports a variety of
+  new algorithms for solving closest-point problems.&nbsp; The input to these
+  algorithms is a set or sets of points in `d`-dimensional space, with an
+  associated `L_p` metric. The problems considered are:<br> <ul> <li><span
+  style="font-weight: bold;">The all nearest neighbors problem.&nbsp;
+  </span>For point set `A`, find the nearest neighbors in `A` of each point in
+  `A`. <li><span style="font-weight: bold;">The nearest foreign neighbor
+  problem.&nbsp; </span>For point sets `A` and `B`, find the closest point in
+  `B` to each point in `A`.</li> <li><span style="font-weight: bold;">The
+  geometric minimum spanning tree problem.&nbsp; </span>For point set `A`, find
+  the minimum spanning tree for the complete weighted undirected graph
+  associated with `A`, where the vertices of the graph correspond to the points
+  of `A`, and the weight of an edge is the distance between the points defining
+  the edge.</li> </ul> These problems arise in routing, statistical
+  classification, data compression, and other areas.&nbsp; Obvious algorithms
+  for them require a running time quadratic in `n`, the number of points in the
+  input.&nbsp; In many cases they can be solved with algorithms requiring `O(n
+  log ^{O(1)} n)` time.<br> <br> In this work, approximation algorithms for
+  some cases of these problems have been found.&nbsp; For example, for the
+  minimum spanning tree problem with the `L_1` metric, an algorithm has been
+  devised that requires `O(n log^d (1/rho))` time to find a spanning tree with
+  weight within `1+rho` of the minimum.&nbsp; Several other algorithms have
+  been found with time bounds dependent on `log(1/rho)` for attaining error
+  `rho`.<br> <br> Algorithms have also been found that require linear expected
+  time, for independent identically distributed random input points with a
+  probability density function satisfying weak conditions.&nbsp; One such
+  algorithm depends on the fact that under certain conditions, values that are
+  identically distributed, but dependent, can be bucket sorted in linear
+  expected time.<br> <br> An algorithm has been found for the all nearest
+  neighbors problem that requires `O(n log n)` expected time for any input set
+  of points, where the expectation is on the random sampling performed by the
+  algorithm.&nbsp; This algorithm involves the construction of a new data
+  structure, a compressed form of digital trie.</div>
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="Clarkson84">Fast expected-time and approximation
+  algorithms for geometric minimum spanning trees</a>.
+</div>In <cite>STOC '84: Proceedings of the Sixteenth Annual SIGACT
+  Symposium</cite>, Washington, DC, April 1984.
+</div>Included in PhD Thesis.</div>
+<div class="ancillary">
+ <a  href="thesis_abs.html"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#Clarkson84" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="ann">Fast algorithms for the all nearest neighbors
+  problem</a>.
+</div>In <cite>FOCS '83: Proceedings of the Twenty-fourth Symposium on
+  Foundations of Computer Science</cite>, Tucson, AZ, November 1983.
+</div>Included in PhD Thesis.</div>
+<div class="ancillary">
+ <a  href="thesis_abs.html"><img  src="ht.gif" align="top"border = 0 /> </a>
+<a  href="bib.html#ann" title="bibtex entry">bib</a>
+<a title="show/hide abstract" href="javascript:toggle_vis('ann')">abstract</a>
+</div>
+<div id="a_ann" class="abstract">We present new algorithms for the <em>all
+  nearest neighbors</em> problem: <blockquote> Given a set `S` of `n` sites
+  (points) in `d`-dimensional space, find the nearest neighbors in set `S` of
+  each site in `S`. </blockquote> Our results: <ul> <li> An algorithm for
+  solving the all nearest neighbors problem in `O(n\log\sigma)` time, where
+  `\sigma` is the ratio of the distance between the farthest pair of sites to
+  the distance between the closest pair of sites. A similar algorithm is
+  described for finding all `k`'th nearest neighbors. </li> <li> An algorithm
+  for building a <em>celltree</em>, a compressed form of digital trie, in
+  `O(n\log n)` probabilistic time. The logarithm, floor, and bitwise
+  exclusive-or functions are assumed available at unit cost. </li> <li> An
+  algorithm for solving the all nearest neighbors problem in `O(n)` worst-case
+  time, given a celltree for the sites. </li> <li> An algorithm for building a
+  celltree in linear expected time, assuming the sites are independently
+  identically distributed random variables, with an unknown probability density
+  function obeying some very weak conditions. </li> </ul></div> <div id="n_ann"
+  class="annote"><b>Notes: </b> A "celltree" is now more commonly called a
+  "compressed quadtree" or "compressed hyperoctree", and this paper is
+  apparently the first appearance of such a construction. <a
+  href="annotes.html#vaidya">Vaidya</a> refined the algorithm here to avoid
+  randomness and bit-twiddling, at some cost in dependence on `d`; his
+  algorithm, and this one, and that of Gabow, Bentley, and Tarjan, all use the
+  same basic geometrical observation, which implies that the total number of
+  nearest neighbors is `O(n)`, even up to approximate neighbors. <a
+  href="annotes.html#CK">Callahan and Kosaraju</a> used similar ideas for
+  "well-separated pairs decomposition". The `sigma` ratio is now more commonly
+  called the <em>spread</em>.</div>
+<p>
+
+<div class="bibcite">
+<div class="title"><a name="Clarkson83">A modification of the greedy algorithm
+  for vertex cover</a>.
+</div><cite>Information Processing Letters</cite>, 16:23--25, January
+  1983.</div>
+<div class="ancillary">
+<a  href="bib.html#Clarkson83" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+<div class="title"><a name="Clarkson82">Grammatical inference</a>.
+</div>
+<div class="bibcite">
+<div class="category"> (Survey).
+</div>In P. Cohen and E. Feigenbaum, editors, <cite>The Handbook of Artificial
+  Intelligence</cite>.
+William Kaufman, Inc., Los Altos, CA, 1982.</div>
+<div class="ancillary">
+<a  href="bib.html#Clarkson82" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+
+<div class="bibcite">
+<div class="title"><a name="Clarkson81">A procedure for camera calibration</a>.
+</div>In <cite>Proceedings of the DARPA Image Understanding Workshop</cite>,
+  Maclean, VA: Science Applications, Inc., 1981.</div>
+<div class="ancillary">
+<a  href="bib.html#Clarkson81" title="bibtex entry">bib</a>
+</div>
+
+<p>
+
+<div class="title"><a name="Clarkson77">Implementation of a model of `{CO}_2`
+  diffusion in the midtroposphere</a>.
+</div>Technical report, Claremont Graduate School, Claremont, CA, 1977.</div>
+<div class="ancillary">
+<a  href="bib.html#Clarkson77" title="bibtex entry">bib</a>
+</div>
+
+
+<br>
+<hr>
+<a name="firefox">* The slides were done using <a href="http://meyerweb.com/eric/tools/s5/">
+		S5</a> and <a href="http://www1.chapman.edu/~jipsen/mathml/asciimath.html">asciimathml</a>, 
+	and are only viewable with Mozilla Firefox. Navigate as in PowerPoint, or use 
+	the navigation arrows.
+<br>
+<a name="firefox2">** must have <em><a href="http://www.mozilla.org/projects/svg/">SVG-enabled</a></em>
+	Firefox for a few of the slides. (Versions of Firefox after 1.5 are
+	SVG-enabled by default.) These SVG-based slides have simple interactive 
+	animations: move the green dot(s), if any, or press the green square to go, 
+	yellow to single-step, red to stop.  Navigation may only be by clicking 
+the arrows in the corners (in recent slides, the arrows appear when the mouse 
+cursor is over them, in the lower right). Some of the xbl-related code is 
+adapted from <a href="http://www.croczilla.com/svg/samples/">examples.</a> The 
+slides may be slow to load, and require javascript to be enabled (and in one 
+case, java).
+<br>
+<hr>
+This file was made from a bibtex bibliography file using bibtex and latex, and 
+a bibtex style file. The file bib.html, with bibtex references, was also made 
+from the same bibtex bibliography file, using a small awk script. <a href="pm.zip">Here</a>
+are the sources, in case someone else might find them useful.
+</BODY></html>

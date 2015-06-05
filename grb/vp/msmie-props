@@ -1,0 +1,15 @@
+* Msmie properties
+
+* always macro
+prop Always(A) = max(X.A & [[-]]X);
+
+* a slave action is always possible
+prop SlaveAlwaysPossible = Always(<<slave>>T);
+
+* a master action is always possible for both masters
+prop MasterAlwaysPossible = [[slave]]Always(<<ma1,ma1',mr1>>T & <<ma2,ma2',mr2>>T);
+
+* a value written by a slave will eventually be read by a master
+prop ValuesPassed = 
+    Always([[slave]]min(X.max(Y1.<<-eps>>T & [[mr1,mr2,slave,ma2]]Y1 & [[ma1]]
+		          max(Y2.<<-eps>>T & [[mr1,mr2,slave,ma1]]Y2 & [[ma2]]X))));

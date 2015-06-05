@@ -1,0 +1,16 @@
+
+Model Checking of Software
+
+Patrice Godefroid
+
+Abstract:
+
+
+Model Checking is an effective approach for checking the correctness
+of concurrent reactive systems, such as circuit designs and
+communication protocols. In this talk, I will start by presenting a
+brief overview of the history of model checking. I will highlight
+(what I think are) the main ideas that have influenced the theory and
+practice of model checking during the last 20 years, both in academia
+and industry.  Then, I will discuss the challenges faced in order to
+broaden the applicability of model checking to software.

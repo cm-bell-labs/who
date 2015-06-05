@@ -1,0 +1,235 @@
+!<arch>
+addset.r        362839539   9     1     100666  258       `
+include common
+# addset _ put  c  in  set(j)  if it fits,  increment  j
+	integer function addset(c, set, j, maxsiz)
+	integer j, maxsiz
+	character c, set(maxsiz)
+
+	if (j > maxsiz)
+		addset = NO
+	else {
+		set(j) = c
+		j = j + 1
+		addset = YES
+		}
+	return
+	end
+common          362839532   9     1     100666  122       `
+include /usr/style/io/globdefs
+define MAXARR 100
+define MAXSET 100
+define ESCAPE ATSIGN
+define DASH MINUS
+define NOT BANG
+dodash.r        362839540   9     1     100666  426       `
+include common
+# dodash _ expand array(i-1)-array(i+1) into set(j)... from valid
+	subroutine dodash(valid, array, i, set, j, maxset)
+	character esc
+	integer addset, index
+	integer i, j, junk, k, limit, maxset
+	character array(ARB), set(maxset), valid(ARB)
+
+	i = i + 1
+	j = j - 1
+	limit = index(valid, esc(array, i))
+	for (k = index(valid, set(j)); k <= limit; k = k + 1)
+		junk = addset(valid(k), set, j, maxset)
+	return
+	end
+esc.r           362839539   9     1     100666  400       `
+include common
+# esc _ map  array(i)  into escaped character if appropriate
+	character function esc(array, i)
+	character array(ARB)
+	integer i
+
+	if (array(i) != ESCAPE)
+		esc = array(i)
+	else if (array(i+1) == EOS)	# \*a not special at end
+		esc = ESCAPE
+	else {
+		i = i + 1
+		if (array(i) == LETN)
+			esc = NEWLINE
+		else if (array(i) == LETT)
+			esc = TAB
+		else
+			esc = array(i)
+		}
+	return
+	end
+filset.r        362839539   9     1     100666  2484      `
+include common
+# filset _ expand set at  array(i)  into  set(j),  stop at  delim
+	subroutine filset(delim, array, i, set, j, maxset)
+	character esc
+	integer addset, index
+	integer i, j, junk, maxset
+	character array(ARB), delim, set(maxset)
+#	string digits "0123456789"
+	integer digits(11)
+	data digits(1)/DIG0/, digits(2)/DIG1/, digits(3)/DIG2/
+	data digits(4)/DIG3/, digits(5)/DIG4/, digits(6)/DIG5/
+	data digits(7)/DIG6/, digits(8)/DIG7/, digits(9)/DIG8/
+	data digits(10)/DIG9/, digits(11)/EOS/
+#	string lowalf "abcdefghijklmnopqrstuvwxyz"
+	integer lowalf(27)
+	data lowalf(01)/LETA/
+	data lowalf(02)/LETB/
+	data lowalf(03)/LETC/
+	data lowalf(04)/LETD/
+	data lowalf(05)/LETE/
+	data lowalf(06)/LETF/
+	data lowalf(07)/LETG/
+	data lowalf(08)/LETH/
+	data lowalf(09)/LETI/
+	data lowalf(10)/LETJ/
+	data lowalf(11)/LETK/
+	data lowalf(12)/LETL/
+	data lowalf(13)/LETM/
+	data lowalf(14)/LETN/
+	data lowalf(15)/LETO/
+	data lowalf(16)/LETP/
+	data lowalf(17)/LETQ/
+	data lowalf(18)/LETR/
+	data lowalf(19)/LETS/
+	data lowalf(20)/LETT/
+	data lowalf(21)/LETU/
+	data lowalf(22)/LETV/
+	data lowalf(23)/LETW/
+	data lowalf(24)/LETX/
+	data lowalf(25)/LETY/
+	data lowalf(26)/LETZ/
+	data lowalf(27)/EOS/
+#	string upalf "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	integer upalf(27)
+	data upalf(01) /BIGA/
+	data upalf(02) /BIGB/
+	data upalf(03) /BIGC/
+	data upalf(04) /BIGD/
+	data upalf(05) /BIGE/
+	data upalf(06) /BIGF/
+	data upalf(07) /BIGG/
+	data upalf(08) /BIGH/
+	data upalf(09) /BIGI/
+	data upalf(10) /BIGJ/
+	data upalf(11) /BIGK/
+	data upalf(12) /BIGL/
+	data upalf(13) /BIGM/
+	data upalf(14) /BIGN/
+	data upalf(15) /BIGO/
+	data upalf(16) /BIGP/
+	data upalf(17) /BIGQ/
+	data upalf(18) /BIGR/
+	data upalf(19) /BIGS/
+	data upalf(20) /BIGT/
+	data upalf(21) /BIGU/
+	data upalf(22) /BIGV/
+	data upalf(23) /BIGW/
+	data upalf(24) /BIGX/
+	data upalf(25) /BIGY/
+	data upalf(26) /BIGZ/
+	data upalf(27) /EOS/
+
+	for ( ; array(i) != delim & array(i) != EOS; i = i + 1)
+		if (array(i) == ESCAPE)
+			junk = addset(esc(array, i), set, j, maxset)
+		else if (array(i) != DASH)
+			junk = addset(array(i), set, j, maxset)
+		else if (j <= 1 | array(i+1) == EOS)	# literal -
+			junk = addset(DASH, set, j, maxset)
+		else if (index(digits, set(j-1)) > 0)
+			call dodash(digits, array, i, set, j, maxset)
+		else if (index(lowalf, set(j-1)) > 0)
+			call dodash(lowalf, array, i, set, j, maxset)
+		else if (index(upalf, set(j-1)) > 0)
+			call dodash(upalf, array, i, set, j, maxset)
+		else
+			junk = addset(DASH, set, j, maxset)
+	return
+	end
+makset.r        362839532   9     1     100666  283       `
+include common
+# makset _ make set from  array(k)  in  set
+	integer function makset(array, k, set, size)
+	integer addset
+	integer i, j, k, size
+	character array(ARB), set(size)
+
+	i = k
+	j = 1
+	call filset(EOS, array, i, set, j, size)
+	makset = addset(EOS, set, j, size)
+	return
+	end
+
+translit.r      362839538   9     1     100666  1101      `
+include common
+# translit _ map characters
+	character getc
+	character arg(MAXARR), c, from(MAXSET), to(MAXSET)
+	integer getarg, length, makset, xindex
+	integer allbut, collap, i, lastto
+
+	if (getarg(1, arg, MAXARR) == EOF)
+		call error("usage: translit from to.")
+	else if (arg(1) == NOT) {
+		allbut = YES
+		if (makset(arg, 2, from, MAXSET) == NO)
+			call error("from: too large.")
+		}
+	else {
+		allbut = NO
+		if (makset(arg, 1, from, MAXSET) == NO)
+			call error("from: too large.")
+		}
+	if (getarg(2, arg, MAXARR) == EOF)
+		to(1) = EOS
+	else if (makset(arg, 1, to, MAXSET) == NO)
+			call error("to: too large.")
+
+	lastto = length(to)
+	if (length(from) > lastto | allbut == YES)
+		collap = YES
+	else
+		collap = NO
+	repeat {
+		i = xindex(from, getc(c), allbut, lastto)
+		if (collap == YES & i >= lastto & lastto > 0) {  # collapse
+			call putc(to(lastto))
+			repeat
+				i = xindex(from, getc(c), allbut, lastto)
+				until (i < lastto)
+			}
+		if (c == EOF)
+			break
+		if (i > 0 & lastto > 0)	# translate
+			call putc(to(i))
+		else if (i == 0)		# copy
+			call putc(c)
+						# else delete
+		}
+	stop
+	end
+
+xindex.r        362839539   9     1     100666  341       `
+include common
+# xindex _ invert condition returned by index
+	integer function xindex(array, c, allbut, lastto)
+	character array(ARB), c
+	integer index
+	integer allbut, lastto
+
+	if (c == EOF)
+		xindex = 0
+	else if (allbut == NO)
+		xindex = index(array, c)
+	else if (index(array, c) > 0)
+		xindex = 0
+	else
+		xindex = lastto + 1
+	return
+	end
+

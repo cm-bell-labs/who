@@ -1,0 +1,45 @@
+
+   Notes on JVP -- A Java-based translator for value-passing CCS
+                         Glenn Bruns
+                        10 July 2008
+
+1. Usage
+
+The translator can be invoked at the command line as follows:
+
+    java -jar jvp.jar sched.vp
+
+where in this case the input file is "sched.vp".  The output
+is written to "sched.ccs".  (Note that some ancient versions of 
+Java do not support the "-jar" option.)
+
+Of course, jvp.jar can instead be put in the java CLASSPATH.
+See Sun's Java documentation if you don't know what this means.
+
+2. Restrictions and notes
+
+The translator supports timed CCS features as described in
+a separate note.
+
+Output is in Edinburgh CWB format only.
+
+I believe all of the value operators described in the vp-ccs
+language definition are now supported.
+
+Note that the "div" operator returns the ceiling of a/b.
+For example, 2 div 3 = 2.  This is different than you'd
+get from integer division in Java and many other languages.
+
+3. Bugs, features
+
+Please email grb@alcatel-lucent.com with requests for
+bug fixes or new features.
+
+Acknowledgements
+
+Thanks to Marcin Szpyrka for discussion and feedback on
+jvp.
+
+
+
+

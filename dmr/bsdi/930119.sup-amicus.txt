@@ -1,0 +1,774 @@
+JAMES E. HOLST
+JOHN F. LUNDBERG
+MARY E. MacDONALD
+University of California
+300 Lakeside Drive, 7th Floor
+Oakland, California 94612-3565
+Telephone: (510) 987-9800
+
+JOEL LINZNER [JL 6426]
+CARLA J. SHAPREAU [CJS 2689]
+CROSBY, HEAFEY, ROACH & MAY
+Professional Corporation
+1999 Harrison Street
+Oakland, California 94612
+Telephone: (510) 763-2000
+
+FREDERICK B. POLAK [FBP 3095]
+POST, POLAK & GOODSELL
+280 Corporate Center
+65 Livingston Avenue
+Roseland, New Jersey 07068
+Telephone: (201) 994-1100
+
+Attorneys for Defendant
+The Regents of the University of California
+
+UNITED STATES DISTRICT COURT
+
+DISTRICT OF NEW JERSEY
+
+	UNIX SYSTEM LABORATORIES, INC.,
+	               Plaintiff,	(DRD)
+
+-against-	
+
+	BERKELEY SOFTWARE DESIGN, INC., and
+	the Following lndividuals in their Collective
+	Capacity as THE REGENTS OF THE 
+	UNIVERSITY OF CALIFORNIA: PETE	
+	WILSON, LEO T. MCCARTHY, WILLIE L.	
+	BROWN, JR., et al.,
+	     Defendants.
+
+		Civil Action No.92-1667
+
+SUPPLEMENTAL AMICUS BRIEF BY DEFENDANTS THE REGENTS OF
+THE UNIVERSITY OF CALIFORNIA RE PLAINTIFF'S MOTION FOR
+PRELIMINARY INJUNCTION
+
+	Date:  1-22-93
+	Time: 10:00 a.m.
+	Court: Honorable Dickinson R. Debevoise
+
+TABLE OF CONTENTS
+
+I	INTRODUCTION
+
+II	ARGUMENT
+
+	A.	NET2 IS NOT AN INFRINGING WORK	
+
+		1.	THE UNIVERSITY CANNOT INFRINGE ITS
+		     	OWN COPYRIGHT
+
+	B.	DE MINIMIS "LITERAL COPYING" DOES NOT PROVE
+		INFRINGEMENT	
+
+	C.	USL CANNOT DISTINGUISH ATARI GAMES AND
+		COMPUTER ASSOCIATES
+
+	D.	USL FORFEITED ITS COPYRIGHT IN 32V	 
+
+	     	1.	CONGRESS' DEFINITION OF PUBLICATION UNDER 
+			THE 1976 COPYRIGHT ACT DOES NOT ALTER USL'S
+			FORFEITURE OF ITS COPYRIGHT IN 32V	
+
+	     	2.	USL DISTRIBUTED 32V WELL BEYOND A SELECTED
+			GROUP
+
+	     	3.	USL DID NOT DISTRIBUTE 32V FOR A LIMITED
+			PURPOSE	
+
+III	CONCLUSION	
+
+
+
+                       TABLE OF AUTHORITIES
+
+
+Apple Computer v. Microsoft Corp.,
+  799 F.Supp. 1006 (N.D. Cal. 1992)	8
+
+Atari Games Corp. v. Nintendo of America, Inc.,
+ ___ F.2d ___, 24 U.S.P.Q.2d 1015 (Fed. Cir. 1992)	8,9
+
+Brown Bag Software v. Symantec,
+  960 F.2d 1465 (9th Cir. 1992)	8
+
+Computer Assoc. International, Inc. v. Altai, Inc.,
+   ___ F.2d ___, 1992, 23 U.S.P.Q.2d 1241 (2nd Cir. 1992)	8
+
+Feder v. Videotrip Corp.,
+  697 F.Supp. 1165 (D. Colo. 1988)	7
+
+Harper & Row Publisher's, Inc. v. The Nation,
+  471 U.S. 539 (1985)	8
+
+Koontz v. Jaffarian,
+  787 F.2d 906 (4th Cir. 1986)	11
+
+Lotus Development Corp. v. Borland International, Inc.,
+  799 F.Supp. 203 (D. Mass. 1992)	8
+
+Narell v. Freeman,
+  872 F.2d 907 (9th Cir. 1989)	7
+
+National Broadcasting Co., Inc. v. Sonneborn,
+  630 F.Supp. 524 (D. Conn. 1985)	14
+
+Paramount Pictures Corp. v. Rubinowitz,
+  271 U.S.P.Q. 48 (E.D.N.Y. 1981)	14
+
+PRC Realty Systems v. National Ass'n of Realtors
+  766  F.Supp. 453 (E.D. Va. 1991) rev'd in part
+  without opinion, 972 F.2d 341 (1992)	14
+
+R.L. Polk & Co.v. Musser,
+  105 F.Supp. 351 (E.D. Penn. 1952)	7
+
+Rokeach v. Avco Embassy Pictures Corp.,
+  1097 U.S.P.Q. 156 (S.D.N.Y. 1977)	7
+
+SAS Institute, Inc. v. S&H Computer Systems, Inc.,
+  605 F.Supp. 816 (M.D. Tenn. 1985)	
+
+Sega Enterprises, Ltd. v. Accolade, Inc.,
+  ___ F.2d ___, slip op. at 41 (9th Cir. 1993)	9
+
+Stewart v. Abend,
+  495 U.S. 207 (1990) quoting Russell v. Price,
+  612 F.2d 1123 (9th Cir. 1979), cert. denied,
+  446 U.S. 952 (1980)	12
+
+Universal Athletic Sales Co. v. Salkeld,
+  511 F.2d 904 (3rd Cir. 1975)	6
+
+Werlin v. Reader's Digest Assoc., Inc.,
+  529 F.Supp. 451 (S.D.N.Y. 1981)	7
+
+White v. Kimmell,
+  193 F.2d 744 (9th Cir.1952)		13
+
+
+Page
+
+Statutes
+
+17 U.S.C. Section 301	3
+17 U.S.C. Section 405	10,13
+1976 Copyright Act	10,13
+H.R. Rep. No. 1476 (1976)	13,14
+
+Publications
+
+Goldstein, The Law of Copyright	12,13
+Nimmer, Nimmer on Copyright	11,13
+
+
+
+
+I.	INTRODUCTION
+
+USL has made no showing of either quantitative or qualitative 
+similarity between its 32V code and the University's Net2 software. 
+Nonetheless, USL asks this Court to avoid a "morass of issues" and, 
+instead, summarily to condemn 4,176 Net2 source code files en 
+masse and put out of business one independent company that plans to 
+use them. Essentially, USL would have this Court skip the trial and 
+proceed directly with the sentence.
+
+In its haste to rush this Court to an erroneous judgment, USL hopes 
+to cover up a gaping hole in its copyright claim by virtually ignoring 
+it (apparently hoping the Court will do likewise), i.e., USL has ceded 
+to the University the copyright in all modifications. improvements 
+and enhancements to 32V developed by the University.Thus, even if 
+one assumes that USL holds a valid copyright in 32V, USL cannot 
+claim that Net2 is an infringing derivative work based upon 32V 
+because -- by agreement with AT&T -- the University owns the 
+copyright in that derivative work.
+
+As a result of AT&T's grant of ownership to the University of all 
+modifications, enhancements and improvements to 32V, USL cannot 
+complain that the University's distribution of its Net2 software 
+infringes any copyright USL may hold in 32V. While USL may wish to 
+complain that the University has breached an agreement not to 
+distribute to non-USL licensees any University-owned code that 
+"contains" old 32V code, that is a matter of contract law. As the 
+Second Joint Declaration of Dr. McKusick and Keith Bostic ("Second 
+Joint Decl.") and the Second Declaration of Dr. McKusick ("Second 
+McKusick Decl.") explain, there has been no substantial breach of 
+that commitment.
+
+
+USL would lead this Court to believe that Dr. McKusick provided the 
+equivalent of a "smoking gun" with his deposition testimony on the 
+subject of whether Net2 contains 32V code. In reality, however, 
+McKusick's testimony was as explosive as a "pop gun." As Dr. 
+McKusick states in his second declaration, his testimony was 
+intended to explain the University's treatment of AT&T 32V code for 
+which a trade secret possibly could have been asserted: before the 
+University would release code that contained a reimplementation of 
+a 32V algorithm, the CSRG staff looked forpublic explications of the 
+algorithm in question; if an algorithm was publicly describedin 
+pseudo-code, the University included the algorithm (implemented by 
+improved codedeveloped by the University) in the Net2 release. 
+Second McKusick Decl., at Para. 2.3.Header files -- which were 
+essential to ensure the compatibility of Net2 withapplications, 
+programs and peripherals -- were also included in Net2. Id. at Para. 
+4. Itis a gross misuse of the McKusick deposition to represent it as 
+an admission ofwidespread incorporation of 32V code in Net2 
+because -- in fact -- there is virtuallyno 32V code in the Net2 
+source files. Id. at Para. 2.
+
+A painstaking review of the Net2 source code files has uncovered 
+only 14 files (out of the total 4,176 Net2 source files) which 
+contain any 32V code in them. As explained in the Second McKusick 
+Declaration, those files collectively contain only 186 lines of 
+common code (out of the 1.5 million lines of source code in Net2). 
+Id.at 1 2. In the kernel -- which USL concedes is the core of the 
+system -- only 56 lines of source code from Net2 (which has 
+230,995 lines of source code in the kernel)match lines from the 
+14,293 lines of source code in the 32V kernel. Id. at Para 1.
+
+     After spending hundreds of hours searching for textual matches, 
+USL's paid expert could only find and report on two source files in 
+Net2 that actually contain 32V code which he considered significant. 
+The first, Net2's "ufs_disksubr.c" file contained 14 lines of code (out 
+of 358 total lines) that also appeared in 32V. Id. at Para. 2.1.1.
+
+The second example belatedly cited by Dr. Carson in his Reply 
+Affidavit, is the "cpio.c" file: this file was included in Net2 by the 
+University at the specific request of AT&T. See Second Joint Decl., 
+at 1 6.2. But even if it were not estopped to complain about "cpio.c," 
+the inclusion of that file and the 14 lines from "ufs_disk.subr.c" -- 
+out of the total 1.5 million lines of source code in Net2 -- hardly 
+amounts to either copyright infringement or a material breach of the 
+agreement not to distribute the University-owned enhancements 
+that "contained" 32V code.
+
+In any event, USL's judicial admissions confirm that its claimed 
+copyright in 32V has been waived. DeFazio Exhibit F establishes that 
+32V was created in 1978. USL's moving papers admitted that 32V 
+was published in object code. But -- as the certificate attests -- 
+the copyright in 32V was not registered until 1 991, long after the 
+five year grace period expired. Although USL may claim copyright 
+protection for its current version of Unix (SVR4), any copyright in 
+the long-obsolete 32V code was forfeited years ago.
+
+USL's trade secret claim (at least on this record) is wholly 
+specious because no specific trade secret has been identified by USL. 
+First, insofar as USL would like to claim trade secret protection 
+for,the 32V source code in its entirety, the claim is surely 
+preempted by the Copyright Act. See 17 U.S.C.  301(a). Indeed, the bar 
+of Section 301 (a) is so clear that USL makes no effort to dispute 
+the point. Second, to the extent USL's expert claims trade secret 
+protection for specific file names or values, Messrs. McKusick and 
+Bostic previously demonstrated the documentation of those 
+"secrets" in the public domain. USL's predecessor-- AT&T-- had 
+agreed that the University need not keep secret "any information or 
+technical data relating to the licensed software which is now 
+available to the general public or which later becomes available to 
+the general public" See DeFazio Decl., Exh. B, Para. 4.07. Even if the 
+law recognized a claim where the alleged trade secrets were 
+publicly documented (which it does not) it is far too late for USL to 
+renege upon the release granted to the University in 1 4.07 of the 
+32V license.
+
+Finally, the equities in no way favor USL. As set out in detail in 
+the  University's amicus brief and supporting declarations, USL has 
+incorporated huge  portions of the University's code into its current 
+SVR4 Unix operating system. USL  does not deny that it pays the 
+University nothing to use the original code and ~ functionality 
+developed by the University, yet it charges over $200,000 per 
+license for an operating system that is approximately 50% 
+University code. A court sitting in equity cannot condemn a public 
+university which has so freely bestowed its gifts upon a private 
+corporation simply because it also has made them available for 
+other members of the public to use.
+
+II.	ARGUMENT
+
+A.	NET2 IS NOT AN INFRINGING WORK
+
+USL would have the Court believe that McKusick's testimony that 
+Net2 contains some 32V code -- regardless of how slight and 
+insignificant that code maybe -- is some kind of "trump" card which 
+dictates "the end of the case." USL should not be so smug: (1) the 
+University's copyright in the derivative Net2 code is an absolute 
+defense to USL's copyright claims; (2) USL has made no showing that 
+the trivial (and accidental) duplication of 186 lines of 32V source 
+code sprinkled among the 1.5 million lines of Net2 source code is 
+either quantitatively or qualitatively substantial and its default on 
+this critical issue renders it impossible for the Court to find 
+infringement of any protectible expression in 32V (even if the 
+University were not privileged to create derivative works).
+
+1.	The University Cannot Infringe Its Own Copyright
+
+USL's copyright claim proceeds upon an erroneous syllogism: i.e., 
+(1)USL owns the copyright in 32V [fn.1]; (2) Net2 is a derivative 
+work based upon 32V; therefore, (3) Net2 (or any program 
+incorporating Net2) is an infringing work. The flaw in USL's 
+reasoning was hidden from the Court in USL's opening papers but 
+revealed by the University's amicus brief and supporting evidence. 
+Although parts of Net2 may be derivative programs which enhanced 
+and improved 32V, USL expressly granted the University the right to 
+create such derivative works and -- furthermore-- granted the 
+University ownership of all such derivative works. Accordingly, as 
+the copyright certificates attached as Exhibits G and H to the 
+DeFazio Declaration attest,the University holds the copyright in the 
+BSD code (of which Net2 is a subset).
+
+USL inexcusably failed to bring to the Court's attention the numerous 
+written, signed agreements between the parties in which AT&T 
+surrendered any claim to joint ownership of the derivative BSD code:
+
+"AT&T does not assert any ownership interest in any
+modification or derivative work made by [the University].... "
+Karels Decl., Exh. A
+
+* * *
+
+"AT&T-IS claims no ownership interest in any portion of
+such modification or derivative work that is not part of a
+[AT&T] Software Product." Shapreau Decl., Exh. G.
+
+* * *
+
+"The Regents of the University of California (the University)
+is the proprietor and owner of enhancements and additions
+to 32V ... AT&T shall have no right, title or interest in or
+to such proprietary software...." Towers Decl., Exh. A.
+
+   [fn.1] As the Court is well aware, the issue of whether the 
+copyright in 32V has been forfeited is subject to much debate. For 
+purposes of this section of the argument, however, the Court may 
+assume that USL holds a valid 32V copyright.
+
+The University supplied the omissions in USL's half-told story by 
+placing this critical evidence before the Court. Although USL 
+dismisses these contracts as mere "wasted paper," the University 
+trusts the Court sees their significance. Net2 cannot be an infringing 
+work because the creation of the derivative code in Net2 was 
+expressly authorized by AT&T and ownership of that derivative code 
+was expressly given by AT&T to the University.
+
+Significantly, USL makes no effort to dispute the University's 
+ownership of the copyright in the derivative code in Net2. For this 
+obvious reason, this case is far different from cases such as SAS 
+Institute, Inc. v. S&H Computer Systems. Inc., 605 F. Supp. 816 (M.D. 
+Tenn. 1985) where the defendant had no right to create a derivative 
+work, much less ownership of the copyright in such derivative work.  
+Essentially, USL asks this Court to find the University has infringed 
+its own copyright; that is a legal impossibility which the Court 
+should not pause long to consider. [fn2]
+
+  [fn2]  The question of whether the Net2 software contains any 
+significant portion of 27 | 32V code is a "red herring" in the context 
+of USL's copyright claim because the University owns all of the 
+derivative code it developed, including those 14 files (out of
+4,176 Net2 files) which contain a smattering of original 32V code. 
+USL may attempt to seek remedies under contract law for any 
+material breach of the University's agreement not to distribute 
+University-owned derivative programs which "contain" 32V code but 
+USL has no copyright claim against Net2.
+
+B.	DE MINIMIS "LITERAL COPYING" DOES NOT PROVE INFRINGEMENT
+
+In Universal Athletic Sales Co. v. Salkeld, 511 F.2d 904 (3rd Cir. 
+1975), the Third Circuit recognized the rule for cases (such as this 
+one) of de minimis similarity:"[I]f the points of dissimilarity not 
+only exceed the points of  similarity, but indicate that the remaining 
+points of similarity are (within the context of plaintiff's work) of 
+minimal importance either quantitatively or qualitatively then no 
+infringement results."511 F.2d at 909 n.4. Reversing a preliminary 
+injunction, the Court of Appeals recognized that mere copying is 
+not enough to prove infringement: "substantial similarity to show 
+that the original work has been copied is not the same as substantial 
+similarity to prove infringement." 511 F.2d at 911.  USL must prove 
+similarities between 32V and Net2 that are quantitatively or 
+qualitatively substantial. Thus, USL's assertion that proof of trivial 
+copying "establishes literal copyright infringement" and "renders 
+unnecessary the substantial similarity analysis" is plain wrong. See 
+Narell v. Freeman, 872 F.2d 907, 910 (9th Cir. 1989) ("A finding that 
+a defendant copied a plaintiff's work, without application of a 
+substantial similarity analysis, has been made only when the 
+defendant has engaged in virtual duplication of a plaintiff's entire 
+work.")
+
+USL has established neither quantitative nor qualitative 
+substantiality on this motion. First, the 14 lines of common source 
+code, the few common file names and two common comments are 
+quantitatively de minimis. See Joint Decl., at 11 13, 28,39, and 47; 
+Second Joint Decl., at 114, 6; Second McKusick Decl., at 12. 
+Second,USL has made no effort to explain why -- qualitatively -- the 
+14 lines of common code (out of 1.5 million) or two comments (out 
+of 33,350) are so important to either it or the University's work as 
+to justify a finding of infringement. The only evidence before this 
+Court is that the common code is insignificant and easily could be 
+replaced and that the comments are automatically omitted from the 
+program once it is compiled. Second Joint Decl., at 11 6.1, 6.2. This 
+trivial, fragmented (and accidental, Second McKusick Decl., at 1 5) 
+duplication of code/comments is insufficient to establish 
+infringement. [fn3]
+
+  [fn3] Compare, Feder v. Videotrip Corp., 697 F. Supp. 1165, 1176 (D. 
+Colo. 1988) ("If, however, the similarity is only as to non-essential 
+matters, then a finding of no substantial similarity should result... 
+thus the Courts have applied a de minimis standard in ruling that 
+some similarities, while suspect, may be too insignificant to arise 
+to the level of 'substantial."'); Werlin v. Reader's Digest Assoc., Inc., 
+528 F. Supp.464 (S.D.N.Y. 1981) ("the Court finds the literal 
+duplication that occurred hereto be so fragmented as to be de 
+minimis, and accordingly declines to rely on this similarity to find 
+copyright infringement."); Rokeach v. Avco Embassy Pictures Corp., 
+1097 U.S.P.Q. 156, 161 (S.D.N.Y. 1977) (one hundred words out of 
+70,000 a de minimis taking); R.L. Polk & Co. v. Musser, 105 F. Supp. 
+351, 353 (E.D. Penn. 1952)(less than one-half of one percent of a 
+work being copied "was trivial and inconsequential").USL's citation 
+of Harper & Row Publisher's. Inc. v. The Nation, 471U.S. 539 (1985) is 
+off point because the misappropriated text was qualitatively the 
+most important part of plaintiff's work.
+
+C.	USL CANNOT DISTINGUISH ATARI GAMES AND COMPUTER 
+	ASSOCIATES
+
+USL misuses the opinion in Lotus Development Corp. v. Borland 
+International Inc., 799 F. Supp. 203 (D. Mass. 1992). That case 
+addresses duplication of a "user interface," i.e., the screen display 
+generated by a program and the keystrokes used to operate it. 
+Borland argued that its emulation of Lotus' screen display, menu 
+structure and keystroke sequences were justified because people 
+were familiar with Lotus 1-2-3, and therefore it had become a 
+"standard." 
+
+This case is far different. It does not involve mere user interfaces 
+with which the public has become comfortable; this case deals with 
+technical requirements. If certain header files, symbols or function 
+names are not included in a system, that system simply will not 
+work with certain applications programs or peripherals. See Joint 
+Decl., at 1 28.3, 1 47. Thus, unlike Lotus, this case falls squarely 
+within the description of the unprotected elements of a computer 
+program set forth only a few months ago by the Federal Circuit: the 
+unprotected elements of a computer program include "expression 
+dictated by external factors (like the computer's mechanical 
+specifications, compatibility with other programs, and demands of 
+the industry served by the program) ..." Atari Games Corp. v. Nintendo 
+of America. Inc., F.2d 24 U.S.P.Q.2d 1015, 1020 (Fed. Cir. 1992). See 
+also Computer Assoc. International, Inc. v. Altai. Inc.,  __F.2d ___, 
+1992, 23 U.S.P.Q.2d 1241, 1252-3 (2nd Cir. 1992); Brown Bag 
+Software v. Symantec, 960 F.2d 1465, 1475-6 (9th Cir. 1992); Apple 
+Computer v. Microsoft Corp., 799 F.Supp. 1006, 1020-21 (N.D. Cal. 
+1992).
+
+USL's effort to distinguish Atari Games and Computer Assoc. is off 
+base:  contrary to USL's reading of those cases, they do not turn on 
+when the infringed program was created. Indeed, the CONTU Report 
+explicitly acknowledges that an  original program may lose 
+copyright protection under circumstances such as those presented 
+here.
+
+"[C]omputer programs are, in essence, utilitarian articles - articles 
+that accomplish tasks. As such they contain many logical, 
+structural, and visual display elements that are dictated by the 
+function to be performed, by considerations of efficiency, or by 
+external factors such as compatibility requirements and industry 
+demands. [citing Computer Assoc.] In some circumstances, even the 
+exact set of commands used by the programmer is deemed functional 
+rather than creative for purposes of copyright. When specific 
+instructions. even though previously copyrighted. are the only and 
+essential means of accomplishing a given task. their later use by 
+another will not amount to infringement."
+
+Sega Enterprises. Ltd. v. Accolade, Inc., ___F.2d___, slip op. at 41. 
+(9th Cir. 1993) (as amended), quoting CONTU Report at 20. All of the 
+recent cases and the legislative history as set forth in the CONTU 
+Report recognize that when the copyright holder's program was 
+created is not important; what is important is whether the code in 
+the accused work is "dictated by external factors." As explained in 
+detail in the First Joint Declaration and the Second Joint 
+Declaration, the header file names and symbols that are common to 
+32V and Net2 are required by the need for "compatibility with other 
+programs and demands of the industry served by the program." Atari 
+Games, supra. As such, they are not protectible by USL's claimed 
+copyright in 32V.
+
+
+D.	USL FORFEITED ITS COPYRIGHT IN 32V
+
+USL forfeited its copyright in 32V when it globally published 32V 
+without a copyright notice and failed to timely cure the notice 
+defect. USL's use of the limited publication argument to escape the 
+consequences of its conduct stretches the bounds of the limited 
+publication doctrine beyond all reasonable parameters in light of 
+USL's admissions that:
+
+	32V was created in 1978 (DeFazio Decl., Exh. F);
+
+	32V was distributed in source and object code to thousands of
+	licensees around the world (Exh. M and 0 to Forte Aff.; Greene
+	Depo., at 82:20; 83:7-9 attached to the Shapreau Decl.);
+
+	USL published 32V in object code (USL's Moving Papers at 11
+	and 27 and Reply at page 5 footnote 10 and page 10, first
+	bullet);[fn4]
+
+	USL failed to affix copyright notices to its 32V UNIX operating
+	system in both source and object code until 1984 (Pfeffer 
+	Decl.,at Paras 4-5;[fn5] see also McKusick Decl., at Para. 5 and 
+	Joint Decl., at Para 28.4; Exhibit A attached to the Second 
+	Shapreau Decl. and Shapreau Decl., at 12; compare Exhibit A 
+	attached to the Second Karels Decl. and Karels Decl., at Para. 
+	2)[fn6] and
+
+	USL failed to register 32V until 14 years after it first 
+	published this work. DeFazio Aff., Exh. F.
+
+USL is mistaken when it claims that the University has not looked in 
+the proper place for USL's missing copyright notices. The University 
+has looked at a copy of the container for the source code version of 
+32V and found no copyright notice affixed. Exhibit A, attached to the 
+Second Shapreau Decl.; see also McKusick Decl., at 1 5. In addition, 
+the header files contained in the object code version of 32V have 
+likewise
+
+
+   [fn4] USL does not dispute the University's legal argument and 
+authority that the source and object code for 32V are but one work.
+
+   [fn5] USL's Mr. Pfeffer has admitted that:
+
+	No copyright notice was included in those [object code] files 
+	in order to avoid any possible implication that AT&T had 
+	"published" these files so as to deprive them of their trade 
+	secret status. Pfeffer Decl., at Para. 4. In 1984,when AT&T 
+	initiated its general purpose computer business, it decided 
+	that the binary code which it was planning to provide with 
+	such computers should bear a copyright notice in the name of 
+	AT&T." Id. at Para. 5.
+
+   [fn6] USL erroneously contends in footnote 10 of its Reply that 
+because the copyright notice requirements have been removed from 
+post-Berne Convention Implementation Act works, that USL should 
+be relieved of the statutory requirements of the 1976 Copyright Act. 
+If Congress had intended the Berne Convention Implementation Act 
+to be retroactive, it would have provided for such a result. Instead, 
+Congress specifically required that copyright notice be affixed to 
+"copies...publicly distributed ...before the effective date of the Berne 
+Convention Implementation Act of 1988...." 17 U.S.C. Section 405(a).
+
+SUPPLEMENTAL AMICUS BRIEF BY DEFENDANT THE REGENTS	10
+
+entered the public domain as a result of publication without 
+copyright notice. Joint Decl., at 1 28.4; see also Second Karels Decl., 
+and Exhibit A attached thereto.i
+
+Moreover, USL's reliance on Exhibits 1-4 attached to the Weitz Reply 
+Aff., as evidence that copyright notices were properly affixed to its 
+32V code is nothing short of ridiculous, in light of the fact that 
+Exhibits 1-4 are not versions of 32V and are, therefore, irrelevant.~ 
+Moreover, Sun Microsystems copyright notices, affixed to Exhibits 
+1-2, did not transform 32V, which had already entered the public 
+domain, into a properly copyrighted work.9
+
+USL incorrectly claims at footnote 21 that a copyright notice in a 
+derivative work is "deemed notice of the copyright in all underlying 
+works." As Nimmer has pointed out:
+
+if the underlying work itself had previously been published without a 
+copyright notice, then a derivative work incorporating such pre-
+existing work cannot, under any circumstances regardless of the 
+notice used,serve to revive the pre-existing work, which had 
+theretofore entered the public domain. Nimmer, Nimmer On 
+Copyright, 7.12[C], at 7-100.1(1992) .
+
+   [fn7] USL's citation to Koontz v. Jaffarian, 787 F.2d 906, 909-910 
+(4th Cir. 1986) does not support its copyright notice argument 
+because even if USL had provided reasonable copyright notice for its 
+code within its 32V manual (which it did not), no notice existed 
+whatsoever for the multitude of copies of 32V code distributed 
+through Western Electric and AT&T's source code exchange program, 
+in which copies of 32V were exchanged without a manual.
+
+Moreover, in the case of a time-sharing system such as 32V, it is 
+highly doubtful whether a copyright notice affixed to a manual or 
+to packaging would give reasonable notice of the claim of 
+copyright under 17 U.S.C. Section 401(c); see also Nimmer, Nimmer
+on Copyright,  7.10[A][1], at 7-69 (1992)..
+
+   [fn8] The University does not contend that USL's forfeiture of its 
+copyright in the antiquated, outdated 32V version of the Unix 
+operating system constitutes a forfeiture of USL's copyright in 
+subsequent versions of the UNIX operating system which contain new 
+code. Therefore, copyright notices contained in System III and V code 
+are not germane to this litigation
+
+   [fn9] The University's copy of the copyright notice purportedly 
+affixed to Exhibit 4 attached to the Weitz Aff. is not legible and 
+Exhibit 3 does not appear to contain any copyright notice.
+
+
+Moreover, if USL had carefully read Stewart v. Abend, 495 U.S. 207 
+(1990), cited by USL, it would have discovered that the case involved 
+the issue of whether the owner of a derivative work infringed the 
+rights of a successor owner of the preexisting work by continued 
+distribution and publication of the derivative work during the 
+renewal term of the pre-existing work. In fact the Supreme Court 
+quoted the
+
+'well-established doctrine that a derivative copyright protects only 
+the new material contained in the derivative work, not the matter 
+derived from the underlying work.' Stewart v. Abend 495 U.S. 207, 
+223 (1990) quoting, Russell v. Price, 612 F.2d 1123, 1128 (9th Cir. 
+1979), cert denied, 446 U.S. 952 (1980).
+
+In fact, the Copyright Act itself addresses this very issue in Section 
+103(b) which provides:
+
+The copyright in a compilation or derivative work extends only to 
+the material contributed by the author of such work, as 
+distinguished from the preexisting material employed in the work, 
+and does not imply any exclusive right in the preexisting material. 
+The copyright in such work is independent of, and does not affect or 
+enlarge the scope, duration, ownership, or subsistence of, any 
+copyright protection in the preexisting material. 17 U.S.C. Section 
+103(b).
+
+Accordingly, USL's widespread distribution of 32V without a 
+copyright notice has injected 32V into the public domain.
+
+1.	Congress' Definition of Publication Under The 1976 Copyright 
+	Act Does Not Alter USL's Forfeiture of its Copyright in 32V
+
+USL mistakenly contends that under the 1976 Copyright Act its 
+"contractual restrictions [alone] negate any requirement of notice" 
+(Moving Papers, at 6 and 7). USL's incredible contention that the 
+"selected group" requirement no longer exists under the 1976 Act is 
+unsupported by the Copyright Act, cases construing it and the 
+commentators. [fn10]  
+
+  [fn10] USL suggests that cases which continue to apply the three 
+part test promulgated in Kimmell are "patently inconsistent with 
+the intent of Congress and should not be followed." Moving Papers at 
+8.  USL does not cite one single case to support its rather unique 
+legal position.  Instead, USL cites a "work for hire" case hoping that 
+will do.
+
+For example, Goldstein, in The Law of Copyright, analyzes the House 
+Report discussion of limited publication in the 1976 Act, which 
+characterizes the "public" as "persons under no explicit or implicit  
+restrictions with respect. to disclosure of [a work's]  contents," 
+[fn11] in which Goldstein states:
+
+Congress arguably intended to drop the first element of the test 
+employed under the 1909 Act [the selected group requirement].  But 
+the reference to restrictions on "disclosure," rather than to 
+restrictions on "copying" as required under the 1909 Act, suggests 
+that Congress probably contemplated distribution to a limited group 
+beyond which thework would not be disclosed. Courts have adopted 
+this construction....  (citations omitted, emphasis added). Goldstein, 
+Copyright, Section 3.3.1, at 258; see also Nimmer, The Law of 
+Copyright, Section 4.13[B], at 4-72-73 and the cases cited therein.
+
+  [fn11] H.R. Rep. No. 1746, 94th Cong., 2d Sess. 138 (1976).
+
+Furthermore, USL is confused when it cites to the legislative history 
+to support its contention that Congress adopted the definition of 
+"publication" in the1976 Act because it viewed the common law 
+definition of "publication" (as crystallized in White v. Kimmell, 193 
+F.2d 744, 746-747 (9th Cir. 1952) as "defective."  Moving Papers, at 
+6-7, quoting,  H.R.Rep. No. 1476, 94th Cong., Second Session, 129-
+130 (1976).  The House Report to which USL selectively cites at 
+pages 129-130 discusses "publication" in the context of preemption 
+of common law copyright claims under Section 301 of the 1976 Act 
+and the need for national uniformity in copyright protection, as well 
+as the change in the nature of "publications" in light of the 20th 
+Century communications revolution. The legislative history does not, 
+as USL suggests, criticize the three part test used by the courts to 
+determine when a "limited publication" occurs. [fn12]
+
+  [fn12] Reference to other sections of the 1976 Copyright Act, and 
+its legislative history,  which focus on the issue of when copyright 
+interests are implicated by public distribution, (although not on 
+point) may aid the Court in its determination of whether 32V has 
+been distributed beyond a "selected group."  For example, the 
+Copyright Act makes clear that a copyright will not be invalidated if 
+copyright "notice has been omitted from no more than a relatively 
+small number of copies... distributed to the public....17 U.S.C. Section 
+405(a) (emphasis added).
+  In addition, under clause (1) of the definition of "publicly" in 
+section 101 (the definitions section of the Act) a performance or 
+display is "public" if it takes place "at a place open to the public or 
+at any place where a substantial number of persons outside of a 
+normal circle of a family and its social acquaintances is gathered." 
+H.R. Rep. No. 1746, 94th Cong., 2d Sess. at 64 (1976).
+
+
+2.	USL Distributed 32V Well Beyond A Selected Group
+
+As amply discussed in the University's Amicus Brief at 28:1-29:16, 
+USL has failed to meet the "selected group" requirement. The cases 
+cited by USL do not undercut the University's facts and law which 
+demonstrate that USL has published 32V to a non-selected group. 
+Both Paramount Pictures Corp. v. Rubinowitz, 217 U.S.P.Q. 48 (E.D. 
+N.Y. 1981) and National Broadcasting Co., Inc. v. Sonneborn, 630 
+F.Supp. 524 (D. Conn. 1985), arose under the 1909 Act and the courts' 
+discussion of the 1976 Act is mere dicta.  However, neither of these 
+opinions states that the selected group requirement does not exist 
+under the 1976 Act. [fn13]   PRC Realty Systems v.National Ass'n of 
+Realtors, 766 F.Supp. 453, 461 (E.D. Va. 1991 ), rev'd in part without 
+opinion, 972 F.2d 341 (1992), summarily disposes of the publication 
+issue without any discussion of the change in the publication 
+analysis in the 1976 Act with respect to the selected group 
+requirement. Therefore, because USL cannot satisfy the selected 
+group requirement, its limited publication argument must fail.
+
+...[fn13]  Moreover, in National Broadcasting Co.. Inc. v. Sonneborn, 
+630 F.Supp. 524 (D. Conn. 1985), the court noted that "[t]he number of 
+persons with the technical ability to broadcast or copy 'Peter Pan' 
+was relatively small in the early to mid 1960's." Id. at 536. This 
+comment indicates that had a large number of individuals had 
+sufficient technical ability to copy or broadcast the work, a general 
+publication might occur.
+
+3.	USL Did Not Distribute 32V For A Limited Purpose
+
+USL fails to address the "limited purpose" requirement which 
+focuses on the publisher's conduct (not on restrictions placed on the 
+recipient of the work) and requires that the publication be for a 
+limited purpose, such as review, criticism, promotion, education, or 
+performance. Instead, USL contends that one of the general purposes 
+of the copyright law, i.e., to encourage creativity by enabling 
+copyright authors to profit from their work, is sufficient to meet 
+this requirement; it is not. See the University's Amicus Brief, at 
+30:15-31:18 and cases cited therein.  As such, USL's limited purpose 
+argument falls short of meeting the required showing of a limited 
+purpose in its publication of 32V.
+
+
+CONCLUSION
+
+For all of the foregoing reasons, this Court should rule that Net2 is 
+not an infringing work even if USL possess a valid copyright in 32V. 
+Nor should the Court find that the University misappropriated any 
+trade secrets by releasing Net2.
+
+
+DATED:	January 19, 1993.
+
+CROSBY, HEAFEY, ROACH & MAY
+Professional Corporation
+
+
+By 
+Joel Linzner
+Attorneys for Defendant
+Regents of the University of California
+
+POST, POLAK & GOODSELL
+By
+Frederick B. Polak
+Attorneys for Defendant
+The Regents of the University of California
+

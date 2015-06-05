@@ -1,0 +1,735 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN"
+		"http://www.w3.org/TR/MathML2/dtd/xhtml-math11-f.dtd">
+
+
+<?xml-stylesheet href="xbl-shape-bindings.css" type="text/css"?>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:svg="http://www.w3.org/2000/svg" 
+      xmlns:math="http://www.w3.org/1998/Math/MathML" 
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+      
+      
+<style>
+<style type="text/css">
+
+	div.FooterLeft {
+		font: inherit;
+		font-size: 0.5em;
+		position: absolute;
+		display: block;
+		bottom: 1.5em;
+		left: .25em;
+		height: 1em;
+		color: black;
+	}
+
+	div.FooterRight {
+		font: inherit;
+		font-size: 0.5em;
+		position: absolute;
+		display: block;
+		bottom: 1.5em;
+		right: .25em;
+		height: 1em;
+		color: black;
+	}
+
+
+	div.nav	{
+		position: absolute;
+		bottom: 0.5em;
+		right: 2.1em;
+		margin:	4px;
+	}
+
+	div.nav	:link, div.nav :visited, div.nav span {
+		text-decoration: none;
+		background:	#006;
+		color: white;
+		padding: 0 0.3em 0.1em 0.3em;
+		line-height: 1.0em;
+	}
+
+	div.nav	:link:hover, div.nav :visited:hover	{
+		background:	#00f;
+	}
+
+	svg {
+		font: inherit;
+		font-size: 20px;
+		fill: blue;
+	}
+
+	body {
+		font-size: 2.5em;
+		font-family: Comic Sans	MS;
+		font-weight: bold;
+		background:	white;
+		color: black;
+		margin-left: 1.5em;
+		margin-right: 1em;
+	}
+
+	h1 {
+		font: inherit;
+		font-size: 1.5em;
+		text-align:	center;
+		margin-bottom: 1em;
+		/* border-bottom: 0.1em solid black; */
+	}
+
+	/*
+	ul {
+		padding: 0 0 0 1.5em;
+		margin: 0;
+	}
+	*/
+
+	li { margin-left: 0.5em; padding: 0; }
+
+
+	table.tree {
+		margin:	auto;
+	}
+
+	table.tree td {
+		text-align:	center;
+		empty-cells: hide;
+	}
+
+	table.tree tr:not(.arrows) td {
+		font-family: monospace;
+		border:	0.1em solid;
+	}
+
+	@media screen,projection {
+		div.slide {
+			display: none;
+			background: "ocelotlogo.gif"
+		}
+	}
+	@media print {
+		div.slide {
+			display: block;
+			page-break-after: always;
+		}
+		div.nav {
+			display: none;
+		}
+	}
+
+
+	.important {
+		color: red;
+		font-weight: bold;
+		font-size: 1.5em;
+	}
+</style>
+
+	[class~="circle"] 
+	{
+		stroke: red;
+		stroke-width: 2;
+		fill: red;
+		fill-opacity: 0.1;
+	}
+	<style>
+		[class~="circ_control"]:hover {stroke:black; stroke-width:2; fill-opacity:0.2;}
+		li:hover {color:blue}
+		[class~="sb_inserted"] {stroke:red; fill:red;}
+		[class~="sb_uninserted"] {stroke:black; fill:black;}
+		[class~="sb_taken"] {stroke:magenta; fill:magenta;}
+		[class~="sb_touched"] {stroke:blue; fill:blue;}
+		math {color:red;}
+		[class~="myslide"] {width:8in; height:6in; }
+		[class~="slidetitle"] {color:inherit; }
+		a {color:inherit; text-docoration:none;}
+	</style>
+</style>
+
+
+      
+<script type="application/x-javascript" src="impl.js"/>
+
+  <head>
+    <title>Nearest Neighbor Searching in Metric Spaces</title>
+  </head>
+  <body>
+
+<div class="slide" id="slide one" style="display: block ! important">
+	<div class="nav">
+		<a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<table style="margin: auto">
+		<tr>
+			<td>
+				<h1>Nearest Neighbor Searching in Metric Spaces</h1>
+				<h1>Ken Clarkson</h1>
+				<h1>Bell Labs</h1>
+				<center>
+					<img src="ocelotlogo.gif"></img>
+				</center>
+			</td>
+		</tr>
+	</table>
+</div>
+
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>The Problem</h1>
+	Given a set
+	<math:math><mi>S</mi></math:math>
+	of
+	<math:math><mi>n</mi></math:math>
+	sites (points) in a metric space,<br/>
+	build a data structure so that:<br/>
+	<blockquote>
+		Given a query point <math:math><mi>q</mi></math:math>,
+		the nearest site to <math:math><mi>q</mi></math:math> can be found quickly.
+	</blockquote>
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Some Past Work</h1>
+
+	<ul>
+		<li>
+		Algorithms that reduce distance evals, but
+		<math:math><mo>&Omega;</mo><mrow><mo>(</mo><mi>n</mi><mo>)</mo></mrow></math:math>
+		query time
+		</li>
+		<ul>
+			<li>
+			information theory, pattern recognition literature
+			</li>
+		</ul>
+		<li>
+		<em>kd-</em>tree-like (division based on distances)
+		</li>
+		<li>
+		Provable results
+		</li>
+		<ul>
+			<li>
+			[C97] assumptions: sphere-packing bound, query distribution
+			</li>
+			<li>
+			[Karger/Ruhl] <em>growth-restricted</em> (like uniform distribution)
+			</li>
+		</ul>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Here</h1>
+
+	Attempting a practical (not-necessarily-provable) algorithm.
+	Conditions:
+
+	<ul>
+		<li>
+		Low storage
+		</li>
+		<li>
+		Never worse than brute force
+		</li>
+		<li>
+		Preprocessing time/site at least as fast as query time
+		</li>
+		<li>
+		Fast, even
+		<math:math><mi>O</mi><mrow><mo>(</mo><mi>log</mi><mi>n</mi><mo>)</mo></mrow></math:math>
+		query time, under favorable conditions
+		</li>
+		<ul>
+			<li>
+			low-dimensional Euclidean spaces
+			</li>
+		</ul>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Outline</h1>
+
+	<ul>
+		<li>
+		Main ideas for the data structure
+		</li>
+		<li>
+		Some experimental results
+		</li>
+		<li>
+		Test harness
+		</li>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>The main idea</h1>
+
+	<ul>
+		<li>
+		A "<em>kd-</em>tree-like" approach
+		</li>
+		<li>
+		In <em>kd-</em>trees, boxes provide a simple test of too-far-away
+		</li>
+		<li>
+		Use bounding spheres of Voronoi regions instead
+		</li>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+
+
+<div class="slide" id="slide_kd">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>A "<em>kd-</em>tree" approach</h1>
+
+	Only look in boxes that touch the query ball.
+	<svg:svg id="canvaskd" width="8in" height="5in">
+		<svg:rect id="kd-rect" fill="none" stroke="black" stroke-width="1" x="1in" y="0.2in"
+			width="6in" height="4in"/>
+		<svg:line fill="black" stroke="black" stroke-width="2" x1="2in" y1="0.2in" x2="2in"
+			y2="4.2in"/>
+		<svg:line fill="black" stroke="black" stroke-width="2" x1="1in" y1="1.2in" x2="2in"
+			y2="1.2in"/>
+		<svg:line fill="black" stroke="black" stroke-width="2" x1="2in" y1="3.3in" x2="7in"
+			y2="3.3in"/>
+		<svg:line fill="black" stroke="black" stroke-width="2" x1="5in" y1="3.3in" x2="5in"
+			y2="4.2in"/>
+		<svg:line fill="black" stroke="black" stroke-width="2" x1="3in" y1="0.2in" x2="3in"
+			y2="3.3in"/>
+			
+		<svg:shape name="query_circle_shape" x1="150" y1="166">
+			<svg:circle id="query_circle" r="15" cx="150" cy="166" style="fill:red; fill-opacity:0.1; stroke:red;"/>
+			<controlpoint xvar="x1" yvar="y1"/>
+		</svg:shape>
+	</svg:svg>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>The approach here</h1>
+
+	Use a subset of the sites, called <em>leaders</em>.
+
+	<ul>
+		<li>Partition by:</li>
+		<ul>
+			<li>Voronoi diagram of leaders</li>
+			<ul>
+				<li>Just map to nearest leader</li>
+				<li>Called here <em>Voronoi sets</em></li>
+				</ul>
+			<li>Instead of axis-aligned boxes</li>
+		</ul>
+		<li>Bounding volume is:</li>
+		<ul>
+			<li>Bounding sphere of Voronoi set</li>
+			<ul><li>Radius is dist to farthest in Voronoi set</li></ul>
+			<li>Instead of axis-aligned boxes</li>
+		</ul>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="slide_sb">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>The approach here</h1>
+	Only look in bounding balls that touch the query ball.
+	<svg:svg id="canvas_sb" width="8in" height="5in">
+		<svg:rect id="sb-rect" fill="none" stroke="none" stroke-width="1" x="1in" y="0.2in"
+			width="5in" height="3in"/>
+		<svg:g id="group_sb" />
+					
+		<svg:shape name="query_sb_circle_shape" x1="150" y1="166">
+			<svg:circle id="query_sb_circle" r="15" cx="150" cy="166" style="fill:red; fill-opacity:0.1; stroke:red;"/>
+			<controlpoint xvar="x2" yvar="y2"/>
+		</svg:shape>
+	</svg:svg>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>The data structure</h1>
+
+	<ul>
+		<li>Add sites to leader set incrementally</li>
+		<li>Maintain Voronoi sets of leaders</li>
+		<ul>
+			<li>Set of sites with given leader closest</li>
+		</ul>
+		<li>
+		If new leader <math:math><msub><mi>p</mi><mi>i</mi></msub></math:math>
+		reduces the Voronoi set of leader <math:math><msub><mi>p</mi><mi>j</mi></msub></math:math>,
+		say that <math:math><msub><mi>p</mi><mi>i</mi></msub></math:math>
+		<em>touches</em> <math:math><msub><mi>p</mi><mi>j</mi></msub></math:math>
+		</li>
+		<li>
+		Record of all "touching" relations is the data structure.
+		</li>
+		<li>
+			Key process is "inverse nearest neighbor search"
+		</li>
+		<ul>
+			<li>Uses current data structure for speedup</li>
+		</ul>
+		<li>Insertion order that packs leaders is better</li>
+		<ul>
+			<li>Next leader is site farthest from current set</li>
+		</ul>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="slide_sb2">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Building the Data Structure</h1>
+
+	<svg:svg id="canvas_sb2" width="8in" height="5in">
+		<svg:rect id="sb-rect2" fill="none" stroke="none" stroke-width="1" x="1in" y="0.2in"
+			width="5in" height="3in"/>
+		<svg:g id="group_sb2" />
+		<svg:g id="sb_arrows" />
+		<svg:rect id="anim_label_rect" width="8in" height="60" x="0" y="4.4in" style="fill:white;"/>
+		<svg:text id="anim_label" style="font-size:32; fill:blue; font-family:Comic Sans MS; " x="3in" y="4.7in">Before building</svg:text>
+		<svg:g width="700" height="42">
+			<svg:rect class="circ_control" id="circ_go" width="30" height="30" y="4.5in" x="0" style="fill:lightgreen;"/>
+			<svg:rect class="circ_control" id="circ_step" width="30" height="30" y="4.5in" x="30" style="fill:yellow;"/>
+			<svg:rect class="circ_control" id="circ_stop" width="30" height="30" y="4.5in" x="60" style="fill:red;"/>
+		</svg:g>
+	</svg:svg>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Using the Data Structure</h1>
+	<ul>
+		<li>
+		Maintain set of <em>pending</em> leaders;
+		</li>
+		<ul>
+			<li>Initially <math:math><mo>{</mo><msub><mi>p</mi><mn>0</mn></msub><mo>}</mo></math:math>
+			</li>
+			<li>Haven't proved that their Voronoi sets are too far away
+			</li>
+		</ul>
+		<li>
+		Consider sites touching the pending sites	
+		</li>
+		<ul>
+			<li>Make them pending, if needed</li>
+			<li>When added, Voronoi set of pending site shrinks</li>
+		</ul>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Implementation</h1>
+
+	<ul>
+		<li>In C</li>
+		<ul>
+			<li>and C++</li>
+		</ul>
+		<li>Core code is about 900 lines</li>
+		<ul>
+			<li>Multiple functions for answering queries</li>
+			<li>Fixed radius, <em>k-</em>nearest queries </li>
+			<li>Allows approximate queries</li>
+			<li>Construction stops after inserting
+				<math:math><mi>n</mi>/10</math:math> sites
+			</li>
+		</ul>
+		<li>Pools</li>
+		<ul>
+			<li>Speed up malloc, maybe</li>
+		</ul>
+		<li>Heaps</li>
+		<li>Pools, heaps, and main data structure have a "per-file modularity"</li>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Thanks, Heaps (Ode to Floyd)</h1>
+
+	A simple, low-storage priority queue.  Use for:
+	<ul>
+		<li>
+		Next site at max distance from leaders
+		<ul><li>for packing insertion</li></ul>
+		</li>
+		<li>
+		Per leader, farthest site in Voronoi set
+		</li>
+		<ul>
+			<li>
+			Output-sensitive 1-d range queries: find all sites in Voronoi set
+			at distance <math:math><mo>&geq;</mo><mi>X</mi></math:math>, for some
+			<math:math><mi>X</mi></math:math>.
+			</li>
+			<ul><li>For inverse searching</li></ul>
+		</ul>
+		<li>In queries,</li>
+		<ul>
+			<li>get the closest pending leader to query</li>
+			<li>In fixed-radius searching, to return answer</li>
+		</ul>
+		<li>
+		Add/Delete operations while traversing for range query can be tricky.
+		</li>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Thanks, Heaps (Ode to Floyd)</h1>
+	An opaque pointer-to-struct allows the sb-structure
+	to be hidden from user's application.
+	<pre>
+	typedef struct sb *sbp;
+	sbp build_sb(
+		sb_distance F,   /* pointer to distance function  */
+		size_t num_sites
+	);
+	typedef size_t search_sb_f(
+		sbp sbt,
+		size_t query,   /* number of query site */
+		float alpha     /* inexact search for alpha&lt;1 */
+	);
+	</pre>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Experiments</h1>
+
+	Tested for
+	<ul>
+		<li>Euclidean data, in <math:math><msup><mn>2</mn><mi>i</mi></msup></math:math>
+		dimensions</li>
+		<ul>
+			<li>uniform</li>
+			<li>normal</li>
+			<li>clustered normal</li>
+			<li>laplacian</li>
+		</ul>
+		<li>bit-vectors in 81d and 2304d, from OCR app</li>
+		<li>gray-scale data in 256d, from OCR app</li>
+		<li>strings from a wordlist; hamming and edit dist</li>
+	</ul>
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Storage, Euclidean data</h1>
+
+	<br/><center>
+	<img align="center" src="storage_euclid.gif"/>
+	</center>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Preprocessing vs. query time, all</h1>
+
+	<br/><center>
+	<img align="center" src="prep_v_query.gif"/>
+	</center>
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Query time, Euclidean</h1>
+
+	<br/>
+	<center>
+	<img align="center" src="exact_search_euclid.gif"/>
+	</center>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Speedup, strings and bitvectors</h1>
+
+	<br/>
+	<center>
+	<img align="center" src="speedup_other.gif"/>
+	</center>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Test harness</h1>
+
+
+	Each distance measure has a:
+	<ul>
+		<li>separate subdirectory</li>
+		<li><font face="courier">dist.c</font> in that subdirectory</li>
+		<li>makefile included from parent, for building a driver</li>
+		<li>resulting linked driver, linked with <font face="courier">sb</font> library</li>
+		<li>record of output trials</li>
+	</ul>
+
+	To build the paper,
+	<ul>
+		<li>Concatenate the trials</li>
+		<li>Pipe all to awk script:</li>
+		<ul>
+			<li>Process trials, building record of each trial</li>
+			<li>Append appropriate data to separate data files</li>
+			<li>Run metapost for figures, and laTeX to build paper</li>
+		</ul>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Even More Test Harness</h1>
+
+
+	"<font face="courier">make distribution</font>":
+	<ul>
+		<li>runs all trials</li>
+		<li>makes paper</li>
+		<li>copies sources</li>
+		<li>zips</li>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+<div class="slide" id="foo">
+	<div class="nav">
+		<a onclick="rewind(this)" href="#">&lt;</a> <a onclick="forward(this)" href="#">&gt;</a>
+	</div>
+	<h1>Conclusions/Further Work</h1>
+
+	<ul>
+		<li>Diameter?</li>
+		<li>Accelerators</li>
+		<li>Object-sites, using diameter bound</li>
+		<li>Generality implies simplicity</li>
+	</ul>
+
+	<div class="FooterLeft">Foo</div> <div class="FooterRight">Bar</div>
+</div>
+
+
+</body></html>

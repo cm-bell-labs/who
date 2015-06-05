@@ -1,0 +1,36 @@
+(* TMR model 1 *)
+
+const V = {0,1}     		(* input, output values *)
+const I = {1,2,3}		(* module indices *)
+
+label in(V),out(V)		(* system inputs/outputs *)
+label mi_I(V),mo(V)		(* module actions *)
+label ack			(* voter/splitter synchronisation action *)
+
+(* module *)
+agent M = in(x).('out(x).M + t.sum(y:V,'out(y).M))
+agent M(i:I) = M[mi_i/in,mo/out]
+
+(* splitter *)
+agent S = in(x).sum(i:I,'mi_i(x).
+                sum(j:diff(I,{i}),'mi_j(x).
+                sum(k:diff(I,{i,j}),'mi_k(x).ack.S)))
+
+(* voter *)
+agent V = mo(x1).mo(x2).mo(x3).
+          if x1 = x2 then V'(x1) else V'(x3)
+agent V'(x:V) = 'out(x).'ack.V
+
+(* triple modular redundancy (321 state) *)
+agent TMR1 = (S | M(1) | M(2) | M(3) | V)\{mi,mo,ack}
+
+(* perfect module *)
+agent MP = in(x).'out(x).MP
+agent MP(i:I) = MP[mi_i/in,mo/out]
+
+(* TMR with two perfect modules (149 states) *)
+agent TMR1' = (S | M(1) | MP(2) | MP(3) | V)\{mi,mo,ack}
+
+
+
+

@@ -1,0 +1,3499 @@
+%!PS-Adobe-2.0
+%%Version: 0.1
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+%
+% Version 3.3.2 prologue for troff files.
+%
+
+/#copies 1 store
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/show {{//show} 0 get exec} bind def	% so later references don't bind
+/widthshow {{//widthshow} 0 get exec} bind def
+/stringwidth {{//stringwidth} 0 get exec} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+%
+% Tries to round clipping path dimensions, as stored in array pagebbox, so they
+% match one of the known sizes in the papersizes array. Lower left coordinates
+% are always set to 0.
+%
+
+/roundpagebbox {
+    7 dict begin
+	/papersizes [8.5 inch 11 inch 14 inch 17 inch] def
+
+	/mappapersize {
+		/val exch def
+		/slop .5 inch def
+		/diff slop def
+		/j 0 def
+		0 1 papersizes length 1 sub {
+			/i exch def
+			papersizes i get val sub abs
+			dup diff le {/diff exch def /j i def} {pop} ifelse
+		} for
+		diff slop lt {papersizes j get} {val} ifelse
+	} def
+
+	pagebbox 0 0 put
+	pagebbox 1 0 put
+	pagebbox dup 2 get mappapersize 2 exch put
+	pagebbox dup 3 get mappapersize 3 exch put
+    end
+} bind def
+
+%%EndProlog
+%%BeginSetup
+mark
+%
+% Encoding vector and redefinition of findfont for the ISO Latin1 standard.
+% The 18 characters missing from ROM based fonts on older printers are noted
+% below.
+%
+
+/ISOLatin1Encoding [
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/space
+	/exclam
+	/quotedbl
+	/numbersign
+	/dollar
+	/percent
+	/ampersand
+	/quoteright
+	/parenleft
+	/parenright
+	/asterisk
+	/plus
+	/comma
+	/minus
+	/period
+	/slash
+	/zero
+	/one
+	/two
+	/three
+	/four
+	/five
+	/six
+	/seven
+	/eight
+	/nine
+	/colon
+	/semicolon
+	/less
+	/equal
+	/greater
+	/question
+	/at
+	/A
+	/B
+	/C
+	/D
+	/E
+	/F
+	/G
+	/H
+	/I
+	/J
+	/K
+	/L
+	/M
+	/N
+	/O
+	/P
+	/Q
+	/R
+	/S
+	/T
+	/U
+	/V
+	/W
+	/X
+	/Y
+	/Z
+	/bracketleft
+	/backslash
+	/bracketright
+	/asciicircum
+	/underscore
+	/quoteleft
+	/a
+	/b
+	/c
+	/d
+	/e
+	/f
+	/g
+	/h
+	/i
+	/j
+	/k
+	/l
+	/m
+	/n
+	/o
+	/p
+	/q
+	/r
+	/s
+	/t
+	/u
+	/v
+	/w
+	/x
+	/y
+	/z
+	/braceleft
+	/bar
+	/braceright
+	/asciitilde
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/dotlessi
+	/grave
+	/acute
+	/circumflex
+	/tilde
+	/macron
+	/breve
+	/dotaccent
+	/dieresis
+	/.notdef
+	/ring
+	/cedilla
+	/.notdef
+	/hungarumlaut
+	/ogonek
+	/caron
+	/space
+	/exclamdown
+	/cent
+	/sterling
+	/currency
+	/yen
+	/brokenbar		% missing
+	/section
+	/dieresis
+	/copyright
+	/ordfeminine
+	/guillemotleft
+	/logicalnot
+	/hyphen
+	/registered
+	/macron
+	/degree			% missing
+	/plusminus		% missing
+	/twosuperior		% missing
+	/threesuperior		% missing
+	/acute
+	/mu			% missing
+	/paragraph
+	/periodcentered
+	/cedilla
+	/onesuperior		% missing
+	/ordmasculine
+	/guillemotright
+	/onequarter		% missing
+	/onehalf		% missing
+	/threequarters		% missing
+	/questiondown
+	/Agrave
+	/Aacute
+	/Acircumflex
+	/Atilde
+	/Adieresis
+	/Aring
+	/AE
+	/Ccedilla
+	/Egrave
+	/Eacute
+	/Ecircumflex
+	/Edieresis
+	/Igrave
+	/Iacute
+	/Icircumflex
+	/Idieresis
+	/Eth			% missing
+	/Ntilde
+	/Ograve
+	/Oacute
+	/Ocircumflex
+	/Otilde
+	/Odieresis
+	/multiply		% missing
+	/Oslash
+	/Ugrave
+	/Uacute
+	/Ucircumflex
+	/Udieresis
+	/Yacute			% missing
+	/Thorn			% missing
+	/germandbls
+	/agrave
+	/aacute
+	/acircumflex
+	/atilde
+	/adieresis
+	/aring
+	/ae
+	/ccedilla
+	/egrave
+	/eacute
+	/ecircumflex
+	/edieresis
+	/igrave
+	/iacute
+	/icircumflex
+	/idieresis
+	/eth			% missing
+	/ntilde
+	/ograve
+	/oacute
+	/ocircumflex
+	/otilde
+	/odieresis
+	/divide			% missing
+	/oslash
+	/ugrave
+	/uacute
+	/ucircumflex
+	/udieresis
+	/yacute			% missing
+	/thorn			% missing
+	/ydieresis
+] def
+
+/NewFontDirectory FontDirectory maxlength dict def
+
+%
+% Apparently no guarantee findfont is defined in systemdict so the obvious
+%
+%	systemdict /findfont get exec
+%
+% can generate an error. So far the only exception is a VT600 (version 48.0).
+%
+
+userdict /@RealFindfont known not {
+	userdict begin
+		/@RealFindfont systemdict begin /findfont load end def
+	end
+} if
+
+/findfont {
+	dup NewFontDirectory exch known not {
+		dup
+		%dup systemdict /findfont get exec	% not always in systemdict
+		dup userdict /@RealFindfont get exec
+		dup /Encoding get StandardEncoding eq {
+			dup length dict begin
+				{1 index /FID ne {def}{pop pop} ifelse} forall
+				/Encoding ISOLatin1Encoding def
+				currentdict
+			end
+			/DummyFontName exch definefont
+		} if
+		NewFontDirectory 3 1 roll put
+	} if
+	NewFontDirectory exch get
+} bind def
+
+%%Patch from lp
+%%EndPatch from lp
+
+setup
+%%EndSetup
+%%Page: 1 1
+/saveobj save def
+mark
+1 pagesetup
+12 /Times-Bold f
+(Password Security:) 1980 1230 w
+(A Case) 3000 1230 w
+(History) 3392 1230 w
+10 /Times-Italic f
+(Robert Morris) 2592 1470 w
+(Ken Thompson) 2578 1650 w
+10 /Times-Roman f
+(Bell Laboratories) 2532 1830 w
+(Murray Hill, New Jersey 07974) 2246 1950 w
+10 /Times-Italic f
+(ABSTRACT) 2643 2450 w
+10 /Times-Roman f
+(This) 1330 2710 w
+(paper) 1534 2710 w
+(describes) 1781 2710 w
+(the) 2178 2710 w
+(history) 2326 2710 w
+(of) 2630 2710 w
+(the) 2740 2710 w
+(design) 2889 2710 w
+(of) 3177 2710 w
+(the) 3287 2710 w
+(password) 3436 2710 w
+(security) 3840 2710 w
+(scheme) 4183 2710 w
+(on) 4509 2710 w
+(a) 4636 2710 w
+(remotely) 1080 2830 w
+(accessed) 1467 2830 w
+(time\255sharing) 1847 2830 w
+(system.) 2384 2830 w
+(The) 2744 2830 w
+(present) 2931 2830 w
+(design) 3251 2830 w
+(was) 3544 2830 w
+(the) 3731 2830 w
+(result) 3885 2830 w
+(of) 4139 2830 w
+(countering) 4253 2830 w
+(observed) 1080 2950 w
+(attempts) 1471 2950 w
+(to) 1841 2950 w
+(penetrate) 1950 2950 w
+(the) 2346 2950 w
+(system.) 2499 2950 w
+(The) 2858 2950 w
+(result) 3044 2950 w
+(is) 3297 2950 w
+(a) 3395 2950 w
+(compromise) 3470 2950 w
+(between) 3995 2950 w
+(extreme) 4359 2950 w
+(security and ease of use.) 1080 3070 w
+(April 3, 1978) 720 3550 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 1 1
+%%Page: 2 2
+/saveobj save def
+mark
+2 pagesetup
+12 /Times-Bold f
+(Password Security:) 1980 1230 w
+(A Case) 3000 1230 w
+(History) 3392 1230 w
+10 /Times-Italic f
+(Robert Morris) 2592 1470 w
+(Ken Thompson) 2578 1650 w
+10 /Times-Roman f
+(Bell Laboratories) 2532 1830 w
+(Murray Hill, New Jersey 07974) 2246 1950 w
+10 /Times-Bold f
+(INTRODUCTION) 720 2310 w
+10 /Times-Roman f
+(Password) 970 2466 w
+(security) 1390 2466 w
+(on) 1744 2466 w
+(the) 1882 2466 w
+9 /Times-Roman f
+(UNIX) 2040 2466 w
+10 /Times-Roman f
+(\256) 2265 2466 w
+(time\255sharing) 2379 2466 w
+(system) 2922 2466 w
+([1]) 3238 2466 w
+(is) 3392 2466 w
+(provided) 3497 2466 w
+(by) 3890 2466 w
+(a) 4028 2466 w
+(collection) 4110 2466 w
+(of) 4542 2466 w
+(programs) 4663 2466 w
+(whose) 720 2586 w
+(elaborate) 1004 2586 w
+(and) 1398 2586 w
+(strange) 1571 2586 w
+(design) 1888 2586 w
+(is) 2177 2586 w
+(the) 2272 2586 w
+(outgrowth) 2422 2586 w
+(of) 2861 2586 w
+(many) 2972 2586 w
+(years) 3222 2586 w
+(of) 3460 2586 w
+(experience) 3571 2586 w
+(with) 4030 2586 w
+(earlier) 4236 2586 w
+(versions.) 4518 2586 w
+(To) 4929 2586 w
+(help) 720 2706 w
+(develop) 918 2706 w
+(a) 1260 2706 w
+(secure) 1330 2706 w
+(system,) 1610 2706 w
+(we) 1939 2706 w
+(have) 2082 2706 w
+(had) 2297 2706 w
+(a) 2468 2706 w
+(continuing) 2539 2706 w
+(competition) 2994 2706 w
+(to) 3499 2706 w
+(devise) 3604 2706 w
+(new) 3886 2706 w
+(ways) 4079 2706 w
+(to) 4311 2706 w
+(attack) 4416 2706 w
+(the) 4681 2706 w
+(secu\255) 4830 2706 w
+(rity) 720 2826 w
+(of) 893 2826 w
+(the) 1010 2826 w
+(system) 1166 2826 w
+(\(the) 1478 2826 w
+(bad) 1667 2826 w
+(guy\)) 1844 2826 w
+(and,) 2060 2826 w
+(at) 2262 2826 w
+(the) 2367 2826 w
+(same) 2522 2826 w
+(time,) 2760 2826 w
+(to) 2996 2826 w
+(devise) 3107 2826 w
+(new) 3395 2826 w
+(techniques) 3594 2826 w
+(to) 4054 2826 w
+(resist) 4165 2826 w
+(the) 4409 2826 w
+(new) 4564 2826 w
+(attacks) 4763 2826 w
+(\(the) 720 2946 w
+(good) 908 2946 w
+(guy\).) 1141 2946 w
+(This) 1407 2946 w
+(competition) 1618 2946 w
+(has) 2129 2946 w
+(been) 2295 2946 w
+(in) 2516 2946 w
+(the) 2627 2946 w
+(same) 2782 2946 w
+(vein) 3020 2946 w
+(as) 3225 2946 w
+(the) 3341 2946 w
+(competition) 3496 2946 w
+(of) 4007 2946 w
+(long) 4123 2946 w
+(standing) 4335 2946 w
+(between) 4708 2946 w
+(manufacturers) 720 3066 w
+(of) 1323 3066 w
+(armor) 1439 3066 w
+(plate) 1710 3066 w
+(and) 1937 3066 w
+(those) 2114 3066 w
+(of) 2358 3066 w
+(armor\255piercing) 2474 3066 w
+(shells.) 3105 3066 w
+(For) 3416 3066 w
+(this) 3588 3066 w
+(reason,) 3766 3066 w
+(the) 4084 3066 w
+(description) 4238 3066 w
+(that) 4714 3066 w
+(fol\255) 4896 3066 w
+(lows) 720 3186 w
+(will) 939 3186 w
+(trace) 1125 3186 w
+(the) 1348 3186 w
+(history) 1500 3186 w
+(of) 1808 3186 w
+(the) 1921 3186 w
+(password) 2073 3186 w
+(system) 2480 3186 w
+(rather) 2788 3186 w
+(than) 3050 3186 w
+(simply) 3252 3186 w
+(presenting) 3555 3186 w
+(the) 4001 3186 w
+(program) 4154 3186 w
+(in) 4523 3186 w
+(its) 4632 3186 w
+(current) 4758 3186 w
+(state.) 720 3306 w
+(In) 980 3306 w
+(this) 1090 3306 w
+(way,) 1262 3306 w
+(the) 1480 3306 w
+(reasons) 1629 3306 w
+(for) 1955 3306 w
+(the) 2098 3306 w
+(design) 2247 3306 w
+(will) 2535 3306 w
+(be) 2718 3306 w
+(made) 2839 3306 w
+(clearer,) 3082 3306 w
+(as) 3403 3306 w
+(the) 3512 3306 w
+(design) 3660 3306 w
+(cannot) 3947 3306 w
+(be) 4239 3306 w
+(understood) 4359 3306 w
+(with\255) 4829 3306 w
+(out also understanding the potential attacks.) 720 3426 w
+(An) 970 3582 w
+(underlying) 1123 3582 w
+(goal) 1587 3582 w
+(has) 1790 3582 w
+(been) 1954 3582 w
+(to) 2174 3582 w
+(provide) 2284 3582 w
+(password) 2621 3582 w
+(security) 3030 3582 w
+(at) 3378 3582 w
+(minimal) 3482 3582 w
+(inconvenience) 3848 3582 w
+(to) 4456 3582 w
+(the) 4566 3582 w
+(users) 4720 3582 w
+(of) 4957 3582 w
+(the) 720 3702 w
+(system.) 873 3702 w
+(For) 1232 3702 w
+(example,) 1402 3702 w
+(those) 1796 3702 w
+(who) 2038 3702 w
+(want) 2241 3702 w
+(to) 2466 3702 w
+(run) 2575 3702 w
+(a) 2739 3702 w
+(completely) 2814 3702 w
+(open) 3289 3702 w
+(system) 3514 3702 w
+(without) 3823 3702 w
+(passwords,) 4160 3702 w
+(or) 4631 3702 w
+(to) 4744 3702 w
+(have) 4852 3702 w
+(passwords) 720 3822 w
+(only) 1166 3822 w
+(at) 1374 3822 w
+(the) 1476 3822 w
+(option) 1628 3822 w
+(of) 1914 3822 w
+(the) 2027 3822 w
+(individual) 2179 3822 w
+(users,) 2615 3822 w
+(are) 2875 3822 w
+(able) 3026 3822 w
+(to) 3222 3822 w
+(do) 3330 3822 w
+(so,) 3460 3822 w
+(while) 3604 3822 w
+(those) 3856 3822 w
+(who) 4097 3822 w
+(require) 4299 3822 w
+(all) 4612 3822 w
+(of) 4743 3822 w
+(their) 4857 3822 w
+(users) 720 3942 w
+(to) 959 3942 w
+(have) 1071 3942 w
+(passwords) 1293 3942 w
+(gain) 1743 3942 w
+(a) 1949 3942 w
+(high) 2027 3942 w
+(degree) 2239 3942 w
+(of) 2538 3942 w
+(security) 2655 3942 w
+(against) 3005 3942 w
+(penetration) 3322 3942 w
+(of) 3804 3942 w
+(the) 3920 3942 w
+(system) 4075 3942 w
+(by) 4386 3942 w
+(unauthorized) 4519 3942 w
+(users.) 720 4062 w
+(The) 970 4218 w
+(password) 1164 4218 w
+(system) 1580 4218 w
+(must) 1897 4218 w
+(be) 2131 4218 w
+(able) 2264 4218 w
+(not) 2469 4218 w
+(only) 2636 4218 w
+(to) 2853 4218 w
+(prevent) 2970 4218 w
+(any) 3308 4218 w
+(access) 3491 4218 w
+(to) 3784 4218 w
+(the) 3901 4218 w
+(system) 4062 4218 w
+(by) 4379 4218 w
+(unauthorized) 4519 4218 w
+(users) 720 4338 w
+(\(i.e.) 961 4338 w
+(prevent) 1152 4338 w
+(them) 1487 4338 w
+(from) 1723 4338 w
+(logging) 1953 4338 w
+(in) 2295 4338 w
+(at) 2409 4338 w
+(all\),) 2517 4338 w
+(but) 2710 4338 w
+(it) 2873 4338 w
+(must) 2964 4338 w
+(also) 3194 4338 w
+(prevent) 3390 4338 w
+(users) 3724 4338 w
+(who) 3964 4338 w
+(are) 4171 4338 w
+(already) 4327 4338 w
+(logged) 4655 4338 w
+(in) 4962 4338 w
+(from) 720 4458 w
+(doing) 940 4458 w
+(things) 1194 4458 w
+(that) 1465 4458 w
+(they) 1642 4458 w
+(are) 1841 4458 w
+(not) 1989 4458 w
+(authorized) 2144 4458 w
+(to) 2592 4458 w
+(do.) 2697 4458 w
+(The) 2874 4458 w
+(so) 3056 4458 w
+(called) 3172 4458 w
+(``super\255user'') 3437 4458 w
+(password,) 4011 4458 w
+(for) 4440 4458 w
+(example,) 4583 4458 w
+(is) 4973 4458 w
+(especially) 720 4578 w
+(critical) 1146 4578 w
+(because) 1450 4578 w
+(the) 1792 4578 w
+(super\255user) 1941 4578 w
+(has) 2382 4578 w
+(all) 2541 4578 w
+(sorts) 2667 4578 w
+(of) 2882 4578 w
+(permissions) 2991 4578 w
+(and) 3495 4578 w
+(has) 3665 4578 w
+(essentially) 3824 4578 w
+(unlimited) 4272 4578 w
+(access) 4682 4578 w
+(to) 4962 4578 w
+(all system resources.) 720 4698 w
+(Password) 970 4854 w
+(security) 1385 4854 w
+(is) 1734 4854 w
+(of) 1834 4854 w
+(course) 1950 4854 w
+(only) 2243 4854 w
+(one) 2454 4854 w
+(component) 2631 4854 w
+(of) 3108 4854 w
+(overall) 3224 4854 w
+(system) 3534 4854 w
+(security,) 3845 4854 w
+(but) 4219 4854 w
+(it) 4380 4854 w
+(is) 4469 4854 w
+(an) 4569 4854 w
+(essential) 4696 4854 w
+(component.) 720 4974 w
+(Experience) 1251 4974 w
+(has) 1736 4974 w
+(shown) 1905 4974 w
+(that) 2202 4974 w
+(attempts) 2388 4974 w
+(to) 2763 4974 w
+(penetrate) 2877 4974 w
+(remote\255access) 3278 4974 w
+(systems) 3878 4974 w
+(have) 4231 4974 w
+(been) 4455 4974 w
+(astonish\255) 4679 4974 w
+(ingly sophisticated.) 720 5094 w
+(Remote\255access systems) 970 5250 w
+(are) 1936 5250 w
+(peculiarly) 2083 5250 w
+(vulnerable) 2508 5250 w
+(to) 2955 5250 w
+(penetration) 3059 5250 w
+(by) 3534 5250 w
+(outsiders) 3660 5250 w
+(as) 4047 5250 w
+(there) 4156 5250 w
+(are) 4381 5250 w
+(threats) 4528 5250 w
+(at) 4820 5250 w
+(the) 4918 5250 w
+(remote) 720 5370 w
+(terminal,) 1025 5370 w
+(along) 1411 5370 w
+(the) 1661 5370 w
+(communications) 1811 5370 w
+(link,) 2500 5370 w
+(as) 2709 5370 w
+(well) 2820 5370 w
+(as) 3020 5370 w
+(at) 3131 5370 w
+(the) 3230 5370 w
+(computer) 3379 5370 w
+(itself.) 3783 5370 w
+(Although) 4060 5370 w
+(the) 4465 5370 w
+(security) 4614 5370 w
+(of) 4957 5370 w
+(a) 720 5490 w
+(password) 791 5490 w
+(encryption) 1195 5490 w
+(algorithm) 1649 5490 w
+(is) 2065 5490 w
+(an) 2159 5490 w
+(interesting) 2281 5490 w
+(intellectual) 2731 5490 w
+(and) 3203 5490 w
+(mathematical) 3375 5490 w
+(problem,) 3941 5490 w
+(it) 4327 5490 w
+(is) 4411 5490 w
+(only) 4506 5490 w
+(one) 4712 5490 w
+(tiny) 4884 5490 w
+(facet) 720 5610 w
+(of) 947 5610 w
+(a) 1064 5610 w
+(very) 1142 5610 w
+(large) 1353 5610 w
+(problem.) 1586 5610 w
+(In) 2003 5610 w
+(practice,) 2120 5610 w
+(physical) 2493 5610 w
+(security) 2859 5610 w
+(of) 3208 5610 w
+(the) 3324 5610 w
+(computer,) 3479 5610 w
+(communications) 3914 5610 w
+(security) 4608 5610 w
+(of) 4957 5610 w
+(the) 720 5730 w
+(communications) 879 5730 w
+(link,) 1577 5730 w
+(and) 1795 5730 w
+(physical) 1976 5730 w
+(control) 2346 5730 w
+(of) 2666 5730 w
+(the) 2786 5730 w
+(computer) 2945 5730 w
+(itself) 3359 5730 w
+(loom) 3596 5730 w
+(as) 3839 5730 w
+(far) 3959 5730 w
+(more) 4106 5730 w
+(important) 4349 5730 w
+(issues.) 4776 5730 w
+(Perhaps) 720 5850 w
+(most) 1074 5850 w
+(important) 1307 5850 w
+(of) 1734 5850 w
+(all) 1855 5850 w
+(is) 1993 5850 w
+(control) 2098 5850 w
+(over) 2419 5850 w
+(the) 2634 5850 w
+(actions) 2794 5850 w
+(of) 3115 5850 w
+(ex\255employees,) 3236 5850 w
+(since) 3853 5850 w
+(they) 4096 5850 w
+(are) 4306 5850 w
+(not) 4465 5850 w
+(under) 4631 5850 w
+(any) 4896 5850 w
+(direct) 720 5970 w
+(control) 990 5970 w
+(and) 1317 5970 w
+(they) 1505 5970 w
+(may) 1721 5970 w
+(have) 1937 5970 w
+(intimate) 2169 5970 w
+(knowledge) 2541 5970 w
+(about) 3023 5970 w
+(the) 3289 5970 w
+(system,) 3455 5970 w
+(its) 3802 5970 w
+(resources,) 3941 5970 w
+(and) 4386 5970 w
+(methods) 4574 5970 w
+(of) 4957 5970 w
+(access.) 720 6090 w
+(Good) 1061 6090 w
+(system) 1320 6090 w
+(security) 1635 6090 w
+(involves) 1988 6090 w
+(realistic) 2364 6090 w
+(evaluation) 2717 6090 w
+(of) 3170 6090 w
+(the) 3290 6090 w
+(risks) 3448 6090 w
+(not) 3673 6090 w
+(only) 3837 6090 w
+(of) 4051 6090 w
+(deliberate) 4170 6090 w
+(attacks) 4599 6090 w
+(but) 4912 6090 w
+(also of casual unauthorized access and accidental disclosure.) 720 6210 w
+10 /Times-Bold f
+(PROLOGUE) 720 6450 w
+10 /Times-Roman f
+(The) 970 6606 w
+(UNIX) 1153 6606 w
+(system) 1430 6606 w
+(was) 1736 6606 w
+(first) 1919 6606 w
+(implemented) 2108 6606 w
+(with) 2658 6606 w
+(a) 2864 6606 w
+(password) 2936 6606 w
+(file) 3341 6606 w
+(that) 3502 6606 w
+(contained) 3680 6606 w
+(the) 4096 6606 w
+(actual) 4246 6606 w
+(passwords) 4512 6606 w
+(of) 4957 6606 w
+(all) 720 6726 w
+(the) 852 6726 w
+(users,) 1006 6726 w
+(and) 1268 6726 w
+(for) 1444 6726 w
+(that) 1592 6726 w
+(reason) 1774 6726 w
+(the) 2066 6726 w
+(password) 2220 6726 w
+(file) 2629 6726 w
+(had) 2794 6726 w
+(to) 2969 6726 w
+(be) 3078 6726 w
+(heavily) 3203 6726 w
+(protected) 3528 6726 w
+(against) 3930 6726 w
+(being) 4244 6726 w
+(either) 4497 6726 w
+(read) 4755 6726 w
+(or) 4957 6726 w
+(written.) 720 6846 w
+(Although) 1090 6846 w
+(historically,) 1505 6846 w
+(this) 2017 6846 w
+(had) 2199 6846 w
+(been) 2380 6846 w
+(the) 2605 6846 w
+(technique) 2765 6846 w
+(used) 3191 6846 w
+(for) 3412 6846 w
+(remote\255access) 3566 6846 w
+(systems,) 4168 6846 w
+(it) 4548 6846 w
+(was) 4642 6846 w
+(com\255) 4835 6846 w
+(pletely unsatisfactory for several reasons.) 720 6966 w
+(The) 970 7122 w
+(technique) 1151 7122 w
+(is) 1565 7122 w
+(excessively) 1658 7122 w
+(vulnerable) 2144 7122 w
+(to) 2591 7122 w
+(lapses) 2695 7122 w
+(in) 2965 7122 w
+(security.) 3069 7122 w
+(Temporary) 3461 7122 w
+(loss) 3930 7122 w
+(of) 4112 7122 w
+(protection) 4222 7122 w
+(can) 4654 7122 w
+(occur) 4819 7122 w
+(when) 720 7242 w
+(the) 970 7242 w
+(password) 1126 7242 w
+(file) 1537 7242 w
+(is) 1704 7242 w
+(being) 1805 7242 w
+(edited) 2061 7242 w
+(or) 2339 7242 w
+(otherwise) 2456 7242 w
+(modified.) 2878 7242 w
+(There) 3323 7242 w
+(is) 3589 7242 w
+(no) 3690 7242 w
+(way) 3824 7242 w
+(to) 4024 7242 w
+(prevent) 4136 7242 w
+(the) 4469 7242 w
+(making) 4624 7242 w
+(of) 4957 7242 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 2 2
+%%Page: 3 3
+/saveobj save def
+mark
+3 pagesetup
+10 /Times-Roman f
+(\255 2 \255) 2797 480 w
+(copies) 720 840 w
+(by) 1004 840 w
+(privileged) 1133 840 w
+(users.) 1567 840 w
+(Experience) 1851 840 w
+(with) 2328 840 w
+(several) 2535 840 w
+(earlier) 2846 840 w
+(remote\255access) 3129 840 w
+(systems) 3722 840 w
+(showed) 4068 840 w
+(that) 4403 840 w
+(such) 4583 840 w
+(lapses) 4796 840 w
+(occur) 720 960 w
+(with) 977 960 w
+(frightening) 1191 960 w
+(frequency.) 1671 960 w
+(Perhaps) 2155 960 w
+(the) 2507 960 w
+(most) 2665 960 w
+(memorable) 2895 960 w
+(such) 3379 960 w
+(occasion) 3597 960 w
+(occurred) 3981 960 w
+(in) 4364 960 w
+(the) 4477 960 w
+(early) 4634 960 w
+(60's) 4868 960 w
+(when) 720 1080 w
+(a) 963 1080 w
+(system) 1034 1080 w
+(administrator) 1339 1080 w
+(on) 1899 1080 w
+(the) 2026 1080 w
+(CTSS) 2175 1080 w
+(system) 2442 1080 w
+(at) 2747 1080 w
+(MIT) 2847 1080 w
+(was) 3058 1080 w
+(editing) 3241 1080 w
+(the) 3547 1080 w
+(password) 3697 1080 w
+(file) 4102 1080 w
+(and) 4263 1080 w
+(another) 4435 1080 w
+(system) 4762 1080 w
+(administrator) 720 1200 w
+(was) 1283 1200 w
+(editing) 1468 1200 w
+(the) 1776 1200 w
+(daily) 1928 1200 w
+(message) 2157 1200 w
+(that) 2524 1200 w
+(is) 2703 1200 w
+(printed) 2799 1200 w
+(on) 3111 1200 w
+(everyone's) 3240 1200 w
+(terminal) 3706 1200 w
+(on) 4068 1200 w
+(login.) 4197 1200 w
+(Due) 4482 1200 w
+(to) 4677 1200 w
+(a) 4784 1200 w
+(soft\255) 4857 1200 w
+(ware) 720 1320 w
+(design) 947 1320 w
+(error,) 1242 1320 w
+(the) 1494 1320 w
+(temporary) 1650 1320 w
+(editor) 2094 1320 w
+(files) 2361 1320 w
+(of) 2567 1320 w
+(the) 2684 1320 w
+(two) 2841 1320 w
+(users) 3026 1320 w
+(were) 3266 1320 w
+(interchanged) 3494 1320 w
+(and) 4044 1320 w
+(thus,) 4223 1320 w
+(for) 4450 1320 w
+(a) 4601 1320 w
+(time,) 4680 1320 w
+(the) 4918 1320 w
+(password file was printed on every terminal when it was logged in.) 720 1440 w
+(Once) 970 1596 w
+(such) 1216 1596 w
+(a) 1435 1596 w
+(lapse) 1515 1596 w
+(in) 1756 1596 w
+(security) 1870 1596 w
+(has) 2222 1596 w
+(been) 2391 1596 w
+(discovered,) 2615 1596 w
+(everyone's) 3108 1596 w
+(password) 3581 1596 w
+(must) 3994 1596 w
+(be) 4226 1596 w
+(changed,) 4357 1596 w
+(usually) 4751 1596 w
+(simultaneously,) 720 1716 w
+(at) 1379 1716 w
+(a) 1479 1716 w
+(considerable) 1551 1716 w
+(administrative) 2083 1716 w
+(cost.) 2683 1716 w
+(This) 2922 1716 w
+(is) 3128 1716 w
+(not) 3223 1716 w
+(a) 3379 1716 w
+(great) 3451 1716 w
+(matter,) 3678 1716 w
+(but) 3986 1716 w
+(far) 4142 1716 w
+(more) 4280 1716 w
+(serious) 4513 1716 w
+(is) 4824 1716 w
+(the) 4918 1716 w
+(high probability of such lapses going unnoticed by the system administrators.) 720 1836 w
+(Security) 970 1992 w
+(against) 1336 1992 w
+(unauthorized) 1652 1992 w
+(disclosure) 2206 1992 w
+(of) 2644 1992 w
+(the) 2760 1992 w
+(passwords) 2915 1992 w
+(was,) 3364 1992 w
+(in) 3577 1992 w
+(the) 3688 1992 w
+(last) 3843 1992 w
+(analysis,) 4015 1992 w
+(impossible) 4395 1992 w
+(with) 4862 1992 w
+(this) 720 2112 w
+(system) 895 2112 w
+(because,) 1203 2112 w
+(for) 1573 2112 w
+(example,) 1719 2112 w
+(if) 2112 2112 w
+(the) 2203 2112 w
+(contents) 2355 2112 w
+(of) 2717 2112 w
+(the) 2829 2112 w
+(file) 2980 2112 w
+(system) 3142 2112 w
+(are) 3449 2112 w
+(put) 3599 2112 w
+(on) 3756 2112 w
+(to) 3885 2112 w
+(magnetic) 3992 2112 w
+(tape) 4387 2112 w
+(for) 4582 2112 w
+(backup,) 4727 2112 w
+(as they must be, then anyone who has physical access to the tape can read anything on it with no restriction.) 720 2232 w
+(Many) 970 2388 w
+(programs) 1234 2388 w
+(must) 1642 2388 w
+(get) 1868 2388 w
+(information) 2021 2388 w
+(of) 2524 2388 w
+(various) 2638 2388 w
+(kinds) 2963 2388 w
+(about) 3212 2388 w
+(the) 3466 2388 w
+(users) 3620 2388 w
+(of) 3857 2388 w
+(the) 3972 2388 w
+(system,) 4126 2388 w
+(and) 4461 2388 w
+(these) 4637 2388 w
+(pro\255) 4874 2388 w
+(grams) 720 2508 w
+(in) 1007 2508 w
+(general) 1128 2508 w
+(should) 1463 2508 w
+(have) 1772 2508 w
+(no) 2002 2508 w
+(special) 2144 2508 w
+(permission) 2463 2508 w
+(to) 2944 2508 w
+(read) 3064 2508 w
+(the) 3277 2508 w
+(password) 3441 2508 w
+(file.) 3860 2508 w
+(The) 4085 2508 w
+(information) 4282 2508 w
+(which) 4796 2508 w
+(should) 720 2628 w
+(have) 1018 2628 w
+(been) 1237 2628 w
+(in) 1456 2628 w
+(the) 1565 2628 w
+(password) 1718 2628 w
+(file) 2126 2628 w
+(actually) 2290 2628 w
+(was) 2637 2628 w
+(distributed) 2823 2628 w
+(\(or) 3282 2628 w
+(replicated\)) 3429 2628 w
+(into) 3886 2628 w
+(a) 4073 2628 w
+(number) 4148 2628 w
+(of) 4484 2628 w
+(files,) 4598 2628 w
+(all) 4826 2628 w
+(of) 4957 2628 w
+(which had to be updated whenever a user was added to or dropped from the system.) 720 2748 w
+10 /Times-Bold f
+(THE FIRST SCHEME) 720 2988 w
+10 /Times-Roman f
+(The) 970 3144 w
+(obvious) 1151 3144 w
+(solution) 1494 3144 w
+(is) 1843 3144 w
+(to) 1937 3144 w
+(arrange) 2042 3144 w
+(that) 2367 3144 w
+(the) 2544 3144 w
+(passwords) 2693 3144 w
+(not) 3136 3144 w
+(appear) 3291 3144 w
+(in) 3583 3144 w
+(the) 3688 3144 w
+(system) 3837 3144 w
+(at) 4142 3144 w
+(all,) 4241 3144 w
+(and) 4393 3144 w
+(it) 4564 3144 w
+(is) 4647 3144 w
+(not) 4741 3144 w
+(dif\255) 4896 3144 w
+(ficult) 720 3264 w
+(to) 957 3264 w
+(decide that this can be done by encrypting each user's password, putting only the encrypted form in) 1061 3264 w
+(the) 720 3384 w
+(password) 870 3384 w
+(file,) 1275 3384 w
+(and) 1461 3384 w
+(throwing) 1633 3384 w
+(away) 2022 3384 w
+(his) 2260 3384 w
+(original) 2405 3384 w
+(password) 2744 3384 w
+(\(the) 3150 3384 w
+(one) 3334 3384 w
+(that) 3507 3384 w
+(he) 3686 3384 w
+(typed) 3809 3384 w
+(in\).) 4060 3384 w
+(When) 4250 3384 w
+(the) 4517 3384 w
+(user) 4668 3384 w
+(later) 4863 3384 w
+(tries) 720 3504 w
+(to) 922 3504 w
+(log) 1030 3504 w
+(in) 1188 3504 w
+(to) 1296 3504 w
+(the) 1404 3504 w
+(system,) 1556 3504 w
+(the) 1888 3504 w
+(password) 2039 3504 w
+(that) 2445 3504 w
+(he) 2624 3504 w
+(types) 2747 3504 w
+(is) 2987 3504 w
+(encrypted) 3083 3504 w
+(and) 3505 3504 w
+(compared) 3678 3504 w
+(with) 4100 3504 w
+(the) 4307 3504 w
+(encrypted) 4458 3504 w
+(ver\255) 4880 3504 w
+(sion) 720 3624 w
+(in) 933 3624 w
+(the) 1057 3624 w
+(password) 1225 3624 w
+(file.) 1648 3624 w
+(If) 1877 3624 w
+(the) 1989 3624 w
+(two) 2157 3624 w
+(match,) 2354 3624 w
+(his) 2670 3624 w
+(login) 2834 3624 w
+(attempt) 3087 3624 w
+(is) 3434 3624 w
+(accepted.) 3548 3624 w
+(Such) 3993 3624 w
+(a) 4240 3624 w
+(scheme) 4331 3624 w
+(was) 4677 3624 w
+(first) 4879 3624 w
+(described) 720 3744 w
+(in) 1129 3744 w
+([3,) 1234 3744 w
+(p.91ff.].) 1369 3744 w
+(It) 1745 3744 w
+(also) 1833 3744 w
+(seemed) 2021 3744 w
+(advisable) 2347 3744 w
+(to) 2751 3744 w
+(devise) 2856 3744 w
+(a) 3138 3744 w
+(system) 3209 3744 w
+(in) 3514 3744 w
+(which) 3619 3744 w
+(neither) 3890 3744 w
+(the) 4194 3744 w
+(password) 4343 3744 w
+(file) 4747 3744 w
+(nor) 4907 3744 w
+(the password program itself needed to be protected against being read by anyone.) 720 3864 w
+(All) 970 4020 w
+(that) 1128 4020 w
+(was) 1308 4020 w
+(needed) 1493 4020 w
+(to) 1805 4020 w
+(implement) 1913 4020 w
+(these) 2371 4020 w
+(ideas) 2606 4020 w
+(was) 2841 4020 w
+(to) 3026 4020 w
+(find) 3135 4020 w
+(a) 3327 4020 w
+(means) 3402 4020 w
+(of) 3688 4020 w
+(encryption) 3802 4020 w
+(that) 4260 4020 w
+(was) 4441 4020 w
+(very) 4627 4020 w
+(diffi\255) 4835 4020 w
+(cult) 720 4140 w
+(to) 907 4140 w
+(invert,) 1022 4140 w
+(even) 1317 4140 w
+(when) 1542 4140 w
+(the) 1795 4140 w
+(encryption) 1954 4140 w
+(program) 2418 4140 w
+(is) 2793 4140 w
+(available.) 2897 4140 w
+(Most) 3344 4140 w
+(of) 3587 4140 w
+(the) 3706 4140 w
+(standard) 3864 4140 w
+(encryption) 4238 4140 w
+(methods) 4701 4140 w
+(used) 720 4260 w
+(\(in) 945 4260 w
+(the) 1099 4260 w
+(past\)) 1264 4260 w
+(for) 1501 4260 w
+(encryption) 1660 4260 w
+(of) 2130 4260 w
+(messages) 2256 4260 w
+(are) 2676 4260 w
+(rather) 2840 4260 w
+(easy) 3115 4260 w
+(to) 3335 4260 w
+(invert.) 3456 4260 w
+(A) 3782 4260 w
+(convenient) 3897 4260 w
+(and) 4378 4260 w
+(rather) 4565 4260 w
+(good) 4840 4260 w
+(encryption) 720 4380 w
+(program) 1175 4380 w
+(happened) 1541 4380 w
+(to) 1951 4380 w
+(exist) 2057 4380 w
+(on) 2274 4380 w
+(the) 2401 4380 w
+(system) 2550 4380 w
+(at) 2855 4380 w
+(the) 2954 4380 w
+(time;) 3103 4380 w
+(it) 3336 4380 w
+(simulated) 3419 4380 w
+(the) 3835 4380 w
+(M\255209) 3984 4380 w
+(cipher) 4283 4380 w
+(machine) 4559 4380 w
+([4]) 4924 4380 w
+(used) 720 4500 w
+(by) 932 4500 w
+(the) 1061 4500 w
+(U.S.) 1212 4500 w
+(Army) 1419 4500 w
+(during) 1681 4500 w
+(World) 1971 4500 w
+(War) 2255 4500 w
+(II.) 2455 4500 w
+(It) 2600 4500 w
+(turned) 2690 4500 w
+(out) 2975 4500 w
+(that) 3133 4500 w
+(the) 3313 4500 w
+(M\255209) 3465 4500 w
+(program) 3767 4500 w
+(was) 4135 4500 w
+(usable,) 4320 4500 w
+(but) 4630 4500 w
+(with) 4788 4500 w
+(a) 4996 4500 w
+(given) 720 4620 w
+(key,) 974 4620 w
+(the) 1174 4620 w
+(ciphers) 1327 4620 w
+(produced) 1646 4620 w
+(by) 2048 4620 w
+(this) 2179 4620 w
+(program) 2355 4620 w
+(are) 2724 4620 w
+(trivial) 2876 4620 w
+(to) 3146 4620 w
+(invert.) 3255 4620 w
+(It) 3569 4620 w
+(is) 3661 4620 w
+(a) 3759 4620 w
+(much) 3834 4620 w
+(more) 4087 4620 w
+(difficult) 4323 4620 w
+(matter) 4676 4620 w
+(to) 4962 4620 w
+(find) 720 4740 w
+(out) 914 4740 w
+(the) 1075 4740 w
+(key) 1231 4740 w
+(given) 1409 4740 w
+(the) 1665 4740 w
+(cleartext) 1821 4740 w
+(input) 2198 4740 w
+(and) 2438 4740 w
+(the) 2616 4740 w
+(enciphered) 2772 4740 w
+(output) 3243 4740 w
+(of) 3533 4740 w
+(the) 3650 4740 w
+(program.) 3806 4740 w
+(Therefore,) 4228 4740 w
+(the) 4679 4740 w
+(pass\255) 4835 4740 w
+(word) 720 4860 w
+(was) 955 4860 w
+(used) 1140 4860 w
+(not) 1353 4860 w
+(as) 1511 4860 w
+(the) 1624 4860 w
+(text) 1776 4860 w
+(to) 1956 4860 w
+(be) 2064 4860 w
+(encrypted) 2188 4860 w
+(but) 2611 4860 w
+(as) 2769 4860 w
+(the) 2882 4860 w
+(key,) 3034 4860 w
+(and) 3233 4860 w
+(a) 3407 4860 w
+(constant) 3481 4860 w
+(was) 3844 4860 w
+(encrypted) 4029 4860 w
+(using) 4451 4860 w
+(this) 4697 4860 w
+(key.) 4871 4860 w
+(The encrypted result was entered into the password file.) 720 4980 w
+10 /Times-Bold f
+(ATTACKS ON THE FIRST APPROACH) 720 5220 w
+10 /Times-Roman f
+(Suppose) 970 5376 w
+(that) 1335 5376 w
+(the) 1511 5376 w
+(bad) 1659 5376 w
+(guy) 1829 5376 w
+(has) 2005 5376 w
+(available) 2164 5376 w
+(the) 2550 5376 w
+(text) 2698 5376 w
+(of) 2874 5376 w
+(the) 2983 5376 w
+(password) 3131 5376 w
+(encryption) 3535 5376 w
+(program) 3989 5376 w
+(and) 4354 5376 w
+(the) 4525 5376 w
+(complete) 4674 5376 w
+(password file.) 720 5496 w
+(Suppose also that he has substantial computing capacity at his disposal.) 1330 5496 w
+(One) 970 5652 w
+(obvious) 1164 5652 w
+(approach) 1509 5652 w
+(to) 1902 5652 w
+(penetrating) 2008 5652 w
+(the) 2485 5652 w
+(password) 2635 5652 w
+(mechanism) 3040 5652 w
+(is) 3523 5652 w
+(to) 3618 5652 w
+(attempt) 3724 5652 w
+(to) 4052 5652 w
+(find) 4158 5652 w
+(a) 4347 5652 w
+(general) 4419 5652 w
+(method) 4740 5652 w
+(of) 720 5772 w
+(inverting) 829 5772 w
+(the) 1216 5772 w
+(encryption) 1364 5772 w
+(algorithm.) 1817 5772 w
+(Very) 2282 5772 w
+(possibly) 2507 5772 w
+(this can be done, but few successful results have come) 2867 5772 w
+(to) 720 5892 w
+(light,) 832 5892 w
+(despite) 1075 5892 w
+(substantial) 1392 5892 w
+(efforts) 1854 5892 w
+(extending) 2148 5892 w
+(over) 2576 5892 w
+(a) 2787 5892 w
+(period) 2865 5892 w
+(of) 3154 5892 w
+(more) 3271 5892 w
+(than) 3511 5892 w
+(five) 3718 5892 w
+(years.) 3908 5892 w
+(The) 4203 5892 w
+(results) 4393 5892 w
+(have) 4689 5892 w
+(not) 4912 5892 w
+(proved to be very useful in penetrating systems.) 720 6012 w
+(Another) 970 6168 w
+(approach) 1324 6168 w
+(to) 1716 6168 w
+(penetration) 1821 6168 w
+(is) 2297 6168 w
+(simply) 2391 6168 w
+(to) 2691 6168 w
+(keep) 2796 6168 w
+(trying) 3012 6168 w
+(potential) 3279 6168 w
+(passwords) 3657 6168 w
+(until) 4101 6168 w
+(one) 4313 6168 w
+(succeeds;) 4485 6168 w
+(this) 4895 6168 w
+(is) 720 6288 w
+(a) 817 6288 w
+(general) 891 6288 w
+(cryptanalytic) 1213 6288 w
+(approach) 1763 6288 w
+(called) 2157 6288 w
+10 /Times-Italic f
+(key) 2424 6288 w
+(search.) 2585 6288 w
+10 /Times-Roman f
+(Human) 2930 6288 w
+(beings) 3253 6288 w
+(being) 3543 6288 w
+(what) 3794 6288 w
+(they) 4017 6288 w
+(are,) 4218 6288 w
+(there) 4393 6288 w
+(is) 4621 6288 w
+(a) 4717 6288 w
+(strong) 4790 6288 w
+(tendency) 720 6408 w
+(for) 1113 6408 w
+(people) 1262 6408 w
+(to) 1561 6408 w
+(choose) 1673 6408 w
+(relatively) 1984 6408 w
+(short) 2395 6408 w
+(and) 2629 6408 w
+(simple) 2807 6408 w
+(passwords) 3108 6408 w
+(that) 3558 6408 w
+(they) 3742 6408 w
+(can) 3948 6408 w
+(remember.) 4120 6408 w
+(Given) 4608 6408 w
+(free) 4886 6408 w
+(choice,) 720 6528 w
+(most) 1035 6528 w
+(people) 1260 6528 w
+(will) 1556 6528 w
+(choose) 1742 6528 w
+(their) 2049 6528 w
+(passwords) 2262 6528 w
+(from) 2708 6528 w
+(a) 2932 6528 w
+(restricted) 3006 6528 w
+(character) 3407 6528 w
+(set) 3801 6528 w
+(\(e.g.) 3942 6528 w
+(all) 4149 6528 w
+(lower\255case) 4278 6528 w
+(letters\),) 4738 6528 w
+(and will often choose words or names.) 720 6648 w
+(This human habit makes the key search job a great deal easier.) 2309 6648 w
+(The) 970 6804 w
+(critical) 1158 6804 w
+(factor) 1468 6804 w
+(involved) 1733 6804 w
+(in) 2116 6804 w
+(key) 2227 6804 w
+(search) 2404 6804 w
+(is) 2692 6804 w
+(the) 2793 6804 w
+(amount) 2949 6804 w
+(of) 3283 6804 w
+(time) 3400 6804 w
+(needed) 3612 6804 w
+(to) 3928 6804 w
+(encrypt) 4040 6804 w
+(a) 4373 6804 w
+(potential) 4451 6804 w
+(pass\255) 4835 6804 w
+(word) 720 6924 w
+(and) 960 6924 w
+(to) 1139 6924 w
+(check) 1252 6924 w
+(the) 1518 6924 w
+(result) 1674 6924 w
+(against) 1930 6924 w
+(an) 2247 6924 w
+(entry) 2375 6924 w
+(in) 2614 6924 w
+(the) 2726 6924 w
+(password) 2882 6924 w
+(file.) 3293 6924 w
+(The) 3510 6924 w
+(running) 3699 6924 w
+(time) 4044 6924 w
+(to) 4256 6924 w
+(encrypt) 4368 6924 w
+(one) 4701 6924 w
+(trial) 4879 6924 w
+(password) 720 7044 w
+(and) 1127 7044 w
+(check) 1301 7044 w
+(the) 1563 7044 w
+(result) 1715 7044 w
+(turned) 1967 7044 w
+(out) 2252 7044 w
+(to) 2410 7044 w
+(be) 2518 7044 w
+(approximately) 2642 7044 w
+(1.25) 3249 7044 w
+(milliseconds) 3454 7044 w
+(on) 3990 7044 w
+(a) 4120 7044 w
+(PDP\25511/70) 4195 7044 w
+(when) 4671 7044 w
+(the) 4918 7044 w
+(encryption) 720 7164 w
+(algorithm) 1189 7164 w
+(was) 1620 7164 w
+(recoded) 1816 7164 w
+(for) 2172 7164 w
+(maximum) 2329 7164 w
+(speed.) 2776 7164 w
+(It) 3094 7164 w
+(is) 3196 7164 w
+(takes) 3304 7164 w
+(essentially) 3550 7164 w
+(no) 4013 7164 w
+(more) 4154 7164 w
+(time) 4400 7164 w
+(to) 4619 7164 w
+(test) 4738 7164 w
+(the) 4918 7164 w
+(encrypted) 720 7284 w
+(trial) 1141 7284 w
+(password) 1330 7284 w
+(against) 1735 7284 w
+(all) 2046 7284 w
+(the) 2174 7284 w
+(passwords) 2324 7284 w
+(in) 2768 7284 w
+(an) 2874 7284 w
+(entire) 2996 7284 w
+(password) 3251 7284 w
+(file,) 3656 7284 w
+(or) 3842 7284 w
+(for) 3953 7284 w
+(that) 4097 7284 w
+(matter,) 4275 7284 w
+(against) 4584 7284 w
+(any) 4896 7284 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 3 3
+%%Page: 4 4
+/saveobj save def
+mark
+4 pagesetup
+10 /Times-Roman f
+(\255 3 \255) 2797 480 w
+(collection of encrypted passwords, perhaps collected from many installations.) 720 840 w
+(If we want to check all passwords of length) 970 996 w
+10 /Times-Italic f
+(n) 2730 996 w
+10 /Times-Roman f
+(that) 2806 996 w
+(consist) 2982 996 w
+(entirely) 3286 996 w
+(of) 3617 996 w
+(lower\255case) 3726 996 w
+(letters,) 4183 996 w
+(the) 4478 996 w
+(number) 4626 996 w
+(of) 4957 996 w
+(such) 720 1116 w
+(passwords) 944 1116 w
+(is) 1401 1116 w
+(26) 1509 1116 w
+7 /Times-Italic f
+(n) 1614 1076 w
+10 /Times-Roman f
+(.) 1657 1116 w
+(If) 1748 1116 w
+(we) 1855 1116 w
+(suppose) 2012 1116 w
+(that) 2375 1116 w
+(the) 2566 1116 w
+(password) 2728 1116 w
+(consists) 3145 1116 w
+(of) 3502 1116 w
+(printable) 3625 1116 w
+(characters) 4020 1116 w
+(only,) 4463 1116 w
+(then) 4706 1116 w
+(the) 4918 1116 w
+(number) 720 1236 w
+(of) 1064 1236 w
+(possible) 1186 1236 w
+(passwords) 1553 1236 w
+(is) 2008 1236 w
+(somewhat) 2114 1236 w
+(less) 2558 1236 w
+(than) 2747 1236 w
+(95) 2958 1236 w
+7 /Times-Italic f
+(n) 3063 1196 w
+10 /Times-Roman f
+(.) 3106 1236 w
+(\(The) 3195 1236 w
+(standard) 3422 1236 w
+(system) 3799 1236 w
+(``character) 4116 1236 w
+(erase'') 4586 1236 w
+(and) 4896 1236 w
+(``line) 720 1356 w
+(kill'') 970 1356 w
+(characters) 1204 1356 w
+(are,) 1641 1356 w
+(for) 1821 1356 w
+(example,) 1971 1356 w
+(not) 2368 1356 w
+(prime) 2530 1356 w
+(candidates.\)) 2796 1356 w
+(We) 3333 1356 w
+(can) 3504 1356 w
+(immediately) 3675 1356 w
+(estimate) 4208 1356 w
+(the) 4574 1356 w
+(running) 4729 1356 w
+(time) 720 1476 w
+(of) 935 1476 w
+(a) 1055 1476 w
+(program) 1136 1476 w
+(that) 1511 1476 w
+(will) 1698 1476 w
+(test) 1891 1476 w
+(every) 2067 1476 w
+(password) 2325 1476 w
+(of) 2739 1476 w
+(a) 2859 1476 w
+(given) 2940 1476 w
+(length) 3199 1476 w
+(with) 3486 1476 w
+(all) 3701 1476 w
+(of) 3838 1476 w
+(its) 3958 1476 w
+(characters) 4090 1476 w
+(chosen) 4531 1476 w
+(from) 4846 1476 w
+(some) 720 1596 w
+(set) 958 1596 w
+(of) 1096 1596 w
+(characters.) 1206 1596 w
+(The) 1686 1596 w
+(following) 1868 1596 w
+(table) 2284 1596 w
+(gives) 2504 1596 w
+(estimates) 2741 1596 w
+(of) 3139 1596 w
+(the) 3248 1596 w
+(running) 3396 1596 w
+(time) 3733 1596 w
+(required) 3937 1596 w
+(on) 4295 1596 w
+(a) 4421 1596 w
+(PDP\25511/70) 4491 1596 w
+(to) 4962 1596 w
+(test) 720 1716 w
+(all) 887 1716 w
+(possible) 1015 1716 w
+(character) 1371 1716 w
+(strings) 1763 1716 w
+(of) 2059 1716 w
+(length) 2171 1716 w
+10 /Times-Italic f
+(n) 2450 1716 w
+10 /Times-Roman f
+(chosen) 2529 1716 w
+(from) 2835 1716 w
+(various) 3058 1716 w
+(sets) 3381 1716 w
+(of) 3560 1716 w
+(characters:) 3672 1716 w
+(namely,) 4132 1716 w
+(all) 4480 1716 w
+(lower\255case) 4609 1716 w
+(letters,) 720 1836 w
+(all) 1018 1836 w
+(lower\255case) 1147 1836 w
+(letters) 1607 1836 w
+(plus) 1880 1836 w
+(digits,) 2076 1836 w
+(all) 2353 1836 w
+(alphanumeric) 2482 1836 w
+(characters,) 3054 1836 w
+(all) 3511 1836 w
+(95) 3640 1836 w
+(printable) 3768 1836 w
+(ASCII) 4151 1836 w
+(characters,) 4440 1836 w
+(and) 4896 1836 w
+(finally all 128 ASCII characters.) 720 1956 w
+(26 lower\255case) 920 2136 w
+(36 lower\255case letters) 1626 2136 w
+(62 alphanumeric) 2601 2136 w
+(95 printable) 3419 2136 w
+(all 128 ASCII) 4049 2136 w
+(n) 720 2256 w
+(letters) 1076 2256 w
+(and digits) 1842 2256 w
+(characters) 2733 2256 w
+(characters) 3457 2256 w
+(characters) 4128 2256 w
+(1) 720 2436 w
+(30 msec.) 1045 2436 w
+(40 msec.) 1861 2436 w
+(80 msec.) 2782 2436 w
+(120 msec.) 3456 2436 w
+(160 msec.) 4127 2436 w
+(2) 720 2556 w
+(800 msec.) 995 2556 w
+(2 sec.) 1911 2556 w
+(5 sec.) 2832 2556 w
+(11 sec.) 3506 2556 w
+(20 sec.) 4177 2556 w
+(3) 720 2676 w
+(22 sec.) 1045 2676 w
+(58 sec.) 1861 2676 w
+(5 min.) 2832 2676 w
+(17 min.) 3506 2676 w
+(43 min.) 4177 2676 w
+(4) 720 2796 w
+(10 min.) 1045 2796 w
+(35 min.) 1861 2796 w
+(5 hrs.) 2832 2796 w
+(28 hrs.) 3506 2796 w
+(93 hrs.) 4177 2796 w
+(5) 720 2916 w
+(4 hrs.) 1095 2916 w
+(21 hrs.) 1861 2916 w
+(318 hrs.) 2732 2916 w
+(6) 720 3036 w
+(107 hrs.) 995 3036 w
+(One) 720 3252 w
+(has) 919 3252 w
+(to) 1085 3252 w
+(conclude) 1196 3252 w
+(that) 1589 3252 w
+(it) 1772 3252 w
+(is) 1861 3252 w
+(no) 1961 3252 w
+(great) 2094 3252 w
+(matter) 2326 3252 w
+(for) 2614 3252 w
+(someone) 2763 3252 w
+(with) 3151 3252 w
+(access) 3362 3252 w
+(to) 3649 3252 w
+(a) 3761 3252 w
+(PDP\25511) 3839 3252 w
+(to) 4190 3252 w
+(test) 4302 3252 w
+(all) 4475 3252 w
+(lower\255case) 4609 3252 w
+(alphabetic) 720 3372 w
+(strings) 1162 3372 w
+(up) 1461 3372 w
+(to) 1593 3372 w
+(length) 1702 3372 w
+(five) 1983 3372 w
+(and,) 2169 3372 w
+(given) 2369 3372 w
+(access) 2622 3372 w
+(to) 2907 3372 w
+(the) 3016 3372 w
+(machine) 3169 3372 w
+(for,) 3538 3372 w
+(say,) 3710 3372 w
+(several) 3899 3372 w
+(weekends,) 4212 3372 w
+(to) 4661 3372 w
+(test) 4770 3372 w
+(all) 4940 3372 w
+(such strings up to six characters in length.) 720 3492 w
+(By) 2446 3492 w
+(using) 2589 3492 w
+(such) 2832 3492 w
+(a) 3041 3492 w
+(program) 3111 3492 w
+(against) 3475 3492 w
+(a) 3784 3492 w
+(collection) 3854 3492 w
+(of) 4274 3492 w
+(actual) 4383 3492 w
+(encrypted) 4647 3492 w
+(passwords, a substantial fraction of all the passwords will be found.) 720 3612 w
+(Another profitable approach for) 970 3768 w
+(the) 2267 3768 w
+(bad) 2415 3768 w
+(guy) 2585 3768 w
+(is) 2761 3768 w
+(to) 2854 3768 w
+(use) 2958 3768 w
+(the) 3117 3768 w
+(word) 3265 3768 w
+(list) 3496 3768 w
+(from) 3645 3768 w
+(a) 3865 3768 w
+(dictionary) 3935 3768 w
+(or) 4366 3768 w
+(to) 4475 3768 w
+(use) 4579 3768 w
+(a) 4738 3768 w
+(list) 4808 3768 w
+(of) 4957 3768 w
+(names.) 720 3888 w
+(For) 1057 3888 w
+(example,) 1228 3888 w
+(a) 1623 3888 w
+(large) 1699 3888 w
+(commercial) 1930 3888 w
+(dictionary) 2433 3888 w
+(contains) 2870 3888 w
+(typicallly) 3235 3888 w
+(about) 3645 3888 w
+(250,000) 3899 3888 w
+(words;) 4256 3888 w
+(these) 4560 3888 w
+(words) 4796 3888 w
+(can) 720 4008 w
+(be) 889 4008 w
+(checked) 1014 4008 w
+(in) 1371 4008 w
+(about) 1480 4008 w
+(five) 1733 4008 w
+(minutes.) 1919 4008 w
+(Again,) 2317 4008 w
+(a) 2618 4008 w
+(noticeable) 2694 4008 w
+(fraction) 3136 4008 w
+(of) 3478 4008 w
+(any) 3593 4008 w
+(collection) 3769 4008 w
+(of) 4195 4008 w
+(passwords) 4310 4008 w
+(will) 4758 4008 w
+(be) 4946 4008 w
+(found.) 720 4128 w
+(Improvements) 1047 4128 w
+(and) 1668 4128 w
+(extensions) 1856 4128 w
+(will) 2322 4128 w
+(be) 2522 4128 w
+(\(and) 2660 4128 w
+(have) 2881 4128 w
+(been\)) 3113 4128 w
+(found) 3378 4128 w
+(by) 3655 4128 w
+(a) 3799 4128 w
+(determined) 3887 4128 w
+(bad) 4380 4128 w
+(guy.) 4568 4128 w
+(Some) 4812 4128 w
+(``good'' things to try are:) 720 4248 w
+(\255) 720 4404 w
+(The dictionary with the words spelled backwards.) 970 4404 w
+(\255) 720 4560 w
+(A) 970 4560 w
+(list) 1084 4560 w
+(of) 1249 4560 w
+(first) 1374 4560 w
+(names) 1577 4560 w
+(\(best) 1874 4560 w
+(obtained) 2110 4560 w
+(from) 2496 4560 w
+(some) 2732 4560 w
+(mailing) 2985 4560 w
+(list\).) 3334 4560 w
+(Last) 3583 4560 w
+(names,) 3798 4560 w
+(street) 4121 4560 w
+(names,) 4380 4560 w
+(and) 4703 4560 w
+(city) 4890 4560 w
+(names also work well.) 970 4680 w
+(\255) 720 4836 w
+(The above with initial upper\255case letters.) 970 4836 w
+(\255) 720 4992 w
+(All valid license plate numbers in your state.) 970 4992 w
+(\(This takes about five hours in New Jersey.\)) 2807 4992 w
+(\255) 720 5148 w
+(Room numbers, social security numbers, telephone numbers, and the like.) 970 5148 w
+(The) 970 5304 w
+(authors) 1163 5304 w
+(have) 1495 5304 w
+(conducted) 1721 5304 w
+(experiments) 2169 5304 w
+(to) 2695 5304 w
+(try) 2811 5304 w
+(to) 2960 5304 w
+(determine) 3076 5304 w
+(typical) 3514 5304 w
+(users') 3825 5304 w
+(habits) 4102 5304 w
+(in) 4380 5304 w
+(the) 4497 5304 w
+(choice) 4658 5304 w
+(of) 4957 5304 w
+(passwords) 720 5424 w
+(when) 1163 5424 w
+(no) 1406 5424 w
+(constraint) 1533 5424 w
+(is) 1954 5424 w
+(put) 2048 5424 w
+(on) 2203 5424 w
+(their) 2329 5424 w
+(choice.) 2538 5424 w
+(The) 2874 5424 w
+(results) 3055 5424 w
+(were) 3342 5424 w
+(disappointing,) 3561 5424 w
+(except) 4157 5424 w
+(to) 4443 5424 w
+(the) 4547 5424 w
+(bad) 4695 5424 w
+(guy.) 4865 5424 w
+(In a collection of 3,289 passwords gathered from many users over a long period of time;) 720 5544 w
+(15 were a single ASCII character;) 970 5700 w
+(72 were strings of two ASCII characters;) 970 5856 w
+(464 were strings of three ASCII characters;) 970 6012 w
+(477 were string of four alphamerics;) 970 6168 w
+(706 were five letters, all upper\255case or all lower\255case;) 970 6324 w
+(605 were six letters, all lower\255case.) 970 6480 w
+(An) 720 6636 w
+(additional) 870 6636 w
+(492) 1298 6636 w
+(passwords) 1476 6636 w
+(appeared) 1920 6636 w
+(in) 2307 6636 w
+(various) 2413 6636 w
+(available) 2735 6636 w
+(dictionaries,) 3123 6636 w
+(name) 3642 6636 w
+(lists,) 3886 6636 w
+(and) 4101 6636 w
+(the) 4273 6636 w
+(like.) 4423 6636 w
+(A) 4651 6636 w
+(total) 4751 6636 w
+(of) 4957 6636 w
+(2,831, or 86% of this sample of passwords fell into one of these classes.) 720 6756 w
+(There) 970 6912 w
+(was,) 1241 6912 w
+(of) 1460 6912 w
+(course,) 1582 6912 w
+(considerable) 1906 6912 w
+(overlap) 2449 6912 w
+(between) 2787 6912 w
+(the) 3158 6912 w
+(dictionary) 3319 6912 w
+(results) 3763 6912 w
+(and) 4063 6912 w
+(the) 4246 6912 w
+(character) 4408 6912 w
+(string) 4812 6912 w
+(searches.) 720 7032 w
+(The) 1133 7032 w
+(dictionary) 1314 7032 w
+(search) 1745 7032 w
+(alone,) 2025 7032 w
+(which) 2292 7032 w
+(required) 2562 7032 w
+(only five minutes to run, produced about one third of) 2920 7032 w
+(the passwords.) 720 7152 w
+(Users) 970 7308 w
+(could) 1230 7308 w
+(be) 1485 7308 w
+(urged) 1613 7308 w
+(\(or) 1874 7308 w
+(forced\)) 2024 7308 w
+(to) 2345 7308 w
+(use) 2457 7308 w
+(either) 2624 7308 w
+(longer) 2885 7308 w
+(passwords) 3174 7308 w
+(or) 3624 7308 w
+(passwords) 3741 7308 w
+(chosen) 4191 7308 w
+(from) 4502 7308 w
+(a) 4730 7308 w
+(larger) 4808 7308 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 4 4
+%%Page: 5 5
+/saveobj save def
+mark
+5 pagesetup
+10 /Times-Roman f
+(\255 4 \255) 2797 480 w
+(character set, or the system could itself choose passwords for the users.) 720 840 w
+10 /Times-Bold f
+(AN ANECDOTE) 720 1080 w
+10 /Times-Roman f
+(An) 970 1236 w
+(entertaining) 1123 1236 w
+(and) 1631 1236 w
+(instructive) 1806 1236 w
+(example) 2259 1236 w
+(is) 2628 1236 w
+(the) 2726 1236 w
+(attempt) 2879 1236 w
+(made) 3210 1236 w
+(at) 3457 1236 w
+(one) 3561 1236 w
+(installation) 3737 1236 w
+(to) 4214 1236 w
+(force) 4324 1236 w
+(users) 4560 1236 w
+(to) 4797 1236 w
+(use) 4907 1236 w
+(less) 720 1356 w
+(predictable) 899 1356 w
+(passwords.) 1371 1356 w
+(The) 1866 1356 w
+(users) 2050 1356 w
+(did) 2284 1356 w
+(not) 2440 1356 w
+(choose) 2596 1356 w
+(their) 2901 1356 w
+(own) 3112 1356 w
+(passwords;) 3312 1356 w
+(the) 3784 1356 w
+(system) 3934 1356 w
+(supplied) 4240 1356 w
+(them.) 4607 1356 w
+(The) 4885 1356 w
+(supplied) 720 1476 w
+(passwords) 1092 1476 w
+(were) 1541 1476 w
+(eight) 1767 1476 w
+(characters) 2000 1476 w
+(long) 2436 1476 w
+(and) 2647 1476 w
+(were) 2824 1476 w
+(taken) 3050 1476 w
+(from) 3299 1476 w
+(the) 3526 1476 w
+(character) 3681 1476 w
+(set) 4078 1476 w
+(consisting) 4223 1476 w
+(of) 4663 1476 w
+(lower\255) 4780 1476 w
+(case) 720 1596 w
+(letters) 923 1596 w
+(and) 1199 1596 w
+(digits.) 1375 1596 w
+(They) 1679 1596 w
+(were) 1915 1596 w
+(generated) 2139 1596 w
+(by) 2557 1596 w
+(a) 2688 1596 w
+(pseudo\255random) 2763 1596 w
+(number) 3415 1596 w
+(generator) 3751 1596 w
+(with) 4158 1596 w
+(only) 4367 1596 w
+(2) 4576 1596 w
+7 /Times-Roman f
+(15) 4631 1556 w
+10 /Times-Roman f
+(starting) 4740 1596 w
+(values.) 720 1716 w
+(The) 1051 1716 w
+(time) 1232 1716 w
+(required) 1437 1716 w
+(to) 1796 1716 w
+(search) 1901 1716 w
+(\(again) 2182 1716 w
+(on) 2458 1716 w
+(a) 2585 1716 w
+(PDP\25511/70\)) 2656 1716 w
+(through) 3161 1716 w
+(all) 3499 1716 w
+(character) 3626 1716 w
+(strings) 4017 1716 w
+(of) 4311 1716 w
+(length) 4421 1716 w
+(8) 4698 1716 w
+(from) 4775 1716 w
+(a) 4996 1716 w
+(36\255character alphabet is 112 years.) 720 1836 w
+(Unfortunately,) 970 1992 w
+(only) 1583 1992 w
+(2) 1790 1992 w
+7 /Times-Roman f
+(15) 1845 1952 w
+10 /Times-Roman f
+(of) 1952 1992 w
+(them) 2064 1992 w
+(need) 2293 1992 w
+(be) 2510 1992 w
+(looked) 2633 1992 w
+(at,) 2934 1992 w
+(because) 3060 1992 w
+(that) 3404 1992 w
+(is) 3583 1992 w
+(the) 3679 1992 w
+(number) 3830 1992 w
+(of) 4164 1992 w
+(possible) 4276 1992 w
+(outputs) 4633 1992 w
+(of) 4957 1992 w
+(the) 720 2112 w
+(random) 874 2112 w
+(number) 1211 2112 w
+(generator.) 1548 2112 w
+(The) 2006 2112 w
+(bad) 2193 2112 w
+(guy) 2369 2112 w
+(did,) 2551 2112 w
+(in) 2736 2112 w
+(fact,) 2846 2112 w
+(generate) 3052 2112 w
+(and) 3421 2112 w
+(test) 3597 2112 w
+(each) 3768 2112 w
+(of) 3982 2112 w
+(these) 4097 2112 w
+(strings) 4334 2112 w
+(and) 4632 2112 w
+(found) 4807 2112 w
+(every one of the system\255generated passwords using a total of only about one minute of machine time.) 720 2232 w
+10 /Times-Bold f
+(IMPROVEMENTS TO THE FIRST APPROACH) 720 2472 w
+(1.) 720 2712 w
+(Slower Encryption) 845 2712 w
+10 /Times-Roman f
+(Obviously,) 970 2868 w
+(the) 1440 2868 w
+(first) 1590 2868 w
+(algorithm) 1779 2868 w
+(used) 2196 2868 w
+(was) 2407 2868 w
+(far) 2590 2868 w
+(too) 2728 2868 w
+(fast.) 2884 2868 w
+(The) 3106 2868 w
+(announcement) 3289 2868 w
+(of) 3899 2868 w
+(the) 4010 2868 w
+(DES) 4161 2868 w
+(encryption) 4379 2868 w
+(algo\255) 4835 2868 w
+(rithm) 720 2988 w
+([2]) 972 2988 w
+(by) 1123 2988 w
+(the) 1257 2988 w
+(National) 1413 2988 w
+(Bureau) 1791 2988 w
+(of) 2113 2988 w
+(Standards) 2230 2988 w
+(was) 2658 2988 w
+(timely) 2847 2988 w
+(and) 3137 2988 w
+(fortunate.) 3315 2988 w
+(The) 3759 2988 w
+(DES) 3948 2988 w
+(is,) 4171 2988 w
+(by) 4297 2988 w
+(design,) 4431 2988 w
+(hard) 4751 2988 w
+(to) 4962 2988 w
+(invert,) 720 3108 w
+(but) 1010 3108 w
+(equally) 1170 3108 w
+(valuable) 1496 3108 w
+(is) 1866 3108 w
+(the) 1965 3108 w
+(fact) 2119 3108 w
+(that) 2300 3108 w
+(it) 2482 3108 w
+(is) 2570 3108 w
+(extremely) 2669 3108 w
+(slow) 3100 3108 w
+(when) 3322 3108 w
+(implemented) 3571 3108 w
+(in) 4126 3108 w
+(software.) 4237 3108 w
+(The) 4663 3108 w
+(DES) 4851 3108 w
+(was) 720 3228 w
+(implemented) 904 3228 w
+(and) 1455 3228 w
+(used) 1628 3228 w
+(in) 1840 3228 w
+(the) 1947 3228 w
+(following) 2098 3228 w
+(way:) 2516 3228 w
+(The) 2739 3228 w
+(first) 2923 3228 w
+(eight) 3113 3228 w
+(characters) 3342 3228 w
+(of) 3774 3228 w
+(the) 3886 3228 w
+(user's) 4037 3228 w
+(password) 4303 3228 w
+(are) 4708 3228 w
+(used) 4857 3228 w
+(as) 720 3348 w
+(a) 830 3348 w
+(key) 901 3348 w
+(for) 1072 3348 w
+(the) 1215 3348 w
+(DES;) 1364 3348 w
+(then) 1608 3348 w
+(the) 1807 3348 w
+(algorithm) 1956 3348 w
+(is) 2372 3348 w
+(used) 2466 3348 w
+(to) 2676 3348 w
+(encrypt) 2781 3348 w
+(a) 3107 3348 w
+(constant.) 3178 3348 w
+(Although) 3588 3348 w
+(this) 3993 3348 w
+(constant) 4165 3348 w
+(is) 4525 3348 w
+(zero) 4619 3348 w
+(at) 4818 3348 w
+(the) 4918 3348 w
+(moment,) 720 3468 w
+(it) 1101 3468 w
+(is) 1184 3468 w
+(easily) 1278 3468 w
+(accessible) 1538 3468 w
+(and) 1969 3468 w
+(can) 2140 3468 w
+(be) 2305 3468 w
+(made) 2426 3468 w
+(installation\255dependent.) 2669 3468 w
+(Then) 3634 3468 w
+(the) 3866 3468 w
+(DES) 4015 3468 w
+(algorithm) 4231 3468 w
+(is) 4647 3468 w
+(iterated) 4741 3468 w
+(25 times and the resulting 64 bits are repacked to become a string of 11 printable characters.) 720 3588 w
+10 /Times-Bold f
+(2.) 720 3828 w
+(Less Predictable Passwords) 845 3828 w
+10 /Times-Roman f
+(The) 970 3984 w
+(password) 1154 3984 w
+(entry) 1560 3984 w
+(program) 1794 3984 w
+(was) 2161 3984 w
+(modified) 2346 3984 w
+(so) 2737 3984 w
+(as) 2856 3984 w
+(to) 2969 3984 w
+(urge) 3077 3984 w
+(the) 3284 3984 w
+(user) 3436 3984 w
+(to) 3632 3984 w
+(use) 3740 3984 w
+(more) 3903 3984 w
+(obscure) 4138 3984 w
+(passwords.) 4478 3984 w
+(If) 4974 3984 w
+(the) 720 4104 w
+(user) 879 4104 w
+(enters) 1082 4104 w
+(an) 1357 4104 w
+(alphabetic) 1488 4104 w
+(password) 1935 4104 w
+(\(all) 2348 4104 w
+(upper\255case) 2517 4104 w
+(or) 2984 4104 w
+(all) 3103 4104 w
+(lower\255case\)) 3239 4104 w
+(shorter) 3739 4104 w
+(than) 4052 4104 w
+(six) 4260 4104 w
+(characters,) 4413 4104 w
+(or) 4877 4104 w
+(a) 4996 4104 w
+(password) 720 4224 w
+(from) 1137 4224 w
+(a) 1371 4224 w
+(larger) 1455 4224 w
+(character) 1727 4224 w
+(set) 2131 4224 w
+(shorter) 2282 4224 w
+(than) 2599 4224 w
+(five) 2811 4224 w
+(characters,) 3006 4224 w
+(then) 3474 4224 w
+(the) 3686 4224 w
+(program) 3848 4224 w
+(asks) 4227 4224 w
+(him) 4440 4224 w
+(to) 4637 4224 w
+(enter) 4756 4224 w
+(a) 4996 4224 w
+(longer password.) 720 4344 w
+(This further reduces the efficacy of key search.) 1452 4344 w
+(These) 970 4500 w
+(improvements) 1252 4500 w
+(make) 1868 4500 w
+(it) 2128 4500 w
+(exceedingly) 2228 4500 w
+(difficult) 2754 4500 w
+(to) 3121 4500 w
+(find) 3244 4500 w
+(any) 3450 4500 w
+(individual) 3639 4500 w
+(password.) 4090 4500 w
+(The) 4562 4500 w
+(user) 4762 4500 w
+(is) 4973 4500 w
+(warned of the risks and if he cooperates, he is very safe indeed.) 720 4620 w
+(On the other hand, he is not prevented from) 3296 4620 w
+(using his spouse's name if he wants to.) 720 4740 w
+10 /Times-Bold f
+(3.) 720 4980 w
+(Salted Passwords) 845 4980 w
+10 /Times-Roman f
+(The) 970 5136 w
+(key) 1154 5136 w
+(search) 1328 5136 w
+(technique) 1612 5136 w
+(is) 2030 5136 w
+(still) 2127 5136 w
+(likely) 2308 5136 w
+(to) 2566 5136 w
+(turn) 2674 5136 w
+(up) 2865 5136 w
+(a) 2995 5136 w
+(few) 3069 5136 w
+(passwords) 3248 5136 w
+(when) 3694 5136 w
+(it) 3940 5136 w
+(is) 4026 5136 w
+(used) 4123 5136 w
+(on) 4336 5136 w
+(a) 4466 5136 w
+(large) 4540 5136 w
+(collec\255) 4769 5136 w
+(tion) 720 5256 w
+(of) 907 5256 w
+(passwords,) 1021 5256 w
+(and) 1492 5256 w
+(it) 1666 5256 w
+(seemed) 1752 5256 w
+(wise) 2081 5256 w
+(to) 2294 5256 w
+(make) 2402 5256 w
+(this) 2648 5256 w
+(task) 2823 5256 w
+(as) 3014 5256 w
+(difficult) 3127 5256 w
+(as) 3479 5256 w
+(possible.) 3592 5256 w
+(To) 4000 5256 w
+(this) 4141 5256 w
+(end,) 4316 5256 w
+(when) 4515 5256 w
+(a) 4761 5256 w
+(pass\255) 4835 5256 w
+(word) 720 5376 w
+(is) 967 5376 w
+(first) 1076 5376 w
+(entered,) 1279 5376 w
+(the) 1639 5376 w
+(password) 1803 5376 w
+(program) 2222 5376 w
+(obtains) 2602 5376 w
+(a) 2933 5376 w
+(12\255bit) 3019 5376 w
+(random) 3301 5376 w
+(number) 3649 5376 w
+(\(by) 3997 5376 w
+(reading) 4173 5376 w
+(the) 4515 5376 w
+(real\255time) 4680 5376 w
+(clock\)) 720 5496 w
+(and) 995 5496 w
+(appends) 1165 5496 w
+(this) 1518 5496 w
+(to) 1689 5496 w
+(the password typed in by the user.) 1793 5496 w
+(The concatenated string is encrypted and both) 3205 5496 w
+(the) 720 5616 w
+(12\255bit) 869 5616 w
+(random) 1135 5616 w
+(quantity) 1467 5616 w
+(\(called) 1822 5616 w
+(the) 2120 5616 w
+10 /Times-Italic f
+(salt) 2270 5616 w
+10 /Times-Roman f
+(\)) 2415 5616 w
+(and) 2476 5616 w
+(the) 2648 5616 w
+(64\255bit) 2798 5616 w
+(result) 3065 5616 w
+(of) 3315 5616 w
+(the) 3426 5616 w
+(encryption) 3576 5616 w
+(are) 4031 5616 w
+(entered) 4180 5616 w
+(into) 4501 5616 w
+(the) 4685 5616 w
+(pass\255) 4835 5616 w
+(word file.) 720 5736 w
+(When) 970 5892 w
+(the) 1237 5892 w
+(user) 1388 5892 w
+(later) 1583 5892 w
+(logs) 1789 5892 w
+(in) 1985 5892 w
+(to) 2092 5892 w
+(the) 2199 5892 w
+(system,) 2350 5892 w
+(the) 2682 5892 w
+(12\255bit) 2833 5892 w
+(quantity) 3101 5892 w
+(is) 3458 5892 w
+(extracted) 3555 5892 w
+(from) 3950 5892 w
+(the) 4174 5892 w
+(password) 4326 5892 w
+(file) 4733 5892 w
+(and) 4896 5892 w
+(appended) 720 6012 w
+(to) 1131 6012 w
+(the) 1238 6012 w
+(typed) 1389 6012 w
+(password.) 1640 6012 w
+(The) 2096 6012 w
+(encrypted) 2280 6012 w
+(result) 2702 6012 w
+(is) 2953 6012 w
+(required,) 3049 6012 w
+(as) 3435 6012 w
+(before,) 3547 6012 w
+(to) 3855 6012 w
+(be) 3962 6012 w
+(the) 4085 6012 w
+(same) 4236 6012 w
+(as) 4469 6012 w
+(the) 4580 6012 w
+(remain\255) 4730 6012 w
+(ing 64 bits in the password file.) 720 6132 w
+(This modification does not increase the task of finding any individual) 2028 6132 w
+(pass\255) 4835 6132 w
+(word,) 720 6252 w
+(starting from scratch, but now the work of testing a given character string against a large collection of) 976 6252 w
+(encrypted) 720 6372 w
+(passwords) 1164 6372 w
+(has) 1631 6372 w
+(been) 1815 6372 w
+(multiplied) 2054 6372 w
+(by) 2517 6372 w
+(4096) 2668 6372 w
+(\(2) 2919 6372 w
+7 /Times-Roman f
+(12) 3007 6332 w
+10 /Times-Roman f
+(\).) 3085 6372 w
+(The) 3219 6372 w
+(reason) 3425 6372 w
+(for) 3736 6372 w
+(this) 3903 6372 w
+(is) 4099 6372 w
+(that) 4217 6372 w
+(there) 4418 6372 w
+(are) 4668 6372 w
+(4096) 4840 6372 w
+(encrypted) 720 6492 w
+(versions) 1145 6492 w
+(of) 1510 6492 w
+(each) 1625 6492 w
+(password) 1839 6492 w
+(and) 2248 6492 w
+(one) 2424 6492 w
+(of) 2600 6492 w
+(them) 2714 6492 w
+(has) 2945 6492 w
+(been) 3109 6492 w
+(picked) 3328 6492 w
+(more) 3625 6492 w
+(or) 3861 6492 w
+(less) 3975 6492 w
+(at) 4156 6492 w
+(random) 4259 6492 w
+(by) 4595 6492 w
+(the) 4726 6492 w
+(sys\255) 4879 6492 w
+(tem.) 720 6612 w
+(With) 970 6768 w
+(this) 1199 6768 w
+(modification,) 1373 6768 w
+(it) 1938 6768 w
+(is) 2023 6768 w
+(likely) 2119 6768 w
+(that) 2376 6768 w
+(the) 2555 6768 w
+(bad) 2706 6768 w
+(guy) 2879 6768 w
+(can) 3058 6768 w
+(spend) 3225 6768 w
+(days) 3487 6768 w
+(of) 3700 6768 w
+(computer) 3813 6768 w
+(time) 4220 6768 w
+(trying) 4428 6768 w
+(to) 4697 6768 w
+(find) 4805 6768 w
+(a) 4996 6768 w
+(password) 720 6888 w
+(on) 1128 6888 w
+(a) 1259 6888 w
+(system) 1334 6888 w
+(with) 1643 6888 w
+(hundreds) 1852 6888 w
+(of) 2249 6888 w
+(passwords,) 2363 6888 w
+(and) 2835 6888 w
+(find) 3010 6888 w
+(none) 3202 6888 w
+(at) 3427 6888 w
+(all.) 3530 6888 w
+(More) 3711 6888 w
+(important) 3957 6888 w
+(is) 4376 6888 w
+(the) 4473 6888 w
+(fact) 4625 6888 w
+(that) 4804 6888 w
+(it) 4984 6888 w
+(becomes) 720 7008 w
+(impractical) 1097 7008 w
+(to) 1574 7008 w
+(prepare) 1680 7008 w
+(an) 2006 7008 w
+(encrypted) 2128 7008 w
+(dictionary) 2549 7008 w
+(in) 2982 7008 w
+(advance.) 3088 7008 w
+(Such) 3492 7008 w
+(an) 3720 7008 w
+(encrypted) 3842 7008 w
+(dictionary) 4263 7008 w
+(could) 4696 7008 w
+(be) 4946 7008 w
+(used to crack new passwords in milliseconds when they appear.) 720 7128 w
+(There) 970 7284 w
+(is) 1230 7284 w
+(a) 1325 7284 w
+(\(not) 1397 7284 w
+(inadvertent\)) 1586 7284 w
+(side) 2096 7284 w
+(effect) 2285 7284 w
+(of) 2539 7284 w
+(this) 2650 7284 w
+(modification.) 2823 7284 w
+(It) 3412 7284 w
+(becomes) 3501 7284 w
+(nearly) 3878 7284 w
+(impossible) 4155 7284 w
+(to) 4617 7284 w
+(find) 4723 7284 w
+(out) 4912 7284 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 5 5
+%%Page: 6 6
+/saveobj save def
+mark
+6 pagesetup
+10 /Times-Roman f
+(\255 5 \255) 2797 480 w
+(whether) 720 840 w
+(a) 1081 840 w
+(person) 1165 840 w
+(with) 1471 840 w
+(passwords) 1689 840 w
+(on) 2145 840 w
+(two) 2285 840 w
+(or) 2475 840 w
+(more) 2598 840 w
+(systems) 2843 840 w
+(has) 3200 840 w
+(used) 3372 840 w
+(the) 3594 840 w
+(same) 3755 840 w
+(password) 3999 840 w
+(on) 4415 840 w
+(all) 4554 840 w
+(of) 4693 840 w
+(them,) 4815 840 w
+(unless you already know that.) 720 960 w
+10 /Times-Bold f
+(4.) 720 1200 w
+(The Threat of the DES Chip) 845 1200 w
+10 /Times-Roman f
+(Chips) 970 1356 w
+(to) 1231 1356 w
+(perform) 1336 1356 w
+(the) 1684 1356 w
+(DES) 1833 1356 w
+(encryption) 2049 1356 w
+(are) 2503 1356 w
+(already) 2651 1356 w
+(commercially) 2972 1356 w
+(available) 3549 1356 w
+(and) 3937 1356 w
+(they) 4109 1356 w
+(are) 4309 1356 w
+(very) 4458 1356 w
+(fast.) 4663 1356 w
+(The) 4885 1356 w
+(use) 720 1476 w
+(of) 885 1476 w
+(such) 1000 1476 w
+(a) 1215 1476 w
+(chip) 1291 1476 w
+(speeds) 1495 1476 w
+(up) 1792 1476 w
+(the) 1923 1476 w
+(process) 2076 1476 w
+(of) 2406 1476 w
+(password) 2520 1476 w
+(hunting) 2928 1476 w
+(by) 3265 1476 w
+(three) 3396 1476 w
+(orders) 3626 1476 w
+(of) 3906 1476 w
+(magnitude.) 4020 1476 w
+(To) 4523 1476 w
+(avert) 4665 1476 w
+(this) 4895 1476 w
+(possibility,) 720 1596 w
+(one) 1193 1596 w
+(of) 1367 1596 w
+(the) 1480 1596 w
+(internal) 1632 1596 w
+(tables) 1967 1596 w
+(of) 2230 1596 w
+(the) 2343 1596 w
+(DES) 2495 1596 w
+(algorithm) 2714 1596 w
+(\(in) 3134 1596 w
+(particular,) 3276 1596 w
+(the) 3714 1596 w
+(so\255called) 3867 1596 w
+(E\255table\)) 4258 1596 w
+(is) 4610 1596 w
+(changed) 4708 1596 w
+(in) 720 1716 w
+(a) 824 1716 w
+(way) 894 1716 w
+(that) 1086 1716 w
+(depends) 1262 1716 w
+(on) 1615 1716 w
+(the) 1741 1716 w
+(12\255bit) 1889 1716 w
+(random) 2154 1716 w
+(number.) 2485 1716 w
+(The E\255table is inseparably wired into the DES chip, so) 2865 1716 w
+(that) 720 1836 w
+(the) 904 1836 w
+(commercial) 1060 1836 w
+(chip) 1565 1836 w
+(cannot) 1771 1836 w
+(be) 2071 1836 w
+(used.) 2199 1836 w
+(Obviously,) 2466 1836 w
+(the) 2942 1836 w
+(bad) 3098 1836 w
+(guy) 3276 1836 w
+(could) 3460 1836 w
+(have) 3717 1836 w
+(his) 3940 1836 w
+(own) 4092 1836 w
+(chip) 4299 1836 w
+(designed) 4506 1836 w
+(and) 4896 1836 w
+(built, but the cost would be unthinkable.) 720 1956 w
+10 /Times-Bold f
+(5.) 720 2196 w
+(A Subtle Point) 845 2196 w
+10 /Times-Roman f
+(To) 970 2352 w
+(login) 1111 2352 w
+(successfully) 1347 2352 w
+(on) 1865 2352 w
+(the) 1995 2352 w
+(UNIX) 2147 2352 w
+(system,) 2426 2352 w
+(it) 2759 2352 w
+(is) 2845 2352 w
+(necessary) 2942 2352 w
+(after) 3359 2352 w
+(dialing) 3571 2352 w
+(in) 3879 2352 w
+(to) 3987 2352 w
+(type) 4095 2352 w
+(a) 4297 2352 w
+(valid) 4371 2352 w
+(user) 4602 2352 w
+(name,) 4799 2352 w
+(and) 720 2472 w
+(then) 897 2472 w
+(the) 1102 2472 w
+(correct) 1257 2472 w
+(password) 1566 2472 w
+(for) 1976 2472 w
+(that) 2125 2472 w
+(user) 2308 2472 w
+(name.) 2507 2472 w
+(It) 2806 2472 w
+(is) 2899 2472 w
+(poor) 2998 2472 w
+(design) 3213 2472 w
+(to) 3506 2472 w
+(write) 3616 2472 w
+(the) 3853 2472 w
+(login) 4007 2472 w
+(command) 4245 2472 w
+(in) 4671 2472 w
+(such) 4781 2472 w
+(a) 4996 2472 w
+(way) 720 2592 w
+(that) 917 2592 w
+(it) 1098 2592 w
+(tells) 1185 2592 w
+(an) 1383 2592 w
+(interloper) 1508 2592 w
+(when) 1927 2592 w
+(he) 2174 2592 w
+(has) 2299 2592 w
+(typed) 2464 2592 w
+(in) 2718 2592 w
+(a) 2828 2592 w
+(invalid) 2904 2592 w
+(user) 3214 2592 w
+(name.) 3412 2592 w
+(The) 3710 2592 w
+(response) 3897 2592 w
+(to) 4278 2592 w
+(an) 4388 2592 w
+(invalid) 4514 2592 w
+(name) 4824 2592 w
+(should be identical to that for a valid name.) 720 2712 w
+(When) 970 2868 w
+(the) 1235 2868 w
+(slow) 1384 2868 w
+(encryption) 1600 2868 w
+(algorithm) 2055 2868 w
+(was) 2472 2868 w
+(first) 2655 2868 w
+(implemented,) 2844 2868 w
+(the) 3419 2868 w
+(encryption) 3569 2868 w
+(was) 4024 2868 w
+(done) 4207 2868 w
+(only) 4429 2868 w
+(if) 4635 2868 w
+(the) 4724 2868 w
+(user) 4874 2868 w
+(name) 720 2988 w
+(was) 972 2988 w
+(valid,) 1163 2988 w
+(because) 1424 2988 w
+(otherwise) 1775 2988 w
+(there) 2199 2988 w
+(was) 2434 2988 w
+(no) 2625 2988 w
+(encrypted) 2760 2988 w
+(password) 3188 2988 w
+(to) 3600 2988 w
+(compare) 3713 2988 w
+(with) 4091 2988 w
+(the) 4304 2988 w
+(supplied) 4461 2988 w
+(pass\255) 4835 2988 w
+(word.) 720 3108 w
+(The) 1008 3108 w
+(result) 1196 3108 w
+(was) 1451 3108 w
+(that) 1640 3108 w
+(the) 1824 3108 w
+(response) 1980 3108 w
+(was) 2363 3108 w
+(delayed) 2552 3108 w
+(by) 2896 3108 w
+(about) 3030 3108 w
+(one\255half) 3286 3108 w
+(second) 3652 3108 w
+(if) 3963 3108 w
+(the) 4058 3108 w
+(name) 4214 3108 w
+(was) 4464 3108 w
+(valid,) 4653 3108 w
+(but) 4912 3108 w
+(was) 720 3228 w
+(immediate) 905 3228 w
+(if) 1357 3228 w
+(invalid.) 1448 3228 w
+(The) 1806 3228 w
+(bad) 1991 3228 w
+(guy) 2165 3228 w
+(could) 2345 3228 w
+(find) 2597 3228 w
+(out) 2788 3228 w
+(whether) 2946 3228 w
+(a) 3297 3228 w
+(particular) 3371 3228 w
+(user) 3783 3228 w
+(name) 3979 3228 w
+(was) 4225 3228 w
+(valid.) 4410 3228 w
+(The) 4690 3228 w
+(rou\255) 4874 3228 w
+(tine was modified to do the encryption in either case.) 720 3348 w
+10 /Times-Bold f
+(CONCLUSIONS) 720 3588 w
+10 /Times-Roman f
+(On) 970 3744 w
+(the) 1118 3744 w
+(issue) 1266 3744 w
+(of) 1492 3744 w
+(password) 1602 3744 w
+(security,) 2006 3744 w
+(UNIX) 2374 3744 w
+(is) 2650 3744 w
+(probably) 2744 3744 w
+(better) 3126 3744 w
+(than) 3380 3744 w
+(most) 3579 3744 w
+(systems.) 3801 3744 w
+(The) 4195 3744 w
+(use) 4377 3744 w
+(of) 4537 3744 w
+(encrypted) 4647 3744 w
+(passwords appears reasonably secure in the absence of serious attention of experts in the field.) 720 3864 w
+(It) 970 4020 w
+(is) 1069 4020 w
+(also) 1174 4020 w
+(worth) 1374 4020 w
+(some) 1646 4020 w
+(effort) 1896 4020 w
+(to) 2156 4020 w
+(conceal) 2273 4020 w
+(even) 2616 4020 w
+(the) 2843 4020 w
+(encrypted) 3004 4020 w
+(passwords.) 3436 4020 w
+(Some) 3941 4020 w
+(UNIX) 4208 4020 w
+(systems) 4496 4020 w
+(have) 4852 4020 w
+(instituted) 720 4140 w
+(what) 1125 4140 w
+(is) 1351 4140 w
+(called) 1450 4140 w
+(an) 1720 4140 w
+(``external) 1846 4140 w
+(security) 2265 4140 w
+(code'') 2612 4140 w
+(that) 2897 4140 w
+(must) 3078 4140 w
+(be) 3304 4140 w
+(typed) 3429 4140 w
+(when) 3682 4140 w
+(dialing) 3929 4140 w
+(into) 4238 4140 w
+(the) 4425 4140 w
+(system,) 4578 4140 w
+(but) 4912 4140 w
+(before) 720 4260 w
+(logging) 1006 4260 w
+(in.) 1344 4260 w
+(If) 1504 4260 w
+(this) 1602 4260 w
+(code) 1779 4260 w
+(is) 1999 4260 w
+(changed) 2098 4260 w
+(periodically,) 2462 4260 w
+(then) 2996 4260 w
+(someone) 3200 4260 w
+(with) 3587 4260 w
+(an) 3798 4260 w
+(old) 3925 4260 w
+(password) 4086 4260 w
+(will) 4496 4260 w
+(likely) 4685 4260 w
+(be) 4946 4260 w
+(prevented from using it.) 720 4380 w
+(Whenever any) 970 4536 w
+(security) 1574 4536 w
+(procedure) 1916 4536 w
+(is) 2340 4536 w
+(instituted) 2433 4536 w
+(that) 2832 4536 w
+(attempts) 3008 4536 w
+(to) 3373 4536 w
+(deny) 3477 4536 w
+(access) 3697 4536 w
+(to) 3977 4536 w
+(unauthorized) 4081 4536 w
+(persons,) 4628 4536 w
+(it) 4984 4536 w
+(is) 720 4656 w
+(wise) 815 4656 w
+(to) 1026 4656 w
+(keep) 1132 4656 w
+(a) 1348 4656 w
+(record) 1420 4656 w
+(of) 1701 4656 w
+(both) 1811 4656 w
+(successful) 2016 4656 w
+(and) 2453 4656 w
+(unsuccessful) 2624 4656 w
+(attempts) 3161 4656 w
+(to) 3527 4656 w
+(get) 3632 4656 w
+(at) 3781 4656 w
+(the) 3880 4656 w
+(secured) 4029 4656 w
+(resource.) 4360 4656 w
+(Just) 4774 4656 w
+(as) 4957 4656 w
+(an) 720 4776 w
+(out\255of\255hours) 840 4776 w
+(visitor) 1365 4776 w
+(to) 1647 4776 w
+(a) 1751 4776 w
+(computer) 1821 4776 w
+(center) 2224 4776 w
+(normally) 2493 4776 w
+(must) 2880 4776 w
+(not) 3101 4776 w
+(only) 3255 4776 w
+(identify) 3460 4776 w
+(himself,) 3798 4776 w
+(but) 4150 4776 w
+(a) 4305 4776 w
+(record) 4376 4776 w
+(is) 4657 4776 w
+(usually) 4751 4776 w
+(also) 720 4896 w
+(kept) 908 4896 w
+(of) 1107 4896 w
+(his) 1217 4896 w
+(entry.) 1361 4896 w
+(Just) 1643 4896 w
+(so,) 1826 4896 w
+(it) 1967 4896 w
+(is) 2050 4896 w
+(a) 2144 4896 w
+(wise) 2215 4896 w
+(precaution) 2425 4896 w
+(to) 2873 4896 w
+(make) 2978 4896 w
+(and) 3221 4896 w
+(keep) 3392 4896 w
+(a) 3606 4896 w
+(record) 3676 4896 w
+(of) 3956 4896 w
+(all) 4065 4896 w
+(attempts) 4191 4896 w
+(to) 4556 4896 w
+(log) 4660 4896 w
+(into) 4814 4896 w
+(a) 4996 4896 w
+(remote\255access time\255sharing system, and certainly all unsuccessful attempts.) 720 5016 w
+(Bad) 970 5172 w
+(guys) 1161 5172 w
+(fall) 1380 5172 w
+(on) 1543 5172 w
+(a) 1673 5172 w
+(spectrum) 1747 5172 w
+(whose) 2143 5172 w
+(one) 2428 5172 w
+(end) 2602 5172 w
+(is) 2776 5172 w
+(someone) 2873 5172 w
+(with) 3258 5172 w
+(ordinary) 3466 5172 w
+(access) 3834 5172 w
+(to) 4118 5172 w
+(a) 4226 5172 w
+(system) 4301 5172 w
+(and) 4610 5172 w
+(whose) 4785 5172 w
+(goal) 720 5292 w
+(is) 920 5292 w
+(to) 1015 5292 w
+(find) 1121 5292 w
+(out) 1310 5292 w
+(a) 1466 5292 w
+(particular) 1538 5292 w
+(password) 1948 5292 w
+(\(usually) 2353 5292 w
+(that) 2703 5292 w
+(of) 2880 5292 w
+(the) 2990 5292 w
+(super\255user\)) 3139 5292 w
+(and,) 3614 5292 w
+(at) 3810 5292 w
+(the) 3909 5292 w
+(other) 4058 5292 w
+(end,) 4290 5292 w
+(someone) 4486 5292 w
+(who) 4868 5292 w
+(wishes) 720 5412 w
+(to) 1018 5412 w
+(collect) 1122 5412 w
+(as) 1414 5412 w
+(much) 1523 5412 w
+(password) 1771 5412 w
+(information) 2174 5412 w
+(as) 2672 5412 w
+(possible) 2781 5412 w
+(from) 3136 5412 w
+(as) 3357 5412 w
+(many) 3467 5412 w
+(systems) 3716 5412 w
+(as) 4060 5412 w
+(possible.) 4170 5412 w
+(Most) 4575 5412 w
+(of) 4808 5412 w
+(the) 4918 5412 w
+(work) 720 5532 w
+(reported) 959 5532 w
+(here) 1325 5532 w
+(serves) 1530 5532 w
+(to) 1813 5532 w
+(frustrate) 1924 5532 w
+(the) 2289 5532 w
+(latter) 2444 5532 w
+(type;) 2682 5532 w
+(our) 2915 5532 w
+(experience) 3081 5532 w
+(indicates) 3545 5532 w
+(that) 3933 5532 w
+(the) 4116 5532 w
+(former) 4271 5532 w
+(type) 4575 5532 w
+(of) 4780 5532 w
+(bad) 4896 5532 w
+(guy never was very successful.) 720 5652 w
+(We) 970 5808 w
+(recognize) 1137 5808 w
+(that) 1553 5808 w
+(a) 1732 5808 w
+(time\255sharing) 1805 5808 w
+(system) 2339 5808 w
+(must) 2646 5808 w
+(operate) 2870 5808 w
+(in) 3192 5808 w
+(a) 3300 5808 w
+(hostile) 3374 5808 w
+(environment.) 3671 5808 w
+(We) 4256 5808 w
+(did) 4424 5808 w
+(not) 4582 5808 w
+(attempt) 4740 5808 w
+(to) 720 5928 w
+(hide) 831 5928 w
+(the) 1036 5928 w
+(security) 1191 5928 w
+(aspects) 1540 5928 w
+(of) 1861 5928 w
+(the) 1977 5928 w
+(operating) 2132 5928 w
+(system,) 2542 5928 w
+(thereby) 2878 5928 w
+(playing) 3210 5928 w
+(the) 3543 5928 w
+(customary) 3697 5928 w
+(make\255believe) 4145 5928 w
+(game) 4714 5928 w
+(in) 4962 5928 w
+(which) 720 6048 w
+(weaknesses) 992 6048 w
+(of) 1485 6048 w
+(the) 1596 6048 w
+(system) 1746 6048 w
+(are) 2052 6048 w
+(not) 2201 6048 w
+(discussed) 2357 6048 w
+(no) 2769 6048 w
+(matter) 2898 6048 w
+(how) 3182 6048 w
+(apparent.) 3383 6048 w
+(Rather) 3805 6048 w
+(we) 4100 6048 w
+(advertised) 4245 6048 w
+(the) 4684 6048 w
+(pass\255) 4835 6048 w
+(word) 720 6168 w
+(algorithm) 967 6168 w
+(and) 1398 6168 w
+(invited) 1584 6168 w
+(attack) 1904 6168 w
+(in) 2184 6168 w
+(the) 2304 6168 w
+(belief) 2468 6168 w
+(that) 2737 6168 w
+(this) 2929 6168 w
+(approach) 3116 6168 w
+(would) 3522 6168 w
+(minimize) 3813 6168 w
+(future) 4232 6168 w
+(trouble.) 4511 6168 w
+(The) 4885 6168 w
+(approach has been successful.) 720 6288 w
+10 /Times-Bold f
+(References) 720 6528 w
+10 /Times-Roman f
+([1]) 720 6684 w
+(Ritchie,) 970 6684 w
+(D.M.) 1319 6684 w
+(and) 1566 6684 w
+(Thompson,) 1746 6684 w
+(K.) 2235 6684 w
+(The) 2393 6684 w
+(UNIX) 2584 6684 w
+(Time\255Sharing) 2869 6684 w
+(System.) 3460 6684 w
+10 /Times-Italic f
+(Comm.) 3841 6684 w
+(ACM) 4163 6684 w
+10 /Times-Bold f
+(17) 4410 6684 w
+10 /Times-Roman f
+(\(July) 4546 6684 w
+(1974\),) 4782 6684 w
+(pp. 365\255375.) 970 6804 w
+([2]) 720 6960 w
+10 /Times-Italic f
+(Proposed) 970 6960 w
+(Federal) 1447 6960 w
+(Information) 1857 6960 w
+(Processing) 2429 6960 w
+(Data) 2967 6960 w
+(Encryption) 3262 6960 w
+(Standard.) 3801 6960 w
+10 /Times-Roman f
+(Federal) 4313 6960 w
+(Register) 4707 6960 w
+(\(40FR12134\), March 17, 1975) 970 7080 w
+([3]) 720 7236 w
+(Wilkes, M. V.) 970 7236 w
+10 /Times-Italic f
+(Time\255Sharing Computer Systems.) 1589 7236 w
+10 /Times-Roman f
+(American Elsevier, New York, \(1968\).) 2980 7236 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 6 6
+%%Page: 7 7
+/saveobj save def
+mark
+7 pagesetup
+10 /Times-Roman f
+(\255 6 \255) 2797 480 w
+([4]) 720 840 w
+(U. S. Patent Number 2,089,603.) 970 840 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 7 7
+%%Trailer
+done
+%%DocumentFonts: Times-Roman Times-Italic Times-Bold
+%%Pages: 7

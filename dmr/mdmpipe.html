@@ -1,0 +1,136 @@
+<HTML>
+<head>
+<!-- BELL-LABS
+username        Ritchie, Dennis
+category        user
+contact         dmr@bell-labs.com
+-->
+<title>Prophetic Petroglyphs</title>
+</head>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+
+<h4>
+<center>
+Advice from Doug Mcilroy
+</center>
+</h4>
+
+Attached by magnet to the wall of my office is a yellowed
+sheet of paper, evidently the tenth page of an internal Bell Labs memo by
+<A href="http://www.cs.bell-labs.com/who/doug/index.html">Doug McIlroy</A>.
+Unfortunately, I don't have the rest of the note.
+<p>
+When this was written, in 1964, Bell Labs computing was for the most part done
+on IBM 7090 or 7094 equipment, mostly in batch mode, using an IBM 1401 to
+prepare tapes from card decks and print output, also transmitted by tape
+between the mainframe and the 1401.  This kind of operation was typical of
+the age.  Bell Labs was somewhat apart from the ordinary;
+the operating system was locally developed (BESYS), and there was
+a certain amount of advanced hardware attached.  Some of this was
+in direct support of smooth batch operation, like gadgetry on the
+tape drives to crossbar the drives with their channels, and
+some was with display devices, like the PDP-7 computer used to control
+a Graphics II display system--this was the machine commandeered a bit later
+to build Unix on.
+<p>
+In the software area, besides BESYS itself, there was considerable
+language work, notably BLODI (essentially, early dataflow architecture)
+and Snobol (string processing).  McIlroy's particular specialty at that
+stage was macro-processing, but he had and has broad interests.
+
+<p>
+1964 was also the time that the
+<a href="http://www.multicians.org">Multics project</a>
+was at the point of beginning.
+Some of these thoughts either influenced the design of Multics
+or encouraged Bell Labs to take part in it.  One in particular
+was important to us.
+<p>
+Here is the page-on-the-wall, retyped.
+A <A href="mdmpipe.pdf">PDF scan</A> (pretty big at 49K) scan of
+the original lets you see that it was produced on a typewriter
+(and also the damage over the years, and that the
+duplicated "when" phrase is historically accurate).
+<code>
+<tt>
+<blockquote>
+<center>
+
+- 10 -
+<p>
+Summary--what's most important.
+</center>
+
+<p>
+To put my strongest concerns into a nutshell:
+<p>
+1. We should have some ways of connecting programs like
+garden hose--screw in another segment when it becomes when
+it becomes necessary to massage data in another way.
+This is the way of IO also.
+<p>
+2. Our loader should be able to do link-loading
+and controlled establishment.
+<p>
+3. Our library filing scheme should allow for rather general
+indexing, responsibility, generations, data path
+switching.
+<p>
+4. It should be possible to get private system components
+(all routines are system components) for buggering around with.
+
+<center>
+M. D. McIlroy
+<br>
+October 11, 1964
+</center>
+</code>
+</tt>
+</blockquote>
+<p>
+
+What did Doug mean, and what came from the thoughts?
+<p>
+<ul>
+
+<li>
+Point 1 is the interesting one.  It provides the historical
+background for Doug's encouragement
+of the <A href="hist.html#pipes"> Unix pipe notation</A>.
+The linked paper gives appropriate credit; in interviews, Doug
+has been explicit in saying that he very nearly exercised
+managerial control to get pipes installed.
+</li>
+<p>
+<li>
+Point 2 is a bit mysterious without further context.
+It is possible to read it as advocating mechanisms (dynamic
+linking) that were pioneered in Multics.
+</li>
+<p>
+<li>
+Point 3 is almost certainly the one that still bugs Doug.
+All sorts of mechanisms and utilities are around and used
+(source code control, registries, WWW search engines,
+and on and on), but the problem of indexing and finding relevant
+information is tougher today than ever before,
+even on one's own hard disk, let alone the WWW.
+</li>
+<p>
+<li>
+One might argue that Point 4 is to some extent under
+control, depending on what Doug was really getting at.
+One thinks about the dynamic linking mechanism combined
+with search paths in Multics (close to the time of the note)
+and its offspring in more recent systems.
+Possibly one could create a connection to the free software
+movement, but this would be tenuous at best; I suspect that
+he was thinking "how can I test this seemingly monolithic program
+against the <I>sin</I> routine I've just written and want to test?".
+</li>
+</ul>
+<p>
+Point 1's garden hose connection analogy, though, is the one that ultimately
+whacked us on the head to best effect.
+
+</html>

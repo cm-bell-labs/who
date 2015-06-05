@@ -1,0 +1,95 @@
+(* sift-out modular redundancy (3 modules) *)
+
+const I = {1,2,3}  		(* module indices *)
+const V = {0,1}     		(* module input/output values *)
+const Bool = {true,false}	(* booleans *)
+const IV = prod(I,V)
+const BV = prod(Bool,V)
+const N = 3			(* number of modules *)
+const T0 = <<0,0,0>>		(* N-tuple of 0's *)
+
+label in(V),out(V)		(* system input,output *)
+label mi_I(V),mo_I(V)		(* module input,output *)
+label do_I(BV)			(* detector output *)
+label pass_I(IV)                (* inter-detector port *)
+label fail_I,detect_I           (* module failure, detection of failure *)
+label ack
+
+(* 1-3 splitter *)
+agent S =
+    in(x).sum(i:I,'mi_i(x).
+          sum(j:diff(I,{i}),'mi_j(x).
+          sum(k:diff(I,{i,j}),'mi_k(x).ack.S)))
+
+(* module *)
+agent M(i:I) = 
+    mi_i(x).('mo_i(x).M(i) + fail_i.sum(y:diff(V,{x}),'mo_i(y).M(i)))
+
+(* perfect module, indexed input and output *)
+agent MP(i:I) = M(i)\{fail_i}
+
+(* perfect module, unindexed input and output *)
+agent MPU = in(x).'out(x).MPU
+
+(* comparator and detector *)
+agent D(i:I) =
+    mo_i(x).P(i,x,<<i,x>>,true)
+
+agent P(i:I,x:V,jy:IV,b:Bool) =
+    'pass_((i mod N)+1)(jy).
+     pass_i(kz).if i = kz#1 then P'(i,x,b)
+                            else P(i,x,kz,b and not x=(kz#2))
+
+agent P'(i:I,x:V,b:Bool) =
+    if b then detect_i.P''(i,x,b)
+         else          P''(i,x,b)
+
+agent P''(i:I,x:V,b:Bool) =
+   'do_i(<<b,x>>).D(i)
+
+(* module that accepts when holding a message *)
+agent D'(i:I) =
+    mo_i(x).Q(i,x,<<i,x>>,true)
+	
+agent Q(i:I,x:V,jy:IV,b:Bool) =
+     pass_i(kz).
+    'pass_((i mod N)+1)(jy).
+    if i = kz#1 then Q'(i,x,b)
+                else Q(i,x,kz,b and not x=(kz#2))
+
+agent Q'(i:I,x:V,b:Bool) =
+    if b then detect_i.Q''(i,x,b)
+         else          Q''(i,x,b)
+
+agent Q''(i:I,x:V,b:Bool) =
+   'do_i(<<b,x>>).D'(i)
+
+(* complete detector *)
+agent Det = (D'(1) | D(2) | D(3))\{pass}
+
+(* collector *)
+agent C = C'(<<false,false,false>>)
+agent C'(B:prod(Bool,Bool,Bool)) =
+    sum(i:I,do_i(ax).
+    sum(j:diff(I,{i}),do_j(by).
+    sum(k:diff(I,{i,j}),do_k(cz).
+    C''(update(update(update(B,i,B#i or ax#1),j,B#j or by#1),k,B#k or cz#1),
+        update(update(update(T0,i,ax#2),j,by#2),k,cz#2)))))
+agent C''(B:prod(Bool,Bool,Bool),X:prod(V,V,V)) =
+    sum(i:I,if not B#i then 'out(X#i).'ack.C'(B))
+
+(* sift-out modular redundancy *)
+agent SMR = (S|M(1)|M(2)|M(3)|Det|C)\{mi,mo,do,ack}
+
+(* version used to show that failures tolerated *)
+agent Hide1 = 'fail_2.Hide1 + 'fail_3.Hide1 + 'detect_2.Hide1 + 'detect_3.Hide1
+agent SMR1 = ((S|M(1)|MP(2)|MP(3)|Det|C)\{mi,mo,do,ack}|Hide1)\{fail,detect}
+
+(* version used to show that failures detected *)
+agent Hide2 = sum(x:V,'in(x).Hide2) + out(x).Hide2
+agent SMR2 = ((S|M(1)|MP(2)|MP(3)|Det|C)\{mi,mo,do,ack}|Hide2)\{in,out}
+
+(* fail/detect cycler *)
+agent Cycler = fail_1.detect_1.Cycler
+
+

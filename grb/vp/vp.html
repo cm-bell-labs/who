@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+<head>
+   <title>vp - A Value-Passing Translator for CCS</title>
+   <link rel="stylesheet" href="home-pages.css" type="text/css">
+</head>
+
+<body>
+<h1>vp - A Value-Passing Translator for CCS</h1>
+
+<hr>
+<p> Process algebras are designed to capture the essense of
+distributed computing in a minimal fashion, so it's not
+surprising that they are bad for describing complex
+distributed systems.  While at the University of Edinburgh I
+spent some time using CCS and temporal logic to analyze
+safety-critical systems, and quickly learned how painful it
+is to describe systems with basic CCS.  One really needs the
+suport for data found in an extended process algebra like
+value-passing form of CCS.  Unfortunately, many tools for
+process algebras, like the Edinburgh Concurrency Workbench,
+do not support value-passing processes.  I therefore
+developed (with the help of Stuart Anderson) a value-passing
+CCS notation and a compiler to translate value-passing CCS
+to basic CCS.  This tool is called <em>vp</em>.
+
+p>
+The value-passing language supported by vp includes the
+constructs defined by Robin Milner in Communication and
+Concurrency, plus some other features, notably indexed
+actions and extensions for timed CCS.  For data the language
+supports sets, tuples, and lists, all of which are built up
+out of boolean, integer, and string constants.  The
+translator can produce basic CCS in two formats: one for the
+Edinburgh Concurrency Workbench and the other for the
+Concurrency Workbench of New Jersey.
+
+<p>
+The value-passing translator is written in Standard ML of
+New Jersey.  Binaries for Sun workstations are freely
+available.  If you are interested in building the compiler
+for us on other machines, or are interested in extending the
+compiler, please contact me.
+
+<p>
+There is now also a Java-based version of the value-passing
+translator, named "jvp".  A beta version of it is available
+for download (see below).  This version is faster than the
+the ML version, requires no installation, and supports
+timed CCS.  However, it currently produces output only for the 
+Edinburgh Concurrency Workbench.
+
+<p>
+Notice: this software (both the ML and Java versions) is for 
+educational and research purposes only.  It is not to be used 
+as the basis for commercial products.  
+
+<p> vp files:
+<ol>
+<li> A <a href="jvp.jar">jar file</a> for the beta, Java-based jvp</li>
+<li> <a href="using-jvp.txt">Notes</a> on using jvp.
+<li> A <a href="vp.sol.Z">compressed binary</a> for the ML version of vp (Sun Solaris operating system)</li>
+<li> A <a href="vp.sun4.Z">compressed binary</a> for the ML version of vp (Sun OS 4 operating system)</li>
+<li> The vp <a href="user.ps">user guide</a> </li>
+<li> The <a href="vp-def.ps">definition</a> of value-passing CCS </li>
+<li> Some vp files related to my CCS book: </li>
+     <ul>
+     <li> Triple-modular redundancy: 
+	<a href="tmr1.vp">model 1</a> and 
+	<a href="tmr2.vp">model 2</a></li>
+     <li> Sift-out modular redundancy: 
+	<a href="smr.vp">model</a></li>
+     <li> On-the-fly Garbage Collection: 
+	<a href="gc.vp">model 1</a>, 
+	<a href="gc1.vp">model 2</a>, and 
+	<a href="gc-props">properties</a></li>
+     <li> MSMIE protocol: 
+	<a href="msmie-nat.vp">natural model</a>, 
+        <a href="msmie-abs.vp">abstract model</a>, 
+        <a href="msmie-new.vp">new model</a>, and 
+        <a href="msmie-props">properties</a></li>
+     <li> Slowscan protocol: 
+	<a href="ss1.vp">model 1</a>, 
+	<a href="ss2.vp">model 2</a>, 
+	<a href="buf-props">buffer properties</a>, and 
+	<a href="fail-props">failure properties</a></li>
+     </ul> 
+</ol>
+
+<p> timed-extensions:
+<ol>
+<li> Some <a href="vpt-syntax.txt">notes</a> on the syntax of the timed 
+version of value-passing CCS</li>
+<li> A compressed <a href="vpt.sol.Z">binary</a> for the Solaris 
+operating system, timed version</li>
+<li> An <a href="alt-bit.vp">example</a> in timed value-passing CCS </li>
+</ol>
+
+<address><a href="mailto:grb@bell-labs.com">Glenn Bruns</a></address>
+<!-- Created: Thu Aug 24 10:25:28 CDT 2000 -->
+<!-- hhmts start -->
+Last modified: Fri Feb 16 10:28:54 CST 2001
+<!-- hhmts end -->
+  </body>
+</html>

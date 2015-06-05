@@ -1,0 +1,103 @@
+<HTML>
+<HEADER>
+<TITLE> CIS 677: Homework 1, due about Sep. 29
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center> CIS 677: Homework 1, due about Sep. 29<br>
+</center></H1>
+<BR>
+
+I believe these are all check-your-knowledge problems: with a reasonably
+careful understanding of the text, they shouldn't be too hard.
+Let me know if they are a struggle.
+
+<p>
+Using the notation of <a href="index.html"> lecture 2</a>:
+
+<ol>
+<li> 	For boxes B and B', show that B and B' have nonempty intersection
+	if and only min(B) dominates max(B'), and min(B') dominates max(B).
+<li> 	Prove the following:
+	given point set S in the plane, show that if a point p of S yields no
+	minima in S<sup>++</sup>, S<sup>+-</sup>, S<sup>--</sup>, or S<sup>-+</sup>,
+	then that point is not extreme in S, that is,
+	not a vertex of the convex hull.
+<li>	In the lecture, and in section 10.3 of the text, a data structure is
+	proposed for a set S of noncrossing line segments, so that given a box,
+	the line segments meeting that box can be found quickly.
+	Can that data structure be used to quickly find the segments of S
+	that meet a given general line segment q?
+<li>	5.10a and b of the text:  In some applications one is interested only in
+the number of points that lie in a range rather than in reporting all of them.
+Such queries are often referred to as <em>range counting queries</em>.  In this
+case one would like to avoid paying the <em>O(k)</em> in the query time. [[k=A, the answer size]]
+<ol type=a>
+	<li> Describe how a 1-dimensional range tree can be adapted such that
+	a range counting query can be performed in <em>O(log n) </em> time.
+	Prove the query time bound.
+	<li> Describe how <em>d</em>-dimensional range counting queries can be
+	answered in <em>O(log<sup>d</sup>n)</em> time, using the solution to
+	the 1-dimensional problem.  Prove the query time.
+</ol>
+<li>	10.1 of the text:<br>
+	In Section 10.1 we solved the problem of finding all
+	horizontal line segments in a set that intersect a vertical
+	segment.  For this we used an interval tree with priority search
+	trees as associated structures.  There is also an alternative
+	approach.  We can use a 1-dimensional range tree on the
+	y-coordinate of the segments to determine those segments whose
+	y-coordinate lies in the vertical query segment.  The resulting
+	segments cannot lie above or below the query segment, but they may lie
+	completely to the left or to the right of it.  We get those segments in
+	O(log n) canonical subsets.  For each of these subsets we use an
+	associated structure an interval tree on the x-coordinates to find the
+	segments that actually intersect a query segment.
+<ol type=a>
+<li>	Work out the details of this approach.
+<li>	Prove that the data structure correctly solves the queries.
+<li>	What are the bounds for preprocessing time, storage required,
+	and query time for this structure?  Prove your answers.
+</ol>
+<li>	10.6 of the text:<br>
+	 Let I be a set of intervals on the real line.  
+	We want to be able to count the number of intervals containing a 
+query point in O(log n) time.  Thus the query time must be independent
+of the number of segments containing the query point.
+<ol type=a>
+<li>	Describe a data structure for this problem based on segment trees,
+	that uses only O(n) storage.  Analyze the amount of storage,
+preprocessing time, and the query time of the data structure.
+<li>	Describe a data structure for this problem based on interval trees.
+	You should replace the lists associated with the nodes of the interval
+	tree with other structures.  Analyze the amount of storage, preprocessing
+time, and the query time of the data structure.
+</ol>
+<li>	10.8 of the text:<br>
+	 Segment trees can be used for multi-level data structures.
+<ol type=a>
+<li>	 Let R be a set of n axis-parallel rectangles in the plane.  Design
+	a data structure for R such that the rectangles containing a query
+	point q can be reported efficiently.  Analyze the amount of storage
+	and the query time of your data structure.  <em> Hint:</em> Use a
+	segment tree on the x-intervals of the rectangles, and store canonical
+	subsets of the nodes in this segment tree in an appropriate
+	associated structure.
+<li>	Generalize this data structure to <em>d</em>-dimensional space.
+	Here we are given a set of axis-parallel hyperrectangles--that is,
+	[[boxes]]--and we want to report the hyperrectangles containing a
+	query point.
+</ol>
+	
+</ol>
+
+
+<BR>
+<P><ADDRESS>
+<I> Ken Clarkson <BR>
+September 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

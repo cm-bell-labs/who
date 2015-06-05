@@ -1,0 +1,48 @@
+<html>
+<title>
+Netnews posting about VAX
+</title>
+<body BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+<H2>1988 Netnews posting about 1977 VAX perceptions
+</H2>
+Here are some latter-day thoughts about the description I wrote of
+VAX more than 10 years ago, from a pre-announcement briefing on it.
+<p>
+Although the instruction set didn't work out as nicely as it seemed it
+would, even from the CISC viewpoint, it holds up pretty well.
+I certainly don't gush as strongly today, mostly because it
+isn't quite as orthogonal as it seemed it would be.  There are
+still plenty of special cases lurking in the instructions and address
+modes C wants to compile, for example.  The call instructions do
+indeed do just what you want, but are too slow.
+<p>
+Of course the real critique arises not from the details, but from the RISC
+insight.  I take this be, in essence, that those address syllables
+are expensive to decode, and that the complicated instructions
+are bad not because of complication alone, but because they
+practically insist on a microcode implementation that RISC is able
+to dispense with altogether.
+<p>
+The analysis of the mapping is correct, and picks out the architectural
+weakness of the scheme (no attractive way to do segments) but misses
+the small page size.  As I noted in the text, we didn't hear or
+weren't told what it was.  Today, 512 bytes is much too small.
+Then, I probably wouldn't have thought so.  It's interesting
+that the small size persists, though.  DEC must feel that the software
+couldn't cope with a change.
+<p>
+My impressions of the software situation were entirely correct.
+<p>
+The main fact about the machine that we missed out on altogether
+was the IO architecture.  Even the VAX-11/780 had a messy
+collection of odd bus adaptors glued on it, and of course the
+situation has never really become any better.
+<p>
+<blockquote>
+	Dennis Ritchie
+<br>
+	research!dmr
+<br>
+	dmr@research.att.com [1999 address:  dmr@bell-labs.com]
+</blockquote>
+</body></html>

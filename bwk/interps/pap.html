@@ -1,0 +1,1676 @@
+<html><head>
+
+
+
+
+
+<title>
+pap
+</title></head>
+<body BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#330088" ALINK="#FF0044">
+<H1>Timing Trials, or, the Trials of Timing:
+<br>
+Experiments with Scripting and User-Interface Languages
+</H1>
+<DL><DD><I>Brian W. Kernighan<br>
+Bell Laboratories<br>
+Murray Hill, NJ 07974<br>
+<TT>bwk@bell-labs.com</TT>
+</I></DL>
+<DL><DD><I>Christopher J. Van Wyk<br>
+Department of Mathematics and Computer Science<br>
+Drew University<br>
+Madison, NJ 07940<br>
+<TT>cvanwyk@drew.edu</TT>
+</I></DL>
+<DL><DD><H4>ABSTRACT</H4>
+This paper describes some basic experiments to
+see how fast various popular scripting and user-interface
+languages run on a spectrum of representative tasks.
+We found enormous variation in performance,
+depending on many factors, some uncontrollable and even unknowable.
+There seems to be little hope of predicting
+performance in other than a most general way;
+if there is a single clear conclusion,
+it is that no benchmark result
+should ever be taken at face value.
+<P>
+A few general principles hold:
+</P>
+<br>&#32;<br>
+   * Compiled code usually runs faster
+than interpreted code:
+the more a program has been ``compiled'' before it is executed,
+the faster it will run.
+<br>&#32;<br>
+   * Memory-related issues and the effects of memory hierarchies
+are pervasive:
+how memory is managed, from hardware caches to garbage collection,
+can change runtimes dramatically.
+Yet users have no direct control over most aspects of
+memory management.
+<br>&#32;<br>
+   * The timing services provided by programs and operating systems
+are woefully inadequate.
+It is difficult to measure runtimes reliably and repeatably
+even for small, purely computational kernels,
+and it becomes significantly harder when
+a program does much I/O or graphics.
+<P>
+Although each language shines in some situations,
+there are visible and sometimes surprising deficiencies
+even in what should be mainstream applications.
+We encountered bugs, size limitations, maladroit features, 
+and total mysteries for every language.
+</DL>
+BenchmarkingPerformance evaluationScripting languages
+</P>
+<H4>INTRODUCTION
+</H4>
+<P>
+This paper describes experiments to compare
+the performance of scripting languages
+(like Awk, Perl, and Tcl)
+and interface-building languages
+(like Tck/Tk, Java, and Visual Basic)
+on a set of representative computational tasks.
+We found this challenging, with more difficulties
+and fewer clear-cut results
+than we had expected.
+</P>
+<P>
+Since scripting and interface-building languages are usually interpreted,
+using them sacrifices some speed
+in return for programming convenience.
+This ``wasted'' CPU time doesn't matter for short, single-use programs,
+or for programs that run in only a few seconds,
+nor does it matter if the scripting language is mainly used
+as ``glue'' to control efficient large-scale operations.
+But small programs for small data sets
+can evolve into big programs that run on big data sets;
+for instance, Awk and Perl have been used to write 
+programs of thousands of lines
+that process megabyte data sets.
+And sometimes
+the glue itself evolves into a major component of an application.
+By quantifying how fast different languages run,
+performance comparisons could suggest which languages
+would be appropriate for different parts of an application,
+and what the penalty might be for choosing convenience over efficiency.
+</P>
+<P>
+At first blush, comparing runtimes
+seems straightforward.
+Choose a comprehensive set of representative tasks,
+write equivalent programs in the different languages,
+measure the runtimes on several systems,
+then present them all in a table.
+This approach is an obvious generalization of
+test programs that create a cost model
+for primitive operations in a single language like C
+[Bentley 91]
+and benchmarks that compare implementations
+of a single language like Java [Hardwick 97, Caffeine 97].
+</P>
+<P>
+The seemingly easy job of comparison, however,
+has proved to be much more than a routine exercise.
+We encountered problems, puzzles, and surprises at every step.
+We hope that this journal of our expedition
+will encourage readers to view published comparisons with caution,
+and to design and perform their own experiments carefully.
+</P>
+<P>
+When reporting results of our experiments,
+we often say that
+a program in one language ran some amount faster or slower
+than an equivalent program in another language.
+All such results represent a snapshot, in the summer of 1997,
+of the performance of language processors
+that were readily available to us.
+They provide no warrant for drawing conclusions
+about the relative performance of languages
+on other machines or using other versions of software.
+</P>
+<P>
+Even though we cannot state many firm conclusions,
+there are some themes that recur often in the
+experiments described below.
+</P>
+<DL>
+<DT><DT>&#32;<DD>
+   * Compilation wins over interpretation,
+and interpretation from an intermediate representation
+wins over repeated interpretation of the original program text.
+The exact speedup is unpredictable, however,
+and compilation may even slow the program down instead.
+For the most part, we have tested only interpreters,
+since they are always available,
+while compilers are often experimental,
+unsupported, inaccessible, or an extra-cost option.
+The limited results presented in Section 7
+indicate that compilation is generally,
+but not always, of modest benefit.
+<DT><DT>&#32;<DD>
+   * Memory matters.
+Of course the absolute amount available on a machine is important,
+especially once paging (or thrashing) begins.
+But buffers and caches
+(at several different levels of hardware and software)
+and the implementation of memory allocation and garbage collection
+can also have dramatic effects on performance.
+These factors often lie beyond user control.
+<DT><DT>&#32;<DD>
+   * Accurate timing is very hard.
+Even simple timing loops can exhibit erratic 
+runtimes for no obvious reason.
+Once a program interacts with its environment by
+doing significant I/O or graphics,
+the variation in runtime measurements becomes even larger.
+These well known problems are exacerbated
+by systems with unreliable internal ``timing'' routines.
+We also have not found a satisfactory way to charge
+startup costs to all systems, so head-to-head comparisons
+between languages are sometimes difficult.
+</dl>
+<H4>1 Methodology
+</H4>
+<P>
+We started to construct a table with three dimensions:
+task, programming language, and machine.
+Eventually we added the size of the problem solved
+by the program as a fourth dimension,
+and we changed the presentation from tables to graphs.
+Varying the problem size helped us to detect
+unusual runtime effects,
+while a graphical presentation highlights patterns and trends in runtime
+instead of individual performance scores.
+</P>
+<P>
+We present measurements for each task separately.
+Unlike some benchmarking studies,
+we do not combine the results of several different
+experiments into a single number.
+One problem with this common practice is that
+one can choose different weighting factors
+to create almost any desired outcome [Becker 87].
+</P>
+<H4>Choice of Tasks
+</H4>
+<P>
+It is hard to devise small yet representative tasks
+that do not give too big an edge to one language
+or unduly penalize another.
+Ideally, each task will test only one or two language features,
+and will require short, simple, programs that are
+easy and natural to express in any language.
+For the comparison to be sensible,
+the programs also must be expressed
+in a ``colloquial'' fashion in each language.
+While we do not claim that any of the tasks we present is definitive,
+we believe that each is reasonably fair.
+</P>
+<P>
+We have organized the presentation by type of task:
+basic language features (Section 3);
+arrays and strings (Section 4);
+input/output (Section 5);
+basic GUI operations (Section 6).
+Section 7 describes experiments with compilation.
+Each section includes further explanations of the tasks.
+The programs and test data are available at
+<TT>www.cs.bell-labs.com/~bwk</TT>.
+</P>
+<H4>Choice of Languages
+</H4>
+<P>
+We report timings for the eight languages summarized in Table 1.
+<br>&#32;<br>
+<br><img src="pap.1657400.gif"><br>
+<br>&#32;<br>
+   (1) Embeddings of Tk for Perl and Scheme appear to be experimental and
+unsupported; we did not try them.
+<br>&#32;<br>
+<B>Table 1:  Language Characteristics</B>
+<br>&#32;<br>
+</P>
+<br>&#32;<br>
+<B>C</B>
+is included as a baseline:
+its performance suggests the size of the runtime penalty
+for using an interpreted language.
+C is the only one of the eight languages
+that does not have built-in string operations
+and automatic garbage collection.
+<br>&#32;<br>
+<B>Awk</B>
+and
+<B>Perl</B>
+are similar in style, 
+although Perl has many more features.
+Strings and numbers are the only data types;
+associative arrays are the main data structure (the only one in Awk); 
+both are normally interpreted.
+One of the authors admits to a paternal interest in Awk.
+<br>&#32;<br>
+<B>Tcl</B>
+is an interpreter reminiscent of the Unix C shell;
+besides strings, it provides associative arrays.
+<B>Tk</B>
+is a user interface toolkit normally packaged to be run from Tcl scripts
+through a ``windowing shell'' called Wish.
+Tcl 7.6 is a pure interpreter;
+the more recent Tcl 8.0 includes an on-the-fly bytecode compiler.
+<br>&#32;<br>
+<B>Java</B>
+is derived from C and C++.
+Java comes with a standard user interface library,
+the Abstract Window Toolkit or AWT.
+Java programs can be run standalone or as ``applets''
+invoked from within a Web browser;
+in either case, the intermediate representation
+may be interpreted, or it may be compiled just-in-time
+for the machine on which the program is being run.
+<br>&#32;<br>
+<B>Visual Basic</B>
+is an interpreter loosely in the same class as Java.  
+It provides an especially easy environment for creating graphical interfaces.
+Visual Basic is available only for Windows 95 and NT.
+<br>&#32;<br>
+<B>Limbo</B>
+is a language in the same general class as Java
+and attacks much the same problem domain with somewhat
+the same facilities; it too is normally interpreted.
+Limbo is part of Inferno, a virtual operating
+system that runs on Windows 95 and NT and many flavors of Unix.
+Limbo has its own 
+<I>ab initio</I>
+implementation
+of Tk for writing graphical interfaces.
+The authors admit to personal and corporate interests in Limbo.
+<br>&#32;<br>
+<B>Scheme</B>
+is a functional language extended by assignment and I/O.
+We tested the MIT Scheme versions shown in Table 1,
+both of which are pure interpreters that date from 1993.
+We tried several Scheme compilers that are accessible on the Web,
+including Scheme48, Stalin, VSCM, and Edscheme,
+but each failed to run one of our test programs
+or was not readily available for all of our computing platforms.
+(See [Clinger 97] for more Scheme comparisons.)
+<P>
+Given more time and energy,
+one might test other scripting languages like 
+Unix shells, Python and REXX,
+functional languages like SML, and
+interface-building languages like Delphi.
+</P>
+<H4>Choice of Machines
+</H4>
+<P>
+We ran our tests on three machines:
+</P>
+<DL COMPACT>
+<DT>      * <DD>
+100 MHz MIPS R4000 SGI Indy, Irix 5.3
+<DT>      * <DD>
+50 MHz Sun Sparcstation-10, Solaris 2.5 (SunOS 5.5)
+<DT>      * <DD>
+100 MHz Pentium (32Mb Micron Millennia, Diamond Stealth64 2001 video),
+Windows 95.
+This PC appears to be identical to the one used for tests in [Booth 97].
+</dl>
+<br>&#32;<br>
+Although elderly,
+these machines are very similar in speed.
+For us, they offered the further advantage
+that we could ensure that no one else was using them during our tests,
+which removed one source of variability.
+We could run every test on each system,
+except for Visual Basic, which we ran only on the PC,
+and Java, for which we did not have an implementation on Irix.
+Except where noted,
+we used the same implementations across systems.
+<H4>Gathering Timing Statistics
+</H4>
+<P>
+The difficulty of measuring program runtimes
+reliably and reproducibly is well known.
+We encountered the following obstacles, among others:
+</P>
+<DL>
+<DT><DT>&#32;<DD>
+- Runtime measurements become more erratic as a time-shared machine becomes more heavily used.
+Even on single-user machines,
+system processes can spring into activity in the middle of a test,
+with unpredictable effects on runtimes.
+Process timings on PC's are notoriously unreliable,
+especially for short runs,
+but they are no better on Unix systems.
+Wall clock times can be much greater than
+the sum of system and user times,
+even on apparently quiescent systems.
+<DT><DT>&#32;<DD>
+- I/O times can be badly misleading when the computer is far from
+the file, as with networked file systems.
+Times for graphics operations can be badly misleading when the display is
+remote from the computer, as with X terminals.
+<DT><DT>&#32;<DD>
+- Some programs run faster the more often they are run,
+as if they get better with practice.
+Sometimes this is due to caching; for example, a
+program that reads a big file may run faster on
+the second and subsequent runs because the program
+and the file are already in memory.
+<DT><DT>&#32;<DD>
+- A few programs take longer to run the more often they are run.
+We suspect that the increasing runtime is due to
+memory management problems.
+</dl>
+<P>
+Times for
+C, Awk, Perl, and Tcl
+are the sum of ``user time'' and ``system time'' reported by the 
+<TT>time</TT>
+command on Unix,
+or the total time reported by the MKS Toolkit
+<TT>time</TT>
+command on Windows 95.
+Thus, these include the time to invoke the language processor
+(for Awk, Perl, and Tcl)
+or to load and start the program (for C)
+as well as to read, process and execute the programs.
+</P>
+<P>
+Times for
+Java, Visual Basic, and Limbo
+are computed by the internal program timer,
+such as
+<TT>Date</TT>
+in Java and
+<TT>Timer</TT>
+in VB.
+These exclude all startup times,
+which can amount to several seconds.
+For example, the Java interpreter exhibits a noticeable startup delay,
+presumably from unpacking the standard class files.
+</P>
+<P>
+Timing Scheme programs posed a challenge.
+The internal timing function in MIT Scheme, 
+<TT>runtime</TT>,
+reports values that are only loosely correlated with wall-clock time.
+(The
+<TT>runtime</TT>
+function appears in the standard Scheme text [Abelson 96],
+although it is not mentioned in the Scheme reference [Scheme 91].)
+On Irix and Windows,
+<TT>runtime</TT>
+reports values that are too low by 10 to 25 percent.
+On Solaris,
+<TT>runtime</TT>
+reports times that are too high by 30 to 65 percent.
+Consequently, we used a stopwatch to record Scheme times.
+The Scheme times also exclude the interpreter startup time.
+</P>
+<P>
+To gather the timings,
+we ran each test several times, usually with a loop like this:
+<DL><DT><DD><TT><PRE>
+	for i in 1 2 3 4 5 6 7 8 9 10
+	    do time <B>commandline</B>
+	done
+</PRE></TT></DL>
+We discarded the first time
+to compensate (partially) for caching.
+If the runtime was more than a minute or so, we normally ran
+the test only 2 or 3 times:
+when one version of a program runs in a few seconds,
+but another takes minutes,
+there is no reason to fix the latter time
+with pinpoint accuracy.
+For times measured in seconds, we normally ran between 5 and 10 trials.
+Notes accompanying the graphs explain unusual situations,
+such as large variability in the runtimes.
+</P>
+<H4>2 Tests of Basic Features
+</H4>
+<P>
+The first tests exercise basic language features
+like arithmetic, loops and function calls.
+</P>
+<H4>Loops and arithmetic
+</H4>
+<P>
+First we test the implementation overhead of loop mechanisms
+by counting to
+<TT>n</TT>.
+Using large values of
+<TT>n</TT>
+helps to reduce noise in the timing measurements.
+Verifying that runtime is linear in the value of
+<TT>n</TT>
+helps to detect ambitious optimizers (see below).
+</P>
+<P>
+Programs in most of the languages look similar.
+For example, here is the C version:
+<DL><DT><DD><TT><PRE>
+int i, n = atoi(argv[1]), sum = 0;
+for (i = 0; i &#60; n; i++)
+	sum++;
+</PRE></TT></DL>
+and the Tcl version:
+<DL><DT><DD><TT><PRE>
+set sum 0
+set n [lindex $argv 0]
+for {set i 0} {$i &#60; $n} {incr i} {
+	incr sum
+}
+</PRE></TT></DL>
+We timed the following Scheme version of the program,
+which is conventional in its use of
+tail-recursion to implement the loop,
+but unusual in using
+<TT>set!</TT>
+to modify a global variable repeatedly:
+<DL><DT><DD><TT><PRE>
+(define sum 0)
+(define (tail-rec-aux i n)
+	(if (&#60; i n)
+		(begin (set! sum (+ sum 1)) (tail-rec-aux (+ i 1) n))
+		sum))
+(define (tail-rec-loop n)
+	(tail-rec-aux 0 n))
+</PRE></TT></DL>
+An alternative version that passes three arguments to
+<TT>tail-rec-aux</TT>
+and only uses
+<TT>set!</TT>
+at the end of the recursion runs about five percent faster.
+</P>
+<P>
+For unreconstructed imperative-style programmers,
+Scheme defines an iteration construct
+(<TT>do</TT>),
+with which the loop above could be written as follows:
+<DL><DT><DD><TT><PRE>
+(define sum 0)
+(define (do-loop n)
+	(do ((i 0 (+ i 1)))
+		((&#62;= i n) sum)
+		(set! sum (+ sum 1))))
+</PRE></TT></DL>
+With MIT Scheme, the runtime for this version
+is the same as for the tail-recursive version.
+With Edscheme, a commercial PC implementation,
+the
+<TT>do</TT>
+version ran twice as fast as the tail-recursive form.
+We could not do more experiments with Edscheme
+since our evaluation copy expired before we finished our tests.
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.1657401.gif"><br>
+<B>
+Basic loop test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</P>
+<P>
+This graph exhibits several features that are common
+to all of the graphs in this paper.
+The amount of computational work appears on the horizontal axis
+and runtime appears on the vertical axis.
+Both axes are plotted on a logarithmic scale,
+which allows us to display a wide range of data values.
+It would be convenient to choose input sizes that give reasonable runtimes,
+ideally around 10 seconds,
+but this ideal cannot be achieved when runtimes for
+different languages are four orders of magnitude apart.
+</P>
+<P>
+We designed tests whose runtime 
+should grow linearly with the size of the problem:
+<B>runtime</B> <B>=</B> <B>m</B>&#215;<B>size</B> <B>+</B> <B>b</B>.
+Thus, if we choose <B>size</B> to be large enough
+to justify ignoring the fixed overhead (<B>b</B>),
+the log-log plot should show a straight line of unit slope.
+Exceptions indicate anomalous behavior that deserves further attention.
+</P>
+<P>
+For example, on Windows 95
+the line connecting C runtimes appears absolutely horizontal.
+In fact, runtime continues to be constant when
+<TT>n</TT>
+= 10^7
+and
+<TT>n</TT>
+= 10^8.
+This happens because the optimizer eliminates the entire loop,
+replacing it by
+<TT>sum = n</TT>.
+When optimization is disabled,
+times on Windows 95 grow <B>very</B> slowly with
+<TT>n</TT>,
+from 0.25 seconds at
+<TT>n</TT>
+= 125,000
+to 0.33 seconds at
+<TT>n</TT>
+= 10^6.
+</P>
+<P>
+The graph for Windows 95 also shows clearly the advantage
+that Java and Visual Basic enjoy
+because our timings do not charge them for startup.
+</P>
+<P>
+The pattern in these graphs reappears in many test results.
+Compiled native code (C) runs fastest;
+next fastest are interpreted byte codes (Java, Limbo, Visual Basic);
+next come interpreters that construct
+and execute an internal representation
+like an abstract syntax tree (Awk, Perl);
+slowest of all are interpreters that repeatedly scan the original source
+(Scheme, Tcl).
+Between each consecutive pair of stages
+there is a factor of 5-10 difference in runtime,
+with a total range that exceeds three orders of magnitude.
+</P>
+<H4>Function Calls
+</H4>
+<P>
+The next program evaluates Ackermann's function.
+Computing <B>ack</B>(<B></B>3<B></B>,<B>k</B>) <B>=</B> 2^(<B>k+</B>3<B></B>)<B>-</B>3
+requires at least 4^(<B>k+</B>1<B></B>) function calls,
+and reaches a recursive depth of 2^(<B>k+</B>3<B></B>)<B>-</B>1,
+so this test gives the function call mechanism a thorough workout.
+The code looks similar in most languages;
+here it is in C and Java:
+<DL><DT><DD><TT><PRE>
+int ack(int m, int n) {
+	if (m == 0)
+		return n+1;
+	else if (n == 0)
+		return ack(m-1, 1);
+	else
+		return ack(m-1, ack(m, n-1));
+}
+</PRE></TT></DL>
+</P>
+<br>&#32;<br>
+and in Scheme:
+<DL><DT><DD><TT><PRE>
+(define (ack m n)
+      (cond ((= m 0) (+ n 1))
+            ((= n 0) (ack (- m 1) 1))
+            (else (ack (- m 1) (ack m (- n 1))))))
+</PRE></TT></DL>
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.1657406.gif"><br>
+<B>
+Ackermann's function test:  ack(3,k)
+</B><br>&#32;<br>
+</PRE></TT></DL>
+<DL>
+<DT><DT>&#32;<DD>
+On Windows 95, we killed the Perl program computing <B>ack</B>(<B></B>3<B></B>,<B></B>8<B></B>)
+after an hour of no apparent progress.
+On Irix, Perl 5.004 aborted with no message on <B>ack</B>(<B></B>3<B></B>,<B></B>8<B></B>);
+Perl 5.001 took 350 seconds to compute the correct answer.
+<DT><DT>&#32;<DD>
+By default, Tcl sets the
+<TT>maxNestingDepth</TT>
+of the runtime stack to 1000.
+For our tests,
+we increased this limit to 5000 and recompiled Tcl on Irix and Solaris
+(but not on Windows 95).
+Even with this upper bound, however,
+Tcl overflowed when computing <B>ack</B>(<B></B>3<B></B>,<B></B>8<B></B>),
+because control structures and expression evaluations,
+as well as procedure calls,
+require a recursive invocation of the Tcl interpreter.
+</dl>
+<P>
+For the largest problem size (<B>k</B><B>=</B>8),
+the order of languages by increasing runtime
+remains the same across all three systems.
+(The basic loop test results also exhibited cross-system consistency,
+but with the languages in a different order.)
+Here, Scheme and Awk ran faster than Perl,
+and Limbo ran faster than Visual Basic.
+Such total consistency across systems is rare.
+</P>
+<H4>3 Arrays and Strings
+</H4>
+<P>
+All of these languages provide richer arrays and strings
+than those in C,
+including perhaps associative arrays, dynamic arrays, 
+storage management for strings, and garbage collection.  
+This section investigates some of their properties. 
+</P>
+<H4>Indexed Arrays
+</H4>
+<P>
+The first program uses arrays as if they were indexed.
+It sets 
+<TT>n</TT>
+elements of an array to integer values,
+then copies the array to another array beginning at index
+<TT>n-1</TT>.
+Here is the code in C, Awk, Java, and Limbo, for example:
+<DL><DT><DD><TT><PRE>
+for (i = 0; i &#60; n; i++)
+	x[i] = i;
+for (j = n-1; j &#62;= 0; j--)
+	y[j] = x[j];
+</PRE></TT></DL>
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574011.gif"><br>
+<B>
+Indexed array test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</P>
+<DL>
+<DT><DT>&#32;<DD>
+The Scheme test failed to terminate on all three systems
+when the array was too long.
+</dl>
+<P>
+This test turned out to be tougher than we expected.
+Languages that offer only associative arrays
+(like Awk and Tcl)
+typically use hash tables to implement the simple ``indexing''
+needed for this example.
+This accounts for their large runtimes.
+Indeed, rewriting the Perl program to use
+associative arrays instead of indexed arrays
+triples its runtime on Unix,
+and quintuples it on Windows 95.
+</P>
+<P>
+On the PC (with 32Mb of memory)
+Awk and Tcl thrash badly when
+<TT>n</TT>
+= 200,000,
+with runtimes about of about 450s (Awk) and 170s (Tcl).
+</P>
+<H4>String manipulation
+</H4>
+<P>
+The next test exercises several string operations:
+computing string lengths,
+concatenating strings,
+and extracting substrings.
+The program constructs the strings
+to avoid incurring I/O time by reading them from a file.
+Here is the Awk version:
+<DL><DT><DD><TT><PRE>
+for (j = 0; j &#60; 10; j++) {
+	s = "abcdef"
+	while (length(s) &#60;= n) {
+		s = "123" s "456" s "789"
+		s = substr(s, length(s)/2) substr(s, 1, length(s)/2)
+	}
+}
+</PRE></TT></DL>
+This program computes the length of
+<TT>s</TT>
+twice in the second assignment in the while-loop.
+A version that stores the length in a temporary variable
+only runs about five percent faster,
+so we tested the straightforward version shown above.
+</P>
+<P>
+The C program, on the other hand,
+keeps track of the length of the growing string:
+<DL><DT><DD><TT><PRE>
+int j, len, n = atoi(argv[1]);
+char *s = NULL, *p;
+
+for (j = 0; j &#60; 10; j++) {
+	free(s);
+	s = strdup("abcdef");
+	while ((len = strlen(s)) &#60;= n) {
+		p = (char *) malloc(2 * len + 10);
+		sprintf(p, "123%s456%s789", s, s);
+		free(s);
+		s = p;
+		len = strlen(s);
+		p = (char *) malloc(len + 2);
+		strcpy(p, s + len/2);
+		strncat(p + len/2, s, len/2+1);
+		free(s);
+		s = p;
+	}
+}
+</PRE></TT></DL>
+On the Unix machines,
+a version that does not store
+<TT>len</TT>
+runs about 40% slower than the program shown above.
+But on Windows 95,
+the version that does not use
+<TT>len</TT>
+is only about five percent slower.
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574012.gif"><br>
+<B>
+String test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</P>
+<DL>
+<DT><DT>&#32;<DD>
+Scheme runtimes for this test are unusually fast,
+but Scheme failed to terminate when string
+<TT>s</TT>
+became too long.
+</dl>
+<P>
+The C runtimes are very sensitive to
+the details of the program:
+they get faster the fewer times
+the string is traversed from beginning to end
+(as in
+<TT>strlen</TT>,
+<TT>strcpy</TT>,
+and
+<TT>strcat</TT>).
+The graphs suggest that Awk, Tcl, and Java
+represent strings as null-terminated byte sequences,
+but Perl and Limbo include length information
+in their string data structures.
+</P>
+<P>
+This test also exercises the storage allocator.
+Evidently the C library version,
+on which both Awk and Tcl rely, is slow.
+Perl may benefit from carrying its own version of
+<TT>malloc</TT>.
+</P>
+<H4>Associative Data Structures
+</H4>
+<P>
+Several of these languages offer a built-in facility
+(variously called associative arrays, hash tables or hashes)
+that can be used to associate values with
+keys so that lookups can be performed in constant time.
+Our test program synthesizes key values from numbers,
+to avoid performing any I/O.
+In order to exercise both lookups that
+succeed and lookups that fail,
+the program stores keys created from the numbers 1 to
+<TT>n</TT>
+expressed as hexadecimal strings,
+but attempts to retrieve keys using the numbers 1 to
+<TT>n</TT>
+expressed as decimal strings.
+The program in Perl is
+<DL><DT><DD><TT><PRE>
+for ($i = 1; $i &#60;= $n; $i++) {
+    $X{sprintf('%x', $i)} = $i;
+}
+for ($i = $n; $i &#62; 0; $i--) {
+    if (defined $X{$i}) {
+	$c++;
+    }
+}
+</PRE></TT></DL>
+and in Tcl
+<DL><DT><DD><TT><PRE>
+for {set i 1} {$i &#60;= $n} {incr i} {
+	set x([format "%x" $i]) $i
+}
+set c 0
+for {set i $n} {$i &#62; 0} {incr i -1} {
+	if {[info exists x($i)]} {
+		incr c
+	}
+}
+</PRE></TT></DL>
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574013.gif"><br>
+<B>
+Associative array test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</P>
+<P>
+Languages not shown do not provide built-in associative arrays.
+Scheme does have built-in association lists,
+but their linear-time access is bound to make their performance
+compare unfavorably with hash tables.
+</P>
+<P>
+Java's performance on this task is surprisingly poor.
+At first we thought that the
+<TT>Hashtable</TT>
+class used a poor hash function.
+But the runtime for the test increases
+when it is repeated,
+which suggests that there might also be a problem with memory management.
+</P>
+<H4>4 Input/Output
+</H4>
+<P>
+Tests in the preceding sections
+measured the speed of raw computation and memory management.
+By contrast,
+the programs in this section interact with the outside world,
+reading some significant amount of data,
+doing some computation on each data item,
+or writing some output.
+These operations are typical for Awk and Perl,
+although perhaps not for the volumes of data being used here;
+in that sense the tests may not be ``fair,''  but there
+must be some
+<I>droit d'auteur</I>.
+</P>
+<P>
+The input data set for the first three tasks
+is derived from the King James Bible.
+The whole bible contains
+31102 lines (one verse per line), 851820 words, and 4460056 characters.
+We also used the first half, quarter, and eighth of the bible
+as input for many tests.
+</P>
+<H4>File copying
+</H4>
+<P>
+The first task is to copy input to output,
+uninterpreted and unexamined,
+like the Unix
+<I>cat</I>
+command.
+Two other I/O tests include at least the input half of this operation.
+</P>
+<P>
+In Awk, Perl, Tcl, Visual Basic, and Limbo,
+it is natural to write the program to work one line at a time.
+For example, here are the Awk, Perl, and Tcl versions:
+<DL><DT><DD><TT><PRE>
+{ print }	# Awk
+
+while (&#60;&#62;) {	# Perl
+    print $_;
+}
+
+while {[gets stdin line] &#62;= 0} {	# Tcl
+	puts $line
+}
+</PRE></TT></DL>
+In C, Java, and Scheme, however,
+it is natural to write the program to work one character at a time.
+Here is the C version, which uses
+<TT>stdio</TT>:
+<DL><DT><DD><TT><PRE>
+main(int argc, char *argv[]) {
+	int c;
+	FILE *fp = stdin;
+
+	if (argc &#62; 1)
+		fp = fopen(argv[1], "r");
+	while ((c = getc(fp)) != EOF)
+		putc(c, stdout);
+}
+</PRE></TT></DL>
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574014.gif"><br>
+<B>
+File copy test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</P>
+<P>
+The graphs show that programs that work at the level of lines
+usually run faster than programs that work at the level of characters.
+Of course, the line-at-a-time programs
+might be imposing restrictions on line length
+that are not revealed by using the King James Bible as input.
+(The longest verse is Esther 8:9, with 92 words and 529 characters.)
+</P>
+<P>
+Thus, the graphs confirm the conventional wisdom
+that the choice of ``chunk'' size on which a program operates
+is important to its performance.
+Indeed, we can double the speed of the Perl program on
+Irix
+by changing it to read its input in one chunk.
+On the other hand, changing the Tcl program on Irix
+to read its input all at once makes it run about six times slower.
+</P>
+<P>
+Our tests also show the importance of I/O buffering.
+</P>
+<P>
+Unix systems implicitly buffer I/O that has been redirected
+from or to files,
+but this has not been carried over to Windows 95.
+This meant that our original Tcl program
+buffered its output one line at a time,
+and ran nearly 20 times slower than the version reported above.
+We modified it by explicitly requesting
+<TT>full</TT>
+buffering on
+<TT>stdout</TT>.
+</P>
+<P>
+The Java times are for a program that uses the
+<TT>BufferedInputStream</TT>
+class.
+Using unbuffered classes for I/O
+increases the runtime by at least 50%.
+Even with buffering, Java programs incur large runtime
+because the I/O methods are interpreted, not compiled.
+The JDK1.1 version of Java also imposes
+some overhead associated with synchronizing
+multiple threads [Gosling 97].
+</P>
+<P>
+The enormous Scheme runtimes appear to
+be caused by the lack of facilities for buffered input and output.
+We wrote a C program
+that reads and writes one byte at a time,
+and it took even longer to run than the Scheme program,
+so the Scheme implementation may be buffering deep inside.
+</P>
+<H4>Counting words
+</H4>
+<P>
+The second test is to count lines, words, and characters in
+the input, as in the Unix
+<I>wc</I>
+program.  
+This tests input speed and the ability to parse lines into smaller units.
+There are at least two basic approaches.
+In Awk, Perl, and Tcl,
+the natural program reads each line and splits it into ``fields,''
+each of which corresponds to a word.
+Here is 
+<I>wc</I>
+in Awk:
+<DL><DT><DD><TT><PRE>
+    { nl++; nw += NF; nc += length($0) + 1 }
+END { print nl, nw, nc }
+</PRE></TT></DL>
+</P>
+<br>&#32;<br>
+In C, Java, Visual Basic, Limbo, and Scheme,
+the natural program reads the input one character at a time
+and uses a state machine to count transitions into and out of words.
+Here is the Java version:
+<DL><DT><DD><TT><PRE>
+int nl = 0, nw = 0, nc = 0;
+int b;
+boolean inword = false;
+while ((b = System.in.read()) &#62; -1) {
+	++nc;
+	if (b == '\n')
+		++nl;
+	if (Character.isSpace((char)b))
+		inword = false;
+	else if (inword == false) {
+		++nw;
+		inword = true;
+	}
+}
+</PRE></TT></DL>
+We timed a Scheme version of this program that
+<TT>set!</TT>s
+three global variables to do this task.
+A tail-recursive version that passes these variables as parameters,
+perhaps more typical Scheme style,
+ran about five percent slower.
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574015.gif"><br>
+<B>
+Word count test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+<P>
+The graphs confirm the importance of ``chunk size''
+mentioned above for
+<I>cat</I>.
+Notice how much worse Visual Basic and Limbo fare
+when they operate on single characters instead of lines.
+</P>
+<P>
+Since
+<I>wc</I>
+does more computation on the input than does
+<I>cat</I>,
+we expected it to have longer runtimes.
+About half the time, it does.
+But there are also places where
+<I>wc</I>
+is faster than
+<I>cat</I>,
+including Tcl on Windows 95,
+and Java on both Solaris and Windows 95;
+perhaps this is because the output of
+<I>wc</I>
+is only one line,
+much smaller than the output from
+<I>cat</I>.
+</P>
+<H4>Reversing a file
+</H4>
+<P>
+The next test is to read the entire document into an array,
+then print out the lines in reverse order.
+This test checks the ability to build and access a very large array.
+The Awk version is
+<DL><DT><DD><TT><PRE>
+{ x[NR] = $0 }
+END { for (i = NR; i &#62;= 1; i--)
+	print x[i]
+}
+</PRE></TT></DL>
+The Perl version reads the entire file into an array with a single statement:
+<DL><DT><DD><TT><PRE>
+@a = &#60;&#62;;
+for ($i = $#a; $i &#62;= 0; $i--) {
+    print $a[$i];
+}
+</PRE></TT></DL>
+Unlike the Unix command
+<I>tail -r</I>,
+our C implementation does not seek from the end of the file,
+but reads the input into an array.
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574016.gif"><br>
+<B>
+File reversal test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</P>
+<DL>
+<DT><DT>&#32;<DD>
+The Scheme version terminated with an ``out of memory'' message
+on each system while trying
+to reverse the first quarter of the bible.
+</dl>
+<P>
+The order of languages by runtime is the same across all three systems.
+The word-counting task also exhibited cross-system consistency,
+but the languages appeared in a different order.
+</P>
+<H4>sum
+</H4>
+<P>
+The next test exercises input, numeric conversion, and arithmetic.
+The programs read 100,000 floating point numbers like this
+<DL><DT><DD><TT><PRE>
+   513.871
+  -175.726
+   308.634
+   ...
+</PRE></TT></DL>
+from a file
+and compute their sum.
+This program is easy in Awk:
+<DL><DT><DD><TT><PRE>
+{ s += $1 }
+END { print s }
+</PRE></TT></DL>
+and not much harder in other languages.
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574017.gif"><br>
+<B>
+Sum test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</P>
+<P>
+The order of languages by runtime is comparable to the order
+for word counting,
+except for Tcl (which got slower) and Visual Basic (which got faster).
+In fact, our original Tcl program ran faster,
+but computed a different sum than any of the other programs;
+the timings shown are for a Tcl program that explicitly sets
+<TT>tcl_precision</TT>
+to 17.
+</P>
+<H4>5 Graphical User Interface Tests
+</H4>
+<P>
+There are two major components of user interfaces where
+speed matters most: manipulating text in a ``text widget,''
+and drawing graphical objects like lines, rectangles and circles.
+Of course, operations like raising dialog boxes or pulling
+down menu items should happen quickly, but their runtime
+is of little significance to overall performance.
+</P>
+<H4>Text Tests
+</H4>
+<P>
+The text test appends
+<TT>n</TT>
+short lines to a text box, one at a time,
+and causes the last line to be displayed each time.  The Tcl loop
+looks like this:
+<DL><DT><DD><TT><PRE>
+for {set i 1} {$i &#60;= $n} {incr i} {
+	.t insert end "$i\n"
+	.t see end
+	update
+}
+</PRE></TT></DL>
+The Limbo version is a direct transliteration:
+<DL><DT><DD><TT><PRE>
+for (i := 1; i &#60;= n; i++) {
+	tk-&#62;cmd(t, ".t insert end " + string i + "\n");
+	tk-&#62;cmd(t, ".t see end");
+	tk-&#62;cmd(t, "update");
+}
+</PRE></TT></DL>
+In Visual Basic, it is
+<DL><DT><DD><TT><PRE>
+For i = 1 To n
+    bigtext.Text = bigtext.Text &amp; CStr(i) &amp; crlf
+    bigtext.SelStart = Len(bigtext.Text)
+    bigtext.SelLength = 0
+    DoEvents
+Next i
+</PRE></TT></DL>
+and in Java
+<DL><DT><DD><TT><PRE>
+for (int i = 1; i &#60;= n; i++) {
+	bigtext.appendText(i + "\n");
+	Toolkit.getDefaultToolkit().sync();
+}
+</PRE></TT></DL>
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574018.gif"><br>
+<B>
+Text insertion test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</P>
+<P>
+We explicitly requested a screen update after each insertion,
+except in Visual Basic.
+Omitting these mandatory updates reduces runtimes significantly,
+because changes to the display are buffered
+so that only the final result is visible.
+Runtimes for this test are even less trustworthy than in earlier tests,
+since the display on Unix systems is managed by an X server
+that adds its own times into the mix.
+We used a stopwatch for Limbo on Unix,
+where reported times were unrelated to observed times.
+</P>
+<P>
+Visual Basic has no method for appending text to a
+<TT>TextBox</TT>,
+so creating each new display would appear to be a quadratic process.  
+In spite of this, Visual Basic runtimes are quite reasonable.
+The screen flashes and slows the display,
+apparently because Visual Basic redisplays
+the first line after each insertion.
+Visual Basic offers the alternative
+<TT>RichTextBox</TT>,
+which has more features (size, font, color),
+and also overcomes the 32,000 character limit of the regular
+<TT>TextBox</TT>.
+The same test takes about 30 percent longer with a
+<TT>RichTextBox</TT>.
+</P>
+<H4>Drawing Tests
+</H4>
+<P>
+The other major time-consuming activity for user interfaces
+is drawing graphical objects.
+By measuring the time it takes
+to draw
+<TT>n</TT>
+lines in a fan,
+each with a small colored circle at the end,  
+we hope to capture only the most basic behavior.
+We have not attempted to animate a scene,
+move any objects,
+or interact with them after they have been drawn.
+</P>
+<P>
+The Java version is representative:
+<DL><DT><DD><TT><PRE>
+for (int i = 1; i &#60;= lim; i++) {
+	g.setColor(Color.blue);
+	g.drawLine(MINX, MINY, MAXX, MINY + (int) (i * dy));
+	g.setColor(Color.black);
+	g.fillOval(MAXX, MINY + (int) (i * dy), d, d);
+	g.setColor(Color.red);
+	g.drawOval(MAXX+2, MINY + (int) (i * dy)+2, d-4, d-4);
+}
+</PRE></TT></DL>
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574019.gif"><br>
+<B>
+Line/circle drawing test
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</P>
+<DL>
+<DT><DT>&#32;<DD>
+Memory limits prevented testing Limbo for larger input sizes
+on Solaris and Windows,
+where an earlier version of the system is being used.
+In some cases,
+Limbo times appear to increase the more often the test is run.
+</dl>
+<P>
+These times are the least reliable,
+since each reflects design decisions
+in the implementation of the corresponding system.
+The times reported by internal timers in the programs
+are a lower bound on what a user sees;
+we have not included any additional delay that occurs
+before the screen is updated.
+</P>
+<P>
+Runtimes increase significantly if explicit updates are added
+after each drawing operation,
+as they might be in some kinds of animations.
+Java and Visual Basic appear to update the screen continuously,
+even though this behavior was not requested.
+Tk and Limbo updates are turned off and
+either happen all at once (Tk) or sporadically (Limbo).
+</P>
+<P>
+In general, graphics facilities differ significantly;
+our tests focus on elementary tasks.
+Tk's canvas widget (through Tcl or Limbo)
+is far richer and more flexible than what is available
+in Java or Visual Basic,
+but this test does not exercise those capabilities at all.
+</P>
+<H4>6 Compilation versus Interpretation
+</H4>
+<P>
+In simpler times, ``compilation'' meant translation from
+source code via assembler into native instructions.
+A program was compiled once, perhaps with a bit of optimization,
+and the result was an executable binary image that never changed.
+Today, ``compilation'' is more complicated.
+</P>
+<P>
+Scripting languages offer several intermediate positions,
+with multiple meanings even for ``interpretation.''
+Tcl 7.6 and Scheme 7.3 are pure interpreters that
+repeatedly parse the source code as they run;
+this is extremely flexible, but slowest of all,
+as the graphs above show clearly.
+Awk translates its program into a tree that is walked during execution,
+Visual Basic creates an internal p-code representation,
+and Java and Limbo translate into byte codes for virtual machines
+(another form of p-code).
+Such preprocessing affords the speedups depicted in the graphs below.
+</P>
+<P>
+In each case, it is possible to take the process further,
+either by translating the original program
+into something faster like C or C++,
+or by compiling the byte codes into machine instructions,
+either before execution or on demand during execution
+(``just in time compilation'').
+The graphs below show the results of some experiments with
+the ``compilation'' facilities provided by several of these languages:
+</P>
+<DL COMPACT>
+<DT>   -<DD>
+The Awk to C++ translator described in [Kernighan 91] produces C++
+that we compiled with Visual C++.
+<DT>   -<DD>
+Tcl 8.0b2 compiles into an internal byte code.
+<DT>   -<DD>
+Class files produced by Visual J++ are run with Microsoft's
+<TT>jview</TT>,
+which we believe to be a just-in-time compiler.
+The comparison is against Sun's JDK1.1 interpreter.
+<DT>   -<DD>
+Visual Basic 5.0 includes a native-mode compiler.
+The comparison is against Visual Basic 4.0.
+<DT>   -<DD>
+Limbo has a just-in-time compiler analogous to those for Java.
+<DT>   -<DD>
+VSCM [Blume 94] is a compact, portable implementation using a
+virtual machine written in C and a
+bytecode compiler written in Scheme itself.
+</dl>
+<br>&#32;<br>
+The graphs show the ratio of compiled runtime to interpreted runtime.
+For this experiment, we ran the tests only on the PC,
+where we had the most languages available.
+We only tried the largest of the inputs used earlier,
+to reduce the contribution of startup to the runtime measurements.
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574020.gif"><br>
+<B>
+Compiled time / interpreted time, by language
+</B><br>&#32;<br>
+</PRE></TT></DL>
+<DL>
+<DT><DT>&#32;<DD>
+The outlier here is the Java time for the associative array test.
+We believe the problem is with storage management.
+<DT><DT>&#32;<DD>
+Some Scheme tests are omitted because they ran into trouble:
+failure to parse the input or an infinite loop.
+On the bright side, times returned by VSCM are very accurate.
+<DL><DT><DD><TT><PRE>
+<br><img src="pap.16574021.gif"><br>
+<B>
+Compiled time / interpreted time, by task
+</B><br>&#32;<br>
+</PRE></TT></DL>
+</dl>
+<P>
+These graphs reveal a number of interesting facts.
+Compilation usually, but not always, reduces runtime;
+in a few cases it made performance much worse.
+Most of the improvements are modest;
+some languages (like Limbo) exhibit a large range of improvement,
+while others (like Visual Basic) exhibit only a narrow range.
+Not surprisingly,
+the largest improvements are for
+the simplest language features&#173;those most like
+regular programming languages;
+thus, the basic loop test and Ackermann's function improve most,
+while I/O tests improve least
+(unless the I/O system is also coded in the language in question,
+as it is with Limbo and seems to be with Java).
+</P>
+<H4>7 Discussion and Conclusions
+</H4>
+<P>
+Clearly one might perform many other experiments, for instance
+to fill in more language features more systematically,
+to investigate regular expressions (in Awk, Perl and Tcl)
+or string searches (in Java and Visual Basic),
+or to study more user-interface components.
+</P>
+<P>
+Another possibility would be to compare implementations
+of the same tools,
+since several of these languages are available in different implementations.
+For example, one might measure Awk, Gawk, Mawk and (on Windows 95) MKS Awk.
+There are many Java implementations,
+mainly focused on Windows.
+Unfortunately, these usually run only from within browsers,
+where security restrictions make it impossible to do the I/O tests.
+</P>
+<P>
+Some of the I/O runtimes are remarkably long.
+Published benchmarks rarely include I/O tests.
+Perhaps if they did,
+language implementations would perform better than they do.
+<br>&#32;<br>
+</P>
+<P>
+The amount of real memory makes a large difference in PC applications;
+once a program starts paging, runtimes become long and erratic.
+This happened with (at least) Awk, Perl, and Tcl.
+Upgrading our PC from 16Mb to 32Mb
+sped up several tests by a factor of two or more.
+(All results here are for 32Mb.)
+</P>
+<P>
+Memory management also matters.
+It seems clear that some of our tests encountered
+problems with the implementation of garbage collection.
+The usual symptom is runtimes that increase during a series of tests.
+Other factors are simply beyond control, and perhaps even beyond knowing.
+Modern machines use several levels of cache
+to make slow main memory appear to
+operate nearly at the speed of cache memory,
+but different processors (all with the same nominal speed)
+have different amounts and kinds of cache.
+<br>&#32;<br>
+</P>
+<P>
+The limitations of these results are important and bear repetition.
+These comparisons apply to specific language processors
+running on specific machines,
+and cannot be used to draw conclusions about
+overall performance differences of various languages in general.
+As we have worked on these experiments,
+we have been struck repeatedly by how often intuition is wrong.
+Some apparently small changes lead to
+unexpectedly large performance differences.
+For example,
+</P>
+<DL>
+<DT><DT>&#32;<DD>
+- keeping track of the string length matters for
+the C string-construction test on Unix systems,
+but not on PC's;
+<DT><DT>&#32;<DD>
+- using Perl associative arrays where indexed arrays
+would serve can increase runtimes dramatically;
+<DT><DT>&#32;<DD>
+- in Tcl8.0,
+``Code inside a procedure body is substantially faster than code outside
+any procedure.''
+[Ousterhout, private communication.]
+</dl>
+<br>&#32;<br>
+Even the intuitions of native speakers can be wrong.
+In response to comments, we modified some examples to
+be more colloquial, and found that these ``better''
+versions sometimes did not run much faster,
+and might even run slower.
+For example,
+<DL>
+<DT><DT>&#32;<DD>
+- we wrote two Scheme versions of the timing loop,
+string construction, and word count,
+one using the tail-recursion favored by Scheme aficionados,
+the other using the barbarian import
+<TT>set!</TT>;
+the difference in performance between the two versions
+never exceeded ten percent,
+and did not consistently favor one version over the other.
+<DT><DT>&#32;<DD>
+- in earlier versions of this manuscript,
+Perl experts noticed leftovers introduced by
+the Awk-to-Perl translator
+<I>a2p</I>,
+and offered the reasonable criticism
+that it was unfair to compare
+the performance of Perl code that was mechanically generated
+with hand-coded programs in other languages.
+Removing spurious
+<TT>chop</TT>
+statements
+from the programs did improve their runtimes,
+but never by more than ten percent.
+On the other hand,
+it is about ten percent faster
+to create the array of lines in
+<I>tail</I>
+explicitly,
+rather than reading the input file all at once.
+</dl>
+<br>&#32;<br>
+Needless to say,
+we advise all who want to know
+which version of a program will run faster
+to construct test programs and find out
+the truth for their language processor and machine.
+<P>
+Despite the preceding disclaimer,
+we essay the following summary of our observations:
+</P>
+<DL>
+<DT><DT>&#32;<DD>
+Awk and Perl are similar in performance.
+Awk ran faster in about half the tests,
+contrary to the conventional wisdom that Perl is faster than Awk.
+<DT><DT>&#32;<DD>
+Tcl is significantly slower than Awk and Perl,
+typically by a factor of five or ten,
+but the latest bytecode version narrows that gap significantly.
+Scheme appears to be very roughly comparable with Tcl
+(aside from volume I/O, where interpreted Scheme's performance is hopeless);
+again, various compilation techniques speed improve this behavior.
+<DT><DT>&#32;<DD>
+Our experiments do not support the folklore that
+Java interpreters are 10 times slower than C,
+except when the excruciatingly slow I/O libraries are involved;
+otherwise the ratio is much smaller.
+Using buffered I/O functions improves runtimes,
+but by no more than a factor of two.
+Just-in-time compilation can have a significant effect, usually beneficial.
+<br>&#32;<br>
+</dl>
+<P>
+Runtime is only one measure of a programming language;
+another is suitability for task.
+Scripting languages are meant to be easy to program in;
+one sacrifices runtime and control for ease of expression.
+We did not try to measure expressiveness, but
+program size offers some clue.
+The total number of lines of code for the non-graphics tests ranges from
+66 for Awk, 96 of Perl, 105 of Tcl, 170 of C and Scheme,
+200 of Visual Basic,
+to around 350 for Java and Limbo.
+<br>&#32;<br>
+</P>
+<P>
+Comparisons are a mainstay of computer literature.
+Conferences, journals, and magazines are full of
+tables and colorful charts that compare
+execution time or memory usage of one or more programs
+on different machines or implementations.
+In light of the variability in results that we saw, however,
+we wonder whether similar variation lurks behind published
+benchmark studies as well.
+It does seem wise to take all such experiments&#173;including
+these&#173;with a large grain of salt.
+</P>
+<H4>Acknowledgements
+</H4>
+<P>
+Thanks to Jon Bentley,
+Mark-Jason Dominus,
+Lorenz Huelsbergen,
+Brian Lewis,
+Doug McIlroy,
+John Ousterhout,
+Rob Pike,
+Arnold Robbins,
+Wolfram Schneider,
+Howard Trickey, and
+Phil Wadler,
+for helpful suggestions and comments on the manuscript.
+We are also grateful to Phil Wadler for performing some
+experiments with ML, and to Will Clinger for improving our
+Scheme programs and for his experiments
+comparing a number of Scheme implementations on our test
+programs [Clinger 97].
+</P>
+<H4>References
+</H4>
+<br>&#32;<br>
+[Abelson 96]
+<I>Structure and Interpretation of Computer Programs</I>
+(second edition),
+H. Abelson, G. J. Sussman, J. Sussman,
+McGraw-Hill, 1996.
+<br>&#32;<br>
+[Becker 87]
+R. A. Becker, L. Denby, R. McGill, A. R. Wilks,
+``Analysis of Data From the <B>Places Rated Almanac</B>,''
+<I>The American Statistician</I>,
+August, 1987.
+By adjusting the weights with which individual components are combined into 
+a final score, one can make almost any place look good or bad.
+<br>&#32;<br>
+[Bentley 91]
+<I>An Elementary C Cost Model</I>,
+by Bentley, Kernighan and Van Wyk
+(Unix Review, February, 1991),
+describes one attempt to do systematic measurements
+of the cost of basic operations in a single language, C.
+<br>&#32;<br>
+[Blume 94]
+<I>VSCM &#173; A Portable Scheme Implementation</I>,
+Matthias Blume.
+<TT>www.cs.Princeton.edu/~blume/vscm</TT>.
+<br>&#32;<br>
+[Booth 97]
+<I>Inner Loops</I>,
+by Rick Booth (Addison-Wesley, 1997),
+is an excellent reference on tuning PC programs.
+<br>&#32;<br>
+[Caffeine 97]
+<TT>http://www.webfayre.com/cm.html</TT>.
+``CaffeineMark Java Benchmark,''
+Pendragon Software.
+<br>&#32;<br>
+[Clinger 97]
+William C. Clinger, http://www.ccs.neu.edu/home/will/Twobit/kvwbenchmarks.html.
+Compares the tests from this paper on a variety of
+Scheme implementations.
+<br>&#32;<br>
+[Gosling 97] Private communication.
+<br>&#32;<br>
+[Hardwick 97]
+<TT>http://www.cs.cmu.edu/~jch/java/optimization.html</TT>.
+Jonathan Hardwick's 
+``Java Optimization'' Web page
+contains a variety of benchmarks for Java programs
+and links to related material.
+<br>&#32;<br>
+[Kernighan 91]
+B. W. Kernighan,
+``An AWK to C++ Translator,''
+USENIX C++ Conference, Washington, DC, April, 1991.
+<br>&#32;<br>
+[Scheme 91]
+The <B>Revised</B>^4
+<I>Report on the Algorithmic Language Scheme</I>
+(Nov 1991), edited by Klinger and Rees, is the official
+definition.
+<P>
+The following lists standard references for the various languages 
+and some related material on performance evaluation.
+These are not cited in the text.
+</P>
+<br>&#32;<br>
+<I>The AWK Programming Language</I>,
+by Aho, Kernighan and Weinberger
+(Addison-Wesley, 1988), is the standard reference;
+Arnold Robbins' 
+<I>Effective AWK Programming</I>
+(SSC, 1996) is a newer reference.
+<br>&#32;<br>
+Perl 5 is best described in
+<I>Programming Perl, Second Edition</I>
+by Wall, Christiansen and Schwartz 
+(O'Reilly, 1996).
+<br>&#32;<br>
+Ousterhout's 
+<I>Tcl and the Tk Toolkit</I>
+(Addison-Wesley, 1994) is a definitive description
+of version 7.4/3.6.
+<br>&#32;<br>
+Flanagan's 
+<I>Java in a Nutshell</I>
+(O'Reilly, 1996 [first edition])
+is an excellent introduction;
+Arnold and Gosling's 
+<I>The Java Programming Language</I>
+(Addison-Wesley, 1996) is a good alternative.
+<br>&#32;<br>
+Limbo and Inferno are best described on the Inferno web page,
+<TT>http://inferno.bell-labs.com</TT>.
+<br>&#32;<br>
+There are myriad books on Visual Basic;
+Microsoft's reference and user guides are definitive.
+<br>&#32;<br>
+<A href=http://www.lucent.com/copyright.html>
+Copyright</A> &#169; 1998 Lucent Technologies Inc.  All rights reserved.
+</body></html>

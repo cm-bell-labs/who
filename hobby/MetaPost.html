@@ -1,0 +1,55 @@
+<head>
+<title>The MetaPost page</title>
+<h1>MetaPost</h1>
+</head>
+<BODY>
+
+MetaPost is a powerful graphics language based on
+<a href="http://www-cs-faculty.Stanford.EDU/~knuth/">Knuth's</a>
+METAFONT, but with PostScript output and facilities for including
+typeset text.  Details on the language itself are available in
+<a href="mppubs.html">various publications</a>.  See also
+<a href="http://www.tug.org/metapost.html"> http://www.tug.org/metapost.html</a>
+and
+<a href="http://www.tug.org/interest.html"> http://www.tug.org/interest.html</a>
+The language and its implementation are now in the public domain.
+<p>
+
+<ul>
+<li> <a href="mphist.html">The history of MetaPost</a>.
+<li> <a href="mperrors.txt.gz">Listings</a>
+of bug fixes and other changes in recent versions.
+<li> <a href="mpaccess.html">How to obtain MetaPost</a>.
+<li> <a href="mpapplic.html">Interesting applications of MetaPost</a>.
+<li> <a href="mppubs.html#man">The User's manual</a>.
+<li> <a href="index.html">John Hobby</a>, creator of the MetaPost language.
+<li> <a href="mpmail.html">Is there a MetaPost mailing list?</a>
+</ul>
+
+<h2> Sample Output</h2>
+
+MetaPost features <img align="middle" src="fig37.gif" alt="[image]">
+curved arrowheads.
+
+<h2> <img src="mplogo.gif" alt="METAPOST or MetaPost?"> </h2>
+
+There is no &quot;official&quot; version of the MetaPost logo.
+Both versions are acceptable to me.  I generally use &quot;MetaPost&quot;
+in places such as this web page where using TeX's logo10 font would be
+awkward.  If you are using LaTeX's
+<a href="ftp://ftp.cdrom.com/pub/tex/ctan/macros/latex/contrib/supported/mflogo">
+mflogo package</a>, you might as well use <tt>\MP</tt> to get
+&quot;<img src="mpsmall.gif" alt="METAPOST">&quot;.
+
+<h2> Driver Support </h2>
+
+MetaPost programs can output standard encapsulated PostScript files,
+but these can be difficult to deal with because of the use of TeX fonts
+such as <tt>cmr10</tt>.  Such fonts are usually not resident on PostScript
+printers, so they have to be downloaded by a dvi-to-PostScript program
+that processes TeX output.  Special care is required to ensure that fonts
+used by the MetaPost output get downloaded properly.  One dvi-to-PostScript
+driver that supports this is Rokicki's
+<a href="ftp://ftp.cdrom.com/pub/tex/ctan/dviware/dvips"><tt>dvips</tt></a>.
+
+</body>

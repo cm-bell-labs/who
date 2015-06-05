@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+    
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    
+  <meta name="Author" content="Kedar Namjoshi">
+    
+  <meta name="GENERATOR" content="Mozilla/4.78 [en] (WinNT; U) [Netscape]">
+  <title>Kedar Namjoshi -- Publications</title>
+</head>
+  <body text="#000000" bgcolor="#ffffff" link="#0000ef" vlink="#ce31ce" alink="#ff0000">
+  
+<hr width="100%"> <br>
+&nbsp;&nbsp; I've arranged my publications below by topic (some papers appear 
+under multiple topics). The journal and conference&nbsp; articles are usually covered
+by the publisher's copyright -- they are made available here for convenient
+access. <br>
+ 
+<hr width="100%"> 
+<br>
+<b><font color="#000099"><font size="+1">Verification Theory</font></font></b>
+<br>
+The first paper describes a proof rule for showing equivalence of two programs
+up to hiding of irrelevant information (stuttering bisimulation).&nbsp; It
+greatly simplifies the earlier formulations, and is especially well-suited 
+for automated theorem proving (see Pete Manolios' <a href="http://www.cs.utexas.edu/users/pete">web page</a> 
+for extensions and applications of this idea). The second paper shows how
+model checkers can be thought of as deductive proof generators. Both failure
+and success proofs have a number of interesting applications. 
+The third paper fills a gap in proof generation: how to lift a generated proof for 
+an abstraction of a concrete system back to the concrete domain. 
+<ul>
+ <li> <i>A Simple Characterization of Stuttering Bisimulation&nbsp; </i> 
+(<a href="publications/fsttcs97_wfb.ps">.ps</a>)</li>
+(FST&amp;TCS 1997) 
+<br>
+<li> <i>Certifying Model Checkers&nbsp; </i> 
+(<a href="publications/cav2001_certifying_mc.ps">.ps</a>)
+</li>
+(CAV 2001)
+<li> <i>Lifting Temporal Proofs Through Abstractions&nbsp; </i> 
+(<a href="publications/vmcai2003_lifting_proofs.ps">.ps</a>)
+</li>
+(VMCAI 2003)
+</ul>
+
+<b><font color="#000099"><font size="+1">Program Abstraction</font></font></b>
+<br>
+A very useful state space reduction technique is to compute an abstraction 
+of the program that preserves just enough information to decide the status 
+of the correctness property. Abstractions are often defined by hand and then
+proved correct. The first paper adopts this approach; the second paper presents
+an algorithm to automatically compute predicate abstractions. This algorithm
+is currently being&nbsp; implemented and tried out on a number of hardware
+and software examples. The resulting tool, AUTOABS, is described in the third paper. 
+The fourth paper describes how to lift automatically generated proofs from abstract
+to concrete domains. The fifth paper describes an application of an automated 
+abstraction algorithm to the analysis of "shape" properties of a program heap, such 
+as reachability and circularity. 
+<ul>
+<li> <i>Linking Theorem Proving and Model Checking with&nbsp; Well Founded Bisimulation </i>
+(<a href="publications/cav99_abit.ps">.ps</a>)
+</li>
+(CAV 1999,&nbsp; with Panagiotis Manolios and Robert Sumners) 
+<br>
+<li> <i>Syntactic Program Transformations for Automatic Abstraction&nbsp; </i>
+(<a href="publications/cav2000_abstraction.ps">.ps</a>)
+</li>
+(CAV 2000, with Robert P. Kurshan)
+<br>
+<li><i>AUTOABS: Syntax Directed Program Abstraction&nbsp; </i>
+(<a href="publications/autoabs.ps">.ps</a>)</li>
+(with Nina Amla and Robert P. Kurshan)
+<br>
+<li> <i>Lifting Temporal Proofs Through Abstractions&nbsp; </i> 
+(<a href="publications/vmcai2003_lifting_proofs.ps">.ps</a>)
+</li>
+(VMCAI 2003)
+<li> <i>Shape Analysis Through Predicate Abstraction and Model Checking&nbsp; </i> 
+(<a href="publications/vmcai2003_shape_analysis.ps">.ps</a>)
+</li>
+(VMCAI 2003, with Dennis Dams)
+
+</ul>
+
+<b><font color="#000099"><font size="+1">Compositional Reasoning</font></font></b>
+<br>
+Most programs are too big (textually or in terms of their state space) to
+reason about as a single unit. Compositional reasoning attempts to alleviate 
+this problem by reducing reasoning about a composition to reasoning about 
+individual components. This is also closely connected to modular reasoning: 
+for example, using properties established earlier about library functions 
+in reasoning about programs that use the library. The papers below deal both
+with theoretical issues (when are compositional&nbsp; reasoning rules sound
+and complete for arbitrary temporal properties?) and practical ones (how
+to utilise the structural properties of timing diagrams in order to facilitate
+such reasoning?). 
+<ul>
+<li> <i>On the Completeness of Compositional Reasoning&nbsp; </i>
+(<a href="publications/cav2000_compos.ps">.ps</a>)
+</li>
+(CAV 2000, with Richard Trefler) 
+<br>
+<li> <i>Assume-Guarantee Based Compositional Reasoning for Synchronous Timing Diagrams </i>
+(<a href="publications/tacas2001_compos.ps">.ps</a>)
+</li>
+(TACAS 2001,&nbsp; with Nina Amla, E. Allen Emerson, and Richard Trefler) 
+<br>
+<li> <i>Visual Specifications for Modular Reasoning about Asynchronous Systems </i>
+(<a href="publications/forte2002.ps">.ps</a>)
+</li>
+(FORTE 2002 [<b>Best Paper Award</b>],&nbsp; with Nina Amla, E. Allen Emerson, and Richard Trefler) 
+<br>
+<li> <i>Branching Time Compositional Reasoning </i>
+</li>  
+(with Richard Trefler; draft)
+</ul>
+
+ <b><font color="#000099"><font size="+1">Model Checking for Infinite-State 
+Parameterized Systems</font></font></b> <br>
+The systems considered here are programs&nbsp; with an unbounded number of
+instances of a small, finite number of process types.&nbsp; The question is
+whether such a program satisfies an property for&nbsp; <i>all&nbsp; instances<b>
+. </b></i>Examples of such programs abound: for example, one may ask whether
+a distributed mutual exclusion protocol ensures mutual exclusion for all
+instances? While this question is undecidable in general,&nbsp; the papers
+below show decidability for important special cases: token rings, synchronous
+broadcast protocols, and some kinds of broadcast cache-coherence protocols. 
+<ul>
+<li> <i>Reasoning about Rings (POPL 95) </i>
+(<a href="publications/popl95_token_rings.ps">.ps</a>)</li>
+(POPL 1995, with E. Allen Emerson) 
+<br>
+<li> <i>Automatic Verification of Parameterized&nbsp;Synchronous Systems</i> 
+(<a href="publications/cav96_synch.ps">.ps</a>)</li>
+(CAV 1996, with E. Allen Emerson) 
+<br>
+<li> <i>Verification of a Parameterized Bus Arbitration Protocol</i> 
+(<a href="publications/cav98_sae_j1850.ps">.ps</a>)</li>
+(CAV 1998, with E. Allen Emerson) 
+<br>
+<li> <i>On Model Checking for Nondeterministic Infinite State Systems </i>
+(<a href="publications/lics98_broadcast.ps">.ps</a>)</li>
+(LICS 1998, with E. Allen Emerson)
+</ul>
+ 
+<b><font color="#000099"><font size="+1">Analysis of Timing Diagrams</font></font></b>
+<br>
+Timing diagrams appear in almost every hardware manual, but these are informal
+descriptions which can not be used as formal specifications. In these papers,
+my co-authors and I provide a formal syntax&nbsp; for timing diagrams, and
+a semantics in terms of&nbsp; automata. Surprisingly, while the automaton
+for a timing diagram property can be exponential in the diagram size, the
+automaton for the <i>negated </i>property is linear! This fortunate occurrence
+gives rise to efficient, linear time, model checking algorithms.
+
+Furthermore, timing diagrams have a decompositional (conjunctive) structure which  
+can be exploited to create heuristics for decomposing a diagram into assume-guarantee
+pairs for compositional reasoning. These simple heuristics work surprisingly well in practice. 
+<ul>
+
+<li> <i>Efficient Decompositional Model Checking for Regular Timing Diagrams </i>
+(<a href="publications/charme99_asynch_td.ps">.ps</a>)
+</li>
+(CHARME 1999,&nbsp; with Nina Amla and E. Allen Emerson) 
+<br>
+
+<li> <i>Model Checking Synchronous Timing Diagrams </i>
+(<a href="publications/fmcad2000_synch_td.ps">.ps</a>)</li>
+(FMCAD 2000, with Nina Amla and E. Allen Emerson and Robert P. Kurshan) 
+<br>
+
+<li> <i>RTDT: A Front-End for Efficient Model Checking of Synchronous Timing Diagrams</i>
+(<a href="publications/cav2001_rtdt.ps">.ps</a>)</li>
+(CAV 2001,&nbsp; with Nina Amla and E. Allen Emerson and Robert P. Kurshan)
+<br>
+
+<li> <i>Assume-Guarantee Based Compositional Reasoning for Synchronous Timing Diagrams </i>
+(<a href="publications/tacas2001_compos.ps">.ps</a>)
+</li>
+(TACAS 2001,&nbsp; with Nina Amla, E. Allen Emerson, and Richard Trefler) 
+<br>
+
+<li> <i>Visual Specifications for Modular Reasoning about Asynchronous Systems </i>
+(<a href="publications/forte2002.ps">.ps</a>)
+</li>
+(FORTE 2002 [<b>Best Paper Award</b>],&nbsp; with Nina Amla, E. Allen Emerson, and Richard Trefler) 
+<br>
+
+</ul>
+
+<b><font color="#000099"><font size="+1">Applications</font></font></b> <br>
+I have worked on some applications where&nbsp; program semantics and verification
+questions appear in surprising ways. The first is the problem of detecting
+conflicts in telecommunications features (e.g., call-waiting); the second
+tackles the question of whether <i>circular</i> combinational circuits are
+well defined. 
+<ul>
+<li> <i>Feature Specification and Automated Conflict Detection </i>
+(<a href="publications/fiw2000.ps">.ps</a>)</li>
+(Feature Interactions Workshop 2000, with Amy P. Felty) 
+<br>
+(accepted to ACM Trans. on Softw. Engg. Methodology (TOSEM))
+<li> <i>Efficient Analysis of Cyclic Definitions </i>
+(<a href="publications/cav99_constructivity.ps">.ps</a>)</li>
+(CAV 1999, with Robert P. Kurshan)
+<br>
+</ul>
+
+ <b><font color="#000099"><font size="+1">Dissertation</font></font></b> <br>
+For those who're curious about my dissertation, here's a 
+<a href="http://www.cs.utexas.edu/users/UTCS/techreports/index/html/Abstracts.1999.html#TR-99-06"> link</a>
+ to it. 
+<br>
+<br>
+
+<b><font color="#000099"><font size="+1">Drafts</font></font></b><br>
+<i>Compositional Reasoning for Asynchronous Systems</i> 
+(<a href="publications/draft_asynch_comp_reasoning.ps">.ps</a>)
+<br>
+&nbsp;(draft, with Nina Amla, E. Allen Emerson, and Richard Trefler) 
+<ul>
+
+<h1> </h1>
+ 
+</ul>
+  
+</body>
+</html>

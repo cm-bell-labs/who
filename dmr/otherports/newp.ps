@@ -1,0 +1,7472 @@
+%!PS-Adobe-2.0
+%%Version: 0.1
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+%
+% Version 3.3.2 prologue for troff files.
+%
+
+/#copies 1 store
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+%
+% Tries to round clipping path dimensions, as stored in array pagebbox, so they
+% match one of the known sizes in the papersizes array. Lower left coordinates
+% are always set to 0.
+%
+
+/roundpagebbox {
+    7 dict begin
+	/papersizes [8.5 inch 11 inch 14 inch 17 inch] def
+
+	/mappapersize {
+		/val exch def
+		/slop .5 inch def
+		/diff slop def
+		/j 0 def
+		0 1 papersizes length 1 sub {
+			/i exch def
+			papersizes i get val sub abs
+			dup diff le {/diff exch def /j i def} {pop} ifelse
+		} for
+		diff slop lt {papersizes j get} {val} ifelse
+	} def
+
+	pagebbox 0 0 put
+	pagebbox 1 0 put
+	pagebbox dup 2 get mappapersize 2 exch put
+	pagebbox dup 3 get mappapersize 3 exch put
+    end
+} bind def
+
+%%EndProlog
+%%BeginSetup
+mark
+%
+% Encoding vector and redefinition of findfont for the ISO Latin1 standard.
+% The 18 characters missing from ROM based fonts on older printers are noted
+% below.
+%
+
+/ISOLatin1Encoding [
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/space
+	/exclam
+	/quotedbl
+	/numbersign
+	/dollar
+	/percent
+	/ampersand
+	/quoteright
+	/parenleft
+	/parenright
+	/asterisk
+	/plus
+	/comma
+	/minus
+	/period
+	/slash
+	/zero
+	/one
+	/two
+	/three
+	/four
+	/five
+	/six
+	/seven
+	/eight
+	/nine
+	/colon
+	/semicolon
+	/less
+	/equal
+	/greater
+	/question
+	/at
+	/A
+	/B
+	/C
+	/D
+	/E
+	/F
+	/G
+	/H
+	/I
+	/J
+	/K
+	/L
+	/M
+	/N
+	/O
+	/P
+	/Q
+	/R
+	/S
+	/T
+	/U
+	/V
+	/W
+	/X
+	/Y
+	/Z
+	/bracketleft
+	/backslash
+	/bracketright
+	/asciicircum
+	/underscore
+	/quoteleft
+	/a
+	/b
+	/c
+	/d
+	/e
+	/f
+	/g
+	/h
+	/i
+	/j
+	/k
+	/l
+	/m
+	/n
+	/o
+	/p
+	/q
+	/r
+	/s
+	/t
+	/u
+	/v
+	/w
+	/x
+	/y
+	/z
+	/braceleft
+	/bar
+	/braceright
+	/asciitilde
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/.notdef
+	/dotlessi
+	/grave
+	/acute
+	/circumflex
+	/tilde
+	/macron
+	/breve
+	/dotaccent
+	/dieresis
+	/.notdef
+	/ring
+	/cedilla
+	/.notdef
+	/hungarumlaut
+	/ogonek
+	/caron
+	/space
+	/exclamdown
+	/cent
+	/sterling
+	/currency
+	/yen
+	/brokenbar		% missing
+	/section
+	/dieresis
+	/copyright
+	/ordfeminine
+	/guillemotleft
+	/logicalnot
+	/hyphen
+	/registered
+	/macron
+	/degree			% missing
+	/plusminus		% missing
+	/twosuperior		% missing
+	/threesuperior		% missing
+	/acute
+	/mu			% missing
+	/paragraph
+	/periodcentered
+	/cedilla
+	/onesuperior		% missing
+	/ordmasculine
+	/guillemotright
+	/onequarter		% missing
+	/onehalf		% missing
+	/threequarters		% missing
+	/questiondown
+	/Agrave
+	/Aacute
+	/Acircumflex
+	/Atilde
+	/Adieresis
+	/Aring
+	/AE
+	/Ccedilla
+	/Egrave
+	/Eacute
+	/Ecircumflex
+	/Edieresis
+	/Igrave
+	/Iacute
+	/Icircumflex
+	/Idieresis
+	/Eth			% missing
+	/Ntilde
+	/Ograve
+	/Oacute
+	/Ocircumflex
+	/Otilde
+	/Odieresis
+	/multiply		% missing
+	/Oslash
+	/Ugrave
+	/Uacute
+	/Ucircumflex
+	/Udieresis
+	/Yacute			% missing
+	/Thorn			% missing
+	/germandbls
+	/agrave
+	/aacute
+	/acircumflex
+	/atilde
+	/adieresis
+	/aring
+	/ae
+	/ccedilla
+	/egrave
+	/eacute
+	/ecircumflex
+	/edieresis
+	/igrave
+	/iacute
+	/icircumflex
+	/idieresis
+	/eth			% missing
+	/ntilde
+	/ograve
+	/oacute
+	/ocircumflex
+	/otilde
+	/odieresis
+	/divide			% missing
+	/oslash
+	/ugrave
+	/uacute
+	/ucircumflex
+	/udieresis
+	/yacute			% missing
+	/thorn			% missing
+	/ydieresis
+] def
+
+/NewFontDirectory FontDirectory maxlength dict def
+
+%
+% Apparently no guarantee findfont is defined in systemdict so the obvious
+%
+%	systemdict /findfont get exec
+%
+% can generate an error. So far the only exception is a VT600 (version 48.0).
+%
+
+userdict /@RealFindfont known not {
+	userdict begin
+		/@RealFindfont systemdict begin /findfont load end def
+	end
+} if
+
+/findfont {
+	dup NewFontDirectory exch known not {
+		dup
+		%dup systemdict /findfont get exec	% not always in systemdict
+		dup userdict /@RealFindfont get exec
+		dup /Encoding get StandardEncoding eq {
+			dup length dict begin
+				{1 index /FID ne {def}{pop pop} ifelse} forall
+				/Encoding ISOLatin1Encoding def
+				currentdict
+			end
+			/DummyFontName exch definefont
+		} if
+		NewFontDirectory 3 1 roll put
+	} if
+	NewFontDirectory exch get
+} bind def
+
+%%Patch from lp
+%%EndPatch from lp
+
+setup
+%%EndSetup
+%%Page: 1 1
+/saveobj save def
+mark
+1 pagesetup
+12 /Times-Bold f
+(UNIX Operating System) 1686 840 w
+(Porting Experiences*) 2976 840 w
+10 /Times-Italic f
+(D. E. BODENSTAB, T. F. HOUGHTON, K. A. KELLEMAN,) 1664 1080 w
+(G. RONKIN, and E. P. SCHAN) 2253 1200 w
+(ABSTRACT) 2643 1440 w
+10 /Times-Roman f
+(One of) 1080 1800 w
+(the) 1380 1800 w
+(reasons) 1528 1800 w
+(for) 1853 1800 w
+(the) 1995 1800 w
+(dramatic) 2143 1800 w
+(growth) 2518 1800 w
+(in) 2827 1800 w
+(popularity) 2931 1800 w
+(of) 3368 1800 w
+(the) 3477 1800 w
+(UNIX\(TM\)) 3625 1800 w
+(operating) 4116 1800 w
+(sys\255) 4519 1800 w
+(tem) 1080 1920 w
+(is) 1258 1920 w
+(the) 1353 1920 w
+(portability) 1503 1920 w
+(of) 1948 1920 w
+(both) 2059 1920 w
+(the) 2265 1920 w
+(operating) 2415 1920 w
+(system) 2820 1920 w
+(and) 3126 1920 w
+(its) 3298 1920 w
+(associated) 3421 1920 w
+(user\255level) 3858 1920 w
+(programs.) 4278 1920 w
+(This) 1080 2040 w
+(paper) 1292 2040 w
+(highlights) 1547 2040 w
+(the) 1982 2040 w
+(portability) 2138 2040 w
+(of) 2589 2040 w
+(the) 2706 2040 w
+(UNIX) 2862 2040 w
+(operating) 3145 2040 w
+(system,) 3557 2040 w
+(presents) 3895 2040 w
+(some) 4257 2040 w
+(gen\255) 4503 2040 w
+(eral) 1080 2160 w
+(porting) 1260 2160 w
+(considerations,) 1580 2160 w
+(and) 2213 2160 w
+(shows) 2388 2160 w
+(how) 2669 2160 w
+(some) 2872 2160 w
+(of) 3114 2160 w
+(the) 3228 2160 w
+(ideas) 3381 2160 w
+(were) 3617 2160 w
+(used) 3841 2160 w
+(in) 4055 2160 w
+(actual) 4163 2160 w
+(UNIX) 4431 2160 w
+(operating) 1080 2280 w
+(system) 1496 2280 w
+(porting) 1813 2280 w
+(efforts.) 2141 2280 w
+(Discussions) 2465 2280 w
+(of) 2982 2280 w
+(the) 3104 2280 w
+(efforts) 3265 2280 w
+(associated) 3564 2280 w
+(with) 4013 2280 w
+(porting) 4230 2280 w
+(the) 4558 2280 w
+(UNIX) 1080 2400 w
+(operating) 1370 2400 w
+(system) 1788 2400 w
+(to) 2107 2400 w
+(an) 2226 2400 w
+(Intel\(TM\)) 2361 2400 w
+(8086\255based) 2801 2400 w
+(system,) 3302 2400 w
+(two) 3646 2400 w
+(UNIVAC\(TM\)) 3836 2400 w
+(1100) 4480 2400 w
+(Series processors, and the AT&T 3B20S and 3B5 minicomputers are presented.) 1080 2520 w
+10 /Times-Bold f
+(I. INTRODUCTION) 720 2760 w
+10 /Times-Roman f
+(One) 970 2916 w
+(of) 1166 2916 w
+(the) 1279 2916 w
+(reasons) 1431 2916 w
+(for) 1760 2916 w
+(the) 1906 2916 w
+(dramatic) 2058 2916 w
+(growth) 2438 2916 w
+(in) 2752 2916 w
+(popularity) 2861 2916 w
+(of) 3303 2916 w
+(the) 3417 2916 w
+(UNIX) 3570 2916 w
+([1,) 3850 2916 w
+(2]) 3989 2916 w
+(operating) 4103 2916 w
+(system) 4511 2916 w
+(is) 4820 2916 w
+(the) 4918 2916 w
+(high) 720 3036 w
+(degree) 951 3036 w
+(of) 1269 3036 w
+(portability) 1405 3036 w
+(exhibited) 1875 3036 w
+(by) 2300 3036 w
+(the) 2453 3036 w
+(operating) 2628 3036 w
+(system) 3058 3036 w
+(and) 3388 3036 w
+(its) 3584 3036 w
+(associated) 3731 3036 w
+(user\255level) 4193 3036 w
+(programs.) 4638 3036 w
+(Although) 720 3156 w
+(developed) 1129 3156 w
+(in) 1570 3156 w
+(1969) 1679 3156 w
+(on) 1910 3156 w
+(a) 2041 3156 w
+(Digital) 2116 3156 w
+(Equipment) 2425 3156 w
+(Corporation) 2896 3156 w
+(PDP7\(TM\),) 3411 3156 w
+(the) 3918 3156 w
+(UNIX) 4072 3156 w
+(operating) 4353 3156 w
+(system) 4762 3156 w
+(has) 720 3276 w
+(since) 879 3276 w
+(been) 1110 3276 w
+(ported) 1324 3276 w
+(to) 1605 3276 w
+(a) 1709 3276 w
+(number) 1779 3276 w
+(of) 2110 3276 w
+(processors varying in size from 16\255bit microprocessors to 32\255bit main\255) 2219 3276 w
+(frames.) 720 3396 w
+(This) 1060 3396 w
+(high) 1282 3396 w
+(degree) 1504 3396 w
+(of) 1813 3396 w
+(portability) 1940 3396 w
+(has) 2401 3396 w
+(made) 2578 3396 w
+(the) 2838 3396 w
+(UNIX) 3004 3396 w
+(operating) 3297 3396 w
+(system) 3718 3396 w
+(a) 4040 3396 w
+(candidate) 4129 3396 w
+(to) 4556 3396 w
+(meet) 4679 3396 w
+(the) 4918 3396 w
+(diverse computing needs of the office and computing center environments.) 720 3516 w
+(This) 970 3672 w
+(paper) 1178 3672 w
+(highlights) 1429 3672 w
+(some) 1860 3672 w
+(of) 2101 3672 w
+(the) 2214 3672 w
+(porting) 2366 3672 w
+(issues) 2685 3672 w
+(associated) 2954 3672 w
+(with) 3394 3672 w
+(porting) 3602 3672 w
+(the) 3921 3672 w
+(UNIX) 4074 3672 w
+(operating) 4354 3672 w
+(system) 4762 3672 w
+(to) 720 3792 w
+(a) 827 3792 w
+(variety) 900 3792 w
+(of) 1206 3792 w
+(processors.) 1318 3792 w
+(The) 1793 3792 w
+(bulk) 1977 3792 w
+(of) 2184 3792 w
+(the) 2296 3792 w
+(paper) 2447 3792 w
+(discusses) 2697 3792 w
+(issues) 3098 3792 w
+(associated) 3366 3792 w
+(with) 3805 3792 w
+(porting) 4012 3792 w
+(the) 4330 3792 w
+(UNIX) 4481 3792 w
+(operat\255) 4758 3792 w
+(ing) 720 3912 w
+(system) 876 3912 w
+(kernel.) 1182 3912 w
+(User\255level) 1484 3912 w
+(porting) 1927 3912 w
+(issues) 2245 3912 w
+(are) 2513 3912 w
+(not) 2663 3912 w
+(discussed) 2820 3912 w
+(in) 3232 3912 w
+(detail.) 3339 3912 w
+(However,) 3615 3912 w
+(some) 4034 3912 w
+(architectural) 4274 3912 w
+(issues) 4801 3912 w
+(\(e.g.,) 720 4032 w
+(byte) 963 4032 w
+(ordering\)) 1176 4032 w
+(are) 1588 4032 w
+(common) 1750 4032 w
+(to) 2141 4032 w
+(both) 2260 4032 w
+(user\255) 2479 4032 w
+(and) 2719 4032 w
+(kernel\255level) 2904 4032 w
+(code.) 3421 4032 w
+(The) 3675 4032 w
+(processors) 3871 4032 w
+(discussed) 4333 4032 w
+(are) 4757 4032 w
+(the) 4918 4032 w
+(Intel*) 720 4152 w
+(8086) 1001 4152 w
+(microprocessor,) 1249 4152 w
+(the) 1937 4152 w
+(AT&T) 2107 4152 w
+(3B20S) 2427 4152 w
+(minicomputer,) 2748 4152 w
+(the) 3382 4152 w
+(AT&T) 3553 4152 w
+(3B5) 3874 4152 w
+(minicomputer,) 4090 4152 w
+(and) 4725 4152 w
+(the) 4918 4152 w
+(UNIVAC\(TM\) 1100 Series mainframes.) 720 4272 w
+10 /Times-Bold f
+(II. PORTING ISSUES) 720 4512 w
+10 /Times-Roman f
+("Given) 970 4668 w
+(that) 1285 4668 w
+(I) 1465 4668 w
+(have) 1528 4668 w
+(processor) 1746 4668 w
+(X,) 2158 4668 w
+(what) 2285 4668 w
+(do) 2509 4668 w
+(I) 2639 4668 w
+(have) 2702 4668 w
+(to) 2920 4668 w
+(do) 3028 4668 w
+(to) 3158 4668 w
+(get) 3266 4668 w
+(the) 3418 4668 w
+(UNIX) 3571 4668 w
+(operating) 3851 4668 w
+(system) 4259 4668 w
+(up) 4568 4668 w
+(and) 4699 4668 w
+(run\255) 4874 4668 w
+(ning) 720 4788 w
+(on) 926 4788 w
+(that) 1054 4788 w
+(processor?") 1231 4788 w
+(This) 1725 4788 w
+(is) 1930 4788 w
+(the) 2024 4788 w
+(first) 2173 4788 w
+(question) 2361 4788 w
+(that) 2727 4788 w
+(should) 2904 4788 w
+(be) 3198 4788 w
+(in) 3319 4788 w
+(the) 3424 4788 w
+(mind) 3573 4788 w
+(of) 3806 4788 w
+(anyone) 3916 4788 w
+(interested) 4231 4788 w
+(in) 4646 4788 w
+(porting) 4751 4788 w
+(the) 720 4908 w
+(UNIX) 880 4908 w
+(operating) 1167 4908 w
+(system) 1582 4908 w
+(to) 1898 4908 w
+(another) 2014 4908 w
+(processor.) 2351 4908 w
+(Before) 2796 4908 w
+(the) 3105 4908 w
+(porting) 3266 4908 w
+(is) 3594 4908 w
+(to) 3700 4908 w
+(begin) 3817 4908 w
+(this) 4078 4908 w
+(question) 4262 4908 w
+(should) 4640 4908 w
+(be) 4946 4908 w
+(refined into the following questions:) 720 5028 w
+(1.) 720 5220 w
+(Of) 970 5220 w
+(the) 1111 5220 w
+(existing) 1269 5220 w
+(processors) 1622 5220 w
+(that) 2079 5220 w
+(support) 2265 5220 w
+(the) 2601 5220 w
+(UNIX) 2759 5220 w
+(operating) 3044 5220 w
+(system,) 3457 5220 w
+(which) 3796 5220 w
+(one) 4076 5220 w
+(will) 4256 5220 w
+(be) 4448 5220 w
+(used) 4578 5220 w
+(as) 4798 5220 w
+(the) 4918 5220 w
+(base?) 970 5340 w
+(That) 1217 5340 w
+(is,) 1426 5340 w
+(which) 1544 5340 w
+(UNIX operating system source will be used as the starting point of the port \(e.g.,) 1814 5340 w
+(that of the PDP\25511/70 or VAX\25511/780 minicomputers\)?) 970 5460 w
+(2.) 720 5616 w
+(Is) 970 5616 w
+(the) 1080 5616 w
+(software) 1240 5616 w
+(generation) 1621 5616 w
+(system) 2080 5616 w
+(\(i.e.,) 2396 5616 w
+(compiler,) 2614 5616 w
+(assembler,) 3032 5616 w
+(loader\)) 3494 5616 w
+(for) 3814 5616 w
+(the) 3968 5616 w
+(target) 4128 5616 w
+(processor) 4393 5616 w
+(avail\255) 4813 5616 w
+(able?) 970 5736 w
+(3.) 720 5892 w
+(Is there a mechanism to load object code into the target processor?) 970 5892 w
+(4.) 720 6048 w
+(Is there a mechanism to make the initial file system?) 970 6048 w
+(5.) 720 6204 w
+(Are kernel\255level debugging tools available?) 970 6204 w
+(The following sections give guidelines to help answer these questions.) 970 6360 w
+8 /S1 f
+(__________________) 720 6780 w
+8 /Times-Roman f
+(Published) 720 6880 w
+(in,) 1057 6880 w
+(and) 1161 6880 w
+(copyright) 1298 6880 w
+(by,) 1625 6880 w
+(AT&T) 1747 6880 w
+(Bell) 1987 6880 w
+(Laboratories) 2143 6880 w
+(Technical) 2567 6880 w
+(Journal,) 2903 6880 w
+(Vol.) 3180 6880 w
+(63,) 3343 6880 w
+(No.) 3466 6880 w
+(8) 3607 6880 w
+(Part) 3670 6880 w
+(2,) 3821 6880 w
+(October) 3904 6880 w
+(1984.) 4183 6880 w
+(Photore\255) 4406 6880 w
+(production) 720 6980 w
+(for) 1087 6980 w
+(noncommercial) 1201 6980 w
+(use) 1717 6980 w
+(is) 1845 6980 w
+(permitted) 1920 6980 w
+(without) 2246 6980 w
+(payment) 2512 6980 w
+(of) 2808 6980 w
+(royalty) 2896 6980 w
+(provided) 3143 6980 w
+(that) 3448 6980 w
+(each) 3589 6980 w
+(reproduction) 3756 6980 w
+(is) 4184 6980 w
+(done) 4259 6980 w
+(without) 4436 6980 w
+(alteration and that the Journal reference and copyright notice are included on the first page.) 720 7080 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 1 1
+%%Page: 2 2
+/saveobj save def
+mark
+2 pagesetup
+10 /Times-Roman f
+(\255 2 \255) 2797 480 w
+10 /Times-Bold f
+(2.1 Choosing the appropriate source base) 720 840 w
+10 /Times-Roman f
+(Before) 970 996 w
+(any) 1282 996 w
+(kernel) 1467 996 w
+(source) 1757 996 w
+(modifications) 2058 996 w
+(are) 2649 996 w
+(attempted,) 2811 996 w
+(the) 3271 996 w
+(appropriate) 3434 996 w
+(base) 3929 996 w
+(must) 4147 996 w
+(be) 4383 996 w
+(chosen.) 4518 996 w
+(This) 4862 996 w
+(decision should be based on several criteria that evolve around the architecture of the target processor:) 720 1116 w
+(1.) 720 1272 w
+(Word size.) 970 1272 w
+(2.) 720 1428 w
+(Byte ordering. Are bytes within a word ordered in the same way?) 970 1428 w
+(3.) 720 1584 w
+(Interrupt structure. Are interrupts handled in a similar way?) 970 1584 w
+(4.) 720 1740 w
+(Input/Output \(I/O\) architecture. Are intelligent controllers supported?) 970 1740 w
+(5.) 720 1896 w
+(Peripheral support. Do common device drivers exist?) 970 1896 w
+(Therefore,) 970 2052 w
+(if) 1420 2052 w
+(the) 1514 2052 w
+(target) 1669 2052 w
+(processor) 1929 2052 w
+(is) 2344 2052 w
+(a) 2444 2052 w
+(16\255bit) 2521 2052 w
+(microcomputer,) 2793 2052 w
+(the) 3461 2052 w
+(source) 3616 2052 w
+(of) 3909 2052 w
+(the) 4025 2052 w
+(PDP\25511/70) 4180 2052 w
+(processor) 4658 2052 w
+(could) 720 2172 w
+(be) 971 2172 w
+(used) 1094 2172 w
+(as) 1306 2172 w
+(a) 1418 2172 w
+(base.) 1491 2172 w
+(Likewise,) 1721 2172 w
+(if) 2140 2172 w
+(the) 2229 2172 w
+(target) 2379 2172 w
+(processor) 2634 2172 w
+(is) 3044 2172 w
+(a) 3139 2172 w
+(32\255bit) 3211 2172 w
+(minicomputer,) 3478 2172 w
+(the) 4092 2172 w
+(source) 4242 2172 w
+(of) 4530 2172 w
+(the) 4641 2172 w
+(VAX\255) 4791 2172 w
+(11/780 computer could be used as a base.) 720 2292 w
+10 /Times-Bold f
+(2.2 Portable software development system) 720 2532 w
+10 /Times-Roman f
+(If any) 970 2688 w
+(piece) 1231 2688 w
+(of) 1467 2688 w
+(software) 1576 2688 w
+(is) 1945 2688 w
+(to) 2038 2688 w
+(be) 2142 2688 w
+(portable,) 2262 2688 w
+(it) 2640 2688 w
+(should) 2722 2688 w
+(be) 3015 2688 w
+(written) 3135 2688 w
+(in) 3444 2688 w
+(a) 3548 2688 w
+(high\255level) 3618 2688 w
+(language) 4049 2688 w
+(capable) 4435 2688 w
+(of) 4765 2688 w
+(run\255) 4874 2688 w
+(ning) 720 2808 w
+(efficiently) 924 2808 w
+(on) 1360 2808 w
+(a) 1486 2808 w
+(large) 1556 2808 w
+(number) 1781 2808 w
+(of) 2112 2808 w
+(processors. The C programming language [4], the primary language of) 2221 2808 w
+(the UNIX operating system, is a language that meets this criterion.) 720 2928 w
+(Although not originally written with portability in mind, the UNIX operating system and C have been) 970 3084 w
+(enhanced) 720 3204 w
+(to) 1124 3204 w
+(obtain) 1230 3204 w
+(maximal) 1508 3204 w
+(portability.) 1886 3204 w
+(Beginning) 2381 3204 w
+(with) 2826 3204 w
+(the) 3032 3204 w
+(Version) 3182 3204 w
+(7) 3526 3204 w
+(release,) 3604 3204 w
+(the) 3933 3204 w
+(UNIX) 4082 3204 w
+(operating) 4358 3204 w
+(system) 4762 3204 w
+(has) 720 3324 w
+(decreased) 892 3324 w
+(its) 1324 3324 w
+(use) 1459 3324 w
+(of) 1632 3324 w
+(machine) 1755 3324 w
+(language) 2133 3324 w
+(and) 2533 3324 w
+(restricted) 2717 3324 w
+(processor\255dependent) 3128 3324 w
+(C) 3993 3324 w
+(code) 4100 3324 w
+(to) 4328 3324 w
+(particular) 4446 3324 w
+(files) 4868 3324 w
+(within) 720 3444 w
+(the) 1004 3444 w
+(kernel.) 1154 3444 w
+(The) 1456 3444 w
+(development) 1639 3444 w
+(of) 2183 3444 w
+(the) 2294 3444 w
+(portable) 2444 3444 w
+(C) 2799 3444 w
+(compiler,) 2893 3444 w
+(pcc,) 3300 3444 w
+(has) 3490 3444 w
+(greatly) 3650 3444 w
+(improved) 3954 3444 w
+(the) 4364 3444 w
+(portability) 4513 3444 w
+(of) 4957 3444 w
+(both the C language and the UNIX operating system.) 720 3564 w
+(The portable concept has been) 2892 3564 w
+(expanded) 4131 3564 w
+(to) 4539 3564 w
+(a) 4643 3564 w
+(portable) 4713 3564 w
+(assembler) 720 3684 w
+(and) 1145 3684 w
+(a) 1315 3684 w
+(portable) 1385 3684 w
+(loader.) 1738 3684 w
+(Together,) 2038 3684 w
+(these) 2449 3684 w
+(portable\255tools) 2680 3684 w
+(are bundled into a common Software Gener\255) 3261 3684 w
+(ation) 720 3804 w
+(System) 954 3804 w
+(\(SGS\).) 1283 3804 w
+(Also) 1592 3804 w
+(included) 1815 3804 w
+(in) 2193 3804 w
+(the) 2305 3804 w
+(common) 2461 3804 w
+(SGS) 2845 3804 w
+(is) 3063 3804 w
+(a) 3164 3804 w
+(Common) 3242 3804 w
+(Object) 3649 3804 w
+(File) 3950 3804 w
+(Format) 4141 3804 w
+(\(COFF\)) 4465 3804 w
+(and) 4817 3804 w
+(a) 4996 3804 w
+(portable) 720 3924 w
+(archive) 1075 3924 w
+(file) 1396 3924 w
+(format.) 1557 3924 w
+(Because) 1876 3924 w
+(of) 2236 3924 w
+(this) 2347 3924 w
+(commonality,) 2520 3924 w
+(an) 3101 3924 w
+(SGS) 3223 3924 w
+(and) 3435 3924 w
+(a) 3607 3924 w
+(cross\255SGS) 3679 3924 w
+(can) 4129 3924 w
+(be) 4295 3924 w
+(developed) 4416 3924 w
+(for) 4853 3924 w
+(a) 4996 3924 w
+(target processor by changing only the processor\255dependent portions of the SGS.) 720 4044 w
+10 /Times-Bold f
+(2.3 Executing object files on the target processor) 720 4284 w
+10 /Times-Roman f
+(If) 970 4440 w
+(the) 1071 4440 w
+(target) 1228 4440 w
+(of) 1490 4440 w
+(the) 1608 4440 w
+(port) 1765 4440 w
+(is) 1961 4440 w
+(a) 2063 4440 w
+(stand\255alone) 2142 4440 w
+(processor,) 2637 4440 w
+(a) 3079 4440 w
+(host) 3158 4440 w
+(processor) 3360 4440 w
+(is) 3777 4440 w
+(used) 3879 4440 w
+(as) 4097 4440 w
+(a) 4215 4440 w
+(base) 4294 4440 w
+(of) 4506 4440 w
+(operations) 4624 4440 w
+(during) 720 4560 w
+(the) 1022 4560 w
+(development) 1185 4560 w
+(stages.*) 1742 4560 w
+(All) 2127 4560 w
+(programs) 2296 4560 w
+(are) 2715 4560 w
+(compiled) 2878 4560 w
+(through) 3292 4560 w
+(a) 3645 4560 w
+(cross\255SGS) 3731 4560 w
+(and,) 4195 4560 w
+(possibly,) 4406 4560 w
+(tested) 4807 4560 w
+(through) 720 4680 w
+(a) 1062 4680 w
+(simulator) 1137 4680 w
+(on) 1546 4680 w
+(the) 1677 4680 w
+(host) 1830 4680 w
+(before) 2028 4680 w
+(being) 2313 4680 w
+(placed) 2566 4680 w
+(on) 2856 4680 w
+(the) 2986 4680 w
+(target) 3138 4680 w
+(processor.) 3395 4680 w
+(However,) 3832 4680 w
+(since) 4252 4680 w
+(the) 4487 4680 w
+(target) 4639 4680 w
+(and) 4896 4680 w
+(host) 720 4800 w
+(processors) 919 4800 w
+(are) 1372 4800 w
+(independent,) 1525 4800 w
+(a) 2070 4800 w
+(mechanism) 2146 4800 w
+(should) 2633 4800 w
+(exist) 2933 4800 w
+(to) 3155 4800 w
+(allow) 3266 4800 w
+(the) 3521 4800 w
+(host) 3676 4800 w
+(to) 3876 4800 w
+(down) 3987 4800 w
+(load) 4242 4800 w
+(compiled) 4447 4800 w
+(code) 4852 4800 w
+(into) 720 4920 w
+(the) 906 4920 w
+(memory) 1058 4920 w
+(of) 1420 4920 w
+(the) 1532 4920 w
+(target) 1683 4920 w
+(processor.) 1939 4920 w
+(This) 2375 4920 w
+(is) 2582 4920 w
+(typically) 2678 4920 w
+(done) 3057 4920 w
+(by) 3280 4920 w
+(connecting) 3409 4920 w
+(the) 3876 4920 w
+(two) 4027 4920 w
+(processors) 4206 4920 w
+(by) 4656 4920 w
+(means) 4785 4920 w
+(of) 720 5040 w
+(an) 831 5040 w
+(asynchronous) 953 5040 w
+(communication) 1530 5040 w
+(line) 2180 5040 w
+(and) 2358 5040 w
+(using) 2530 5040 w
+(simple) 2775 5040 w
+(file) 3070 5040 w
+(transfer) 3231 5040 w
+(programs) 3563 5040 w
+(to) 3968 5040 w
+(populate) 4074 5040 w
+(the) 4446 5040 w
+(memory) 4596 5040 w
+(of) 4957 5040 w
+(the) 720 5160 w
+(target) 870 5160 w
+(processor.) 1125 5160 w
+(Once) 1560 5160 w
+(the) 1798 5160 w
+(executable) 1947 5160 w
+(code) 2400 5160 w
+(has) 2615 5160 w
+(been) 2775 5160 w
+(placed) 2990 5160 w
+(in) 3277 5160 w
+(memory,) 3382 5160 w
+(its) 3767 5160 w
+(execution) 3889 5160 w
+(must) 4304 5160 w
+(be) 4526 5160 w
+(started) 4647 5160 w
+(by) 4940 5160 w
+(some form of bootstrap monitor. The monitor should give the user) 720 5280 w
+(the) 3397 5280 w
+(ability) 3545 5280 w
+(to) 3827 5280 w
+(examine) 3931 5280 w
+(memory) 4295 5280 w
+(locations,) 4654 5280 w
+(start) 720 5400 w
+(and) 927 5400 w
+(stop) 1106 5400 w
+(program) 1308 5400 w
+(execution,) 1681 5400 w
+(etc.) 2129 5400 w
+(If) 2305 5400 w
+(a) 2406 5400 w
+(bootstrap) 2485 5400 w
+(monitor) 2892 5400 w
+(is) 3244 5400 w
+(not) 3346 5400 w
+(available,) 3509 5400 w
+(it) 3929 5400 w
+(should) 4020 5400 w
+(be) 4322 5400 w
+(developed) 4451 5400 w
+(and) 4896 5400 w
+(placed) 720 5520 w
+(on) 1014 5520 w
+(the) 1149 5520 w
+(target) 1306 5520 w
+(processor) 1568 5520 w
+(in) 1985 5520 w
+(a) 2098 5520 w
+(manner) 2177 5520 w
+(that) 2511 5520 w
+(will) 2696 5520 w
+(facilitate) 2887 5520 w
+(easy) 3271 5520 w
+(start\255up) 3483 5520 w
+([i.e.,) 3823 5520 w
+(read) 4038 5520 w
+(from) 4244 5520 w
+(a) 4473 5520 w
+(floppy) 4552 5520 w
+(disk,) 4848 5520 w
+(placed in Read\255Only Memory \(ROM\), etc. ].) 720 5640 w
+10 /Times-Bold f
+(2.4 initializing the file system) 720 5880 w
+10 /Times-Roman f
+(As) 970 6036 w
+(the) 1113 6036 w
+(porting) 1267 6036 w
+(effort) 1588 6036 w
+(progresses,) 1842 6036 w
+(the) 2321 6036 w
+(time) 2476 6036 w
+(will) 2687 6036 w
+(come) 2876 6036 w
+(when) 3125 6036 w
+(it) 3374 6036 w
+(is) 3463 6036 w
+(necessary) 3563 6036 w
+(for) 3983 6036 w
+(the) 4132 6036 w
+(target) 4287 6036 w
+(processor) 4547 6036 w
+(to) 4962 6036 w
+(perform) 720 6156 w
+(UNIX) 1079 6156 w
+(system) 1366 6156 w
+(file) 1682 6156 w
+(accesses.) 1853 6156 w
+(For) 2278 6156 w
+(those) 2454 6156 w
+(lucky) 2702 6156 w
+(enough) 2961 6156 w
+(to) 3292 6156 w
+(have) 3407 6156 w
+(common) 3632 6156 w
+(peripherals) 4019 6156 w
+(this) 4499 6156 w
+(poses) 4681 6156 w
+(no) 4940 6156 w
+(problem. The file systems can be made and populated on the host and placed on the target.) 720 6276 w
+(However,) 970 6432 w
+(if) 1388 6432 w
+(the) 1477 6432 w
+(target) 1627 6432 w
+(and) 1882 6432 w
+(host) 2054 6432 w
+(have) 2249 6432 w
+(no) 2465 6432 w
+(common) 2593 6432 w
+(disk) 2972 6432 w
+(devices,) 3168 6432 w
+(a) 3521 6432 w
+(potential) 3594 6432 w
+(problem) 3973 6432 w
+(exists.) 4335 6432 w
+(This) 4617 6432 w
+(prob\255) 4824 6432 w
+(lem) 720 6552 w
+(could) 906 6552 w
+(be) 1164 6552 w
+(solved) 1294 6552 w
+(by) 1591 6552 w
+(using) 1727 6552 w
+(a) 1979 6552 w
+(modified) 2058 6552 w
+(memory) 2454 6552 w
+(down\255load) 2822 6552 w
+(program.) 3284 6552 w
+(The) 3682 6552 w
+(memory) 3872 6552 w
+(down\255load) 4240 6552 w
+(program) 4702 6552 w
+(could) 720 6672 w
+(be) 970 6672 w
+(modified) 1092 6672 w
+(to) 1481 6672 w
+(place) 1587 6672 w
+(the) 1825 6672 w
+(data) 1975 6672 w
+(read) 2169 6672 w
+(from) 2368 6672 w
+(the) 2591 6672 w
+(communication) 2742 6672 w
+(line) 3393 6672 w
+(onto) 3572 6672 w
+(the) 3779 6672 w
+(disk,) 3930 6672 w
+(instead) 4151 6672 w
+(of) 4463 6672 w
+(in) 4575 6672 w
+(memory.) 4682 6672 w
+(This,) 720 6792 w
+(of) 964 6792 w
+(course,) 1088 6792 w
+(means) 1414 6792 w
+(that) 1710 6792 w
+(a) 1901 6792 w
+(stand\255alone) 1986 6792 w
+(disk) 2487 6792 w
+(driver) 2695 6792 w
+(would) 2974 6792 w
+(have) 3264 6792 w
+(to) 3492 6792 w
+(be) 3610 6792 w
+(incorporated) 3744 6792 w
+(into) 4288 6792 w
+(the) 4484 6792 w
+(download) 4646 6792 w
+8 /S1 f
+(__________________) 720 6892 w
+8 /Times-Roman f
+(*) 720 6992 w
+(This) 781 6992 w
+(is) 944 6992 w
+(typically) 1018 6992 w
+(the) 1317 6992 w
+(case.) 1435 6992 w
+(However,) 1612 6992 w
+(in) 1945 6992 w
+(the) 2028 6992 w
+(case) 2146 6992 w
+(of) 2303 6992 w
+(the) 2390 6992 w
+(UNIVAC) 2508 6992 w
+(1100) 2842 6992 w
+(Series) 3024 6992 w
+(the) 3240 6992 w
+(UNIX) 3359 6992 w
+(operating) 3581 6992 w
+(system) 3903 6992 w
+(runs) 4146 6992 w
+(as) 4305 6992 w
+(a) 4393 6992 w
+(task) 4450 6992 w
+(on) 4600 6992 w
+(top of the resident operating system.) 720 7092 w
+(Therefore, the target and host are the same processor. \(See Section IV.\)) 1917 7092 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 2 2
+%%Page: 3 3
+/saveobj save def
+mark
+3 pagesetup
+10 /Times-Roman f
+(\255 3 \255) 2797 480 w
+(program.) 720 840 w
+10 /Times-Bold f
+(2.5 Kernel debugging) 720 1080 w
+10 /Times-Roman f
+(Two forms of kernel debugging are necessary:) 970 1236 w
+(1.) 720 1392 w
+(Those used to debug a kernel that fails to boot.) 970 1392 w
+(2.) 720 1548 w
+(Those used to debug a kernel that crashes unexpectedly.) 970 1548 w
+(For) 970 1704 w
+(the) 1139 1704 w
+(former) 1291 1704 w
+(case,) 1592 1704 w
+(appropriately) 1818 1704 w
+(placed) 2380 1704 w
+(print) 2670 1704 w
+(statements) 2890 1704 w
+(could) 3343 1704 w
+(be) 3596 1704 w
+(used) 3721 1704 w
+(to) 3935 1704 w
+(trace) 4044 1704 w
+(the) 4268 1704 w
+(execution) 4421 1704 w
+(steps) 4840 1704 w
+(of) 720 1824 w
+(a) 835 1824 w
+(suspect) 911 1824 w
+(operating) 1237 1824 w
+(system.) 1645 1824 w
+(If) 1979 1824 w
+(a) 2076 1824 w
+(bootstrap) 2151 1824 w
+(monitor) 2554 1824 w
+(with) 2902 1824 w
+(a) 3111 1824 w
+(breakpointing) 3186 1824 w
+(capability) 3772 1824 w
+(is) 4197 1824 w
+(available,) 4295 1824 w
+(a) 4711 1824 w
+(break\255) 4786 1824 w
+(point) 720 1944 w
+(could) 957 1944 w
+(also) 1210 1944 w
+(be) 1402 1944 w
+(placed) 1527 1944 w
+(at) 1818 1944 w
+(a) 1921 1944 w
+(suspect) 1996 1944 w
+(point.) 2321 1944 w
+(When) 2583 1944 w
+(the) 2853 1944 w
+(processor) 3007 1944 w
+(reaches) 3421 1944 w
+(the) 3751 1944 w
+(breakpoint,) 3905 1944 w
+(the) 4389 1944 w
+(status) 4543 1944 w
+(of) 4803 1944 w
+(the) 4918 1944 w
+(machine) 720 2064 w
+(\(e.g.,) 1089 2064 w
+(examine) 1322 2064 w
+(registers,) 1690 2064 w
+(perform) 2083 2064 w
+(a) 2434 2064 w
+(stack) 2508 2064 w
+(back\255trace,) 2743 2064 w
+(etc.\)) 3212 2064 w
+(could) 3416 2064 w
+(be) 3668 2064 w
+(examined) 3792 2064 w
+(to) 4210 2064 w
+(try) 4318 2064 w
+(to) 4459 2064 w
+(uncover) 4567 2064 w
+(the) 4918 2064 w
+(error.) 720 2184 w
+(In) 970 2340 w
+(those) 1079 2340 w
+(cases) 1316 2340 w
+(where) 1552 2340 w
+(the) 1822 2340 w
+(system) 1971 2340 w
+(crashes) 2276 2340 w
+(unexpectedly,) 2596 2340 w
+(some) 3180 2340 w
+(form) 3418 2340 w
+(of) 3639 2340 w
+(postmortem) 3749 2340 w
+(debugger) 4254 2340 w
+(should) 4652 2340 w
+(be) 4946 2340 w
+(available.) 720 2460 w
+(The) 1134 2460 w
+(debugger) 1318 2460 w
+(should) 1718 2460 w
+(be) 2014 2460 w
+(capable) 2137 2460 w
+(of) 2470 2460 w
+(running) 2582 2460 w
+(on) 2922 2460 w
+(either) 3051 2460 w
+(the) 3307 2460 w
+(host) 3458 2460 w
+(or) 3653 2460 w
+(target) 3764 2460 w
+(machine) 4019 2460 w
+(and) 4385 2460 w
+(should) 4557 2460 w
+(have) 4852 2460 w
+(the ability to display the contents of key data structures. A stack back\255trace option would also be useful.) 720 2580 w
+10 /Times-Bold f
+(2.6 Caveats) 720 2820 w
+10 /Times-Roman f
+(The) 970 2976 w
+(suggestions) 1157 2976 w
+(presented) 1656 2976 w
+(in) 2070 2976 w
+(the) 2180 2976 w
+(previous) 2334 2976 w
+(sections) 2710 2976 w
+(are) 3064 2976 w
+(not) 3217 2976 w
+(meant) 3377 2976 w
+(to) 3653 2976 w
+(be) 3763 2976 w
+(an) 3890 2976 w
+(all\255encompassing) 4017 2976 w
+(survey.) 4749 2976 w
+(They) 720 3096 w
+(are) 959 3096 w
+(meant) 1114 3096 w
+(only) 1392 3096 w
+(to) 1604 3096 w
+(inspire) 1716 3096 w
+(thoughts) 2021 3096 w
+(by) 2399 3096 w
+(presenting) 2532 3096 w
+(some) 2981 3096 w
+(of) 3225 3096 w
+(the) 3341 3096 w
+(possibilities) 3496 3096 w
+(that) 4008 3096 w
+(exist.) 4191 3096 w
+(The) 4463 3096 w
+(following) 4651 3096 w
+(sections) 720 3216 w
+(describe) 1070 3216 w
+(how) 1430 3216 w
+(some) 1630 3216 w
+(of) 1869 3216 w
+(these) 1980 3216 w
+(ideas) 2213 3216 w
+(were) 2446 3216 w
+(used) 2667 3216 w
+(in) 2878 3216 w
+(porting) 2984 3216 w
+(the) 3302 3216 w
+(UNIX) 3453 3216 w
+(operating) 3731 3216 w
+(system) 4137 3216 w
+(to) 4444 3216 w
+(various) 4551 3216 w
+(pro\255) 4874 3216 w
+(cessors.) 720 3336 w
+10 /Times-Bold f
+(III. THE UNIX OPERATING SYSTEM ON THE INTEL 8086) 720 3576 w
+10 /Times-Roman f
+(The) 970 3732 w
+(UNIX) 1153 3732 w
+(operating) 1430 3732 w
+(system) 1835 3732 w
+(for) 2141 3732 w
+(the) 2285 3732 w
+(Intel) 2435 3732 w
+(8086,) 2646 3732 w
+(referred) 2899 3732 w
+(to) 3241 3732 w
+(as) 3347 3732 w
+(the) 3458 3732 w
+(8086) 3608 3732 w
+(UNIX) 3836 3732 w
+(system,) 4114 3732 w
+(was) 4446 3732 w
+(developed) 4630 3732 w
+(in) 720 3852 w
+(1978) 845 3852 w
+(to) 1092 3852 w
+(run) 1217 3852 w
+(on) 1397 3852 w
+(a) 1544 3852 w
+(system) 1635 3852 w
+(specifically) 1960 3852 w
+(designed) 2467 3852 w
+(for) 2869 3852 w
+(the) 3031 3852 w
+(Intel) 3199 3852 w
+(8086) 3428 3852 w
+(microprocessor.) 3674 3852 w
+(The) 4360 3852 w
+(system) 4561 3852 w
+(was) 4885 3852 w
+(designed for, and is currently used in, some internal AT&T applications.) 720 3972 w
+(The) 970 4128 w
+(central) 1164 4128 w
+(processing) 1474 4128 w
+(element) 1940 4128 w
+(of) 2295 4128 w
+(the) 2417 4128 w
+(8086) 2578 4128 w
+(UNIX) 2817 4128 w
+(system) 3105 4128 w
+(is) 3422 4128 w
+(the) 3528 4128 w
+(Intel) 3689 4128 w
+(8086) 3911 4128 w
+(microprocessor.) 4150 4128 w
+(Main) 4829 4128 w
+(memory) 720 4248 w
+(can) 1081 4248 w
+(range) 1247 4248 w
+(from) 1496 4248 w
+(512K) 1718 4248 w
+(bytes) 1968 4248 w
+(to) 2206 4248 w
+(2M) 2311 4248 w
+(bytes) 2477 4248 w
+(and) 2715 4248 w
+(is) 2886 4248 w
+(accessed) 2980 4248 w
+(via) 3355 4248 w
+(a) 3504 4248 w
+(Memory) 3575 4248 w
+(Management) 3946 4248 w
+(Unit) 4494 4248 w
+(\(MMU\).) 4699 4248 w
+(Three types of peripheral controllers are supported:) 720 4368 w
+(1.) 720 4524 w
+(Disk) 970 4524 w
+(controller.) 1188 4524 w
+(Facilities) 1630 4524 w
+(exist) 2026 4524 w
+(to) 2244 4524 w
+(support) 2352 4524 w
+(floppy) 2682 4524 w
+(and) 2973 4524 w
+(Winchester) 3147 4524 w
+(disk) 3631 4524 w
+(devices) 3828 4524 w
+(with) 4157 4524 w
+(capacities) 4365 4524 w
+(of) 4788 4524 w
+(2M) 4901 4524 w
+(bytes and 20M bytes, respectively.) 970 4644 w
+(2.) 720 4800 w
+(Line) 970 4800 w
+(controller.) 1194 4800 w
+(The) 1648 4800 w
+(line) 1844 4800 w
+(controller) 2035 4800 w
+(is) 2464 4800 w
+(a) 2572 4800 w
+(programmable) 2657 4800 w
+(device) 3280 4800 w
+(that) 3581 4800 w
+(supports) 3772 4800 w
+(serial) 4152 4800 w
+(synchronous) 4410 4800 w
+(or) 4957 4800 w
+(asynchronous communication protocols.) 970 4920 w
+(3.) 720 5076 w
+(Terminal) 970 5076 w
+(controller.) 1375 5076 w
+(The) 1827 5076 w
+(terminal) 2021 5076 w
+(controller) 2393 5076 w
+(is) 2820 5076 w
+(a) 2926 5076 w
+(communications) 3009 5076 w
+(device) 3709 5076 w
+(capable) 4008 5076 w
+(of) 4351 5076 w
+(supporting) 4473 5076 w
+(16) 4940 5076 w
+(teletype Standard Serial Interface \(SSI\) lines.) 970 5196 w
+10 /Times-Bold f
+(3.1 Hardware\255related porting issues) 720 5472 w
+(3.1.1 Memory management unit) 720 5712 w
+10 /Times-Roman f
+(Two hardware features are essential to support the secure multiuser environment that) 970 5868 w
+(is) 4391 5868 w
+(needed) 4484 5868 w
+(by) 4792 5868 w
+(the) 4918 5868 w
+(UNIX operating system:) 720 5988 w
+(1.) 720 6144 w
+(An address space larger than 64K bytes) 970 6144 w
+(2.) 720 6300 w
+(Privileged \(kernel\) and nonprivileged \(user\) modes.) 970 6300 w
+(Because) 970 6456 w
+(a) 1336 6456 w
+(stand\255alone) 1414 6456 w
+(8086) 1908 6456 w
+(cannot) 2142 6456 w
+(support) 2442 6456 w
+(these) 2776 6456 w
+(features,) 3015 6456 w
+(an) 3389 6456 w
+(MMU) 3517 6456 w
+(was) 3801 6456 w
+(specially) 3990 6456 w
+(designed) 4379 6456 w
+(for) 4768 6456 w
+(the) 4918 6456 w
+(8086) 720 6576 w
+(UNIX) 953 6576 w
+(system.) 1235 6576 w
+(The) 1571 6576 w
+(MMU) 1759 6576 w
+(is) 2042 6576 w
+(similar) 2142 6576 w
+(to) 2453 6576 w
+(that) 2564 6576 w
+(of) 2747 6576 w
+(the) 2862 6576 w
+(PDP\25511/70;) 3016 6576 w
+(16\255bit) 3521 6576 w
+(virtual) 3792 6576 w
+(addresses) 4085 6576 w
+(are) 4499 6576 w
+(translated) 4652 6576 w
+(into 22\255bit physical addresses through the use of mapping tables and page address registers. The) 720 6696 w
+(MMU) 4587 6696 w
+(con\255) 4863 6696 w
+(sists) 720 6816 w
+(of) 935 6816 w
+(16) 1060 6816 w
+(address) 1202 6816 w
+(maps,) 1543 6816 w
+(where) 1821 6816 w
+(each) 2106 6816 w
+(map) 2330 6816 w
+(addresses) 2544 6816 w
+(64K) 2968 6816 w
+(bytes) 3181 6816 w
+(of) 3433 6816 w
+(memory.) 3557 6816 w
+(The) 3956 6816 w
+(most) 4152 6816 w
+(commonly) 4388 6816 w
+(used) 4857 6816 w
+(address) 720 6936 w
+(maps) 1051 6936 w
+(are) 1294 6936 w
+(in) 1447 6936 w
+(kernel) 1558 6936 w
+(instruction,) 1840 6936 w
+(kernel) 2326 6936 w
+(data,) 2608 6936 w
+(and) 2832 6936 w
+(exit) 3009 6936 w
+(kernel) 3192 6936 w
+(\(user\255mode\)) 3474 6936 w
+(maps.) 3994 6936 w
+(The) 4288 6936 w
+(larger) 4476 6936 w
+(address) 4741 6936 w
+(space) 720 7056 w
+(is) 984 7056 w
+(provided) 1094 7056 w
+(by) 1492 7056 w
+(allowing) 1635 7056 w
+(for) 2028 7056 w
+(split) 2187 7056 w
+(Instruction) 2403 7056 w
+(and) 2879 7056 w
+(Data) 3066 7056 w
+(space) 3297 7056 w
+(\(I/D\).) 3560 7056 w
+(With) 3826 7056 w
+(split) 4068 7056 w
+(I/D,) 4283 7056 w
+(programs) 4483 7056 w
+(can) 4902 7056 w
+(address) 720 7176 w
+(up) 1049 7176 w
+(to) 1179 7176 w
+(64K) 1287 7176 w
+(bytes) 1489 7176 w
+(of) 1730 7176 w
+(text) 1843 7176 w
+(and) 2023 7176 w
+(64K) 2197 7176 w
+(bytes) 2399 7176 w
+(of) 2640 7176 w
+(data.) 2753 7176 w
+(Split) 2974 7176 w
+(I/D) 3194 7176 w
+(is) 3357 7176 w
+(easily) 3454 7176 w
+(achieved) 3718 7176 w
+(by) 4103 7176 w
+(using) 4234 7176 w
+(two) 4482 7176 w
+(64K\255byte) 4663 7176 w
+(address) 720 7296 w
+(maps,) 1047 7296 w
+(one) 1311 7296 w
+(for) 1483 7296 w
+(the) 1626 7296 w
+(text) 1775 7296 w
+(segment) 1952 7296 w
+(and) 2312 7296 w
+(the) 2483 7296 w
+(other) 2632 7296 w
+(for) 2864 7296 w
+(the) 3007 7296 w
+(data) 3156 7296 w
+(and) 3349 7296 w
+(stack) 3520 7296 w
+(segments.) 3752 7296 w
+(The) 4176 7296 w
+(division) 4358 7296 w
+(between) 4708 7296 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 3 3
+%%Page: 4 4
+/saveobj save def
+mark
+4 pagesetup
+10 /Times-Roman f
+(\255 4 \255) 2797 480 w
+(kernel) 720 840 w
+(and) 995 840 w
+(user) 1165 840 w
+(modes) 1357 840 w
+(is) 1644 840 w
+(achieved) 1737 840 w
+(by) 2117 840 w
+(mapping) 2243 840 w
+(all) 2619 840 w
+(user) 2745 840 w
+(programs) 2937 840 w
+(through) 3340 840 w
+(the) 3677 840 w
+(exit) 3825 840 w
+(kernel) 4001 840 w
+(map.) 4276 840 w
+(While) 4499 840 w
+(in) 4769 840 w
+(user) 4874 840 w
+(mode,) 720 960 w
+(any) 1004 960 w
+(privileged) 1185 960 w
+(memory) 1627 960 w
+(accesses) 1997 960 w
+(or) 2371 960 w
+(attempts) 2491 960 w
+(to) 2866 960 w
+(alter) 2980 960 w
+(the) 3193 960 w
+(status) 3351 960 w
+(of) 3615 960 w
+(system) 3734 960 w
+(execution) 4048 960 w
+(\(disable) 4472 960 w
+(inter\255) 4824 960 w
+(rupts\) by user programs results in a trap to a low\255level handling routine where the problem will be rectified.) 720 1080 w
+10 /Times-Bold f
+(3.1.2 Peripheral controllers) 720 1320 w
+10 /Times-Roman f
+(The) 970 1476 w
+(peripheral) 1155 1476 w
+(controllers) 1589 1476 w
+(share) 2046 1476 w
+(a) 2286 1476 w
+(basic) 2360 1476 w
+(scheme.) 2595 1476 w
+(In) 2949 1476 w
+(addition) 3062 1476 w
+(to) 3420 1476 w
+(its) 3528 1476 w
+(intrinsic) 3654 1476 w
+(hardware,) 4013 1476 w
+(each) 4439 1476 w
+(controller) 4652 1476 w
+(consists) 720 1596 w
+(of) 1078 1596 w
+(a) 1201 1596 w
+(Zilog) 1285 1596 w
+(Z80\(TM\)) 1542 1596 w
+(microprocessor) 1959 1596 w
+(with) 2614 1596 w
+(32K) 2832 1596 w
+(bytes) 3044 1596 w
+(of) 3295 1596 w
+(Random) 3418 1596 w
+(Access) 3797 1596 w
+(Memory) 4119 1596 w
+(\(RAM\).) 4503 1596 w
+(This) 4862 1596 w
+(extra) 720 1716 w
+(computing) 948 1716 w
+(power) 1405 1716 w
+(permits) 1683 1716 w
+(greater) 2012 1716 w
+(flexibility) 2317 1716 w
+(in) 2741 1716 w
+(software) 2848 1716 w
+(controller) 3221 1716 w
+(development.) 3639 1716 w
+(Efficient) 4210 1716 w
+(disk) 4589 1716 w
+(search) 4786 1716 w
+(algorithms) 720 1836 w
+(and) 1183 1836 w
+(line) 1362 1836 w
+(protocols) 1547 1836 w
+(are) 1954 1836 w
+(handled) 2110 1836 w
+(on) 2461 1836 w
+(the) 2596 1836 w
+(controlling) 2753 1836 w
+(device,) 3227 1836 w
+(thus) 3547 1836 w
+(eliminating) 3749 1836 w
+(the) 4240 1836 w
+(need) 4397 1836 w
+(for) 4619 1836 w
+(central) 4769 1836 w
+(processor intervention.) 720 1956 w
+(The) 970 2112 w
+(8086) 1160 2112 w
+(communicates) 1395 2112 w
+(with) 2007 2112 w
+(each) 2221 2112 w
+(controller) 2439 2112 w
+(via) 2863 2112 w
+(a) 3021 2112 w
+(one\255way) 3101 2112 w
+(shared) 3480 2112 w
+(memory) 3776 2112 w
+(scheme;) 4145 2112 w
+(the) 4508 2112 w
+(8086) 4666 2112 w
+(can) 4902 2112 w
+(access) 720 2232 w
+(the) 1001 2232 w
+(controller's) 1150 2232 w
+(memory) 1637 2232 w
+(but) 1997 2232 w
+(not) 2152 2232 w
+(vice) 2307 2232 w
+(versa.) 2500 2232 w
+(A) 2762 2232 w
+(kernel) 2861 2232 w
+(routine,) 3137 2232 w
+(window,) 3472 2232 w
+(exists) 3846 2232 w
+(to) 4100 2232 w
+(place) 4204 2232 w
+(the) 4440 2232 w
+(device) 4588 2232 w
+(spe\255) 4874 2232 w
+(cific address into a given location in the kernel data map, thus creating a window to that device.) 720 2352 w
+10 /Times-Bold f
+(3.2 Architectural and software\255related porting issues) 720 2592 w
+10 /Times-Roman f
+(Porting) 970 2748 w
+(the) 1299 2748 w
+(UNIX) 1455 2748 w
+(operating) 1738 2748 w
+(system) 2149 2748 w
+(to) 2461 2748 w
+(the) 2573 2748 w
+(8086) 2729 2748 w
+(required) 2963 2748 w
+(software) 3329 2748 w
+(changes) 3706 2748 w
+(at) 4061 2748 w
+(the) 4168 2748 w
+(operating) 4325 2748 w
+(system,) 4737 2748 w
+(library) 720 2868 w
+(routine,) 1013 2868 w
+(and) 1348 2868 w
+(user\255program) 1519 2868 w
+(levels.) 2083 2868 w
+(Because) 2368 2868 w
+(of) 2726 2868 w
+(the) 2835 2868 w
+(similarities) 2983 2868 w
+(between) 3454 2868 w
+(the) 3812 2868 w
+(MMU's) 3960 2868 w
+(of) 4308 2868 w
+(the) 4417 2868 w
+(8086) 4565 2868 w
+(UNIX) 4791 2868 w
+(system) 720 2988 w
+(and) 1030 2988 w
+(the) 1206 2988 w
+(PDP\25511/70) 1360 2988 w
+(system,) 1837 2988 w
+(the) 2172 2988 w
+(PDP\25511/70) 2326 2988 w
+(version) 2803 2988 w
+(of) 3129 2988 w
+(the) 3244 2988 w
+(UNIX) 3398 2988 w
+(operating) 3679 2988 w
+(system) 4088 2988 w
+(was) 4398 2988 w
+(used) 4586 2988 w
+(as) 4802 2988 w
+(the) 4918 2988 w
+(basis) 720 3108 w
+(for) 948 3108 w
+(the) 1092 3108 w
+(8086) 1242 3108 w
+(UNIX) 1470 3108 w
+(system) 1747 3108 w
+(porting) 2053 3108 w
+(effort.) 2370 3108 w
+(A) 2644 3108 w
+(PDP\25511/70) 2744 3108 w
+(computer) 3217 3108 w
+(was) 3622 3108 w
+(also) 3805 3108 w
+(used) 3994 3108 w
+(as) 4205 3108 w
+(the) 4315 3108 w
+(host) 4464 3108 w
+(processor) 4658 3108 w
+(for 8086 UNIX system development.) 720 3228 w
+(Several) 970 3384 w
+(software) 1298 3384 w
+(changes) 1670 3384 w
+(were) 2021 3384 w
+(necessitated) 2244 3384 w
+(by) 2756 3384 w
+(hardware) 2886 3384 w
+(differences) 3286 3384 w
+(between) 3758 3384 w
+(the) 4120 3384 w
+(PDP\25511/70) 4272 3384 w
+(proces\255) 4747 3384 w
+(sor) 720 3504 w
+(and) 877 3504 w
+(the) 1056 3504 w
+(8086.) 1213 3504 w
+(The) 1473 3504 w
+(obvious) 1663 3504 w
+(changes) 2015 3504 w
+(included) 2371 3504 w
+(translating) 2750 3504 w
+(the) 3207 3504 w
+(assembly) 3364 3504 w
+(language) 3771 3504 w
+(routines) 4166 3504 w
+(in) 4523 3504 w
+(the) 4635 3504 w
+(UNIX) 4791 3504 w
+(operating system into 8086 assembly language) 720 3624 w
+(and) 2614 3624 w
+(modifying) 2784 3624 w
+(the) 3227 3624 w
+(low) 3375 3624 w
+(core\255interrupt) 3551 3624 w
+(routines) 4125 3624 w
+(to) 4473 3624 w
+(fit) 4577 3624 w
+(the) 4692 3624 w
+(8086) 4840 3624 w
+(UNIX) 720 3744 w
+(system) 1009 3744 w
+(hardware.) 1327 3744 w
+(Several) 1762 3744 w
+(other) 2101 3744 w
+(basic) 2346 3744 w
+(hardware) 2590 3744 w
+(differences) 2999 3744 w
+(between) 3480 3744 w
+(the) 3851 3744 w
+(PDP\25511/70) 4012 3744 w
+(and) 4496 3744 w
+(the) 4679 3744 w
+(8086) 4840 3744 w
+(devices also had to be overcome.) 720 3864 w
+10 /Times-Bold f
+(3.2.1 Byte ordering) 720 4104 w
+10 /Times-Roman f
+(While) 970 4260 w
+(the) 1252 4260 w
+(PDP\25511/70) 1412 4260 w
+(and) 1895 4260 w
+(8086) 2077 4260 w
+(processors) 2315 4260 w
+(both) 2774 4260 w
+(utilize) 2990 4260 w
+(the) 3278 4260 w
+(same) 3439 4260 w
+(byte) 3683 4260 w
+(ordering) 3894 4260 w
+(within) 4271 4260 w
+(a) 4566 4260 w
+(word,) 4649 4260 w
+(the) 4918 4260 w
+(ordering) 720 4380 w
+(of) 1094 4380 w
+(words) 1213 4380 w
+(within) 1493 4380 w
+(a) 1785 4380 w
+(double) 1865 4380 w
+(word) 2173 4380 w
+(\(long\)) 2414 4380 w
+(is) 2693 4380 w
+(reversed.) 2795 4380 w
+(The) 3192 4380 w
+(8086) 3382 4380 w
+(implements) 3617 4380 w
+(double) 4119 4380 w
+(words) 4426 4380 w
+(with) 4705 4380 w
+(the) 4918 4380 w
+(low\255order) 720 4500 w
+(word) 1147 4500 w
+(occupying) 1386 4500 w
+(the) 1837 4500 w
+(least) 1994 4500 w
+(significant) 2212 4500 w
+(bit) 2669 4500 w
+(positions.) 2810 4500 w
+(Any) 3232 4500 w
+(programs) 3439 4500 w
+(that) 3851 4500 w
+(depended) 4036 4500 w
+(upon) 4453 4500 w
+(this) 4688 4500 w
+(byte) 4868 4500 w
+(ordering) 720 4620 w
+(\(e.g.,) 1091 4620 w
+(any) 1326 4620 w
+(program) 1503 4620 w
+(that) 1874 4620 w
+(read) 2057 4620 w
+(long) 2261 4620 w
+(integer) 2472 4620 w
+(values) 2782 4620 w
+(from) 3070 4620 w
+(files\)) 3296 4620 w
+(had) 3533 4620 w
+(to) 3709 4620 w
+(be) 3819 4620 w
+(modified.) 3945 4620 w
+(For) 4363 4620 w
+(instance,) 4534 4620 w
+(the) 4918 4620 w
+(example) 720 4740 w
+(shown) 1090 4740 w
+(below) 1383 4740 w
+(will) 1659 4740 w
+(produce) 1847 4740 w
+(different) 2200 4740 w
+(results) 2575 4740 w
+(when) 2868 4740 w
+(run) 3117 4740 w
+(on) 3283 4740 w
+(a) 3416 4740 w
+(PDP\25511/70) 3493 4740 w
+(processor) 3971 4740 w
+(using) 4386 4740 w
+(the) 4636 4740 w
+(UNIX) 4791 4740 w
+(system from those produced on an 8086 UNIX system:) 720 4860 w
+10 /Courier f
+(long l) 1080 5040 w
+(= 0x12345678L;) 1560 5040 w
+(short *s;) 1080 5160 w
+(s = \(short *\) &l ;) 1080 5280 w
+(printf \("%#x0, *s\) ;) 1080 5400 w
+10 /Times-Roman f
+(When run on a PDP\25511/70 processor using the UNIX system the result will be:) 720 5580 w
+10 /Courier f
+(0x1234) 1080 5760 w
+10 /Times-Roman f
+(while the 8086 UNIX system will produce:) 720 5940 w
+10 /Courier f
+(0x5678) 1080 6120 w
+10 /Times-Roman f
+(Also,) 720 6300 w
+(since) 970 6300 w
+(the) 1211 6300 w
+(8086) 1369 6300 w
+(is) 1605 6300 w
+(byte) 1708 6300 w
+(oriented,) 1916 6300 w
+(odd) 2304 6300 w
+(function) 2490 6300 w
+(addresses) 2860 6300 w
+(are) 3279 6300 w
+(permitted.) 3437 6300 w
+(The) 3882 6300 w
+(kernel\255level) 4074 6300 w
+(signal) 4587 6300 w
+(han\255) 4863 6300 w
+(dling routine,) 720 6420 w
+10 /Times-Bold f
+(issig) 1284 6420 w
+10 /Times-Roman f
+(was modified to compensate for this difference.) 1493 6420 w
+10 /Times-Bold f
+(3.2.2 System call interface) 720 6660 w
+10 /Times-Roman f
+(The) 970 6816 w
+(PDP\25511/70) 1156 6816 w
+(version) 1632 6816 w
+(of) 1957 6816 w
+(the) 2071 6816 w
+(UNIX) 2224 6816 w
+(operating) 2504 6816 w
+(system) 2912 6816 w
+(uses) 3221 6816 w
+(self\255modifying) 3425 6816 w
+(code) 4051 6816 w
+(to) 4271 6816 w
+(pass) 4381 6816 w
+(system\255call) 4585 6816 w
+(parameters) 720 6936 w
+(from) 1186 6936 w
+(user) 1409 6936 w
+(to) 1604 6936 w
+(kernel) 1711 6936 w
+(level.) 1989 6936 w
+(The) 2237 6936 w
+(8086) 2421 6936 w
+(UNIX) 2650 6936 w
+(system) 2928 6936 w
+(call) 3235 6936 w
+(interface) 3408 6936 w
+(was) 3785 6936 w
+(changed) 3969 6936 w
+(to) 4329 6936 w
+(use) 4435 6936 w
+(registers) 4596 6936 w
+(to) 4962 6936 w
+(pass) 720 7056 w
+(system) 923 7056 w
+(call) 1232 7056 w
+(parameters.) 1407 7056 w
+(The) 1900 7056 w
+(system) 2086 7056 w
+(call) 2395 7056 w
+(number) 2570 7056 w
+(is) 2906 7056 w
+(passed) 3004 7056 w
+(in) 3301 7056 w
+(the) 3410 7056 w
+(AX) 3563 7056 w
+(register) 3738 7056 w
+(of) 4068 7056 w
+(the) 4182 7056 w
+(8086) 4335 7056 w
+(and) 4566 7056 w
+(the) 4742 7056 w
+(DX) 4896 7056 w
+(register) 720 7176 w
+(is) 1052 7176 w
+(used) 1152 7176 w
+(for) 1368 7176 w
+(parameter) 1517 7176 w
+(passing.) 1948 7176 w
+(On) 2306 7176 w
+(calls) 2461 7176 w
+(that) 2677 7176 w
+(require) 2860 7176 w
+(one) 3174 7176 w
+(parameter,) 3350 7176 w
+(that) 3805 7176 w
+(parameter) 3987 7176 w
+(is) 4417 7176 w
+(placed) 4516 7176 w
+(in) 4808 7176 w
+(the) 4918 7176 w
+(DX) 720 7296 w
+(register.) 901 7296 w
+(In) 1262 7296 w
+(the) 1382 7296 w
+(case) 1541 7296 w
+(where) 1749 7296 w
+(multiple) 2029 7296 w
+(parameters) 2400 7296 w
+(are) 2874 7296 w
+(required,) 3032 7296 w
+(the) 3427 7296 w
+(DX) 3587 7296 w
+(register) 3769 7296 w
+(contains) 4106 7296 w
+(a) 4477 7296 w
+(pointer) 4559 7296 w
+(to) 4880 7296 w
+(a) 4996 7296 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 4 4
+%%Page: 5 5
+/saveobj save def
+mark
+5 pagesetup
+10 /Times-Roman f
+(\255 5 \255) 2797 480 w
+(parameter list.) 720 840 w
+10 /Times-Bold f
+(3.2.3 Run\255time calling convention) 720 1080 w
+10 /Times-Roman f
+(Calling\255convention) 970 1236 w
+(routines) 1772 1236 w
+(for) 2124 1236 w
+(the) 2270 1236 w
+(8086) 2422 1236 w
+(UNIX) 2652 1236 w
+(system) 2931 1236 w
+(\(i.e.,) 3239 1236 w
+(code) 3449 1236 w
+(added) 3667 1236 w
+(to) 3935 1236 w
+(implement) 4043 1236 w
+(stack) 4501 1236 w
+(frames\)) 4736 1236 w
+(are) 720 1356 w
+(also) 888 1356 w
+(different.) 1096 1356 w
+(Since) 1511 1356 w
+(the) 1780 1356 w
+(8086) 1949 1356 w
+(does) 2196 1356 w
+(not) 2426 1356 w
+(have) 2601 1356 w
+(hardware) 2836 1356 w
+(restart) 3253 1356 w
+(capabilities,) 3548 1356 w
+(the) 4074 1356 w
+(user) 4242 1356 w
+(stack) 4454 1356 w
+(must) 4705 1356 w
+(be) 4946 1356 w
+(expanded) 720 1476 w
+(gradually) 1129 1476 w
+(during) 1533 1476 w
+(the) 1821 1476 w
+(local) 1970 1476 w
+(storage) 2191 1476 w
+(allocation) 2506 1476 w
+(process) 2927 1476 w
+(to) 3253 1476 w
+(permit) 3359 1476 w
+(the) 3648 1476 w
+(proper) 3798 1476 w
+(handling) 4086 1476 w
+(of) 4464 1476 w
+(stack) 4575 1476 w
+(warn\255) 4808 1476 w
+(ing) 720 1596 w
+(interrupts.) 876 1596 w
+(This) 1312 1596 w
+(function) 1518 1596 w
+(is) 1879 1596 w
+(performed) 1974 1596 w
+(by) 2417 1596 w
+(a) 2545 1596 w
+(special) 2617 1596 w
+(function) 2922 1596 w
+(that) 3282 1596 w
+(is) 3459 1596 w
+(called) 3553 1596 w
+(in) 3818 1596 w
+(place) 3923 1596 w
+(of) 4160 1596 w
+(the) 4270 1596 w
+(normal) 4419 1596 w
+(runtime) 4729 1596 w
+(routine) 720 1716 w
+(when) 1030 1716 w
+(local) 1273 1716 w
+(variables) 1494 1716 w
+(are) 1881 1716 w
+(present.) 2029 1716 w
+(In) 2369 1716 w
+(the) 2479 1716 w
+(process) 2628 1716 w
+(of) 2954 1716 w
+(growing) 3064 1716 w
+(the) 3424 1716 w
+(stack) 3573 1716 w
+(this) 3806 1716 w
+(function) 3979 1716 w
+(clears) 4340 1716 w
+(each) 4600 1716 w
+(word,) 4810 1716 w
+(thus ensuring that each local variable will be initialized to zero.) 720 1836 w
+10 /Times-Bold f
+(3.3 Development and test environment) 720 2076 w
+(3.3.1 The 8086 UNIX system SGS) 720 2316 w
+10 /Times-Roman f
+(Early) 970 2472 w
+(8086) 1229 2472 w
+(UNIX) 1472 2472 w
+(system) 1764 2472 w
+(development) 2085 2472 w
+(was) 2644 2472 w
+(done) 2843 2472 w
+(using) 3081 2472 w
+(an) 3342 2472 w
+(already) 3480 2472 w
+(existing,) 3817 2472 w
+(internally) 4203 2472 w
+(developed) 4630 2472 w
+(8086) 720 2592 w
+(simulator) 960 2592 w
+(and) 1378 2592 w
+(a) 1562 2592 w
+(common) 1646 2592 w
+(SGS) 2036 2592 w
+(referred) 2260 2592 w
+(to) 2613 2592 w
+(as) 2730 2592 w
+(the) 2852 2592 w
+(Basic\25516) 3013 2592 w
+(package.) 3407 2592 w
+(Because) 3797 2592 w
+(the) 4168 2592 w
+(8086) 4329 2592 w
+(system) 4568 2592 w
+(was) 4885 2592 w
+(designed) 720 2712 w
+(to) 1110 2712 w
+(make) 1223 2712 w
+(use) 1474 2712 w
+(of) 1642 2712 w
+(the) 1760 2712 w
+(majority) 1917 2712 w
+(of) 2291 2712 w
+(the) 2409 2712 w
+(user\255) 2566 2712 w
+(and) 2800 2712 w
+(kernel\255level) 2979 2712 w
+(code) 3490 2712 w
+(of) 3713 2712 w
+(the) 3831 2712 w
+(PDP\25511/70) 3988 2712 w
+(version) 4469 2712 w
+(of) 4799 2712 w
+(the) 4918 2712 w
+(UNIX) 720 2832 w
+(operating) 1007 2832 w
+(system,) 1422 2832 w
+(the) 1763 2832 w
+(object) 1923 2832 w
+(file) 2205 2832 w
+(format) 2376 2832 w
+(of) 2680 2832 w
+(the) 2801 2832 w
+(8086) 2961 2832 w
+(system) 3199 2832 w
+(is) 3515 2832 w
+(similar) 3620 2832 w
+(to) 3936 2832 w
+(that) 4052 2832 w
+(PDP\25511/70) 4239 2832 w
+(version.) 4721 2832 w
+(Therefore,) 720 2952 w
+(a) 1164 2952 w
+(tool) 1235 2952 w
+(was) 1419 2952 w
+(developed) 1602 2952 w
+(to) 2040 2952 w
+(convert) 2146 2952 w
+(the) 2473 2952 w
+(common) 2623 2952 w
+(object) 3001 2952 w
+(file) 3273 2952 w
+(format) 3434 2952 w
+(of) 3728 2952 w
+(the) 3839 2952 w
+(Basic\25516) 3989 2952 w
+(SGS) 4372 2952 w
+(to) 4584 2952 w
+(the) 4690 2952 w
+(8086) 4840 2952 w
+(UNIX) 720 3072 w
+(system) 1006 3072 w
+(object) 1321 3072 w
+(file) 1602 3072 w
+(format.) 1772 3072 w
+(In) 2100 3072 w
+(addition,) 2220 3072 w
+(the) 2610 3072 w
+(8086) 2769 3072 w
+(system) 3006 3072 w
+(object) 3321 3072 w
+(file) 3602 3072 w
+(format) 3771 3072 w
+(was) 4073 3072 w
+(changed) 4264 3072 w
+(to) 4632 3072 w
+(include) 4746 3072 w
+(symbolic debugging information.) 720 3192 w
+(An) 970 3348 w
+(SGS) 1126 3348 w
+(designed) 1344 3348 w
+(around) 1733 3348 w
+(the) 2044 3348 w
+(Basic\25516) 2200 3348 w
+(SGS) 2589 3348 w
+(was) 2807 3348 w
+(later) 2996 3348 w
+(developed) 3207 3348 w
+(to) 3651 3348 w
+(run) 3763 3348 w
+(on) 3930 3348 w
+(the) 4064 3348 w
+(8086) 4220 3348 w
+(UNIX) 4454 3348 w
+(system.) 4737 3348 w
+(The) 720 3468 w
+(new) 919 3468 w
+(SGS) 1129 3468 w
+(uses) 1357 3468 w
+(the) 1573 3468 w
+(Basic\25516) 1739 3468 w
+(compiler,) 2138 3468 w
+(a) 2561 3468 w
+(modified) 2648 3468 w
+(Basic\25516) 3052 3468 w
+(assembler,) 3450 3468 w
+(and) 3917 3468 w
+(a) 4104 3468 w
+(modified) 4191 3468 w
+(PDP\25511/70) 4595 3468 w
+(loader) 720 3588 w
+(to) 998 3588 w
+(directly) 1105 3588 w
+(produce) 1439 3588 w
+(8086) 1789 3588 w
+(UNIX) 2018 3588 w
+(system) 2296 3588 w
+(object) 2603 3588 w
+(files.) 2876 3588 w
+(Using) 3102 3588 w
+(the) 3371 3588 w
+(symbolic) 3523 3588 w
+(debugging) 3920 3588 w
+(information) 4372 3588 w
+(pro\255) 4874 3588 w
+(duced by the SGS, sdb, a symbolic debugger, was ported to the 8086 UNIX system.) 720 3708 w
+10 /Times-Bold f
+(3.3.2 The 8086 UNIX system firmware monitor) 720 3948 w
+10 /Times-Roman f
+(A) 970 4104 w
+(firmware) 1068 4104 w
+(monitor) 1459 4104 w
+(was) 1802 4104 w
+(written) 1983 4104 w
+(specifically) 2292 4104 w
+(for) 2778 4104 w
+(the) 2920 4104 w
+(8086) 3068 4104 w
+(UNIX) 3295 4104 w
+(system.) 3571 4104 w
+(Stored) 3901 4104 w
+(in) 4189 4104 w
+(ROM,) 4294 4104 w
+(the) 4574 4104 w
+(monitor) 4723 4104 w
+(is) 720 4224 w
+(activated) 819 4224 w
+(on) 1211 4224 w
+(power\255up) 1342 4224 w
+(and) 1755 4224 w
+(has) 1930 4224 w
+(its) 2094 4224 w
+(own) 2220 4224 w
+(command) 2423 4224 w
+(language) 2848 4224 w
+(that) 3239 4224 w
+(allows) 3420 4224 w
+(the) 3712 4224 w
+(user) 3865 4224 w
+(to) 4062 4224 w
+(examine) 4171 4224 w
+(memory,) 4540 4224 w
+(set) 4929 4224 w
+(breakpoints) 720 4344 w
+(in) 1221 4344 w
+(memory,) 1334 4344 w
+(talk) 1727 4344 w
+(through) 1912 4344 w
+(to) 2258 4344 w
+(the) 2371 4344 w
+(host) 2528 4344 w
+(PDP\25511/70) 2730 4344 w
+(processor,) 3210 4344 w
+(etc.) 3652 4344 w
+(The) 3828 4344 w
+(monitor) 4018 4344 w
+(also) 4370 4344 w
+(allowed) 4566 4344 w
+(the) 4918 4344 w
+(user) 720 4464 w
+(to) 916 4464 w
+(down) 1024 4464 w
+(load) 1276 4464 w
+(programs) 1478 4464 w
+(directly) 1885 4464 w
+(into) 2220 4464 w
+(the) 2406 4464 w
+(memory) 2558 4464 w
+(of) 2921 4464 w
+(the) 3034 4464 w
+(8086) 3186 4464 w
+(UNIX) 3415 4464 w
+(system.) 3693 4464 w
+(Because) 4050 4464 w
+(the) 4411 4464 w
+(8086) 4562 4464 w
+(UNIX) 4791 4464 w
+(system) 720 4584 w
+(used) 1026 4584 w
+(a) 1237 4584 w
+(Winchester) 1309 4584 w
+(disk) 1791 4584 w
+(that) 1986 4584 w
+(was) 2164 4584 w
+(not) 2347 4584 w
+(common) 2503 4584 w
+(to) 2881 4584 w
+(the) 2987 4584 w
+(host) 3137 4584 w
+(processor,) 3332 4584 w
+(a) 3767 4584 w
+(stand\255alone) 3839 4584 w
+10 /Courier f
+(mkfs) 4327 4584 w
+10 /Times-Roman f
+(\(Make) 4595 4584 w
+(File) 4884 4584 w
+(System\)) 720 4704 w
+(program) 1079 4704 w
+(was) 1448 4704 w
+(developed) 1634 4704 w
+(to) 2075 4704 w
+(initialize) 2184 4704 w
+(the) 2565 4704 w
+(file) 2718 4704 w
+(system.) 2881 4704 w
+(The) 3239 4704 w
+(standalone) 3424 4704 w
+10 /Courier f
+(mkfs) 3881 4704 w
+10 /Times-Roman f
+(was) 4151 4704 w
+(down) 4336 4704 w
+(loaded) 4588 4704 w
+(into) 4884 4704 w
+(the) 720 4824 w
+(memory) 872 4824 w
+(of) 1235 4824 w
+(the) 1348 4824 w
+(8086) 1500 4824 w
+(UNIX) 1731 4824 w
+(system) 2011 4824 w
+(by) 2320 4824 w
+(a) 2451 4824 w
+(monitor) 2526 4824 w
+(command.) 2874 4824 w
+(Once) 3324 4824 w
+(execution) 3565 4824 w
+(began,) 3984 4824 w
+(the) 4278 4824 w
+10 /Courier f
+(mkfs) 4431 4824 w
+10 /Times-Roman f
+(program) 4702 4824 w
+(performed) 720 4944 w
+(a) 1169 4944 w
+(handshaking) 1247 4944 w
+(operation) 1786 4944 w
+(with) 2197 4944 w
+(the) 2409 4944 w
+(host) 2565 4944 w
+(to) 2766 4944 w
+(transfer) 2878 4944 w
+(files) 3216 4944 w
+(over) 3422 4944 w
+(an) 3632 4944 w
+(RS\255232) 3759 4944 w
+(port) 4098 4944 w
+(to) 4292 4944 w
+(the) 4403 4944 w
+(8086) 4558 4944 w
+(UNIX) 4791 4944 w
+(system disk.) 720 5064 w
+10 /Times-Bold f
+(3.4 Status) 720 5304 w
+10 /Times-Roman f
+(As) 970 5460 w
+(we) 1118 5460 w
+(previously) 1271 5460 w
+(mentioned,) 1730 5460 w
+(the) 2214 5460 w
+(8086) 2373 5460 w
+(UNIX) 2610 5460 w
+(system) 2896 5460 w
+(is) 3211 5460 w
+(currently) 3315 5460 w
+(used) 3712 5460 w
+(as) 3932 5460 w
+(the) 4052 5460 w
+(basis) 4211 5460 w
+(for) 4449 5460 w
+(an) 4603 5460 w
+(internal) 4735 5460 w
+(AT&T) 720 5580 w
+(application.) 1023 5580 w
+(As) 1523 5580 w
+(of) 1665 5580 w
+(this) 1779 5580 w
+(writing,) 1955 5580 w
+(the) 2300 5580 w
+(8086) 2453 5580 w
+(system) 2684 5580 w
+(supports) 2992 5580 w
+(UNIX) 3361 5580 w
+(System) 3640 5580 w
+(III.) 3965 5580 w
+(However,) 4119 5580 w
+(through) 4539 5580 w
+(ker\255) 4880 5580 w
+(nel) 720 5700 w
+(modifications) 873 5700 w
+(similar) 1454 5700 w
+(to) 1763 5700 w
+(those) 1872 5700 w
+(used) 2114 5700 w
+(on) 2328 5700 w
+(the) 2459 5700 w
+(PDP\25511/70) 2612 5700 w
+(version,) 3088 5700 w
+(the) 3438 5700 w
+(8086) 3591 5700 w
+(system) 3822 5700 w
+(could) 4131 5700 w
+(be) 4384 5700 w
+(made) 4510 5700 w
+(to) 4758 5700 w
+(sup\255) 4868 5700 w
+(port UNIX system V.*) 720 5820 w
+10 /Times-Bold f
+(IV. THE UNIX OPERATING SYSTEM ON THE UNIVAC 1100 SERIES) 720 6060 w
+10 /Times-Roman f
+(The) 970 6216 w
+(UNIX) 1152 6216 w
+(system) 1428 6216 w
+(for) 1734 6216 w
+(the) 1878 6216 w
+(UNIVAC) 2028 6216 w
+(1100) 2444 6216 w
+(Series) 2672 6216 w
+([6]) 2944 6216 w
+(runs) 3088 6216 w
+(on) 3288 6216 w
+(Sperry) 3416 6216 w
+(1100/60) 3710 6216 w
+(and) 4066 6216 w
+(1100/80) 4238 6216 w
+(processors.) 4594 6216 w
+(These) 720 6336 w
+(processors) 991 6336 w
+(have) 1445 6336 w
+(similar) 1666 6336 w
+(but) 1977 6336 w
+(not) 2137 6336 w
+(identical) 2297 6336 w
+(instruction) 2673 6336 w
+(sets.) 3133 6336 w
+(They) 3340 6336 w
+(run) 3577 6336 w
+(time\255sharing,) 3742 6336 w
+(batch,) 4304 6336 w
+(transaction,) 4577 6336 w
+(and) 720 6456 w
+(communications) 890 6456 w
+(real\255time) 1577 6456 w
+(programs,) 1963 6456 w
+(simultaneously,) 2391 6456 w
+(if) 3048 6456 w
+(desired,) 3136 6456 w
+(under) 3476 6456 w
+(the) 3730 6456 w
+(control) 3879 6456 w
+(of) 4189 6456 w
+(the) 4299 6456 w
+(OS) 4448 6456 w
+(1100) 4603 6456 w
+(oper\255) 4830 6456 w
+(ating) 720 6576 w
+(system) 953 6576 w
+(\(commonly) 1264 6576 w
+(called) 1758 6576 w
+(EXEC\).) 2029 6576 w
+(Each) 2381 6576 w
+(processor) 2613 6576 w
+(type) 3027 6576 w
+(can) 3231 6576 w
+(operate) 3401 6576 w
+(in) 3726 6576 w
+(configurations) 3836 6576 w
+(of) 4445 6576 w
+(from) 4560 6576 w
+(one) 4786 6576 w
+(to) 4962 6576 w
+(four) 720 6696 w
+(Central) 913 6696 w
+(Processing) 1234 6696 w
+(Units) 1694 6696 w
+(\(CPUs\)) 1939 6696 w
+(with) 2267 6696 w
+(one) 2473 6696 w
+(to) 2645 6696 w
+(four) 2751 6696 w
+(I/O) 2945 6696 w
+(processors) 3106 6696 w
+(\(not) 3555 6696 w
+(all) 3744 6696 w
+(combinations) 3872 6696 w
+(are) 4439 6696 w
+(supported\).) 4588 6696 w
+8 /S1 f
+(__________________) 720 6796 w
+8 /Times-Roman f
+(*) 720 6896 w
+(Due) 783 6896 w
+(to) 939 6896 w
+(addressing) 1024 6896 w
+(limitations) 1387 6896 w
+(a) 1750 6896 w
+(memory) 1809 6896 w
+(management) 2098 6896 w
+(scheme) 2528 6896 w
+(referred) 2790 6896 w
+(to) 3063 6896 w
+(as) 3149 6896 w
+(overlaying) 3239 6896 w
+(was) 3603 6896 w
+(added) 3751 6896 w
+(to) 3965 6896 w
+(support) 4051 6896 w
+(UNIX) 4314 6896 w
+(Sys\255) 4538 6896 w
+(tem) 720 6996 w
+(V) 863 6996 w
+(on) 945 6996 w
+(the) 1049 6996 w
+(PDP\25511/70) 1170 6996 w
+(system.) 1550 6996 w
+(The) 1815 6996 w
+("Overlay") 1963 6996 w
+(technique) 2309 6996 w
+(could) 2642 6996 w
+(be) 2843 6996 w
+(achieved) 2942 6996 w
+(by) 3248 6996 w
+(using) 3352 6996 w
+(the) 3549 6996 w
+(indexing) 3670 6996 w
+(capability) 3973 6996 w
+(of) 4310 6996 w
+(the) 4400 6996 w
+(8086) 4520 6996 w
+(and) 720 7096 w
+(the) 866 7096 w
+(unused) 994 7096 w
+(kernel) 1251 7096 w
+(segment) 1480 7096 w
+(maps) 1776 7096 w
+(in) 1975 7096 w
+(the) 2068 7096 w
+(MMU) 2196 7096 w
+(of) 2427 7096 w
+(the) 2524 7096 w
+(8086) 2652 7096 w
+(UNIX) 2843 7096 w
+(system.) 3074 7096 w
+(Infrequently) 3346 7096 w
+(executed) 3769 7096 w
+(code) 4082 7096 w
+(could) 4263 7096 w
+(be) 4472 7096 w
+(ad\255) 4579 7096 w
+(dressed through the segment registers by appropriately adjusting the index registers.) 720 7196 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 5 5
+%%Page: 6 6
+/saveobj save def
+mark
+6 pagesetup
+10 /Times-Roman f
+(\255 6 \255) 2797 480 w
+(Processor types cannot be mixed in a single configuration.) 720 840 w
+(The) 970 996 w
+(UNIX) 1153 996 w
+(system) 1430 996 w
+(for) 1736 996 w
+(the) 1880 996 w
+(UNIVAC) 2030 996 w
+(1100) 2446 996 w
+(series) 2674 996 w
+(was) 2930 996 w
+(built) 3114 996 w
+(as) 3327 996 w
+(an) 3439 996 w
+(integrated) 3562 996 w
+(development) 3990 996 w
+(environment) 4535 996 w
+(for) 720 1116 w
+(transactions) 883 1116 w
+(that) 1407 1116 w
+(run) 1604 1116 w
+(directly) 1784 1116 w
+(on) 2136 1116 w
+(EXEC.) 2282 1116 w
+(Unlike) 2614 1116 w
+(most) 2932 1116 w
+(other) 3173 1116 w
+(implementations,) 3424 1116 w
+(therefore,) 4162 1116 w
+(it) 4592 1116 w
+(runs) 4694 1116 w
+(not) 4912 1116 w
+(directly) 720 1236 w
+(on) 1060 1236 w
+(the) 1195 1236 w
+(hardware) 1352 1236 w
+(but) 1757 1236 w
+(as) 1920 1236 w
+(a) 2038 1236 w
+(collection) 2118 1236 w
+(of) 2548 1236 w
+(user\255level) 2667 1236 w
+(activities) 3096 1236 w
+(under) 3493 1236 w
+(control) 3756 1236 w
+(of) 4075 1236 w
+(EXEC.) 4194 1236 w
+(These) 4516 1236 w
+(obtain) 4790 1236 w
+(services) 720 1356 w
+(that) 1077 1356 w
+(would) 1263 1356 w
+(normally) 1549 1356 w
+(be) 1946 1356 w
+(provided) 2076 1356 w
+(by) 2467 1356 w
+(device) 2603 1356 w
+(drivers,) 2899 1356 w
+(and) 3236 1356 w
+(some) 3415 1356 w
+(process) 3661 1356 w
+(creation) 3995 1356 w
+(and) 4351 1356 w
+(management) 4530 1356 w
+(services) 720 1476 w
+(from) 1079 1476 w
+(EXEC.) 1312 1476 w
+(Any) 1637 1476 w
+(configuration) 1848 1476 w
+(supplied) 2425 1476 w
+(by) 2803 1476 w
+(Sperry,) 2942 1476 w
+(including) 3272 1476 w
+(multiprocessor) 3689 1476 w
+(ones,) 4322 1476 w
+(can) 4569 1476 w
+(run) 4746 1476 w
+(the) 4918 1476 w
+(UNIX system.) 720 1596 w
+10 /Times-Bold f
+(4.1 Effects of hardware architecture on porting) 720 1836 w
+10 /Times-Roman f
+(Like all UNIX system) 970 1992 w
+(implementations,) 1881 1992 w
+(this) 2599 1992 w
+(one) 2770 1992 w
+(dealt) 2940 1992 w
+(with) 3160 1992 w
+(peculiarities) 3364 1992 w
+(of) 3878 1992 w
+(the) 3987 1992 w
+(target) 4135 1992 w
+(system) 4388 1992 w
+(architec\255) 4692 1992 w
+(ture.) 720 2112 w
+(The) 956 2112 w
+(1100) 1142 2112 w
+(hardware) 1373 2112 w
+(architecture) 1774 2112 w
+(differs) 2275 2112 w
+(from) 2566 2112 w
+(other) 2791 2112 w
+(architectures) 3027 2112 w
+(to) 3567 2112 w
+(which) 3676 2112 w
+(the) 3950 2112 w
+(UNIX) 4102 2112 w
+(system) 4381 2112 w
+(has) 4689 2112 w
+(been) 4852 2112 w
+(transported in a number of ways. These differences are discussed below.) 720 2232 w
+10 /Times-Bold f
+(4.1.1 Data type size) 720 2472 w
+10 /Times-Roman f
+(The) 970 2628 w
+(1100) 1177 2628 w
+(C) 1429 2628 w
+(implementation) 1548 2628 w
+(has) 2229 2628 w
+(9\255bit) 2415 2628 w
+(characters) 2657 2628 w
+(\(bytes\),) 3113 2628 w
+(18\255bit) 3468 2628 w
+(shorts,) 3760 2628 w
+(and) 4077 2628 w
+(36\255bit) 4274 2628 w
+(integer) 4566 2628 w
+(and) 4896 2628 w
+(unsigned) 720 2748 w
+(data) 1114 2748 w
+(types) 1313 2748 w
+(\(longs) 1557 2748 w
+(are) 1840 2748 w
+(also) 1994 2748 w
+(36) 2188 2748 w
+(bits\).) 2321 2748 w
+(The) 2557 2748 w
+(compiler) 2745 2748 w
+(does) 3133 2748 w
+(not) 3349 2748 w
+(attempt) 3510 2748 w
+(to) 3842 2748 w
+(make) 3952 2748 w
+(these) 4200 2748 w
+(types) 4437 2748 w
+(look) 4680 2748 w
+(like) 4890 2748 w
+(8\255bit) 720 2868 w
+(multiple) 947 2868 w
+(lengths) 1319 2868 w
+(to) 1646 2868 w
+(the) 1762 2868 w
+(programmer;) 1922 2868 w
+(the) 2481 2868 w
+(writer) 2641 2868 w
+(or) 2917 2868 w
+(transporter) 3038 2868 w
+(of) 3509 2868 w
+(code) 3631 2868 w
+(dependent) 3858 2868 w
+(on) 4307 2868 w
+(8\255bit) 4446 2868 w
+(bytes) 4674 2868 w
+(for) 4924 2868 w
+(proper) 720 2988 w
+(functioning) 1018 2988 w
+(is) 1517 2988 w
+(responsible) 1622 2988 w
+(for) 2115 2988 w
+(making) 2269 2988 w
+(the) 2607 2988 w
+(code) 2766 2988 w
+(work) 2991 2988 w
+(with) 3233 2988 w
+(9\255bit) 3448 2988 w
+(bytes,) 3674 2988 w
+(or) 3947 2988 w
+(better,) 4067 2988 w
+(making) 4356 2988 w
+(the) 4693 2988 w
+(code) 4852 2988 w
+(portable.) 720 3108 w
+10 /Times-Bold f
+(4.1.2 Word addressing) 720 3348 w
+10 /Times-Roman f
+(The) 970 3504 w
+(machine) 1170 3504 w
+(addresses) 1553 3504 w
+(words) 1980 3504 w
+(rather) 2270 3504 w
+(than) 2548 3504 w
+(bytes.) 2766 3504 w
+(All) 3048 3504 w
+(extension) 3222 3504 w
+(of) 3651 3504 w
+(the) 3780 3504 w
+(operator) 3948 3504 w
+(code) 4326 3504 w
+(field) 4560 3504 w
+(of) 4789 3504 w
+(the) 4918 3504 w
+(instruction) 720 3624 w
+(can) 1177 3624 w
+(designate) 1344 3624 w
+(to) 1750 3624 w
+(which) 1857 3624 w
+(quarter) 2130 3624 w
+(of) 2441 3624 w
+(the) 2553 3624 w
+(operand) 2704 3624 w
+(the) 3054 3624 w
+(operation) 3205 3624 w
+(applies.) 3611 3624 w
+(Use) 3948 3624 w
+(of) 4131 3624 w
+(this) 4242 3624 w
+(feature) 4415 3624 w
+(requires) 4719 3624 w
+(compile) 720 3744 w
+(time) 1075 3744 w
+(knowledge) 1286 3744 w
+(of) 1757 3744 w
+(the) 1873 3744 w
+(byte) 2028 3744 w
+(address,) 2233 3744 w
+(which) 2590 3744 w
+(is) 2867 3744 w
+(possible) 2967 3744 w
+(for) 3328 3744 w
+(cases) 3477 3744 w
+(such) 3720 3744 w
+(as) 3936 3744 w
+(references) 4053 3744 w
+(to) 4495 3744 w
+(automatics) 4607 3744 w
+(and) 720 3864 w
+(structure) 890 3864 w
+(leaves,) 1265 3864 w
+(but) 1565 3864 w
+(not) 1719 3864 w
+(for) 1873 3864 w
+(the dereferencing of pointers. Pointers contain a simulated byte address that) 2015 3864 w
+(must) 720 3984 w
+(be) 955 3984 w
+(dereferenced) 1089 3984 w
+(by) 1642 3984 w
+(generated) 1782 3984 w
+(code) 2209 3984 w
+(rather) 2438 3984 w
+(than) 2711 3984 w
+(addressing) 2924 3984 w
+(hardware.) 3392 3984 w
+(Since) 3828 3984 w
+(this) 4091 3984 w
+(has) 4277 3984 w
+(a) 4451 3984 w
+(considerable) 4536 3984 w
+(adverse) 720 4104 w
+(effect) 1063 4104 w
+(on) 1328 4104 w
+(performance,) 1467 4104 w
+(the) 2034 4104 w
+(format) 2195 4104 w
+(of) 2500 4104 w
+(pointers) 2622 4104 w
+(was) 2982 4104 w
+(carefully) 3175 4104 w
+(designed) 3567 4104 w
+(to) 3960 4104 w
+(minimize) 4076 4104 w
+(the) 4492 4104 w
+(execution) 4652 4104 w
+(time) 720 4224 w
+(of) 926 4224 w
+(this) 1037 4224 w
+(generated) 1211 4224 w
+(code.) 1627 4224 w
+(Early) 1869 4224 w
+(versions) 2114 4224 w
+(of) 2476 4224 w
+(the) 2588 4224 w
+(compiler) 2739 4224 w
+(used) 3123 4224 w
+(simulated) 3335 4224 w
+(byte) 3753 4224 w
+(addresses) 3954 4224 w
+(to) 4365 4224 w
+(aid) 4472 4224 w
+(portability) 4623 4224 w
+(of) 720 4344 w
+(existing) 834 4344 w
+(code;) 1182 4344 w
+(later) 1429 4344 w
+(versions) 1637 4344 w
+(used) 2001 4344 w
+(pointers) 2215 4344 w
+(containing) 2568 4344 w
+(a) 3020 4344 w
+(word) 3094 4344 w
+(address) 3329 4344 w
+(in) 3658 4344 w
+(the) 3766 4344 w
+(less) 3918 4344 w
+(significant) 4098 4344 w
+(\(right\)) 4550 4344 w
+(word) 4835 4344 w
+(half and a byte offset in the left half.) 720 4464 w
+10 /Times-Bold f
+(4.1.3 One's complement) 720 4704 w
+10 /Times-Roman f
+(The) 970 4860 w
+(1100) 1158 4860 w
+(processors) 1391 4860 w
+(use) 1845 4860 w
+(one's) 2012 4860 w
+(complement) 2262 4860 w
+(arithmetic.) 2790 4860 w
+(The) 3254 4860 w
+(compiler) 3443 4860 w
+(makes) 3832 4860 w
+(no) 4121 4860 w
+(attempt) 4255 4860 w
+(to) 4589 4860 w
+(simulate) 4701 4860 w
+(two's) 720 4980 w
+(complement) 981 4980 w
+(arithmetic.) 1514 4980 w
+(As) 1983 4980 w
+(is) 2133 4980 w
+(the) 2239 4980 w
+(case) 2400 4980 w
+(with) 2610 4980 w
+(the) 2827 4980 w
+(byte) 2988 4980 w
+(size,) 3199 4980 w
+(writers) 3418 4980 w
+(or) 3734 4980 w
+(transporters) 3856 4980 w
+(of) 4366 4980 w
+(code) 4487 4980 w
+(must) 4713 4980 w
+(be) 4946 4980 w
+(aware) 720 5100 w
+(of) 989 5100 w
+(this) 1104 5100 w
+(difference.) 1282 5100 w
+(Fortunately,) 1743 5100 w
+(in) 2262 5100 w
+(actual) 2373 5100 w
+(practice,) 2644 5100 w
+(problems) 3017 5100 w
+(caused) 3422 5100 w
+(by) 3726 5100 w
+(one's) 3859 5100 w
+(complement) 4108 5100 w
+(arithmetic) 4635 5100 w
+(are rare. \(Some of the nastiest ones are in the C compiler itself!\)) 720 5220 w
+10 /Times-Bold f
+(4.1.4 Floating point) 720 5460 w
+10 /Times-Roman f
+(There) 970 5616 w
+(is) 1243 5616 w
+(little) 1351 5616 w
+(uniformity) 1576 5616 w
+(of) 2045 5616 w
+(floating) 2170 5616 w
+(point) 2523 5616 w
+(formats) 2771 5616 w
+(among) 3118 5616 w
+(mainframes,) 3432 5616 w
+(and) 3970 5616 w
+(the) 4156 5616 w
+(1100) 4320 5616 w
+(series) 4562 5616 w
+(is) 4831 5616 w
+(no) 4940 5616 w
+(exception.) 720 5736 w
+(The) 1161 5736 w
+(greatest) 1344 5736 w
+(difficulty) 1682 5736 w
+(was) 2082 5736 w
+(caused) 2265 5736 w
+(by) 2564 5736 w
+(the) 2692 5736 w
+(assumption) 2842 5736 w
+(embedded) 3326 5736 w
+(in) 3764 5736 w
+(the) 3870 5736 w
+(compiler's) 4019 5736 w
+(portable) 4473 5736 w
+(code,) 4827 5736 w
+(that) 720 5856 w
+(a) 903 5856 w
+(double) 980 5856 w
+(may) 1285 5856 w
+(be) 1490 5856 w
+(made) 1617 5856 w
+(from) 1866 5856 w
+(a) 2093 5856 w
+(float) 2170 5856 w
+(by) 2386 5856 w
+(extending) 2519 5856 w
+(the) 2946 5856 w
+(mantissa) 3101 5856 w
+(with) 3484 5856 w
+(a) 3695 5856 w
+(word) 3772 5856 w
+(of) 4010 5856 w
+(zeros;) 4126 5856 w
+(on) 4397 5856 w
+(an) 4531 5856 w
+(1100,) 4659 5856 w
+(the) 4918 5856 w
+(characteristics differ in size as well.) 720 5976 w
+10 /Times-Bold f
+(4.1.5 Banking) 720 6216 w
+10 /Times-Roman f
+(Memory) 970 6372 w
+(management) 1344 6372 w
+(hardware) 1884 6372 w
+(on) 2284 6372 w
+(1100/60) 2414 6372 w
+(and) 2772 6372 w
+(1100/80) 2946 6372 w
+(processors) 3304 6372 w
+(maps) 3755 6372 w
+(program) 3997 6372 w
+(virtual) 4366 6372 w
+(addresses) 4658 6372 w
+(into) 720 6492 w
+(the) 917 6492 w
+(physical) 1080 6492 w
+(addresses) 1454 6492 w
+(of) 1877 6492 w
+(segments,) 2001 6492 w
+(or) 2439 6492 w
+(banks.) 2563 6492 w
+(These) 2862 6492 w
+(processors) 3141 6492 w
+(are) 3603 6492 w
+(atypical) 3765 6492 w
+(in) 4122 6492 w
+(that) 4241 6492 w
+(a) 4432 6492 w
+(given) 4517 6492 w
+(virtual) 4779 6492 w
+(address) 720 6612 w
+(may) 1062 6612 w
+(refer) 1277 6612 w
+(to) 1507 6612 w
+(more) 1628 6612 w
+(than) 1876 6612 w
+(one) 2092 6612 w
+(physical) 2280 6612 w
+(address.) 2657 6612 w
+(In) 3025 6612 w
+(this) 3152 6612 w
+(case,) 3341 6612 w
+(disambiguation) 3581 6612 w
+(is) 4242 6612 w
+(by) 4353 6612 w
+(context,) 4497 6612 w
+([i.e.,) 4860 6612 w
+(whether) 720 6732 w
+(the) 1072 6732 w
+(fetch) 1225 6732 w
+(is) 1455 6732 w
+(text) 1553 6732 w
+(or) 1733 6732 w
+(data,) 1846 6732 w
+(or) 2067 6732 w
+(which) 2180 6732 w
+(of) 2454 6732 w
+(two) 2567 6732 w
+(sets) 2747 6732 w
+(of) 2927 6732 w
+(mapping) 3040 6732 w
+(registers) 3420 6732 w
+(is) 3788 6732 w
+(active) 3885 6732 w
+(\(an) 4153 6732 w
+(ambiguous) 4310 6732 w
+(virtual) 4779 6732 w
+(address) 720 6852 w
+(will) 1052 6852 w
+(be) 1241 6852 w
+(resolved) 1368 6852 w
+(in) 1739 6852 w
+(favor) 1850 6852 w
+(of) 2093 6852 w
+(the) 2209 6852 w
+(active) 2364 6852 w
+(set\)].) 2635 6852 w
+(Each) 2871 6852 w
+(of) 3104 6852 w
+(these) 3221 6852 w
+(two) 3460 6852 w
+(sets) 3644 6852 w
+(has) 3828 6852 w
+(basing) 3995 6852 w
+(registers) 4290 6852 w
+(for) 4662 6852 w
+(a) 4812 6852 w
+(text) 4890 6852 w
+(segment) 720 6972 w
+(\(I) 1087 6972 w
+(bank\)) 1187 6972 w
+(and) 1448 6972 w
+(a) 1626 6972 w
+(data) 1704 6972 w
+(segment) 1903 6972 w
+(\(D) 2269 6972 w
+(bank\).) 2407 6972 w
+(Therefore,) 2692 6972 w
+(only) 3142 6972 w
+(four) 3353 6972 w
+(banks) 3552 6972 w
+(can) 3818 6972 w
+(be) 3989 6972 w
+(addressable) 4116 6972 w
+(at) 4614 6972 w
+(any) 4719 6972 w
+(one) 4896 6972 w
+(time.) 720 7092 w
+(To) 952 7092 w
+(make) 1092 7092 w
+(another) 1337 7092 w
+(bank) 1665 7092 w
+(accessible,) 1888 7092 w
+(its) 2346 7092 w
+(address) 2470 7092 w
+(and) 2798 7092 w
+(limits) 2971 7092 w
+(must) 3229 7092 w
+(replace) 3454 7092 w
+(those) 3771 7092 w
+(of) 4012 7092 w
+(a) 4125 7092 w
+(currently) 4199 7092 w
+(based) 4589 7092 w
+(bank) 4846 7092 w
+(in) 720 7212 w
+(at) 836 7212 w
+(least) 946 7212 w
+(one) 1167 7212 w
+(of) 1349 7212 w
+(the) 1470 7212 w
+(mapping) 1630 7212 w
+(registers.) 2017 7212 w
+(This) 2417 7212 w
+(is) 2632 7212 w
+(done) 2736 7212 w
+(by) 2967 7212 w
+(an) 3104 7212 w
+(instruction,) 3235 7212 w
+(which) 3725 7212 w
+(may) 4006 7212 w
+(be) 4215 7212 w
+(executed) 4346 7212 w
+(by) 4737 7212 w
+(user) 4874 7212 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 6 6
+%%Page: 7 7
+/saveobj save def
+mark
+7 pagesetup
+10 /Times-Roman f
+(\255 7 \255) 2797 480 w
+(programs as well as EXEC. The implications of this unusual memory management scheme are that:) 720 840 w
+(1.) 720 996 w
+(Since) 970 996 w
+(segments) 1228 996 w
+(are) 1636 996 w
+(a) 1793 996 w
+(scarce) 1873 996 w
+(resource,) 2157 996 w
+(numerous) 2555 996 w
+(bank) 2985 996 w
+(switches) 3215 996 w
+(must) 3595 996 w
+(be) 3826 996 w
+(done) 3956 996 w
+(to) 4186 996 w
+(accomplish) 4300 996 w
+(UNIX) 4791 996 w
+(system kernel functions.) 970 1116 w
+(2.) 720 1272 w
+(The ability to address multiple\255user and kernel\255user address spaces is limited.) 970 1272 w
+(3.) 720 1428 w
+(Demand paging is not possible.) 970 1428 w
+(4.) 720 1584 w
+(The) 970 1584 w
+(bank\255switch) 1160 1584 w
+(mechanism) 1683 1584 w
+(used) 2173 1584 w
+(for) 2391 1584 w
+(system) 2542 1584 w
+(calls) 2855 1584 w
+(is) 3073 1584 w
+(more) 3175 1584 w
+(efficient) 3415 1584 w
+(than) 3782 1584 w
+(the) 3989 1584 w
+(processor\255state) 4146 1584 w
+(switch) 4779 1584 w
+(used by most machines.) 970 1704 w
+10 /Times-Bold f
+(4.2 Layered implementation) 720 1980 w
+(4.2.1 Advantages and constraints) 720 2220 w
+10 /Times-Roman f
+(The) 970 2376 w
+(advantages) 1163 2376 w
+(of) 1644 2376 w
+(basing) 1765 2376 w
+(a) 2064 2376 w
+(UNIX) 2147 2376 w
+(system) 2435 2376 w
+(upon) 2752 2376 w
+(a) 2991 2376 w
+(vendor's) 3074 2376 w
+(standard) 3462 2376 w
+(operating) 3839 2376 w
+(system,) 4255 2376 w
+(rather) 4597 2376 w
+(than) 4868 2376 w
+(bare) 720 2496 w
+(hardware,) 933 2496 w
+(outweigh) 1370 2496 w
+(the) 1784 2496 w
+(disadvantages) 1948 2496 w
+(for) 2550 2496 w
+(the) 2708 2496 w
+(system's) 2872 2496 w
+(intended) 3264 2496 w
+(use) 3650 2496 w
+(as) 3825 2496 w
+(an) 3949 2496 w
+(integrated) 4084 2496 w
+(development) 4524 2496 w
+(environment.) 720 2616 w
+(The) 1277 2616 w
+(system) 1459 2616 w
+(is) 1765 2616 w
+(widely) 1860 2616 w
+(marketable) 2160 2616 w
+(to) 2631 2616 w
+(1100) 2737 2616 w
+(customers) 2965 2616 w
+(since) 3398 2616 w
+(all) 3631 2616 w
+(eligible) 3759 2616 w
+(hardware) 4087 2616 w
+(runs) 4485 2616 w
+(the) 4685 2616 w
+(same) 4835 2616 w
+(operating) 720 2736 w
+(system) 1126 2736 w
+(\(EXEC\),) 1433 2736 w
+(necessary) 1814 2736 w
+(EXEC) 2230 2736 w
+(changes) 2520 2736 w
+(are) 2870 2736 w
+(distributed) 3020 2736 w
+(and) 3477 2736 w
+(supported) 3649 2736 w
+(by) 4071 2736 w
+(Sperry,) 4199 2736 w
+(and) 4518 2736 w
+(no) 4690 2736 w
+(exist\255) 4818 2736 w
+(ing capabilities \(transactions, etc.\) are removed from a machine by installing a UNIX system.) 720 2856 w
+(The) 970 3012 w
+(system) 1154 3012 w
+(functions) 1461 3012 w
+(as) 1863 3012 w
+(an) 1976 3012 w
+(integrated) 2100 3012 w
+(development) 2529 3012 w
+(environment) 3075 3012 w
+(supporting) 3610 3012 w
+(the) 4068 3012 w
+(C) 4220 3012 w
+(Transaction) 4317 3012 w
+(Envi\255) 4818 3012 w
+(ronment) 720 3132 w
+(\(an) 1083 3132 w
+(internal) 1240 3132 w
+(product) 1575 3132 w
+(different) 1910 3132 w
+(from) 2283 3132 w
+(the) 2507 3132 w
+(UNIX) 2659 3132 w
+(system,) 2938 3132 w
+(and) 3270 3132 w
+(one) 3443 3132 w
+(not) 3616 3132 w
+(commercially) 3773 3132 w
+(available) 4351 3132 w
+(for) 4740 3132 w
+(part) 4885 3132 w
+(of) 720 3252 w
+(the) 833 3252 w
+(licensed) 985 3252 w
+(package\).) 1342 3252 w
+(This) 1756 3252 w
+(C) 1964 3252 w
+(Transaction) 2061 3252 w
+(Environment) 2562 3252 w
+(has) 3114 3252 w
+(a) 3277 3252 w
+(compatible) 3351 3252 w
+(system) 3825 3252 w
+(call) 4133 3252 w
+(subset,) 4307 3252 w
+(supporting) 4612 3252 w
+(transactions) 720 3372 w
+(against) 1240 3372 w
+(a) 1566 3372 w
+(Data) 1653 3372 w
+(Base) 1884 3372 w
+(Management) 2121 3372 w
+(System) 2685 3372 w
+(\(DBMS\).) 3023 3372 w
+(The) 3441 3372 w
+(UNIX) 3639 3372 w
+(system) 3931 3372 w
+(has) 4251 3372 w
+(extensions) 4426 3372 w
+(that) 4890 3372 w
+(allow) 720 3492 w
+(processes) 980 3492 w
+(to) 1400 3492 w
+(access) 1516 3492 w
+(parts) 1808 3492 w
+(of) 2040 3492 w
+(the) 2161 3492 w
+(EXEC) 2321 3492 w
+(environment.) 2620 3492 w
+(EXEC) 3188 3492 w
+(files) 3487 3492 w
+(may) 3698 3492 w
+(be) 3909 3492 w
+(reached) 4042 3492 w
+(from) 4390 3492 w
+(within) 4623 3492 w
+(the) 4918 3492 w
+(UNIX) 720 3612 w
+(system) 1002 3612 w
+(with) 1313 3612 w
+(special) 1524 3612 w
+(path) 1834 3612 w
+(names.) 2039 3612 w
+(A) 2352 3612 w
+(character) 2457 3612 w
+(device) 2854 3612 w
+(creates) 3147 3612 w
+(EXEC) 3456 3612 w
+(time\255sharing) 3750 3612 w
+(sessions) 4287 3612 w
+(on) 4647 3612 w
+(virtual) 4779 3612 w
+(terminals.) 720 3732 w
+(These) 1151 3732 w
+(sessions) 1423 3732 w
+(may) 1785 3732 w
+(communicate) 1992 3732 w
+(directly) 2565 3732 w
+(with) 2905 3732 w
+(the) 3118 3732 w
+(UNIX) 3275 3732 w
+(system) 3559 3732 w
+(user) 3872 3732 w
+(via) 4073 3732 w
+(a) 4230 3732 w
+(cu\255like) 4309 3732 w
+(command.) 4621 3732 w
+(Shells) 720 3852 w
+(using) 997 3852 w
+(this) 1246 3852 w
+(feature) 1423 3852 w
+(contribute) 1731 3852 w
+(extensively) 2168 3852 w
+(to) 2655 3852 w
+(the) 2765 3852 w
+(ease) 2919 3852 w
+(of) 3122 3852 w
+(transport) 3237 3852 w
+(of) 3624 3852 w
+(programs) 3738 3852 w
+(from) 4146 3852 w
+(the) 4371 3852 w
+(development) 4524 3852 w
+(environment) 720 3972 w
+(to) 1251 3972 w
+(the) 1355 3972 w
+(transaction) 1504 3972 w
+(execution) 1969 3972 w
+(environment.) 2384 3972 w
+(Access) 2966 3972 w
+(to) 3275 3972 w
+(the) 3380 3972 w
+(system) 3529 3972 w
+(from) 3834 3972 w
+(EXEC) 4055 3972 w
+(batch) 4343 3972 w
+(runs) 4586 3972 w
+(is) 4785 3972 w
+(also) 4879 3972 w
+(possible, which facilitates system administration by console operators not familiar with the UNIX system.) 720 4092 w
+(Implementation) 970 4248 w
+(under) 1636 4248 w
+(the) 1896 4248 w
+(EXEC) 2051 4248 w
+(also) 2345 4248 w
+(imposes) 2539 4248 w
+(some) 2900 4248 w
+(constraints.) 3144 4248 w
+(The) 3661 4248 w
+(EXEC) 3850 4248 w
+(analog) 4145 4248 w
+(of) 4445 4248 w
+(a) 4562 4248 w
+(process) 4640 4248 w
+(is) 4973 4248 w
+(called) 720 4368 w
+(an) 987 4368 w
+(activity.) 1110 4368 w
+(A) 1464 4368 w
+(process) 1565 4368 w
+(maps) 1893 4368 w
+(to) 2133 4368 w
+(an) 2240 4368 w
+(activity,) 2363 4368 w
+(but) 2717 4368 w
+(an) 2874 4368 w
+(activity) 2997 4368 w
+(has) 3326 4368 w
+(no) 3488 4368 w
+(unique) 3616 4368 w
+(address) 3916 4368 w
+(space) 4243 4368 w
+(of) 4492 4368 w
+(its) 4603 4368 w
+(own,) 4726 4368 w
+(so) 4951 4368 w
+(the) 720 4488 w
+(UNIX) 878 4488 w
+(system) 1163 4488 w
+(kernel) 1477 4488 w
+(fork) 1762 4488 w
+(system) 1964 4488 w
+(call) 2278 4488 w
+(must) 2459 4488 w
+(manage) 2691 4488 w
+(the) 3038 4488 w
+(banks) 3197 4488 w
+(for) 3467 4488 w
+(each) 3620 4488 w
+(process) 3839 4488 w
+(after) 4175 4488 w
+(using) 4394 4488 w
+(an) 4648 4488 w
+(EXEC) 4779 4488 w
+(primitive) 720 4608 w
+(to) 1125 4608 w
+(create) 1241 4608 w
+(an) 1516 4608 w
+(activity.) 1648 4608 w
+(EXEC) 2036 4608 w
+(groups) 2334 4608 w
+(activities) 2643 4608 w
+(into) 3041 4608 w
+(runs,) 3234 4608 w
+(which) 3468 4608 w
+(are) 3749 4608 w
+(normally) 3907 4608 w
+(but) 4305 4608 w
+(not) 4470 4608 w
+(invariably) 4635 4608 w
+(associated) 720 4728 w
+(with) 1160 4728 w
+(a) 1368 4728 w
+(terminal.) 1442 4728 w
+(UNIX) 1830 4728 w
+(system) 2109 4728 w
+(process) 2417 4728 w
+(activities) 2746 4728 w
+(must) 3137 4728 w
+(span) 3362 4728 w
+(a) 3575 4728 w
+(collection) 3649 4728 w
+(of) 4073 4728 w
+(runs) 4187 4728 w
+(for) 4390 4728 w
+(performance) 4537 4728 w
+(reasons.) 720 4848 w
+(Creation) 1074 4848 w
+(of) 1448 4848 w
+(an) 1561 4848 w
+(EXEC) 1685 4848 w
+(activity) 1976 4848 w
+(in) 2306 4848 w
+(another) 2414 4848 w
+(run) 2743 4848 w
+(is) 2906 4848 w
+(not) 3002 4848 w
+(possible,) 3159 4848 w
+(so) 3541 4848 w
+(there) 3659 4848 w
+(cannot) 3887 4848 w
+(be) 4182 4848 w
+(a) 4305 4848 w
+(single) 4378 4848 w
+(parent) 4646 4848 w
+(for) 4924 4848 w
+(all) 720 4968 w
+(processes.) 850 4968 w
+(A) 1287 4968 w
+(new) 1389 4968 w
+(run) 1585 4968 w
+(is) 1748 4968 w
+(created) 1845 4968 w
+(by) 2162 4968 w
+(each) 2292 4968 w
+(user) 2504 4968 w
+(logging) 2701 4968 w
+(in,) 3038 4968 w
+(which) 3172 4968 w
+(contains) 3447 4968 w
+(all) 3811 4968 w
+(of) 3942 4968 w
+(the) 4056 4968 w
+(processes) 4209 4968 w
+(created) 4622 4968 w
+(by) 4940 4968 w
+(that) 720 5088 w
+(user.) 896 5088 w
+(All) 1138 5088 w
+(system calls return results as if process 1 did exist. EXEC file assigns \(used by block devices\)) 1292 5088 w
+(are accomplished by a run. Each) 720 5208 w
+(run) 2042 5208 w
+(of) 2201 5208 w
+(a) 2310 5208 w
+(group) 2380 5208 w
+(of) 2639 5208 w
+(runs) 2748 5208 w
+(desiring) 2946 5208 w
+(to) 3294 5208 w
+(assign) 3398 5208 w
+(a) 3674 5208 w
+(file) 3744 5208 w
+(must) 3903 5208 w
+(do) 4124 5208 w
+(so) 4250 5208 w
+(separately.) 4365 5208 w
+(Sim\255) 4845 5208 w
+(ilarly,) 720 5328 w
+(EXEC) 997 5328 w
+(has) 1299 5328 w
+(an) 1473 5328 w
+(analog) 1608 5328 w
+(to) 1915 5328 w
+(signals) 2034 5328 w
+(among) 2353 5328 w
+(activities) 2666 5328 w
+(within) 3068 5328 w
+(a) 3364 5328 w
+(run) 3448 5328 w
+(but) 3621 5328 w
+(not) 3789 5328 w
+(among) 3957 5328 w
+(runs.) 4269 5328 w
+(Such) 4506 5328 w
+(sharing) 4746 5328 w
+(among) 720 5448 w
+(runs) 1024 5448 w
+(requires) 1228 5448 w
+(a) 1581 5448 w
+(set) 1657 5448 w
+(of) 1800 5448 w
+(local) 1915 5448 w
+(daemon) 2141 5448 w
+(activities) 2489 5448 w
+(for) 2882 5448 w
+(each) 3030 5448 w
+(run) 3244 5448 w
+(to) 3409 5448 w
+(service) 3520 5448 w
+(the) 3835 5448 w
+(shared) 3990 5448 w
+(status) 4283 5448 w
+(data,) 4544 5448 w
+(adding) 4768 5448 w
+(nontrivially to the complexity of the kernel.) 720 5568 w
+10 /Times-Bold f
+(4.2.2 Exclusion) 720 5808 w
+10 /Times-Roman f
+(The) 970 5964 w
+(use) 1152 5964 w
+(of) 1312 5964 w
+(exclusion) 1422 5964 w
+(primitives) 1832 5964 w
+(to) 2265 5964 w
+(protect) 2370 5964 w
+(shared) 2675 5964 w
+(kernel) 2963 5964 w
+(data) 3240 5964 w
+(is) 3434 5964 w
+(necessary) 3529 5964 w
+(not) 3944 5964 w
+(only) 4100 5964 w
+(to) 4306 5964 w
+(handle) 4412 5964 w
+(multiple) 4706 5964 w
+(processors) 720 6084 w
+(without) 1170 6084 w
+(races,) 1505 6084 w
+(but) 1763 6084 w
+(on) 1920 6084 w
+(a) 2049 6084 w
+(single) 2122 6084 w
+(processor) 2390 6084 w
+(system) 2801 6084 w
+(as) 3108 6084 w
+(well,) 3220 6084 w
+(since) 3446 6084 w
+(user\255level) 3680 6084 w
+(EXEC) 4102 6084 w
+(activities) 4391 6084 w
+(can) 4780 6084 w
+(be) 4946 6084 w
+(arbitrarily) 720 6204 w
+(preempted) 1147 6204 w
+(in) 1596 6204 w
+(kernel) 1702 6204 w
+(code) 1979 6204 w
+(and) 2195 6204 w
+(resumed) 2367 6204 w
+(in) 2733 6204 w
+(an) 2839 6204 w
+(arbitrary) 2961 6204 w
+(order.) 3332 6204 w
+(The) 3620 6204 w
+(hardware) 3803 6204 w
+(provides) 4201 6204 w
+(instructions) 4573 6204 w
+(for) 720 6324 w
+(this) 869 6324 w
+(purpose;) 1047 6324 w
+(the) 1424 6324 w
+(UNIX) 1579 6324 w
+(system) 1861 6324 w
+(kernel) 2171 6324 w
+(uses) 2452 6324 w
+(EXEC) 2656 6324 w
+(primitives) 2949 6324 w
+(based) 3387 6324 w
+(upon) 3646 6324 w
+(those) 3878 6324 w
+(instructions) 4121 6324 w
+(that) 4620 6324 w
+(queue) 4802 6324 w
+(blocked processes to avoid excessive EXEC dispatcher traffic.) 720 6444 w
+10 /Times-Bold f
+(4.2.3 Block and character devices) 720 6684 w
+10 /Times-Roman f
+(There) 970 6840 w
+(is) 1230 6840 w
+(only) 1325 6840 w
+(one) 1531 6840 w
+(block\255device) 1703 6840 w
+(type) 2246 6840 w
+(\(major\).) 2446 6840 w
+(Each) 2798 6840 w
+(minor) 3025 6840 w
+(device) 3292 6840 w
+(number) 3580 6840 w
+(is) 3914 6840 w
+(mapped) 4010 6840 w
+(to) 4355 6840 w
+(a) 4462 6840 w
+(different) 4535 6840 w
+(file) 4907 6840 w
+(name) 720 6960 w
+(in) 963 6960 w
+(the) 1068 6960 w
+(EXEC) 1217 6960 w
+(file) 1505 6960 w
+(system.) 1665 6960 w
+(The) 2020 6960 w
+(complete) 2202 6960 w
+(file) 2595 6960 w
+(structure) 2755 6960 w
+(in) 3131 6960 w
+(a) 3235 6960 w
+(UNIX) 3305 6960 w
+(system) 3580 6960 w
+(is) 3884 6960 w
+(present) 3977 6960 w
+(inside) 4291 6960 w
+(one) 4556 6960 w
+(of) 4726 6960 w
+(these) 4835 6960 w
+(EXEC) 720 7080 w
+(files.) 1009 7080 w
+(File) 1234 7080 w
+(system) 1418 7080 w
+(block) 1724 7080 w
+(size) 1974 7080 w
+(is) 2157 7080 w
+(3584) 2252 7080 w
+(bytes.) 2481 7080 w
+(This) 2746 7080 w
+(size,) 2953 7080 w
+(unusual) 3162 7080 w
+(in) 3502 7080 w
+(that) 3609 7080 w
+(it) 3788 7080 w
+(is) 3873 7080 w
+(not) 3969 7080 w
+(a) 4126 7080 w
+(power) 4199 7080 w
+(of) 4477 7080 w
+(2,) 4589 7080 w
+(is) 4693 7080 w
+(due) 4789 7080 w
+(to) 4962 7080 w
+(constraints) 720 7200 w
+(imposed) 1183 7200 w
+(by) 1552 7200 w
+(use) 1682 7200 w
+(of) 1845 7200 w
+(EXEC) 1958 7200 w
+(I/O) 2249 7200 w
+(and) 2412 7200 w
+(disk) 2586 7200 w
+(controller) 2783 7200 w
+(microcode.) 3201 7200 w
+(The) 3677 7200 w
+(I/O) 3862 7200 w
+(itself) 4024 7200 w
+(is) 4253 7200 w
+(done) 4349 7200 w
+(with) 4572 7200 w
+(EXEC) 4779 7200 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 7 7
+%%Page: 8 8
+/saveobj save def
+mark
+8 pagesetup
+10 /Times-Roman f
+(\255 8 \255) 2797 480 w
+(primitives) 720 840 w
+(rather) 1159 840 w
+(than) 1424 840 w
+(channel) 1629 840 w
+(programs) 1972 840 w
+(to) 2382 840 w
+(bare) 2493 840 w
+(hardware.) 2697 840 w
+(It) 3150 840 w
+(is) 3244 840 w
+(otherwise) 3345 840 w
+(unremarkable;) 3767 840 w
+(in) 4377 840 w
+(fact,) 4489 840 w
+(manage\255) 4697 840 w
+(ment of file assigns among multiple runs is a much more difficult problem.) 720 960 w
+(Of) 970 1116 w
+(the) 1106 1116 w
+(character) 1259 1116 w
+(devices,) 1654 1116 w
+(the) 2009 1116 w
+(terminal) 2162 1116 w
+(driver) 2526 1116 w
+(is) 2795 1116 w
+(the) 2893 1116 w
+(most) 3046 1116 w
+(interesting.) 3273 1116 w
+(The) 3777 1116 w
+(low\255level) 3964 1116 w
+(portion) 4373 1116 w
+(of) 4694 1116 w
+(it) 4809 1116 w
+(is) 4897 1116 w
+(a) 4996 1116 w
+(set) 720 1236 w
+(of) 859 1236 w
+(real\255time) 970 1236 w
+(EXEC) 1358 1236 w
+(communications) 1647 1236 w
+(activities.) 2336 1236 w
+(The) 2750 1236 w
+(resulting) 2933 1236 w
+(terminal) 3311 1236 w
+(interface) 3672 1236 w
+(has) 4048 1236 w
+(complete) 4209 1236 w
+(UNIX) 4603 1236 w
+(sys\255) 4879 1236 w
+(tem) 720 1356 w
+(character) 916 1356 w
+(processing) 1326 1356 w
+(capabilities;) 1799 1356 w
+(full\255duplex) 2328 1356 w
+(and) 2818 1356 w
+(character) 3008 1356 w
+(editing) 3418 1356 w
+(functions) 3742 1356 w
+(are) 4160 1356 w
+(available) 4327 1356 w
+(without) 4734 1356 w
+(modifying) 720 1476 w
+(or) 1170 1476 w
+(bypassing) 1286 1476 w
+(the) 1719 1476 w
+(EXEC,) 1874 1476 w
+(and) 2193 1476 w
+(without) 2370 1476 w
+(an) 2709 1476 w
+(external) 2835 1476 w
+(front\255end) 3188 1476 w
+(processor.) 3591 1476 w
+(The) 4030 1476 w
+(character) 4217 1476 w
+(processing) 4613 1476 w
+(overhead) 720 1596 w
+(incurred) 1118 1596 w
+(by) 1483 1596 w
+(not) 1616 1596 w
+(having) 1777 1596 w
+(a) 2082 1596 w
+(front) 2159 1596 w
+(end) 2386 1596 w
+(is) 2563 1596 w
+(noticeable) 2663 1596 w
+(but) 3106 1596 w
+(no) 3267 1596 w
+(worse) 3400 1596 w
+(than) 3672 1596 w
+(that) 3878 1596 w
+(incurred) 4062 1596 w
+(by) 4428 1596 w
+(users) 4562 1596 w
+(of) 4801 1596 w
+(the) 4918 1596 w
+(conventional 1100 time\255sharing terminal interface.) 720 1716 w
+10 /Times-Bold f
+(V. THE UNIX OPERATING SYSTEM ON THE 3B20S MINICOMPUTER) 720 1956 w
+10 /Times-Roman f
+(The) 970 2112 w
+(AT&T) 1170 2112 w
+(3B20S) 1487 2112 w
+(minicomputer) 1805 2112 w
+([7]) 2411 2112 w
+(is) 2572 2112 w
+(a) 2684 2112 w
+(32\255bit) 2773 2112 w
+(minicomputer) 3057 2112 w
+(that) 3663 2112 w
+(was) 3859 2112 w
+(originally) 4060 2112 w
+(designed) 4495 2112 w
+(and) 4896 2112 w
+(developed) 720 2232 w
+(to) 1167 2232 w
+(be) 1282 2232 w
+(used) 1413 2232 w
+(in) 1633 2232 w
+(telephone) 1748 2232 w
+(switching) 2173 2232 w
+(systems.) 2599 2232 w
+(The) 2978 2232 w
+(switching) 3169 2232 w
+(version) 3594 2232 w
+(of) 3924 2232 w
+(the) 4043 2232 w
+(3B20) 4201 2232 w
+(minicomputer,) 4454 2232 w
+(known) 720 2352 w
+(as) 1027 2352 w
+(the) 1145 2352 w
+(3B20) 1302 2352 w
+(Duplex) 1554 2352 w
+(or) 1884 2352 w
+(3B20D) 2003 2352 w
+(minicomputer,) 2328 2352 w
+(has) 2950 2352 w
+(duplicated) 3119 2352 w
+(CPU,) 3571 2352 w
+(memory,) 3827 2352 w
+(and) 4221 2352 w
+(DMA) 4401 2352 w
+(hardware) 4670 2352 w
+(components.) 720 2472 w
+(A) 1280 2472 w
+(3B20D) 1378 2472 w
+(minicomputer) 1693 2472 w
+(can) 2280 2472 w
+(be) 2444 2472 w
+(easily) 2564 2472 w
+(converted) 2823 2472 w
+(into) 3242 2472 w
+(two) 3424 2472 w
+(independent) 3600 2472 w
+(simplex) 4114 2472 w
+(machines.) 4457 2472 w
+(The) 4885 2472 w
+(3B20S) 720 2592 w
+(minicomputer,) 1026 2592 w
+(a) 1645 2592 w
+(repackaged) 1722 2592 w
+(half) 2208 2592 w
+(of) 2396 2592 w
+(a) 2512 2592 w
+(3B20D) 2589 2592 w
+(minicomputer,) 2911 2592 w
+(is) 3530 2592 w
+(being) 3630 2592 w
+(used) 3885 2592 w
+(throughout) 4101 2592 w
+(AT&T) 4573 2592 w
+(as) 4879 2592 w
+(a) 4996 2592 w
+(general\255purpose) 720 2712 w
+(minicomputer.) 1401 2712 w
+(The) 2026 2712 w
+(latest) 2220 2712 w
+(version) 2470 2712 w
+(of) 2803 2712 w
+(the) 2925 2712 w
+(3B20) 3086 2712 w
+(minicomputer,) 3342 2712 w
+(the) 3967 2712 w
+(3B20A) 4127 2712 w
+(minicomputer,) 4454 2712 w
+(has the two processor halves reunited, working in parallel as a multiprocessor unit.) 720 2832 w
+10 /Times-Bold f
+(5.1 Hardware\255related porting issues) 720 3072 w
+(5.1.1 Memory management) 720 3312 w
+10 /Times-Roman f
+(The) 970 3468 w
+(3B20) 1173 3468 w
+(minicomputer) 1438 3468 w
+(employs) 2047 3468 w
+(a) 2434 3468 w
+(two\255level) 2526 3468 w
+(segmented) 2951 3468 w
+(and) 3426 3468 w
+(paged) 3618 3468 w
+(memory\255address) 3904 3468 w
+(translation) 4618 3468 w
+(scheme) 720 3588 w
+(similar) 1047 3588 w
+(to) 1353 3588 w
+(that) 1459 3588 w
+(of) 1637 3588 w
+(the) 1747 3588 w
+(IBM) 1896 3588 w
+(370.) 2112 3588 w
+(A) 2314 3588 w
+(virtual) 2413 3588 w
+(address) 2701 3588 w
+(is) 3027 3588 w
+(24) 3121 3588 w
+(bits) 3248 3588 w
+(long,) 3420 3588 w
+(pages) 3650 3588 w
+(are) 3904 3588 w
+(2K) 4052 3588 w
+(bytes,) 4201 3588 w
+(segments) 4464 3588 w
+(con\255) 4863 3588 w
+(tain) 720 3708 w
+(64) 899 3708 w
+(pages,) 1028 3708 w
+(and) 1309 3708 w
+(each) 1482 3708 w
+(address) 1693 3708 w
+(space) 2021 3708 w
+(contains) 2272 3708 w
+(128) 2635 3708 w
+(segments.) 2815 3708 w
+(The) 3242 3708 w
+(original) 3427 3708 w
+(3B20) 3768 3708 w
+(minicomputer) 4015 3708 w
+(kernel) 4606 3708 w
+(was) 4885 3708 w
+(derived) 720 3828 w
+(from) 1053 3828 w
+(the) 1281 3828 w
+(UNIX) 1436 3828 w
+(System) 1718 3828 w
+(III) 2046 3828 w
+(VAX\25511/780) 2178 3828 w
+(implementation.) 2738 3828 w
+(Both) 3424 3828 w
+(were) 3652 3828 w
+(swapping) 3878 3828 w
+(systems;) 4294 3828 w
+(however,) 4672 3828 w
+(the) 720 3948 w
+(3B20) 871 3948 w
+(minicomputer) 1117 3948 w
+(system) 1707 3948 w
+(used) 2014 3948 w
+(segments) 2226 3948 w
+(for) 2627 3948 w
+(managing) 2772 3948 w
+(the) 3195 3948 w
+(address) 3346 3948 w
+(space) 3674 3948 w
+(of) 3925 3948 w
+(user) 4038 3948 w
+(programs,) 4234 3948 w
+(while) 4666 3948 w
+(the) 4918 3948 w
+(VAX\(TM\)) 720 4068 w
+(system) 1189 4068 w
+(used) 1504 4068 w
+(pages.) 1723 4068 w
+(Employing) 2036 4068 w
+(segments) 2517 4068 w
+(made) 2925 4068 w
+(the) 3177 4068 w
+(implementation) 3335 4068 w
+(of) 3999 4068 w
+(shared) 4118 4068 w
+(text) 4414 4068 w
+(and) 4600 4068 w
+(shared) 4780 4068 w
+(memory) 720 4188 w
+(simple;) 1080 4188 w
+(shared) 1402 4188 w
+(data) 1689 4188 w
+(pages) 1882 4188 w
+(had) 2136 4188 w
+(a) 2307 4188 w
+(common) 2378 4188 w
+(page) 2755 4188 w
+(table) 2970 4188 w
+(mapped) 3192 4188 w
+(by) 3536 4188 w
+(the) 3664 4188 w
+(segment) 3814 4188 w
+(table) 4175 4188 w
+(of) 4397 4188 w
+(the) 4508 4188 w
+(processes) 4658 4188 w
+(involved.) 720 4308 w
+(A) 1121 4308 w
+(software) 1219 4308 w
+(segment) 1588 4308 w
+(table) 1947 4308 w
+(paralleled) 2167 4308 w
+(the hardware segment table and described what each segment) 2586 4308 w
+(contained:) 720 4428 w
+(text,) 1164 4428 w
+(data,) 1368 4428 w
+(stack,) 1588 4428 w
+(or) 1847 4428 w
+(shared) 1959 4428 w
+(data.) 2248 4428 w
+(With) 2493 4428 w
+(the) 2722 4428 w
+(addition) 2873 4428 w
+(of) 3230 4428 w
+(demand) 3342 4428 w
+(paging) 3687 4428 w
+(to) 3988 4428 w
+(UNIX) 4095 4428 w
+(System) 4373 4428 w
+(V,) 4697 4428 w
+(3B20) 4823 4428 w
+(minicomputers) 720 4548 w
+(and) 1365 4548 w
+(VAX) 1554 4548 w
+(machines) 1815 4548 w
+(running) 2237 4548 w
+(UNIX) 2593 4548 w
+(systems) 2887 4548 w
+(have) 3249 4548 w
+(been) 3482 4548 w
+(unified) 3715 4548 w
+(in) 4042 4548 w
+(memory\255management) 4164 4548 w
+(design) 720 4668 w
+(and) 1017 4668 w
+(implementation.) 1197 4668 w
+(Both) 1886 4668 w
+(systems) 2118 4668 w
+(use) 2472 4668 w
+(logical) 2642 4668 w
+(segments) 2951 4668 w
+(or) 3360 4668 w
+(regions) 3480 4668 w
+(of) 3811 4668 w
+(contiguous) 3931 4668 w
+(pages) 4407 4668 w
+(and) 4671 4668 w
+(page) 4852 4668 w
+(table entries as their basis.) 720 4788 w
+10 /Times-Bold f
+(5.1.2 I/O system) 720 5028 w
+10 /Times-Roman f
+(Perhaps) 970 5184 w
+(the) 1324 5184 w
+(most) 1484 5184 w
+(unusual) 1717 5184 w
+(feature) 2066 5184 w
+(of) 2380 5184 w
+(the) 2501 5184 w
+(3B20) 2661 5184 w
+(minicomputer) 2916 5184 w
+(is) 3515 5184 w
+(its) 3620 5184 w
+(I/O) 3753 5184 w
+(architecture.) 3925 5184 w
+(There) 4459 5184 w
+(are) 4730 5184 w
+(two) 4890 5184 w
+(major) 720 5304 w
+(types) 979 5304 w
+(of) 1216 5304 w
+(I/O) 1325 5304 w
+(device) 1484 5304 w
+(controllers:) 1770 5304 w
+(the) 2251 5304 w
+(Input) 2399 5304 w
+(Output) 2636 5304 w
+(Processor) 2940 5304 w
+(\(IOP\)) 3354 5304 w
+(and the Disk File Controller \(DFC\).) 3607 5304 w
+(Both types are coupled to the CPU and DMA through high\255speed serial data links.) 720 5424 w
+(The) 970 5580 w
+(IOP) 1161 5580 w
+(is) 1358 5580 w
+(constructed) 1461 5580 w
+(of) 1957 5580 w
+(two) 2076 5580 w
+(levels:) 2262 5580 w
+(The) 2559 5580 w
+(first) 2750 5580 w
+(level,) 2947 5580 w
+(or) 3202 5580 w
+(front) 3321 5580 w
+(end,) 3551 5580 w
+(performs) 3756 5580 w
+(maintenance) 4152 5580 w
+(and) 4693 5580 w
+(data) 4874 5580 w
+(concentration) 720 5700 w
+(functions) 1308 5700 w
+(for) 1725 5700 w
+(the) 1886 5700 w
+(second) 2053 5700 w
+(level) 2375 5700 w
+(of) 2614 5700 w
+(up) 2742 5700 w
+(to) 2887 5700 w
+(16) 3009 5700 w
+(Peripheral) 3153 5700 w
+(Controllers) 3607 5700 w
+(\(PCs\).) 4101 5700 w
+(The) 4398 5700 w
+(IOP) 4597 5700 w
+(driver) 4802 5700 w
+(reflects) 720 5820 w
+(the) 1041 5820 w
+(two\255level) 1191 5820 w
+(structure) 1596 5820 w
+(of) 1973 5820 w
+(the) 2084 5820 w
+(hardware.) 2234 5820 w
+(A) 2658 5820 w
+(common) 2759 5820 w
+(driver) 3138 5820 w
+(performs) 3405 5820 w
+(all) 3794 5820 w
+(maintenance) 3923 5820 w
+(and) 4456 5820 w
+(communi\255) 4629 5820 w
+(cation functions, and uses a switch table to pass completion reports to PC drivers.) 720 5940 w
+(PC) 970 6096 w
+(drivers) 1121 6096 w
+(are) 1426 6096 w
+(generally) 1575 6096 w
+(less) 1974 6096 w
+(or) 2152 6096 w
+(equal) 2263 6096 w
+(in) 2507 6096 w
+(complexity) 2613 6096 w
+(to) 3091 6096 w
+(drivers) 3197 6096 w
+(written) 3502 6096 w
+(for) 3813 6096 w
+(other) 3958 6096 w
+(machines.) 4192 6096 w
+(For) 4623 6096 w
+(exam\255) 4791 6096 w
+(ple,) 720 6216 w
+(the) 893 6216 w
+(teletypewriter \(TTY\) PC driver's only function is to provide data buffering, while all the UNIX sys\255) 1041 6216 w
+(tem) 720 6336 w
+(character) 896 6336 w
+(processing) 1286 6336 w
+(functions) 1740 6336 w
+(are) 2139 6336 w
+(implemented) 2287 6336 w
+(in) 2836 6336 w
+(the) 2941 6336 w
+(PC) 3090 6336 w
+(itself.) 3240 6336 w
+(The) 3517 6336 w
+(Disk) 3699 6336 w
+(File) 3915 6336 w
+(Controller) 4098 6336 w
+(\(DFC\)) 4536 6336 w
+(inter\255) 4824 6336 w
+(faces) 720 6456 w
+(with) 951 6456 w
+(up) 1156 6456 w
+(to) 1283 6456 w
+(four) 1388 6456 w
+(Moving) 1581 6456 w
+(Head) 1924 6456 w
+(Disks) 2160 6456 w
+(\(MHDs\).) 2414 6456 w
+(The) 2803 6456 w
+(DFC) 2984 6456 w
+(can) 3205 6456 w
+(buffer) 3369 6456 w
+(up) 3638 6456 w
+(to) 3764 6456 w
+(256) 3868 6456 w
+(I/O) 4044 6456 w
+(requests,) 4203 6456 w
+(and) 4581 6456 w
+(option\255) 4751 6456 w
+(ally it will execute an elevator algorithm to minimize disk head movement.) 720 6576 w
+(IOP) 970 6732 w
+(and) 1163 6732 w
+(DFC) 1339 6732 w
+(drivers) 1566 6732 w
+(communicate) 1876 6732 w
+(with) 2447 6732 w
+(their) 2658 6732 w
+(device) 2874 6732 w
+(controllers) 3167 6732 w
+(through) 3627 6732 w
+(message) 3971 6732 w
+(queues) 4342 6732 w
+(contained) 4652 6732 w
+(in) 720 6852 w
+(main) 838 6852 w
+(memory.) 1078 6852 w
+(Each) 1476 6852 w
+(controller) 1715 6852 w
+(has) 2143 6852 w
+(at) 2316 6852 w
+(least) 2428 6852 w
+(two) 2651 6852 w
+(queues:) 2841 6852 w
+(a) 3186 6852 w
+(command) 3270 6852 w
+(queue) 3704 6852 w
+(where) 3981 6852 w
+(the) 4263 6852 w
+(driver) 4424 6852 w
+(puts) 4701 6852 w
+(I/O) 4907 6852 w
+(requests,) 720 6972 w
+(and) 1110 6972 w
+(a) 1292 6972 w
+(report) 1374 6972 w
+(queue) 1650 6972 w
+(where) 1926 6972 w
+(the) 2207 6972 w
+(controller) 2367 6972 w
+(returns) 2793 6972 w
+(the) 3108 6972 w
+(status) 3268 6972 w
+(of) 3534 6972 w
+(I/O) 3655 6972 w
+(requests) 3826 6972 w
+(that) 4192 6972 w
+(have) 4381 6972 w
+(been) 4608 6972 w
+(com\255) 4835 6972 w
+(pleted.) 720 7092 w
+(To) 1026 7092 w
+(request) 1174 7092 w
+(an) 1499 7092 w
+(I/O) 1630 7092 w
+(operation,) 1800 7092 w
+(the) 2238 7092 w
+(driver) 2396 7092 w
+(loads) 2670 7092 w
+(a) 2917 7092 w
+(message) 2997 7092 w
+(into) 3371 7092 w
+(the) 3563 7092 w
+(command) 3721 7092 w
+(queue.) 4151 7092 w
+(Next,) 4450 7092 w
+(the) 4705 7092 w
+(con\255) 4863 7092 w
+(troller) 720 7212 w
+(reads) 999 7212 w
+(the) 1244 7212 w
+(message) 1401 7212 w
+(DMA,) 1774 7212 w
+(processes) 2067 7212 w
+(it,) 2484 7212 w
+(and) 2600 7212 w
+(then) 2779 7212 w
+(puts) 2986 7212 w
+(a) 3188 7212 w
+(request) 3268 7212 w
+(completion) 3592 7212 w
+(message) 4078 7212 w
+(into) 4452 7212 w
+(the) 4644 7212 w
+(report) 4802 7212 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 8 8
+%%Page: 9 9
+/saveobj save def
+mark
+9 pagesetup
+10 /Times-Roman f
+(\255 9 \255) 2797 480 w
+(queue. All the PCs on an IOP share a single pair of message queues.) 720 840 w
+(A feature of the 3B20 minicomputer is that each DFC, IOP, MHD, and PC unit can) 970 996 w
+(be) 4326 996 w
+(powered) 4446 996 w
+(off) 4815 996 w
+(or) 4957 996 w
+(physically) 720 1116 w
+(disconnected) 1162 1116 w
+(while) 1714 1116 w
+(the) 1967 1116 w
+(rest) 2120 1116 w
+(of) 2295 1116 w
+(the) 2409 1116 w
+(system) 2562 1116 w
+(is) 2871 1116 w
+(still) 2969 1116 w
+(active.) 3151 1116 w
+(Each) 3445 1116 w
+(unit) 3675 1116 w
+(can) 3862 1116 w
+(be) 4031 1116 w
+(logically) 4156 1116 w
+10 /Times-Italic f
+(in) 4537 1116 w
+(service) 4645 1116 w
+10 /Times-Roman f
+(or) 4957 1116 w
+10 /Times-Italic f
+(out of service) 720 1236 w
+10 /Times-Roman f
+(, and the two new user\255level commands were created to support this feature:) 1258 1236 w
+10 /Courier f
+(don) 1080 1416 w
+10 /Times-Roman f
+(Restore device to service \(device on\255line\).) 1330 1416 w
+10 /Courier f
+(doff) 1080 1536 w
+10 /Times-Roman f
+(Remove device from service \(device off\255line\).) 1330 1536 w
+(While) 720 1716 w
+(a) 996 1716 w
+(unit) 1072 1716 w
+(is) 1260 1716 w
+(off\255line,) 1359 1716 w
+(it) 1715 1716 w
+(can) 1803 1716 w
+(be) 1973 1716 w
+(diagnosed) 2099 1716 w
+(and) 2536 1716 w
+(repaired) 2712 1716 w
+(if) 3070 1716 w
+(necessary,) 3163 1716 w
+(and) 3607 1716 w
+(then) 3783 1716 w
+(restored) 3987 1716 w
+(to) 4340 1716 w
+(service.) 4450 1716 w
+(About) 4790 1716 w
+(one) 720 1836 w
+(half) 893 1836 w
+(of) 1077 1836 w
+(the) 1189 1836 w
+(total) 1339 1836 w
+(IOP) 1545 1836 w
+(and) 1734 1836 w
+(DFC) 1906 1836 w
+(driver) 2129 1836 w
+(code) 2395 1836 w
+(is) 2611 1836 w
+(used) 2706 1836 w
+(to) 2917 1836 w
+(support) 3023 1836 w
+(these) 3351 1836 w
+(maintenance) 3584 1836 w
+(features.) 4116 1836 w
+(PC) 4484 1836 w
+(drivers) 4635 1836 w
+(do) 4940 1836 w
+(not) 720 1956 w
+(contain) 881 1956 w
+(any) 1208 1956 w
+(maintenance) 1385 1956 w
+(code,) 1923 1956 w
+(but) 2170 1956 w
+(they) 2332 1956 w
+(do) 2538 1956 w
+(contain) 2672 1956 w
+(code) 3000 1956 w
+(to) 3222 1956 w
+(handle) 3334 1956 w
+(in) 3634 1956 w
+(service) 3746 1956 w
+(and) 4062 1956 w
+(out) 4240 1956 w
+(of) 4402 1956 w
+(service) 4519 1956 w
+(com\255) 4835 1956 w
+(mand requests.) 720 2076 w
+10 /Times-Bold f
+(5.2 Architectural and software\255related porting issues) 720 2316 w
+10 /Times-Roman f
+(The) 970 2472 w
+(3B20) 1156 2472 w
+(minicomputer) 1404 2472 w
+(has) 1996 2472 w
+(a) 2160 2472 w
+(CPU) 2235 2472 w
+(architecture) 2461 2472 w
+(typical) 2962 2472 w
+(of) 3265 2472 w
+(most) 3379 2472 w
+(minicomputers:) 3606 2472 w
+(12) 4266 2472 w
+(general\255purpose) 4398 2472 w
+(registers,) 720 2592 w
+(an) 1117 2592 w
+(orthogonal) 1245 2592 w
+(basic) 1712 2592 w
+(instruction) 1951 2592 w
+(set) 2413 2592 w
+(with) 2558 2592 w
+(eight) 2769 2592 w
+(addressing) 3002 2592 w
+(modes,) 3462 2592 w
+(plus) 3781 2592 w
+(additional) 3981 2592 w
+(special\255purpose) 4414 2592 w
+(instructions for moving data, manipulating strings, and performing I/O and maintenance functions.) 720 2712 w
+10 /Times-Bold f
+(5.2.1 Byte ordering) 720 2952 w
+10 /Times-Roman f
+(Many) 970 3108 w
+(of) 1236 3108 w
+(the) 1352 3108 w
+(problems) 1507 3108 w
+(encountered) 1912 3108 w
+(when) 2432 3108 w
+(porting) 2682 3108 w
+(software) 3005 3108 w
+(to) 3382 3108 w
+(a) 3494 3108 w
+(new) 3572 3108 w
+(processor) 3772 3108 w
+(have) 4188 3108 w
+(to) 4410 3108 w
+(do) 4522 3108 w
+(with) 4656 3108 w
+(byte) 4868 3108 w
+(ordering.) 720 3228 w
+(The) 1122 3228 w
+(3B20) 1316 3228 w
+(minicomputer) 1572 3228 w
+(has) 2171 3228 w
+(the) 2342 3228 w
+(opposite) 2502 3228 w
+(byte) 2879 3228 w
+(ordering) 3089 3228 w
+(of) 3465 3228 w
+(the) 3586 3228 w
+(VAX) 3746 3228 w
+(minicomputer.) 4000 3228 w
+(Carelessly) 4624 3228 w
+(written) 720 3348 w
+(programs) 1041 3348 w
+(may) 1456 3348 w
+(not) 1666 3348 w
+(be) 1832 3348 w
+(portable) 1964 3348 w
+(between) 2329 3348 w
+(different) 2699 3348 w
+(execution) 3080 3348 w
+(environments.) 3506 3348 w
+(For) 4113 3348 w
+(example,) 4290 3348 w
+(this) 4691 3348 w
+(pro\255) 4874 3348 w
+(gram fragment will produce unexpected results on the 3B20 minicomputer processor:) 720 3468 w
+10 /Courier f
+(int c = 'A';) 1080 3648 w
+(write\(fd, &c, 1\);) 1080 3768 w
+10 /Times-Roman f
+(The wrong byte address is passed to the subroutine, and a null byte will be written.) 720 3948 w
+(A) 970 4104 w
+(second) 1080 4104 w
+(more) 1395 4104 w
+(subtle) 1638 4104 w
+(difference) 1915 4104 w
+(between) 2356 4104 w
+(the) 2726 4104 w
+(VAX) 2886 4104 w
+(and) 3140 4104 w
+(the) 3323 4104 w
+(3B20) 3484 4104 w
+(minicomputers) 3740 4104 w
+(is) 4379 4104 w
+(that) 4485 4104 w
+(the) 4674 4104 w
+(latter) 4835 4104 w
+(requires) 720 4224 w
+(data) 1073 4224 w
+(objects) 1271 4224 w
+(to) 1586 4224 w
+(be) 1696 4224 w
+(aligned) 1822 4224 w
+(on) 2148 4224 w
+(their) 2280 4224 w
+(natural) 2495 4224 w
+(boundaries.*) 2804 4224 w
+(This) 3374 4224 w
+(example) 3584 4224 w
+(will) 3954 4224 w
+(cause) 4142 4224 w
+(a) 4395 4224 w
+(processor) 4471 4224 w
+(trap) 4885 4224 w
+(on the 3B20 minicomputer:) 720 4344 w
+10 /Courier f
+(short a[10];) 1080 4524 w
+(int *p;) 1080 4644 w
+(p = &a[1];) 1080 4764 w
+(*p = 0;) 1080 4884 w
+10 /Times-Roman f
+(The) 720 5064 w
+(program) 904 5064 w
+(is) 1271 5064 w
+(attempting) 1367 5064 w
+(to) 1824 5064 w
+(reference) 1931 5064 w
+(a) 2329 5064 w
+(word) 2402 5064 w
+(on) 2636 5064 w
+(an) 2765 5064 w
+(inappropriate) 2888 5064 w
+(boundary.) 3449 5064 w
+(Both) 3905 5064 w
+(of) 4129 5064 w
+(the) 4242 5064 w
+(fragments) 4394 5064 w
+(listed) 4823 5064 w
+(above) 720 5184 w
+(are) 995 5184 w
+(examples) 1153 5184 w
+(of) 1567 5184 w
+(dubious) 1687 5184 w
+(programming) 2041 5184 w
+(practice.) 2622 5184 w
+(Fortunately,) 2999 5184 w
+(the) 3522 5184 w
+(UNIX) 3681 5184 w
+(system) 3967 5184 w
+(kernel) 4281 5184 w
+(is) 4566 5184 w
+(generally) 4669 5184 w
+(free) 720 5304 w
+(of) 902 5304 w
+(such) 1013 5304 w
+(flaws,) 1224 5304 w
+(and) 1493 5304 w
+(most) 1665 5304 w
+(user\255level) 1888 5304 w
+(code) 2309 5304 w
+(had) 2525 5304 w
+(already) 2697 5304 w
+(been) 3018 5304 w
+(ported) 3234 5304 w
+(to) 3517 5304 w
+(the) 3623 5304 w
+(IBM) 3773 5304 w
+(3708,) 3990 5304 w
+(a) 4244 5304 w
+(processor) 4317 5304 w
+(that) 4728 5304 w
+(has) 4907 5304 w
+(the same byte ordering as the 3B20 minicomputer, before the 3B20 minicomputer effort started.) 720 5424 w
+10 /Times-Bold f
+(5.3 Development and test environment) 720 5664 w
+10 /Times-Roman f
+(The) 970 5820 w
+(3B20) 1151 5820 w
+(minicomputer) 1394 5820 w
+(operating) 1981 5820 w
+(system) 2384 5820 w
+(was) 2688 5820 w
+(developed) 2869 5820 w
+(in) 3305 5820 w
+(a) 3409 5820 w
+(host/target) 3479 5820 w
+(environment.) 3927 5820 w
+(The) 4509 5820 w
+(host) 4691 5820 w
+(was) 4885 5820 w
+(a) 720 5940 w
+(PDP\25511/70) 796 5940 w
+(processor) 1273 5940 w
+(running) 1687 5940 w
+(the) 2031 5940 w
+(UNIX) 2186 5940 w
+(Real\255Time) 2468 5940 w
+(\(RT\)) 2928 5940 w
+(operating) 3155 5940 w
+(system.*) 3565 5940 w
+(The) 3976 5940 w
+(link) 4164 5940 w
+(between) 4353 5940 w
+(the) 4718 5940 w
+(host) 4873 5940 w
+(and) 720 6060 w
+(target) 894 6060 w
+(was) 1151 6060 w
+(a) 1335 6060 w
+(9.6K\255baud) 1408 6060 w
+(asynchronous) 1861 6060 w
+(port.) 2439 6060 w
+(On) 2654 6060 w
+(the) 2805 6060 w
+(3B20) 2956 6060 w
+(minicomputer) 3202 6060 w
+(end) 3792 6060 w
+(of) 3965 6060 w
+(the) 4077 6060 w
+(link) 4228 6060 w
+(was) 4413 6060 w
+(a) 4597 6060 w
+(hardware) 4670 6060 w
+(debugging) 720 6180 w
+(tool) 1186 6180 w
+(known) 1386 6180 w
+(as) 1702 6180 w
+(the) 1830 6180 w
+(Micro\255Level) 1997 6180 w
+(Test) 2546 6180 w
+(Set) 2763 6180 w
+(\(MLTS\).) 2936 6180 w
+(From) 3339 6180 w
+(the) 3601 6180 w
+(MLTS,) 3768 6180 w
+(any) 4105 6180 w
+(bit) 4294 6180 w
+(or) 4445 6180 w
+(byte) 4573 6180 w
+(of) 4790 6180 w
+(the) 4918 6180 w
+(machine) 720 6300 w
+(can) 1087 6300 w
+(be) 1254 6300 w
+(accessed) 1377 6300 w
+(even) 1754 6300 w
+(while) 1971 6300 w
+(the) 2222 6300 w
+(processor) 2373 6300 w
+(is) 2784 6300 w
+(running.) 2880 6300 w
+(The) 3245 6300 w
+(initial) 3429 6300 w
+(system) 3691 6300 w
+(debugging) 3997 6300 w
+(was) 4447 6300 w
+(conducted) 4630 6300 w
+(entirely through the MLTS.) 720 6420 w
+8 /S1 f
+(__________________) 720 6780 w
+8 /Times-Roman f
+(* A) 720 6880 w
+8 /Times-Italic f
+(long) 858 6880 w
+8 /Times-Roman f
+(is a line on a four\255byte boundary, and a) 1020 6880 w
+8 /Times-Italic f
+(short) 2288 6880 w
+8 /Times-Roman f
+(is a line on a two\255byte boundary.) 2472 6880 w
+(*) 720 6980 w
+(The) 786 6980 w
+(UNIX\255RT) 936 6980 w
+(operating) 1291 6980 w
+(system) 1617 6980 w
+(is) 1864 6980 w
+(an) 1943 6980 w
+(updated) 2044 6980 w
+(version) 2322 6980 w
+(of) 2582 6980 w
+(the) 2674 6980 w
+(Multi\255Environment) 2797 6980 w
+(Real\255Time) 3442 6980 w
+(\(MERT\)) 3808 6980 w
+([9]) 4109 6980 w
+(operating) 4227 6980 w
+(sys\255) 4552 6980 w
+(tem, a variant of the UNIX) 720 7080 w
+(operating system with real\255time support.) 1597 7080 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 9 9
+%%Page: 10 10
+/saveobj save def
+mark
+10 pagesetup
+10 /Times-Roman f
+(\255 10 \255) 2772 480 w
+10 /Times-Bold f
+(5.3.1 3B20S minicomputer SGS) 720 840 w
+10 /Times-Roman f
+(The) 970 996 w
+(PDP\25511/70) 1151 996 w
+(host) 1622 996 w
+(machine) 1815 996 w
+(supported) 2179 996 w
+(a) 2599 996 w
+(3B20) 2669 996 w
+(minicomputer) 2912 996 w
+(cross\255SGS,) 3499 996 w
+(based) 3973 996 w
+(on) 4227 996 w
+(the) 4354 996 w
+(now) 4503 996 w
+(standard) 4702 996 w
+(Common) 720 1116 w
+(Object) 1119 1116 w
+(File) 1411 1116 w
+(Format) 1593 1116 w
+(\(COFF\).) 1908 1116 w
+(Operating) 2276 1116 w
+(system) 2701 1116 w
+(object files were down loaded into the target mem\255) 3005 1116 w
+(ory) 720 1236 w
+(through) 886 1236 w
+(the) 1230 1236 w
+(MLTS) 1385 1236 w
+(link.) 1685 1236 w
+(Until) 1899 1236 w
+(the) 2138 1236 w
+(SGS) 2293 1236 w
+(was) 2510 1236 w
+(ported) 2698 1236 w
+(to) 2986 1236 w
+(the) 3097 1236 w
+(3B20) 3252 1236 w
+(minicomputer,) 3502 1236 w
+(commands) 4121 1236 w
+(were) 4587 1236 w
+(trans\255) 4813 1236 w
+(ported) 720 1356 w
+(to) 1002 1356 w
+(it) 1107 1356 w
+(from) 1190 1356 w
+(the) 1411 1356 w
+(host) 1560 1356 w
+(via) 1754 1356 w
+(magnetic) 1903 1356 w
+(tape.) 2296 1356 w
+(Producing) 2514 1356 w
+(32\255bit) 2952 1356 w
+(object) 3218 1356 w
+(files) 3488 1356 w
+(on) 3686 1356 w
+(a) 3812 1356 w
+(16\255bit) 3882 1356 w
+(processor) 4147 1356 w
+(is) 4555 1356 w
+(a) 4648 1356 w
+(difficult) 4718 1356 w
+(job;) 720 1476 w
+(the) 904 1476 w
+(SGS) 1054 1476 w
+(uses) 1266 1476 w
+(a) 1466 1476 w
+(software) 1538 1476 w
+(paging) 1909 1476 w
+(scheme) 2209 1476 w
+(to) 2536 1476 w
+(handle) 2642 1476 w
+(the) 2936 1476 w
+(difference) 3086 1476 w
+(in) 3517 1476 w
+(address) 3623 1476 w
+(space) 3950 1476 w
+(size.) 4199 1476 w
+(Once) 4433 1476 w
+(the) 4672 1476 w
+(3B20) 4823 1476 w
+(minicomputer) 720 1596 w
+(system) 1307 1596 w
+(was) 1611 1596 w
+(stable) 1792 1596 w
+(and) 2051 1596 w
+(the) 2221 1596 w
+(SGS was ported to it, the symbolic debugger, sdb, was modified to) 2369 1596 w
+(use the COFF. The VAX system has since converted to the COFF.) 720 1716 w
+10 /Times-Bold f
+(5.3.1 Kernel debugging tools) 720 1956 w
+10 /Times-Roman f
+(Debugging) 970 2112 w
+(an) 1441 2112 w
+(operating) 1562 2112 w
+(system) 1966 2112 w
+(kernel) 2271 2112 w
+(can) 2547 2112 w
+(be) 2712 2112 w
+(tedious.) 2833 2112 w
+(A) 3174 2112 w
+(common) 3273 2112 w
+(technique) 3650 2112 w
+(used) 4065 2112 w
+(for) 4275 2112 w
+(debugging) 4418 2112 w
+(is) 4867 2112 w
+(to) 4962 2112 w
+(insert) 720 2232 w
+(print) 975 2232 w
+(statements) 1197 2232 w
+(into) 1652 2232 w
+(the) 1840 2232 w
+(source) 1994 2232 w
+(so) 2286 2232 w
+(that) 2407 2232 w
+(the) 2589 2232 w
+(kernel) 2743 2232 w
+(can) 3024 2232 w
+(be) 3194 2232 w
+(tracked) 3320 2232 w
+(while) 3645 2232 w
+(it) 3899 2232 w
+(executes.) 3987 2232 w
+(The) 4387 2232 w
+(3B20) 4574 2232 w
+(mini\255) 4823 2232 w
+(computer) 720 2352 w
+(has) 1134 2352 w
+(no) 1304 2352 w
+(generally) 1441 2352 w
+(available) 1849 2352 w
+(nonprogrammable) 2246 2352 w
+(TTY) 3015 2352 w
+(I/O) 3246 2352 w
+(device,) 3416 2352 w
+(like) 3738 2352 w
+(the) 3925 2352 w
+(DEC) 4085 2352 w
+(KL\25511.) 4323 2352 w
+(Messages) 4652 2352 w
+(cannot) 720 2472 w
+(be) 1020 2472 w
+(written) 1148 2472 w
+(to) 1465 2472 w
+(a) 1577 2472 w
+(TTY) 1655 2472 w
+(until) 1883 2472 w
+(after) 2101 2472 w
+(the) 2317 2472 w
+(kernel) 2473 2472 w
+(has) 2756 2472 w
+(bootstrapped) 2923 2472 w
+(itself) 3472 2472 w
+(and) 3705 2472 w
+(a) 3882 2472 w
+(TTY) 3959 2472 w
+(PC) 4186 2472 w
+(has) 4342 2472 w
+(been) 4508 2472 w
+(brought) 4729 2472 w
+(into) 720 2592 w
+(service) 903 2592 w
+(via) 1212 2592 w
+10 /Courier f
+(don) 1361 2592 w
+10 /Times-Roman f
+(.) 1541 2592 w
+(This) 1618 2592 w
+(deficiency) 1823 2592 w
+(makes) 2265 2592 w
+(low\255level) 2547 2592 w
+(debugging) 2952 2592 w
+(with) 3402 2592 w
+(print) 3608 2592 w
+(statements) 3825 2592 w
+(impossible,) 4275 2592 w
+(but) 4762 2592 w
+(the) 4918 2592 w
+(problem) 720 2712 w
+(has) 1090 2712 w
+(been) 1260 2712 w
+(turned) 1485 2712 w
+(around) 1777 2712 w
+(to) 2091 2712 w
+(produce) 2206 2712 w
+(an) 2564 2712 w
+(extremely) 2695 2712 w
+(valuable) 3131 2712 w
+(debugging) 3506 2712 w
+(tool.) 3965 2712 w
+(All) 4207 2712 w
+(kernel\255generated) 4371 2712 w
+(messages) 720 2832 w
+(are) 1123 2832 w
+(saved) 1270 2832 w
+(in) 1523 2832 w
+(a) 1627 2832 w
+(circular) 1697 2832 w
+(memory) 2027 2832 w
+(buffer) 2386 2832 w
+(and) 2655 2832 w
+(saved) 2825 2832 w
+(permanently) 3078 2832 w
+(in) 3603 2832 w
+(any) 3707 2832 w
+(memory) 3877 2832 w
+(dump) 4236 2832 w
+(for) 4490 2832 w
+(future) 4632 2832 w
+(ref\255) 4897 2832 w
+(erence. The same scheme has since been adopted for the VAX kernel.) 720 2952 w
+(A) 970 3108 w
+(major) 1076 3108 w
+(milestone) 1343 3108 w
+(in) 1766 3108 w
+(bringing) 1878 3108 w
+(a) 2251 3108 w
+(machine) 2329 3108 w
+(to) 2701 3108 w
+(life) 2813 3108 w
+(is) 2980 3108 w
+(creating) 3082 3108 w
+(the) 3438 3108 w
+(first) 3595 3108 w
+(root) 3791 3108 w
+(file) 3987 3108 w
+(system.) 4155 3108 w
+(The) 4493 3108 w
+(first) 4683 3108 w
+(step) 4879 3108 w
+(was) 720 3228 w
+(to) 910 3228 w
+(create) 1023 3228 w
+(an) 1295 3228 w
+(empty) 1424 3228 w
+(file) 1709 3228 w
+(system.) 1877 3228 w
+(A) 2215 3228 w
+(version) 2322 3228 w
+(of) 2651 3228 w
+(the) 2769 3228 w
+(kernel) 2926 3228 w
+(with) 3209 3228 w
+(the) 3421 3228 w
+(make) 3577 3228 w
+(file) 3827 3228 w
+(system) 3994 3228 w
+(\() 4306 3228 w
+10 /Courier f
+(mkfs) 4339 3228 w
+10 /Times-Roman f
+(\)) 4579 3228 w
+(command) 4646 3228 w
+(built) 720 3348 w
+(into) 934 3348 w
+(it) 1120 3348 w
+(was) 1206 3348 w
+(created) 1392 3348 w
+(to) 1710 3348 w
+(do) 1819 3348 w
+(the) 1950 3348 w
+(job.) 2103 3348 w
+(A) 2287 3348 w
+(system) 2390 3348 w
+(call) 2699 3348 w
+(was) 2874 3348 w
+(invented) 3060 3348 w
+(to) 3435 3348 w
+(allow) 3544 3348 w
+10 /Courier f
+(mkfs) 3832 3348 w
+10 /Times-Roman f
+(to) 4103 3348 w
+(open) 4212 3348 w
+(a) 4437 3348 w
+(file) 4512 3348 w
+(by) 4676 3348 w
+(major) 4807 3348 w
+(and) 720 3468 w
+(minor) 897 3468 w
+(device) 1169 3468 w
+(number) 1462 3468 w
+(rather) 1800 3468 w
+(than) 2065 3468 w
+(by) 2270 3468 w
+(name.) 2403 3468 w
+(The) 2677 3468 w
+(second) 2865 3468 w
+(step) 3175 3468 w
+(was) 3368 3468 w
+(to) 3555 3468 w
+(populate) 3665 3468 w
+(the) 4041 3468 w
+(file) 4195 3468 w
+(system.) 4360 3468 w
+(Again,) 4695 3468 w
+(a) 4996 3468 w
+(special) 720 3588 w
+(system) 1030 3588 w
+(version) 1341 3588 w
+(was) 1668 3588 w
+(built) 1856 3588 w
+(to) 2073 3588 w
+(do) 2184 3588 w
+(the) 2317 3588 w
+(job.) 2472 3588 w
+(Only) 2658 3588 w
+(two) 2891 3588 w
+(commands) 3074 3588 w
+(were) 3540 3588 w
+(needed:) 3766 3588 w
+(some) 4109 3588 w
+(form) 4353 3588 w
+(of) 4580 3588 w
+(the) 4696 3588 w
+(shell) 4851 3588 w
+(and) 720 3708 w
+(some) 899 3708 w
+(form) 1145 3708 w
+(of) 1374 3708 w
+(file) 1492 3708 w
+(copy.) 1660 3708 w
+(At) 1914 3708 w
+(this) 2049 3708 w
+(point,) 2229 3708 w
+(a) 2495 3708 w
+(system) 2574 3708 w
+(with) 2887 3708 w
+(a) 3100 3708 w
+(rudimentary) 3179 3708 w
+(initialization) 3702 3708 w
+(process) 4243 3708 w
+(built) 4576 3708 w
+(into) 4794 3708 w
+(it) 4984 3708 w
+(was) 720 3828 w
+(booted) 909 3828 w
+(and) 1215 3828 w
+(the) 1393 3828 w
+(remainder) 1549 3828 w
+(of) 1988 3828 w
+(the) 2106 3828 w
+(file) 2263 3828 w
+(system) 2431 3828 w
+(was) 2744 3828 w
+(populated) 2934 3828 w
+(by) 3363 3828 w
+(copying) 3498 3828 w
+(files) 3855 3828 w
+(from) 4062 3828 w
+(magnetic) 4291 3828 w
+(tape.) 4692 3828 w
+(An) 4918 3828 w
+(important) 720 3948 w
+(command) 1150 3948 w
+(to) 1585 3948 w
+(get) 1704 3948 w
+(working) 1867 3948 w
+(early) 2241 3948 w
+(is) 2481 3948 w
+(the) 2589 3948 w
+(file) 2752 3948 w
+(system) 2926 3948 w
+(checker,) 3245 3948 w
+10 /Courier f
+(fsck) 3619 3948 w
+10 /Times-Roman f
+(.) 3859 3948 w
+(Needless) 3924 3948 w
+(to) 4324 3948 w
+(say,) 4442 3948 w
+(the) 4640 3948 w
+(above) 4802 3948 w
+(series) 720 4068 w
+(of) 973 4068 w
+(steps) 1082 4068 w
+(was) 1309 4068 w
+(repeated) 1491 4068 w
+(many) 1855 4068 w
+(times) 2104 4068 w
+(before) 2348 4068 w
+(the) 2629 4068 w
+(system) 2778 4068 w
+(was) 3083 4068 w
+(stable) 3265 4068 w
+(enough) 3525 4068 w
+(to) 3846 4068 w
+(check) 3951 4068 w
+(its) 4210 4068 w
+(own) 4332 4068 w
+(root) 4531 4068 w
+(file) 4719 4068 w
+(sys\255) 4879 4068 w
+(tem.) 720 4188 w
+10 /Times-Bold f
+(5.4 Status) 720 4428 w
+10 /Times-Roman f
+(The) 970 4584 w
+(first) 1151 4584 w
+(3B20) 1338 4584 w
+(minicomputer\255based) 1581 4584 w
+(UNIX) 2428 4584 w
+(system) 2703 4584 w
+(was) 3007 4584 w
+(deployed) 3188 4584 w
+(in) 3580 4584 w
+(July) 3684 4584 w
+(of) 3878 4584 w
+(1981.) 3988 4584 w
+(Since) 4240 4584 w
+(then,) 4489 4584 w
+(both) 4713 4584 w
+(the) 4918 4584 w
+(operating) 720 4704 w
+(system) 1128 4704 w
+(and) 1437 4704 w
+(the) 1612 4704 w
+(hardware) 1765 4704 w
+(have) 2165 4704 w
+(matured) 2383 4704 w
+(greatly.) 2740 4704 w
+(For) 3072 4704 w
+(example,) 3241 4704 w
+(over) 3634 4704 w
+(a) 3841 4704 w
+(dozen) 3915 4704 w
+(new) 4183 4704 w
+(peripherals) 4379 4704 w
+(have) 4852 4704 w
+(been) 720 4824 w
+(added,) 940 4824 w
+(and) 1235 4824 w
+(the) 1411 4824 w
+(instruction) 1565 4824 w
+(set) 2025 4824 w
+(has) 2168 4824 w
+(been) 2333 4824 w
+(expanded) 2553 4824 w
+(to) 2967 4824 w
+(support) 3077 4824 w
+(the) 3409 4824 w
+(IEEE) 3563 4824 w
+(floating\255point) 3811 4824 w
+(standard) 4393 4824 w
+(and) 4763 4824 w
+(C\255) 4940 4824 w
+(style) 720 4944 w
+(string) 936 4944 w
+(manipulations.) 1191 4944 w
+(The) 1810 4944 w
+(system) 1992 4944 w
+(refinements) 2297 4944 w
+(take) 2795 4944 w
+(full) 2988 4944 w
+(advantage) 3153 4944 w
+(of) 3583 4944 w
+(the) 3692 4944 w
+(3B20) 3840 4944 w
+(minicomputer) 4083 4944 w
+(hardware) 4670 4944 w
+(and) 720 5064 w
+(upgrade) 904 5064 w
+(the) 1265 5064 w
+(standard) 1428 5064 w
+(UNIX) 1807 5064 w
+(system) 2097 5064 w
+(features) 2416 5064 w
+(for) 2772 5064 w
+(32\255bit) 2929 5064 w
+(machines.) 3209 5064 w
+(These) 3652 5064 w
+(changes) 3931 5064 w
+(include) 4293 5064 w
+(a) 4628 5064 w
+(1K\255byte) 4713 5064 w
+(block) 720 5184 w
+(file) 974 5184 w
+(system) 1139 5184 w
+(and) 1449 5184 w
+(demand) 1625 5184 w
+(paging.) 1973 5184 w
+(The) 2302 5184 w
+(more) 2489 5184 w
+(recent) 2726 5184 w
+(3B20) 3001 5184 w
+(minicomputer) 3249 5184 w
+(hardware) 3841 5184 w
+(and) 4242 5184 w
+(software) 4417 5184 w
+(devel\255) 4791 5184 w
+(opment is a multiprocessor UNIX system.) 720 5304 w
+10 /Times-Bold f
+(VI. THE UNIX OPERATING SYSTEM ON THE AT&T 3B5 MINICOMPUTER) 720 5544 w
+10 /Times-Roman f
+(The) 970 5700 w
+(AT&T) 1151 5700 w
+(3B5) 1449 5700 w
+(minicomputer) 1642 5700 w
+(is) 2229 5700 w
+(a) 2322 5700 w
+(32\255bit) 2392 5700 w
+(minicomputer) 2657 5700 w
+(based) 3244 5700 w
+(on) 3497 5700 w
+(the) 3624 5700 w
+(WE\(TM\)) 3773 5700 w
+(32000) 4171 5700 w
+([10]) 4448 5700 w
+(micropro\255) 4641 5700 w
+(cessor.) 720 5820 w
+(Development) 1028 5820 w
+(of) 1600 5820 w
+(the) 1717 5820 w
+(UNIX) 1873 5820 w
+(operating) 2156 5820 w
+(system) 2567 5820 w
+(for) 2879 5820 w
+(the) 3029 5820 w
+(3B5) 3185 5820 w
+(minicomputer) 3386 5820 w
+(was) 3981 5820 w
+(started) 4170 5820 w
+(in) 4469 5820 w
+(1980) 4580 5820 w
+(at) 4813 5820 w
+(the) 4918 5820 w
+(same time that the requirements for the hardware and microprocessor were being finalized. To) 720 5940 w
+(minimize) 4514 5940 w
+(the) 4918 5940 w
+(time) 720 6060 w
+(between) 933 6060 w
+(the) 1300 6060 w
+(first) 1457 6060 w
+(hardware) 1653 6060 w
+(introduction) 2057 6060 w
+(and) 2580 6060 w
+(an) 2758 6060 w
+(integrated) 2886 6060 w
+(hardware) 3319 6060 w
+(and) 3723 6060 w
+(software) 3901 6060 w
+(package,) 4278 6060 w
+(extensive) 4663 6060 w
+(use was made of simulation, emulation, and a cross\255development environment.) 720 6180 w
+10 /Times-Bold f
+(6.1 3B family compatibility) 720 6420 w
+10 /Times-Roman f
+(The) 970 6576 w
+(3B5) 1163 6576 w
+(minicomputer) 1368 6576 w
+(is) 1967 6576 w
+(a) 2072 6576 w
+(member) 2154 6576 w
+(of) 2519 6576 w
+(the) 2640 6576 w
+(3B) 2800 6576 w
+(family) 2955 6576 w
+(and) 3254 6576 w
+(thus) 3436 6576 w
+(shares) 3641 6576 w
+(many) 3928 6576 w
+(architectural) 4188 6576 w
+(features) 4725 6576 w
+(with) 720 6696 w
+(the) 929 6696 w
+(3B20.) 1081 6696 w
+(The) 1378 6696 w
+(main) 1563 6696 w
+(objective) 1793 6696 w
+(of) 2189 6696 w
+(the) 2302 6696 w
+(3B) 2454 6696 w
+(family) 2601 6696 w
+(is) 2892 6696 w
+(to) 2989 6696 w
+(provide) 3097 6696 w
+(a) 3432 6696 w
+(very) 3506 6696 w
+(high) 3713 6696 w
+(degree) 3921 6696 w
+(of) 4216 6696 w
+(C) 4329 6696 w
+(language,) 4426 6696 w
+(user\255) 4841 6696 w
+(level) 720 6816 w
+(program) 945 6816 w
+(compatibility) 1314 6816 w
+(among) 1879 6816 w
+(members) 2182 6816 w
+(of) 2579 6816 w
+(the) 2693 6816 w
+(family.) 2846 6816 w
+(The) 3188 6816 w
+(3B5) 3374 6816 w
+(minicomputer) 3572 6816 w
+(and) 4164 6816 w
+(3B20) 4339 6816 w
+(support) 4587 6816 w
+(the) 4918 6816 w
+(same) 720 6936 w
+(data) 954 6936 w
+(types) 1149 6936 w
+(and) 1389 6936 w
+(use) 1562 6936 w
+(the) 1724 6936 w
+(same,) 1875 6936 w
+(bit\255for\255bit) 2134 6936 w
+(identical) 2557 6936 w
+(representations) 2930 6936 w
+(for) 3563 6936 w
+(each) 3708 6936 w
+(type.) 3919 6936 w
+(That) 4145 6936 w
+(is,) 4357 6936 w
+(byte) 4477 6936 w
+(ordering,) 4677 6936 w
+(bit) 720 7056 w
+(significance,) 853 7056 w
+(alignment) 1388 7056 w
+(restrictions,) 1816 7056 w
+(etc.,) 2313 7056 w
+(are) 2507 7056 w
+(the) 2656 7056 w
+(same) 2806 7056 w
+(on) 3039 7056 w
+(both) 3167 7056 w
+(machines.) 3373 7056 w
+(The) 3803 7056 w
+(two) 3986 7056 w
+(machines) 4164 7056 w
+(also) 4569 7056 w
+(share) 4758 7056 w
+(a) 4996 7056 w
+(common) 720 7176 w
+(subset) 1096 7176 w
+(of) 1372 7176 w
+(assembler\255level) 1481 7176 w
+(instructions) 2133 7176 w
+(called) 2626 7176 w
+(IS25.) 2890 7176 w
+(This) 3130 7176 w
+(subset) 3334 7176 w
+(is defined to include all instructions) 3610 7176 w
+(that can be generated by the C language compiler.) 720 7296 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 10 10
+%%Page: 11 11
+/saveobj save def
+mark
+11 pagesetup
+10 /Times-Roman f
+(\255 11 \255) 2772 480 w
+(This) 970 840 w
+(high) 1175 840 w
+(degree) 1381 840 w
+(of) 1674 840 w
+(C) 1785 840 w
+(language) 1880 840 w
+(software) 2268 840 w
+(compatibility) 2639 840 w
+(simplified) 3201 840 w
+(porting) 3635 840 w
+(major) 3952 840 w
+(portions) 4213 840 w
+(of) 4569 840 w
+(the) 4680 840 w
+(oper\255) 4830 840 w
+(ating) 720 960 w
+(system) 947 960 w
+(software.) 1252 960 w
+(For) 1647 960 w
+(example,) 1812 960 w
+(the) 2201 960 w
+(3B5) 2349 960 w
+(minicomputer) 2542 960 w
+(could) 3129 960 w
+(automatically) 3377 960 w
+(take) 3947 960 w
+(advantage) 4139 960 w
+(of) 4569 960 w
+(solutions) 4678 960 w
+(to) 720 1080 w
+(many) 830 1080 w
+(of) 1084 1080 w
+(the) 1199 1080 w
+(subtle) 1353 1080 w
+(data) 1624 1080 w
+(representation) 1822 1080 w
+(or) 2419 1080 w
+("byte\255order") 2534 1080 w
+(problems) 3063 1080 w
+(found) 3467 1080 w
+(during) 3732 1080 w
+(the) 4026 1080 w
+(3B20) 4181 1080 w
+(port.) 4431 1080 w
+(However,) 4650 1080 w
+(the) 720 1200 w
+(machine\255dependent) 883 1200 w
+(portions) 1704 1200 w
+(of) 2072 1200 w
+(the) 2195 1200 w
+(operating) 2357 1200 w
+(system) 2774 1200 w
+(required) 3092 1200 w
+(significant) 3464 1200 w
+(design) 3926 1200 w
+(effort) 4227 1200 w
+(as) 4488 1200 w
+(a) 4611 1200 w
+(result) 4695 1200 w
+(of) 4957 1200 w
+(some) 720 1320 w
+(of) 967 1320 w
+(the) 1086 1320 w
+(unique) 1244 1320 w
+(architectural) 1552 1320 w
+(characteristics) 2086 1320 w
+(of) 2692 1320 w
+(the) 2811 1320 w
+(3B5) 2969 1320 w
+(minicomputer) 3173 1320 w
+(and) 3771 1320 w
+(the) 3952 1320 w
+(WE) 4111 1320 w
+(32000.) 4303 1320 w
+(The) 4615 1320 w
+(major) 4807 1320 w
+(areas) 720 1440 w
+(that) 957 1440 w
+(needed) 1140 1440 w
+(change) 1455 1440 w
+(were) 1770 1440 w
+(memory) 1996 1440 w
+(management,) 2361 1440 w
+(process) 2928 1440 w
+(creation,) 3259 1440 w
+(interrupt) 3637 1440 w
+(handling,) 4013 1440 w
+(context) 4420 1440 w
+(switch\255) 4746 1440 w
+(ing, system call interface, and exception handling.) 720 1560 w
+10 /Times-Bold f
+(6.2 WE 32000 architecture and related porting issues) 720 1800 w
+10 /Times-Roman f
+(The) 970 1956 w
+(WE) 1158 1956 w
+(32000) 1346 1956 w
+(is) 1629 1956 w
+(based) 1729 1956 w
+(on) 1989 1956 w
+(a) 2122 1956 w
+(large,) 2199 1956 w
+(single) 2456 1956 w
+(address) 2728 1956 w
+(space,) 3060 1956 w
+(which) 3339 1956 w
+(contains) 3616 1956 w
+(both) 3983 1956 w
+(the) 4195 1956 w
+(operating) 4351 1956 w
+(system) 4762 1956 w
+(and a user program. External MMU hardware, through the checking of access rights, provides the basic pro\255) 720 2076 w
+(tection) 720 2196 w
+(mechanism) 1028 2196 w
+(in) 1519 2196 w
+(the) 1633 2196 w
+(3B5) 1791 2196 w
+(minicomputer.) 1994 2196 w
+(The) 2616 2196 w
+(WE) 2807 2196 w
+(32000) 2998 2196 w
+(contains) 3284 2196 w
+(only) 3653 2196 w
+(a) 3867 2196 w
+(few) 3947 2196 w
+(privileged) 4132 2196 w
+(instructions) 4573 2196 w
+(and) 720 2316 w
+(privileged) 897 2316 w
+(internal) 1335 2316 w
+(registers.) 1673 2316 w
+(In) 2069 2316 w
+(addition) 2185 2316 w
+(to) 2546 2316 w
+(the) 2657 2316 w
+(single\255kernel) 2812 2316 w
+(single\255user) 3366 2316 w
+(address) 3837 2316 w
+(space,) 4169 2316 w
+(the) 4448 2316 w
+(WE) 4603 2316 w
+(32000) 4790 2316 w
+(assumes) 720 2436 w
+(the) 1083 2436 w
+(use) 1235 2436 w
+(of) 1398 2436 w
+(a) 1511 2436 w
+(single) 1585 2436 w
+(stack) 1854 2436 w
+(for) 2089 2436 w
+(both) 2235 2436 w
+(user) 2443 2436 w
+(and) 2639 2436 w
+(kernel) 2813 2436 w
+(execution) 3092 2436 w
+(\(separate) 3510 2436 w
+(stacks) 3899 2436 w
+(are) 4173 2436 w
+(provided) 4324 2436 w
+(for) 4710 2436 w
+(such) 4857 2436 w
+(things as stack exception, I/O interrupts, etc.\).) 720 2556 w
+10 /Times-Bold f
+(6.2.1 System calls) 720 2796 w
+10 /Times-Roman f
+(The) 970 2952 w
+(system) 1157 2952 w
+(call) 1467 2952 w
+(instruction,) 1643 2952 w
+10 /Courier f
+(gate) 2128 2952 w
+10 /Times-Roman f
+(,) 2368 2952 w
+(changes) 2425 2952 w
+(the) 2778 2952 w
+(processor) 2932 2952 w
+(to) 3346 2952 w
+(a) 3456 2952 w
+(privileged) 3532 2952 w
+(state) 3969 2952 w
+(and) 4184 2952 w
+(passes) 4360 2952 w
+(control) 4647 2952 w
+(to) 4962 2952 w
+(the) 720 3072 w
+(operating) 871 3072 w
+(system,) 1277 3072 w
+(but) 1609 3072 w
+(does) 1766 3072 w
+(not) 1978 3072 w
+(switch) 2135 3072 w
+(to) 2425 3072 w
+(a) 2532 3072 w
+(separate) 2605 3072 w
+(stack.) 2960 3072 w
+(Therefore,) 3219 3072 w
+(the) 3664 3072 w
+(system) 3814 3072 w
+(call) 4120 3072 w
+(interface) 4292 3072 w
+(had) 4668 3072 w
+(to) 4840 3072 w
+(be) 4946 3072 w
+(carefully) 720 3192 w
+(designed) 1104 3192 w
+(to) 1489 3192 w
+(avoid) 1597 3192 w
+(the) 1849 3192 w
+(possibility) 2001 3192 w
+(of) 2450 3192 w
+(a) 2564 3192 w
+(security) 2639 3192 w
+(breach) 2986 3192 w
+(arising) 3282 3192 w
+(from) 3585 3192 w
+(the) 3810 3192 w
+(mixture) 3963 3192 w
+(of) 4305 3192 w
+(user) 4419 3192 w
+(and) 4616 3192 w
+(kernel) 4791 3192 w
+(data) 720 3312 w
+(on) 913 3312 w
+(the) 1040 3312 w
+(same) 1189 3312 w
+(stack.) 1421 3312 w
+(The) 1703 3312 w
+(system) 1885 3312 w
+(has) 2190 3312 w
+(to) 2349 3312 w
+(be) 2453 3312 w
+(careful) 2573 3312 w
+(that) 2875 3312 w
+(a) 3051 3312 w
+(stack) 3121 3312 w
+(address,) 3352 3312 w
+(of) 3702 3312 w
+(a) 3811 3312 w
+(buffer) 3881 3312 w
+(for) 4150 3312 w
+(instance,) 4292 3312 w
+(passed) 4670 3312 w
+(to) 4962 3312 w
+(it) 720 3432 w
+(is) 807 3432 w
+(indeed) 905 3432 w
+(in) 1202 3432 w
+(the) 1311 3432 w
+(user's) 1464 3432 w
+(portion) 1733 3432 w
+(of) 2053 3432 w
+(the) 2167 3432 w
+(stack.) 2320 3432 w
+(Care) 2581 3432 w
+(was) 2800 3432 w
+(also) 2986 3432 w
+(taken) 3178 3432 w
+(to) 3425 3432 w
+(ensure) 3534 3432 w
+(stack) 3825 3432 w
+(exceptions) 4062 3432 w
+(cannot) 4521 3432 w
+(occur) 4819 3432 w
+(when) 720 3552 w
+(running) 962 3552 w
+(in) 1299 3552 w
+(the) 1403 3552 w
+(kernel) 1551 3552 w
+(mode.) 1826 3552 w
+(This) 2099 3552 w
+(is) 2303 3552 w
+(done) 2396 3552 w
+(by) 2616 3552 w
+(manipulating the stack bounds registers at the system call) 2742 3552 w
+(interface) 720 3672 w
+(to) 1096 3672 w
+(guarantee) 1203 3672 w
+(that) 1619 3672 w
+(upon) 1798 3672 w
+(entry) 2027 3672 w
+(to) 2261 3672 w
+(the) 2368 3672 w
+(system,) 2519 3672 w
+(sufficient) 2851 3672 w
+(stack) 3257 3672 w
+(space) 3491 3672 w
+(is) 3741 3672 w
+(available) 3837 3672 w
+(to) 4226 3672 w
+(complete) 4333 3672 w
+(the) 4728 3672 w
+(sys\255) 4879 3672 w
+(tem) 720 3792 w
+(call.) 898 3792 w
+(The) 1095 3792 w
+(system) 1278 3792 w
+(call) 1584 3792 w
+(code) 1756 3792 w
+(that) 1972 3792 w
+(handles) 2150 3792 w
+(signals) 2483 3792 w
+(to) 2789 3792 w
+(user) 2895 3792 w
+(programs) 3089 3792 w
+(also) 3494 3792 w
+(required) 3683 3792 w
+(change.) 4043 3792 w
+(Upon) 4378 3792 w
+(entry,) 4628 3792 w
+(suf\255) 4885 3792 w
+(ficient space \(two words\) for processing signals is reserved on the stack. If) 720 3912 w
+(a) 3725 3912 w
+(signal) 3795 3912 w
+(is) 4060 3912 w
+(present) 4153 3912 w
+(at) 4467 3912 w
+(the) 4565 3912 w
+(comple\255) 4713 3912 w
+(tion) 720 4032 w
+(of) 907 4032 w
+(the) 1021 4032 w
+(system) 1174 4032 w
+(call,) 1482 4032 w
+(this) 1681 4032 w
+(reserved) 1856 4032 w
+(space) 2223 4032 w
+(is) 2474 4032 w
+(set) 2571 4032 w
+(up) 2712 4032 w
+(with) 2842 4032 w
+(return) 3050 4032 w
+(information) 3318 4032 w
+(before) 3820 4032 w
+(control) 4104 4032 w
+(is) 4417 4032 w
+(passed) 4514 4032 w
+(to) 4810 4032 w
+(the) 4918 4032 w
+(user's signal handler.) 720 4152 w
+(The) 970 4308 w
+10 /Courier f
+(fork) 1157 4308 w
+10 /Times-Roman f
+(and) 1429 4308 w
+10 /Courier f
+(exec) 1605 4308 w
+10 /Times-Roman f
+(system) 1877 4308 w
+(calls) 2187 4308 w
+(were) 2402 4308 w
+(also) 2627 4308 w
+(affected) 2820 4308 w
+(by) 3172 4308 w
+(the) 3304 4308 w
+(single) 3458 4308 w
+(stack) 3729 4308 w
+(architecture.) 3966 4308 w
+(Both) 4493 4308 w
+(of) 4720 4308 w
+(these) 4835 4308 w
+(system) 720 4428 w
+(calls) 1035 4428 w
+(must) 1255 4428 w
+(manipulate) 1487 4428 w
+(the) 1968 4428 w
+(user's) 2127 4428 w
+(stack.) 2402 4428 w
+(This) 2669 4428 w
+(is) 2884 4428 w
+(difficult) 2988 4428 w
+(to) 3347 4428 w
+(do) 3462 4428 w
+(if) 3599 4428 w
+(the) 3697 4428 w
+(kernel) 3856 4428 w
+(code) 4141 4428 w
+(is) 4365 4428 w
+(also) 4468 4428 w
+(using) 4665 4428 w
+(the) 4918 4428 w
+(same stack. Code in the system call interface explicitly switches to a separate stack for these system calls.) 720 4548 w
+10 /Times-Bold f
+(6.2.2 Process concept) 720 4788 w
+10 /Times-Roman f
+(The) 970 4944 w
+(WE) 1151 4944 w
+(32000) 1332 4944 w
+(includes) 1608 4944 w
+(a) 1967 4944 w
+(notion) 2037 4944 w
+(of) 2319 4944 w
+(a) 2428 4944 w
+(process) 2498 4944 w
+(by) 2823 4944 w
+(providing) 2949 4944 w
+(privileged) 3364 4944 w
+(instructions) 3796 4944 w
+(that) 4290 4944 w
+(can) 4467 4944 w
+(call) 4632 4944 w
+(a) 4803 4944 w
+(pro\255) 4874 4944 w
+(cess) 720 5064 w
+(and) 918 5064 w
+(return) 1093 5064 w
+(to) 1362 5064 w
+(a) 1471 5064 w
+(previous) 1546 5064 w
+(process.) 1921 5064 w
+(Process\255state) 2301 5064 w
+(information) 2853 5064 w
+(is) 3356 5064 w
+(kept) 3454 5064 w
+(in) 3657 5064 w
+(a) 3766 5064 w
+(Process) 3841 5064 w
+(Control) 4177 5064 w
+(Block) 4514 5064 w
+(\(PCB\)) 4784 5064 w
+(data) 720 5184 w
+(structure.) 913 5184 w
+(Interrupts) 1315 5184 w
+(are) 1731 5184 w
+(essentially) 1880 5184 w
+(hardware\255invoked) 2330 5184 w
+(call) 3083 5184 w
+(process) 3255 5184 w
+(instructions.) 3582 5184 w
+(This) 4102 5184 w
+(process) 4308 5184 w
+(concept) 4635 5184 w
+(is) 4973 5184 w
+(used by the 3B5 minicomputer UNIX system kernel to support user processes and interrupt handling.) 720 5304 w
+(Upon) 4818 5304 w
+(interrupt,) 720 5424 w
+(a) 1118 5424 w
+(process) 1191 5424 w
+(is) 1519 5424 w
+(dispatched) 1615 5424 w
+(by) 2072 5424 w
+(the) 2202 5424 w
+(hardware.) 2354 5424 w
+(All) 2779 5424 w
+(interrupt) 2937 5424 w
+(processes) 3311 5424 w
+(are) 3723 5424 w
+(part) 3874 5424 w
+(of) 4059 5424 w
+(the) 4172 5424 w
+(kernel,) 4324 5424 w
+(and) 4628 5424 w
+(reside) 4802 5424 w
+(in) 720 5544 w
+(the) 834 5544 w
+(system) 992 5544 w
+(address) 1306 5544 w
+(space.) 1641 5544 w
+(All) 1923 5544 w
+(interrupt) 2087 5544 w
+(PCBs) 2467 5544 w
+(and) 2732 5544 w
+(stacks) 2912 5544 w
+(are) 3192 5544 w
+(statically) 3349 5544 w
+(allocated) 3745 5544 w
+(in) 4140 5544 w
+(kernel) 4253 5544 w
+(space.) 4537 5544 w
+(Since) 4818 5544 w
+(interrupt) 720 5664 w
+(processes) 1090 5664 w
+(are) 1498 5664 w
+(not) 1645 5664 w
+(allowed) 1799 5664 w
+(to) 2141 5664 w
+(suspend) 2245 5664 w
+(themselves) 2593 5664 w
+(interrupt) 3063 5664 w
+(processes) 3433 5664 w
+(of) 3841 5664 w
+(equal) 3950 5664 w
+(priority) 4192 5664 w
+(can) 4518 5664 w
+(share) 4682 5664 w
+(the) 4918 5664 w
+(same stack. Therefore, only one stack is needed per interrupt priority level.) 720 5784 w
+10 /Times-Bold f
+(6.2.3 Process switching) 720 6024 w
+10 /Times-Roman f
+(When a process is to be switched out, the) 970 6180 w
+(process) 2646 6180 w
+(switcher) 2971 6180 w
+(\() 3335 6180 w
+10 /Courier f
+(swtch) 3368 6180 w
+10 /Times-Roman f
+(\)) 3668 6180 w
+(sets) 3727 6180 w
+(a) 3903 6180 w
+(Program) 3973 6180 w
+(Interrupt) 4343 6180 w
+(Request) 4718 6180 w
+(\(PIR\)) 720 6300 w
+(at) 975 6300 w
+(priority\255level) 1080 6300 w
+(1) 1640 6300 w
+(\(the) 1723 6300 w
+(lowest) 1911 6300 w
+(priority) 2205 6300 w
+(interrupt) 2537 6300 w
+(level\).) 2913 6300 w
+(Since) 3197 6300 w
+(a) 3451 6300 w
+(user) 3527 6300 w
+(process) 3725 6300 w
+(runs) 4056 6300 w
+(at) 4260 6300 w
+(interrupt) 4364 6300 w
+(priority) 4740 6300 w
+(level 0, the level\2551 PIR is) 720 6420 w
+(honored) 1762 6420 w
+(before) 2115 6420 w
+(any) 2395 6420 w
+(other) 2565 6420 w
+(user\255level) 2796 6420 w
+(process) 3215 6420 w
+(is) 3540 6420 w
+(executed.) 3633 6420 w
+(The) 4038 6420 w
+(WE) 4219 6420 w
+(32000) 4400 6420 w
+(saves) 4676 6420 w
+(the) 4918 6420 w
+(state) 720 6540 w
+(of) 930 6540 w
+(the) 1040 6540 w
+(user) 1189 6540 w
+(process) 1382 6540 w
+(in) 1708 6540 w
+(its) 1813 6540 w
+(PCB,) 1935 6540 w
+(and) 2177 6540 w
+(dispatches) 2348 6540 w
+(the) 2791 6540 w
+(switcher.) 2940 6540 w
+(The) 3330 6540 w
+(switcher) 3512 6540 w
+(then) 3877 6540 w
+(picks) 4075 6540 w
+(another) 4312 6540 w
+(process) 4637 6540 w
+(to) 4962 6540 w
+(run, sets up its map, and performs a return process instruction to transfer control to the new user process.) 720 6660 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 11 11
+%%Page: 12 12
+/saveobj save def
+mark
+12 pagesetup
+10 /Times-Roman f
+(\255 12 \255) 2772 480 w
+10 /Times-Bold f
+(6.2.4 Memory management) 720 840 w
+10 /Times-Roman f
+(The) 970 996 w
+(MMU) 1167 996 w
+(used) 1459 996 w
+(for) 1684 996 w
+(initial) 1842 996 w
+(3B5) 2119 996 w
+(minicomputer) 2329 996 w
+(development) 2933 996 w
+(supported) 3492 996 w
+(a) 3929 996 w
+(24\255bit) 4016 996 w
+(segmented) 4298 996 w
+(logical) 4768 996 w
+(address) 720 1116 w
+(space) 1053 1116 w
+(and) 1308 1116 w
+(supported) 1486 1116 w
+(virtual) 1914 1116 w
+(to) 2209 1116 w
+(physical) 2321 1116 w
+(address) 2687 1116 w
+(translation) 3019 1116 w
+(based) 3474 1116 w
+(on) 3734 1116 w
+(contiguous) 3867 1116 w
+(segments.) 4339 1116 w
+(A) 4769 1116 w
+(user) 4874 1116 w
+(process's) 720 1236 w
+(virtual) 1122 1236 w
+(address) 1414 1236 w
+(space) 1744 1236 w
+(is) 1996 1236 w
+(divided) 2094 1236 w
+(into) 2425 1236 w
+(two) 2612 1236 w
+(equal) 2793 1236 w
+(address) 3040 1236 w
+(subspaces,) 3371 1236 w
+(the) 3827 1236 w
+(system) 3981 1236 w
+(space) 4291 1236 w
+(and) 4544 1236 w
+(the) 4720 1236 w
+(user) 4874 1236 w
+(space.) 720 1356 w
+(A) 994 1356 w
+(user) 1094 1356 w
+(process) 1288 1356 w
+(running) 1615 1356 w
+(in) 1954 1356 w
+(kernel) 2060 1356 w
+(mode) 2337 1356 w
+(has) 2587 1356 w
+(access) 2748 1356 w
+(to) 3030 1356 w
+(both) 3136 1356 w
+(address) 3342 1356 w
+(subspaces,) 3669 1356 w
+(whereas) 4121 1356 w
+(a) 4475 1356 w
+(user) 4547 1356 w
+(process) 4741 1356 w
+(in user mode only has access to the user address subspace.) 720 1476 w
+(Translation) 970 1632 w
+(from) 1454 1632 w
+(a) 1677 1632 w
+(virtual) 1750 1632 w
+(to) 2040 1632 w
+(a) 2147 1632 w
+(physical) 2220 1632 w
+(address) 2582 1632 w
+(is) 2911 1632 w
+(done) 3008 1632 w
+(via) 3232 1632 w
+(map) 3384 1632 w
+(buffers.) 3586 1632 w
+(A) 3923 1632 w
+(total) 4025 1632 w
+(of) 4233 1632 w
+(64) 4346 1632 w
+(maps) 4476 1632 w
+(are) 4717 1632 w
+(sup\255) 4868 1632 w
+(ported) 720 1752 w
+(by) 1005 1752 w
+(the) 1135 1752 w
+(memory) 1287 1752 w
+(management) 1650 1752 w
+(unit.) 2190 1752 w
+(The) 2401 1752 w
+(system) 2586 1752 w
+(space,) 2894 1752 w
+(by) 3170 1752 w
+(convention,) 3300 1752 w
+(is) 3799 1752 w
+(mapped) 3895 1752 w
+(through) 4240 1752 w
+(map) 4580 1752 w
+(0.) 4781 1752 w
+(The) 4885 1752 w
+(system) 720 1872 w
+(space) 1030 1872 w
+(is) 1283 1872 w
+(common) 1382 1872 w
+(to) 1764 1872 w
+(all) 1874 1872 w
+(user) 2006 1872 w
+(processes) 2204 1872 w
+(and) 2618 1872 w
+(is) 2794 1872 w
+(not) 2893 1872 w
+(affected) 3054 1872 w
+(by) 3407 1872 w
+(a) 3540 1872 w
+(context) 3617 1872 w
+(switch.) 3944 1872 w
+(The) 4263 1872 w
+(3B5) 4451 1872 w
+(minicom\255) 4651 1872 w
+(puter) 720 1992 w
+(UNIX) 969 1992 w
+(system) 1262 1992 w
+(kernel) 1583 1992 w
+(resides) 1875 1992 w
+(in) 2195 1992 w
+(the) 2316 1992 w
+(system) 2481 1992 w
+(address) 2802 1992 w
+(space,) 3144 1992 w
+(and) 3433 1992 w
+(all) 3620 1992 w
+(operating) 3763 1992 w
+(system) 4183 1992 w
+(functions) 4504 1992 w
+(are) 4919 1992 w
+(shared) 720 2112 w
+(by) 1018 2112 w
+(all) 1157 2112 w
+(processes) 1296 2112 w
+(and) 1717 2112 w
+(are) 1900 2112 w
+(accessed) 2060 2112 w
+(via) 2447 2112 w
+(the) 2608 2112 w
+(gate) 2769 2112 w
+(mechanism) 2974 2112 w
+(by) 3468 2112 w
+(user) 3607 2112 w
+(processes.) 3812 2112 w
+(An) 4258 2112 w
+(address) 4419 2112 w
+(in) 4757 2112 w
+(user) 4874 2112 w
+(space) 720 2232 w
+(is) 980 2232 w
+(translated) 1086 2232 w
+(by) 1512 2232 w
+(using) 1650 2232 w
+(the) 1905 2232 w
+(map) 2065 2232 w
+(specified) 2275 2232 w
+(by) 2673 2232 w
+(an) 2811 2232 w
+("active) 2943 2232 w
+(process) 3260 2232 w
+(ID") 3597 2232 w
+(register.) 3781 2232 w
+(The) 4143 2232 w
+(operating) 4336 2232 w
+(assigns) 4751 2232 w
+(maps to user processes, and if more than 63 processes are in main memory, the maps are time shared.) 720 2352 w
+(To) 970 2508 w
+(ease) 1109 2508 w
+(the) 1308 2508 w
+(sharing) 1458 2508 w
+(of) 1780 2508 w
+(the) 1891 2508 w
+(63) 2041 2508 w
+(maps) 2169 2508 w
+(among) 2408 2508 w
+(user) 2708 2508 w
+(processes,) 2902 2508 w
+(a) 3337 2508 w
+(new) 3409 2508 w
+(entry) 3603 2508 w
+(has) 3837 2508 w
+(been) 3999 2508 w
+(added) 4216 2508 w
+(to) 4483 2508 w
+(the) 4590 2508 w
+(process) 4741 2508 w
+(table) 720 2628 w
+(to) 950 2628 w
+(hold) 1064 2628 w
+(the) 1277 2628 w
+(map) 1434 2628 w
+(index) 1641 2628 w
+(if) 1898 2628 w
+(a) 1994 2628 w
+(map) 2073 2628 w
+(is) 2280 2628 w
+(assigned) 2382 2628 w
+(to) 2761 2628 w
+(the) 2874 2628 w
+(process.) 3031 2628 w
+(When) 3390 2628 w
+(a) 3663 2628 w
+(process) 3742 2628 w
+(is) 4076 2628 w
+(scheduled) 4178 2628 w
+(to) 4612 2628 w
+(run,) 4725 2628 w
+(the) 4918 2628 w
+(switcher) 720 2748 w
+(determines) 1088 2748 w
+(if) 1556 2748 w
+(the) 1647 2748 w
+(process) 1800 2748 w
+(currently) 2130 2748 w
+(has) 2521 2748 w
+(a) 2685 2748 w
+(map) 2760 2748 w
+(assigned.) 2963 2748 w
+(If) 3388 2748 w
+(so,) 3485 2748 w
+(a) 3630 2748 w
+(switch) 3705 2748 w
+(to) 3997 2748 w
+(a) 4106 2748 w
+(user) 4181 2748 w
+(process') 4378 2748 w
+(address) 4741 2748 w
+(map) 720 2868 w
+(only) 922 2868 w
+(requires) 1130 2868 w
+(reloading) 1481 2868 w
+(the) 1888 2868 w
+("active) 2039 2868 w
+(process) 2347 2868 w
+(ID") 2675 2868 w
+(register.) 2850 2868 w
+(If) 3203 2868 w
+(not,) 3298 2868 w
+(the) 3480 2868 w
+(switcher) 3631 2868 w
+(must) 3998 2868 w
+(allocate) 4222 2868 w
+(a) 4561 2868 w
+(map) 4634 2868 w
+(entry) 4835 2868 w
+(and) 720 2988 w
+(load) 900 2988 w
+(the) 1108 2988 w
+(process') 1266 2988 w
+(map) 1634 2988 w
+(from) 1842 2988 w
+(its) 2072 2988 w
+(") 2203 2988 w
+10 /Times-Italic f
+(u) 2244 2988 w
+10 /Times-Roman f
+(") 2294 2988 w
+(area) 2371 2988 w
+(into) 2572 2988 w
+(the) 2764 2988 w
+(memory) 2922 2988 w
+(management) 3291 2988 w
+(unit.) 3837 2988 w
+(The) 4054 2988 w
+(switcher) 4245 2988 w
+(will) 4620 2988 w
+(either) 4813 2988 w
+(allocate) 720 3108 w
+(a) 1064 3108 w
+(free) 1141 3108 w
+(map) 1328 3108 w
+(or,) 1533 3108 w
+(if) 1674 3108 w
+(all) 1768 3108 w
+(maps) 1901 3108 w
+(are) 2145 3108 w
+(in) 2299 3108 w
+(use) 2410 3108 w
+(randomly,) 2576 3108 w
+(deallocate) 3017 3108 w
+(a) 3454 3108 w
+(map) 3531 3108 w
+(owned) 3736 3108 w
+(by) 4035 3108 w
+(a) 4168 3108 w
+(sleeping) 4245 3108 w
+(process.) 4611 3108 w
+(A) 4968 3108 w
+(map is freed when a process is terminated or swapped.) 720 3228 w
+10 /Times-Bold f
+(6.3 Development and test environment) 720 3468 w
+(6.3.1 385 minicomputer SGS) 720 3708 w
+10 /Times-Roman f
+(Since) 970 3864 w
+(no) 1232 3864 w
+(3B5) 1372 3864 w
+(minicomputer) 1579 3864 w
+(hardware) 2180 3864 w
+(existed) 2590 3864 w
+(at) 2914 3864 w
+(the) 3027 3864 w
+(time) 3190 3864 w
+(the) 3409 3864 w
+(project) 3572 3864 w
+(began,) 3890 3864 w
+(it) 4194 3864 w
+(was) 4291 3864 w
+(impossible) 4487 3864 w
+(to) 4962 3864 w
+(develop) 720 3984 w
+(software) 1067 3984 w
+(for) 1441 3984 w
+(the) 1588 3984 w
+(3B5) 1741 3984 w
+(minicomputer) 1939 3984 w
+(using) 2531 3984 w
+(the) 2779 3984 w
+(native) 2931 3984 w
+(machine.) 3205 3984 w
+(A) 3598 3984 w
+(cross\255software) 3700 3984 w
+(generation) 4311 3984 w
+(system) 4762 3984 w
+(based) 720 4104 w
+(on) 973 4104 w
+(the) 1099 4104 w
+(common) 1247 4104 w
+(SGS) 1623 4104 w
+(was) 1833 4104 w
+(developed) 2015 4104 w
+(and) 2452 4104 w
+(run) 2623 4104 w
+(on) 2783 4104 w
+(a) 2910 4104 w
+(VAX\25511/780) 2981 4104 w
+(processor.) 3535 4104 w
+(The) 3994 4104 w
+(cross\255SGS) 4176 4104 w
+(included) 4625 4104 w
+(a) 4996 4104 w
+(C compiler; assembler; linker and associated support programs; and generated WE 32000 object code.) 720 4224 w
+10 /Times-Bold f
+(6.3.2 Emulation and debugging tools) 720 4464 w
+10 /Times-Roman f
+(The) 970 4620 w
+(initial) 1154 4620 w
+(3B5) 1417 4620 w
+(minicomputer) 1613 4620 w
+(development) 2203 4620 w
+(strategy) 2748 4620 w
+(was) 3093 4620 w
+(based) 3277 4620 w
+(on) 3533 4620 w
+(the) 3663 4620 w
+(use) 3815 4620 w
+(of) 3978 4620 w
+(an) 4091 4620 w
+(emulation) 4215 4620 w
+(for) 4645 4620 w
+(devel\255) 4791 4620 w
+(oping) 720 4740 w
+(virtually) 984 4740 w
+(all) 1359 4740 w
+(of) 1495 4740 w
+(the) 1614 4740 w
+(software.) 1772 4740 w
+(An) 2200 4740 w
+(AT&T) 2357 4740 w
+(3B20S) 2664 4740 w
+(minicomputer) 2972 4740 w
+(was) 3568 4740 w
+(microcoded) 3758 4740 w
+(to) 4264 4740 w
+(emulate) 4377 4740 w
+(the) 4728 4740 w
+(WE) 4885 4740 w
+(32000) 720 4860 w
+(microprocessor) 1009 4860 w
+(and) 1663 4860 w
+(the) 1846 4860 w
+(3B5) 2007 4860 w
+(minicomputer.) 2213 4860 w
+(This) 2838 4860 w
+(emulation) 3055 4860 w
+(included) 3494 4860 w
+(the) 3877 4860 w
+(interrupt) 4038 4860 w
+(controller,) 4421 4860 w
+(pro\255) 4874 4860 w
+(grammed) 720 4980 w
+(interrupts,) 1135 4980 w
+(memory) 1581 4980 w
+(management,) 1952 4980 w
+(central) 2525 4980 w
+(control) 2833 4980 w
+(Universal) 3153 4980 w
+(Asynchronous) 3578 4980 w
+(Receiver/Transmitter) 4192 4980 w
+(\(UART\),) 720 5100 w
+(Asynchronous) 1110 5100 w
+(Data) 1714 5100 w
+(Link) 1929 5100 w
+(Interface) 2145 5100 w
+(\(ADLI\)) 2525 5100 w
+(UARTs,) 2856 5100 w
+(Sanity) 3220 5100 w
+(and) 3504 5100 w
+(Interval) 3676 5100 w
+(Timer) 4014 5100 w
+(\(SIT\)) 4286 5100 w
+(and) 4530 5100 w
+(the) 4702 5100 w
+(Inte\255) 4852 5100 w
+(grated) 720 5220 w
+(Disk) 1000 5220 w
+(File) 1220 5220 w
+(Controller) 1406 5220 w
+(\(IDFC\).) 1847 5220 w
+(From) 2196 5220 w
+(the) 2443 5220 w
+(perspective) 2595 5220 w
+(of) 3079 5220 w
+(a) 3192 5220 w
+(developer,) 3266 5220 w
+(the) 3714 5220 w
+(emulation) 3866 5220 w
+(was) 4296 5220 w
+(an) 4481 5220 w
+(actual) 4605 5220 w
+(3B5) 4873 5220 w
+(minicomputer.) 720 5340 w
+(During) 970 5496 w
+(the) 1288 5496 w
+(emulation) 1445 5496 w
+(stage,) 1880 5496 w
+(a) 2145 5496 w
+(3B20) 2224 5496 w
+(emulation) 2476 5496 w
+(control) 2911 5496 w
+(program) 3229 5496 w
+(was) 3602 5496 w
+(used) 3792 5496 w
+(as) 4011 5496 w
+(a) 4130 5496 w
+(debugging) 4210 5496 w
+(tool.) 4668 5496 w
+(The) 4885 5496 w
+(3B20) 720 5616 w
+(minicomputer) 976 5616 w
+(Emulation) 1576 5616 w
+(Control) 2032 5616 w
+(Program) 2377 5616 w
+(\(MIP\)) 2760 5616 w
+(executed) 3043 5616 w
+(on) 3435 5616 w
+(a) 3573 5616 w
+(support) 3655 5616 w
+(PDP\25511/70) 3993 5616 w
+(processor) 4476 5616 w
+(and) 4896 5616 w
+(provided) 720 5736 w
+(a) 1106 5736 w
+(means) 1181 5736 w
+(to) 1468 5736 w
+(control) 1578 5736 w
+(the) 1893 5736 w
+(3B5) 2047 5736 w
+(minicomputer) 2246 5736 w
+(emulation) 2839 5736 w
+(microcode.) 3271 5736 w
+(Features) 3774 5736 w
+(included) 4144 5736 w
+(the) 4520 5736 w
+(ability) 4674 5736 w
+(to) 4962 5736 w
+(start) 720 5856 w
+(and) 924 5856 w
+(stop) 1100 5856 w
+(the) 1299 5856 w
+(emulation,) 1453 5856 w
+(load) 1910 5856 w
+(emulation) 2114 5856 w
+(memory) 2546 5856 w
+(from) 2911 5856 w
+(a) 3137 5856 w
+(file) 3213 5856 w
+(on) 3378 5856 w
+(the) 3510 5856 w
+(support) 3664 5856 w
+(processor,) 3996 5856 w
+(set) 4434 5856 w
+(and) 4576 5856 w
+(display) 4751 5856 w
+(registers and memory, and set) 720 5976 w
+(emulation) 1941 5976 w
+(breakpoints.) 2367 5976 w
+(Emulation) 2909 5976 w
+(program) 3352 5976 w
+(commands) 3716 5976 w
+(were) 4175 5976 w
+(bundled) 4394 5976 w
+(to) 4742 5976 w
+(form) 4846 5976 w
+(a) 720 6096 w
+(debugging) 790 6096 w
+(package.) 1238 6096 w
+(This) 1615 6096 w
+(package,) 1819 6096 w
+(which) 2196 6096 w
+(is) 2466 6096 w
+(not) 2559 6096 w
+(as) 2713 6096 w
+(yet) 2822 6096 w
+(an) 2970 6096 w
+(official) 3090 6096 w
+(AT&T) 3404 6096 w
+(product,) 3702 6096 w
+(and) 4058 6096 w
+(its) 4228 6096 w
+(related) 4349 6096 w
+(command) 4646 6096 w
+(language,) 720 6216 w
+(referred) 1138 6216 w
+(to) 1485 6216 w
+(as) 1596 6216 w
+(the) 1712 6216 w
+(DEMON) 1867 6216 w
+(\(DEbugging) 2266 6216 w
+(MONitor\)) 2793 6216 w
+(monitor,) 3231 6216 w
+(served) 3606 6216 w
+(as) 3899 6216 w
+(the) 4015 6216 w
+(interface) 4170 6216 w
+(between) 4552 6216 w
+(the) 4918 6216 w
+(developer) 720 6336 w
+(and) 1142 6336 w
+(the) 1315 6336 w
+(emulation) 1466 6336 w
+(program.) 1895 6336 w
+(DEMON) 2287 6336 w
+(provided) 2682 6336 w
+(debugging) 3066 6336 w
+(facilities) 3517 6336 w
+(comparable) 3890 6336 w
+(to) 4384 6336 w
+(the) 4490 6336 w
+(emulation) 4640 6336 w
+(control) 720 6456 w
+(program.) 1029 6456 w
+(In) 1418 6456 w
+(addition,) 1527 6456 w
+(DEMON) 1906 6456 w
+(provided) 2298 6456 w
+(a) 2679 6456 w
+(single\255step) 2749 6456 w
+(program) 3208 6456 w
+(debugging) 3572 6456 w
+(capability,) 4020 6456 w
+(and) 4465 6456 w
+(the) 4635 6456 w
+(ability) 4784 6456 w
+(to) 720 6576 w
+(examine) 841 6576 w
+(memory) 1222 6576 w
+(using) 1598 6576 w
+(physical) 1857 6576 w
+(or) 2232 6576 w
+(virtual) 2357 6576 w
+(addresses.) 2660 6576 w
+(A) 3109 6576 w
+(dedicated) 3223 6576 w
+(RS\255232) 3647 6576 w
+(link) 3995 6576 w
+(was) 4193 6576 w
+(used) 4390 6576 w
+(to) 4615 6576 w
+(provide) 4735 6576 w
+(down\255load/up\255load) 720 6696 w
+(capability) 1514 6696 w
+(from) 1942 6696 w
+(a) 2170 6696 w
+(support) 2248 6696 w
+(processor.) 2582 6696 w
+(Once) 3023 6696 w
+(the) 3267 6696 w
+(3B5) 3423 6696 w
+(minicomputer) 3624 6696 w
+(hardware) 4219 6696 w
+(was) 4623 6696 w
+(avail\255) 4813 6696 w
+(able, a ROM\255based version of the DEMON monitor was developed permitting stand\255alone debugging.) 720 6816 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 12 12
+%%Page: 13 13
+/saveobj save def
+mark
+13 pagesetup
+10 /Times-Roman f
+(\255 13 \255) 2772 480 w
+10 /Times-Bold f
+(6.3.3 Initial file system) 720 840 w
+10 /Times-Roman f
+(Since) 970 996 w
+(the) 1223 996 w
+(3B5) 1376 996 w
+(minicomputer) 1574 996 w
+(uses) 2166 996 w
+(a) 2369 996 w
+(disk) 2444 996 w
+(drive,) 2642 996 w
+(which) 2903 996 w
+(was) 3178 996 w
+(not) 3364 996 w
+(supported) 3524 996 w
+(on) 3950 996 w
+(other) 4082 996 w
+(processors,) 4319 996 w
+(it) 4797 996 w
+(was) 4885 996 w
+(necessary) 720 1116 w
+(to) 1144 1116 w
+(develop) 1258 1116 w
+(a) 1610 1116 w
+(method) 1690 1116 w
+(for) 2026 1116 w
+(creating) 2178 1116 w
+(the) 2535 1116 w
+(initial) 2693 1116 w
+(file) 2963 1116 w
+(system) 3132 1116 w
+(for) 3446 1116 w
+(a) 3598 1116 w
+(3B5) 3678 1116 w
+(minicomputer.) 3881 1116 w
+(A) 4503 1116 w
+(driver) 4611 1116 w
+(was) 4885 1116 w
+(developed) 720 1236 w
+(that) 1157 1236 w
+(treated) 1335 1236 w
+(a) 1634 1236 w
+(block) 1706 1236 w
+(of) 1956 1236 w
+(memory) 2067 1236 w
+(as) 2428 1236 w
+(though) 2539 1236 w
+(it) 2845 1236 w
+(were) 2929 1236 w
+(a) 3150 1236 w
+(disk\255\255an) 3222 1236 w
+(in\255core) 3577 1236 w
+(file) 3887 1236 w
+(system.) 4048 1236 w
+(The) 4379 1236 w
+(cross\255) 4562 1236 w
+10 /Courier f
+(mkfs) 4800 1236 w
+10 /Times-Roman f
+(program) 720 1356 w
+(was) 1091 1356 w
+(created) 1279 1356 w
+(that) 1599 1356 w
+(would) 1782 1356 w
+(build) 2065 1356 w
+(a) 2304 1356 w
+(file) 2381 1356 w
+(system) 2547 1356 w
+(image) 2858 1356 w
+(within) 3134 1356 w
+(a) 3422 1356 w
+(normal) 3498 1356 w
+(file.) 3813 1356 w
+(Once) 4003 1356 w
+(this) 4245 1356 w
+(file) 4422 1356 w
+(was) 4587 1356 w
+(loaded) 4774 1356 w
+(into) 720 1476 w
+(emulation) 904 1476 w
+(memory) 1333 1476 w
+(by) 1695 1476 w
+(either) 1824 1476 w
+(DEMON) 2080 1476 w
+(or) 2475 1476 w
+(the) 2587 1476 w
+(emulation) 2738 1476 w
+(control) 3167 1476 w
+(program,) 3479 1476 w
+(the) 3871 1476 w
+(in\255core) 4022 1476 w
+(file) 4333 1476 w
+(system) 4495 1476 w
+(driver) 4802 1476 w
+(would) 720 1596 w
+(access) 996 1596 w
+(the data as though the data were the individual blocks of a file system.) 1276 1596 w
+(This technique had the) 4133 1596 w
+(additional) 720 1716 w
+(advantage) 1156 1716 w
+(of) 1596 1716 w
+(providing) 1716 1716 w
+(access) 2142 1716 w
+(to) 2433 1716 w
+(a) 2548 1716 w
+(file) 2629 1716 w
+(system) 2799 1716 w
+(before) 3114 1716 w
+(a) 3405 1716 w
+(functioning) 3486 1716 w
+(disk) 3984 1716 w
+(driver) 4188 1716 w
+(was) 4463 1716 w
+(available.) 4655 1716 w
+(The) 720 1836 w
+(in\255core) 914 1836 w
+(file) 1235 1836 w
+(system) 1407 1836 w
+(facility) 1723 1836 w
+(has) 2044 1836 w
+(proved) 2215 1836 w
+(to) 2530 1836 w
+(be) 2646 1836 w
+(a) 2778 1836 w
+(convenient) 2860 1836 w
+(way) 3336 1836 w
+(to) 3540 1836 w
+(move) 3656 1836 w
+(information) 3916 1836 w
+(from) 4426 1836 w
+(a) 4658 1836 w
+(support) 4740 1836 w
+(machine to a 3B5 minicomputer and continues to be used for that purpose.) 720 1956 w
+10 /Times-Bold f
+(6.3.4 The ultimate test) 720 2196 w
+10 /Times-Roman f
+(The) 970 2352 w
+(UNIX) 1161 2352 w
+(operating) 1446 2352 w
+(system) 1860 2352 w
+(developed) 2175 2352 w
+(in) 2622 2352 w
+(the) 2737 2352 w
+(emulation) 2896 2352 w
+(environment) 3333 2352 w
+(was) 3875 2352 w
+(successfully) 4067 2352 w
+(running) 4592 2352 w
+(on) 4940 2352 w
+(actual) 720 2472 w
+(3B5) 989 2472 w
+(minicomputer) 1187 2472 w
+(hardware) 1779 2472 w
+(in) 2180 2472 w
+(less) 2289 2472 w
+(than) 2470 2472 w
+(a) 2673 2472 w
+(week) 2747 2472 w
+(after) 2987 2472 w
+(its) 3199 2472 w
+(arrival.) 3324 2472 w
+(This) 3639 2472 w
+(success) 3847 2472 w
+(confirmed) 4176 2472 w
+(the) 4616 2472 w
+(impor\255) 4768 2472 w
+(tance) 720 2592 w
+(of) 965 2592 w
+(using) 1083 2592 w
+(an) 1335 2592 w
+(emulation) 1464 2592 w
+(environment) 1899 2592 w
+(to) 2439 2592 w
+(port) 2553 2592 w
+(the) 2750 2592 w
+(UNIX) 2908 2592 w
+(operating) 3193 2592 w
+(system) 3606 2592 w
+(to) 3920 2592 w
+(a) 4034 2592 w
+(new) 4114 2592 w
+(processor) 4316 2592 w
+(without) 4734 2592 w
+(having the actual hardware.) 720 2712 w
+10 /Times-Bold f
+(6.4 Status) 720 2952 w
+10 /Times-Roman f
+(The) 970 3108 w
+(3B5) 1156 3108 w
+(minicomputer) 1354 3108 w
+(has) 1946 3108 w
+(been) 2110 3108 w
+(available) 2330 3108 w
+(since) 2722 3108 w
+(October) 2959 3108 w
+(1982.) 3312 3108 w
+(It) 3569 3108 w
+(has) 3662 3108 w
+(evolved) 3827 3108 w
+(through) 4175 3108 w
+(two) 4518 3108 w
+(releases.) 4700 3108 w
+(The) 720 3228 w
+(current) 904 3228 w
+(release) 1215 3228 w
+(includes) 1520 3228 w
+(the) 1882 3228 w
+(latest) 2033 3228 w
+(version) 2273 3228 w
+(of) 2596 3228 w
+(the) 2708 3228 w
+(UNIX) 2859 3228 w
+(operating) 3137 3228 w
+(system,) 3543 3228 w
+(as) 3875 3228 w
+(well) 3987 3228 w
+(as) 4188 3228 w
+(support) 4300 3228 w
+(for) 4629 3228 w
+(a) 4774 3228 w
+(wide) 4846 3228 w
+(range) 720 3348 w
+(of) 971 3348 w
+(peripherals.) 1084 3348 w
+(In) 1582 3348 w
+(the) 1695 3348 w
+(future,) 1847 3348 w
+(3B5) 2140 3348 w
+(minicomputer) 2337 3348 w
+(will) 2928 3348 w
+(continue) 3114 3348 w
+(to) 3488 3348 w
+(track) 3596 3348 w
+(standard) 3825 3348 w
+(UNIX) 4193 3348 w
+(operating) 4472 3348 w
+(sys\255) 4879 3348 w
+(tem releases and increase the variety of supported peripherals.) 720 3468 w
+10 /Times-Bold f
+(6.5 Acknowledgments) 720 3708 w
+10 /Times-Roman f
+(The) 970 3864 w
+(original) 1169 3864 w
+(8086) 1524 3864 w
+(UNIX) 1768 3864 w
+(system) 2062 3864 w
+(development) 2385 3864 w
+(was) 2946 3864 w
+(done) 3146 3864 w
+(by) 3385 3864 w
+(Tom) 3530 3864 w
+(Blumer) 3764 3864 w
+(and) 4109 3864 w
+(Ralph) 4298 3864 w
+(Muha.) 4582 3864 w
+(The) 4885 3864 w
+(authors) 720 3984 w
+(gratefully) 1040 3984 w
+(acknowledge) 1454 3984 w
+(the) 2006 3984 w
+(contributions of C. H. Elmendorf and R. A. Kasten in preparing the 3B5) 2154 3984 w
+(minicomputer section of this article.) 720 4104 w
+10 /Times-Bold f
+(VII. CONCLUSION) 720 4344 w
+10 /Times-Roman f
+(As) 970 4500 w
+(technology) 1111 4500 w
+(advances,) 1585 4500 w
+(more) 2005 4500 w
+(processors) 2240 4500 w
+(will) 2692 4500 w
+(be) 2879 4500 w
+(introduced) 3004 4500 w
+(and) 3462 4500 w
+(software) 3637 4500 w
+(developers) 4011 4500 w
+(will) 4474 4500 w
+(be) 4661 4500 w
+(forced) 4786 4500 w
+(to) 720 4620 w
+(adapt) 831 4620 w
+(current) 1080 4620 w
+(software) 1395 4620 w
+(packages) 1771 4620 w
+(to) 2169 4620 w
+(fit) 2280 4620 w
+(new) 2402 4620 w
+(environments.) 2601 4620 w
+(In) 3203 4620 w
+(these) 3319 4620 w
+(situations) 3557 4620 w
+(the) 3974 4620 w
+(need) 4129 4620 w
+(for) 4350 4620 w
+(portable) 4498 4620 w
+(soft\255) 4857 4620 w
+(ware) 720 4740 w
+(is) 940 4740 w
+(essential) 1034 4740 w
+(to) 1405 4740 w
+(maintain) 1510 4740 w
+(a) 1887 4740 w
+(familiar) 1958 4740 w
+(user) 2301 4740 w
+(environment.) 2494 4740 w
+(As) 3051 4740 w
+(evidenced) 3189 4740 w
+(by) 3620 4740 w
+(the) 3747 4740 w
+(previous) 3896 4740 w
+(sections,) 4267 4740 w
+(the) 4641 4740 w
+(UNIX) 4791 4740 w
+(operating) 720 4860 w
+(system) 1152 4860 w
+(and) 1485 4860 w
+(its) 1684 4860 w
+(associated) 1834 4860 w
+(user\255level) 2299 4860 w
+(programs) 2747 4860 w
+(have) 3179 4860 w
+(proven,) 3422 4860 w
+(and) 3779 4860 w
+(continue) 3978 4860 w
+(to) 4376 4860 w
+(prove,) 4508 4860 w
+(to) 4814 4860 w
+(be) 4946 4860 w
+(extremely) 720 4980 w
+(portable.) 1153 4980 w
+(Because) 1539 4980 w
+(portability) 1905 4980 w
+(is) 2356 4980 w
+(a) 2457 4980 w
+(fundamental) 2535 4980 w
+(part) 3068 4980 w
+(of) 3257 4980 w
+(the) 3375 4980 w
+(UNIX) 3532 4980 w
+(system) 3816 4980 w
+(philosophy,) 4129 4980 w
+(the) 4634 4980 w
+(UNIX) 4791 4980 w
+(operating) 720 5100 w
+(system) 1128 5100 w
+(can) 1437 5100 w
+(be) 1606 5100 w
+(made) 1731 5100 w
+(to) 1978 5100 w
+(adapt) 2087 5100 w
+(to) 2334 5100 w
+(the) 2443 5100 w
+(diverse) 2595 5100 w
+(computing) 2913 5100 w
+(environment) 3371 5100 w
+(that) 3906 5100 w
+(results) 4086 5100 w
+(from) 4377 5100 w
+(continuous) 4601 5100 w
+(technological advances.) 720 5220 w
+10 /Times-Bold f
+(REFERENCES) 720 5460 w
+10 /Times-Roman f
+(1.) 720 5652 w
+(D.) 970 5652 w
+(M.) 1099 5652 w
+(Ritchie) 1245 5652 w
+(and) 1566 5652 w
+(K.) 1742 5652 w
+(Thompson,) 1871 5652 w
+("UNIX) 2356 5652 w
+(Time\255Sharing) 2678 5652 w
+(System:) 3265 5652 w
+(The) 3621 5652 w
+(UNIX) 3809 5652 w
+(Time\255Sharing) 4091 5652 w
+(System,") 4679 5652 w
+(B.S.T.J., 57, No. 6, Part 2 \(July\255August 1978\), pp. 1905\25530.) 970 5772 w
+(2.) 720 5928 w
+(K.) 970 5928 w
+(Thompson,) 1108 5928 w
+("UNIX) 1602 5928 w
+(Time\255Sharing) 1933 5928 w
+(System:) 2529 5928 w
+(UNIX) 2893 5928 w
+(Implementation,") 3183 5928 w
+(B.S.T.J.,) 3924 5928 w
+(57,) 4314 5928 w
+(No.) 4481 5928 w
+(6,) 4670 5928 w
+(Part) 4787 5928 w
+(2) 4990 5928 w
+(\(July\255August 1978\), pp. 1931\25546.) 970 6048 w
+(3.) 720 6204 w
+(S.) 970 6204 w
+(C.) 1085 6204 w
+(Johnson) 1211 6204 w
+(and) 1573 6204 w
+(D.) 1751 6204 w
+(M.) 1882 6204 w
+(Ritchie,) 2030 6204 w
+("UNIX) 2378 6204 w
+(Time\255Sharing) 2702 6204 w
+(System:) 3291 6204 w
+(Portability) 3648 6204 w
+(of) 4105 6204 w
+(C) 4222 6204 w
+(Programs) 4323 6204 w
+(and) 4740 6204 w
+(the) 4918 6204 w
+(UNIX System," B.S.T.J., 57, No. 6, Part 2 \(July\255August 1978\), pp. 2021\25548.) 970 6324 w
+(4.) 720 6480 w
+(B.) 970 6480 w
+(W.) 1090 6480 w
+(Kernighan) 1238 6480 w
+(and) 1688 6480 w
+(D.) 1861 6480 w
+(M.) 1987 6480 w
+(Ritchie,) 2130 6480 w
+(The) 2473 6480 w
+(C) 2657 6480 w
+(Programming) 2753 6480 w
+(Language,) 3332 6480 w
+(Englewood) 3779 6480 w
+(Cliffs,) 4263 6480 w
+(NJ:) 4545 6480 w
+(Prentice) 4713 6480 w
+(Hall, 1978.) 970 6600 w
+(5.) 720 6756 w
+(MCS\25586\(TM\) User's Manual, Intel Corporation, July 1978.) 970 6756 w
+(6.) 720 6912 w
+(G.) 970 6912 w
+(Ronkin,) 1122 6912 w
+("UNIX) 1497 6912 w
+(Time\255Sharing) 1842 6912 w
+(System) 2452 6912 w
+(for) 2802 6912 w
+(UNIX) 2973 6912 w
+(1100) 3277 6912 w
+(Series) 3532 6912 w
+(Systems,") 3832 6912 w
+(Bell) 4288 6912 w
+(Laboratories,) 4511 6912 w
+(September 1981.) 970 7032 w
+(7.) 720 7188 w
+(T.) 970 7188 w
+(F.) 1086 7188 w
+(Arnold) 1197 7188 w
+(and) 1510 7188 w
+(W.) 1684 7188 w
+(N.) 1833 7188 w
+(Toy,) 1960 7188 w
+("Inside) 2177 7188 w
+(the) 2493 7188 w
+(3B20) 2646 7188 w
+(Processor,") 2894 7188 w
+(Bell) 3379 7188 w
+(Labs.) 3577 7188 w
+(Record,) 3827 7188 w
+(59) 4171 7188 w
+(\(March) 4302 7188 w
+(1981\),) 4626 7188 w
+(pp.) 4915 7188 w
+(66\25571.) 970 7308 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 13 13
+%%Page: 14 14
+/saveobj save def
+mark
+14 pagesetup
+10 /Times-Roman f
+(\255 14 \255) 2772 480 w
+(8.) 720 840 w
+(M.) 970 840 w
+(J.) 1115 840 w
+(Bach) 1210 840 w
+(and) 1446 840 w
+(S.) 1621 840 w
+(J.) 1733 840 w
+(Buroff,) 1828 840 w
+("The) 2150 840 w
+(UNIX) 2377 840 w
+(System:) 2657 840 w
+(Multiprocessor) 3011 840 w
+(UNIX) 3647 840 w
+(Systems,") 3927 840 w
+(AT&T) 4358 840 w
+(Bell) 4661 840 w
+(Lab.) 4860 840 w
+(Tech. J., this issue.) 970 960 w
+(9.) 720 1116 w
+(H.) 970 1116 w
+(Lycklama) 1118 1116 w
+(and) 1569 1116 w
+(D.) 1765 1116 w
+(L.) 1914 1116 w
+(Bayer,) 2052 1116 w
+("UNIX) 2367 1116 w
+(Time\255Sharing) 2709 1116 w
+(System:) 3316 1116 w
+(The) 3691 1116 w
+(MERT) 3898 1116 w
+(Operating) 4228 1116 w
+(System,") 4679 1116 w
+(B.S.T.J., 57, No. 6, Part 2 \(July\255August 1978\), pp. 2049\25586.) 970 1236 w
+(10.) 720 1392 w
+(A.) 970 1392 w
+(Berenbaum,) 1096 1392 w
+(M.) 1610 1392 w
+(W.) 1753 1392 w
+(Condry,) 1901 1392 w
+(and) 2255 1392 w
+(P.) 2429 1392 w
+(M.) 2540 1392 w
+(Lu,) 2684 1392 w
+("Operating) 2850 1392 w
+(System) 3320 1392 w
+(and) 3645 1392 w
+(Language) 3819 1392 w
+(Support) 4242 1392 w
+(Features) 4589 1392 w
+(of) 4957 1392 w
+(the BELLMAC 32," SIGPLAN 17, No. 4 \(April 1982\), pp.) 970 1512 w
+(48\25556.) 3382 1512 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 14 14
+%%Trailer
+done
+%%DocumentFonts: Times-Roman Times-Italic Times-Bold Courier S1
+%%Pages: 14

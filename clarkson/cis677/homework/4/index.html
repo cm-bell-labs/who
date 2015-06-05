@@ -1,0 +1,90 @@
+<HTML>
+<HEADER>
+<TITLE> CIS 677: Homework 4, due about Nov. 24
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center> CIS 677: Homework 4, due about Nov. 24<br>
+</center></H1>
+<BR>
+
+<ol>
+<li> Problem 11.9 of the text.
+
+
+<li>
+Let S be a set of points in E^d, in general position,
+so that no d+1 points of S are in a common hyperplane.
+Suppose we want to find the vertices of the convex hull of S,
+the <em>extreme points</em> of S.
+
+<p>
+Consider the following algorithm:
+
+<pre>
+E := {};
+for each p in S do
+	If p is in E, skip it.
+	Check if p is in conv(E);
+	If p is not in conv(E) then
+		use the proof that p is not in conv(E)
+			to find v in vert(conv(S))\E, and add v to E.
+od;
+</pre>
+
+<ol type=a>
+<li>
+Show that this algorithm can be implemented to run in O(nV) expected time,
+where V is the size of vert(conv(S)).  Hint: use linear programming
+to find the "proof".
+
+<li> For p in S, define depth(p, S) as 1 if p is an extreme point of S, so
+p is in vert(conv(S)),
+and otherwise depth(p, S) is 1+depth(p, S\vert(conv(S))).
+
+
+Show that the depth of every point in S can be computed in O(n<sup>2</sup>)
+expected time.
+
+<li>
+Given a set H of n hyperplanes, a halfspace h is called <em>irredundant</em>
+if P(H) is not equal to P(H\{h}).  Show that a halfspace can be proven
+irredundant in O(n) expected time.  Show that the I irredundant halfspaces
+of H can be found in O(nI) expected time.
+
+<li> Each irredundant halfspace of H determines a facet of P(H).
+Recall that a face of a polyhedron is either a facet, or a face of
+a facet.
+Show that all F faces of P(H) can be found in O(nF) expected time
+and O(n) space.  The "constant factors" in O( ) may be exponential in d.
+</ol>
+
+<li> Suppose the convex hull of a set S in general position
+is computed using a randomized incremental
+algorithm.  The search problem is to find the facets
+of conv(R<sub>i</sub>) seen by p<sub>i+1</sub>.
+Suppose that for each site p not in R<sub>i</sub>,
+a facet of conv(R<sub>i</sub>) seen by p is known.
+Show that this information solves the search problem.
+
+<ol type=a>
+<li>
+Show that
+this information can be updated as the algorithm proceeds, such that
+the total work done by the algorithm is within a constant factor of
+that of the "conflict graph" algorithm described in the text
+or the algorithm of Lecture 8.
+
+<li>
+How much space does the algorithm need, if the expected number of facets
+of conv(R<sub>i</sub>) is some number f<sub>i</sub>?
+
+
+<P><ADDRESS>
+<I> Ken Clarkson <BR>
+November 1997</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,227 @@
+
+LICENSE AGREEMENT
+
+THIS LICENSE AGREEMENT is made and entered into this 4th day of March 
+1986, by and between THE REGENTS OF THE UNIVERSITY OF CALIFORNIA, a 
+California corporation and AMERICAN TELEPHONE AND TELEGRAPH COMPANY, a 
+New York corporation ("AT&T"), having its principal office at 550 
+Madison Avenue, New York, New York 10022.
+
+WITNESSETH;
+
+WHEREAS, AT&T and/or its Subsidiary, AT&T Information Systems Inc., is 
+the proprietor and owner of UNIX* 32V Time-Sharing System, Version 1.0 
+(hereinafter "32V"), and
+
+WHEREAS , The Regents of the University of California ("the University") 
+is the proprietor and owner of enhancements and additions to 32V, which 
+together with parts of 32V comprise computer programs and documentation 
+entitled Fourth Berkeley Software Distribution ("4 BSD"); and
+
+WHEREAS, the University has issued releases of 4 BSD entitled "4.1 BSD", 
+"4.2 BSD" and "4.3 BSD"; and
+
+WHEREAS, 4.1 BSD has been licensed by the University to AT&T pursuant to 
+a License Agreement effective March 9, 1983 relating to Fourth Berkeley 
+Software Distribution; and
+
+WHEREAS, 4.2 BSD and 4.3 BSD include some material contributed by 
+persons other than the agents, officers, and employees of the University 
+(hereinafter "Other Contributors") and these Other Contributors are 
+identified within 4.2 BSD and 4.3 BSD; and
+
+WHEREAS, AT&T, on behalf of itself and its Subsidiaries, desires to 
+obtain from the University, and the University desires to grant to AT&T 
+and its Subsidiaries, a license to use the computer programs and 
+documentation comprising 4.2 BSD and 4.3 BSD:
+
+NOW, THEREFORE, in consideration of the mutual covenants, conditions and 
+terms hereinafter set forth, and for other good and valuable 
+consideration, the University hereby grants to AT&T, for itself and its 
+Subsidiaries, the nonexclusive right to use and to sublicense 4.2 BSD 
+and 4.3 BSD (in whole or in part, with or without modification, and 
+whether or not in conjunction with any other software), the components 
+of which are described on the attached Schedules, subject to the terms 
+and conditions of this Agreement and AT&T hereby accepts such license 
+solely upon such terms and conditions and agrees to be responsible for 
+the compliance by its Subsidiaries of all the terms of this Agreement as 
+if the name of the Subsidiary were substituted for that of AT&T herein.
+
+1. Subsidiaries. "Subsidiary of AT&T" means a corporation or other legal 
+entity (i) the majority of whose shares or other securities entitled to 
+vote for election of directors (or other managing authority) is now or 
+hereafter controlled by AT&T either directly or indirectly; or (ii) the 
+majority of the equity interest in which is now or hereafter owned and 
+controlled by AT&T either directly or indirectly; but any such 
+corporation or other legal entity shall be deemed to be a Subsidiary of 
+AT&T only as long as such control or ownership and control exists.
+
+2. Term. The term of this Agreement shall commence on the effective date 
+hereof and continue unless and until terminated as hereinafter set 
+forth. AT&T may terminate this Agreement upon thirty (30) days written 
+notice to the University. This license shall terminate thirty (30) days 
+after notice from the University to AT&T that AT&T is in breach of this 
+Agreement unless within that time AT&T gives notice satisfactory to the 
+University that such breach has been corrected. Upon termination, AT&T 
+shall immediately destroy 4.2 BSD and 4.3 BSD and all copies thereof 
+including any copies contained in any storage apparatus or medium and 
+shall cease use and sublicensing thereof.
+
+3. Fees. The distribution fee for this license and delivery of one 
+physical copy of 4.2 is seven hundred fifty dollars ($750.00). The 
+distribution fee for this license and delivery of one physical copy of 
+4.3 BSD is one thousand dollars ($1,000.00). AT&T may obtain additional 
+copies of 4.2 BSD and 4.3 BSD and new releases of 4 BSD which the 
+University may choose to make available under the terms of this 
+Agreement by paying an additional distribution fee determined by the 
+University. Distribution fees are due and payable in advance. 
+Distribution fees do not include local, state or federal taxes, and AT&T 
+hereby agrees to pay all such taxes as may be imposed upon AT&T or the 
+University with respect to the distribution, possession, use, or 
+sublicensing of 4 BSD pursuant to this Agreement.
+
+4. Title. AT&T agrees that 4.2 BSD and 4.3 BSD contain proprietary 
+software belonging to the University. AT&T shall have no right, title or 
+interest in or to such proprietary software except as expressly set 
+forth in this Agreement.
+
+5. AT&T Proprietary Software. The University agrees that 4.2 BSD and 4.3 
+BSD contain proprietary software belonging to AT&T and licensed by AT&T 
+as 32V.
+
+6. Duplication. AT&T has the right to duplicate 4.2 BSD and 4.3 BSD as 
+required pursuant to its use and sublicensing as allowed by this Agreement.
+
+7. Sublicensing. AT&T and its Subsidiaries may sublicense the use of 4.2 
+BSD and 4.3 BSD, in whole or in part, to third parties ("sublicensees"). 
+Sublicensees may further sublicense to third parties, directly or 
+through distributors, object code for 4.2 BSD and 4.3 BSD. Such 
+sublicensing may be implemented using the agreements and procedures 
+acceptable to AT&T for its current release of UNIX operating systems, 
+including the use, as AT&T deems appropriate, of agreements for object 
+code that an end user accepts by opening the package containing the 
+object code. Such agreements shall include, or incorporate by reference 
+to other materials furnished to sublicensees, the covenants and 
+restrictions of paragraphs 8, 9 and 10 of this Agreement. Material so 
+sublicensed may be either modified or unmodified. Any such sublicensor 
+may, but need not, charge a fee for such sublicenses.
+
+8. Proper Credit and Recognition. In the use of any part of 4.2 BSD and 
+4.3 BSD, AT&T will give appropriate credit to the University and the 
+Electrical Engineering and Computer Sciences Department at the Berkeley 
+Campus of the University of California and to the Other Contributors for 
+their roles in its development and will require sublicensees to give 
+such credit. If AT&T is providing documentation similar to that which is 
+provided with 4.2 BSD and 4.3 BSD, notices similar to those included in 
+that documentation suffice to satisfy this requirement. If AT&T is 
+providing new documentation, this requirement will be satisfied if each 
+document includes the following statement: "This software and 
+documentaiton is based in part on the Fourth Berkeley Software 
+Distribution under license from The Regents of the University of 
+California. We acknowledge fhe following individuals and institutions 
+for their role in its development: [insert names of individuals and 
+institutions which appear in the documentation provided to AT&T as part 
+of 4.2 BSD and 4.3 BSD for those portions of said Distribution used by 
+AT&T]".
+
+9. Lack of Warranty 4.2 BSD and 4.3 BSD are provided by the University 
+and the Other Contributors on an "As Is" basis. Neither the University 
+nor the Other Contributors warrant that the functions contained in 4.2 
+BSD and 4.3 BSD will meet AT&T's requirements or will operate in the 
+combinations which may be selected for use by AT&T, or that the 
+operation of 4.2 BSD and 4.3 BSD will be uninterrupted or error free. 
+NEITHER THE REGENTS OF THE UNIVERSITY OF CALIFORNIA NOR THE OTHER 
+CONTRIBUTORS MAKE ANY WARRANTIES, EITHER EXPRESS OR IMPLIED, AS TO ANY 
+MATTER WHATSOEVER, INCLUDING WITHOUT LIMITATION, THE CONDITION OF 4.2 
+BSD AND 4.3 BSD, ITS MERCHANTABILITY OR ITS FITNESS FOR ANY PARTICULAR 
+PURPOSE.
+
+10. Lack of Maintenance Services. AT&T understands and agrees that the 
+University and the Other Contributors are under no obligation to provide 
+either maintenance services, update services, notices of latent defects, 
+or correction of defects for 4.2 BSD and 4.3 BSD.
+
+11. Patent, Trade Secret and Copyright Infringement. If the University 
+gives formal written notice to AT&T that there has been a claim, or is 
+likely to be a claim, that 4.2 BSD and 4.3 BSD infringe a U.S. patent, 
+trade secret, or copyright, AT&T agrees to either:
+
+     (a) immediately cease use of, cease sublicensing of, and destroy 
+the original and all copies of that part of 4.2 BSD and 4.3 BSD which 
+is, or is likely to become, subject to the claim of infringement; or
+
+     (b) procure from claimant, or potential claimant, of infringement, 
+the continued right to use and sublicense that part of 4.2 BSD and 4.3 
+BSD which is, or is likely to become, subject to the claim of 
+infringement; or
+
+     (c) procure from the University, which procurement shall be granted 
+at the sole discretion of the University, the continued right to use and 
+sublicense that part of 4.2 BSD and 4.3 BSD which is, or is likely to 
+become, subject to the claim of infringement.
+
+12. Limitation of Liability. AT&T agrees to indemnify, defend, and hold 
+harmless the University and the Other Contributors, their successors, 
+agents, officers, and employees, either in their individual capacities 
+or by reason of their relationship to the University or the Other 
+Contributors, with respect to any expense, claim, liability, loss or 
+damage (including any incidental or consequential damages) either direct 
+or indirect, whether incurred, made or suffered by AT&T or any of its 
+sublicensees or by other third parties (including, but not limited to, 
+the sublicensees of AT&T's licensees), in connection with or in any way 
+arising out of the furnishing, sublicensing, performance or use of 4.2 
+BSD and 4.3 BSD in connection with this Agreement. AT&T's obligations 
+under this paragraph include, but are not limited to, its obligation to 
+indemnify, defend, and hold the University and the Other Contributors, 
+their agents, officers, and employees harmless in the case of any claim 
+of copyright, trade secret, or patent infringement based in any manner 
+on AT&T's use of sublicensing of 4.2 BSD and 4.3 BSD.
+
+13. Legal Expenses In case legal action is taken by either party to 
+enforce this Agreement, all costs and expenses, including reasonable 
+attorney's fees, incurred by the prevailing party in exercising any of 
+its rights or remedies hereunder or in enforcing any of the terms, 
+conditions, or provisions hereof shall be paid by the other party.
+
+14. Severability. If any part, term or provision of this Agreement shall 
+be held illegal, unenforceable or in conflict with any law of a federal, 
+state of local government having juridsdiction over this Agreement, the 
+validity of the remaining portions or provisions shall not be affected 
+thereby.
+
+15. Governing Law. This Agreement shall be construed and enforced 
+according to the law of the State of California.
+
+16. Paragraph Headings. The headings herein are inserted for convenience 
+only and shall not be construed to limit or modify the scope of any 
+provision of this Agreement.
+
+17. Entire Agreement. This Agreement contains all the agreements, 
+representations, and understandings of the parties hereto and supersedes 
+any previous understandings, commitments or agreements, oral or written.
+
+18. Authority. Each of the undersigned warrants that he/she has the 
+authority to bind to this Agreement the party which he/she represents.
+
+IN WITNESS WHEREOF, the parties hereto have executed this Agreement as 
+of the day and year first above written.
+
+THE REGENTS OF THE UNIVERSITY OF CALIFORNIA
+(Licensor)
+
+BY: __________________________
+Roy L. Towers, Jr.
+Title: Contract Administrator
+Date: 4 March 1986
+
+
+AMERICAN TELEPHONE AND TELEGRAPH COMPANY
+(Licensee)
+
+BY: _________________________
+O.L. Wilson
+Title: Manager, UNIX [tm] Software Licensing
+Date: Feb. 26, 1986
+
+* Trademark of AT&T Bell Laboratories
+

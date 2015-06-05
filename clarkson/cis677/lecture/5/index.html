@@ -1,0 +1,989 @@
+<HTML>
+<HEADER>
+<TITLE> CIS677: Notes for lecture 5,
+Planar point location, Voronoi diagrams, Delaunay triangulations
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center>
+	CIS677<br> Notes for lecture 5: <br>
+Planar point location,<br>
+Voronoi diagrams and Delaunay triangulations
+</center></H1>
+<BR>
+
+
+
+<h3>Outline</h3>
+<ul>
+<li>	finishing up on planar point location
+<ul>
+<li>		Kirkpatrick's algorithm
+<li>		separator trees
+<li>		bucketing, subdivision traversal
+</ul>
+<li>	Voronoi diagrams and Delaunay triangulations
+<ul>
+<li>		basic facts
+<li>		edge flipping and angle optimality
+<li>		divide and conquer algorithm
+<li>		sweep algorithm
+</ul>
+</ul>
+
+
+<h3>Kirkpatrick's algorithm</h3>
+
+An alternative approach to optimal planar point location gives
+O(log n) worst-case query time.
+
+<p>
+This algorithm works for a triangulation, which is no loss of generality:
+ a plane graph can be triangulated in O(n log n) time (see text).
+
+<table>
+<tr>
+<td>
+<p>
+The idea:
+suppose a vertex v of the triangulation is deleted, as are its incident edges.
+
+<p>
+The result is a face that is the union of the triangles incident to v.<br>
+Retriangulate that face.
+
+<p>
+Q: the original set of triangles Q,<br>
+Q': triangles in the retriangulation.
+<p>
+If a point is in one of Q', it can be found in Q by looking through each of the
+triangles of Q.
+<p>
+If v has degree K, this takes O(K) time.
+</td><td>
+<img src="f1.gif">
+</td></tr></table>
+
+
+
+<p>
+Since the retriangulated graph is planar, and has 1 fewer vertex,
+it has fewer faces and edges.
+
+<p>
+The approach:
+<blockquote>
+	find many vertices, all of low degree, to delete.
+	Retriangulate, and recursively build a data structure for the coarser
+		graph.
+</blockquote>
+
+
+<p>
+If a fixed fraction of the vertices, say n/10, can be removed
+	each time, then the recursion depth is O(log n), as is the query time.
+
+<p>
+One more condition: the set of vertices must be <em>independent</em>,
+	with no incident edge in common.<br>
+Otherwise, the faces to be retriangulated and searched will be not be O(K)
+	when degree K vertices are removed.
+
+<p>
+<b>The goal:</b>
+<blockquote>
+	Given a planar triangulation,
+	find a large set of independent vertices, all of low degree.
+</blockquote>
+
+
+<p>
+Since a planar graph has at most 3n-6 edges,
+the average degree of a vertex is at most 6.
+
+<p>
+As with Markov's inequality,
+<blockquote>
+	half the nodes must have degree less than twice average,
+</blockquote>
+or in general,
+<blockquote>
+	(1-z)n of the nodes must have degree <=  6/z.
+</blockquote>
+
+<p>
+Pick z=2/3: n/3 nodes have degree <= 9.
+
+<p>
+Now pick greedily from such nodes: place a "mark" on all nodes
+of degree > 9, and repeat the following until no unmarked node remains:
+<pre>
+	pick any unmarked node;
+	put the node in independent set I;
+	mark the node and its neighbors.
+</pre>
+
+<p>
+The nodes in I are independent;<br>
+each node picked results in a graph with 10 fewer unmarked nodes,<br>
+and the number of unmarked nodes is at least n/3, so<br>
+|I| > n/30.
+
+<h3>The data structure</h3>
+
+The depth: each independent set reduces the number of nodes by 29/30,
+so the depth k satisfies 
+<blockquote>
+	(29/30)<sup>k</sup> n <1,
+</blockquote>
+or
+<blockquote>
+	k=log<sub>30/29</sub>n = O(log n).
+</blockquote>
+
+<p>
+<b>Preprocessing:</b> 
+<blockquote>
+	each independent set takes linear time to find,
+	and the number of nodes decreases geometrically,
+	so O(n) time is needed overall.
+</blockquote>
+
+<p>
+<b>Space:</b> also O(n).
+
+<p>
+But: the constants are large!
+
+<p>
+Better constants are possible, including use of the four-color theorem.
+
+<h3>Monotone separator trees</h3>
+
+
+<table><tr><td>
+Suppose a planar subdivision has faces that are x-monotone:
+<blockquote>
+	the intersection of a vertical line with a face is an interval.
+</blockquote>
+
+<p>
+Define the << relation for faces in a monotone subdivision as follows:
+<table><tr><th valign=top>
+A << B iff:</th><td align=top>
+		A and B share a bounding edge,<br>
+		there is a vertical line meeting A and B, and<br>
+		a <= b for any (c,a) in A and (c,b) in B.
+</td></tr></table>
+
+<p>
+Since (the interiors of) faces do not meet, and the faces are monotone,
+this relation is well-defined.
+</td><td>
+<img src="f6.gif">
+</td></tr></table>
+
+<p>
+<blockquote>
+<b>Lemma:</b><i> The << relation is acyclic.
+</i></blockquote>
+
+<p>
+<b>Proof.</b><br>  Suppose
+<blockquote>
+F<sub>0</sub> << F<sub>1</sub> <<...F<sub>k-1</sub> << F<sub>k</sub> = F<sub>0</sub>
+</blockquote>
+is a shortest cycle.
+Suppose F<sub>i</sub> is the face whose rightmost point is leftmost.
+Since F<sub>i</sub> and F<sub>i+1</sub> meet a common vertical line,
+and F<sub>i</sub> and F<sub>i-1</sub>
+meet a common vertical line,
+by choice of F<sub>i</sub> there is a vertical line meeting
+all three.  But this implies F<sub>i-1</sub> << F<sub>i+1</sub>, contradicting the
+assumption that the cycle was shortest, <b>QED.</b>
+
+<h3>Separators</h3>
+
+Thus there is a topological sort of the faces, a numbering<br>
+F<sub>1</sub> up to F<sub>m</sub> for the m faces so that if F<sub>i</sub> << F<sub>j</sub> then i < j.
+
+<p>
+For any i with 1 <= i < m and any vertical line L,
+<blockquote>
+	L intersect union<sub>1 <= j <=i</sub> F<sub>j</sub> 
+</blockquote>
+is below
+<blockquote>
+	L intersect union<sub>i < j <=m</sub> F<sub>j</sub>,
+</blockquote>
+and these two sets meet at a common point.
+Let s<sub>i</sub> be the union of all such points (for the given i).
+
+<p>
+s<sub>i</sub> is called a <b>separator</b>.
+
+<p>
+Then s<sub>i</sub> is connected,
+and is the union of bounding edges of the faces,
+and, roughly speaking,
+<blockquote>
+	F<sub>j</sub> << s<sub>i</sub> for j<=i, and<br>
+	F<sub>j</sub> >> s<sub>i</sub> for j>i.<br>
+</blockquote>
+
+<p>
+For a given point p,
+to locate p with respect to s<sub>i</sub>:
+<blockquote>
+	use binary search to find the intersection
+		of s<sub>i</sub> with the vertical line through p.<br>
+	Check if p is above or below that intersection.
+</blockquote>
+
+<h3> The data structure</h3>
+
+So: build a binary tree on the separators.<br>
+
+<p>
+To search:<br>
+do binary search on the separators: check locate p with respect to s<sub>n/2</sub>,
+then s<sub>3n/4</sub> or s<sub>n/4</sub>, etc.
+
+<p>
+In this way,
+find the separators s<sub>i</sub> and s<sub>i+1</sub> with s<sub>i</sub> << p << s<sub>i+1</sub>.<br>
+Then the edge above p on s<sub>i+1</sub> bounds the face containing p.
+
+<p>
+The query time is O(log n)<sup>2</sup>;<br>
+Although separators are not disjoint, the storage can be made to be O(n).<br>
+The constants are not bad.<br>
+With "fractional cascading", O(log n) query time is possible.
+
+
+<h3>Simple heuristic approaches</h3>
+
+<p>
+<ul>
+<li> again, bucketing
+<li> traversal of triangulation:
+<blockquote>
+	From a known point, walk through triangulation to query point.<br>
+	For fat triangles or uniformly distributed points, O(sqrt(n)) time.
+</blockquote>
+</ul>
+
+<h2>Voronoi diagrams</h2>
+
+<table><tr><td>
+
+<p>
+For a set S of n sites (points) in the plane,
+<table><tr>
+<th valign=top>Voronoi diagram VD(S): </th><td>
+the partition of the plane into blocks of points with
+	the same nearest site or sites.
+</td></tr></table>
+
+<p>
+A point p will have 1 or more <i>nearest</i> sites:<br>
+	those sites at equal distance to p, but closer than all other sites.
+
+<p>
+For p a point in the plane, define
+<table><tr>
+<th valign=top>	NN(p):</th><td>
+	the set of nearest sites of p; those closer than any other sites.
+</td></tr></table>
+
+
+</td><td>
+<img src="f2.gif">
+</tr></table>
+
+
+
+For B a subset of S, define
+<table><tr>
+<th valign=top>  VR(B) = </th><td>
+	{p | NN(p)=B},<br>
+	the set of points with the same nearest sites B<br>
+	For most B, VR(B) is empty<br>
+	For B with one element, VR(B) is a region in the plane<br>
+</td></tr></table>
+<table><tr>
+<th valign=top>Voronoi diagram VD(S): </th><td>
+	the partition of the plane {VR(B) | B a subset of S}
+</td></tr></table>
+
+<h3>The Voronoi diagram of two sites</h3>
+
+<table><tr><td>
+Suppose S={s<sub>1</sub>, s<sub>2</sub>}.
+Then VD(S) is has three regions:
+<table><tr>
+<th valign=top> VR(S) </th><td>
+		a line, the <i>perpendicular bisector</i> of s<sub>1</sub> and s<sub>2</sub>.
+</td></tr><tr><th valign=top> VR(s<sub>1</sub>),  </th><td>
+	an open halfplane
+</td></tr><tr><th valign=top> VR(s<sub>2</sub>),  </th><td>
+	another open halfplane.
+</td></tr></table>
+
+</td><td>
+<img src="f7.gif">
+</td></tr></table>
+
+A few more definitions:
+
+<table><tr>
+<th valign=top align=right>empty disk:<th><td>
+	a disk that contains no sites in its interior.
+</td></tr><tr>
+<th valign=top align=right>Nearest Neighbor disk:<th><td>
+	for a point p, the disk centered at p bounded by
+	a circle through NN(p).<br>
+	That is, an empty disk with a site on its bounding circle.
+</td></tr></table>
+
+<p>
+As p moves away from its nearest site s,<br>
+the NN disk expands but keeps its bounding circle on s.
+
+<p>
+For p moving in VR(s<sub>1</sub>, s<sub>2</sub>),
+	the bounding circle must always contain s<sub>1</sub> and s<sub>2</sub>.
+
+<p>
+VR(B) is nonempty:
+<blockquote>
+	iff there is a point p with NN(p)=B;<br>
+	iff there is an empty disk with the sites of B on its boundary.<br>
+</blockquote>
+
+
+<h3>An algebraic view</h3>
+
+Given vectors a,b,
+
+<blockquote>
+	a&#183;b is a<sub>x</sub>b<sub>x</sub> + a<sub>y</sub>b<sub>y</sub><br>
+	Euclidean norm ||a|| =sqrt(a<sup>2</sup>), where a<sup>2</sup>=a&#183;a.<br>
+	a&#183;(b+c) = (a&#183;b) + (a&#183;c):<br>
+	dot product distributes over addition.<br>
+	a&#183;b == 0 iff a and b are perpendicular.<br>
+</blockquote>
+
+Suppose p is in VR(S), so s<sub>1</sub> and s<sub>2</sub> are equidistant from p<br>
+||p-s<sub>1</sub>|| = ||p-s<sub>2</sub>|| ==>
+<blockquote>
+	||p-s<sub>1</sub>||<sup>2</sup> == ||p-s<sub>2</sub>||<sup>2</sup><br>
+	(p-s<sub>1</sub>)&#183;(p-s<sub>1</sub>) == (p-s<sub>2</sub>)&#183;(p-s<sub>2</sub>) ==><br>
+	p<sup>2</sup> + s<sub>1</sub><sup>2</sup> - 2 p&#183;s<sub>1</sub> == p<sup>2</sup> + s<sub>2</sub><sup>2</sup> - 2 p&#183;s<sub>2</sub>, ==><br>
+	s<sub>1</sub><sup>2</sup> - 2  &#183;s<sub>1</sub> == s<sub>2</sub><sup>2</sup> - 2 p&#183;s<sub>2</sub> ==><br>
+	p&#183;(s<sub>2</sub> - s<sub>1</sub>) == (s<sub>2</sub><sup>2</sup> - s<sub>1</sub><sup>2</sup>)/2<br>
+</blockquote>
+
+<p>
+This is the equation of a line, perpendicular to s<sub>2</sub> - s<sub>1</sub>.
+
+<p>
+Note that (s<sub>2</sub>+s<sub>1</sub>)/2, the midpoint of the segment s<sub>1</sub>--s<sub>2</sub>,
+satisfies the equation.
+
+<p>
+A point in VR(s<sub>1</sub>)==VR({s<sub>1</sub>}) satisfies 
+<blockquote>
+	p&#183;(s<sub>2</sub> - s<sub>1</sub>) < (s<sub>2</sub><sup>2</sup> - s<sub>1</sub><sup>2</sup>)/2
+</blockquote>
+
+<h3>The Voronoi diagram of three sites</h3>
+
+<table><tr><td>
+
+S={s<sub>1</sub>, s<sub>2</sub>, s<sub>3</sub>}
+
+
+<p>
+Here
+<table><tr>
+<th valign=top align=right>	VR(s<sub>1</sub>) </th><td>
+		is a cone (a wedge),
+</td></tr><tr><th valign=top align=right>	VR(s<sub>1</sub>, s<sub>2</sub>) </th><td>
+	 is a ray,
+</td></tr><tr><th valign=top align=right>	VR(S) </th><td>
+	is a single point, a Voronoi vertex
+</td></tr><tr></tr></table>
+
+</td><td>
+<img src="f3.gif">
+</td></table>
+
+
+
+<h4>VR(S)</h4>
+
+<p>
+Any p in VR(S) solves
+<blockquote>	p&#183;(s<sub>i</sub> - s<sub>1</sub>) == (s<sub>i</sub><sup>2</sup> - s<sub>1</sub><sup>2</sup>)/2, for i = 2 or 3,
+</blockquote>
+two linear equations in two unknowns.
+
+<p>
+This has a unique solution unless s<sub>2</sub> -s<sub>1</sub> = z(s<sub>3</sub>-s<sub>1</sub>) for some z;<br>
+this means that the points of S are collinear.
+
+<h4>VR(s<sub>1</sub>, s<sub>2</sub>)</h4>
+	All of VR(s<sub>1</sub>, s<sub>2</sub>) is equidistant from s<sub>1</sub> and s<sub>2</sub>,<br>
+	and closer to them than to s<sub>3</sub><br>
+	==> the intersection of a line and halfplane<br>
+	==> a ray
+
+
+
+<h3>The Voronoi region of a site in a larger set</h3>
+
+For any given site s, if p is in VR(s),
+then for any other site t,
+<blockquote>
+	p&#183;(t - s) < (t<sup>2</sup> - s<sup>2</sup>)/2,
+</blockquote>
+that is, p is in a halfplane bounded by the perpendicular bisector of s and t.
+
+<p>
+Any point p that satisfies
+<blockquote>
+	p&#183;(s<sub>i</sub> - s) < (s<sub>i</sub><sup>2</sup> - s<sup>2</sup>)/2 for s<sub>i</sub> in S, s<sub>i</sub>!=s
+</blockquote>
+is in VR(s): p has s uniquely closest among all sites.
+
+<p>
+That is, VR(s) is an <i>intersection of halfplanes</i>;
+if bounded, a convex polygon.
+
+
+<h2>Delaunay graphs</h2>
+
+<table><tr><td>
+<p>
+The <i>Delaunay subdivision</i> <b>DG(S)</b> of S has
+<blockquote>
+	<i>vertices</i> == the sites<br>
+	<i>edges</i> between site a and b when the edge VR(a,b) exists,
+							and as will be shown<br>
+	<i>faces</i> that are typically triangles abc
+			with the circumcircle of the triangle empty;<br>
+</blockquote>
+</td><td>
+<img src="f4.gif">
+</td></table>
+
+The circumcircle of a Delaunay triangle is called a <i>Delaunay circle</i>;
+it is the NN circle of a Voronoi vertex.
+
+<p>
+There is a <i>duality correspondence</i> between the parts of VD(S) and DG(S),
+where
+<blockquote>
+	vertices <--> faces<br>
+	edges <--> edges<br>
+	faces <--> vertices<br>
+</blockquote>
+
+<p>
+the mapping is <i>incidence preserving</i>:<br>
+if vertex a is dual to face a', and a is an endpoint of edge e, and e is dual to e',<br>
+then e' is a bounding edge
+of a'.
+
+
+<p>
+More formally,
+
+<p>
+For B a subset of S with VR(B) nonempty,
+
+<table><tr>
+<th valign=top>cell(B):</th<td>
+	the "relative interior" of the convex hull of B
+</td></tr></table>
+
+That is, cell(B) for 
+<table><tr>
+<th valign=top>|B|=1 :</th><td>
+	 the site in B
+</td></tr><tr><th valign=top align=right>|B|=2 :</th><td>
+	the line segment between the sites, not including the sites
+</td></tr><tr><th valign=top align=right>|B|=3 :</th><td>
+	the interior of the triangle with endpoints in B,
+	assuming not collinear.
+</td></tr><tr><th valign=top align=right>|B|>3 :</th><td>
+	a convex polygon, the interior of the convex hull of B,
+	assuming not collinear.
+</td></tr></table>
+
+<p>
+The subvision DG(S) can be defined as {cell(B) | VR(B) is not empty}.
+
+
+<table><tr>
+<th valign=top>"face of" :</th><td>
+If a is an endpoint of line segment b,<br>
+or a is a bounding edge
+of the convex polygon b,<br>
+say that a is a <i>face of</i> b.
+</td></tr></table>
+
+<p>
+The incidence preserving condition amounts to:<br>
+cell(B) is a face of cell(B') iff VR(B') is a face of VR(B).
+
+<p>
+For example,
+<blockquote>
+	a site a is an endpoint of a Delaunay edge {a,b} iff VR(a,b) is a face of VR(a).
+</blockquote>
+
+
+<h3>Limiting cases</h3>
+
+<p>
+An unbounded edge of the Voronoi diagram is dual to
+an edge of the convex hull of S:
+one Voronoi vertex is "at infinity" == the corresponding "NN disk" is a halfplane.
+
+
+<h3>Degeneracy</h3>
+
+<p>
+VR(B) nonempty for |B|>3 implies
+	there is some point equidistant to all sites of B, so
+	the points of B are cocircular.
+
+<p>
+General position, for these diagrams:
+	no four sites are cocircular, as well as
+	no three sites collinear
+
+<p>
+If all sites are on a common line, the Voronoi edges are parallel lines,
+	and the convex hull of the sites is 1-dimensional.
+
+
+<p>
+<blockquote>
+<b>Theorem:</b><i> DG(S) is is a plane graph.
+</i></blockquote>
+<p>
+That is, the edges of DG(S) don't cross.
+
+<p>
+A more general fact, that implies this theorem, is:
+
+<p>
+<blockquote>
+<b>Theorem:</b><i> If B and B' are subsets of S with B!=B',
+	then cell(B) does not meet cell(B').
+</i></blockquote>
+<p>
+Note that this is true even if B is a subset of B':
+for example, cell(a,b) is a line segment that
+	does not include its endpoints a=cell(a) and b=cell(b).
+
+
+
+<blockquote>
+<b>Lemma:</b><i>
+ 	Suppose D and D' are closed disks whose interiors meet, and line L
+	passes through the intersection points of their bounding circles.
+	Then D-D' and D'-D are separated by L.
+</i></blockquote>
+
+<b>Proof:</b> "left to the reader"
+
+<img src="f5.gif">
+
+
+<p>
+<b>Proof of Theorem:</b>  Suppose B and B' are two subsets of S with 
+nonempty Voronoi regions.  Since VR(B) is not empty
+there is an empty disk D with B on its boundary, and an empty
+disk D' with B' on its boundary.  Since D and D' are empty,
+every site of B is in D-D', unless the site is one of the intersection
+points of the bounding circles of D and D'.  Since the analogous
+claim is true for B', all sites of B and B' are either separated by L,
+or are one of the intersection points.  Hence the relative interiors of
+the convex hulls of B and B' are separated by L, and disjoint, <b>QED</b>
+
+
+
+<h3>Combinatorial Complexity</h3>
+
+<p>
+Bounds follow from the planarity of DG(S):
+
+<blockquote>
+<b>Theorem:</b> <i>The number of Voronoi vertices (and Delaunay triangles)
+is no more than 2n-4 and the number of Voronoi or Delaunay edges
+is no more than 3n-6.
+</i></blockquote>
+
+<p>
+<b>Proof:</b> From Euler's relation, as described in Lecture 2,
+applied to DG(S). <b>QED</b>
+
+
+
+<h3>Local properties of Delaunay triangulations</h3>
+
+<p>
+Call a triangulation
+<b>locally Delaunay</b> if for any triangles abc and abd,
+	d is not inside the circumcircle of abc.
+
+<p>
+Clearly, any Delaunay triangulation is locally Delaunay.
+In fact, the converse holds:
+
+<blockquote>
+<b>Theorem:</b><i>A locally Delaunay triangulation is Delaunay.
+</i></blockquote>
+<p>
+First,
+
+<blockquote>
+<b>Lemma:</b> <i>Given two disks D and D', with line L through the intersection points
+of their bounding circles, let
+<table><tr>
+<th valign=top>	H </th><td><i>
+	be the open halfplane bounded by L and containing D-D', and
+</tr><tr><th valign=top>	H' </th><td><i>
+	be the open halfplane bounded by L and containing D'-D.
+</td></tr></table>
+Then<br>
+	D' intersect H is a subset of D intersect H, and<br>
+	D intersect H' is a subset of D' intersect H.<br>
+</i></blockquote>
+
+
+In short, D contains D' on "its" side of L, and vice versa.
+
+<p>
+<b>Proof:</b> also "left to the reader".
+
+<p>
+<b>Proof of the theorem:</b>
+Given a Delaunay triangle abc and a site d, it must be shown
+that d is not inside the circumcircle of abc.
+
+<p>
+Pick a point p inside abc so that the line segment dp contains no sites.
+Suppose dp crosses edge bc.
+The triangles meeting dp can be written
+<blockquote>
+	T<sub>i</sub> == a<sub>i</sub>a<sub>i+1</sub>a<sub>i+2</sub>, for i=1 to m-2, for some m,
+</blockquote>
+where
+<blockquote>
+	a<sub>1</sub>=a, a<sub>2</sub>=b, a<sub>3</sub>=c, and a<sub>m</sub>=d.
+</blockquote>
+The edges crossed by dp can be written
+<blockquote>
+	e<sub>i</sub> == a<sub>i</sub>a<sub>i+1</sub>, for i=2 to m-1.
+</blockquote>
+
+<p>
+By the first "disk" lemma and the locally Delaunay condition,
+the line through edge e<sub>i</sub> separates a<sub>i-1</sub> from a<sub>i+2</sub>, 
+and by the above "disk" lemma,
+the intersection of the Delaunay disk of T<sub>i</sub> with dp is farther from 
+d than the intersection of the Delaunay disk of T<sub>i+1</sub> with dp.
+
+<p>
+Since the Delaunay disk of T<sub>m-2</sub> does
+not contain d in its interior, none of the disks of T<sub>i</sub> do, for i=1..m-2.
+Hence the disk of T<sub>1</sub>=abc does not.
+<b>QED</b>
+
+
+<h3>Edge Flipping and Angle Optimality</h3>
+
+<table><tr><td>
+Suppose a triangulation is not locally Delaunay,
+so some triangles abc and abd have site d inside the circumcircle of abc.
+
+<p>
+The quadrilateral acbd is convex, and has two triangulations:
+<blockquote>
+	T = {abc, abd}, with edge ab, the original one, and<br>
+	T' = {cda, cdb}, with edge cd.<br>
+</blockquote>
+
+</td><td>
+<img src ="f8.gif">
+</td></tr></table>
+
+<p>
+<b>Facts:</b>
+<blockquote>
+	T' is Delaunay (since the other one isn't)<br>
+	<b>Angle increase:</b>
+		The minimum angle of T' (of the six angles) is larger than
+		the minimum angle of T.
+</blockquote>
+
+
+<p>
+<table><tr>
+<th valign=top align=right> Edge flip: </th>
+
+<td>
+	The transformation of the triangulation
+<blockquote>
+		deleting {abc, abd} and
+		inserting {cda, cdb},
+</blockquote>
+	that is, swapping cd for ab.
+</td></tr></table>
+
+<p>
+Note: if {a,b,c,d} are cocircular, both triangulations are Delaunay and
+have the same smallest angle.
+
+
+
+<h3>The edge flipping algorithm</h3>
+
+<p>
+...for computing a Delaunay triangulation:
+
+<pre>
+	Find any triangulation of S;
+	repeat
+		find non-locally-Delaunay pair of triangles
+		flip edge
+	until the triangulation is locally Delaunay
+</pre>
+
+<p>
+Minimum angle of a triangulation: the smallest angle of any triangle
+	in the triangulation
+
+<p>
+<blockquote>
+<b>Theorem:</b><i>
+	The edge flipping algorithm terminates,
+	and the Delaunay triangulation maximizes the minimum angle
+</i></blockquote>
+<p>
+<b>Proof:</b>
+Given a triangulation T, let
+
+<p>
+<table><tr>
+<th valign=top align=right> Angle(T) = </th>
+	<td> (a<sub>1</sub>, a<sub>2</sub>,...) be the sequence of measures
+	of angles of triangles of T, sorted into nondecreasing order.
+</td></tr></table>
+
+<p>
+Suppose T is not Delaunay, and so not locally Delaunay, and
+so there is a triangulation T' resulting from an edge flip.
+
+<p>
+Then Angle(T') is lexicographically larger than Angle(T).
+
+<p>
+Hence if T is not Delaunay, Angle(T') is larger than Angle(T),<br>
+	so the Delaunay triangulation is lexicographically maximum.
+
+<p>
+Since the number of triangulations is finite,<br>
+and each triangulation generated is distinct,<br>
+the algorithm terminates.<br>
+<b>QED</b>
+
+
+<h3>Computing Voronoi diagrams and Delaunay triangulations</h3>
+
+From one kind, its easy to get the other in O(n) time.
+
+<p>
+The Delaunay triangulation is generally easier to compute.
+
+Some algorithms
+<ul>
+<li>	edge flipping
+<ul>
+<li>		not so slow, really
+</ul>
+<li>	divide-and-conquer
+<ul>
+<li>		O(n log n) worst case
+<li>		split the points in half by a line
+<li>		compute Delaunay triangulation of each piece
+<li>		merge
+</ul>
+<li>	sweep
+<ul>
+<li>		O(n log n) worst case
+<li>		use sweep line paradigm in some way
+</ul>
+<li>	randomized incremental
+<ul>
+<li>		O(n log n) expected
+<li>		yes, for this too.
+</ul>
+</ul>
+
+<h3>Divide and conquer</h3>
+
+The hard step is the merge:
+<blockquote>
+	Given sets L and R, S= L union R, separated by a vertical line,
+		and their triangulations DG(L) and DG(R),
+		compute DG(S).
+</blockquote>
+
+<p>
+There are RR edges, LL edges, and cross edges.
+
+<p>
+All new Delaunay edges in the merge are cross edges:
+	if an RR edge is Delaunay now, it was before.
+
+<p>
+Some triangles of DG(L) are deleted:
+<blockquote>
+	those with circumcircles containing points of R.<br>
+	...and symmetrically for DG(R).
+</blockquote>
+
+<p>
+The cross edges are ordered along the split line,
+and consecutive edges share a vertex.
+
+<p>
+The cross edges are built from bottom to top, starting from a cross edge that
+	is a convex hull edge.
+
+<p>
+Conceptually, maintain an empty disk on the current cross edge {a,b},
+pushing it up, but keeping a and b on the bounding circle.
+
+<p>
+The first site this "rising bubble" hits gives the next cross edge.
+
+<p>
+That site is on an edge incident to a or b.  To find it,
+
+<pre>
+	walk around
+	the edges incident to a, deleting those bounding triangles conflicting
+	with b.  Find the first edge {a,a'} not deleted.
+
+	Similarly walk around the edges incident to b, finding edge {b,b'}.
+
+	Either b or b' is hit first by the "rising bubble", yielding
+		the next cross edge {a,b'} or {a',b}.
+</pre>
+
+<p>
+Since O(n) work is done in the merge, O(n log n) is needed overall.
+
+<p>
+Dwyer has shown that O(n log log n) is needed for points uniform in the square,
+	using bucketing.
+
+
+
+
+<h3>Sweep</h3>
+
+Fortune has shown that there is a sweep line algorithm for
+	Delaunay triangulations/Voronoi diagrams.
+
+<p>
+There are at least four viewpoints of the sweep algorithm.
+
+<p>
+When viewed as a Delaunay triangulation algorithm:
+
+<p>
+Sweep a vertical line from left to right.
+
+<p>
+For a point p on the sweep line,
+
+<p>
+the tangent empty circle at p:
+<blockquote>
+	is empty: has no sites inside;<br>
+	is tangent to the sweep and left of it;<br>
+	contains a site (on the circle, not inside)
+</blockquote>
+
+<p>
+S(p): the sites on the tangent empty circle.
+
+<p>
+The points on the sweep form equivalence classes based on S(p).
+
+<p>
+Intervals of points have the same S(p) with |S(p)|=1,
+separated by points with |S(p)|=2, corresponding to Delaunay edges.
+
+<h3>Sweep Events:</h3>
+
+<table><tr>
+<td valign=top align=right> <i>site events:</i><td>
+<td>		The sweep meets a site</td></tr><tr>
+<td valign=top align=right> <i>circle events:</i> <td>
+<td>	the sweep contains a point with S(p)=3<br>
+		yields a Delaunay circle<br>
+		corresponds to the shrinking down of an interval
+</td></tr></table>
+
+<p>
+Suppose the circle event has S(p)={a,b,c},<br>
+the previous interval had label {a}, bounded by points with
+	labels {a,b} and {a,c}
+
+<p>
+New label {b,c} has possible events with its neighbors on the sweep:
+	schedule these. 
+
+<p>
+At a site event, suppose site a is met by the sweep,<br>
+in an interval labeled by {b}, and bounded by {b,c} and {b,d}<br>
+Then a new interval, labeled by {a} and bounded by {a,b} on both sides,
+will be seen.
+
+<p>
+Check for circle events for {a,b} and {b,c}, and for {a,b} and {b,d}
+
+<p>
+Some scheduled circle events will not actually occur:
+for example,
+<blockquote>
+	if a site event splits an interval, that interval cannot shrink
+	to a point.<br>
+	if a circle event shrinks an interval to a point, that interval
+	cannot expand to shrink a neighboring interval to a point.
+</blockquote>
+
+<p>
+Such "false alarm" events can be detected and removed when real events occur,
+and there are a bounded number of them.
+
+
+
+
+	
+
+
+</body>
+</html>
+

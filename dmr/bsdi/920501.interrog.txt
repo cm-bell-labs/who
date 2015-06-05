@@ -1,0 +1,627 @@
+                                                                      
+Michael D. Loprete (MDL1695)
+CRUMMY, DEL DEO, DOLAN,
+  GRIFFINGER & VECCHIONE, P.C.
+One Riverfront Plaza
+Newark, New Jersey 07102
+(201) 596-4500
+
+George L. Graff
+James W. Kennedy
+Charles B. Ortner
+MILGRIM THOMAJAN & LEE P.C.
+New York, New York 10005-2815
+(212) 858-5300
+
+Sanford Tannebaum
+Executive Vice President and General Counsel
+UNIX System Laboratories, Inc.
+190 River Road
+Summit, New Jersey  07901-1444
+(908) 522-6666
+
+Attorneys for Plaintiff Unix System Laboratories, Inc.
+
+
+UNITED STATES DISTRICT COURT
+DISTRICT OF NEW JERSEY
+
+                                          
+
+UNIX SYSTEM LABORATORIES, INC.,
+
+             	        Plaintiff,		Civil Action No.
+						92-1667 (DRD)
+          -against-
+						PLAINTIFF'S
+BERKELEY SOFTWARE DESIGN, INC.,			FIRST SET OF
+						INTERROGATORIES
+			Defendant.
+
+
+	Plaintiff Unix System laboratories, Inc. ("USL"),
+pursuant to Rule 33  of the Federal Rules of Civil Procedure and
+Local Rule 16, demands that Defandant Berkeley System Design, Inc. ("BSDI")
+serve answers to the following Interrogatories within thirty (30) days
+from teh date on which they are served, in accordance with the
+Definitions and Instructions set forth below.
+
+			Definitions
+
+	1.  The term "BSDI 386 Source" means any and all forms
+(e.g., source, alpha, beta, binary, or object code forms), in
+whole or in part (including without limitation any component,
+module or element thereof), of the operating system described in
+the "BSD 386 Source" product brochure (copy annexed as Exhibit A)
+as a "UNIX compatible operating system for 386 and 486 PC
+architectures," and all versions, releases or derivatives
+thereof, in whole or in part (including without limitation any
+component, module or element thereof), whether or not marketed,
+licensed or sold under the name "BSD 386 Source."
+
+	2.  The terms "promotional materials" mean any and all
+matter that promotes, advertises or otherwise describes BSDI or
+its products and/or services, including but not limited to:
+
+		(1)  Promotional brochures,
+		(2)  Advertisements,
+		(3)  Order forms, and
+		(4)  Notices or other communications posted to
+		     computer network bulletin boards.
+
+	3.  The terms "Berkeley NET2 software" and "Berkeley
+Networking Release 2" mean any and all forms (e.g., source,
+alpha, beta, binary, or object code forms), in whole or in part
+(including without limitation any component, module or element
+thereof), of the software referred to in BSDI's "386 Source"
+software product brochure (annexed as Exhibit A) as "the most
+recent release from the Computer Systems Research Group of the
+University of California, Berkeley - the Networking Release 2"
+and as the "NET2 tape," and all versions, releases or derivatives
+thereof, in whole or in part (including without limitation any
+component, module or element thereof).
+
+	4.  Reference to any software product includes without
+limitation all versions, releases and derivatives thereof.
+
+	5.  The term "communication" means any correspondence,
+contact, discussion or exchange between or among any two or more
+persons or entities.  Without limiting the foregoing,
+"communication" includes all documents, telephone conversations,
+negotiations, meetings, and conferences.
+
+	6.  The term "identify" or "identifying" means:
+
+		(a)  when referring to a natural person, state his
+full name, present or last known business and home addresses, his
+present or last known business position, and, if different, his
+occupation or business position at the time to which the
+interrogatory or your response thereto has reference.  When used
+with reference to any particular person, the information other
+than his full name need be given only once.
+
+		(b)  when referring to a corporation or other
+business enterprise or legal entity, state the full name and
+address and a brief description of the primary business in which
+such entity is engaged.  With respect to any particular entity,
+the information other than the full name need be given only once.
+
+		(c)  when referring to communication or act:
+
+		     (i) state its date and place of occurrence
+(or, if a telephone call is involved, so state and provide the 
+location of all parties to such telephone call and identify the
+person who initiated it) ; the identity of each person
+participation therein, who each such person participation therein 
+represented or purported to represent, the nature and subject
+matter or any circumstances surrounding it, and the substance of
+what transpired or was said; and
+
+		     (ii)  identify all documents, summarizing, 
+recording, reflecting, reporting or containing a reference to it.
+
+	7.  The term "concerning" includes referring to,
+relating to, embodying, connected with, commenting on, responding
+to, showing, describing, analyzing, reflecting or constituting.
+
+	8.  The term "document" is used in the broadest sense 
+allowed under Fed. R. Civ. P. 34 and includes, without
+limitation, any printed, written, recorded, taped, electronic,
+magnetic, optical, graphic, computerized printout, computer
+software, computer disc or other storage medium, or other
+tangible matter from whatever source, however produced or 
+reproduced or stored, whether in draft or otherwise, whether sent
+or received or neither, including the original or any non-
+identical copy (whether different from the original because of     
+notes made on or attached to such copy or any other reason).
+
+	9.  Reference to any entity includes its present and
+former subsidiaries, affiliates, divisions, joint ventures,
+partners, present and former officers, present and former 
+directors, present and former employees, present and former 
+advisors, and present and former trustees or administrators, both
+individually and collectively, and any person acting or 
+purporting to act on their individual or collective behalf.
+
+	10.  Subject to ythe foregoing, "USL" means UNIX System
+Laboratories, Inc., "BSDI" means defendant Berkeley Software 
+Design, Inc., and "AT&T" means America Telephone and Telegraph
+Company.
+
+	11.  Reference to any individual includes such 
+individual, his or her employees, agents, and all persons acting
+or purporting to act on behalf of or in concert with that
+individual and all persons or entities under his or her control.
+
+	12.  "And" as well as "or" shall be construed either
+disjunctively or conjunctively as necessary to bring within the
+scope of these interrogatories any response that might otherwise
+be construed to be outside their scope.
+
+	13.  The singular includes the plural and the plural
+includes the singular; "any" shall mean "any and all" and "all"
+shall mean "all" and "any."
+
+	14.  The term "including" means "including without
+limitation." 
+
+			Instructions
+
+	1.  These interrogatories are to be regarded as 
+continuing, and you are requested to provide, by way of    
+supplementary answers, such additional information as you, or any
+other person in your behalf, may hereafter obtain, which will
+augment or otherwise modify your answers now given to these 
+interrogatories.  Such supplementary answers are to be filed and
+served upon USL's counsel within 30 days after receipt of such
+information, but not later than two (2) weeks preceding the date
+of Trial.
+
+	2.  In answering these interrogatories, even though
+the question may be addressed to "you", you must include both
+information of which you have personal knowledge or which is
+available to you and information obtainable by reasonable
+investigation.  This includes information in the possession of or
+available to any person acting on your behalf or under your        
+control, including your representatives.
+
+	3.  If all the information furnished in answer to all
+or any part of any interrogatory is not within your knowledge,
+identify each person to whom all or any part of the information
+furnished is a matter of personal knowledge, and each person who
+communicated to the affiant any part of the information 
+furnished.
+
+	4.  Where any of these interrogatories or any sub-part
+thereof may be responsibly and fully answered by the reference to
+a document, such interrogatory or sub-part may be answered by
+attaching to your answer a copy of such document, by referring in 
+such answer to such document, and by identifying the paragraph,
+portion, or provision of the document that fully answers the
+interrogatory.
+
+	5.  When referring to a document not being produced in
+lieu of answering an interrogatory, state its title and date; 
+identify the auther or person who prepared it and any signatories
+to it;  give the type of document (e.g., letter, memorandum, note
+agreement), its present location and custodian, a summary of its
+contents, or principal terms or provisions; and the identity of 
+its addresses and all other persons receiving it or copies of it.
+If the document so identified was but is no longer in your
+possession, custody or control, state what disposition was made
+of it.
+
+	6.  Each interrogatory and subpart thereof is to be
+accorded a seperate answer and interrogatories are not to be
+combined for the purpose of supplying a common answer thereto.
+
+	7.  If, after exercising due diligence, you can obtain
+no information about the subject of a particular interrogatory,
+or if for some reason you are unable to answer it, the      
+response to that interrogatory should specifically so state, and
+no interrogatory should be without some response.  If you have
+some information responsive to an interrogaroty, but believe that
+further information not now available to you would also be
+responsive, you should provide the information you now have and
+should specifically state when the balance of the information
+will be provided; the fact that a full answer cannot be given is
+not a basis for you to fail to provide such information as is
+available to you at the time of your response to these
+interrogatories.
+
+	8.  If you assert that any interrogatory contains any
+objectionable inquiries, state your objection with regard to the 
+particular inquiry or inquiries within any interrogatory which
+you deem objectionable.
+
+	9.  If you contend that the contents of any writings
+described in your answers to these interrogatories are protected
+from disclosure by reason of a claim of privilege, work product
+or other ground of nonproduction a list is to be furnished, at
+the time your Response to these interrogatories is served,
+identifying specifically each such document by its nature (e.g.,
+letter, memorandum, etc.), together with the following
+information with respect to each such document; author(s);
+recipient(s); sender(s); indicated or blind copies; date; subject
+matter; basis on which the privilege is claimed; number of pages; 
+and each interrogatory to which such document relates.
+
+
+
+INTERROGATORY NO. 1:
+          State whether BSDI has at any time adopted and/or
+implemented a policy or practice with respect to the retention or
+destruction of documents, and, if so, describe in detail the policy
+or practice, identify all persons who were involved in discussing,
+considering, adopting or implementing the policy or practice, and
+state the date on which the policy or practice was first adopted or
+implemented.
+
+
+INTERROGATORY NO. 2:
+          State whether BSDI has at any time destroyed any
+documents, or is aware of the destruction of documents by anyone,
+that constitute, evidence, reflect or concern:
+          (a)  the technical development of the "BSD 386 Source"
+               software product;
+          (b)  the use of, possession of, or access to, any
+               computer related products developed and/or licensed
+               by USL or AT&T (including without limitation UNIX
+               brand computer software operating systems) occurring
+               at any time by any past or present BSDI personnel or
+               by any person or entity which has performed or is
+               now performing services for or on behalf of BSDI;
+          (c)  any other document responsive to the Plaintiff's
+               First Request for Production of Documents.
+If so, (a) identify each such document, including without
+limitation all authors, addressees and recipients thereof, as well
+as the subject matter of such document, (b) state the date of its
+destruction, (c) describe the manner in which destroyed,
+(d) identify all persons responsible for its destruction and all
+persons with knowledge of its destruction, and (e) state the
+reason(s) for its destruction.
+
+
+INTERROGATORY NO. 3:
+          Identify all persons and entities involved in any way in
+the technical development of the "BSD 386 Source" software product,
+including without limitation employees of BSDI, consultants, or
+outside contributors of software.  In addition to the information
+required by Instruction No. 2, for each such person or entity:
+          (a)  describe the particular contribution made by such
+               person or entity to the technical development of
+               "BSD 386 Source";
+          (b)  state the number of hours which such person or
+               entity devoted to each particular contribution made
+               to the technical development of "BSD 386 Source,"
+               and the dates in which such person or entity was
+               engaged in making that contribution;
+          (c)  describe such person's or entity's educational
+               experience, technical expertise and training; and
+          (d)  with respect to individuals, list such person's
+               employers, dates of employments, job titles, duties
+               and responsibilities over the last fifteen years.
+
+
+INTERROGATORY NO. 4:
+          With respect to each person and entity identified in
+response to the foregoing Interrogatory, state whether or not such
+person or entity is a licensee of UNIX operating system software;
+has performed or is performing services, as an employee, contractor
+or otherwise, for or on behalf of a licensee of UNIX operating
+system software; or has otherwise had access to UNIX operating
+system software.  With respect to licensees, set forth the date of
+the License Agreement.  Further, if such person or entity has had
+access to UNIX operating system software, set forth the date(s) of
+such access and a brief description of the circumstances in which
+such access was granted.
+
+
+INTERROGATORY NO. 5:
+          Identify all sources of software code or other technology
+from which "BSD 386 Source" is or may be copied or derived, and
+identify the specific portion of "BSD 386 Source" related thereto.
+
+
+INTERROGATORY NO. 6:
+          Identify all license agreements under which BSDI has
+obtained a past, current or prospective right of access to software
+or other computer-related technology.  As to each such agreement,
+state whether BSDI has reviewed, referred to or relied upon any
+technology disclosed under such agreement in connection with the
+development of the "BSD 386 Source."  If so, identify the specific
+portion of the "BSD 386 Source" related to such technology.
+
+
+INTERROGATORY NO. 7:
+          Identify all agreements, including without limitation
+license agreements, between BSDI, or its past or current employees,
+or its past or current consultants, or any person or entity which
+at at(sic) the time of the agreement was performing services for or
+on behalf of BSDI, and:
+          (a)  the Regents of the University of California (the
+               "Regents"); or
+          (b)  the Computer Systems Research Group of the
+               University of California, Berkeley ("CSRG"), or any
+               individuals affiliated therewith.
+With respect to each such agreement, identify all communications
+constituting, evidencing, reflecting or concerning negotiations
+with respect to such agreement, and identify all persons with
+knowledge of such communications and negotiations.
+
+INTERROGATORY NO. 8:
+          Identify all communications involving BSDI, including
+without limitation anyone acting on its behalf, concerning the
+question of indemnity for infringement of intellectual property
+rights arising out of the use, licensing or sale of "BSD 386
+Source" or BSDI's other software products or services.  With
+respect to each such communication, state whether or not the
+communication involved the question of infringing upon the
+intellectual property, contractual or other legal rights of (a) the
+Regents, (b) CSRG, (c) USL, or (d) AT&T.
+
+INTERROGATORY NO. 9:
+          Identify all communications involving BSDI, including
+without limitation anyone acting on its behalf, that concern the
+question of any source from which it may have copied or derived its
+"BSD 386 Source," or any portion thereof.  With respect to each
+such communication, state whether or not such communication
+involved the question of whether the BSD 386 Source may have been
+copied or derived from software developed or licensed by (a) the
+Regents, (b) CSRG, (c) USL, or (d) AT&T, and if so, identify such
+software by reference to its trade name.
+
+INTERROGATORY NO. 10:
+          Identify all past and current shareholders of BSDI.  With
+respect to each shareholder, state the number of shares owned and
+the dates of ownership.
+
+INTERROGATORY NO. 11:
+          Identify all persons with knowledge of facts concerning
+the statement in the "BSD 386 Source" product brochure (copy
+annexed as Exhibit A) that: "It is based on the most recent release
+from the Computer Systems Research Group of the University of
+California, Berkeley-Networking Release 2."
+
+INTERROGATORY NO. 12:
+          Identify all documents and other sources of information
+consulted, reviewed or relied on in making the foregoing statement
+that "It is based on the most recent release from the Computer
+Systems Research Group of the University of California, Berkeley -
+Networking Release 2."
+
+INTERROGATORY NO. 13:
+          Identify all persons with knowledge of facts concerning
+the statement in the "BSD 386 Source" product brochure (copy
+annexed as Exhibit A) that: "the NET 2 tape contained no AT&T
+licensed code, but was not a complete system."
+
+INTERROGATORY NO. 14:
+          Identify all documents and other sources of information
+consulted, reviewed or relied on in making the foregoing statement
+that: "the NET 2 tape contained no AT&T licensed code, but was not
+a complete system."
+
+INTERROGATORY NO. 15:
+          Identify all persons with knowledge of facts concerning
+the statement in the "BSD 386 Source" product brochure (copy
+annexed as Exhibit A) that: "BSDI has completed the system and
+added additional drivers."
+
+INTERROGATORY NO. 16:
+          Identify all documents and other sources of information
+consulted, reviewed or relied on in making the foregoing statement
+that: "BSDI has completed the system and added additional drivers."
+
+INTERROGATORY NO. 17:
+          Identify all persons with knowledge of facts concerning
+the statement in the "BSD 386 Source" product brochure (copy
+annexed as Exhibit A) that: "the resulting system does not require
+a license from AT&T and so is available in source form at a
+fraction of AT&T's price."
+
+INTERROGATORY NO. 18:
+          Identify all documents and other sources of information
+consulted, reviewed or relied on in making the foregoing statement
+that: "the resulting system does not require a license from AT&T
+and so is available in source form at a fraction of AT&T's price."
+
+INTERROGATORY NO. 19:
+          Identify all persons with knowledge of facts concerning
+the statement in the "BSD 386 Source" product brochure (copy
+annexed as Exhibit A) that: "BSD/386 is a `Berkeley-UNIX'
+compatible operating system for the 386 and 486 PC architectures."
+
+INTERROGATORY NO. 20:
+          Identify all documents and other sources of information
+consulted, reviewed or relied on in making the foregoing statement
+that: "BSD/386 is a 'Berkeley-UNIX' compatible operating system for
+the 386 and 486 PC architectures."
+
+INTERROGATORY NO. 21:
+          Identify all persons with knowledge of facts concerning
+the statement in the "BSD 386 Source" product brochure (copy
+annexed as Exhibit A) that: "The production system is planned to
+support SCO UNIX V3.3 binaries."
+
+INTERROGATORY NO. 22:
+          Identify all documents and other sources of information
+consulted, reviewed or relied on in making the foregoing statement
+that:  "The production system is planned to support SCO UNIX V3.3
+binaries."
+
+INTERROGATORY NO. 23:
+          Identify all persons with knowledge of facts concerning
+the statement appearing in the attached Exhibit C that: "we have
+been billed more than US $40,000 just for the legal services we
+have used to ensure that our code will [sic] is technically and
+legally free from AT&T/USL trade secrets."
+
+INTERROGATORY NO. 24:
+          Identify all documents and other sources of information
+consulted, reviewed or relied on in making the foregoing statement
+that: "we have been billed more than US $40,000 just for the legal
+services we have used to ensure that our code will [sic] is
+technically and legally free from AT&T/USL trade secrets."
+
+INTERROGATORY NO. 25:
+          Identify all persons with knowledge of facts concerning
+the statement appearing in the attached Exhibit C that: "we have
+seven people putting in more than 280 hours/week on getting the
+release out.  That's every week.  We pay them for their efforts. 
+We'll certainly be hiring more[.]"
+
+INTERROGATORY NO. 26:
+          Identify all documents and other sources of information
+consulted, reviewed or relied on in making the foregoing statement
+that: "we have seven people putting in more than 280 hours/week on
+getting the release out.  That's every week.  We pay them for their
+efforts.  We'll certainly be hiring more[.]"
+
+INTERROGATORY NO. 27:
+          Identify all persons involved in the drafting and/or
+review, prior to its release, of the "BSD 386 Source" product
+brochure (annexed as Exhibit A hereto).
+
+INTERROGATORY NO. 28:
+          Identify all persons involved in the drafting and/or
+review, prior to its release, of the BSDI License Agreement
+(annexed as Exhibit B hereto).
+
+INTERROGATORY NO. 29:
+          To the extent not identified above, identify all
+employees of BSDI.  In addition to the information required by
+Instruction No. 2, for each such person,
+          (a)  describe each such person's title, duties and
+               responsibilities at BSDI;
+          (b)  describe such person's educational experience,
+               technical expertise, and training; and
+          (c)  list such person's employers, dates of employment,
+               job titles, duties and responsibilities over the
+               last fifteen years.
+
+INTERROGATORY NO. 30:
+          With respect to each person identified in response to the
+foregoing Interrogatory, state whether or not such person is a
+licensee of UNIX operating system software; has performed or is
+performing services, as an employee, contractor or otherwise, for
+or on behalf of a licensee of UNIX operating system software; or
+has otherwise had access to UNIX operating system software.  With
+respect to licensees, set forth the date of the License Agreement. 
+Further, if such person has had access to UNIX operating system
+software, set forth the date(s) of such access and a brief
+description of the circumstances in which such access was granted.
+
+INTERROGATORY NO. 31:
+          Identify all licensees or purchasers of the "BSD 386
+Source" software product, and set forth the date of each license
+agreement or purchase.
+
+INTERROGATORY NO. 32:
+          Identify all alpha and beta sites licensed to use, test
+or experiment with the "BSD 386 Source" software product.
+
+INTERROGATORY NO. 33:
+          Separately identify all persons responsible for the
+marketing of "BSD 386 Source" within and without the United States
+and specifically describe each such person's responsibilities in
+that regard.
+
+INTERROGATORY NO. 34:
+          Separately identify all persons involved in the
+distribution of "BSD 386 Source" including without limitation any
+outside distributors, and describe all planned methods of
+distribution.
+
+INTERROGATORY NO. 35:
+          Separately identify all agreements relating to (a) the
+distribution of "BSD 386 Source" and (b) BSDI's other software
+products.
+
+INTERROGATORY NO. 36:
+          Separately state the date(s) on which BSDI expects to
+make the production release of "BSD 386 Source" in binary and
+object code forms, and any intermediate versions thereof.
+
+INTERROGATORY NO. 37:
+          Separately state the date(s) on which BSDI first released
+its BSD 386 Source in alpha and beta forms as well as the dates of
+any past or anticipated intermediate releases thereof.
+
+INTERROGATORY NO. 38:
+          In addition to "BSD 386 Source", identify all other
+products and services, including but not limited to software
+products and services, which are (a) being offered for licensing or
+sale by BSDI or (b) under development at or on behalf of BSDI. 
+State the trade name of such product(s) or services and briefly
+describe the type and function of such product(s) or services.
+
+INTERROGATORY NO. 39:
+          With respect to each product identified in response to
+the foregoing interrogatory, state whether or not BSDI believes
+that such product is, or in its final form is intended to be,
+compatible with (a) UNIX operating system software or (b) any other
+product licensed or sold by USL and/or AT&T.
+
+INTERROGATORY NO. 40:
+          With respect to each product identified in response to
+Interrogatory No. 38, identify all persons or entities involved in
+the development of such product, whether or not employed by BSDI. 
+In addition to the information required by Instruction No. 2,
+describe the contribution made or being made by each such person in
+the technical development of each such product.
+
+INTERROGATORY NO. 41:
+          Identify all phone calls made to the telephone number
+1-800 ITS UNIX.
+
+INTERROGATORY NO. 42:
+          Identify all persons or entities with knowledge of facts
+concerning phone calls made to the telephone number 1-800-ITS UNIX,
+including without limitation all persons involved in answering such
+calls for or on behalf of BSDI.
+
+INTERROGATORY NO. 43:
+          Describe in detail the operation of BSDI's toll-free
+telephone service which used the number 1-800 ITS UNIX, including
+the name and business address of the telephone company providing
+such service, and the location(s) to which calls made to the number
+1-800 ITS UNIX were routed.
+
+Dated:  Newark, New Jersey
+	May 1, 1992
+
+
+				Unix System Laboratratories, Inc.
+
+By:
+			Michael D. Loprete (MDL1695)
+			CRUMMY, DEL DEO, DOLAN
+				GRIFFINGER & VECCHIONE, P.C.
+			One Riverfront Plaza
+			Newark, New Jersey  07102
+			(201) 596-4500
+
+
+			and
+
+By:
+
+			George L. Graff
+			James W. Kennedy
+			Charles B. Ortner
+			MILGRIM THOMAJAN & LEE P.C.
+			53 Wall Street
+			New York, New York 10005-2815
+			(212) 858-5300
+
+			Attorneys for Plaintiff 
+
+Of Counsel:
+
+Sanford Tannenbaum
+Executive Vice President and General Counsel
+UNIX System Laboratories, Inc.
+190 River Road
+Summit, New Jersey  07901-1444
+(908) 522-6666

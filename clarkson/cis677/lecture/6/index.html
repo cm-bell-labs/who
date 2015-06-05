@@ -1,0 +1,643 @@
+<HTML>
+<HEADER>
+<TITLE> CIS677: Notes for lecture 6: Delaunay triangulations, Convexity
+</TITLE>
+</HEADER>
+
+<BODY  BGCOLOR="FFFFFF">
+
+<H1> <center>
+	CIS677<br> Notes for lecture 6: <br>
+Delaunay triangulations, Convexity
+</center></H1>
+<BR>
+
+
+
+<h3>Outline</h3>
+<ul>
+<li>	Voronoi diagrams and Delaunay triangulations
+<ul>
+<li>		edge flipping and angle optimality
+<li>		uses: interpolation, geometric graphs
+<li>		divide and conquer algorithm
+<li>		sweep algorithm
+</ul>
+<li>	Convexity
+<ul>
+<li>		convex, affine, linear, conical combinations
+<li>		Caratheodory's theorem
+<li>		polarity and Duality
+<li>		the Farkas Lemma
+<li>		convex hulls and intersections of halfspaces
+</ul>
+</ul>
+
+<h3>Edge Flipping and Angle Optimality</h3>
+
+<table><tr><td>
+Suppose a triangulation is not locally Delaunay,
+so some triangles abc and abd have site d inside the circumcircle of abc.
+
+<p>
+The quadrilateral acbd is convex, and has two triangulations:
+<blockquote>
+	T = {abc, abd}, with edge ab, the original one, and<br>
+	T' = {cda, cdb}, with edge cd.<br>
+</blockquote>
+
+</td><td>
+<img src ="f1.gif">
+</td></tr></table>
+
+<p>
+<b>Facts:</b>
+<blockquote>
+	T' is Delaunay (since the other one isn't)<br>
+	<b>Angle increase:</b>
+		The minimum angle of T' (of the six angles) is larger than
+		the minimum angle of T.
+</blockquote>
+
+
+<p>
+<table><tr>
+<th valign=top align=right> Edge flip: </th>
+
+<td>
+	The transformation of the triangulation
+<blockquote>
+		deleting {abc, abd} and
+		inserting {cda, cdb},
+</blockquote>
+	that is, swapping cd for ab.
+</td></tr></table>
+
+<p>
+Note: if {a,b,c,d} are co-circular, both triangulations are Delaunay and
+have the same smallest angle.
+
+
+
+<h3>The edge flipping algorithm</h3>
+
+<p>
+...for computing a Delaunay triangulation:
+
+<pre>
+	Find any triangulation of S;
+	repeat
+		find non-locally-Delaunay pair of triangles
+		flip edge
+	until the triangulation is locally Delaunay
+</pre>
+
+<p>
+Minimum angle of a triangulation: the smallest angle of any triangle
+	in the triangulation
+
+<p>
+<blockquote>
+<b>Theorem:</b><i>
+	The edge flipping algorithm terminates,
+	and the Delaunay triangulation maximizes the minimum angle
+</i></blockquote>
+<p>
+<b>Proof:</b>
+Given a triangulation T, let
+
+<p>
+<table><tr>
+<th valign=top align=right> Angle(T) = </th>
+	<td> (a<sub>1</sub>, a<sub>2</sub>,...) be the sequence of measures
+	of angles of triangles of T, sorted into nondecreasing order.
+</td></tr></table>
+
+<p>
+Suppose T is not Delaunay, and so not locally Delaunay, and
+so there is a triangulation T' resulting from an edge flip.
+
+<p>
+Then Angle(T') is lexicographically larger than Angle(T).
+
+<p>
+Hence if T is not Delaunay, Angle(T') is larger than Angle(T),<br>
+	so the Delaunay triangulation is lexicographically maximum.
+
+<p>
+Since the number of triangulations is finite,<br>
+and each triangulation generated is distinct,<br>
+the algorithm terminates.<br>
+<b>QED</b>
+
+<h3>Other properties and uses of the Delaunay triangulation</h3>
+
+<h3>Interpolation</h3>
+
+<p>
+<table><tr><td>
+The Delaunay triangulation is frequently used for
+"piecewise-linear" interpolation of scattered data:
+given 
+	a set of points in the plane, and
+	function values at those points,
+the interpolated value of the function at a point p is the value found using
+linear interpolation within the triangle containing p.
+
+<p>
+That is, the graph of the interpolant function is:
+<blockquote>
+	for each triangle abc of the Delaunay triangulation,
+	lift it to the 3-dimensional triangle<br>
+	[a f(a)][b f(b)][c f(c)].
+</blockquote>
+
+<td><img src="f2.gif"></tr></table>
+
+<p>
+What is the best triangulation for this interpolation method?
+
+<p>
+It depends on the function being interpolated, which is unknown in general
+(except at the sites).  However:
+
+<blockquote>
+	The Delaunay triangulation minimizes the maximum error when the
+	function is
+<blockquote>
+	f(x,y) = x<sup>2</sup> + y<sup>2</sup> or (x-a)<sup>2</sup>+(y-b)<sup>2</sup>
+</blockquote>
+for any fixed a,b.
+</blockquote>
+
+<blockquote>
+	The Delaunay triangulation minimizes the "roughness" of the
+	interpolant, the integral of the (squared) length of the gradient.
+</blockquote>
+
+<p>
+For some functions, the Delaunay triangulation is not the best;
+better triangulations are often found by local improvement using edge flipping.
+
+
+<h3>Geometric graphs</h3>
+
+<p>
+For a given set S of sites, the <i>geometric graph</i> G(S) on S has:
+<blockquote>
+	the sites as vertices, and<br>
+	has all edges {a,b} between sites a and b,<br>
+		with weight equal to the distance between the a and b.<br>
+</blockquote>
+
+<p>
+For a given set S, the following undirected graphs have vertex set S, and
+	weighted edges {a,b}, for a,b in S, with weight d(a,b).
+Let:
+<table>
+<tr><th>G(S) </th><td>have all edges.</td></tr>
+<tr><th valign = top>RNG(S) </th><td valign = top>, the Relative Neighborhood Graph,
+have edges
+between sites a and b when no third site is closer to a and to b than d(a,b).
+That is, the
+shaded <i> lune</i> in the figure is empty.<td><img src="f3.gif"></tr>
+<tr><th valign = top>GG(S) </th><td valign = top>, the Gabriel graph,
+have edges between sites
+a and b when no site is closer than a and b to the midpoint of segment ab.  
+The shaded circle is empty.<td><img src="f4.gif"></tr>
+<tr><th>MST(S) </th><td>be the minimum spanning tree of G(S).</td></tr>
+</table>
+
+<p>
+<blockquote>
+<b>Fact:</b> the edge sets of these graphs have
+<blockquote>
+	MST(S) subset RNG(S) subset GG(S) subset DG(S) subset G(S).
+</blockquote>
+</blockquote>
+
+<p>
+<b>Proof sketch:</b>
+	Recall that an edge e of a graph is in no MST of the graph
+	if e is the heaviest edge in some cycle of the graph.  
+	If an edge {a,b} is not in RNG(S) due to some site c,
+	then {a,b} is heaviest in the cycle a-b-c-a.  For the rest,
+	proof by picture. <b>QED</b>
+
+<h4>Spanners</h4>
+
+<p>
+	Given a graph G and parameter t, a <i>t-spanner</i> G' of G has the same
+	vertices, and perhaps fewer edges, but the distance between
+	a and b in G' with a factor of t of the distance between a and b
+	in G.
+
+<p>
+<blockquote>
+<b>Fact:</b>	DG(S) is a 2.43-spanner of G(S).
+</blockquote>
+
+<p>
+Proof omitted.
+
+
+
+<h3>Computing Voronoi diagrams and Delaunay triangulations</h3>
+
+From one, it's easy to get the other in O(n) time.<br>
+The Delaunay triangulation is generally easier to compute.
+
+<p>
+Some algorithms
+<ul>
+<li>	edge flipping
+<ul>
+<li>		not so slow, really
+<li>		useful for triangulations besides Delaunay
+</ul>
+<li>	divide-and-conquer
+<ul>
+<li>		O(n log n) worst case
+<li>		split the points in half by a line
+<li>		compute Delaunay triangulation of each piece
+<li>		merge
+</ul>
+<li>	sweep
+<ul>
+<li>		O(n log n) worst case
+<li>		use sweep line paradigm in some way
+</ul>
+<li>	randomized incremental
+<ul>
+<li>		O(n log n) expected
+<li>		yes, for this too.
+</ul>
+</ul>
+
+<h3>Divide and conquer</h3>
+
+The hard step is the merge:
+<blockquote>
+	Given sets L and R, S= L union R, separated by a vertical line,
+		and their triangulations DG(L) and DG(R),
+		compute DG(S).
+</blockquote>
+
+<p>
+There are RR edges, LL edges, and cross edges.
+
+<p>
+All new Delaunay edges in the merge are cross edges:
+	if an RR edge is Delaunay now, it was before.
+
+<p>
+Some triangles of DG(L) are deleted: those with circumcircles
+containing points of R.<br>
+...and symmetrically for DG(R).
+
+<p>
+The cross edges are ordered along the split line,
+and consecutive edges share a vertex.
+
+<p>
+The cross edges are built from bottom to top, starting from a cross edge that
+	is a convex hull edge.
+
+<table>
+<tr><td>
+<p>
+Conceptually, maintain an empty disk on the current cross edge {a,b},
+pushing it up, but keeping a and b on the bounding circle.
+
+
+<p>
+The first site this "rising bubble" hits gives the next cross edge.
+
+<p>
+That site is on an edge incident to a or b.  To find it,
+<pre>
+  walk around
+  the edges incident to a, deleting those bounding
+  triangles conflicting with b.
+  Find the first edge {a,a'} not deleted.
+
+  Similarly walk around the edges incident to b,
+  finding edge {b,b'}.
+
+  Either b or b' is hit first by the
+  "rising bubble", yielding the next cross
+  edge {a,b'} or {a',b}.
+</pre>
+
+<p>
+Since O(n) work is done in the merge, O(n log n) is needed overall.
+
+<p>
+Dwyer has shown that O(n log log n) is needed for points uniform in the square,
+	using bucketing.
+
+<td><table><tr><td><caption align=bottom> <i> Midway through a merge; edge ac is deleted</i>
+</caption></table><img src="f5.gif"></tr></table>
+
+
+
+<h3>Sweep</h3>
+
+Fortune has shown that there is a sweep line algorithm for
+	Delaunay triangulations/Voronoi diagrams.
+
+<p>
+There are at least four viewpoints of the sweep algorithm.
+
+
+<table><tr><td>
+<p>
+When viewed as a Delaunay triangulation algorithm:
+<p>
+Sweep a vertical line from left to right.
+
+<p>
+For a point p on the sweep line,<br>
+the <b>tangent empty circle</b> at p:
+<blockquote>
+	is empty: has no sites inside;<br>
+	is tangent to the sweep and left of it;<br>
+	contains a site (on the circle, not inside)
+</blockquote>
+<p>
+<b>S(p):</b> the sites on the tangent empty circle of p.
+
+<p>
+The points on the sweep form equivalence classes based on S(p).
+<td><table><tr><td><caption> <i> S(p)=a, S(p')={a,b}</i></caption></table><img src="f6.gif"></table>
+
+
+<p>
+Intervals of points have the same S(p) with |S(p)|=1,
+separated by points with |S(p)|=2, corresponding to Delaunay edges.
+
+<h3>Sweep Events:</h3>
+
+<table><tr><td>
+
+<table><tr>
+<td valign=top align=right> <i>site events:</i></td>
+<td>		The sweep meets a site</td></tr>
+<tr><td valign=top align=right> <i>circle events:</i></td>
+<td>	the sweep contains a point with S(p)=3;<br>
+		yields a Delaunay circle;<br>
+		corresponds to the shrinking down of an interval
+</td></tr></table>
+
+<p>
+Suppose the circle event has S(p)={a,b,c},<br>
+the previous interval had label {a}, bounded by points with
+	labels {a,b} and {a,c}<br>
+Then output Delaunay edge bc;<br>
+New label {b,c} has possible events with its neighbors on the sweep:
+	schedule these. 
+<td>
+	<table>
+	<caption><i>A circle event, and just before</i></caption>
+	<tr><td><img src="f7.gif"></td></tr>
+	</table>
+
+</table>
+<p>
+<table><tr><td>
+At a site event, suppose site a is met by the sweep,<br>
+in an interval labeled by {b}, and bounded by {b,c} and {b,d}<br>
+Then a new interval, labeled by {a} and bounded by {a,b} on both sides,
+will be seen.
+
+<p> Output Delaunay edge ab.
+
+<p>
+Check for circle events for {a,b} and {b,c}, and for {a,b} and {b,d}.
+
+<p>
+Some scheduled circle events will not actually occur:
+for example,
+<blockquote>
+	if a site event splits an interval, that interval cannot shrink
+	to a point.<br>
+	if a circle event shrinks an interval to a point, that interval
+	cannot expand to shrink a neighboring interval to a point.
+</blockquote>
+<td><table>
+	<caption><i>A site event</i></caption>
+	<tr><td><img src="f8.gif"></td></tr>
+	</table>
+
+</table>
+
+<p>
+Such "false alarm" events can be detected and removed when real events occur,
+and there are a bounded number of them.
+
+
+<h3>Variations of Voronoi diagrams</h3>
+
+<ul>
+<li>	Farthest-point Voronoi diagrams
+<ul>
+<li>		sites are points
+<li>		VR(p)==points with p <i>farthest</i> site
+<li>		circle emptiness of closest point --> outside of circle emptiness
+<li>		As will be shown:
+<ul>
+<li>			ordinary Voronoi diagram == lower hull of points in 3d
+<li>			farthest-point VD == upper hull of those points
+</ul>
+</ul>
+<li>	The Voronoi diagram of line segments:
+<ul>
+<li>		the sites are line segments
+<li>		bisectors are parabolas or lines
+<li>		used for analysis of shapes
+<li>		part of this diagram is also known as the <i>medial axis</i>.
+</ul>
+<li>	order k Voronoi diagrams
+<ul>
+<li>		sites are points
+<li>		VR(B), for B subset S == points with k nearest sites = B.
+</ul>
+</ul>
+
+
+
+<h3>Convexity Overview</h3>
+
+<p>
+We next turn to the problem of computing convex hulls of point sets
+in higher dimensions;
+to do this, many basic facts about convex sets must be
+known.  While actually proving these facts rigorously is a course
+in itself, proving some of them will motivate introducing some
+machinery that is useful in its own right.
+
+
+<p>
+Some of the facts needed are these:
+
+<ul>
+<li>
+Either a point p is in conv(S), or there is a subset T of S with
+p and S on opposite sides of the hyperplane through T.
+
+<li>
+The convex hull of S is the convex hull of the vertices of the convex hull of S.
+
+<li> A face of the convex hull of S is the convex hull of S', for some subset S' of S.
+<li>
+A set is the convex hull of a set of points iff it is the intersection
+of a finite set of halfspaces iff it is the intersection of all halfspaces
+bounded by hyperplanes through d points in S, with all points of S on one side.
+
+
+</ul>
+
+
+
+<p>
+As an example of the last fact:
+recall that the Voronoi region of a site is a polygon, if bounded:
+the intersection of all the halfspaces containing the site and bounded
+by the perpendicular bisectors of the site and other sites.
+
+<p>
+But it is also the convex hull of its vertices.  This fact
+holds for any bounded convex polyhedral sets.  They are both:
+	the convex hulls of their vertices, and
+	the intersection of the halfspaces bounded by their facets (edges in 2d).
+
+<p>
+The <i>convex hull problem</i> is to convert between these presentations:
+given a set S of points, find the halfspaces whose intersection is conv(S).
+
+<p>
+We'll next review basic ideas of convexity,
+then state and/or prove some basic facts about convex sets.
+
+<h3>Combinations and closures</h3>
+
+
+Lecture 1 gave a definition for convex combination; here we generalize
+it slightly, and define also three other combinations: <i>linear</i>,
+<i>affine</i> and <i>positive</i>.
+
+
+<p>
+Let S be a set of points, and z<sub>p</sub> a coefficient for each point p in S.
+Then a point of the form
+<blockquote>
+	sum<sub>p in S</sub> z<sub>p</sub> p
+</blockquote>
+is a combination of the points of S, of the kind shown in the table,
+depending on the properties of the coefficients.
+The table also gives the name of the corresponding sets closed under
+such combination, and the closure operation applied to the set.
+
+<table border=2>
+<caption> <i>Combinations of point sets </i></caption>
+<tr align=center><b><th> combination </th><th colspan=2> conditions on z<sub>p</sub></th>
+	<th> closed set</th><th> closure</th></b></tr>
+<tr align=center><th>linear</th><td colspan=2 align=center> none</td>
+	<td>linear subspace</td><td> span(S)</tr>
+<tr align=center><th>positive, conical</th><td colspan=2 align=left> z<sub>p</sub> >= 0</td>
+	<td>cone</td><td> cone(S)</tr>
+<tr align=center><th> affine </th><td colspan=2 align=right>sum<sub>p in S</sub> z<sub>p</sub> = 1</td>
+	<td>affine subspace, flat </td><td> aff(S)</td></tr>
+<tr align=center><th> convex </th> <td colspan=2>  z<sub>p</sub> >= 0,  sum<sub>p in S</sub> z<sub>p</sub> = 1</td>
+	<td>convex set </td><td> conv(S)</td></tr>
+</table>
+
+<p>
+Note that a convex combination is affine and positive: conv(S) is the intersection
+of cone(S) with aff(S).
+
+<h3>Dependence</h3>
+
+A set S is affinely dependent if some point p in S is in aff(S-{p}),
+and is affinely independent if it is not affinely dependent.
+
+<p>
+For example, three collinear points are affinely dependent.
+
+<p>
+There are similar ideas of independence for the other forms:
+<blockquote>
+	linear independence for linear combinations,<br>
+	"in convex position" for convex combinations.<br>
+</blockquote>
+
+
+dim(P) : ==dim(aff(P))
+	 == one less than the size of the largest affinely independent set in P.
+
+<p>
+Also, dim(P) == the linear dimension of P-p, for any point p in P.
+That is, translate aff(P) to contain the origin; the resulting linear subspace
+has dimension dim(P).
+
+<h4>Examples</h4>
+
+(need linear independence for span(S), affine independence
+for the rest.)
+
+<p>
+Two distinct points S;
+<table>
+<tr><td align=right>span(S) <td>is a plane through the origin,</tr>
+<tr><td align=right>cone(S) <td>is a planar "wedge" with apex at the origin,</tr>
+<tr><td align=right>aff(S)  <td>is the line through the points, and</tr>
+<tr><td align=right>conv(S) <td>is the line segment between the points.</tr>
+</table>
+
+<p>
+Three distinct points:
+<table>
+<tr><td align=right>span(S) </td><td>is a 3-dimensional hyperplane through the origin.</td></tr>
+<tr><td align=right>cone(S) </td><td>is a cone with apex at the origin, with three sides.</td></tr>
+<tr><td align=right>aff(S) </td><td>is the plane through the points, and</td></tr>
+<tr><td align=right>conv(S) </td><td>is the triangle with the three points as vertices.</td></tr>
+</table>
+
+<p>
+A few more definitions, for sets P and Q:
+
+<table>
+<tr><th align=right valign=top>relint(P) </th><td>: (mentioned in Lecture 5) the relative interior of P, relint(P), is the interior of P, as a subset of aff(P),</td></tr>
+<tr><th align=right>P+Q </th><td>: for sets P and Q, the <i>Minkowski sum</i> P+Q is the set {p+q | p in P, q in Q}.</td></tr>
+<tr><th align=right>simplex </th><td>: conv(S) for an affinely independent set S.</td></tr>
+</table>
+
+
+<h3> Intersections </h3>
+
+Convex sets, flats, cones, and linear subspaces can all be described
+as intersections of halfspaces, or equivalently, as solution sets
+of systems of linear inequalities.
+
+<table>
+<tr><th>P(H): </th><td>for a set H of closed halfspaces, P(H) is the intersection of the halfspaces in H.</td></tr>
+</table>
+
+<p>
+Since each halfspace is convex, and the intersection of convex sets
+is convex, P(H) is convex: a <i>polyhedral set</i> or convex polyhedron.
+
+<p>
+However, not all P(H) can be described as conv(S) for some finite point set S.
+For example, unbounded Voronoi regions cannot be.
+
+<p>
+This makes the connections between the <i>H</i>-polyhedra and <i>V</i>-polyhedra messy;
+the correct relation is that every P(H) can be written as conv(S)+cone(Y),
+for some sets S and Y.
+
+<p>
+Rather than deal with such awkwardness, it's better to move
+to cones.
+</body>
+</html>
